@@ -1,0 +1,7 @@
+@mixin size-variation {
+  @each $label, $size in $size-map {
+    &.is-#{$label} {
+      font-size: $size;
+    }
+  }
+}

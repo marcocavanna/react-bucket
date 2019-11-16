@@ -1,0 +1,53 @@
+@if $generate-background-ui-colors == true {
+  @each $label, $color in $ui-bucket-ui-colors-map {
+    .has-background-#{$label} {
+      background-color: $color !important;
+    }
+  
+    @if $generate-background-ui-colors-variation == true {
+      .has-background-#{$label}-tint {
+        background-color: color-tint($color, 1) !important;
+      }
+    
+      .has-background-#{$label}-shade {
+        background-color: color-shade($color, 1) !important;
+      }
+    }
+  }
+}
+
+@if $generate-background-socials-colors == true {
+  @each $label, $color in $ui-bucket-socials-color-map {
+    .has-background-#{$label} {
+      background-color: $color !important;
+    }
+  
+    @if $generate-background-socials-colors-variation == true {
+      .has-background-#{$label}-tint {
+        background-color: color-tint($color, 1) !important;
+      }
+    
+      .has-background-#{$label}-shade {
+        background-color: color-shade($color, 1) !important;
+      }
+    }
+  }
+}
+
+@if $generate-background-brand-colors == true {
+  @each $label, $color in $ui-bucket-brand-colors-map {
+    .has-background-#{$label} {
+      background-color: $color !important;
+    }
+  
+    @if $generate-background-brand-colors-variation == true {
+      .has-background-#{$label}-tint {
+        background-color: color-tint($color, 1) !important;
+      }
+    
+      .has-background-#{$label}-shade {
+        background-color: color-shade($color, 1) !important;
+      }
+    }
+  }
+}

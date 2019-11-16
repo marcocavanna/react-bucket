@@ -1,0 +1,128 @@
+
+
+.loader {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: 0;
+  text-align: center;
+  z-index: 1000;
+  transform: translate(-50%, -50%);
+  box-sizing: inherit;
+
+  font-size: 1em;
+
+  &.has-text {
+    width: auto !important;
+    height: auto !important;
+    font-style: normal;
+    text-align: center;
+    font-weight: $semi-bold;
+  }
+
+  &.is-active {
+    display: block;
+
+    &.is-inline {
+      display: inline-block !important;
+      position: relative;
+      vertical-align: middle;
+      margin: 0;
+      left: 0;
+      top: 0;
+      transform: none;
+
+      &.is-centered {
+        display: block !important;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+  }
+
+  &.is-inverted {
+    color: $white-shade;
+
+    &:before {
+      border-color: rgba(255, 255, 255, .15);
+    }
+
+    &:after {
+      border-top-color: #fff;
+    }
+  }
+
+
+  &:before {
+    position: absolute;
+    content: '';
+    top: 0%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    box-sizing: inherit;
+
+    border-radius: 500rem;
+    border: .2em solid rgba(0, 0, 0, 0.1);
+  }
+
+  &:after {
+    position: absolute;
+    content: '';
+    top: 0%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    box-sizing: inherit;
+
+    border-radius: 500rem;
+
+    border-width: .2em;
+    border-style: solid;
+    border-color: #767676 transparent transparent;
+
+    box-shadow: 0 0 0 1px transparent;
+
+    animation: spin 500ms linear;
+    animation-iteration-count: infinite;
+  }
+}
+
+$__loader-size-map: (
+  extra-small:  1rem,
+  small:        1.75rem,
+  normal:       2.5rem,
+  large:        3.5rem,
+  big:          5rem,
+  huge:         7rem
+);
+
+$__loader-font-size-map: (
+  extra-small:  .5em,
+  small:        .75em,
+  normal:       1em,
+  large:        1.35em,
+  big:          2em,
+  huge:         2.5em
+);
+
+@each $label, $size in $__loader-size-map {
+  .loader.is-#{$label} {
+    width: $size;
+    height: $size;
+    font-size: map-get($map: $__loader-font-size-map, $key: $label);
+  }
+
+  .loader.is-#{$label}.has-text {
+    min-width: $size;
+    padding-top: $size + .75rem;
+  }
+
+  .loader.is-#{$label}:before,
+  .loader.is-#{$label}:after {
+    width: $size;
+    height: $size;
+    margin: 0 0 0 $size / 2 * -1
+  }
+}

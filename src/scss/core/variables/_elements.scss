@@ -1,0 +1,153 @@
+/* ==================================
+
+     elements @ Variables
+
+     Project Inkflow
+     Author Marco Cavanna - 2019
+
+================================== */
+
+/*==========
+    HTML Document Variables
+==========*/
+$body-bg:                   $white-shade          !default;
+
+$body-font-weight:          $regular              !default;
+$body-size-desktop:         $font-size            !default;
+$body-line-height-desktop:  $line-height          !default;
+$body-color:                $text                 !default;
+$body-font:                 $font-family-sans-serif;
+$body-render-mode:          $font-render-mode;
+
+$body-overflow-x:           hidden                !default;
+$body-overflow-y:           scroll                !default;
+
+$view-padding:              1rem                  !default;
+
+/*==========
+    Element State
+    Variables
+==========*/
+$disabled-opacity: .5                         !default;
+
+
+
+/*==========
+    Box Properties
+==========*/
+
+/*---
+    Border Colors
+---*/
+$border-color: $grey-lightest                 !default;
+$border-color-dark: $grey-light               !default;
+$border: solid 1px $border-color              !default;
+$border-dark: solid 1px $border-color-dark    !default;
+
+
+/*---
+    Border Radius
+---*/
+$border-radius-small: 3px                     !default;
+$border-radius: 5px                           !default;
+$border-radius-max: 8px                       !default;
+
+
+/*---
+    Specific Elements
+---*/
+// <SideBar />
+$sidebar-width:               58px                        !default;
+$sidebar-button-size:         42px                        !default;
+$sidebar-logo-size:           36px                        !default;
+$sidebar-z-index:             200                         !default;
+$sidebar-background:          $primary                   !default;
+$sidebar-border:              none                        !default;
+
+// <NavBar />
+$navbar-height:               58px      !default;
+$navbar-v-padding:            12px      !default;
+$navbar-z-index:              100       !default;
+$navbar-border:               none      !default;
+$navbar-element-padding:      1rem      !default;
+
+// <Loader />
+$default-loader-size: 20px                    !default;
+$button-loader-size:  20px                    !default;
+
+// <Button />
+$button-background: $grey-lightest            !default;
+$button-border-radius: $border-radius-small   !default;
+$button-horizontal-padding: 20px              !default;
+$button-vertical-padding: 8px                 !default;
+$button-icon-container-size: 34px             !default;
+$button-fixed-height: 34px                    !default;
+$button-background-brand: true                !default;
+$button-background-socials: true              !default;
+$button-background-ui: true                   !default;
+$button-hover-will-drop-shadow: false         !default;
+
+// <Panel />
+$panel-background-color: $white       !default;
+$panel-border-radius: $border-radius  !default;
+$panel-padding-vertical: 2em          !default;
+$panel-padding-horizontal: 2em        !default;
+$panel-margin-bottom: 1.5em           !default;
+
+// <Input />
+$input-line-height: 24px              !default;
+$input-vertical-padding: 6px          !default;
+$input-horizontal-padding: .75em      !default;
+$input-height: $input-line-height + ( $input-vertical-padding * 2 ) + 3;
+
+$checkbox-box-size: 1.5em             !default;
+$checkbox-label-distance: $checkbox-box-size + .75em;
+$radio-box-size: 1.5em                !default;
+$slider-bullet-size: 1em              !default;
+$toggle-bullet-size: 1.25em           !default;
+$slider-travel-distance: 2.5em          !default;
+$slider-label-distance: $slider-travel-distance + .75em;
+
+// <Table />
+$table-cell-v-padding:      1rem      !default;
+$table-cell-h-padding:      1rem      !default;
+
+// <Progress />
+$progress-bar-height:       1.5em           !default;
+$progress-bar-background:   $grey-lightest  !default;
+
+// <Item />
+$item-avatar-base-size: 2.5em         !default;
+
+// <Modal />
+$modal-background:          $white                !default;
+$modal-border-radius:       $border-radius-max    !default;
+$modal-border:              none                  !default;
+$modal-box-shadow:          4                     !default;
+$modal-horizontal-padding:  1.5rem                !default;
+$modal-header-background:   $primary              !default;
+$modal-header-color:        $white                !default;
+
+/*---
+    DOM Elements
+---*/
+// <a>
+$link       : $primary                !default;
+$link-hover : $primary-shade          !default;
+
+// <code>
+$code               : $text-tint      !default;
+$code-background    : $grey-lightest  !default;
+$code-weight        : map-get($map: $google-fonts-weight-map, $key: $font-monospace)      !default;
+$code-size          : 1em             !default;
+$code-padding       : 3px 7px         !default;
+$code-border-radius : 3px             !default;
+
+// <hr>
+$hr        : $grey-light              !default;
+$hr-height : 1px                      !default;
+$hr-margin : 1em 0                    !default;
+
+// <strong>
+$strong        : $text                !default;
+$strong-weight : $bold                !default;

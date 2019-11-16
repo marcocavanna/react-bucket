@@ -1,0 +1,58 @@
+
+@mixin generate-margin-padding($prefix: '') {
+  $_prefix: '';
+
+  @if $prefix != '' {
+    $_prefix: '#{$prefix}-';
+  }
+
+  @for $sp from 1 through $generate-spacer-utility-class {
+  
+    $_spacer: get-spacer($sp);
+  
+    @each $label, $direction in $direction-map {
+      .#{$_prefix}m#{$label}-#{$sp} {
+        margin-#{$direction}: #{$_spacer}em !important;
+      }
+
+      .#{$_prefix}p#{$label}-#{$sp} {
+        padding-#{$direction}: #{$_spacer}em !important;
+      }
+    }
+
+    .#{$_prefix}m-#{$sp} {
+      margin: #{$_spacer}em !important;
+    }
+
+    .#{$_prefix}p-#{$sp} {
+      padding: #{$_spacer}em !important;
+    }
+
+    .#{$_prefix}my-#{$sp} {
+      margin: #{$_spacer}em 0 !important;
+    }
+
+    .#{$_prefix}py-#{$sp} {
+      padding: #{$_spacer}em 0 !important;
+    }
+
+    .#{$_prefix}mx-#{$sp} {
+      margin: 0 #{$_spacer}em !important;
+    }
+
+    .#{$_prefix}px-#{$sp} {
+      padding: 0 #{$_spacer}em !important;
+    }
+
+  }
+}
+
+@if $generate-spacer-utility-class != 0 {
+  @include generate-margin-padding();
+  
+  @each $breakpoint in map-keys($breakpoints-map) {
+    @include on-screen($breakpoint) {
+      @include generate-margin-padding('on-#{$breakpoint}');
+    }
+  }
+}

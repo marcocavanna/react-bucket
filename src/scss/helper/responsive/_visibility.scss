@@ -1,0 +1,9 @@
+@if $generate-visibility-utility-class == true {
+  @include property-for-each-breakpoint('is-hidden', $attach-to-selector: false, $property-with-breakpoint: $generate-responsive-visibility-utility-class) {
+    display: none !important;
+  }
+  
+  @include property-for-each-breakpoint('is-visible', $attach-to-selector: false, $property-with-breakpoint: $generate-responsive-visibility-utility-class) {
+    display: unset !important;
+  }
+}

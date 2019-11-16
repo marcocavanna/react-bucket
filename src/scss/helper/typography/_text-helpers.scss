@@ -1,0 +1,49 @@
+@if $generate-text-size-utility-class == true {
+  @each $label, $size in $font-size-map {
+    @include property-for-each-breakpoint('has-text-#{$label}', $attach-to-selector: false, $property-with-breakpoint: $generate-responsive-text-size-utility-class) {
+      font-size: $size !important;
+    }
+  }
+}
+
+@if $generate-font-weight-utility-class == true {
+  @each $label, $weight in $font-weight-map {
+    @include property-for-each-breakpoint('has-font-#{$label}', $attach-to-selector: false, $property-with-breakpoint: $generate-responsive-font-weight-utility-class) {
+      font-weight: $weight !important;
+    }
+  }
+}
+
+@if $generate-text-property-utility-class == true {
+  @each $property, $list in $text-property-map {
+    @each $value in $list {
+      @include property-for-each-breakpoint('has-text-#{$value}', $attach-to-selector: false, $property-with-breakpoint: $generate-responsive-text-property-utility-class) {
+        text-#{$property}: $value !important;
+      }
+    }
+  }
+}
+
+@if $generate-text-brand-colors == true {
+  @each $label, $color in $ui-bucket-brand-colors-map {
+    @include property-for-each-breakpoint('has-text-#{$label}', $attach-to-selector: false, $property-with-breakpoint: $generate-responsive-text-brand-colors) {
+      color: $color !important;
+    }
+  }
+}
+
+@if $generate-text-ui-colors == true {
+  @each $label, $color in $ui-bucket-ui-colors-map {
+    @include property-for-each-breakpoint('has-text-#{$label}', $attach-to-selector: false, $property-with-breakpoint: $generate-responsive-text-ui-colors) {
+      color: $color !important;
+    }
+  }
+}
+
+@if $generate-text-socials-colors == true {
+  @each $label, $color in $ui-bucket-socials-color-map {
+    @include property-for-each-breakpoint('has-text-#{$label}', $attach-to-selector: false, $property-with-breakpoint: $generate-responsive-text-socials-colors) {
+      color: $color !important;
+    }
+  }
+}

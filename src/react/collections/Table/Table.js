@@ -1,0 +1,140 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import cx from 'classnames';
+
+import _ from 'lodash';
+
+import {
+  childrenUtils,
+  customPropTypes,
+  getElementType,
+  getUnhandledProps,
+  classByKey
+} from '../../lib';
+
+import TableHeader from './TableHeader';
+import TableBody from './TableBody';
+import TableFooter from './TableFooter';
+import TableRow from './TableRow';
+import TableHeaderCell from './TableHeaderCell';
+import TableCell from './TableCell';
+
+function Table(props) {
+
+  const {
+    children,
+    className,
+    footerRow,
+    footerRows,
+    headerRow,
+    headerRows,
+    renderBodyRow,
+    sortable,
+    tableData
+  } = props;
+
+  const classes = cx(
+    'table',
+    className,
+    classByKey(sortable, 'is-sortable')
+  );
+
+  const rest = getUnhandledProps(Table, props);
+  const ElementType = getElementType(Table, props);
+
+
+  /**
+   * If Children are defined and valid
+   * render the Table using the children node
+   */
+  if (!childrenUtils.isNil(children)) {
+    return (
+      <ElementType {...rest} className={classes}>
+        {children}
+      </ElementType>
+    );
+  }
+
+
+  /** Compute the Table Headers */
+  const hasHeaderRows = headerRow || headerRows;
+  const headerShorthandOptions = { defaultProps: { cellAs: 'th' } };
+  const headerElement = hasHeaderRows && (
+    <TableHeader>
+      {headerRow && TableRow.create(headerRow, headerShorthandOptions)}
+      {headerRows
+        && _.map(headerRows, headerRowData => TableRow
+          .create(headerRowData, headerShorthandOptions))}
+    </TableHeader>
+  );
+
+  const hasFooterRows = footerRow || footerRows;
+  const footerElement = hasFooterRows && (
+    <TableFooter>
+      {footerRow && TableRow.create(footerRow)}
+      {footerRows
+        && _.map(footerRows, footerRowData => TableRow
+          .create(footerRowData))}
+    </TableFooter>
+  );
+
+  return (
+    <ElementType {...rest} className={classes}>
+      {headerElement}
+      <TableBody>
+        {renderBodyRow
+          && _.map(tableData, (data, index) => TableRow.create(renderBodyRow(data, index)))}
+      </TableBody>
+      {footerElement}
+    </ElementType>
+  );
+
+}
+
+Table.propTypes = {
+  /** An Element used to Render the Component */
+  as: customPropTypes.as,
+
+  /** Children Node */
+  children: PropTypes.node,
+
+  /** User defined Classname */
+  className: PropTypes.string,
+
+  /** Footer Row Data */
+  footerRow: PropTypes.array,
+
+  /** Footer Multi Rows Data */
+  footerRows: PropTypes.arrayOf(PropTypes.array),
+
+  /** Header Row Data */
+  headerRow: PropTypes.array,
+
+  /** Header Multi Rows Data */
+  headerRows: PropTypes.arrayOf(PropTypes.array),
+
+  /** Render Function */
+  renderBodyRow: PropTypes.func,
+
+  /** Set Table as Sortable */
+  sortable: PropTypes.bool,
+
+  /** Table Array Data */
+  tableData: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object
+  ])
+};
+
+Table.defaultProps = {
+  as: 'table'
+};
+
+Table.Header = TableHeader;
+Table.Body = TableBody;
+Table.Footer = TableFooter;
+Table.Row = TableRow;
+Table.HeaderCell = TableHeaderCell;
+Table.Cell = TableCell;
+
+export default Table;

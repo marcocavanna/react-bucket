@@ -1,0 +1,106 @@
+$font-sans-serif:   $default-web-font          !default;
+$font-monospace:    $default-monospace-font    !default;
+
+$google-fonts-weight-map: (
+  // Sans Serif Font
+  'Dosis'           : (200, 400, 600, 800),
+  'Lato'            : (300, 400, 700, 900),
+  'Montserrat'      : (300, 400, 600, 700),
+  'Nunito'          : (300, 400, 700, 800),
+  'Open Sans'       : (300, 400, 600, 700),
+  'Poppins'         : (300, 400, 600, 700),
+  'Quicksand'       : (300, 400, 600, 700),
+  'Roboto'          : (300, 400, 500, 700),
+  'Source Sans Pro' : (300, 400, 600, 700),
+  'Ubuntu'          : (300, 400, 500, 700),
+
+  // Monospace Font
+  'Roboto Mono'     : 400,
+  'Source Code Pro' : 400,
+  'Ubuntu Mono'     : 400
+);
+
+/**
+  Check Font Exists
+*/
+@if map-has-key($map: $google-fonts-weight-map, $key: $font-sans-serif) == false {
+  @error 'Invalid Default Web Font #{$font-sans-serif}';
+}
+
+@if map-has-key($map: $google-fonts-weight-map, $key: $font-monospace) == false {
+  @error 'Invalid Monospace Font #{$font-sans-serif}';
+}
+
+/*
+  Build Fonts Weight using Default Font
+*/
+
+$light:             nth(map-get($google-fonts-weight-map, $font-sans-serif), 1)             !default;
+$regular:           nth(map-get($google-fonts-weight-map, $font-sans-serif), 2)             !default;
+$semi-bold:         nth(map-get($google-fonts-weight-map, $font-sans-serif), 3)             !default;
+$bold:              nth(map-get($google-fonts-weight-map, $font-sans-serif), 4)             !default;
+
+/*
+  Import Fonts
+*/
+$__sans_serif_url: str-replace($font-sans-serif, ' ', '+');
+$__monospace_url: str-replace($font-monospace, ' ', '+');
+@import url('https://fonts.googleapis.com/css?family=#{unquote($__sans_serif_url)}:#{$light},#{$regular},#{$semi-bold},#{$bold}|#{unquote($__monospace_url)}:#{map-get($google-fonts-weight-map, $font-monospace)}&display=swap');
+
+$font-family-sans-serif:  $font-sans-serif, -apple-system, "Helvetica", "Arial", sans-serif !default;
+$font-family-monospace:   $font-monospace, monospace !default;
+$font-render-mode:        optimizeLegibility !default;
+
+$text-align-list:   center, right, left, justify;
+$text-style-list:   capitalize, lowercase, uppercase;
+
+$icon-class-selector: 'icon', 'fab', 'far', 'fal', 'fas', 'fa';
+
+$text-property-map: (
+  align     : $text-align-list,
+  transform : $text-style-list
+);
+
+$font-weight-map: (
+  ligth     : $light,
+  regular   : $regular,
+  semi-bold : $semi-bold,
+  bold      : $bold
+);
+
+$font-size:     $default-font-size;
+
+$line-height:   $default-line-height;
+
+$font-size-map: (
+  small  : .75em,
+  normal : 1em,
+  large  : 1.5em
+);
+
+$h1: 3em      !default;
+$h2: 2.5em    !default;
+$h3: 1.5em    !default;
+$h4: 1.25em   !default;
+$h5: 1em      !default;
+$h6: .75em    !default;
+
+$header-font-size-map: (
+  h1:     $h1,
+  h2:     $h2,
+  h3:     $h3,
+  h4:     $h4,
+  h5:     $h5,
+  h6:     $h6
+);
+
+$header-font-weight-map: (
+  h1:     $semi-bold,
+  h2:     $semi-bold,
+  h3:     $semi-bold,
+  h4:     $semi-bold,
+  h5:     $semi-bold,
+  h6:     $semi-bold
+);
+
+$header-margin-bottom: 0.25em;

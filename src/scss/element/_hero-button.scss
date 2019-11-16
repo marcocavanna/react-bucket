@@ -1,0 +1,97 @@
+$settings-icon-color: (
+  0: #607d8b,
+  1: #673ab7,
+  2: #0288d1,
+  3: #388e3c,
+  4: #ff5722,
+  5: #e91e63,
+  6: #d32f2f,
+  7: #009688,
+  8: #3f51b5
+);
+
+.hero-button {
+  background-color: #fff;
+  padding: 1.5em 2em;
+  border-radius: 1em;
+  position: relative;
+  overflow: hidden;
+  color: $text-light;
+  will-change: color, background-color, box-shadow;
+  transition: color 150ms $transition-ease, background-color 150ms $transition-ease, box-shadow 300ms $transition-ease;
+  cursor: pointer;
+  margin: 0 0 1em;
+  box-shadow: none;
+
+  @include unselectable;
+
+  .hero-button-header,
+  .hero-button-content {
+    color: inherit;
+  }
+
+  .hero-button-header {
+    font-weight: $bold;
+    font-size: 1.5em;
+  }
+
+  .hero-button-content {
+    font-weight: $semi-bold;
+    opacity: .75;
+  }
+
+  .hero-button-icon {
+    position: absolute;
+    font-size: 5em;
+    top: 0;
+    right: 0;
+    transform: translate(5%, 10%);
+
+    .icon {
+      margin: 0;
+      text-align: right;
+      opacity: .5;
+      color: $grey-lightest;
+      transition: color 150ms $transition-ease;
+    }
+  }
+
+  &:not(.is-disabled) {
+
+    &:not(.is-discreet) {
+      @include without-touch-hover {
+        background-color: #444;
+        color: #fff;
+        @include dpShadow(4);
+
+        @each $index, $color in $settings-icon-color {
+          &.hero-variation-#{$index} {
+            background-color: $color !important;
+          }
+        }
+      }
+    }
+
+    &.is-discreet {
+      @include without-touch-hover($persist-on-touch: true) {
+        color: #444;
+
+        @each $index, $color in $settings-icon-color {
+          &.hero-variation-#{$index} {
+            color: $color !important;
+
+            .icon {
+              color: $color !important;
+            }
+          }
+        }
+      }
+    }
+
+  }
+
+  &.is-disabled {
+    cursor: not-allowed !important;
+    opacity: $disabled-opacity !important;
+  }
+}

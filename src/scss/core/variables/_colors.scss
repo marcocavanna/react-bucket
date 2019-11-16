@@ -1,0 +1,138 @@
+/* Text Color */
+$text:          rgba(61, 66, 81, .95) !default;
+$text-shade:    rgb(55, 62, 77)       !default;
+$text-tint:     rgba(61, 66, 81, .8)  !default;
+
+$text-light:    rgba(61, 66, 81, .67)  !default;
+$text-lightest: rgba(61, 66, 81, .52) !default;
+
+/* Black Colors */
+$black:         hsl(0, 0%, 4%)      !default;
+$black-tint:    hsl(0, 0%, 8%)      !default;
+
+/* Backdrops */
+$backdrop:      transparentize(#3b414f, .15) !default;
+
+/* White Colors */
+$white:         hsl(0, 0%, 100%)    !default;
+$white-shade:   hsl(212, 10%, 96%)  !default;
+$white-shade-2: hsl(212, 10%, 93%)  !default;
+
+/* Grey Shade */
+$grey-lightest: hsl(212, 10%, 88%)  !default;
+$grey-light:    hsl(212, 10%, 73%)  !default;
+$grey:          hsl(212, 10%, 57%)  !default;
+$grey-dark:     hsl(212, 10%, 45%)  !default;
+$grey-darkest:  hsl(212, 10%, 25%)  !default;
+
+/* Colors */
+$blue:          hsl(226, 48%, 54%)  !default;
+$teal:          hsl(170, 66%, 58%)  !default;
+$green:         hsl(121, 44%, 54%)  !default;
+$yellow:        hsl(41, 93%, 55%)   !default;
+$orange:        hsl(20, 100%, 65%)  !default;
+$red:           hsl(357, 72%, 58%)  !default;
+$pink:          hsl(330, 100%, 65%) !default;
+$purple:        hsl(260, 52%, 62%)  !default;
+
+/* Social Media Colors */
+$facebook:      hsl(214, 89%, 52%)  !default;
+$twitter:       hsl(203, 89%, 53%)  !default;
+$youtube:       hsl(0, 100%, 50%)   !default;
+$instagram:     hsl(313, 65%, 46%)  !default;
+$pinterest:     hsl(353, 92%, 39%)  !default;
+$linkedin:      hsl(199, 100%, 35%) !default;
+$google:        hsl(217, 89%, 61%)  !default;
+$google-plus:   hsl(5, 69%, 54%)    !default;
+$whatsapp:      hsl(142, 70%, 49%)  !default;
+$tumblr:        hsl(215, 27%, 29%)  !default;
+$apple:         hsl(201, 11%, 68%)  !default;
+$amazon:        hsl(36, 100%, 50%)  !default;
+$microsoft:     hsl(13, 90%, 54%)   !default;
+$vimeo:         hsl(195, 83%, 51%)  !default;
+$skype:         hsl(196, 100%, 47%) !default;
+$android:       hsl(74, 55%, 50%)   !default;
+$dribble:       hsl(337, 79%, 61%)  !default;
+$slack:         hsl(299, 56%, 19%)  !default;
+$yahoo:         hsl(266, 97%, 30%)  !default;
+$telegram:      hsl(200, 100%, 40%) !default;
+
+/* UI Color */
+$primary         : $blue;
+$primary-shade   : color-shade($primary);
+$primary-tint    : color-tint($primary);
+$secondary       : $grey-darkest;
+$secondary-shade : color-shade($secondary);
+$secondary-tint  : color-tint($secondary);
+$warning         : $orange;
+$warning-shade   : color-shade($warning);
+$warning-tint    : color-tint($warning);
+$info            : $teal;
+$info-shade      : color-shade($info);
+$info-tint       : color-tint($info);
+$danger          : $red;
+$danger-shade    : color-shade($danger);
+$danger-tint     : color-tint($danger);
+$success         : $green;
+$success-shade   : color-shade($success);
+$success-tint    : color-tint($success);
+
+$ui-bucket-ui-colors-map: (
+  text          : $text,
+  text-tint     : $text-tint,
+  text-shade    : $text-shade,
+  text-light    : $text-light,
+  text-lightest : $text-lightest,
+  black         : $black,
+  black-tint    : $black-tint,
+  white         : $white,
+  white-shade   : $white-shade,
+  blue          : $blue,
+  teal          : $teal,
+  green         : $green,
+  yellow        : $yellow,
+  orange        : $orange,
+  red           : $red,
+  pink          : $pink,
+  purple        : $purple,
+  grey-lightest : $grey-lightest,
+  grey-light    : $grey-light,
+  grey          : $grey,
+  grey-dark     : $grey-dark,
+  grey-darkest  : $grey-darkest
+);
+
+$ui-bucket-socials-color-map: (
+  facebook    : $facebook,
+  twitter     : $twitter,
+  youtube     : $youtube,
+  instagram   : $instagram,
+  pinterest   : $pinterest,
+  linkedin    : $linkedin,
+  google      : $google,
+  google-plus : $google-plus,
+  whatsapp    : $whatsapp,
+  tumblr      : $tumblr,
+  apple       : $apple,
+  amazon      : $amazon,
+  microsoft   : $microsoft,
+  vimeo       : $vimeo,
+  skype       : $skype,
+  android     : $android,
+  dribble     : $dribble,
+  slack       : $slack,
+  yahoo       : $yahoo,
+  telegram    : $telegram
+);
+
+$ui-bucket-brand-colors-map: (
+  primary     : $primary,
+  secondary   : $secondary,
+  warning     : $warning,
+  info        : $info,
+  success     : $success,
+  danger      : $danger
+);
+
+/* Color Map */
+$ui-bucket-color-map: map-merge(map-merge($ui-bucket-ui-colors-map, $ui-bucket-socials-color-map), $ui-bucket-brand-colors-map );

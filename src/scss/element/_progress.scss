@@ -1,0 +1,90 @@
+/* ==================================
+
+     progress @ Element
+
+     Project Inkflow
+     Author Marco Cavanna - 2019
+
+================================== */
+
+/*==========
+    Progress Container is a Block
+    with prefixed with at 100%
+==========*/
+.progress {
+  display: block;
+  width: 100%;
+}
+
+
+/*==========
+    Progress limits if visibles
+    are two limits value of progress
+    bar that must be show at left
+    and right of the progress bar
+==========*/
+.progress.with-limits > .limits {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: get-em-spacer() 0;
+
+  /*---
+      Limit data is the
+      single limit element
+  ---*/
+  > .limit {
+    flex-grow: 1;
+    color: $text-light;
+    font-weight: $semi-bold;
+
+    &.left {
+      text-align: left;
+    }
+
+    &.right {
+      text-align: right;
+    }
+  }
+}
+
+
+/*==========
+    Progress can have a label
+==========*/
+.progress.with-label > .label {
+  display: block;
+  width: 100%;
+  padding: get-em-spacer() 0;
+  margin: 0;
+  text-align: center;
+  font-weight: $semi-bold;
+  color: $text-light;
+}
+
+
+/*==========
+    The Progress Bar is the container
+    for the extensible value
+==========*/
+.progress > .bar {
+  display: block;
+  width: 100%;
+  position: relative;
+  height: $progress-bar-height;
+  background-color: $progress-bar-background;
+  border-radius: $progress-bar-height / 2;
+  overflow: hidden;
+  transition: background-color $transition-duration $transition-ease;
+  will-change: transition;
+
+  /*---
+      Value is the extensible animated
+      bar inside the container
+  ---*/
+  > .value {
+    display: block;
+    height: 100%;
+    transition: width $transition-duration $transition-ease, background-color $transition-duration $transition-ease;
+  }
+}

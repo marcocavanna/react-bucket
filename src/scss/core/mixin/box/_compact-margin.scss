@@ -1,0 +1,9 @@
+@mixin compact-margin() {
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &:last-child:not(:first-child) {
+    margin-bottom: 0;
+  }
+}

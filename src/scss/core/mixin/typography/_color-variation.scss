@@ -1,0 +1,3 @@
+@mixin color-variation($brand: true, $ui: true, $social: true) {
+  @include background-variation($brand: $brand, $ui: $ui, $social: $social, $property-variation: color);
+}

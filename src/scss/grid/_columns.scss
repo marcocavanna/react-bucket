@@ -1,0 +1,105 @@
+
+$__base_column_width: percentage(1 / $columns);
+
+.#{$column-class} {
+
+  /** Column Base */
+  display: block;
+  padding-left: $columns-gap;
+  padding-right: $columns-gap;
+  position: relative;
+  flex-grow: 1;
+  max-width: 100%;
+  min-width: $__base_column_width;
+
+}
+
+  /** Column Master Class */
+  @if $generate-column-width-by-name == true {
+    $__master_column_width: ( full: 100%, half: 50%, narrow: false );
+    @each $label, $width in $__master_column_width {
+      @include property-for-each-breakpoint('is-#{$label}', $attach-to-selector: false) {
+        flex: none;
+        @if $width != false {
+          width: $width;
+        } @else {
+          width: auto;
+        }
+      }
+    }
+  }
+
+  $__master_column_valign: ( on-top: flex-start, centered: center, on-bottom: flex-end, stretched: stretch );
+  @each $label, $align in $__master_column_valign {
+    @include property-for-each-breakpoint('is-#{$label}', $attach-to-selector: false) {
+      align-self: $align;
+    }
+  }
+
+  /** Column Grids from 1 (one) to columns number */
+  @for $col from 1 through $columns {
+    $__column_name: nth($one-to-sixteen, $col);
+
+    $__column_width_class: [];
+    $__column_offset_class: [];
+
+    @if $generate-column-width-by-number == true {
+      $__column_width_class: append($__column_width_class, 'is-#{$col}', 'comma');
+    }
+
+    @if $generate-column-offset-by-number == true {
+      $__column_offset_class: append($__column_offset_class, 'offsetted-by-#{$col}', 'comma');
+    }
+
+    @if $generate-column-width-by-name == true {
+      $__column_width_class: append($__column_width_class, 'is-#{$__column_name}', 'comma');
+    }
+
+    @if $generate-column-offset-by-name == true {
+      $__column_offset_class: append($__column_offset_class, 'offsetted-by-#{$__column_name}', 'comma');
+    }
+
+    @if length($__column_width_class) > 0 {
+      @include property-for-each-breakpoint($__column_width_class, $attach-to-selector: false) {
+        @if $col != $columns {
+          flex: 0 0 $col * $__base_column_width;
+          width: $col * $__base_column_width;
+        } @else {
+          flex: none;
+          width: 100%;
+        }
+      }
+    }
+
+    /* Create Column Offset */
+    @if length($__column_offset_class) > 0 and $col != $columns {
+      @include property-for-each-breakpoint($__column_offset_class, $attach-to-selector: false) {
+        margin-left: $col * $__base_column_width;
+      }
+    }
+
+  }
+
+  /** Column Fraction Generator from one-thirdh */
+  @if $generate-column-width-by-fraction == true {
+    @for $numerator from 1 through 6 {
+      @for $divisor from 3 through 6 {
+        @if $numerator <= $divisor {
+          $__numerator_name: nth($one-to-sixteen, $numerator);
+          $__divisor_name: nth($first-to-sixteenth, $divisor);
+          $__column_width: percentage((1 / $divisor) * $numerator);
+
+          @if $numerator > 1 {
+            $__divisor_name: '#{$__divisor_name}s';
+          }
+
+          @if $__column_width != 50% and $__column_width != 100% {
+            @include property-for-each-breakpoint('is-#{$__numerator_name}-#{$__divisor_name}', $attach-to-selector: false) {
+              flex: 0 0 $__column_width;
+              width: $__column_width;
+            }
+          }
+        }
+      }
+    }
+  }

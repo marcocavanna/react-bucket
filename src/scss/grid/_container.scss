@@ -1,0 +1,37 @@
+.container {
+  flex-grow: 1;
+  margin: 0 auto;
+  position: relative;
+  width: auto;
+
+  &:not(.is-fluid) > .with-columns {
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  @each $breakpoint in map-keys($breakpoints-map) {
+    @if map-has-key($map: $container-width-map, $key: $breakpoint) {
+      @include on-screen($breakpoint) {
+        max-width: map-get($map: $container-width-map, $key: $breakpoint);
+      }
+    } @else {
+      @error 'Container Width missing for breakpoint #{$breakpoint}';
+    }
+  }
+
+  &.is-fluid {
+    @include each-breakpoint {
+      padding-left: $container-spacer;
+      padding-right: $container-spacer;
+      margin-left: -$container-spacer;
+      margin-right: -$container-spacer;
+      max-width: none;
+    }
+  }
+
+  @each $breakpoint, $width in $breakpoints-map {
+    &.is-#{$breakpoint}-width {
+      max-width: $width !important;
+    }
+  }
+}

@@ -1,0 +1,44 @@
+.empty-content,
+.empty-content-icon,
+.empty-content-header,
+.empty-content-content {
+  display: block;
+}
+
+.empty-content {
+  padding: 1em 0;
+  opacity: .75;
+
+  > .empty-content-icon {
+    font-size: 6em;
+    color: inherit;
+    margin-bottom: .1em;
+
+    .icon {
+      margin: 0;
+    }
+  }
+
+  > .empty-content-header {
+    font-weight: $bold;
+    text-transform: uppercase;
+    font-size: 2em;
+    color: inherit;
+    margin-bottom: .15em;
+  }
+
+  > .empty-content-content {
+    font-weight: $semi-bold;
+    font-size: 1.25em;
+    color: inherit;
+    opacity: .87;
+  }
+}
+
+/*---
+  Set Style for EmptyContent
+  when is the first child of view-content
+---*/
+.view-content > .empty-content {
+  font-size: 1.25em;
+}

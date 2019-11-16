@@ -1,0 +1,317 @@
+$__button_background_map: ();
+
+@if $button-background-ui == true {
+  $__button_background_map: map-merge($__button_background_map, $ui-bucket-ui-colors-map);
+}
+
+@if $button-background-brand == true {
+  $__button_background_map: map-merge($__button_background_map, $ui-bucket-brand-colors-map);
+}
+
+@if $button-background-socials == true {
+  $__button_background_map: map-merge($__button_background_map, $ui-bucket-socials-color-map);
+}
+
+.button {
+  /** Reset Default Properties */
+  @include unselectable;
+  cursor: pointer;
+  display: inline-block;
+  min-height: 1em;
+  outline: 0;
+  border: none;
+  vertical-align: baseline;
+  // text-transform: none;
+  text-shadow: none;
+  font-size: $font-size;
+  background-image: none;
+
+  /** Set Button Typography */
+  font-weight: $semi-bold;
+  text-transform: uppercase;
+  line-height: 1.25em;
+  font-style: normal;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+
+  /** Set Button Behaviour */
+  margin: 0 pixel-to-em(6px) 0 0;
+  border-top-left-radius: pixel-to-em($button-border-radius);
+  border-bottom-left-radius: pixel-to-em($button-border-radius);
+  border-top-right-radius: pixel-to-em($button-border-radius);
+  border-bottom-right-radius: pixel-to-em($button-border-radius);
+  padding: pixel-to-em($button-vertical-padding) pixel-to-em($button-horizontal-padding);
+
+  &:last-child:not(.is-fab) {
+    margin-right: 0;
+  }
+
+  /** Set Background Color */
+  &:not(.is-flat) {
+    @include interactive-element-background-variation(
+      $base-color: $button-background,
+      $brand: $button-background-brand,
+      $ui: $button-background-ui,
+      $social: $button-background-socials,
+      $hover-will-drop-shadow: $button-hover-will-drop-shadow
+    );
+  }
+
+  &.is-flat {
+    background-color: transparent;
+
+    @include interactive-element-background-variation(
+      $base-color: $text-lightest,
+      $brand: $button-background-brand,
+      $ui: $button-background-ui,
+      $social: $button-background-socials,
+      $hover-will-drop-shadow: $button-hover-will-drop-shadow,
+      $active-color: $text,
+      $focus-color: $text-light,
+      $property-variation: color
+    )
+  }
+
+  /** Include all Size Variation */
+  @include size-variation;
+
+  /** Set Button Icon Style */
+  &.as-icon {
+    padding: pixel-to-em($button-vertical-padding);
+
+    @include icon-style($restrict-child: true) {
+      margin: 0 !important;
+      opacity: .9;
+      vertical-align: middle;
+    }
+
+    @include without-touch-hover {
+      @include icon-style($restrict-child: true) {
+        opacity: 1;
+      }
+    }
+  }
+
+  /** Set Icon and Text Button Style */
+  &.with-icon {
+    @extend .as-icon;
+
+    position: relative;
+    padding-left: pixel-to-em($button-icon-container-size) + pixel-to-em($button-horizontal-padding) !important;
+    padding-right: pixel-to-em($button-horizontal-padding) !important;
+
+    @include icon-style($restrict-child: true) {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      line-height: 1;
+      border-radius: 0;
+      border-top-left-radius: inherit;
+      border-bottom-left-radius: inherit;
+      text-align: center;
+      width: pixel-to-em($button-icon-container-size);
+      background-color: rgba(0, 0, 0, 0.075);
+
+      &:before {
+        display: block;
+        position: absolute;
+        width: 100%;
+        top: 50%;
+        text-align: center;
+        transform: translateY(-50%);
+      }
+    }
+
+    &.on-the-right {
+      padding-right: pixel-to-em($button-icon-container-size) + pixel-to-em($button-horizontal-padding) !important;
+      padding-left: pixel-to-em($button-horizontal-padding) !important;
+
+      @include icon-style($restrict-child: true) {
+        left: auto;
+        right: 0;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        border-top-right-radius: inherit;
+        border-bottom-right-radius: inherit;
+      }
+    }
+  }
+
+  /** Set Inverted Button */
+  &.is-inverted {
+    background-color: transparent !important;
+    box-shadow: 0 0 0 2px $button-background inset !important;
+
+    &:not(.is-loading) {
+      color: $button-background !important;
+
+      @include without-touch-hover {
+        background-color: $button-background !important;
+        color: $text !important;
+      }
+    }
+
+    @each $label, $color in $__button_background_map {
+      &.is-#{$label} {
+        box-shadow: 0 0 0 2px $color inset !important;
+
+        &:not(.is-loading) {
+          color: $color !important;
+
+          @include without-touch-hover {
+            background-color: $color !important;
+            color: choose-contrast-color($color, rgba(255, 255, 255, 0.9), rgba(0, 0, 0, 0.9)) !important;
+          }
+        }
+
+
+        &.is-loading {
+          &:before {
+            border-color: transparentize($color, .5) !important;
+          }
+
+          &:after {
+            border-color: $color transparent transparent !important;
+          }
+        }
+      }
+    }
+  }
+
+  /** Set Loading Style */
+  &.is-loading {
+    @include build-loader($loader-size: $button-loader-size)
+  }
+
+  /** Set Full Width */
+  &.is-full {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  /** Rounded Button */
+  &.is-rounded {
+    border-radius: pixel-to-em($button-fixed-height / 2);
+    height: pixel-to-em($button-fixed-height);
+
+    &.on-the-left {
+      @include icon-style {
+        border-top-left-radius: inherit;
+        border-bottom-left-radius: inherit;
+      }
+    }
+
+    &.on-the-right {
+      @include icon-style {
+        border-top-right-radius: inherit;
+        border-bottom-right-radius: inherit;
+      }
+    }
+
+  }
+
+  /** Circle Button */
+  &.is-circle {
+    border-radius: 500rem;
+    height: pixel-to-em($button-icon-container-size);
+    width: pixel-to-em($button-icon-container-size);
+    padding: 0;
+    position: relative;
+
+    @include icon-style {
+      position: static;
+      top: initial;
+      left: initial;
+      transform: none;
+      margin: 0;
+      vertical-align: middle;
+    }
+  }
+
+}
+
+/** Fab Button */
+.is-fab {
+  @extend .button;
+  @extend .is-circle;
+  @extend .is-large;
+  margin: pixel-to-em(6px);
+}
+
+/** Set Style for Button Group */
+%with-buttons {
+  box-shadow: none;
+  display: inline-flex;
+  vertical-align: baseline;
+
+  > .button {
+    flex: 1 0;
+    border-radius: 0;
+    margin: 0;
+  }
+
+  &.is-full {
+    width: 100%;
+  }
+
+  &:not(.is-full) {
+    flex-basis: auto;
+  }
+}
+
+.with-buttons {
+  @extend %with-buttons;
+  flex-direction: row;
+
+  > .button {
+    &:first-child {
+      border-left: none;
+      border-top-left-radius: pixel-to-em($button-border-radius);
+      border-bottom-left-radius: pixel-to-em($button-border-radius);
+    }
+
+    &.is-rounded {
+      &:first-child {
+        border-left: none;
+        border-top-left-radius: pixel-to-em($button-fixed-height / 2);
+        border-bottom-left-radius: pixel-to-em($button-fixed-height / 2);
+      }
+    }
+
+    &:last-child {
+      border-right: none;
+      border-top-right-radius: pixel-to-em($button-border-radius);
+      border-bottom-right-radius: pixel-to-em($button-border-radius);
+    }
+
+    &.is-rounded {
+      &:last-child {
+        border-right: none;
+        border-top-right-radius: pixel-to-em($button-fixed-height / 2);
+        border-bottom-right-radius: pixel-to-em($button-fixed-height / 2);
+      }
+    }
+  }
+}
+
+.with-vertical-buttons {
+  @extend %with-buttons;
+  flex-direction: column;
+
+  > .button {
+    &:first-child {
+      border-top: none;
+      border-top-left-radius: pixel-to-em($button-border-radius);
+      border-top-right-radius: pixel-to-em($button-border-radius);
+    }
+
+    &:last-child {
+      border-bottom: none;
+      border-bottom-left-radius: pixel-to-em($button-border-radius);
+      border-bottom-right-radius: pixel-to-em($button-border-radius);
+    }
+  }
+}

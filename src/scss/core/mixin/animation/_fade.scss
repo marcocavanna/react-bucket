@@ -1,0 +1,34 @@
+@keyframes :global(fadeIn) {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes :global(fadeInDown) {
+  from {
+    opacity: 0;
+    transform: translateY(-10%);
+  }
+  to{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@mixin animate($animation-name, $timing-function: $swift-ease-in, $duration: 300ms, $iteration-count: 1) {
+  animation-name: $animation-name;
+  animation-timing-function: $timing-function;
+  animation-duration: $duration;
+  animation-iteration-count: 1;
+}
+
+@mixin fadeIn($duration: 300ms, $timing-function: $swift-ease-out) {
+@include animate(fadeIn, $timing-function, $duration);
+}
+
+@mixin fadeInDown($duration: 300ms, $timing-function: $swift-ease-out) {
+  @include animate(fadeInDown, $timing-function, $duration);
+}

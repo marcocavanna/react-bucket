@@ -1,0 +1,56 @@
+/// Generate a triangle (ideal for `:before` and `:after` selector) with `$direction`, `$color`, `$width` and `$height` property
+/// @param {string} $direction ['up'] - direction of triangle, could be `up` | `down` | `left` | `right`
+/// @param {string} $color [$white] - color of triangle
+/// @param {size} $width [$spacer] - triangle's width
+/// @param {size} $height [$spacer] - triangle's height
+/// @example scss - Before Compiling
+///   #div-1 {
+///     &:before {
+///       @include triangle('up');
+///     }
+///   }
+///
+/// @example css - Result
+///   #div-1:before {
+///     content: '';
+///     position: absolute;
+///     width: 0;
+///     height: 0;
+///     border-style: solid;
+///     display: block;
+///     -moz-transform: scale(.9999);
+///     -webkit-transform: rotate(360deg);
+///     top: -1rem;
+///     border-width: 0 1rem 1rem 1rem;
+///     border-color: transparent transparent #fff transparent;
+///   }
+///
+/// @author Marco Cavanna
+@mixin triangle($direction: 'top', $color: $white, $width: $spacer, $height: $spacer) {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  display: block;
+  -moz-transform: scale(.9999);
+  -webkit-transform: rotate(360deg);
+
+  @if $direction == 'up' {
+    top: -$height;
+    border-width: 0 $width $height $width;
+    border-color: transparent transparent $color transparent;
+  } @else if $direction == 'down' {
+    bottom: -$height;
+    border-width: $height $width 0 $width;
+    border-color: $color transparent transparent transparent;
+  } @else if $direction == 'left' {
+    left: -$width;
+    border-width: $height $width $height 0;
+    border-color: transparent $color transparent transparent;
+  } @else if $direction == 'right' {
+    right: -$width;
+    border-width: $height 0 $height $width;
+    border-color: transparent transparent transparent $color;
+  }
+}

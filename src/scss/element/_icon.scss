@@ -1,0 +1,46 @@
+i {
+  @include icon-style($restrict-child: false, $append-to-selector: true) {
+    display: inline-block;
+    opacity: 1;
+    margin: 0 pixel-to-em(4px) 0 0;
+    width: pixel-to-em(22px);
+    text-decoration: inherit;
+    text-align: center;
+    speak: none;
+    font-smoothing: antialiased;
+    backface-visibility: hidden;
+    line-height: inherit;
+    font-size: inherit;
+    color: inherit;
+  }
+}
+
+.icon {
+
+  @include size-variation;
+
+  &.is-bordered {
+    border-radius: $border-radius-small;
+    border: $border;
+  }
+
+  &.is-disabled {
+    opacity: $disabled-opacity !important;
+  }
+
+  &.is-fitted {
+    width: auto;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  &.is-link {
+    cursor: pointer;
+    opacity: .8;
+
+    @include without-touch-hover {
+      opacity: 1;
+    }
+  }
+
+}

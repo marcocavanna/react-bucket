@@ -1,0 +1,119 @@
+/* ==================================
+
+     sidebar @ Layout
+
+     Project Inkflow
+     Author Marco Cavanna - 2019
+
+================================== */
+
+
+/*==========
+    Base Sidebar Style
+==========*/
+#sidebar {
+  // Sidebar Position
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: $sidebar-width;
+  padding: 0 (($sidebar-width - $sidebar-button-size) / 2) 1rem;
+
+  // Sidebar z-index
+  z-index: $sidebar-z-index;
+
+  // Sidebar Color
+  background-color: $sidebar-background;
+  border-right: $sidebar-border;
+
+  // Scroll Behaviour
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+
+  /*---
+      Set Sidebar Element size
+      that will be used to append
+      content to Sidebar
+  ---*/
+  > .sidebar-element {
+    display: block;
+
+    // Style the Sidebar Menu
+    &.menu-section {
+      /* Style <a> as Block */
+      .menu-button {
+        display: flex;
+        color: $white;
+        width: $sidebar-button-size;
+        height: $sidebar-button-size;
+        margin: get-em-spacer(2) 0;
+        align-items: center;
+        justify-content: center;
+        background-color: transparent;
+        opacity: .75;
+        will-change: opacity, background-color;
+        transition: opacity $transition-ease $transition-duration, background-color $transition-ease $transition-duration;
+        border-radius: $border-radius;
+
+        @include without-touch-hover {
+          background-color: rgba(0, 0, 0, .2);
+        }
+
+        &.active {
+          background-color: rgba(0, 0, 0, .2);
+          opacity: 1;
+        }
+
+        .icon {
+          margin-right: 0;
+        }
+      }
+    }
+
+    // Fix company logo wrapper padding
+    // To center into Sidebar
+    &.company-logo-wrapper {
+      padding: (($navbar-height - $sidebar-logo-size) / 2) ((($sidebar-width - $sidebar-logo-size) / 2) - (($sidebar-width - $sidebar-button-size) / 2));
+
+      // Style the company logo
+      .company-logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: $sidebar-logo-size;
+        width: $sidebar-logo-size;
+        background-color: rgba(255, 255, 255, 0.4);
+        border-radius: 500rem;
+        font-size: 2em;
+
+        svg {
+          fill: $sidebar-background;
+        }
+      }
+    }
+  }
+}
+
+
+/*==========
+    Fix the Body padding left
+    properties if Sidebar is visible
+==========*/
+body.with-sidebar {
+  padding-left: $sidebar-width;
+}
+
+
+/*==========
+    Set the Sidebar padding top
+    if the navbar is visible and
+    it is over the sidebar element
+==========*/
+@if ($navbar-z-index > $sidebar-z-index) {
+  body.with-navbar {
+    #sidebar {
+      padding-top: $navbar-height;
+    }
+  }
+}

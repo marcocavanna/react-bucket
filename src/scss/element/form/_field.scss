@@ -1,0 +1,175 @@
+/*
+ * React Bucket Framwork
+ *
+ * Field @ _field.scss in 'Form'
+ *
+ * Defined at 2019-11-05
+ * Copyright Marco Cavanna • 2019
+ */
+
+
+/******
+    DEFAULT
+
+    .field
+    Is the main container for data,
+    even if is a plain text field
+    or a form input field
+******/
+.field {
+  font-size: 1em;
+  position: relative;
+  font-weight: $regular;
+  font-style: normal;
+  margin-bottom: get-em-spacer(5);
+
+  /* Compact Margin on boundary field */
+  @include compact-margin;
+}
+
+
+/******
+    LABEL
+
+    Field Label style
+    appending the * char to
+    required field container
+******/
+.field {
+  > label {
+    display: block;
+    font-weight: $regular;
+    font-size: .9em;
+    color: $text-light;
+    margin-bottom: get-em-spacer();
+  }
+
+  &.is-required > label:after {
+    content: ' *';
+    color: $danger;
+    font-weight: $semi-bold;
+  }
+}
+
+
+/******
+    CONTENT
+
+    Field content has
+    some property to help
+    styling child
+******/
+.field > .content {
+  position: relative;
+}
+
+
+/******
+    ADDONS
+
+    Field may have hint or messages
+    Hint is a special bordered hint
+    with text inside.
+    Message are plain text only
+******/
+.field {
+
+  > .addon {
+    display: block;
+    opacity: .85;
+    font-size: .85em;
+    margin-top: get-em-spacer();
+
+    &.field-hint {
+      padding: get-em-spacer();
+      margin: get-em-spacer() get-em-spacer() * -1 0;
+      border-radius: $border-radius-small;
+      background-color: $white-shade;
+      color: $text-light;
+      font-weight: $semi-bold;
+      will-change: background-color, color;
+      transition:
+        background-color $transition-ease $transition-duration,
+        color $transition-ease $transition-duration;
+
+      @include background-variation($brand: true, $ui: true, $social: true);
+    }
+  }
+
+}
+
+
+/******
+    SIZE AND COLORS
+
+    Field appearance can change
+    size or color can be variables
+******/
+.field {
+
+  /*---
+    Size Variation, using default mixin
+  ---*/
+  @include size-variation();
+
+  /*---
+    Field color change, using a dedicated mixin
+  ---*/
+  @each $label, $color in $ui-bucket-brand-colors-map {
+    &.is-#{$label} {
+      @include __field-color-change($color);
+    }
+  }
+
+}
+
+
+/******
+    DISABLED
+
+    Disabled Field must set lower opacity
+    and disable all user pointer events
+******/
+.field {
+  /* Style for entire disable field */
+  &.is-disabled {
+    opacity: $disabled-opacity !important;
+
+    > .content {
+      > input,
+      > .label,
+      > .button,
+      > .icon {
+        pointer-events: none;
+      }
+    }
+  }
+
+  /* Style for disabled input only */
+  &:not(.is-disabled) {
+    >.content > input[disabled] {
+      opacity: $disabled-opacity !important;
+      pointer-events: none;
+    }
+  }
+}
+
+
+/******
+    FOCUSED
+
+    A focused field will change
+    the child input or element
+    setting special color on box shadow
+******/
+.field {
+  &.is-focused > .content:not(.is-bordered) > input,
+  > .content:not(.is-bordered) > input:focus {
+    box-shadow: inset 0px -5px 0px -3px $primary;
+  }
+
+  &.is-focused > .content.is-bordered > input,
+  > .content.is-bordered > input:focus {
+    box-shadow: inset 0px 0px 0px 1px $primary;
+  }
+}

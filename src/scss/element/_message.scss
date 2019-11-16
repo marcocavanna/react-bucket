@@ -1,0 +1,155 @@
+@mixin __message-color-variation($color) {
+  color: $color;
+  background-color: transparentize($color, .75);
+  box-shadow: inset 0px 0px 0px 1px transparentize($color, .75);
+}
+
+.message {
+  position: relative;
+  min-height: 1em;
+  margin: 1em 0em;
+  background-color: $white-shade-2;
+  padding: 1em 1.5em;
+  color: $text-tint;
+  border-radius: $border-radius;
+  box-shadow: inset 0px 0px 0px 1px transparentize($border-color-dark, .5);
+
+  @include compact-margin;
+
+  > .content {
+    font-weight: $semi-bold;
+  }
+
+  /*---
+    Header
+  ---*/
+  .header {
+    font-weight: $bold;
+    margin: 0;
+    display: block;
+    font-size: $h5;
+
+    + p {
+      margin-top: get-em-spacer();
+    }
+  }
+
+  /*---
+    Paragraph
+  ---*/
+  p {
+    opacity: .8;
+    margin: get-em-spacer(2) 0;
+    line-height: inherit;
+
+    @include compact-margin;
+  }
+
+  /*---
+    List
+  ---*/
+  .list {
+    text-align: left;
+    padding: 0 0 0 .75em;
+    opacity: .8;
+    list-style-position: inside;
+    margin: get-em-spacer(2) 0 0;
+
+    @include compact-margin;
+
+    li {
+      position: relative;
+      list-style-type: none;
+      margin: 0 0 get-em-spacer() 0;
+      padding: 0;
+
+      @include compact-margin;
+
+      &:before {
+        position: absolute;
+        content: '•';
+        left: -.75em;
+        height: 100%;
+        vertical-align: baseline;
+      }
+    }
+  }
+
+  /*---
+    Close Icon
+  ---*/
+  .icon.dismiss {
+    position: absolute;
+    cursor: pointer;
+    margin: 0;
+    top: .75em;
+    right: .5em;
+    opacity: .7;
+    transition: opacity .1s ease;
+
+    @include without-touch-hover {
+      opacity: 1;
+    }
+  }
+
+  /*---
+    Has Icon
+  ---*/
+  &.has-icon {
+    display: flex;
+    width: 100%;
+    align-items: center;
+
+    > .icon:not(.dismiss) {
+      display: block;
+      flex: 0 0 auto;
+      width: auto;
+      line-height: 1;
+      font-size: $h3;
+      opacity: .8;
+
+      + .content {
+        padding-left: 0;
+      }
+    }
+
+    > .content {
+      display: block;
+      flex: 1 1 auto;
+    }
+  }
+
+  /*---
+    State
+  ---*/
+  &.is-primary {
+    @include __message-color-variation($primary);
+  }
+
+  &.is-secondary {
+    color: $white-shade;
+    background-color: transparentize($secondary, .25);
+  }
+
+  &.is-danger {
+    @include __message-color-variation($danger);
+  }
+
+  &.is-info {
+    @include __message-color-variation($info);
+  }
+
+  &.is-success {
+    @include __message-color-variation($success);
+  }
+
+  &.is-warning {
+    @include __message-color-variation($warning);
+  }
+
+  /*---
+    Size Veriation
+  ---*/
+  @include size-variation;
+
+}

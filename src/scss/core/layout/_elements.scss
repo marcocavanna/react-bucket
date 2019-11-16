@@ -1,0 +1,65 @@
+button,
+input,
+textarea,
+select {
+  font-family: $body-font;
+}
+
+code,
+pre {
+  -moz-osx-font-smoothing: auto;
+  -webkit-font-smoothing: auto;
+  font-family: $font-family-monospace;
+}
+
+/* Inline Element */
+a {
+  color: $link;
+  cursor: pointer;
+  text-decoration: none;
+
+  strong {
+    color: $link;
+  }
+
+  @include without-touch-hover {
+    color: $link-hover;
+  }
+}
+
+code {
+  font-size: $code-size;
+  font-weight: $code-weight;
+  color: $code;
+  padding: $code-padding;
+  border-radius: $code-border-radius;
+  background-color: $code-background;
+}
+
+hr {
+  background-color: $hr;
+  border: none;
+  display: block;
+  height: $hr-height;
+  margin: $hr-margin;
+}
+
+span {
+  font-style: inherit;
+  font-weight: inherit;
+}
+
+strong {
+  color: $strong;
+  font-weight: $strong-weight;
+}
+
+table {
+  th {
+    font-weight: $semi-bold;
+  }
+  td, th {
+    text-align: left;
+    vertical-align: middle;
+  }
+}

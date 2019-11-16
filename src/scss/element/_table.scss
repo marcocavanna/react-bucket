@@ -1,0 +1,383 @@
+/*
+ * ReactBucket Framwork
+ *
+ * Table @ _table.scss in 'Element'
+ *
+ * Defined at 2019-11-07
+ * Copyright Marco Cavanna • 2019
+ */
+
+
+/******
+    Usefull extensible classes
+******/
+%active-style {
+  background-color: transparentize($primary, .35);
+  font-weight: $semi-bold;
+  color: $white;
+
+  .item .item-avatar {
+    background-color: rgba(255, 255, 255, .3);
+  }
+}
+
+%selectable-style {
+  @include without-touch-hover {
+    &:not(.is-disabled) {
+      cursor: pointer;
+      background-color: rgba(0,0,0,.05);
+
+      &.is-error {
+        background-color: transparentize($danger, 0.9);
+      }
+
+      &.is-success {
+        background-color: transparentize($success, 0.9);
+      }
+
+      &.is-warning {
+        background-color: transparentize($warning, 0.9);
+      }
+
+      &.is-active {
+        background-color: transparentize($primary, .45);
+      }
+    }
+
+    &.is-disabled {
+      cursor: not-allowed;
+    }
+  }
+}
+
+%error-style {
+  font-weight: $semi-bold;
+  color: $danger;
+}
+
+%success-style {
+  font-weight: $semi-bold;
+  color: $success;
+}
+
+%warn-style {
+  font-weight: $semi-bold;
+  color: $warning;
+}
+
+
+/******
+    Usefull Dedicated Mixin
+******/
+@mixin __table-element-style {
+  &.is-active {
+    @extend %active-style;
+  }
+
+  &.is-selectable {
+    @extend %selectable-style;
+  }
+
+  &.is-error {
+    @extend %error-style;
+  }
+
+  &.is-success {
+    @extend %success-style;
+  }
+
+  &.is-warning {
+    @extend %warn-style;
+  }
+
+  &.is-disabled {
+    opacity: $disabled-opacity;
+  }
+}
+
+@mixin __vertical-align-variation {
+  &.on-top {
+    vertical-align: top !important;
+  }
+
+  &.on-bottom {
+    vertical-align: bottom !important;
+  }
+
+  &.center {
+    vertical-align: middle !important;
+  }
+}
+
+/******
+    Base Table Style
+******/
+.table {
+  color: $text;
+  width: 100%;
+  max-width: 100%;
+  display: table;
+  table-layout: fixed;
+
+
+  /*---
+      Set Table Cell style
+      for all cell inside
+      all table section
+  ---*/
+  .head,
+  .body,
+  .foot {
+    > .row {
+      > .cell {
+        position: relative;
+        vertical-align: middle;
+        border: none;
+        border-collapse: collapse;
+        text-align: left;
+        outline: none;
+        padding: $table-cell-v-padding ($table-cell-h-padding / 2);
+
+        &:first-child {
+          padding-left: $table-cell-h-padding;
+        }
+
+        &:last-child {
+          padding-right: $table-cell-v-padding;
+        }
+      }
+    }
+  }
+
+
+  /*---
+      Set Table Color Default
+      to enable transition/change
+  ---*/
+  .row,
+  .cell,
+  .cell-title,
+  .cell-description {
+    background-color: transparent;
+    opacity: 1;
+    will-change: background-color, color, opacity;
+    transition:
+      background-color $transition-ease $transition-duration,
+      color $transition-ease $transition-duration,
+      opacity $transition-ease $transition-duration;
+  }
+
+
+  /*---
+      Table Header dedicated Style
+  ---*/
+  .head {
+    display: table-header-group;
+
+    // Header Row Style
+    > .row {
+      border-bottom: $border;
+      border-bottom-width: 2px;
+    }
+
+    // Header Cell Style
+    > .row > .cell {
+      font-weight: $semi-bold;
+      color: $text-lightest;
+      text-transform: uppercase;
+      -webkit-touch-callout: none;
+      @include unselectable;
+      white-space: nowrap;
+      overflow: hidden;
+
+      > .table-header-content {
+        display: inline-block;
+      }
+    }
+  }
+
+
+  /*---
+      Table Body dedicated Style
+  ---*/
+  .body {
+    display: table-row-group;
+
+    // Body Row Style
+    > .row {
+      border-bottom: $border;
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+
+    // Table Cell Style
+    > .row > .cell {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      .cell-title,
+      .cell-description {
+        display: block;
+        line-height: 1.25;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 100%;
+      }
+
+      .cell-title,
+      .cell-title > a {
+        font-weight: $semi-bold;
+      }
+
+      .cell-description {
+        color: $text-lightest;
+      }
+    }
+  }
+
+
+  /*---
+      Table Footer dedicated Style
+  ---*/
+  .foot {
+    display: table-footer-group;
+  }
+
+
+  /*---
+      Table Row dedicated Style
+  ---*/
+  .row {
+    display: table-row;
+
+    @include __table-element-style();
+    @include __vertical-align-variation();
+  }
+
+
+  /*---
+      Table Cell dedicated Style
+  ---*/
+  .cell {
+    display: table-cell;
+
+    @include __vertical-align-variation();
+    @include __table-element-style();
+
+    &.has-text-right .item {
+      text-align: left;
+    }
+  }
+
+}
+
+
+/******
+    Sortable Table Behaviour
+******/
+.table.is-sortable {
+  > .head .cell:not(.is-unsortable) {
+    cursor: pointer;
+
+    .table-header-content {
+      position: relative;
+      padding-left: 1.25em;
+
+      &:after,
+      &:before {
+        @include fontAwesomeFamilySolid();
+        position: absolute;
+        color: $text-lightest;
+        transition: color $transition-ease $transition-duration;
+        left: .5em;
+        transform: translateX(-50%);
+        height: auto;
+        line-height: .6em;
+      }
+
+      &:after {
+        content: fa-content($fa-var-angle-down);
+        bottom: 0;
+      }
+
+      &:before {
+        content: fa-content($fa-var-angle-up);
+        top: 0;
+      }
+    }
+
+    &.sorted {
+      color: $primary;
+    }
+
+    &.sorted-desc {
+      .table-header-content:after {
+        color: $primary;
+      }
+    }
+
+    &.sorted-asc {
+      .table-header-content:before {
+        color: $primary;
+      }
+    }
+
+    @include without-touch-hover {
+      color: $primary;
+
+      &:not(.sorted) {
+        .table-header-content:after {
+          color: $primary;
+        }
+      }
+
+      &.sorted-desc {
+        .table-header-content:after {
+          color: $text-lightest;
+        }
+
+        .table-header-content:before {
+          color: $primary;
+        }
+      }
+
+      &.sorted-asc {
+        .table-header-content:after {
+          color: $primary;
+        }
+
+        .table-header-content:before {
+          color: $text-lightest;
+        }
+      }
+    }
+  }
+}
+
+
+/*---
+  Adjust Field Margin o RxTable Action Row
+---*/
+.rx-table .rx-table-action-row .field {
+  margin-bottom: 0;
+}
+
+
+/*---
+  Set Style for RX Empty Row
+---*/
+.rx-table {
+  .rx-table-empty-data,
+  .rx-table-empty-filtered {
+    text-transform: uppercase !important;
+    color: $text-lightest !important;
+    font-weight: $semi-bold !important;
+    text-align: center !important;
+    padding-top: $table-cell-v-padding * 2 !important;
+    padding-bottom: $table-cell-v-padding * 2 !important;
+  }
+}

@@ -1,0 +1,20 @@
+$spacer-relative: 1em;
+$spacer-absolute: 1rem;
+
+$spacer: $spacer-absolute;
+
+$direction-map: (
+  t: 'top',
+  r: 'right',
+  b: 'bottom',
+  l: 'left'
+);
+
+$size-map: (
+  extra-small : .5em,
+  small       : .75em,
+  normal      : 1em,
+  large       : 1.25em,
+  big         : 2em,
+  huge        : 3.5em
+)

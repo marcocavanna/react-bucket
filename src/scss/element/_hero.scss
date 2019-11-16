@@ -1,0 +1,107 @@
+/*
+ * ReactBucket Framwork
+ *
+ * Hero @ _hero.scss in 'Element'
+ *
+ * Defined at 2019-11-09
+ * Copyright Marco Cavanna • 2019
+ */
+
+
+/******
+    Main Hero Style
+    and Position
+******/
+.hero {
+  position: relative;
+  padding: get-rem-spacer(5) $view-padding * 2;
+  background-color: $white;
+  display: block;
+  color: $text;
+}
+
+
+/******
+    Hero Elements
+******/
+.hero {
+
+  /*---
+    Header
+  ---*/
+  > .hero-header {
+    font-weight: $bold;
+    font-size: 1.75em;
+  }
+
+  /*---
+    Content
+  ---*/
+  > .hero-content {
+    font-weight: $semi-bold;
+    font-size: 1.25em;
+    opacity: .75;
+  }
+
+  /*---
+    Hero Icon
+  ---*/
+  > .hero-icon {
+    margin: 0;
+    position: absolute;
+    color: $text-lightest;
+    opacity: .15;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    overflow: hidden;
+
+    > .icon {
+      font-size: 7.5em;
+      margin: 0;
+      transform: translateX(20%);
+    }
+  }
+
+}
+
+
+/******
+    Hero Tools
+******/
+.hero.with-hero-tools {
+  /* Apply an incresed margin bottom */
+  margin-bottom: 1.5em;
+
+  /*---
+    Set Tools Position
+  ---*/
+  > .hero-tools {
+    position: absolute;
+    bottom: 0;
+    right: $view-padding * 2;
+    transform: translateY(50%);
+  }
+
+  /*---
+    Button must be little bigger
+  ---*/
+  > .hero-tools > button {
+    font-size: 1.5em;
+    @include dpShadow(2);
+  }
+
+  /*---
+    Remove First and Last
+    button margin
+  ---*/
+  > .hero-tools > button {
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}

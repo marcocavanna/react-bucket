@@ -1,0 +1,11 @@
+@function get-spacer($sp) {
+  @return ceil((0.4375 - (0.1577381 * $sp) + (0.07440476 * $sp * $sp)) * 10) / 10;
+}
+
+@function get-em-spacer($sp: 1) {
+  @return get-spacer($sp) * 1em;
+}
+
+@function get-rem-spacer($sp: 1) {
+  @return get-spacer($sp) * 1rem;
+}

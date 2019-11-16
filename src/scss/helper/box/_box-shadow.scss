@@ -1,0 +1,7 @@
+@if $generate-elevation-box-shadows != 0 {
+  @for $elevation from 0 through $generate-elevation-box-shadows {
+    .dp-#{$elevation} {
+      @include dpShadow($elevation);
+    }
+  }
+}

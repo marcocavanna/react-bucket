@@ -1,0 +1,1 @@
+FontAwesome Versione 5.9.0

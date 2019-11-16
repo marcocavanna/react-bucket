@@ -1,0 +1,96 @@
+/// Will generate containers class 'without-gap' to remove columns gap
+$generate-container-without-gap: true;
+
+/// Will generate columns container class as
+/// 'with-1-column' (if $generate-column-width-by-number == true)
+/// 'with-four-columns' (if $generate-column-width-by-name == true)
+$generate-columns-width-from-row: false;
+
+/// Will generate columns class as 'is-2', 'is-3' ...
+$generate-column-width-by-number: true;
+
+/// Will generate columns class as 'is-two', 'is-three' ...
+$generate-column-width-by-name: false;
+
+/// Will generate columns class as 'is-two-fifth', 'is-three-quarter' ...
+$generate-column-width-by-fraction: true;
+
+/// Will generate columns offset class as 'offsetted-by-2', 'offseted-by-8' ...
+$generate-column-offset-by-number: true;
+
+/// Will generate columns offset class as 'offsetted-by-one', 'offseted-by-three' ...
+$generate-column-offset-by-name: false;
+
+/// Will generate background color for ui color
+$generate-background-ui-colors: true;
+$generate-background-ui-colors-variation: true;
+
+/// Will generate background color for socials color
+$generate-background-socials-colors: true;
+$generate-background-socials-colors-variation: true;
+
+/// Will generate background color for brand color
+$generate-background-brand-colors: true;
+$generate-background-brand-colors-variation: true;
+
+/// {Number} Will generate box shadow elevation class '.dp-'
+/// Use 0 to avoid box shadow class generation
+$generate-elevation-box-shadows: 24;
+
+/// {Number} Spacer Utility class Count
+/// Generate class like '.m-3' '.px-8' ...
+/// Use 0 to avoid spacer utility class generation
+$generate-spacer-utility-class: 8;
+
+/// Responsive Display Utility Class
+/// Generate class like 'is-block' or 'is-inline'
+/// For each responsive breakpoint
+$generate-display-utility-class: true;
+$generate-responsive-display-utility-class: true;
+
+/// Responsive Visibility Utility Class
+/// Generate class like 'is-visible' or 'is-hidden'
+/// For each responsive breakpoint
+$generate-visibility-utility-class: true;
+$generate-responsive-visibility-utility-class: true;
+
+/// Generate Header as class too
+/// will generate .h1 to .h6
+$generate-header-as-class: true;
+
+/// Generate Header as name too
+/// will generate .header-1 to .header-6
+$generate-header-as-name: false;
+
+/// Generate Text Size Utility
+/// class like 'text-small' for each breackpoint
+$generate-text-size-utility-class: true;
+$generate-responsive-text-size-utility-class: false;
+
+/// Generate Font Weight Utility
+/// class like 'text-bold' for each breackpoint
+$generate-font-weight-utility-class: true;
+$generate-responsive-font-weight-utility-class: false;
+
+/// Generate Text Property Utility
+/// class like 'text-right' 'text-left' for each breakpoint
+$generate-text-property-utility-class: true;
+$generate-responsive-text-property-utility-class: true;
+
+/// Will generate text color for ui color
+$generate-text-ui-colors: true;
+$generate-responsive-text-ui-colors: false;
+
+/// Will generate text color for socials color
+$generate-text-socials-colors: true;
+$generate-responsive-text-socials-colors: false;
+
+/// Will generate text color for brand color
+/// For each breakpoint
+$generate-text-brand-colors: true;
+$generate-responsive-text-brand-colors: false;
+
+/// Will generate border class utils
+/// like 'bordered-left' 'on-phone-bordered-right'
+$generate-border-utility: false;
+$generate-responsive-border-utility: false;

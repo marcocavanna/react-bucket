@@ -1,0 +1,27 @@
+/// Import the Reset File
+$import-reset: true;
+
+/// Import the Normalizer File
+$import-normalizer: true;
+
+/// HTML class for non touch device
+/// (must be appended from thirdy part javascript code)
+$without-touch-class: 'no-touch';
+
+/// Set Default Font Size
+$default-font-size: 14px;
+
+/// Set Default Line Height
+$default-line-height: 1.25;
+
+/// Set Default Fonts
+/// Choose from 'Roboto', 'Open Sans', 'Lato', 'Montserrat', 'Source Sans Pro', 'Poppips', 'Ubuntu', 'Dosis', 'Quicksand'
+$default-web-font: 'Nunito';
+
+/// Set Default Monospace Font
+/// Choose from 'Roboto Mono', 'Source Code Pro', 'Ubuntu Mono'
+$default-monospace-font: 'Roboto Mono';
+
+/// Mobile resolution class will take priority
+/// on Desktop class
+$breakpoint-mobile-first: true;

@@ -1,0 +1,23 @@
+@mixin icon-style($restrict-child: false, $append-to-selector: false) {
+  
+  $__icons_selector: ();
+
+  @for $selector from 1 through length($icon-class-selector) {
+    $__mapped: '.#{nth($icon-class-selector, $selector)}';
+
+    @if $restrict-child == true {
+      $__mapped: '> #{$__mapped}';
+    } @else if $append-to-selector == true {
+      $__mapped: '&#{$__mapped}';
+    }
+
+    $__icons_selector: append($__icons_selector, unquote($__mapped), 'comma');
+  }
+
+  @if length($list: $__icons_selector) > 0 {
+    #{$__icons_selector} {
+      @content;
+    }
+  }
+
+}

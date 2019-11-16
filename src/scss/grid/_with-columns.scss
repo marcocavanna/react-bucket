@@ -1,0 +1,76 @@
+$__master_row_valign: ( on-top: flex-start, center: center, on-bottom: flex-end, stretched: stretch );
+$__master_row_halign: ( on-start: flex-start, centered: center, on-end: flex-end, spaced-between: space-between, spaced-around: space-around );
+
+.with-columns {
+  display: flex;
+  margin-left: -$columns-gap;
+  margin-right: -$columns-gap;
+  flex-wrap: wrap;
+
+  @if $generate-container-without-gap == true {
+    @include property-for-each-breakpoint('without-gap') {
+      margin-left: 0;
+      margin-right: 0;
+  
+      > .#{$column-class} {
+        padding: 0 !important;
+      }
+    }
+  }
+
+  @each $label, $align in $__master_row_halign {
+    &.#{$label} {
+      justify-content: $align;
+    }
+  }
+
+  @each $label, $align in $__master_row_valign {
+    &.#{$label} {
+      align-items: $align;
+    }
+  }
+}
+
+@if $generate-columns-width-from-row == true {
+  @for $col from 1 through $columns {
+    $__base_column_width: percentage(1 / $col);
+    $__column_name: nth($one-to-sixteen, $col);
+  
+    $__label: 'column';
+  
+    @if $col > 1 {
+      $__label: 'columns';
+    }
+
+    $__with_columns_class: ();
+
+    @if $generate-column-width-by-number {
+      $__with_columns_class: append($__with_columns_class, 'with-#{$col}-#{$__label}', 'comma');
+    }
+
+    @if $generate-column-width-by-name {
+      $__with_columns_class: append($__with_columns_class, 'with-#{$__column_name}-#{$__label}', 'comma');
+    }
+  
+    @include property-for-each-breakpoint($__with_columns_class, $attach-to-selector: false) {
+      display: flex;
+      margin-left: -$columns-gap;
+      margin-right: -$columns-gap;
+  
+      > .#{$column-class} {
+        width: $__base_column_width;
+      }
+  
+      @if $generate-container-without-gap == true {
+        &.without-gap {
+          margin-left: 0;
+          margin-right: 0;
+    
+          > .#{$column-class} {
+            padding: 0 !important;
+          }
+        }
+      }
+    }
+  }
+}

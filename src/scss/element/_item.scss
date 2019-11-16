@@ -1,0 +1,245 @@
+@mixin __item-active-variation($background, $color) {
+  background-color: $background !important;
+
+  .item-avatar {
+    box-shadow: none !important;
+    background-image: none !important;
+    background-color: transparentize($color, .5) !important;
+    color: $background !important;
+  }
+
+  .item-content {
+    .header {
+      color: transparentize($color, .1) !important;
+    }
+
+    .item-text {
+      color: transparentize($color, .3) !important;
+    }
+  }
+
+  @include without-touch-hover {
+    background-color: transparentize($background, .15) !important;
+  }
+}
+
+/*==========
+    Items Container
+==========*/
+.items {
+  display: block;
+
+  > .item {
+    margin-bottom: get-em-spacer(4);
+    border-bottom: solid 1px transparent;
+
+    &.is-clickable {
+      margin-bottom: 0;
+    }
+
+    @include compact-margin;
+  }
+
+  &.items-are-clickable {
+    margin-left: -.75em;
+    margin-right: -.75em;
+  }
+
+  &.are-divided {
+    > .item {
+      &:not(.is-clickable) {
+        margin-bottom: get-em-spacer(2);
+        padding-bottom: get-em-spacer(2);
+
+        &:last-child {
+          padding-bottom: 0;
+        }
+      }
+
+      border-bottom: $border;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      &.is-clickable {
+        border-radius: 0;
+
+        &:first-child {
+          border-top-left-radius: pixel-to-em($border-radius);
+          border-top-right-radius: pixel-to-em($border-radius);
+        }
+
+        &:last-child {
+          border-bottom-left-radius: pixel-to-em($border-radius);
+          border-bottom-right-radius: pixel-to-em($border-radius);
+        }
+      }
+    }
+  }
+}
+
+/*==========
+    Item Element
+==========*/
+.item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background-color: transparent;
+  transition: background-color $transition-duration $transition-ease;
+
+  &.is-disabled {
+    opacity: $disabled-opacity;
+  }
+
+  &.is-clickable {
+    cursor: pointer;
+    padding: .75em;
+    border-radius: pixel-to-em($border-radius);
+
+    @include without-touch-hover {
+      background-color: rgba(0, 0, 0, .05);
+    }
+
+    &.is-active,
+    &.is-active-as-primary {
+      @include __item-active-variation($primary, $white);
+    }
+
+    &.is-active-as-secondary {
+      @include __item-active-variation($secondary, $white);
+    }
+
+    &.is-active-as-danger {
+      @include __item-active-variation($danger, $white);
+    }
+
+    &.is-active-as-success {
+      @include __item-active-variation($success, $white);
+    }
+
+    &.is-active-as-warning {
+      @include __item-active-variation($warning, $white);
+    }
+
+  }
+
+}
+
+/*==========
+    Item Avatar
+==========*/
+.item-avatar {
+  display: block;
+  flex: 0 0 $item-avatar-base-size;
+  align-self: center;
+  height: $item-avatar-base-size;
+  width: $item-avatar-base-size;
+  line-height: $item-avatar-base-size;
+  border-radius: 500rem;
+  text-align: center;
+  box-shadow: inset 0 0 2px 0px rgba(0, 0, 0, .2);
+  background-color: $white-shade-2;
+  overflow: hidden;
+  will-change: background-color;
+  transition: background-color $transition-ease $transition-duration;
+
+  &.has-generated-background {
+    box-shadow: inset 0 0 2px 0px rgba(0, 0, 0, .5);
+  }
+
+  > .content {
+    text-align: inherit;
+    font-weight: $bold;
+
+    @include icon-style {
+      margin: 0;
+    }
+  }
+
+  &.is-centered {
+    margin: 0 auto;
+  }
+
+  &.is-disabled {
+    cursor: default !important;
+    opacity: $disabled-opacity;
+  }
+
+  &.has-image {
+    background-color: transparent !important;
+    box-shadow: none !important;
+  }
+
+  @include size-variation;
+
+  @include background-variation(
+    $brand: true,
+    $ui: true,
+    $social: true
+  );
+
+  + .item-content {
+    margin-left: get-em-spacer(2);
+  }
+}
+
+/*==========
+    Item Content Element
+==========*/
+.item-content {
+  display: block;
+  flex: 1 1 auto;
+  overflow: hidden;
+
+  .header {
+    font-size: 1em;
+    font-weight: $semi-bold;
+    color: inherit;
+    margin: 0;
+    padding: 0;
+    @include truncate-text();
+  }
+
+  .item-text {
+    color: inherit;
+    opacity: .7;
+    font-size: .9em;
+    @include truncate-text();
+  }
+
+  &.is-not-truncated {
+    overflow: visible;
+
+    .item-text {
+      overflow: visible;
+      white-space: pre-wrap;
+      text-overflow: none;
+    }
+  }
+}
+
+/*==========
+    Item Tools
+==========*/
+.item-tools {
+  margin-left: auto;
+  padding-left: get-em-spacer(2);
+  display: flex;
+  flex: 0 0 auto;
+  align-self: center;
+
+  + .item-tools {
+    margin-left: 0;
+  }
+
+  > .item-tool {
+    padding: 0;
+    margin-right: get-em-spacer(2);
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}

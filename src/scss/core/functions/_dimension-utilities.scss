@@ -1,0 +1,23 @@
+@function pixel-to-em($px, $context: $font-size) {
+  @if (unitless($number: $px)) {
+    $px: $px * 1px;
+  }
+
+  @if (unitless($number: $context)) {
+    $context: $context * 1px;
+  }
+
+  @return $px / $context * 1em;
+}
+
+@function pixel-to-rem($px, $context: $font-size) {
+  @if (unitless($number: $px)) {
+    $px: $px * 1px;
+  }
+
+  @if (unitless($number: $context)) {
+    $context: $context * 1px;
+  }
+
+  @return $px / $context * 1rem;
+}

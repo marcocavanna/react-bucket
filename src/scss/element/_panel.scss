@@ -1,0 +1,116 @@
+.panel {
+  font-size: 1rem;
+  display: block;
+  background-color: $panel-background-color;
+  border-radius: $panel-border-radius;
+  margin-bottom: $panel-margin-bottom;
+
+  > .panel-header {
+    padding: $panel-padding-vertical $panel-padding-horizontal $panel-padding-vertical / 2;
+
+    + .panel-body {
+      padding-top: $panel-padding-vertical / 2;
+    }
+  }
+
+  > .panel-body {
+    padding: $panel-padding-vertical $panel-padding-horizontal;
+  }
+
+  &.with-fab {
+    position: relative;
+    margin-bottom: $panel-margin-bottom + pixel-to-em(26);
+
+    > .panel-fab {
+      position: absolute;
+      right: $panel-padding-horizontal;
+      transform: translateY(-50%);
+
+      > .is-fab {
+        margin: 0;
+
+        + .is-fab {
+          margin-left: pixel-to-em(6px);
+        }
+      }
+    }
+  }
+
+  &.is-loading {
+    position: relative;
+    cursor: default;
+    pointer-events: none;
+    text-shadow: none !important;
+    transition: all 0s linear;
+    @include unselectable;
+
+    &:before {
+      position: absolute;
+      content: '';
+      top: 0;
+      left: 0;
+      background-color: transparentize($white-shade, .15);
+      width: 100%;
+      height: 100%;
+      border-radius: $panel-border-radius;
+      z-index: 100;
+    }
+
+    &:after {
+      position: absolute;
+      content: '';
+      top: 50%;
+      left: 50%;
+      margin: -1.5em 0 0 -1.5em;
+      width: 3em;
+      height: 3em;
+      animation: spin .5s linear;
+      animation-iteration-count: infinite;
+      border-radius: 500rem;
+      border-color: #767676 rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1);
+      border-style: solid;
+      border-width: 0.2em;
+      box-shadow: 0px 0px 0px 1px transparent;
+      visibility: visible;
+      z-index: 101;
+    }
+  }
+}
+
+
+/******
+    Adjust Panel when is used to contain table
+******/
+.panel.has-table {
+  /*---
+    Remove Padding for Body
+  ---*/
+  > .panel-body {
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-top: $panel-padding-vertical / 2;
+  }
+
+  > .panel-header + .panel-body {
+    padding-top: 0;
+  }
+
+  /*---
+    Adjust RxTable Action Row
+  ---*/
+  > .panel-body {
+    .rx-table-action-row {
+      padding-left: $panel-padding-horizontal;
+      padding-right: $panel-padding-horizontal;
+    }
+
+    .rx-table.rx-table-error {
+      padding: 0 $panel-padding-horizontal / 2 $panel-padding-vertical / 2;
+
+      .message {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
