@@ -100,6 +100,7 @@ $input-vertical-padding: 6px          !default;
 $input-horizontal-padding: .75em      !default;
 $input-height: $input-line-height + ( $input-vertical-padding * 2 ) + 3;
 
+// <Checkbox />
 $checkbox-box-size: 1.5em             !default;
 $checkbox-label-distance: $checkbox-box-size + .75em;
 $radio-box-size: 1.5em                !default;
@@ -127,6 +128,15 @@ $modal-box-shadow:          4                     !default;
 $modal-horizontal-padding:  1.5rem                !default;
 $modal-header-background:   $primary              !default;
 $modal-header-color:        $white                !default;
+
+// <Menu />
+$menu-min-height:             pixel-to-em(40)               !default;
+$menu-item-active-background: $primary                      !default;
+$menu-item-active-color:      $white                        !default;
+$menu-tab-item-border-width:  2px                           !default;
+$menu-vertical-min-width:     pixel-to-em(240)              !default;
+$menu-border-radius:          pixel-to-em($border-radius)   !default;
+$menu-item-spacer:            pixel-to-em(6)                !default;
 
 /*---
     DOM Elements

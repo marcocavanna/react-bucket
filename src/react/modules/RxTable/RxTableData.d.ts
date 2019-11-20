@@ -121,11 +121,28 @@ export interface IRxTableDataOptions {
    */
   keyField?: string
 
-  /** Set Preferences for Table Sorting */
-  sorting?: IRxTableDataSortingOptions
-
   /** On Row Click function handler */
   onRowClick?: (item: {}, index: number, data: {}[]) => void
+
+  /** Set row tools */
+  rowTools?: {
+    /**
+     * The `show` property is used to check if
+     * tools trigger button must be rendered or not.
+     * If this option will be setted to a function, then
+     * it will be called passing current table row
+     */
+    show: ((row: object) => boolean) | boolean
+
+    /**
+     * Row Tools is an array of react component that will be
+     * appended to popup menu
+     */
+    tools: ((row: object) => React.ReactNode[]) | React.ReactNode[]
+  }
+
+  /** Set Preferences for Table Sorting */
+  sorting?: IRxTableDataSortingOptions
 }
 
 export interface IRxTableDataSorting {
@@ -229,6 +246,12 @@ declare class RxTableData<T> {
   filter(str: string): this
 
 
+  /** Check if a certain row has tools to show */
+  hasTools(...args): boolean
+
+  /** Get Tools */
+  tools(...args): boolean
+
   /**
    * Get the actual sorting options
    * for this set of data
@@ -270,6 +293,9 @@ declare class RxTableData<T> {
    * Default to true
    */
   reload(options: { silent: boolean }): void
+
+  /** Check if table has tools column */
+  tableHasTools: boolean
 
 }
 

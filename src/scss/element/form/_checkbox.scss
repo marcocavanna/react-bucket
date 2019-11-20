@@ -23,6 +23,41 @@
 
 
 /******
+    Content Section element
+    must have extra padding
+    at top and bottom to include
+    the checkbox / toggle / slider
+******/
+.content.checkbox {
+  $__checkbox-field-padding: ($checkbox-box-size - 1em) / 2;
+
+  @if strip-unit($__checkbox-field-padding) > 0 {
+    padding-top: $__checkbox-field-padding;
+    padding-bottom: $__checkbox-field-padding;
+  }
+
+  &.is-toggle {
+    $__toggle-field-padding: ($toggle-bullet-size - 1em) / 2;
+
+    @if strip-unit($__toggle-field-padding) > 0 {
+      padding-top: $__toggle-field-padding;
+      padding-bottom: $__toggle-field-padding;
+    }
+  }
+
+  &.is-slider {
+    $__slider-field-padding: ($slider-bullet-size - 1em) / 2;
+
+    @if strip-unit($__slider-field-padding) > 0 {
+      padding-top: $__slider-field-padding;
+      padding-bottom: $__slider-field-padding;
+    }
+  }
+}
+
+
+
+/******
     Draw the Box
 ******/
 .checkbox > label {

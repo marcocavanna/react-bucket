@@ -8,7 +8,9 @@ function RxTableHeader(props) {
   const {
     sorting,
     columns,
-    onSortChange
+    onSortChange,
+    hasToolsColumn,
+    toolsColumnPosition
   } = props;
 
   const handleCellClick = (id, headerProps) => {
@@ -20,6 +22,9 @@ function RxTableHeader(props) {
   return (
     <Table.Header>
       <Table.Row>
+        {hasToolsColumn && toolsColumnPosition === 'left' && (
+          <Table.HeaderCell className='tools-cell' />
+        )}
         {columns.map(({ id, sort, cellContent, ...rest }) => (
           <Table.HeaderCell
             key={id}
@@ -28,6 +33,9 @@ function RxTableHeader(props) {
             {...rest}
           />
         ))}
+        {hasToolsColumn && toolsColumnPosition === 'right' && (
+          <Table.HeaderCell className='tools-cell' />
+        )}
       </Table.Row>
     </Table.Header>
   );
@@ -38,16 +46,23 @@ RxTableHeader.propTypes = {
   /** RxTableData Columns */
   columns: PropTypes.arrayOf(PropTypes.object),
 
+  /** Render or not the Tools Column */
+  hasToolsColumn: PropTypes.bool,
+
   /** On Sort Change Handler */
   onSortChange: PropTypes.func,
 
   /** RxTableData Sorting Options */
-  sorting: PropTypes.object
+  sorting: PropTypes.object,
+
+  /** Table column position */
+  toolsColumnPosition: PropTypes.oneOf(['left', 'right'])
 };
 
 RxTableHeader.defaultProps = {
-  columns : [],
-  sorting : {}
+  columns              : [],
+  sorting              : {},
+  toolsColumnPosition : 'right'
 };
 
 export default RxTableHeader;

@@ -8,7 +8,8 @@ import {
   isValue,
   getUnhandledProps,
   getElementType,
-  customPropTypes
+  customPropTypes,
+  createShorthandFactory
 } from '../../lib';
 
 function Column(props) {
@@ -90,5 +91,7 @@ Column.propTypes = {
   /** Columns Vertical Align */
   verticalAlign: customPropTypes.flexVerticalAlign
 };
+
+Column.create = createShorthandFactory(Column, children => ({ children }));
 
 export default Column;

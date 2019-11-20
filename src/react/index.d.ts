@@ -19,6 +19,8 @@ export { default as Message, MessageProps, StrictMessageProps } from './collecti
 
 export { default as Table, TableProps, StrictTableProps } from './collections/Table';
 
+export { default as Tabs, TabsProps, StrictTabsProps } from './collections/Tabs';
+
 
 /**
  * Elements Export

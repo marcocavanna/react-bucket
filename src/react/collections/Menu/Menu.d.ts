@@ -2,9 +2,7 @@ import * as React from 'react'
 
 import { AppBucketsCOLORS } from '../../generic'
 
-import MenuHeader from './MenuHeader';
 import MenuItem from './MenuItem';
-import MenuMenu from './MenuMenu';
 
 export interface MenuProps extends StrictMenuProps {
   [key: string]: any
@@ -53,9 +51,7 @@ export interface StrictMenuProps {
 }
 
 declare class Menu extends React.Component<MenuProps, {}> {
-  static Header: typeof MenuHeader
   static Item: typeof MenuItem
-  static Menu: typeof MenuMenu
 }
 
 export default Menu

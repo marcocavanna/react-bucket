@@ -1,41 +1,50 @@
-$__menu-min-height: 40px;
-$__menu-item-tab-border-width: 2px;
-$__tab-menu-item-active-color: $primary;
-$__tab-menu-item-active-border-color: $primary;
-$__vertical-menu-min-width: 15rem;
-$__menu-border-radius: pixel-to-em($border-radius);
+/*
+ * ReactBucket Framwork
+ *
+ * Menu @ _menu.scss in 'Element'
+ *
+ * Defined at 2019-11-16
+ * Copyright Marco Cavanna • 2019
+ */
 
-/*==========
-    Menu
-==========*/
+/******
+    Menu Container
+******/
 .menu {
-  font-size: 1rem;
   display: flex;
+  flex-direction: row;
   margin: get-em-spacer(4) 0;
   font-weight: $semi-bold;
   font: inherit;
-  min-height: pixel-to-em($__menu-min-height);
+  min-height: $menu-min-height;
 
   @include compact-margin;
 
-  border: $border;
-  border-radius: $__menu-border-radius;
-
-  &:not(.vertical):not(.tab) {
-    overflow-x: scroll;
-    -webkit-overflow-scrolling: touch;
+  /*---
+    Vertical Menu stack has
+    different flex direction
+  ---*/
+  &.vertical {
+    flex-direction: column;
   }
 
-  &.vertical:not(.tab) {
-    overflow-y: scroll;
+  /*---
+    Horizontal menu must
+    have a scroll on x overflow
+  ---*/
+  &.horizontal {
+    overflow-x: scroll;
     -webkit-overflow-scrolling: touch;
   }
 
 
   /*---
-      Borderless, Tab and Secondary
-      has no border
+    Menu Border, removed on
+    certain type
   ---*/
+  border: $border;
+  border-radius: $menu-border-radius;
+
   &.borderless,
   &.secondary,
   &.tab,
@@ -43,229 +52,136 @@ $__menu-border-radius: pixel-to-em($border-radius);
     border: none;
     border-radius: 0;
   }
+}
 
 
-  /*---
-      Menu Item
-  ---*/
-  .item,
-  .sub-menu {
-    padding: pixel-to-em(13px) pixel-to-em(16px);
-  }
-
-  .item {
-    position: relative;
-    line-height: 1;
-    vertical-align: middle;
-    text-decoration: none;
-    text-transform: none;
-    flex: 0 0 auto;
-    background-color: transparent;
-    transition: background-color .1s ease;
-    border-right: $border;
-    @include unselectable;
-
-    &.on-right {
-      margin-left: auto;
-    }
-  }
+/******
+    Menu Item Style
+******/
+.menu-item {
+  display: block;
+  padding: pixel-to-em(14) pixel-to-em(8);
+}
 
 
-  /*---
-      Secondary Menu
-  ---*/
-  &.secondary {
-    margin: 0 pixel-to-em(-5px);
+/******
+    Menu Item Style
+******/
+.menu > .menu-item {
+  position: relative;
+  line-height: 1;
+  vertical-align: middle;
+  text-decoration: none;
+  text-transform: none;
+  flex: 0 0 auto;
+  background-color: transparent;
+  transition:
+    background-color $transition-duration $transition-ease,
+    color $transition-duration $transition-ease;
+  cursor: pointer;
+  color: $text-light;
 
-    .item,
-    .sub-menu {
-      padding: pixel-to-em(10px) pixel-to-em(12px);
-    }
-
-    .item {
-      border-radius: $__menu-border-radius;
-      align-self: center;
-      margin: 0 pixel-to-em(5px);
-      border-right: none;
-    }
-
-    &.vertical {
-      margin-left: 0;
-      margin-right: 0;
-
-      .item {
-        margin: 0 0 pixel-to-em(5px);
-      }
-    }
-  }
-
+  @include unselectable;
 
   /*---
-      Tab Menu
+    Pulled right item
+    must increase margin
   ---*/
-  &.tab {
-    margin-left: 0;
-    margin-right: 0;
-    border-bottom: solid $__menu-item-tab-border-width $grey-lightest;
-    border-radius: 0;
+  &.on-right {
+    margin-left: auto;
+  }
+}
 
-    .item {
-      border-color: transparent;
-      align-self: flex-end;
-      margin: 0 0 $__menu-item-tab-border-width * -1;
-      opacity: .5;
-      transition: opacity .1s ease-in-out, border-color .1s ease-in-out;
-      cursor: pointer;
+.menu.horizontal > .menu-item:not(:last-child) {
+  border-right: $border;
+}
 
+.menu.borderless > .menu-item {
+  border-right: none !important;
+}
+
+.menu .menu-item,
+.menu .sub-menu {
+  padding: pixel-to-em(13) pixel-to-em(16);
+}
+
+
+/******
+    Borderless Menu Style
+******/
+.menu.borderless {
+  margin-left: ($menu-item-spacer * -1);
+  margin-right: ($menu-item-spacer * -1);
+
+  > .menu-item {
+    margin: 0 $menu-item-spacer;
+    border-radius: $menu-border-radius;
+    background-color: $white-shade-2;
+  }
+}
+
+
+/******
+    Tab Menu Style
+******/
+.menu.tab {
+  margin-left: 0;
+  margin-right: 0;
+  border-bottom: solid $menu-tab-item-border-width $grey-lightest;
+  overflow: visible;
+
+  > .menu-item {
+    border: none;
+    border-bottom-color: transparent;
+    border-bottom-style: solid;
+    border-bottom-width: $menu-tab-item-border-width;
+    align-self: flex-end;
+    margin: 0 0 ($menu-tab-item-border-width * -1);
+    transition:
+      color $transition-duration $transition-ease,
+      border-bottom-color $transition-duration $transition-ease;
+
+    @include without-touch-hover {
+      opacity: 1;
+      border-bottom-color: $text;
+    }
+  }
+}
+
+
+/******
+    Menu Item State
+******/
+.menu:not(.tab) {
+  > .menu-item {
+    &.is-active {
+      background-color: $menu-item-active-background;
+      color: $menu-item-active-color;
+    }
+
+    &:not(.is-active) {
       @include without-touch-hover {
-        opacity: 1;
-        border-color: $text;
-      }
-
-      &.is-active {
-        border-color: $__tab-menu-item-active-border-color !important;
-        font-weight: $bold;
-        opacity: 1;
-        color: $__tab-menu-item-active-color;
-      }
-    }
-
-    &:not(.vertical) .item {
-      border-right: none;
-      border-bottom-style: solid;
-      border-bottom-width: $__menu-item-tab-border-width;
-    }
-
-    &.vertical {
-      border-bottom: none;
-      border-right: solid $__menu-item-tab-border-width $grey-lightest;
-
-      .item {
-        margin: 0 $__menu-item-tab-border-width * -1 0 0;
-        border-bottom: none;
-        border-right-style: solid;
-        border-right-width: 0;
-
-        @include without-touch-hover {
-          border-right-width: $__menu-item-tab-border-width;
-        }
-
-        &.is-active {
-          border-right-width: $__menu-item-tab-border-width;
-        }
+        background-color: $white-shade-2;
+        color: $text;
       }
     }
   }
 
-
-  /*---
-      Text Menu
-  ---*/
-  &.as-text {
-    .item,
-    .sub-menu {
-      padding: pixel-to-em(10px) pixel-to-em(12px);
-      border: none !important;
+  &.borderless > .menu-item:not(.is-active) {
+    @include without-touch-hover {
+      background-color: $grey-lightest;
     }
   }
+}
 
-
-  /*---
-      Vertical Menu
-  ---*/
-  &.vertical {
-    display: block;
-    flex-direction: column;
-
-    .item {
-      border-right: none;
-      border-bottom: $border;
-
-      &:last-child {
-        border-bottom: none;
-      }
-    }
-
-    &.secondary .item {
-      border-bottom: none;
-    }
+.menu.tab > .menu-item {
+  &.is-active {
+    color: $menu-item-active-background !important;
+    border-color: $menu-item-active-background !important;
   }
 
-
-  /*---
-      Item Color Variation
-  ---*/
-  &:not(.tab):not(.as-text) > .item {
-    @include interactive-element-background-variation(
-      $base-color: transparent
-    )
-  }
-
-  &.as-text .item,
-  .sub-menu > .item {
-    @include interactive-element-background-variation(
-      $base-color: $text-lightest,
-      $active-color: $text,
-      $focus-color: $text-light,
-      $property-variation: color
-    )
-  }
-
-
-  /*---
-      Menu Header
-  ---*/
-  .header {
-    font-size: 1em;
-    margin: 0;
-    text-transform: uppercase;
-    line-height: 1;
-    padding: 0;
-  }
-  
-
-  /*---
-      Sub Menu
-  ---*/
-  .sub-menu {
-    > .item {
-      font-size: .9em;
-      padding: 0;
-      margin: pixel-to-em(12px) 0;
-
-      &:last-child {
-        margin-bottom: 0;
-      }
-    }
-  }
-
-  &.vertical .sub-menu {
-    border-bottom: $border;
-
-    &:last-child {
-      border-bottom: none;
-    }
-
-    > .item {
-      border-bottom: none;
-    }
-  }
-
-  &.tab .sub-menu {
-    padding-right: 0 !important;
-    border-bottom: none !important;
-
-    > .header {
-      padding-bottom: pixel-to-em(6px);
-    }
-
-    > .item {
-      padding-top: pixel-to-em(6px) !important;
-      padding-bottom: pixel-to-em(6px) !important;
-
-      &:last-child {
-        margin-bottom: pixel-to-em(-6px) !important;
-      }
-    }
+  @include without-touch-hover {
+    border-color: $text-lightest;
+    color: $text;
   }
 }

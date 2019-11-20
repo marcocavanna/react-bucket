@@ -75,7 +75,17 @@ class RxTableData {
     initialData: null,
 
     /** On Row Click function element */
-    onRowClick: null
+    onRowClick: null,
+
+    /** Row Tools Array, used to render context menu */
+    rowTools: {
+      /** Compute if show or not tools */
+      show          : false,
+      /** Save the table has tools boolean to render tools column */
+      tableHasTools : true,
+      /** Tools list to use */
+      tools         : []
+    }
   }
 
   /** Build a Container for columns */
@@ -185,8 +195,24 @@ class RxTableData {
 
     this._system.keyField = keyField;
 
-    /** Register handler Functions */
+    /** Register handler Functions for row click */
     this._system.onRowClick = options.onRowClick;
+
+    /** Register row tools */
+    if (isObject(options.rowTools)) {
+      /** Get Props */
+      const { show, tools } = options.rowTools;
+      /** Check show type */
+      this._system.rowTools.show = (typeof show === 'boolean' || typeof show === 'function')
+        ? show
+        : true;
+      /** Save tools */
+      this._system.rowTools.tools = Array.isArray(tools) ? tools.slice() : tools;
+      /** If tools are valid, set the tableHasTools boolean */
+      this._system.rowTools.tableHasTools = !!(
+        (Array.isArray(tools) && tools.length) || typeof tools === 'function'
+      );
+    }
 
     /** Prepare Data */
     this._system.initialData = this._prepareData(data);
@@ -230,6 +256,16 @@ class RxTableData {
   /** Return Columns Array */
   get columns() {
     return this._columns.array;
+  }
+
+  get tableHasTools() {
+    return !!this._system.rowTools.tableHasTools;
+  }
+
+  get tools() {
+    return typeof this._system.rowTools.tools === 'function'
+      ? this._system.rowTools.tools
+      : () => this._system.rowTools.tools;
   }
 
   /** Return Key Field */
@@ -376,6 +412,37 @@ class RxTableData {
 
   /** Reload Data */
   reload = ({ silent = true } = {}) => this._loadData({ silent })
+
+
+  /** Compute if current row has tools */
+  hasTools = (...args) => {
+    /** Get the Show Prop */
+    const { show, tools } = this._system.rowTools;
+
+    /** If table has no tools return false */
+    if (!this._system.rowTools.tableHasTools) {
+      return false;
+    }
+
+    /** Double check show types, must be function or boolean */
+    if (!['boolean', 'function'].includes(typeof show)) {
+      return false;
+    }
+
+    /** If tools is not of the right type, return false */
+    const toolsAreArray = Array.isArray(tools);
+    if ((toolsAreArray && !tools.length) || (!toolsAreArray && typeof tools !== 'function')) {
+      return false;
+    }
+
+    /** If is a boolean, return as is */
+    if (typeof show === 'boolean') {
+      return show;
+    }
+
+    /** Else invoke the function passing props */
+    return show(...args);
+  }
 
 
   /** Load Data */

@@ -89,6 +89,10 @@ class Portal extends Component {
      */
     onOpen: PropTypes.func,
 
+    /** On Portal Outside Click */
+    // eslint-disable-next-line react/no-unused-prop-types
+    onOutsideClick: PropTypes.func,
+
     /**
      * Called when the portal is unmounted from the DOM.
      *
@@ -168,6 +172,8 @@ class Portal extends Component {
       return;
     } // ignore the click
 
+    _.invoke(this.props, 'onOutsideClick', e, this.props);
+
     if (closeOnDocumentClick) {
       this.close(e);
     }
@@ -226,6 +232,8 @@ class Portal extends Component {
   handleTriggerClick = (e, ...rest) => {
     const { trigger, closeOnTriggerClick, openOnTriggerClick } = this.props;
     const { open } = this.state;
+
+    e.stopPropagation();
 
     // Call original event handler
     _.invoke(trigger, 'props.onClick', e, ...rest);

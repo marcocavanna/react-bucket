@@ -7,12 +7,12 @@ import {
   AutoControlledComponent as Component,
   getElementType,
   getUnhandledProps,
-  classByKey,
   customPropTypes
 } from '../../lib';
 
 import Menu from '../Menu';
 import Layout from '../Layout';
+
 import TabPanel from './TabPanel';
 
 // eslint-disable-next-line react/require-optimization
@@ -20,12 +20,49 @@ class Tabs extends Component {
 
   static propTypes = {
 
+    /** The index of the current active tab */
+    activeIndex: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string
+    ]),
+
+    /** An element used to render the Component */
+    as: customPropTypes.as,
+
+    /** The initial active index */
+    defaultActiveIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+
+    /** Grid Shorthand */
+    layout: PropTypes.object,
+
+    /** Menu Props */
+    menu: PropTypes.object,
+
+    /** Set the Menu Position */
+    menuPosition: PropTypes.oneOf(['left', 'right']),
+
+    /** On Tab Changed Handler */
+    onTabChange: PropTypes.func,
+
+    /** Panels Array */
+    panels: PropTypes.arrayOf(
+      PropTypes.shape({
+        trigger : PropTypes.string,
+        panel   : PropTypes.element
+      })
+    ),
+
+    /** Render only the active panel */
+    renderActiveOnly: PropTypes.bool
+
   }
 
   static autoControlledProps = ['activeIndex']
 
   static defaultProps = {
-    grid             : { panelWidth: 12, tabWidth: 4 },
+    layout           : { panelWidth: 9, menuWidth: 3, fluid: true },
+    menu             : { borderless: true },
+    menuPosition     : 'left',
     renderActiveOnly : true
   }
 
@@ -49,7 +86,10 @@ class Tabs extends Component {
 
     /** If must render only the active tab, invoke the render function */
     if (renderActiveOnly) {
-      return TabPanel.create(_.get(panels, `[${activeIndex}].panel`), {
+      /** Get the Active Tab */
+      const activeTab = _.get(panels, `[${activeIndex}].panel`);
+      /** Render the Tab */
+      return TabPanel.create(activeTab, {
         overrideProps   : { active: true },
         autoGenerateKey : false
       });
@@ -66,7 +106,7 @@ class Tabs extends Component {
   }
 
   renderMenu() {
-    const { menu, panels, menuPosition } = this.props;
+    const { menu, panels } = this.props;
     const { activeIndex } = this.state;
 
     return Menu.create(menu, {
@@ -79,14 +119,50 @@ class Tabs extends Component {
     });
   }
 
+  renderVertical(menu) {
+    const { layout, menuPosition } = this.props;
+    const { panelWidth, menuWidth, ...layoutProps } = layout;
+
+    const menuColumn = Layout.Column.create(
+      { is: menuWidth, children: menu },
+      { autoGenerateKey: false }
+    );
+
+    return (
+      <Layout {...layoutProps}>
+        <Layout.Row>
+          {menuPosition === 'left' && menuColumn}
+          {
+            Layout.Column.create(
+              { is: panelWidth, children: this.renderItems() },
+              { autoGenerateKey: false }
+            )
+          }
+          {menuPosition === 'right' && menuColumn}
+        </Layout.Row>
+      </Layout>
+    );
+  }
+
   render() {
     const menu = this.renderMenu();
 
     const rest = getUnhandledProps(Tabs, this.props);
     const ElementType = getElementType(Tabs, this.props);
 
-    return (
+    if (menu.props.vertical) {
+      return (
+        <ElementType {...rest}>
+          {this.renderVertical(menu)}
+        </ElementType>
+      );
+    }
 
+    return (
+      <ElementType {...rest} className='tabs'>
+        {menu}
+        {this.renderItems()}
+      </ElementType>
     );
   }
 

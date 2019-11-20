@@ -14,9 +14,7 @@ import {
   createShorthandFactory
 } from '../../lib';
 
-import MenuHeader from './MenuHeader';
 import MenuItem from './MenuItem';
-import MenuMenu from './MenuMenu';
 
 // eslint-disable-next-line react/require-optimization
 class Menu extends Component {
@@ -61,11 +59,7 @@ class Menu extends Component {
 
   static autoControlledProps = ['activeIndex']
 
-  static Header = MenuHeader
-
   static Item = MenuItem
-
-  static Menu = MenuMenu
 
   handleItemOverrides = predefinedProps => ({
     onClick: (e, itemProps) => {
@@ -85,7 +79,7 @@ class Menu extends Component {
     return _.map(items, (item, index) => (
       MenuItem.create(item, {
         defaultProps: {
-          acive: parseInt(activeIndex, 10) === index,
+          active: parseInt(activeIndex, 10) === index,
           index
         },
         overrideProps: this.handleItemOverrides
@@ -100,6 +94,7 @@ class Menu extends Component {
       children,
       className,
       content,
+      items,
       secondary,
       tab,
       text,
@@ -111,6 +106,7 @@ class Menu extends Component {
       classByKey(borderless, 'borderless'),
       classByKey(secondary, 'secondary'),
       classByKey(vertical, 'vertical'),
+      classByKey(!vertical, 'horizontal'),
       classByKey(tab, 'tab'),
       classByKey(text, 'as-text'),
       className
@@ -118,6 +114,14 @@ class Menu extends Component {
 
     const rest = getUnhandledProps(Menu, this.props);
     const ElementType = getElementType(Menu, this.props);
+
+    if (Array.isArray(items)) {
+      return (
+        <ElementType {...rest} className={classes}>
+          {this.renderItems()}
+        </ElementType>
+      );
+    }
 
     return (
       <ElementType {...rest} className={classes}>

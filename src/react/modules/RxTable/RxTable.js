@@ -10,6 +10,7 @@ import Message from '../../collections/Message';
 import RxTableData from './RxTableData';
 
 import RxTableHeader from './RxTableHeader';
+import RxTableTools from './RxTableTools';
 import RxTableFilterInput from './RxTableFilterInput';
 import RxTablePaginationWalker from './RxTablePaginationWalker';
 
@@ -29,6 +30,8 @@ class RxTable extends React.PureComponent {
   static FilterInput = RxTableFilterInput
 
   static PaginationWalker = RxTablePaginationWalker
+
+  static Tools = RxTableTools
 
   static propTypes = {
     /** User Defined Classes */
@@ -55,11 +58,17 @@ class RxTable extends React.PureComponent {
     /** RxTable Data Instance Prop */
     rxTableData: PropTypes.instanceOf(RxTableData),
 
+    /** Set the Tools Column Position */
+    toolsColumnPosition: PropTypes.oneOf(['left', 'right']),
+
     /** RxTable can use React Virtualized to show lot of data */
     virtualizeTable: PropTypes.bool
   }
 
   static defaultProps = {
+    /** Tools column position */
+    toolsColumnPosition: 'right',
+
     /** RxTable is virtualized by Default */
     virtualizeTable: true
   }
@@ -288,6 +297,12 @@ class RxTable extends React.PureComponent {
     /** Build the Row Click handler */
     const handleRowClick = (...args) => rxTableData.onRowClick(...args);
 
+    /** Get Column Position for tools from props */
+    const { toolsColumnPosition } = this.props;
+
+    /** Get table tools compute function */
+    const computeTools = rxTableData.tools;
+
     /** Return Data */
     return (
       <Table.Body>
@@ -301,20 +316,34 @@ class RxTable extends React.PureComponent {
               {
                 !childrenUtils.isNil(children)
                   ? children(item, index, arr)
-                  : rxTableData.columns.map(({ id, ...rest }) => (
-                    <Table.Cell
-                      key={id}
-                      className={rest.className}
-                      textAlign={rest.textAlign}
-                      verticalAlign={rest.verticalAlign}
-                    >
+                  : (
+                    <React.Fragment>
                       {
-                        typeof rest.cellContent === 'function'
-                          ? rest.cellContent(item, { id, ...rest })
-                          : <span className='cell-title'>{item[id]}</span>
+                        toolsColumnPosition === 'left'
+                        && rxTableData.hasTools(item)
+                        && <RxTableTools row={item} tools={computeTools} />
                       }
-                    </Table.Cell>
-                  ))
+                      {rxTableData.columns.map(({ id, ...rest }) => (
+                        <Table.Cell
+                          key={id}
+                          className={rest.className}
+                          textAlign={rest.textAlign}
+                          verticalAlign={rest.verticalAlign}
+                        >
+                          {
+                            typeof rest.cellContent === 'function'
+                              ? rest.cellContent(item, { id, ...rest })
+                              : <span className='cell-title'>{item[id]}</span>
+                          }
+                        </Table.Cell>
+                      ))}
+                      {
+                        toolsColumnPosition === 'right'
+                        && rxTableData.hasTools(item)
+                        && <RxTableTools row={item} tools={computeTools} />
+                      }
+                    </React.Fragment>
+                  )
               }
             </Table.Row>
           ))
@@ -335,6 +364,7 @@ class RxTable extends React.PureComponent {
     const {
       className,
       rxTableData,
+      toolsColumnPosition,
       virtualizeTable
     } = this.props;
 
@@ -389,6 +419,8 @@ class RxTable extends React.PureComponent {
           <RxTableHeader
             sorting={sorting}
             columns={columns}
+            hasToolsColumn={rxTableData.tableHasTools}
+            toolsColumnPosition={toolsColumnPosition}
             onSortChange={this.handleSortChange}
           />
 

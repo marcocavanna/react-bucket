@@ -31,7 +31,7 @@ function HeroTools(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {tools.map(tool => Button.create(tool, { overrideProps: { fab: true } }))}
+      {tools.map(tool => Button.create(tool))}
     </ElementType>
   );
 

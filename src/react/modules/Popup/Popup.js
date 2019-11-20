@@ -100,6 +100,7 @@ class Popup extends PureComponent {
   }
 
   static defaultProps = {
+    basic    : true,
     disabled : false,
     inverted : true,
     offset   : 0,
@@ -254,15 +255,17 @@ class Popup extends PureComponent {
     return (
       <Ref innerRef={popperRef}>
         <ElementType {...contentRestProps} className={classes} style={styles}>
-          {childrenUtils.isNil(children)
-            ? (
-              <React.Fragment>
-                {PopupHeader.create(header, { autoGenerateKey: false })}
-                {PopupContent.create(content, { autoGenerateKey: false })}
-              </React.Fragment>
-            )
-            : children}
-          {hideOnScroll && <EventStack on={this.hideOnScroll} name='scroll' target='window' />}
+          <div className='popup-content'>
+            {childrenUtils.isNil(children)
+              ? (
+                <React.Fragment>
+                  {PopupHeader.create(header, { autoGenerateKey: false })}
+                  {PopupContent.create(content, { autoGenerateKey: false })}
+                </React.Fragment>
+              )
+              : children}
+            {hideOnScroll && <EventStack on={this.hideOnScroll} name='scroll' target='window' />}
+          </div>
         </ElementType>
       </Ref>
     );

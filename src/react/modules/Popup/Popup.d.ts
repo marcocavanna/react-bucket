@@ -5,11 +5,13 @@ import { AppBucketsSIZE } from '../../generic';
 import PopupHeader from './PopupHeader';
 import PopupContent from './PopupContent';
 
+import { StrictPortalProps } from '../../addons/Portal';
+
 export interface PopupProps extends StrictPopupProps {
   [key: string]: any
 }
 
-export interface StrictPopupProps {
+export interface StrictPopupProps extends StrictPortalProps {
   /** An element used to render */
   as?: any,
 
@@ -59,7 +61,7 @@ export interface StrictPopupProps {
   onOpen?: Function,
 
   /** Position for the popover. */
-  position?: 
+  position?:
     | 'top left'
     | 'top right'
     | 'bottom left'

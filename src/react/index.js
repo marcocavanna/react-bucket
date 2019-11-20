@@ -9,6 +9,8 @@ export { default as Ref } from './addons/Ref';
 /**
  * Collections Export
  */
+export { default as DropdownMenu } from './collections/DropdownMenu';
+
 export { default as Form } from './collections/Form';
 
 export { default as Layout } from './collections/Layout';
@@ -18,6 +20,8 @@ export { default as Menu } from './collections/Menu';
 export { default as Message } from './collections/Message';
 
 export { default as Table } from './collections/Table';
+
+export { default as Tabs } from './collections/Tabs';
 
 
 /**

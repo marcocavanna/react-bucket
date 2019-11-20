@@ -360,6 +360,15 @@
 
 
 /*---
+  Fix Cell with Tools width
+---*/
+.table .row .cell.tools-cell {
+  width: pixel-to-rem(40) + ($table-cell-h-padding * 1.5);
+  text-align: center;
+}
+
+
+/*---
   Adjust Field Margin o RxTable Action Row
 ---*/
 .rx-table .rx-table-action-row .field {

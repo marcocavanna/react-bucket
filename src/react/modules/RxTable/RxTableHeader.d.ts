@@ -8,13 +8,19 @@ export interface RxTableHeaderProps extends StrictRxTableHeaderProps {
 
 export interface StrictRxTableHeaderProps {
   /** RxTableData Columns Prop */
-  columns: IRxTableDataColumn[]
+  columns?: IRxTableDataColumn[]
+
+  /** Set if must render the Column Action Tools */
+  hasToolsColumn?: boolean
 
   /** On Sort Change Handler Function */
-  onSortChange: (id: string) => any
+  onSortChange?: (id: string) => any
 
   /** RxTableData Sorting */
-  sorting: IRxTableDataSorting
+  sorting?: IRxTableDataSorting
+
+  /** Set the tools column position */
+  toolsColumnPosition?: 'left' | 'right'
 }
 
 interface RxTableHeaderComponent extends React.StatelessComponent<RxTableHeaderProps> { }

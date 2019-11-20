@@ -12,7 +12,8 @@ import {
   childrenUtils,
   getElementType,
   getUnhandledProps,
-  classByKey
+  classByKey,
+  createShorthandFactory
 } from '../../lib';
 
 class MenuItem extends React.PureComponent {
@@ -62,6 +63,7 @@ class MenuItem extends React.PureComponent {
     const { disabled } = this.props;
 
     if (!disabled) {
+      e.stopPropagation();
       _.invoke(this.props, 'onClick', e, this.props);
     }
   }
@@ -90,7 +92,7 @@ class MenuItem extends React.PureComponent {
       classByKey(header, 'header'),
       classByKey(icon === true || (icon && !(name || content)), 'icon'),
       classByKey(right, 'on-right'),
-      'item',
+      'menu-item',
       className
     );
 
@@ -115,5 +117,7 @@ class MenuItem extends React.PureComponent {
   }
 
 }
+
+MenuItem.create = createShorthandFactory(MenuItem, content => ({ content }));
 
 export default MenuItem;

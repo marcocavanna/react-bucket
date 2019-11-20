@@ -36,6 +36,9 @@ export interface StrictRxTableProps {
   /** RxTableData Instance */
   rxTableData: RxTableData<object[]>
 
+  /** Tools Column Position */
+  toolsColumnPosition?: 'left' | 'right'
+
   /** Use React Virtualized to show Data [Currenty not Supported] */
   virtualizeTable: boolean
 }
