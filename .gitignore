@@ -1,0 +1,14 @@
+# Remove System File
+.DS_Store
+.sass-cache
+
+# Remove Node Modules Folder
+node_modules/
+
+# Remove Package Lock
+# to redownload all Package
+package-lock.json
+
+# Remove Dist Folder
+# From Root
+/dist
