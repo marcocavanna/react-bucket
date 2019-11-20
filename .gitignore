@@ -13,3 +13,4 @@ package-lock.json
 # From Root
 /dist
 /coverage
+/public
