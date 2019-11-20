@@ -12,5 +12,4 @@ package-lock.json
 # Remove Dist Folder
 # From Root
 /dist
-/docs
 /coverage
