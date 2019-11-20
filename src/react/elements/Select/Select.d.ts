@@ -8,8 +8,14 @@ export interface SelectProps extends StrictSelectProps {
 }
 
 export interface StrictSelectProps extends StrictFieldProps {
+  /** Set the Select as Async Type */
+  async?: boolean
+
   /** Set if selected option is clearable */
   clearable?: boolean
+
+  /** Set the Select as Creatable */
+  creatable?: boolean
 
   /** Set if component is Disabled */
   disabled?: boolean

@@ -23,8 +23,8 @@ FormikSelectComponent.propTypes = {
 
 const FormikSelect = withFormikField({
   Component    : FormikSelectComponent,
-  handleChange : (formik, { name }, selected) => {
-    formik.setFieldValue(name, _.isNil(selected) ? undefined : selected.value);
+  handleChange : (formik, props, selected) => {
+    formik.setFieldValue(props.name, _.isNil(selected) ? null : selected.value);
   },
   computeValue: (value, { options }) => (
     value && Array.isArray(options)

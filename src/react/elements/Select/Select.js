@@ -1,6 +1,10 @@
 import React, { PureComponent, createRef } from 'react';
 import PropTypes from 'prop-types';
+
 import ReactSelect from 'react-select';
+import AsyncSelect from 'react-select/async';
+import AsyncCreatableSelect from 'react-select/async-creatable';
+import CreatableSelect from 'react-select/creatable';
 
 import _ from 'lodash';
 
@@ -15,8 +19,14 @@ class Select extends PureComponent {
 
   /** Define Component PropTypes */
   static propTypes = {
+    /** Set if Select is Async type */
+    async: PropTypes.bool,
+
     /** Set if the Value is Clearable */
     clearable: PropTypes.bool,
+
+    /** Set if Select is Creatable */
+    creatable: PropTypes.bool,
 
     /** Disabled Field */
     disabled: PropTypes.bool,
@@ -69,7 +79,9 @@ class Select extends PureComponent {
   render() {
 
     const {
+      async,
       clearable,
+      creatable,
       disabled,
       loading,
       options
@@ -80,9 +92,17 @@ class Select extends PureComponent {
 
     const ElementType = getElementType(Select, this.props);
 
+    const SelectElement = !async && !creatable
+      ? ReactSelect
+      : !async && creatable
+        ? CreatableSelect
+        : async && !creatable
+          ? AsyncSelect
+          : AsyncCreatableSelect;
+
     return (
       <Field form input as={ElementType} {...fieldProps}>
-        <ReactSelect
+        <SelectElement
           {...rest}
           className='select'
           classNamePrefix='bucket'

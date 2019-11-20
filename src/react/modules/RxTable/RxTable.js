@@ -257,7 +257,7 @@ class RxTable extends React.PureComponent {
       } = this.props;
 
       const NoData = childrenUtils.isNil(noDataProp)
-        ? <span>No Data to Show</span>
+        ? <span>Nessun dato da Visualizzare</span>
         : noDataProp;
 
       return (

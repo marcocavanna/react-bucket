@@ -147,13 +147,24 @@
 }
 
 /******
+    Modal Header Element
+    inside Modal Content is used
+    to build confirm dialog
+    Must increase margin top on subheader
+    to give message more space
+******/
+.modal > .modal-content > .header .subheader {
+  margin-top: 1em;
+}
+
+/******
     Modal Actions
 ******/
 .modal > .modal-actions,
 .modal > form > .modal-actions {
   display: block;
   background-color: $modal-background;
-  padding: 1rem $modal-horizontal-padding;
+  padding: .5rem $modal-horizontal-padding 1.25rem;
   text-align: right;
   flex: 0 0 auto;
 }
@@ -186,6 +197,20 @@
     padding-top: 2rem;
     padding-bottom: 2rem;
   }
+}
+
+/******
+    Set Style for Scrolling Modal
+    Scrolling Modal has Incresead vertical margin
+******/
+.modal.is-scrolling {
+  margin: 2rem auto;
+}
+
+.is-scrolling.dimmable > .modals {
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  justify-content: flex-start;
 }
 
 

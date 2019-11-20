@@ -1,6 +1,6 @@
 const fontAwesomePair = require('./fa-icon.module');
 
-module.exports = (name, style) => {
+export default (name, style) => {
 
   /**
    * Check Name is Provided

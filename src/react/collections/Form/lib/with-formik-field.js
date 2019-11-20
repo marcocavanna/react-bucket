@@ -55,7 +55,7 @@ const withFormikField = ({
     }
     /** Fire original function or the Overwritten */
     if (typeof handleChangeOverwritten === 'function') {
-      handleChangeOverwritten(formik, { name: fieldName, value }, ...args);
+      handleChangeOverwritten(formik, { ...fieldRest, ...rest, name: fieldName, value }, ...args);
     }
     else {
       originalOnChange(...args);

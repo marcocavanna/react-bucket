@@ -87,7 +87,7 @@ class Popup extends PureComponent {
     popperModifiers: PropTypes.object,
 
     /** Position for the popover. */
-    position: PropTypes.oneOf(positions),
+    position: PropTypes.oneOf(['center', 'bottom']),
 
     /** Size modifier */
     size: customPropTypes.size,
