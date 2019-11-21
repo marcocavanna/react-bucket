@@ -59,8 +59,6 @@ export { default as Loader } from './elements/Loader';
 
 export { default as Panel } from './elements/Panel';
 
-export { default as Progress } from './elements/Progress';
-
 export { default as Select } from './elements/Select';
 
 export { default as Spacer } from './elements/Spacer';

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Button from '../../dist/react/elements/Button/Button';
+import { Button } from '../../src/react';
 
 const SimpleButton = () => (
 
