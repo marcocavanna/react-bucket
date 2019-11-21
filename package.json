@@ -153,5 +153,10 @@
     "shallowequal": "^1.1.0",
     "smart-table-search": "^2.0.8",
     "tinycolor2": "^1.4.1"
+  },
+  "homepage": "https://bitbucket.org/marcocavanna/react-bucket#readme",
+  "directories": {
+    "doc": "docs",
+    "test": "test"
   }
 }

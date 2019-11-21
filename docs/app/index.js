@@ -1,5 +1,11 @@
 import React from 'react';
+import SimpleButton from '../elements/Button';
 
-const App = () => <h1>Hello to React Bucket</h1>;
+const App = () => (
+  <div className="container">
+    <h1>Welcome to react Documentation</h1>
+    <SimpleButton />
+  </div>
+);
 
 export default App;
