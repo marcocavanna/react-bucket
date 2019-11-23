@@ -3,23 +3,15 @@ import React from 'react';
 
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import SideBar from './component/SideBar';
-import Home from './pages/Home';
+import { RightMenu, SideBar } from './component';
 
-import RightMenu from '../elements/RightMenu';
+import Home from './pages/Home';
 
 import withComponentDoc from './HOC/with-component-doc';
 import * as Docs from './docs';
 
-// import ButtonDocumentation from '../elements/Button';
-// import CheckboxDocumentation from '../elements/Checkbox';
-
 import Layout from '../../src/react/collections/Layout';
 
-/*
-<Route path='/button' component={ButtonDocumentation} />
-<Route path='/checkbox' component={CheckboxDocumentation} />
-*/
 
 const App = () => (
   <BrowserRouter>

@@ -4,7 +4,7 @@
 import React from 'react';
 import { NavLink, Link, withRouter } from 'react-router-dom';
 
-import { Layout, Menu, DropdownMenu } from '../../src/react';
+import { Layout, Menu, DropdownMenu } from '../../../src/react';
 
 class RightMenu extends React.Component {
 
