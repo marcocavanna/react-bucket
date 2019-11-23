@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
-import { Button, Layout, Header, Spacer, Panel, Divider } from '../../src/react';
+import { Button, Layout, Header, Spacer, Panel, Divider } from '../../../src/react';
 
 const Home = () => (
   <Layout>

@@ -333,7 +333,7 @@ class ButtonDocumentation extends React.Component {
           </Header.Subheader>
           <Spacer />
           <Header.Subheader>
-            <Checkbox slider onClick={this.handleProps} label='props' />
+            <Checkbox slider label='props' onClick={this.handleProps} />
           </Header.Subheader>
         </Header>
         <Spacer />
