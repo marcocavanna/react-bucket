@@ -335,6 +335,19 @@ module.exports = {
 
 
   /**
+   * Set Dev Server Options
+   */
+  devServer: {
+    inline             : true,
+    https              : true,
+    host               : '127.0.0.1',
+    overlay            : true,
+    publicPath         : '/',
+    historyApiFallback : true
+  },
+
+
+  /**
    * @name resolve
    * @type {Object}
    *
