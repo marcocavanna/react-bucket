@@ -1,0 +1,96 @@
+{
+  "displayName": "Layout",
+  "props": [
+    {
+      "type": "custom",
+      "required": false,
+      "description": [
+        "An element used to render the component"
+      ],
+      "tags": [],
+      "name": "as"
+    },
+    {
+      "type": "string",
+      "required": false,
+      "description": [
+        "Custom background Color"
+      ],
+      "tags": [],
+      "name": "background"
+    },
+    {
+      "type": "node",
+      "required": false,
+      "description": [
+        "Children Node"
+      ],
+      "tags": [],
+      "name": "children"
+    },
+    {
+      "type": "string",
+      "required": false,
+      "description": [
+        "User defined class"
+      ],
+      "tags": [],
+      "name": "className"
+    },
+    {
+      "type": "string",
+      "required": false,
+      "description": [
+        "Custom Font Color"
+      ],
+      "tags": [],
+      "name": "color"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Fluid Property"
+      ],
+      "tags": [],
+      "name": "fluid"
+    },
+    {
+      "type": "custom",
+      "required": false,
+      "description": [
+        "Container Text Alignment"
+      ],
+      "tags": [],
+      "name": "textAlign"
+    },
+    {
+      "type": "custom",
+      "required": false,
+      "description": [
+        "Fixed Width"
+      ],
+      "tags": [],
+      "name": "width"
+    }
+  ],
+  "constructorName": "Layout",
+  "type": "collection",
+  "isParent": true,
+  "isChild": false,
+  "parentDisplayName": null,
+  "subcomponentName": null,
+  "subcomponents": [],
+  "apiPath": "Layout",
+  "componentClassName": "layout",
+  "docblock": {
+    "tags": [],
+    "description": [
+      ""
+    ]
+  },
+  "examplesExist": false,
+  "repoPath": "src/react/collections/Layout/Layout.js",
+  "filename": "Layout.js",
+  "filenameWithoutExt": "Layout"
+}

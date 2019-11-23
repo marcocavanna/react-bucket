@@ -1,0 +1,42 @@
+{
+  "displayName": "MountNode",
+  "props": [
+    {
+      "type": "string",
+      "required": false,
+      "description": [
+        "Additional User Defined classes"
+      ],
+      "tags": [],
+      "name": "className"
+    },
+    {
+      "type": "node",
+      "required": false,
+      "description": [
+        "The DOM node where will apply classname, default is document.body"
+      ],
+      "tags": [],
+      "name": "node"
+    }
+  ],
+  "constructorName": "MountNode",
+  "type": "addon",
+  "isParent": true,
+  "isChild": false,
+  "parentDisplayName": null,
+  "subcomponentName": null,
+  "subcomponents": [],
+  "apiPath": "MountNode",
+  "componentClassName": "mountnode",
+  "docblock": {
+    "tags": [],
+    "description": [
+      ""
+    ]
+  },
+  "examplesExist": false,
+  "repoPath": "src/react/addons/MountNode/MountNode.js",
+  "filename": "MountNode.js",
+  "filenameWithoutExt": "MountNode"
+}

@@ -1,0 +1,61 @@
+{
+  "displayName": "RxTablePaginationWalker",
+  "props": [
+    {
+      "type": "number",
+      "required": false,
+      "description": [
+        "Current Page"
+      ],
+      "tags": [],
+      "name": "currentPage"
+    },
+    {
+      "type": "func",
+      "required": false,
+      "description": [
+        "On Page Change Handler Function"
+      ],
+      "tags": [],
+      "name": "onPageChange"
+    },
+    {
+      "type": "number",
+      "required": false,
+      "description": [
+        "Total Page Count"
+      ],
+      "tags": [],
+      "name": "totalPages"
+    },
+    {
+      "type": "number",
+      "required": false,
+      "description": [
+        "Walker Size"
+      ],
+      "defaultValue": "10",
+      "tags": [],
+      "name": "walkerSize"
+    }
+  ],
+  "constructorName": "RxTablePaginationWalker",
+  "type": "module",
+  "isParent": false,
+  "isChild": true,
+  "parentDisplayName": "RxTable",
+  "subcomponentName": "PaginationWalker",
+  "subcomponents": null,
+  "apiPath": "RxTable.PaginationWalker",
+  "componentClassName": "paginationwalker",
+  "docblock": {
+    "tags": [],
+    "description": [
+      ""
+    ]
+  },
+  "examplesExist": false,
+  "repoPath": "src/react/modules/RxTable/RxTablePaginationWalker.js",
+  "filename": "RxTablePaginationWalker.js",
+  "filenameWithoutExt": "RxTablePaginationWalker"
+}

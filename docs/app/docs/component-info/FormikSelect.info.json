@@ -1,0 +1,51 @@
+{
+  "displayName": "FormikSelectComponent",
+  "props": [
+    {
+      "type": "object",
+      "required": false,
+      "description": [
+        ""
+      ],
+      "tags": [],
+      "name": "meta"
+    },
+    {
+      "type": "object",
+      "required": false,
+      "description": [
+        ""
+      ],
+      "tags": [],
+      "name": "rest"
+    },
+    {
+      "type": "object",
+      "required": false,
+      "description": [
+        ""
+      ],
+      "tags": [],
+      "name": "state"
+    }
+  ],
+  "constructorName": "",
+  "type": "collection",
+  "isParent": false,
+  "isChild": true,
+  "parentDisplayName": "Form",
+  "subcomponentName": "ikSelectComponent",
+  "subcomponents": null,
+  "apiPath": "Form.ikSelectComponent",
+  "componentClassName": "ikselectcomponent",
+  "docblock": {
+    "tags": [],
+    "description": [
+      ""
+    ]
+  },
+  "examplesExist": false,
+  "repoPath": "src/react/collections/Form/FormikSelect.js",
+  "filename": "FormikSelect.js",
+  "filenameWithoutExt": "FormikSelect"
+}

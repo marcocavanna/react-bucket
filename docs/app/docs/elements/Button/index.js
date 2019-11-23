@@ -1,4 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
+
+import ButtonInfo from '../../component-info/Button.info.json';
+import ButtonGroupInfo from '../../component-info/ButtonGroup.info.json';
+import loadComponentInfo from '../../util/loadComponentInfo';
 
 import { Button } from '../../../../../src/react';
 
@@ -16,27 +20,11 @@ export default {
   props: {
 
     Button: {
-      as: {
-        type    : 'Any',
-        comment : 'An element used to render'
-      },
-
-      children: {
-        type    : 'React Element',
-        comment : 'Component Children Node'
-      }
+      ...loadComponentInfo(ButtonInfo)
     },
 
     'Button.Group': {
-      as: {
-        type    : 'Any',
-        comment : 'An element used to render'
-      },
-
-      children: {
-        type    : 'React Element',
-        comment : 'Component Children'
-      }
+      ...loadComponentInfo(ButtonGroupInfo)
     }
 
   },

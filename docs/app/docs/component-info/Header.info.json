@@ -1,0 +1,126 @@
+{
+  "displayName": "Header",
+  "props": [
+    {
+      "type": "custom",
+      "required": false,
+      "description": [
+        "An element used to render the component"
+      ],
+      "tags": [],
+      "name": "as"
+    },
+    {
+      "type": "node",
+      "required": false,
+      "description": [
+        "Primary Content"
+      ],
+      "tags": [],
+      "name": "children"
+    },
+    {
+      "type": "string",
+      "required": false,
+      "description": [
+        "Additional Classes"
+      ],
+      "tags": [],
+      "name": "className"
+    },
+    {
+      "type": "string",
+      "required": false,
+      "description": [
+        "Text Color"
+      ],
+      "tags": [],
+      "name": "color"
+    },
+    {
+      "type": "any",
+      "required": false,
+      "description": [
+        "Shorthand Properties for Content"
+      ],
+      "tags": [],
+      "name": "content"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Disable Header"
+      ],
+      "tags": [],
+      "name": "disabled"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Dividing Header"
+      ],
+      "tags": [],
+      "name": "dividing"
+    },
+    {
+      "type": "any",
+      "required": false,
+      "description": [
+        "Add an icon by name or pass Icon object"
+      ],
+      "tags": [],
+      "name": "icon"
+    },
+    {
+      "type": "any",
+      "required": false,
+      "description": [
+        "Add an image by src or pass Image object"
+      ],
+      "tags": [],
+      "name": "image"
+    },
+    {
+      "type": "any",
+      "required": false,
+      "description": [
+        "Shortheand property for Header.Subheader"
+      ],
+      "tags": [],
+      "name": "subheader"
+    },
+    {
+      "type": "custom",
+      "required": false,
+      "description": [
+        "Text Align"
+      ],
+      "tags": [],
+      "name": "textAlign"
+    }
+  ],
+  "constructorName": "Header",
+  "type": "element",
+  "isParent": true,
+  "isChild": false,
+  "parentDisplayName": null,
+  "subcomponentName": null,
+  "subcomponents": [
+    "HeaderContent",
+    "HeaderSubheader"
+  ],
+  "apiPath": "Header",
+  "componentClassName": "header",
+  "docblock": {
+    "tags": [],
+    "description": [
+      ""
+    ]
+  },
+  "examplesExist": false,
+  "repoPath": "src/react/elements/Header/Header.js",
+  "filename": "Header.js",
+  "filenameWithoutExt": "Header"
+}

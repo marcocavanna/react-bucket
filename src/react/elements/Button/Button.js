@@ -71,6 +71,13 @@ class Button extends PureComponent {
     /** Button with Loader */
     loading: PropTypes.bool,
 
+    /**
+     * Called after user's click.
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
+    onClick: PropTypes.func,
+
     /** Primary Color */
     primary: PropTypes.bool,
 
@@ -84,7 +91,7 @@ class Button extends PureComponent {
     secondary: PropTypes.bool,
 
     /** Change Button Size */
-    size: customPropTypes.size,
+    size: PropTypes.oneOf(['extra-small', 'small', 'normal', 'large', 'big', 'huge']),
 
     /** Success Color */
     success: PropTypes.bool,

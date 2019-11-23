@@ -1,0 +1,125 @@
+{
+  "displayName": "MenuItem",
+  "props": [
+    {
+      "type": "bool|string",
+      "required": false,
+      "description": [
+        "Display as Active"
+      ],
+      "tags": [],
+      "value": [],
+      "name": "active"
+    },
+    {
+      "type": "custom",
+      "required": false,
+      "description": [
+        "An element used to render"
+      ],
+      "tags": [],
+      "name": "as"
+    },
+    {
+      "type": "string",
+      "required": false,
+      "description": [
+        "User Defined Classes"
+      ],
+      "tags": [],
+      "name": "className"
+    },
+    {
+      "type": "string",
+      "required": false,
+      "description": [
+        "Custom Color"
+      ],
+      "tags": [],
+      "name": "color"
+    },
+    {
+      "type": "any",
+      "required": false,
+      "description": [
+        "Content ShordHand"
+      ],
+      "tags": [],
+      "name": "content"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Disabled State"
+      ],
+      "tags": [],
+      "name": "disabled"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Header Style"
+      ],
+      "tags": [],
+      "name": "header"
+    },
+    {
+      "type": "bool|custom",
+      "required": false,
+      "description": [
+        "Icon"
+      ],
+      "tags": [],
+      "value": [],
+      "name": "icon"
+    },
+    {
+      "type": "string",
+      "required": false,
+      "description": [
+        "Name Shorthand"
+      ],
+      "tags": [],
+      "name": "name"
+    },
+    {
+      "type": "func",
+      "required": false,
+      "description": [
+        "OnClick Handler"
+      ],
+      "tags": [],
+      "name": "onClick"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "On Right Position"
+      ],
+      "tags": [],
+      "name": "right"
+    }
+  ],
+  "constructorName": "MenuItem",
+  "type": "collection",
+  "isParent": false,
+  "isChild": true,
+  "parentDisplayName": "Menu",
+  "subcomponentName": "Item",
+  "subcomponents": null,
+  "apiPath": "Menu.Item",
+  "componentClassName": "item",
+  "docblock": {
+    "tags": [],
+    "description": [
+      ""
+    ]
+  },
+  "examplesExist": false,
+  "repoPath": "src/react/collections/Menu/MenuItem.js",
+  "filename": "MenuItem.js",
+  "filenameWithoutExt": "MenuItem"
+}

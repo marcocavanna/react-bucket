@@ -1,0 +1,96 @@
+{
+  "displayName": "Loader",
+  "props": [
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Active Props"
+      ],
+      "tags": [],
+      "name": "active"
+    },
+    {
+      "type": "custom",
+      "required": false,
+      "description": [
+        "Element used to Render Loader"
+      ],
+      "tags": [],
+      "name": "as"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Centered Loader"
+      ],
+      "tags": [],
+      "name": "centered"
+    },
+    {
+      "type": "string",
+      "required": false,
+      "description": [
+        "User defined Class"
+      ],
+      "tags": [],
+      "name": "className"
+    },
+    {
+      "type": "any",
+      "required": false,
+      "description": [
+        "Content Property"
+      ],
+      "tags": [],
+      "name": "content"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Inline Loader"
+      ],
+      "tags": [],
+      "name": "inline"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Inverted Props"
+      ],
+      "tags": [],
+      "name": "inverted"
+    },
+    {
+      "type": "custom",
+      "required": false,
+      "description": [
+        "Size Style"
+      ],
+      "tags": [],
+      "name": "size"
+    }
+  ],
+  "constructorName": "Loader",
+  "type": "element",
+  "isParent": true,
+  "isChild": false,
+  "parentDisplayName": null,
+  "subcomponentName": null,
+  "subcomponents": [],
+  "apiPath": "Loader",
+  "componentClassName": "loader",
+  "docblock": {
+    "tags": [],
+    "description": [
+      ""
+    ]
+  },
+  "examplesExist": false,
+  "repoPath": "src/react/elements/Loader/Loader.js",
+  "filename": "Loader.js",
+  "filenameWithoutExt": "Loader"
+}

@@ -1,0 +1,78 @@
+{
+  "displayName": "PanelFab",
+  "props": [
+    {
+      "type": "custom",
+      "required": false,
+      "description": [
+        "An Element used to render the Component"
+      ],
+      "tags": [],
+      "name": "as"
+    },
+    {
+      "type": "string",
+      "required": false,
+      "description": [
+        "Button Fab Color"
+      ],
+      "tags": [],
+      "name": "color"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Disabled State"
+      ],
+      "tags": [],
+      "name": "disabled"
+    },
+    {
+      "type": "custom",
+      "required": false,
+      "description": [
+        "Icon ShortHand"
+      ],
+      "tags": [],
+      "name": "icon"
+    },
+    {
+      "type": "func",
+      "required": false,
+      "description": [
+        "On Fab Click Function"
+      ],
+      "tags": [],
+      "name": "onFabClick"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Primary State"
+      ],
+      "tags": [],
+      "name": "primary"
+    }
+  ],
+  "constructorName": "PanelFab",
+  "type": "element",
+  "isParent": false,
+  "isChild": true,
+  "parentDisplayName": "Panel",
+  "subcomponentName": "Fab",
+  "subcomponents": null,
+  "apiPath": "Panel.Fab",
+  "componentClassName": "fab",
+  "docblock": {
+    "tags": [],
+    "description": [
+      ""
+    ]
+  },
+  "examplesExist": false,
+  "repoPath": "src/react/elements/Panel/PanelFab.js",
+  "filename": "PanelFab.js",
+  "filenameWithoutExt": "PanelFab"
+}

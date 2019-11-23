@@ -1,0 +1,51 @@
+{
+  "displayName": "HeroContent",
+  "props": [
+    {
+      "type": "custom",
+      "required": false,
+      "description": [
+        "An element used to render the component"
+      ],
+      "tags": [],
+      "name": "as"
+    },
+    {
+      "type": "string",
+      "required": false,
+      "description": [
+        "User Defined classes"
+      ],
+      "tags": [],
+      "name": "className"
+    },
+    {
+      "type": "any",
+      "required": false,
+      "description": [
+        "Content Shorthand"
+      ],
+      "tags": [],
+      "name": "content"
+    }
+  ],
+  "constructorName": "HeroContent",
+  "type": "element",
+  "isParent": false,
+  "isChild": true,
+  "parentDisplayName": "Hero",
+  "subcomponentName": "Content",
+  "subcomponents": null,
+  "apiPath": "Hero.Content",
+  "componentClassName": "content",
+  "docblock": {
+    "tags": [],
+    "description": [
+      ""
+    ]
+  },
+  "examplesExist": false,
+  "repoPath": "src/react/elements/Hero/HeroContent.js",
+  "filename": "HeroContent.js",
+  "filenameWithoutExt": "HeroContent"
+}

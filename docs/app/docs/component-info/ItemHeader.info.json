@@ -1,0 +1,60 @@
+{
+  "displayName": "ItemHeader",
+  "props": [
+    {
+      "type": "custom",
+      "required": false,
+      "description": [
+        "An element used to Render the Component"
+      ],
+      "tags": [],
+      "name": "as"
+    },
+    {
+      "type": "string",
+      "required": false,
+      "description": [
+        "User Defined Classes"
+      ],
+      "tags": [],
+      "name": "className"
+    },
+    {
+      "type": "any",
+      "required": false,
+      "description": [
+        "Content Shorthand"
+      ],
+      "tags": [],
+      "name": "content"
+    },
+    {
+      "type": "custom",
+      "required": false,
+      "description": [
+        "Icon Shorthand"
+      ],
+      "tags": [],
+      "name": "icon"
+    }
+  ],
+  "constructorName": "ItemHeader",
+  "type": "element",
+  "isParent": false,
+  "isChild": true,
+  "parentDisplayName": "Item",
+  "subcomponentName": "Header",
+  "subcomponents": null,
+  "apiPath": "Item.Header",
+  "componentClassName": "header",
+  "docblock": {
+    "tags": [],
+    "description": [
+      ""
+    ]
+  },
+  "examplesExist": false,
+  "repoPath": "src/react/elements/Item/ItemHeader.js",
+  "filename": "ItemHeader.js",
+  "filenameWithoutExt": "ItemHeader"
+}

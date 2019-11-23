@@ -1,0 +1,74 @@
+{
+  "displayName": "TableHeaderCell",
+  "props": [
+    {
+      "type": "custom",
+      "required": false,
+      "description": [
+        "An element used to render the component"
+      ],
+      "defaultValue": "'th'",
+      "tags": [],
+      "name": "as"
+    },
+    {
+      "type": "string",
+      "required": false,
+      "description": [
+        "User defined classes"
+      ],
+      "tags": [],
+      "name": "className"
+    },
+    {
+      "type": "any",
+      "required": false,
+      "description": [
+        "Header Content shorthand"
+      ],
+      "tags": [],
+      "name": "content"
+    },
+    {
+      "type": "enum|bool",
+      "required": false,
+      "description": [
+        "Set the Cell as Sorted"
+      ],
+      "tags": [],
+      "value": [
+        "asc",
+        "desc"
+      ],
+      "name": "sorted"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "A table header can be unsortable"
+      ],
+      "tags": [],
+      "name": "unsortable"
+    }
+  ],
+  "constructorName": "TableHeaderCell",
+  "type": "collection",
+  "isParent": false,
+  "isChild": true,
+  "parentDisplayName": "Table",
+  "subcomponentName": "HeaderCell",
+  "subcomponents": null,
+  "apiPath": "Table.HeaderCell",
+  "componentClassName": "headercell",
+  "docblock": {
+    "tags": [],
+    "description": [
+      ""
+    ]
+  },
+  "examplesExist": false,
+  "repoPath": "src/react/collections/Table/TableHeaderCell.js",
+  "filename": "TableHeaderCell.js",
+  "filenameWithoutExt": "TableHeaderCell"
+}

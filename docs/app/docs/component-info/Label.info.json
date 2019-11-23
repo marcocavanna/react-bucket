@@ -1,0 +1,81 @@
+{
+  "displayName": "Label",
+  "props": [
+    {
+      "type": "custom",
+      "required": false,
+      "description": [
+        "An element used to render the component"
+      ],
+      "tags": [],
+      "name": "as"
+    },
+    {
+      "type": "string",
+      "required": false,
+      "description": [
+        "User Defined Class"
+      ],
+      "tags": [],
+      "name": "className"
+    },
+    {
+      "type": "string",
+      "required": false,
+      "description": [
+        "Color Props"
+      ],
+      "tags": [],
+      "name": "color"
+    },
+    {
+      "type": "any",
+      "required": false,
+      "description": [
+        "Content ShortHand"
+      ],
+      "tags": [],
+      "name": "content"
+    },
+    {
+      "type": "any",
+      "required": false,
+      "description": [
+        "Detail Shorthand"
+      ],
+      "tags": [],
+      "name": "detail"
+    },
+    {
+      "type": "custom",
+      "required": false,
+      "description": [
+        "Icon Shorthand"
+      ],
+      "tags": [],
+      "name": "icon"
+    }
+  ],
+  "constructorName": "Label",
+  "type": "element",
+  "isParent": true,
+  "isChild": false,
+  "parentDisplayName": null,
+  "subcomponentName": null,
+  "subcomponents": [
+    "LabelDetail",
+    "LabelGroup"
+  ],
+  "apiPath": "Label",
+  "componentClassName": "label",
+  "docblock": {
+    "tags": [],
+    "description": [
+      ""
+    ]
+  },
+  "examplesExist": false,
+  "repoPath": "src/react/elements/Label/Label.js",
+  "filename": "Label.js",
+  "filenameWithoutExt": "Label"
+}

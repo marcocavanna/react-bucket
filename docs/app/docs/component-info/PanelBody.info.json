@@ -1,0 +1,87 @@
+{
+  "displayName": "PanelBody",
+  "props": [
+    {
+      "type": "custom",
+      "required": false,
+      "description": [
+        "An element used to render the component"
+      ],
+      "tags": [],
+      "name": "as"
+    },
+    {
+      "type": "node",
+      "required": false,
+      "description": [
+        "Primary Content"
+      ],
+      "tags": [],
+      "name": "children"
+    },
+    {
+      "type": "string",
+      "required": false,
+      "description": [
+        "Additional Classes"
+      ],
+      "tags": [],
+      "name": "className"
+    },
+    {
+      "type": "string",
+      "required": false,
+      "description": [
+        "Text Color"
+      ],
+      "tags": [],
+      "name": "color"
+    },
+    {
+      "type": "any",
+      "required": false,
+      "description": [
+        "Shorthand Properties for Content"
+      ],
+      "tags": [],
+      "name": "content"
+    },
+    {
+      "type": "string",
+      "required": false,
+      "description": [
+        "Font Weight Property"
+      ],
+      "tags": [],
+      "name": "fontWeight"
+    },
+    {
+      "type": "custom",
+      "required": false,
+      "description": [
+        "Text Align"
+      ],
+      "tags": [],
+      "name": "textAlign"
+    }
+  ],
+  "constructorName": "PanelBody",
+  "type": "element",
+  "isParent": false,
+  "isChild": true,
+  "parentDisplayName": "Panel",
+  "subcomponentName": "Body",
+  "subcomponents": null,
+  "apiPath": "Panel.Body",
+  "componentClassName": "body",
+  "docblock": {
+    "tags": [],
+    "description": [
+      ""
+    ]
+  },
+  "examplesExist": false,
+  "repoPath": "src/react/elements/Panel/PanelBody.js",
+  "filename": "PanelBody.js",
+  "filenameWithoutExt": "PanelBody"
+}

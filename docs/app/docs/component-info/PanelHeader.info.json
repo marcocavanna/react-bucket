@@ -1,0 +1,96 @@
+{
+  "displayName": "PanelHeader",
+  "props": [
+    {
+      "type": "custom",
+      "required": false,
+      "description": [
+        "An element used to render the component"
+      ],
+      "tags": [],
+      "name": "as"
+    },
+    {
+      "type": "node",
+      "required": false,
+      "description": [
+        "Primary Content"
+      ],
+      "tags": [],
+      "name": "children"
+    },
+    {
+      "type": "string",
+      "required": false,
+      "description": [
+        "Additional Classes"
+      ],
+      "tags": [],
+      "name": "className"
+    },
+    {
+      "type": "string",
+      "required": false,
+      "description": [
+        "Text Color"
+      ],
+      "tags": [],
+      "name": "color"
+    },
+    {
+      "type": "string",
+      "required": false,
+      "description": [
+        "Header Shorthand Method"
+      ],
+      "tags": [],
+      "name": "header"
+    },
+    {
+      "type": "custom",
+      "required": false,
+      "description": [
+        "Icon ShortHand"
+      ],
+      "tags": [],
+      "name": "icon"
+    },
+    {
+      "type": "string",
+      "required": false,
+      "description": [
+        "Subheader Shorthand Method"
+      ],
+      "tags": [],
+      "name": "subheader"
+    },
+    {
+      "type": "custom",
+      "required": false,
+      "description": [
+        "Text Align"
+      ],
+      "tags": [],
+      "name": "textAlign"
+    }
+  ],
+  "constructorName": "PanelHeader",
+  "type": "element",
+  "isParent": false,
+  "isChild": true,
+  "parentDisplayName": "Panel",
+  "subcomponentName": "Header",
+  "subcomponents": null,
+  "apiPath": "Panel.Header",
+  "componentClassName": "header",
+  "docblock": {
+    "tags": [],
+    "description": [
+      ""
+    ]
+  },
+  "examplesExist": false,
+  "repoPath": "src/react/elements/Panel/PanelHeader.js",
+  "filename": "PanelHeader.js",
+  "filenameWithoutExt": "PanelHeader"
+}

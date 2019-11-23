@@ -15,6 +15,7 @@ const withComponentDoc = specs => class ComponentDocs extends React.PureComponen
 
   renderPropsTable = propsData => (
     <Table
+      style={{ tableLayout: 'initial' }}
       headerRow={[
         <Table.HeaderCell key={1} textAlign='right' content='Name' />,
         'Type',

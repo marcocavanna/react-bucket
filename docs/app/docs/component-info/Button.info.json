@@ -1,0 +1,275 @@
+{
+  "displayName": "Button",
+  "props": [
+    {
+      "type": "custom",
+      "required": false,
+      "description": [
+        "Element used to Render the Component"
+      ],
+      "defaultValue": "'button'",
+      "tags": [],
+      "name": "as"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Circle Button"
+      ],
+      "tags": [],
+      "name": "circle"
+    },
+    {
+      "type": "string",
+      "required": false,
+      "description": [
+        "Additional Class"
+      ],
+      "tags": [],
+      "name": "className"
+    },
+    {
+      "type": "string",
+      "required": false,
+      "description": [
+        "Button Background Color"
+      ],
+      "tags": [],
+      "name": "color"
+    },
+    {
+      "type": "string",
+      "required": false,
+      "description": [
+        "Button Content Property"
+      ],
+      "tags": [],
+      "name": "content"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Danger Color"
+      ],
+      "tags": [],
+      "name": "danger"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Disabled State"
+      ],
+      "tags": [],
+      "name": "disabled"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Generate Button as Fab"
+      ],
+      "tags": [],
+      "name": "fab"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Display Button as Flat"
+      ],
+      "tags": [],
+      "name": "flat"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Set fullwidth Button"
+      ],
+      "tags": [],
+      "name": "full"
+    },
+    {
+      "type": "bool|custom",
+      "required": false,
+      "description": [
+        "Icon Property or Definition"
+      ],
+      "tags": [],
+      "value": [],
+      "name": "icon"
+    },
+    {
+      "type": "enum",
+      "required": false,
+      "description": [
+        "Icon Position"
+      ],
+      "tags": [],
+      "value": [
+        "left",
+        "right"
+      ],
+      "name": "iconPosition"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Info Color"
+      ],
+      "tags": [],
+      "name": "info"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Inverted Color"
+      ],
+      "tags": [],
+      "name": "inverted"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Button with Loader"
+      ],
+      "tags": [],
+      "name": "loading"
+    },
+    {
+      "type": "func",
+      "required": false,
+      "description": [
+        "Called after user's click."
+      ],
+      "tags": [
+        {
+          "title": "param",
+          "description": "React's original SyntheticEvent.",
+          "type": {
+            "type": "NameExpression",
+            "name": "SyntheticEvent"
+          },
+          "name": "event"
+        },
+        {
+          "title": "param",
+          "description": "All props.",
+          "type": {
+            "type": "NameExpression",
+            "name": "object"
+          },
+          "name": "data"
+        }
+      ],
+      "name": "onClick"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Primary Color"
+      ],
+      "tags": [],
+      "name": "primary"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Role Attributes"
+      ],
+      "tags": [],
+      "name": "role"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Render Rounded Button"
+      ],
+      "tags": [],
+      "name": "rounded"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Secondary Color"
+      ],
+      "tags": [],
+      "name": "secondary"
+    },
+    {
+      "type": "enum",
+      "required": false,
+      "description": [
+        "Change Button Size"
+      ],
+      "tags": [],
+      "value": [
+        "extra-small",
+        "small",
+        "normal",
+        "large",
+        "big",
+        "huge"
+      ],
+      "name": "size"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Success Color"
+      ],
+      "tags": [],
+      "name": "success"
+    },
+    {
+      "type": "number",
+      "required": false,
+      "description": [
+        "Tab Index Order"
+      ],
+      "tags": [],
+      "name": "tabIndex"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Warning Color"
+      ],
+      "tags": [],
+      "name": "warning"
+    }
+  ],
+  "constructorName": "Button",
+  "type": "element",
+  "isParent": true,
+  "isChild": false,
+  "parentDisplayName": null,
+  "subcomponentName": null,
+  "subcomponents": [
+    "ButtonGroup"
+  ],
+  "apiPath": "Button",
+  "componentClassName": "button",
+  "docblock": {
+    "tags": [],
+    "description": [
+      ""
+    ]
+  },
+  "examplesExist": false,
+  "repoPath": "src/react/elements/Button/Button.js",
+  "filename": "Button.js",
+  "filenameWithoutExt": "Button"
+}

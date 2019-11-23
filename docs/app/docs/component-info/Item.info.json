@@ -1,0 +1,119 @@
+{
+  "displayName": "Item",
+  "props": [
+    {
+      "type": "bool|enum",
+      "required": false,
+      "description": [
+        "Active State"
+      ],
+      "tags": [],
+      "value": [
+        "primary",
+        "secondary",
+        "success",
+        "danger",
+        "warning"
+      ],
+      "name": "active"
+    },
+    {
+      "type": "custom",
+      "required": false,
+      "description": [
+        "An Element used to Render the Component"
+      ],
+      "tags": [],
+      "name": "as"
+    },
+    {
+      "type": "object",
+      "required": false,
+      "description": [
+        "Avatar Properties Shorthand"
+      ],
+      "tags": [],
+      "name": "avatar"
+    },
+    {
+      "type": "string",
+      "required": false,
+      "description": [
+        "User Defined Classes"
+      ],
+      "tags": [],
+      "name": "className"
+    },
+    {
+      "type": "any",
+      "required": false,
+      "description": [
+        "Content Shorthand"
+      ],
+      "tags": [],
+      "name": "content"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Disabled State"
+      ],
+      "tags": [],
+      "name": "disabled"
+    },
+    {
+      "type": "any",
+      "required": false,
+      "description": [
+        "Header Shorthand"
+      ],
+      "tags": [],
+      "name": "header"
+    },
+    {
+      "type": "func",
+      "required": false,
+      "description": [
+        "On Click Function"
+      ],
+      "tags": [],
+      "name": "onClick"
+    },
+    {
+      "type": "array",
+      "required": false,
+      "description": [
+        "Tools shorthand Factory"
+      ],
+      "tags": [],
+      "name": "tools"
+    }
+  ],
+  "constructorName": "Item",
+  "type": "element",
+  "isParent": true,
+  "isChild": false,
+  "parentDisplayName": null,
+  "subcomponentName": null,
+  "subcomponents": [
+    "ItemAvatar",
+    "ItemContent",
+    "ItemGroup",
+    "ItemHeader",
+    "ItemTool",
+    "ItemTools"
+  ],
+  "apiPath": "Item",
+  "componentClassName": "item",
+  "docblock": {
+    "tags": [],
+    "description": [
+      ""
+    ]
+  },
+  "examplesExist": false,
+  "repoPath": "src/react/elements/Item/Item.js",
+  "filename": "Item.js",
+  "filenameWithoutExt": "Item"
+}

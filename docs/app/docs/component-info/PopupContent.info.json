@@ -1,0 +1,51 @@
+{
+  "displayName": "PopupContent",
+  "props": [
+    {
+      "type": "custom",
+      "required": false,
+      "description": [
+        "An Element used to render the component"
+      ],
+      "tags": [],
+      "name": "as"
+    },
+    {
+      "type": "string",
+      "required": false,
+      "description": [
+        "Additional User Classes"
+      ],
+      "tags": [],
+      "name": "className"
+    },
+    {
+      "type": "any",
+      "required": false,
+      "description": [
+        "Content Shorthand"
+      ],
+      "tags": [],
+      "name": "content"
+    }
+  ],
+  "constructorName": "PopupContent",
+  "type": "module",
+  "isParent": false,
+  "isChild": true,
+  "parentDisplayName": "Popup",
+  "subcomponentName": "Content",
+  "subcomponents": null,
+  "apiPath": "Popup.Content",
+  "componentClassName": "content",
+  "docblock": {
+    "tags": [],
+    "description": [
+      ""
+    ]
+  },
+  "examplesExist": false,
+  "repoPath": "src/react/modules/Popup/PopupContent.js",
+  "filename": "PopupContent.js",
+  "filenameWithoutExt": "PopupContent"
+}

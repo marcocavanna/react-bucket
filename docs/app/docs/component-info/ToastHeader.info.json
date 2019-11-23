@@ -1,0 +1,51 @@
+{
+  "displayName": "ToastHeader",
+  "props": [
+    {
+      "type": "custom",
+      "required": false,
+      "description": [
+        "An element used to render the component"
+      ],
+      "tags": [],
+      "name": "as"
+    },
+    {
+      "type": "string",
+      "required": false,
+      "description": [
+        "User defined Classes"
+      ],
+      "tags": [],
+      "name": "className"
+    },
+    {
+      "type": "any",
+      "required": false,
+      "description": [
+        "Content Shorthand"
+      ],
+      "tags": [],
+      "name": "content"
+    }
+  ],
+  "constructorName": "ToastHeader",
+  "type": "element",
+  "isParent": false,
+  "isChild": true,
+  "parentDisplayName": "Toast",
+  "subcomponentName": "Header",
+  "subcomponents": null,
+  "apiPath": "Toast.Header",
+  "componentClassName": "header",
+  "docblock": {
+    "tags": [],
+    "description": [
+      ""
+    ]
+  },
+  "examplesExist": false,
+  "repoPath": "src/react/elements/Toast/ToastHeader.js",
+  "filename": "ToastHeader.js",
+  "filenameWithoutExt": "ToastHeader"
+}

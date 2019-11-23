@@ -1,0 +1,128 @@
+{
+  "displayName": "Tabs",
+  "props": [
+    {
+      "type": "number|string",
+      "required": false,
+      "description": [
+        "The index of the current active tab"
+      ],
+      "tags": [],
+      "value": [],
+      "name": "activeIndex"
+    },
+    {
+      "type": "custom",
+      "required": false,
+      "description": [
+        "An element used to render the Component"
+      ],
+      "tags": [],
+      "name": "as"
+    },
+    {
+      "type": "number|string",
+      "required": false,
+      "description": [
+        "The initial active index"
+      ],
+      "tags": [],
+      "value": [],
+      "name": "defaultActiveIndex"
+    },
+    {
+      "type": "object",
+      "required": false,
+      "description": [
+        "Grid Shorthand"
+      ],
+      "defaultValue": "{ panelWidth: 9, menuWidth: 3, fluid: true }",
+      "tags": [],
+      "name": "layout"
+    },
+    {
+      "type": "object",
+      "required": false,
+      "description": [
+        "Menu Props"
+      ],
+      "defaultValue": "{ borderless: true }",
+      "tags": [],
+      "name": "menu"
+    },
+    {
+      "type": "enum",
+      "required": false,
+      "description": [
+        "Set the Menu Position"
+      ],
+      "defaultValue": "'left'",
+      "tags": [],
+      "value": [
+        "left",
+        "right"
+      ],
+      "name": "menuPosition"
+    },
+    {
+      "type": "func",
+      "required": false,
+      "description": [
+        "On Tab Changed Handler"
+      ],
+      "tags": [],
+      "name": "onTabChange"
+    },
+    {
+      "type": "arrayOf",
+      "required": false,
+      "description": [
+        "Panels Array"
+      ],
+      "tags": [],
+      "value": {
+        "name": "shape",
+        "value": {
+          "trigger": {
+            "name": "string",
+            "required": false
+          },
+          "panel": {
+            "name": "element",
+            "required": false
+          }
+        }
+      },
+      "name": "panels"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Render only the active panel"
+      ],
+      "defaultValue": "true",
+      "tags": [],
+      "name": "renderActiveOnly"
+    }
+  ],
+  "constructorName": "Tabs",
+  "type": "collection",
+  "isParent": true,
+  "isChild": false,
+  "parentDisplayName": null,
+  "subcomponentName": null,
+  "subcomponents": [],
+  "apiPath": "Tabs",
+  "componentClassName": "tabs",
+  "docblock": {
+    "tags": [],
+    "description": [
+      ""
+    ]
+  },
+  "examplesExist": false,
+  "repoPath": "src/react/collections/Tabs/Tabs.js",
+  "filename": "Tabs.js",
+  "filenameWithoutExt": "Tabs"
+}

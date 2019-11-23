@@ -19,7 +19,7 @@ const envConfig = {
   dir_dist        : 'dist',
   dir_docs_dist   : 'docs/dist',
   dir_docs_public : 'docs/public',
-  dir_docs_src    : 'docs/src'
+  dir_docs_src    : 'docs/app'
 };
 
 // ------------------------------------

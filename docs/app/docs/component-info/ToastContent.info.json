@@ -1,0 +1,51 @@
+{
+  "displayName": "ToastContent",
+  "props": [
+    {
+      "type": "custom",
+      "required": false,
+      "description": [
+        "An element used to render the component"
+      ],
+      "tags": [],
+      "name": "as"
+    },
+    {
+      "type": "string",
+      "required": false,
+      "description": [
+        "User defined Classes"
+      ],
+      "tags": [],
+      "name": "className"
+    },
+    {
+      "type": "any",
+      "required": false,
+      "description": [
+        "Content Shorthand"
+      ],
+      "tags": [],
+      "name": "content"
+    }
+  ],
+  "constructorName": "ToastContent",
+  "type": "element",
+  "isParent": false,
+  "isChild": true,
+  "parentDisplayName": "Toast",
+  "subcomponentName": "Content",
+  "subcomponents": null,
+  "apiPath": "Toast.Content",
+  "componentClassName": "content",
+  "docblock": {
+    "tags": [],
+    "description": [
+      ""
+    ]
+  },
+  "examplesExist": false,
+  "repoPath": "src/react/elements/Toast/ToastContent.js",
+  "filename": "ToastContent.js",
+  "filenameWithoutExt": "ToastContent"
+}

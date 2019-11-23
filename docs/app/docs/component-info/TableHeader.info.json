@@ -1,0 +1,61 @@
+{
+  "displayName": "TableHeader",
+  "props": [
+    {
+      "type": "custom",
+      "required": false,
+      "description": [
+        "An element used to render the Component"
+      ],
+      "defaultValue": "'thead'",
+      "tags": [],
+      "name": "as"
+    },
+    {
+      "type": "node",
+      "required": false,
+      "description": [
+        "Children Props"
+      ],
+      "tags": [],
+      "name": "children"
+    },
+    {
+      "type": "string",
+      "required": false,
+      "description": [
+        "User Defined classes"
+      ],
+      "tags": [],
+      "name": "className"
+    },
+    {
+      "type": "any",
+      "required": false,
+      "description": [
+        "Content shorthand"
+      ],
+      "tags": [],
+      "name": "content"
+    }
+  ],
+  "constructorName": "TableHeader",
+  "type": "collection",
+  "isParent": false,
+  "isChild": true,
+  "parentDisplayName": "Table",
+  "subcomponentName": "Header",
+  "subcomponents": null,
+  "apiPath": "Table.Header",
+  "componentClassName": "header",
+  "docblock": {
+    "tags": [],
+    "description": [
+      ""
+    ]
+  },
+  "examplesExist": false,
+  "repoPath": "src/react/collections/Table/TableHeader.js",
+  "filename": "TableHeader.js",
+  "filenameWithoutExt": "TableHeader"
+}

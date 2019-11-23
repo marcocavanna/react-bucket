@@ -1,0 +1,51 @@
+{
+  "displayName": "ModalContent",
+  "props": [
+    {
+      "type": "custom",
+      "required": false,
+      "description": [
+        "An element used to render the component"
+      ],
+      "tags": [],
+      "name": "as"
+    },
+    {
+      "type": "string",
+      "required": false,
+      "description": [
+        "Additional user defined classes"
+      ],
+      "tags": [],
+      "name": "className"
+    },
+    {
+      "type": "node",
+      "required": false,
+      "description": [
+        "Shorthand for primary content"
+      ],
+      "tags": [],
+      "name": "content"
+    }
+  ],
+  "constructorName": "ModalContent",
+  "type": "module",
+  "isParent": false,
+  "isChild": true,
+  "parentDisplayName": "Modal",
+  "subcomponentName": "Content",
+  "subcomponents": null,
+  "apiPath": "Modal.Content",
+  "componentClassName": "content",
+  "docblock": {
+    "tags": [],
+    "description": [
+      ""
+    ]
+  },
+  "examplesExist": false,
+  "repoPath": "src/react/modules/Modal/ModalContent.js",
+  "filename": "ModalContent.js",
+  "filenameWithoutExt": "ModalContent"
+}

@@ -1,0 +1,51 @@
+{
+  "displayName": "ButtonGroup",
+  "props": [
+    {
+      "type": "custom",
+      "required": false,
+      "description": [
+        "Element Used to Render the Component"
+      ],
+      "tags": [],
+      "name": "as"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Button Group Full Width"
+      ],
+      "tags": [],
+      "name": "full"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Set display as Vertical Group"
+      ],
+      "tags": [],
+      "name": "vertical"
+    }
+  ],
+  "constructorName": "ButtonGroup",
+  "type": "element",
+  "isParent": false,
+  "isChild": true,
+  "parentDisplayName": "Button",
+  "subcomponentName": "Group",
+  "subcomponents": null,
+  "apiPath": "Button.Group",
+  "componentClassName": "buttons",
+  "docblock": {
+    "tags": [],
+    "description": [
+      ""
+    ]
+  },
+  "examplesExist": false,
+  "repoPath": "src/react/elements/Button/ButtonGroup.js",
+  "filename": "ButtonGroup.js",
+  "filenameWithoutExt": "ButtonGroup"
+}

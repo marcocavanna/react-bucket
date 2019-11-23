@@ -1,0 +1,221 @@
+{
+  "displayName": "Checkbox",
+  "props": [
+    {
+      "type": "custom",
+      "required": false,
+      "description": [
+        "An element used to render the component"
+      ],
+      "tags": [],
+      "name": "as"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Set if is checkd or no"
+      ],
+      "tags": [],
+      "name": "checked"
+    },
+    {
+      "type": "string",
+      "required": false,
+      "description": [
+        "User defined classes"
+      ],
+      "tags": [],
+      "name": "className"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Initial Checked Value"
+      ],
+      "tags": [],
+      "name": "defaultChecked"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Initial Indeterminate state"
+      ],
+      "tags": [],
+      "name": "defaultIndeterminate"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Disable a Checkbox"
+      ],
+      "tags": [],
+      "name": "disabled"
+    },
+    {
+      "type": "string|number",
+      "required": false,
+      "description": [
+        "Element ID"
+      ],
+      "tags": [],
+      "value": [],
+      "name": "id"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Indeterminate State"
+      ],
+      "tags": [],
+      "name": "indeterminate"
+    },
+    {
+      "type": "any",
+      "required": false,
+      "description": [
+        "Label Element"
+      ],
+      "tags": [],
+      "name": "label"
+    },
+    {
+      "type": "string",
+      "required": false,
+      "description": [
+        "HTML Element Name"
+      ],
+      "tags": [],
+      "name": "name"
+    },
+    {
+      "type": "func",
+      "required": false,
+      "description": [
+        "On Change Event Handler"
+      ],
+      "tags": [],
+      "name": "onChange"
+    },
+    {
+      "type": "func",
+      "required": false,
+      "description": [
+        "On Click Event Handler"
+      ],
+      "tags": [],
+      "name": "onClick"
+    },
+    {
+      "type": "func",
+      "required": false,
+      "description": [
+        "On Mouse Down Event Handler"
+      ],
+      "tags": [],
+      "name": "onMouseDown"
+    },
+    {
+      "type": "func",
+      "required": false,
+      "description": [
+        "On Mouse Up Event Handler"
+      ],
+      "tags": [],
+      "name": "onMouseUp"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Format a checkbox using radio style"
+      ],
+      "tags": [],
+      "name": "radio"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Set the readonly state for a checkbox"
+      ],
+      "tags": [],
+      "name": "readOnly"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Format a checkbox using slider style"
+      ],
+      "tags": [],
+      "name": "slider"
+    },
+    {
+      "type": "number|string",
+      "required": false,
+      "description": [
+        "Set the TabIndex"
+      ],
+      "tags": [],
+      "value": [],
+      "name": "tabIndex"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Format to show a Toggle element"
+      ],
+      "tags": [],
+      "name": "toggle"
+    },
+    {
+      "type": "enum",
+      "required": false,
+      "description": [
+        "HTML Input Type"
+      ],
+      "defaultValue": "'checkbox'",
+      "tags": [],
+      "value": [
+        "checkbox",
+        "radio"
+      ],
+      "name": "type"
+    },
+    {
+      "type": "string|number",
+      "required": false,
+      "description": [
+        "HTML Input Value"
+      ],
+      "tags": [],
+      "value": [],
+      "name": "value"
+    }
+  ],
+  "constructorName": "Checkbox",
+  "type": "element",
+  "isParent": true,
+  "isChild": false,
+  "parentDisplayName": null,
+  "subcomponentName": null,
+  "subcomponents": [],
+  "apiPath": "Checkbox",
+  "componentClassName": "checkbox",
+  "docblock": {
+    "tags": [],
+    "description": [
+      ""
+    ]
+  },
+  "examplesExist": false,
+  "repoPath": "src/react/elements/Checkbox/Checkbox.js",
+  "filename": "Checkbox.js",
+  "filenameWithoutExt": "Checkbox"
+}

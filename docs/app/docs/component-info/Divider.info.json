@@ -1,0 +1,78 @@
+{
+  "displayName": "Divider",
+  "props": [
+    {
+      "type": "custom",
+      "required": false,
+      "description": [
+        "An Element used to Render the Component"
+      ],
+      "tags": [],
+      "name": "as"
+    },
+    {
+      "type": "string",
+      "required": false,
+      "description": [
+        "User defined Classes"
+      ],
+      "tags": [],
+      "name": "className"
+    },
+    {
+      "type": "string",
+      "required": false,
+      "description": [
+        "Content String"
+      ],
+      "tags": [],
+      "name": "content"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Hidden"
+      ],
+      "tags": [],
+      "name": "hidden"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "If is Horizontal"
+      ],
+      "tags": [],
+      "name": "horizontal"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "if is Inverted"
+      ],
+      "tags": [],
+      "name": "inverted"
+    }
+  ],
+  "constructorName": "Divider",
+  "type": "element",
+  "isParent": true,
+  "isChild": false,
+  "parentDisplayName": null,
+  "subcomponentName": null,
+  "subcomponents": [],
+  "apiPath": "Divider",
+  "componentClassName": "divider",
+  "docblock": {
+    "tags": [],
+    "description": [
+      ""
+    ]
+  },
+  "examplesExist": false,
+  "repoPath": "src/react/elements/Divider/Divider.js",
+  "filename": "Divider.js",
+  "filenameWithoutExt": "Divider"
+}

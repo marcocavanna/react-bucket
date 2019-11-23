@@ -1,0 +1,51 @@
+{
+  "displayName": "FormikCheckboxComponent",
+  "props": [
+    {
+      "type": "object",
+      "required": false,
+      "description": [
+        ""
+      ],
+      "tags": [],
+      "name": "meta"
+    },
+    {
+      "type": "object",
+      "required": false,
+      "description": [
+        ""
+      ],
+      "tags": [],
+      "name": "rest"
+    },
+    {
+      "type": "object",
+      "required": false,
+      "description": [
+        ""
+      ],
+      "tags": [],
+      "name": "state"
+    }
+  ],
+  "constructorName": "",
+  "type": "collection",
+  "isParent": false,
+  "isChild": true,
+  "parentDisplayName": "Form",
+  "subcomponentName": "ikCheckboxComponent",
+  "subcomponents": null,
+  "apiPath": "Form.ikCheckboxComponent",
+  "componentClassName": "ikcheckboxcomponent",
+  "docblock": {
+    "tags": [],
+    "description": [
+      ""
+    ]
+  },
+  "examplesExist": false,
+  "repoPath": "src/react/collections/Form/FormikCheckbox.js",
+  "filename": "FormikCheckbox.js",
+  "filenameWithoutExt": "FormikCheckbox"
+}

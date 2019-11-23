@@ -1,0 +1,161 @@
+{
+  "displayName": "Icon",
+  "props": [
+    {
+      "type": "custom",
+      "required": false,
+      "description": [
+        "Element used to Render Component"
+      ],
+      "defaultValue": "'i'",
+      "tags": [],
+      "name": "as"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Display Icon Border"
+      ],
+      "tags": [],
+      "name": "bordered"
+    },
+    {
+      "type": "string",
+      "required": false,
+      "description": [
+        "User defined Class Name"
+      ],
+      "tags": [],
+      "name": "className"
+    },
+    {
+      "type": "string",
+      "required": false,
+      "description": [
+        "Font Color"
+      ],
+      "tags": [],
+      "name": "color"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Disabled Props"
+      ],
+      "tags": [],
+      "name": "disabled"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Fitted Icon has no margin and auto width"
+      ],
+      "tags": [],
+      "name": "fitted"
+    },
+    {
+      "type": "enum",
+      "required": false,
+      "description": [
+        "Flip an Icon"
+      ],
+      "tags": [],
+      "value": [
+        "horizontal",
+        "vertical",
+        "both"
+      ],
+      "name": "flip"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Icon as Link"
+      ],
+      "tags": [],
+      "name": "link"
+    },
+    {
+      "type": "custom",
+      "required": false,
+      "description": [
+        "Icon Name"
+      ],
+      "tags": [],
+      "name": "name"
+    },
+    {
+      "type": "func",
+      "required": false,
+      "description": [
+        "On Click Handler"
+      ],
+      "tags": [],
+      "name": "onClick"
+    },
+    {
+      "type": "enum",
+      "required": false,
+      "description": [
+        "Rotate Icon"
+      ],
+      "tags": [],
+      "value": [
+        "90",
+        "180",
+        "270"
+      ],
+      "name": "rotate"
+    },
+    {
+      "type": "custom",
+      "required": false,
+      "description": [
+        "Icon Size"
+      ],
+      "tags": [],
+      "name": "size"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Animate icon using Spin"
+      ],
+      "tags": [],
+      "name": "spin"
+    },
+    {
+      "type": "string",
+      "required": false,
+      "description": [
+        "Icon Style, from FontAwesome Fonts Style"
+      ],
+      "tags": [],
+      "name": "style"
+    }
+  ],
+  "constructorName": "Icon",
+  "type": "element",
+  "isParent": true,
+  "isChild": false,
+  "parentDisplayName": null,
+  "subcomponentName": null,
+  "subcomponents": [],
+  "apiPath": "Icon",
+  "componentClassName": "icon",
+  "docblock": {
+    "tags": [],
+    "description": [
+      ""
+    ]
+  },
+  "examplesExist": false,
+  "repoPath": "src/react/elements/Icon/Icon.js",
+  "filename": "Icon.js",
+  "filenameWithoutExt": "Icon"
+}

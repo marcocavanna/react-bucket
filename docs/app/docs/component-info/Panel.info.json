@@ -1,0 +1,146 @@
+{
+  "displayName": "Panel",
+  "props": [
+    {
+      "type": "custom",
+      "required": false,
+      "description": [
+        "An element used to render the component"
+      ],
+      "tags": [],
+      "name": "as"
+    },
+    {
+      "type": "node",
+      "required": false,
+      "description": [
+        "Primary Content"
+      ],
+      "tags": [],
+      "name": "children"
+    },
+    {
+      "type": "string",
+      "required": false,
+      "description": [
+        "Additional Classes"
+      ],
+      "tags": [],
+      "name": "className"
+    },
+    {
+      "type": "string",
+      "required": false,
+      "description": [
+        "Text Color"
+      ],
+      "tags": [],
+      "name": "color"
+    },
+    {
+      "type": "any",
+      "required": false,
+      "description": [
+        "Shorthand Properties for Content"
+      ],
+      "tags": [],
+      "name": "content"
+    },
+    {
+      "type": "bool|element",
+      "required": false,
+      "description": [
+        "Panel has Fab"
+      ],
+      "tags": [],
+      "value": [],
+      "name": "fab"
+    },
+    {
+      "type": "string",
+      "required": false,
+      "description": [
+        "Header Shorthand Method"
+      ],
+      "tags": [],
+      "name": "header"
+    },
+    {
+      "type": "custom",
+      "required": false,
+      "description": [
+        "Icon Method ShortHand"
+      ],
+      "tags": [],
+      "name": "icon"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Loading Style for Panel"
+      ],
+      "tags": [],
+      "name": "loading"
+    },
+    {
+      "type": "func",
+      "required": false,
+      "description": [
+        "Fab Click Handler Function"
+      ],
+      "tags": [],
+      "name": "onFabClick"
+    },
+    {
+      "type": "string",
+      "required": false,
+      "description": [
+        "Subheader Shorthand Method"
+      ],
+      "tags": [],
+      "name": "subheader"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Set Panel as Table Container"
+      ],
+      "tags": [],
+      "name": "table"
+    },
+    {
+      "type": "custom",
+      "required": false,
+      "description": [
+        "Text Align"
+      ],
+      "tags": [],
+      "name": "textAlign"
+    }
+  ],
+  "constructorName": "Panel",
+  "type": "element",
+  "isParent": true,
+  "isChild": false,
+  "parentDisplayName": null,
+  "subcomponentName": null,
+  "subcomponents": [
+    "PanelBody",
+    "PanelFab",
+    "PanelHeader"
+  ],
+  "apiPath": "Panel",
+  "componentClassName": "panel",
+  "docblock": {
+    "tags": [],
+    "description": [
+      ""
+    ]
+  },
+  "examplesExist": false,
+  "repoPath": "src/react/elements/Panel/Panel.js",
+  "filename": "Panel.js",
+  "filenameWithoutExt": "Panel"
+}

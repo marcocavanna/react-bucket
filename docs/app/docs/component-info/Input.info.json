@@ -1,0 +1,61 @@
+{
+  "displayName": "Input",
+  "props": [
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Disabled style"
+      ],
+      "tags": [],
+      "name": "disabled"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Set the Field as Required"
+      ],
+      "tags": [],
+      "name": "required"
+    },
+    {
+      "type": "number",
+      "required": false,
+      "description": [
+        "Tab Index for Input Element"
+      ],
+      "tags": [],
+      "name": "tabIndex"
+    },
+    {
+      "type": "string",
+      "required": false,
+      "description": [
+        "The input type to use"
+      ],
+      "defaultValue": "'text'",
+      "tags": [],
+      "name": "type"
+    }
+  ],
+  "constructorName": "Input",
+  "type": "element",
+  "isParent": true,
+  "isChild": false,
+  "parentDisplayName": null,
+  "subcomponentName": null,
+  "subcomponents": [],
+  "apiPath": "Input",
+  "componentClassName": "input",
+  "docblock": {
+    "tags": [],
+    "description": [
+      ""
+    ]
+  },
+  "examplesExist": false,
+  "repoPath": "src/react/elements/Input/Input.js",
+  "filename": "Input.js",
+  "filenameWithoutExt": "Input"
+}

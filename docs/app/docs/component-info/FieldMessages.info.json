@@ -1,0 +1,36 @@
+{
+  "displayName": "FieldMessages",
+  "props": [
+    {
+      "type": "arrayOf",
+      "required": false,
+      "description": [
+        "Messages List"
+      ],
+      "tags": [],
+      "value": {
+        "name": "string"
+      },
+      "name": "content"
+    }
+  ],
+  "constructorName": "FieldMessages",
+  "type": "element",
+  "isParent": false,
+  "isChild": true,
+  "parentDisplayName": "Field",
+  "subcomponentName": "Messages",
+  "subcomponents": null,
+  "apiPath": "Field.Messages",
+  "componentClassName": "messages",
+  "docblock": {
+    "tags": [],
+    "description": [
+      ""
+    ]
+  },
+  "examplesExist": false,
+  "repoPath": "src/react/elements/Field/FieldMessages.js",
+  "filename": "FieldMessages.js",
+  "filenameWithoutExt": "FieldMessages"
+}

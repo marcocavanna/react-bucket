@@ -1,0 +1,145 @@
+{
+  "displayName": "Toast",
+  "props": [
+    {
+      "type": "custom",
+      "required": false,
+      "description": [
+        "An element used to render the component"
+      ],
+      "tags": [],
+      "name": "as"
+    },
+    {
+      "type": "string",
+      "required": false,
+      "description": [
+        "User defined Classes"
+      ],
+      "tags": [],
+      "name": "className"
+    },
+    {
+      "type": "any",
+      "required": false,
+      "description": [
+        "Toast Content Shorthand"
+      ],
+      "tags": [],
+      "name": "content"
+    },
+    {
+      "type": "bool|custom",
+      "required": false,
+      "description": [
+        "Is toast dismissable manually?"
+      ],
+      "tags": [],
+      "value": [],
+      "name": "dismissable"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Toast with error style"
+      ],
+      "tags": [],
+      "name": "error"
+    },
+    {
+      "type": "any",
+      "required": false,
+      "description": [
+        "Toast Header Shorthand"
+      ],
+      "tags": [],
+      "name": "header"
+    },
+    {
+      "type": "custom",
+      "required": false,
+      "description": [
+        "Toast Icon"
+      ],
+      "tags": [],
+      "name": "icon"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Toast with info style"
+      ],
+      "tags": [],
+      "name": "info"
+    },
+    {
+      "type": "func",
+      "required": false,
+      "description": [
+        "On Click Handler"
+      ],
+      "tags": [],
+      "name": "onClick"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Toast with primary style"
+      ],
+      "tags": [],
+      "name": "primary"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Toast with secondary style"
+      ],
+      "tags": [],
+      "name": "secondary"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Toast with success style"
+      ],
+      "tags": [],
+      "name": "success"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Toast with warning style"
+      ],
+      "tags": [],
+      "name": "warning"
+    }
+  ],
+  "constructorName": "Toast",
+  "type": "element",
+  "isParent": true,
+  "isChild": false,
+  "parentDisplayName": null,
+  "subcomponentName": null,
+  "subcomponents": [
+    "ToastContent",
+    "ToastHeader"
+  ],
+  "apiPath": "Toast",
+  "componentClassName": "toast",
+  "docblock": {
+    "tags": [],
+    "description": [
+      ""
+    ]
+  },
+  "examplesExist": false,
+  "repoPath": "src/react/elements/Toast/Toast.js",
+  "filename": "Toast.js",
+  "filenameWithoutExt": "Toast"
+}
