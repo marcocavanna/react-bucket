@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import { Menu } from '../../../src/react';
 
@@ -15,9 +15,14 @@ const SideBar = () => (
         .getOwnPropertyNames(Docs)
         .filter(Component => Component !== '__esModule')
         .map(Component => (
-          <NavLink key={Component} to={Docs[Component].path}>
-            <Menu.Item icon={Docs[Component].icon} content={Component} />
-          </NavLink>
+          <Menu.Item
+            key={Component}
+            icon={Docs[Component].icon}
+            content={Component}
+            as={NavLink}
+            to={Docs[Component].path}
+            activeClassName='is-active'
+          />
         ))
     }
   </Menu>

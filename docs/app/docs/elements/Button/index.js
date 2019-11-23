@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Button } from '../../../../../src/react';
 
@@ -14,15 +14,31 @@ export default {
   },
 
   props: {
-    as: {
-      type    : 'Any',
-      comment : 'An element used to render'
+
+    Button: {
+      as: {
+        type    : 'Any',
+        comment : 'An element used to render'
+      },
+
+      children: {
+        type    : 'React Element',
+        comment : 'Component Children Node'
+      }
     },
 
-    children: {
-      type    : 'React Element',
-      comment : 'Component Children Node'
+    'Button.Group': {
+      as: {
+        type    : 'Any',
+        comment : 'An element used to render'
+      },
+
+      children: {
+        type    : 'React Element',
+        comment : 'Component Children'
+      }
     }
+
   },
 
   examples: {
