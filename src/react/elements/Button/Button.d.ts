@@ -58,6 +58,13 @@ export interface StrictButtonProps extends React.ButtonHTMLAttributes<HTMLButton
   /** Button with Loader */
   loading?: boolean
 
+  /**
+   * Called after user's click
+   * @param {React.SyntheticEvent} event The React Click event
+   * @param {object} props Button Props
+   */
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>, props: ButtonProps) => void
+
   /** Primary Color */
   primary?: boolean
 

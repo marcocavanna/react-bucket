@@ -54,22 +54,54 @@ export default class Checkbox extends Component {
     /** HTML Element Name */
     name: PropTypes.string,
 
-    /** On Change Event Handler */
+    /**
+     * Called when the user attempts to change the checked state.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props and proposed checked/indeterminate state.
+     */
     onChange: PropTypes.func,
 
-    /** Function to execute on checked */
+    /**
+     * Called when Checkbox has been checked
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props and proposed checked/indeterminate state.
+     */
     onChecked: PropTypes.func,
 
-    /** On Click Event Handler */
+    /**
+     * Called when the checkbox or label is clicked.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props and current checked/indeterminate state.
+     */
+
     onClick: PropTypes.func,
 
-    /** On Mouse Down Event Handler */
+    /**
+     * Called when the user presses down on the mouse.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props and current checked/indeterminate state.
+     */
     onMouseDown: PropTypes.func,
 
-    /** On Mouse Up Event Handler */
+    /**
+     * Called when the user releases the mouse.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props and current checked/indeterminate state.
+     */
+
     onMouseUp: PropTypes.func,
 
-    /** Function to execute on unchecked */
+    /**
+     * Called when Checkbox has been unchecked
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props and proposed checked/indeterminate state.
+     */
     onUnchecked: PropTypes.func,
 
     /** Format a checkbox using radio style */

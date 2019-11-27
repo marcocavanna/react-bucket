@@ -74,6 +74,13 @@ class Button extends PureComponent {
     /** Button with Loader */
     loading: PropTypes.bool,
 
+    /**
+     * Called after user's click.
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
+    onClick: PropTypes.func,
+
     /** Primary Color */
     primary: PropTypes.bool,
 

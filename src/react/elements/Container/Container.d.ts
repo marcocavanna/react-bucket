@@ -119,7 +119,6 @@ export interface StrictContainerProps {
 }
 
 interface ContainerComponent extends React.StatelessComponent<ContainerProps> { }
-/** In case of subcomponent append Name: typeof ImportedComponent in the interface */
 
 declare const Container: ContainerComponent
 

@@ -28,9 +28,6 @@ export interface StrictDividerProps {
 
 }
 
-interface DividerComponent extends React.StatelessComponent<DividerProps> { }
-/** In case of subcomponent append Name: typeof ImportedComponent in the interface */
-
-declare const Divider: DividerComponent
+declare const Divider: React.StatelessComponent<DividerProps>
 
 export default Divider

@@ -41,22 +41,22 @@ export interface StrictCheckboxProps extends StrictFieldProps {
   name?: string
 
   /** On Change Event Handler */
-  onChange?: (e: React.SyntheticEvent, props: StrictCheckboxProps) => void
+  onChange?: (e: React.FormEvent<HTMLInputElement>, props: CheckboxProps) => void
 
   /** Function to execute on checked */
-  onChecked: (e: React.SyntheticEvent, props: StrictCheckboxProps) => void
+  onChecked?: (e: React.FormEvent<HTMLInputElement>, props: CheckboxProps) => void
 
   /** On Click Event Handler */
-  onClick?: (e: React.SyntheticEvent, props: StrictCheckboxProps) => void
+  onClick?: (e: React.MouseEvent<HTMLInputElement>, props: CheckboxProps) => void
 
   /** On Mouse Down Event Handler */
-  onMouseDown?: (e: React.SyntheticEvent, props: StrictCheckboxProps) => void
+  onMouseDown?: (e: React.MouseEvent<HTMLInputElement>, props: CheckboxProps) => void
 
   /** On Mouse Up Event Handler */
-  onMouseUp?: (e: React.SyntheticEvent, props: StrictCheckboxProps) => void
+  onMouseUp?: (e: React.MouseEvent<HTMLInputElement>, props: CheckboxProps) => void
 
   /** Function to execute on unchecked */
-  onUnchecked: (e: React.SyntheticEvent, props: StrictCheckboxProps) => void
+  onUnchecked?: (e: React.MouseEvent<HTMLInputElement>, props: CheckboxProps) => void
 
   /** Format a checkbox using radio style */
   radio?: boolean
@@ -77,12 +77,10 @@ export interface StrictCheckboxProps extends StrictFieldProps {
   type?: 'checkbox' | 'radio'
 
   /** HTML Input Value */
-  value: string | number
+  value?: string | number
 
 }
 
-interface CheckboxComponent extends React.StatelessComponent<CheckboxProps> { }
-
-declare const Checkbox: CheckboxComponent
+declare class Checkbox extends React.Component<CheckboxProps> { }
 
 export default Checkbox
