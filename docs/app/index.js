@@ -3,9 +3,7 @@ import React from 'react';
 
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import { RightMenu, SideBar } from './component';
-
-import Home from './pages/Home';
+import { RightMenu, SideBar, Home } from './component';
 
 import withComponentDoc from './HOC/with-component-doc';
 import * as Docs from './docs';

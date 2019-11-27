@@ -105,6 +105,7 @@ const withComponentDoc = specs => class ComponentDocs extends React.PureComponen
               return (
                 <Panel
                   key={exampleKey}
+                  id={exampleKey}
                   {...restPanelProps}
                   content={reactIs.isElement(Content) ? Content : <Content />}
                 />
