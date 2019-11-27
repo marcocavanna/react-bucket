@@ -1,24 +1,24 @@
 @charset "utf-8";
 
 /* Import FontAwesome */
-@import 'fontawesome/fontawesome';
+@import '../fontawesome/fontawesome';
 
 :global {
 
   /** Import Configuration File */
-  @import 'scss/_config/shared';
-  @import 'scss/_config/full';
+  @import '_config/shared';
+  @import '_config/full';
 
   /** Import Core */
-  @import 'scss/core/all';
+  @import 'core/all';
 
   /** Create Helper */
-  @import 'scss/helper/all';
+  @import 'helper/all';
 
   /** Create Grid */
-  @import 'scss/grid/all';
+  @import 'grid/all';
 
   /** Import Styled Element */
-  @import 'scss/element/all';
+  @import 'element/all';
 
 }
