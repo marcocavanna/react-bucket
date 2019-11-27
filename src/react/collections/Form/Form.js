@@ -16,6 +16,7 @@ import Input from '../../elements/Input';
 import FormikCheckbox from './FormikCheckbox';
 import FormikDayPicker from './FormikDayPicker';
 import FormikInput from './FormikInput';
+import FormikRadio from './FormikRadio';
 import FormikSelect from './FormikSelect';
 
 class Form extends React.PureComponent {
@@ -60,6 +61,8 @@ class Form extends React.PureComponent {
   static FormikDayPicker = FormikDayPicker
 
   static FormikInput = FormikInput
+
+  static FormikRadio = FormikRadio
 
   static FormikSelect = FormikSelect
 

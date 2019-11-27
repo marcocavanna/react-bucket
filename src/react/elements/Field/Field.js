@@ -42,6 +42,7 @@ function Field(props) {
     input,
     label,
     messages,
+    radio,
     required,
     size,
     success,
@@ -67,6 +68,7 @@ function Field(props) {
     'content',
     classByKey(checkbox, 'checkbox'),
     classByKey(input, 'input'),
+    classByKey(radio, 'radio'),
     classByKey(full, 'is-full'),
     classByKey(bordered, 'is-bordered'),
     classByKey(action, 'with-action'),
@@ -196,6 +198,9 @@ Field.propTypes = {
 
   /** Messages to show */
   messages: PropTypes.arrayOf(PropTypes.string),
+
+  /** Set the field as radio container */
+  radio: PropTypes.bool,
 
   /** Set field as required */
   required: PropTypes.bool,

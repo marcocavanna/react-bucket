@@ -1,4 +1,8 @@
 @function get-spacer($sp) {
+  @if $sp == 0 {
+    @return 0;
+  }
+
   @return ceil((0.4375 - (0.1577381 * $sp) + (0.07440476 * $sp * $sp)) * 10) / 10;
 }
 

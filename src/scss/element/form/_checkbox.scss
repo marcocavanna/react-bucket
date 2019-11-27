@@ -29,7 +29,7 @@
     the checkbox / toggle / slider
 ******/
 .content.checkbox {
-  $__checkbox-field-padding: ($checkbox-box-size - 1em) / 2;
+  $__checkbox-field-padding: ($checkbox-box-size - 1em) / 1.5;
 
   @if strip-unit($__checkbox-field-padding) > 0 {
     padding-top: $__checkbox-field-padding;

@@ -6,6 +6,7 @@ import Input from '../../elements/Input';
 import FormikCheckbox from './FormikCheckbox';
 import FormikDayPicker from './FormikDayPicker';
 import FormikInput from './FormikInput';
+import FormikRadio from './FormikRadio';
 import FormikSelect from './FormikSelect';
 
 export interface FormProps extends StrictFormProps {
@@ -46,6 +47,7 @@ declare interface Form extends React.ComponentClass<FormProps, {}> {
   FormikCheckbox: typeof FormikCheckbox
   FormikDayPicker: typeof FormikDayPicker
   FormikInput: typeof FormikInput
+  FormikRadio: typeof FormikRadio
   FormikSelect: typeof FormikSelect
 }
 
