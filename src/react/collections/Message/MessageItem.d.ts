@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { ReactBucketShorthandContent } from '../../generic'
 
 export interface MessageItemProps extends StrictMessageItemProps {
   [key: string]: any

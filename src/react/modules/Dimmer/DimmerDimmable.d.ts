@@ -1,7 +1,5 @@
 import * as React from 'react'
 
-import { ReactBucketShorthandContent } from '../../generic'
-
 export interface DimmerDimmableProps extends StrictDimmerDimmableProps {
   [key: string]: any
 }

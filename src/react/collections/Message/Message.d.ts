@@ -1,8 +1,6 @@
 import * as React from 'react'
 
 import {
-  ReactBucketShorthandCollection,
-  ReactBucketShorthandContent,
   ReactBucketShorthandItem,
   ReactBucketSIZE,
   ReactBucketICON
@@ -43,7 +41,7 @@ export interface StrictMessageProps {
   info?: boolean
 
   /** Array shorthand items for the MessageList. Mutually exclusive with children. */
-  list?: ReactBucketShorthandCollection<MessageItemProps>
+  list?: MessageItemProps[]
 
   /**
    * A message that the user can choose to hide.
