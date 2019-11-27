@@ -1,5 +1,5 @@
 /**
- * AppBucket UI will use some of key property
+ * ReactBucket UI will use some of key property
  * to retreive class names.
  * Use one of this utility in combination
  * with classnames module

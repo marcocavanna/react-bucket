@@ -115,7 +115,7 @@
   /*---
     Field color change, using a dedicated mixin
   ---*/
-  @each $label, $color in $ui-bucket-brand-colors-map {
+  @each $label, $color in $react-bucket-brand-colors-map {
     &.is-#{$label} {
       @include __field-color-change($color);
     }
