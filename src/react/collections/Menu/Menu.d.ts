@@ -10,7 +10,7 @@ export interface MenuProps extends StrictMenuProps {
 
 export interface StrictMenuProps {
   /** An element used to render */
-  as?: any
+  as?: React.ElementType
 
   /** Index of the current active menu item */
   activeIndex?: number | string

@@ -9,7 +9,7 @@ export interface StrictTabPanelProps {
   active?: boolean
 
   /** An element used to render */
-  as?: any
+  as?: React.ElementType
 
   /** Children Node */
   children?: React.ReactNode

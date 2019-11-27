@@ -6,7 +6,7 @@ export interface HeroContentProps extends StrictHeroContentProps {
 
 export interface StrictHeroContentProps {
   /** An element used to render */
-  as?: any
+  as?: React.ElementType
 
   /** Children Node */
   children?: React.ReactNode

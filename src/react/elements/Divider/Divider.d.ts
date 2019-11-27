@@ -6,7 +6,7 @@ export interface DividerProps extends StrictDividerProps {
 
 export interface StrictDividerProps {
   /** An element used to render */
-  as?: any
+  as?: React.ElementType
 
   /** Children Node */
   children?: React.ReactNode

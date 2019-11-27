@@ -8,7 +8,7 @@ export interface TableFooterProps extends StrictTableFooterProps {
 
 export interface StrictTableFooterProps extends StrictTableHeaderProps {
   /** An element used to render */
-  as?: any
+  as?: React.ElementType
 
   /** Children Node */
   children?: React.ReactNode

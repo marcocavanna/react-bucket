@@ -11,7 +11,7 @@ export interface HeaderProps extends StrictHeaderProps {
 
 export interface StrictHeaderProps {
   /** An element used to render */
-  as?: any
+  as?: React.ElementType
 
   /** Children Node */
   children?: React.ReactNode

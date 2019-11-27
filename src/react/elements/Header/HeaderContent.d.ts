@@ -8,7 +8,7 @@ export interface HeaderContentProps extends StrictHeaderContentProps {
 
 export interface StrictHeaderContentProps {
   /** An element used to render */
-  as?: any
+  as?: React.ElementType
 
   /** Children Node */
   children?: React.ReactNode

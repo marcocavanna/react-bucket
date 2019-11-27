@@ -8,7 +8,7 @@ export interface ItemAvatarProps extends StrictItemAvatarProps {
 
 export interface StrictItemAvatarProps {
   /** An element used to render */
-  as?: any
+  as?: React.ElementType
 
   /** Centered */
   centered?: boolean

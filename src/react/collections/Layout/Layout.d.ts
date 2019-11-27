@@ -11,7 +11,7 @@ export interface LayoutProps extends StrictLayoutProps {
 
 export interface StrictLayoutProps {
   /** An element used to render */
-  as?: any
+  as?: React.ElementType
 
   /** Custom background color */
   background?: ReactBucketCOLORS

@@ -8,7 +8,7 @@ export interface HeaderSubheaderProps extends StrictHeaderSubheaderProps {
 
 export interface StrictHeaderSubheaderProps {
   /** An element used to render */
-  as?: any
+  as?: React.ElementType
 
   /** Children Node */
   children?: React.ReactNode

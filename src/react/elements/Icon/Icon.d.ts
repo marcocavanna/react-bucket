@@ -8,7 +8,7 @@ export interface IconProps extends StrictIconProps {
 
 export interface StrictIconProps {
   /** An element used to render */
-  as?: any
+  as?: React.ElementType
 
   /** Display Icon Border */
   bordered?: boolean

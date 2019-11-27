@@ -8,7 +8,7 @@ export interface ItemToolsProps extends StrictItemToolsProps {
 
 export interface StrictItemToolsProps {
   /** An element used to render */
-  as?: any
+  as?: React.ElementType
 
   /** Children Node */
   children?: React.ReactNode

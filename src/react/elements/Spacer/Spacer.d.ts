@@ -6,7 +6,7 @@ export interface SpacerProps extends StrictSpacerProps {
 
 export interface StrictSpacerProps {
   /** An element used to render */
-  as?: any
+  as?: React.ElementType
 
   /** User defined class */
   className?: string

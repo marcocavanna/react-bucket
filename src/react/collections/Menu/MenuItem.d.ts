@@ -11,7 +11,7 @@ export interface StrictMenuHeaderProps {
   active?: boolean | ReactBucketCOLORS
 
   /** An element used to render */
-  as?: any
+  as?: React.ElementType
 
   /** Children Node */
   children?: React.ReactNode

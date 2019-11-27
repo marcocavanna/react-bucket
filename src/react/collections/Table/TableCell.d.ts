@@ -15,7 +15,7 @@ export interface StrictTableCellProps {
   active?: boolean
 
   /** An Element used to Render the Component */
-  as?: any
+  as?: React.ElementType
 
   /** User Defined Class */
   className?: string

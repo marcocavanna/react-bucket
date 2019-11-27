@@ -8,7 +8,7 @@ export interface HeroButtonProps extends StrictHeroButtonProps {
 
 export interface StrictHeroButtonProps {
   /** An element used to render */
-  as?: any
+  as?: React.ElementType
 
   /** Children Node */
   children?: React.ReactNode

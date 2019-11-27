@@ -12,7 +12,7 @@ export interface ContainerProps extends StrictContainerProps {
 
 export interface StrictContainerProps {
   /** An element used to render */
-  as?: any
+  as?: React.ElementType
 
   /** Container Background Color */
   background?: ReactBucketCOLORS

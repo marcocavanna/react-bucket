@@ -6,7 +6,7 @@ export interface ButtonGroupProps extends StrictButtonGroupProps {
 
 export interface StrictButtonGroupProps {
   /** An element used to render */
-  as?: any
+  as?: React.ElementType
 
   /** Children Node */
   children?: React.ReactNode

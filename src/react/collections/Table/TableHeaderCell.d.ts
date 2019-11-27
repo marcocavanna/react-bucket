@@ -8,7 +8,7 @@ export interface TableHeaderCellProps extends StrictTableHeaderCellProps {
 
 export interface StrictTableHeaderCellProps extends StrictTableCellProps {
   /** An element used to render */
-  as?: any
+  as?: React.ElementType
 
   /** Children Node */
   className?: string

@@ -13,7 +13,7 @@ export interface PopupProps extends StrictPopupProps {
 
 export interface StrictPopupProps extends StrictPortalProps {
   /** An element used to render */
-  as?: any
+  as?: React.ElementType
 
   /** Basic Style */
   basic?: boolean

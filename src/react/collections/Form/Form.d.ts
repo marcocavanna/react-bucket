@@ -17,7 +17,7 @@ export interface StrictFormProps extends React.DetailedHTMLProps<React.FormHTMLA
   action?: string
 
   /** An element used to render the componenet */
-  as?: any
+  as?: React.ElementType
 
   /** Childrens */
   children?: React.ReactNode

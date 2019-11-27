@@ -16,7 +16,7 @@ export interface StrictItemProps {
   active?: boolean | 'primary' | 'secondary' | 'success' | 'danger' | 'warning'
 
   /** An element used to render */
-  as?: any
+  as?: React.ElementType
 
   /** Avatar Properties Shorthand */
   avatar?: StrictItemAvatarProps

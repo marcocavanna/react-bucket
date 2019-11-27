@@ -15,7 +15,7 @@ export interface ModalProps extends StrictModalProps {
 
 export interface StrictModalProps {
   /** An element used to render */
-  as?: any
+  as?: React.ElementType
 
   /** Shorthand Properties for Modal Actions */
   actions?: ButtonProps[]

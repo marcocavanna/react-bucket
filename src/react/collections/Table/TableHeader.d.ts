@@ -6,7 +6,7 @@ export interface TableHeaderProps extends StrictTableHeaderProps {
 
 export interface StrictTableHeaderProps {
   /** An element used to render */
-  as?: any
+  as?: React.ElementType
 
   /** Children Node */
   children?: React.ReactNode

@@ -6,7 +6,7 @@ export interface ModalHeaderProps extends StrictModalHeaderProps {
 
 export interface StrictModalHeaderProps {
   /** An element used to render */
-  as?: any
+  as?: React.ElementType
 
   /** Children Node */
   children?: React.ReactNode

@@ -20,7 +20,7 @@ export interface StrictTabsProps {
   activeIndex?: string | number
 
   /** An element used to render */
-  as?: any
+  as?: React.ElementType
 
   /** Children Node */
   children?: React.ReactNode

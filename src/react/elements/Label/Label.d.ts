@@ -11,7 +11,7 @@ export interface LabelProps extends StrictLabelProps {
 
 export interface StrictLabelProps {
   /** An element used to render */
-  as?: any
+  as?: React.ElementType
 
   /** Children Node */
   children?: React.ReactNode

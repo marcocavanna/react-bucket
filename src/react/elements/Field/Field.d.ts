@@ -14,7 +14,7 @@ export interface StrictFieldProps {
   actionPosition?: 'left' | 'right'
 
   /** An element used to render */
-  as?: any
+  as?: React.ElementType
 
   /** Bordered Field */
   bordered?: boolean

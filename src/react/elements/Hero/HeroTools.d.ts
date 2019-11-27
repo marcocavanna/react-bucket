@@ -8,7 +8,7 @@ export interface HeroToolsProps extends StrictHeroToolsProps {
 
 export interface StrictHeroToolsProps {
   /** An element used to render */
-  as?: any
+  as?: React.ElementType
 
   /** Children Node */
   children?: React.ReactNode

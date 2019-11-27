@@ -14,7 +14,7 @@ export interface ButtonProps extends StrictButtonProps {
 
 export interface StrictButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /** An element used to render */
-  as?: any
+  as?: React.ElementType
 
   /** Children Node */
   children?: React.ReactNode

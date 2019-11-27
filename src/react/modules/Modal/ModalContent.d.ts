@@ -6,7 +6,7 @@ export interface ModalContentProps extends StrictModalContentProps {
 
 export interface StrictModalContentProps {
   /** An element used to render */
-  as?: any
+  as?: React.ElementType
 
   /** Children Node */
   children?: React.ReactNode

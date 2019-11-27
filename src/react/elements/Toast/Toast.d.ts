@@ -11,7 +11,7 @@ export interface ToastProps extends StrictToastProps {
 
 export interface StrictToastProps {
   /** An element used to render */
-  as?: any
+  as?: React.ElementType
 
   /** Children Node */
   children?: React.ReactNode

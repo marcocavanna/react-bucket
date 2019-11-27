@@ -8,7 +8,7 @@ export interface PanelBodyProps extends StrictPanelBodyProps {
 
 export interface StrictPanelBodyProps {
   /** An element used to render */
-  as?: any
+  as?: React.ElementType
 
   /** Children Node */
   children?: React.ReactNode

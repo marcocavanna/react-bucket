@@ -6,7 +6,7 @@ export interface ImageProps extends StrictImageProps {
 
 export interface StrictImageProps {
   /** An element used to render */
-  as?: any
+  as?: React.ElementType
 
   /** Define if image is avatar style */
   avatar?: boolean

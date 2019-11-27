@@ -13,7 +13,7 @@ export interface StrictProgressProps extends FieldProps {
   active?: boolean
 
   /** An element used to render */
-  as?: any
+  as?: React.ElementType
 
   /** Children Node */
   children?: React.ReactNode

@@ -12,7 +12,7 @@ export interface PanelFabProps extends StrictPanelFabProps {
 
 export interface StrictPanelFabProps {
   /** An element used to render */
-  as?: any
+  as?: React.ElementType
 
   /** Children Node */
   children?: React.ReactNode

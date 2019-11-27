@@ -6,7 +6,7 @@ export interface TableBodyProps extends StrictTableBodyProps {
 
 export interface StrictTableBodyProps {
   /** An element used to render */
-  as?: any
+  as?: React.ElementType
 
   /** Children Node */
   children?: React.ReactNode

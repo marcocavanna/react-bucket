@@ -9,7 +9,7 @@ export interface StrictTableRowProps {
   active?: boolean
 
   /** An element used to render the content */
-  as?: any
+  as?: React.ElementType
 
   /** Set the element used to Render the Cells */
   cellAs?: any

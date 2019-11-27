@@ -14,7 +14,7 @@ export interface HeroProps extends StrictHeroProps {
 
 export interface StrictHeroProps {
   /** An element used to render */
-  as?: any
+  as?: React.ElementType
 
   /** Children Node */
   children?: React.ReactNode
