@@ -122,7 +122,7 @@ function Container(props) {
 
 Container.propTypes = {
   /** An element used to render the component */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Container Background Color */
   background: PropTypes.string,

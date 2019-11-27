@@ -66,7 +66,7 @@ function Hero(props) {
 
 Hero.propTypes = {
   /** An element used to render the component */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** User Defined classes */
   className: PropTypes.string,

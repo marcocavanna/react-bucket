@@ -135,7 +135,7 @@ Field.propTypes = {
   actionPosition: PropTypes.oneOf(['left', 'right']),
 
   /** An element used to render the content */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Bordered Input Field */
   bordered: PropTypes.bool,

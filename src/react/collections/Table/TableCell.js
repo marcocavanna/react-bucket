@@ -70,7 +70,7 @@ TableCell.propTypes = {
   active: PropTypes.bool,
 
   /** An Element used to Render the Component */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** User Defined Class */
   className: PropTypes.string,

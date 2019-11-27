@@ -4,7 +4,6 @@ import cx from 'classnames';
 
 import {
   classByKey,
-  customPropTypes,
   getElementType,
   getUnhandledProps,
   createShorthandFactory
@@ -39,7 +38,7 @@ function HeroTools(props) {
 
 HeroTools.propTypes = {
   /** An element used to show the Component */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** User defined classes */
   className: PropTypes.string,

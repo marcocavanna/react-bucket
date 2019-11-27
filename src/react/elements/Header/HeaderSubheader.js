@@ -6,7 +6,6 @@ import {
   childrenUtils,
   classByPattern,
   createShorthandFactory,
-  customPropTypes,
   getElementType,
   getUnhandledProps
 } from '../../lib';
@@ -38,7 +37,7 @@ function HeaderSubheader(props) {
 
 HeaderSubheader.propTypes = {
   /** An element used to render the component */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Primary Content */
   children: PropTypes.node,

@@ -6,7 +6,6 @@ import _ from 'lodash';
 
 import {
   AutoControlledComponent as Component,
-  customPropTypes,
   classByKey,
   getElementType,
   getUnhandledProps,
@@ -24,7 +23,7 @@ class Menu extends Component {
     activeIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
     /** An Element used to Render the Component */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** Menu can have no border */
     borderless: PropTypes.bool,

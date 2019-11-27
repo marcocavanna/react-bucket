@@ -6,7 +6,6 @@ import _ from 'lodash';
 
 import {
   childrenUtils,
-  customPropTypes,
   getElementType,
   getUnhandledProps,
   createShorthandFactory
@@ -101,7 +100,7 @@ function DropdownMenu(props) {
 
 DropdownMenu.propTypes = {
   /** An element used to render the component */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Children Content */
   children: PropTypes.node,

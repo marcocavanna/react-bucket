@@ -40,7 +40,7 @@ function PanelFab(props) {
 
 PanelFab.propTypes = {
   /** An Element used to render the Component */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Button Fab Color */
   color: PropTypes.string,

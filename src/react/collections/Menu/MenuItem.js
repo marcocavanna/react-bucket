@@ -26,7 +26,7 @@ class MenuItem extends React.PureComponent {
     ]),
 
     /** An element used to render */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** User Defined Classes */
     className: PropTypes.string,

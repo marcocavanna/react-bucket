@@ -49,7 +49,7 @@ function ItemHeader(props) {
 
 ItemHeader.propTypes = {
   /** An element used to Render the Component */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** User Defined Classes */
   className: PropTypes.string,

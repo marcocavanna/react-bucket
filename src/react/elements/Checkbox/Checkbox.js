@@ -7,7 +7,6 @@ import _ from 'lodash';
 import {
   AutoControlledComponent as Component,
   createHTMLLabel,
-  customPropTypes,
   getElementType,
   getUnhandledProps,
   htmlInputAttrs,
@@ -23,7 +22,7 @@ export default class Checkbox extends Component {
 
   static propTypes = {
     /** An element used to render the component */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** Set if is checkd or no */
     checked: PropTypes.bool,

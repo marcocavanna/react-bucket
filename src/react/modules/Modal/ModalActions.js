@@ -7,7 +7,6 @@ import _ from 'lodash';
 import {
   childrenUtils,
   createShorthandFactory,
-  customPropTypes,
   getElementType,
   getUnhandledProps
 } from '../../lib';
@@ -59,7 +58,7 @@ ModalActions.propTypes = {
   actions: PropTypes.array,
 
   /** An element used to render the component */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** User Defined classes */
   className: PropTypes.string,

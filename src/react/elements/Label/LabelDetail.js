@@ -5,7 +5,6 @@ import cx from 'classnames';
 import {
   childrenUtils,
   createShorthandFactory,
-  customPropTypes,
   getElementType,
   getUnhandledProps
 } from '../../lib';
@@ -31,7 +30,7 @@ function LabelDetail(props) {
 
 LabelDetail.propTypes = {
   /** An element used to render the Compoenent */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Additional Class */
   className: PropTypes.string,

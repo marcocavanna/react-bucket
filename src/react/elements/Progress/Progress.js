@@ -116,7 +116,7 @@ Progress.propTypes = {
   active: PropTypes.bool,
 
   /** An element used to render the Component */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** User defined classes */
   className: PropTypes.string,

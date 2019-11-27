@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 
 import {
-  customPropTypes,
   getElementType,
   getUnhandledProps,
   childrenUtils,
@@ -35,7 +34,7 @@ function ToastHeader(props) {
 
 ToastHeader.propTypes = {
   /** An element used to render the component */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** User defined Classes */
   className: PropTypes.string,

@@ -44,7 +44,7 @@ function PanelBody(props) {
 
 PanelBody.propTypes = {
   /** An element used to render the component */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Primary Content */
   children: PropTypes.node,

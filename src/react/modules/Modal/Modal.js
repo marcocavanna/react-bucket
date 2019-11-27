@@ -40,7 +40,7 @@ class Modal extends Component {
     actions: PropTypes.array,
 
     /** An element used to render the Component */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** Autosized Width */
     autosized: PropTypes.bool,

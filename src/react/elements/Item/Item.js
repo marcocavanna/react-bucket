@@ -5,7 +5,6 @@ import cx from 'classnames';
 
 import _ from 'lodash';
 import {
-  customPropTypes,
   childrenUtils,
   getElementType,
   getUnhandledProps,
@@ -75,7 +74,7 @@ Item.propTypes = {
   ]),
 
   /** An Element used to Render the Component */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Avatar Properties Shorthand */
   avatar: PropTypes.object,

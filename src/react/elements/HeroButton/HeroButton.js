@@ -60,7 +60,7 @@ function HeroButton(props) {
 
 HeroButton.propTypes = {
   /** An element used to render the component */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** User defined classes */
   className: PropTypes.string,

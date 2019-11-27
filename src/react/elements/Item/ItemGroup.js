@@ -6,7 +6,6 @@ import _ from 'lodash';
 
 import {
   childrenUtils,
-  customPropTypes,
   getElementType,
   getUnhandledProps,
   classByKey
@@ -46,7 +45,7 @@ function ItemGroup(props) {
 
 ItemGroup.propTypes = {
   /** An Element used to Render the Component */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** User Defined Classes */
   className: PropTypes.string,

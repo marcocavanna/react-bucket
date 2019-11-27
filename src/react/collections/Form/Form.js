@@ -25,7 +25,7 @@ class Form extends React.PureComponent {
     action: PropTypes.string,
 
     /** An element used to render the componenet */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** Childrens */
     children: PropTypes.node,

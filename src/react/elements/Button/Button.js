@@ -24,7 +24,7 @@ class Button extends PureComponent {
    */
   static propTypes = {
     /** Element used to Render the Component */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** Circle Button */
     circle: PropTypes.bool,

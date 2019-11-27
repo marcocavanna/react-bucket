@@ -5,7 +5,6 @@ import cx from 'classnames';
 import {
   childrenUtils,
   createShorthandFactory,
-  customPropTypes,
   getElementType,
   getUnhandledProps,
   classByKey
@@ -44,7 +43,7 @@ TabPanel.propTypes = {
   active: PropTypes.bool,
 
   /** An element used to render the content */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Primary Content */
   children: PropTypes.node,

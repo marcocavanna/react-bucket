@@ -6,7 +6,6 @@ import _ from 'lodash';
 
 import {
   childrenUtils,
-  customPropTypes,
   getElementType,
   getUnhandledProps,
   classByKey
@@ -93,7 +92,7 @@ function Table(props) {
 
 Table.propTypes = {
   /** An Element used to Render the Component */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Children Node */
   children: PropTypes.node,

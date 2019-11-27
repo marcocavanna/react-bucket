@@ -90,7 +90,7 @@ function ItemAvatar(props) {
 
 ItemAvatar.propTypes = {
   /** An element used to render the Component */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Centered */
   centered: PropTypes.bool,

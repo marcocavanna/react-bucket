@@ -25,7 +25,7 @@ class Label extends React.PureComponent {
    */
   static propTypes = {
     /** An element used to render the component */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** User Defined Class */
     className: PropTypes.string,

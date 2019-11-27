@@ -22,7 +22,7 @@ class Icon extends PureComponent {
    */
   static propTypes = {
     /** Element used to Render Component */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** Display Icon Border */
     bordered: PropTypes.bool,

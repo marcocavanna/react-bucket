@@ -51,7 +51,7 @@ Loader.propTypes = {
   active: PropTypes.bool,
 
   /** Element used to Render Loader */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Centered Loader */
   centered: PropTypes.bool,

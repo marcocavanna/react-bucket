@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 
 import {
-  customPropTypes,
   childrenUtils,
   getUnhandledProps,
   getElementType,
@@ -44,7 +43,7 @@ function Divider(props) {
 
 Divider.propTypes = {
   /** An Element used to Render the Component */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** User defined Classes */
   className: PropTypes.string,

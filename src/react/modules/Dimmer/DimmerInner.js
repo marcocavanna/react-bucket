@@ -7,7 +7,6 @@ import Ref from '../../addons/Ref';
 
 import {
   childrenUtils,
-  customPropTypes,
   doesNodeContainClick,
   getElementType,
   getUnhandledProps,
@@ -24,7 +23,7 @@ export default class DimmerInner extends PureComponent {
     active: PropTypes.bool,
 
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** Additional classes. */
     className: PropTypes.string,

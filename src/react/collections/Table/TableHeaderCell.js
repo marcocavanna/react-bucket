@@ -4,7 +4,6 @@ import cx from 'classnames';
 
 import {
   childrenUtils,
-  customPropTypes,
   getUnhandledProps,
   classByPattern,
   classByKey
@@ -41,7 +40,7 @@ function TableHeaderCell(props) {
 
 TableHeaderCell.propTypes = {
   /** An element used to render the component */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** User defined classes */
   className: PropTypes.string,

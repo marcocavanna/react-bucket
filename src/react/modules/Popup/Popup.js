@@ -30,7 +30,7 @@ class Popup extends PureComponent {
 
   static propTypes = {
     /** An Element used to render the Component */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** Basic Style */
     basic: PropTypes.bool,
