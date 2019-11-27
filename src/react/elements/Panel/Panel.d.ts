@@ -1,10 +1,10 @@
 import * as React from 'react'
 
-import { ReactBucketALIGN, ReactBucketCOLOR, ReactBucketICON } from '../../generic'
+import { ReactBucketALIGN, ReactBucketCOLOR, ReactBucketICON, ReactBucketShorthandItem } from '../../generic'
 
 import PanelFab, { PanelFabProps } from './PanelFab';
 import PanelHeader from './PanelHeader'
-import PanelBody from './PanelBody'
+import PanelBody, { PanelBodyProps } from './PanelBody'
 import PanelSection from './PanelSection'
 
 export interface PanelProps extends StrictPanelProps {
@@ -25,13 +25,13 @@ export interface StrictPanelProps {
   color?: ReactBucketCOLOR
 
   /** Content Shorthand */
-  content?: React.ReactNode
+  content?: ReactBucketShorthandItem<PanelBodyProps>
 
   /** Panel has Fab Button */
   fab?: boolean | ReactBucketICON
 
   /** Header Shorthand */
-  header?: string
+  header?: React.ReactNode
 
   /** Icon Method Shorthand */
   icon?: ReactBucketICON
@@ -40,10 +40,10 @@ export interface StrictPanelProps {
   loading?: boolean
 
   /** Fab Click handler Function */
-  onFabClick?: (e: React.SyntheticEvent, props: PanelFabProps) => void
+  onFabClick?: (e: React.MouseEvent<HTMLButtonElement>, props: PanelFabProps) => void
 
   /** Subheader Shorthand */
-  subheader?: string
+  subheader?: React.ReactNode
 
   /** Set Panel has table container */
   table?: boolean
@@ -53,7 +53,7 @@ export interface StrictPanelProps {
 
 }
 
-interface PanelComponent extends React.StatelessComponent<PanelProps> {
+interface PanelComponent extends React.FunctionComponent<PanelProps> {
   Fab: typeof PanelFab
   Body: typeof PanelBody
   Header: typeof PanelHeader

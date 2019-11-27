@@ -48,7 +48,11 @@ class Icon extends PureComponent {
     /** Icon Name */
     name: customPropTypes.fontAwesome,
 
-    /** On Click Handler */
+    /**
+     * Called after user's click.
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
     onClick: PropTypes.func,
 
     /** Rotate Icon */

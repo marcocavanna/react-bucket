@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { ReactBucketCOLOR, ReactBucketFONTWEIGHT } from '../../generic';
+import { ReactBucketCOLOR } from '../../generic';
 
 export interface HeaderSubheaderProps extends StrictHeaderSubheaderProps {
   [key: string]: any
@@ -23,6 +23,6 @@ export interface StrictHeaderSubheaderProps {
   content: React.ReactNode
 }
 
-declare const HeaderSubheader: React.StatelessComponent<HeaderSubheaderProps>
+declare const HeaderSubheader: React.FunctionComponent<HeaderSubheaderProps>
 
 export default HeaderSubheader

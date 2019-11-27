@@ -22,6 +22,6 @@ export interface StrictButtonGroupProps {
 
 }
 
-declare const ButtonGroup: React.StatelessComponent<ButtonGroupProps>
+declare const ButtonGroup: React.FunctionComponent<ButtonGroupProps>
 
 export default ButtonGroup

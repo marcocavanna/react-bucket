@@ -20,21 +20,19 @@ export interface StrictPanelHeaderProps {
   color?: ReactBucketCOLOR
 
   /** Header Text */
-  header?: string
+  header?: React.ReactNode
 
   /** Header Icon */
   icon?: ReactBucketICON
 
   /** Subheader Text */
-  subheader?: string
+  subheader?: React.ReactNode
 
   /** Text Align */
   textAlign?: ReactBucketALIGN
 
 }
 
-interface PanelHeaderComponent extends React.StatelessComponent<PanelHeaderProps> { }
-
-declare const PanelHeader: PanelHeaderComponent
+declare const PanelHeader: React.FunctionComponent<PanelHeaderProps>
 
 export default PanelHeader

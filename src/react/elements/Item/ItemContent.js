@@ -62,7 +62,7 @@ ItemContent.propTypes = {
   content: PropTypes.node,
 
   /** Header Shorthand */
-  header: PropTypes.any,
+  header: PropTypes.node,
 
   /** Truncated Content */
   notTruncated: PropTypes.bool

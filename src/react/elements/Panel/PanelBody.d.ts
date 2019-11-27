@@ -30,9 +30,6 @@ export interface StrictPanelBodyProps {
 
 }
 
-interface PanelBodyComponent extends React.StatelessComponent<PanelBodyProps> { }
-/** In case of subcomponent append Name: typeof ImportedComponent in the interface */
-
-declare const PanelBody: PanelBodyComponent
+declare const PanelBody: React.FunctionComponent<PanelBodyProps>
 
 export default PanelBody

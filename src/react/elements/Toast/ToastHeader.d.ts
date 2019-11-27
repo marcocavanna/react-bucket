@@ -14,10 +14,11 @@ export interface StrictToastHeaderProps {
   /** User defined class */
   className?: string
 
+  /** Content Shorthand */
+  content?: React.ReactNode
+
 }
 
-interface ToastHeaderComponent extends React.StatelessComponent<ToastHeaderProps> { }
-
-declare const ToastHeader: ToastHeaderComponent
+declare const ToastHeader: React.FunctionComponent<ToastHeaderProps>
 
 export default ToastHeader

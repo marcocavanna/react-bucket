@@ -26,17 +26,22 @@ export interface StrictHeroButtonProps {
   discreet?: boolean
 
   /** Hero Header */
-  header?: string
+  header?: React.ReactNode
 
   /** Hero Icon */
   icon?: ReactBucketICON
+
+  /**
+   * Called after user's click.
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} props - All props.
+   */
+  onClick: (event: React.MouseEvent<HTMLDivElement>, props: HeroButtonProps) => void,
 
   /** Color Variation */
   variation?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8'
 }
 
-interface HeroButtonComponent extends React.StatelessComponent<HeroButtonProps> { }
-
-declare const HeroButton: HeroButtonComponent
+declare const HeroButton: React.FunctionComponent<HeroButtonProps>
 
 export default HeroButton

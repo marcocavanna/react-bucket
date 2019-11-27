@@ -118,8 +118,6 @@ export interface StrictContainerProps {
 
 }
 
-interface ContainerComponent extends React.StatelessComponent<ContainerProps> { }
-
-declare const Container: ContainerComponent
+declare const Container: React.FunctionComponent<ContainerProps>
 
 export default Container

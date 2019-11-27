@@ -21,8 +21,6 @@ export interface StrictPanelSectionProps {
   label?: React.ReactNode
 }
 
-interface PanelSectionComponent extends React.StatelessComponent<PanelSectionProps> { }
-
-declare const PanelSection: PanelSectionComponent
+declare const PanelSection: React.FunctionComponent<PanelSectionProps>
 
 export default PanelSection

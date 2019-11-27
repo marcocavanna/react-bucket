@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
+import { isObject } from '@appbuckets/rabbit';
 import _ from 'lodash';
 
 import {
@@ -253,13 +254,7 @@ class Button extends PureComponent {
 }
 
 
-Button.create = createShorthandFactory(Button, (val) => {
-  if (_.isObject(val) && !_.isArray(val)) {
-    return val;
-  }
-
-  return { content: val };
-});
+Button.create = createShorthandFactory(Button, val => (isObject(val) ? val : { content: val }));
 
 
 export default Button;

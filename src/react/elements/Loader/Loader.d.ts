@@ -36,9 +36,6 @@ export interface StrictLoaderProps {
 
 }
 
-interface LoaderComponent extends React.StatelessComponent<LoaderProps> { }
-/** In case of subcomponent append Name: typeof ImportedComponent in the interface */
-
-declare const Loader: LoaderComponent
+declare const Loader: React.FunctionComponent<LoaderProps>
 
 export default Loader

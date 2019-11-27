@@ -1,6 +1,13 @@
 import * as React from 'react'
 
-import { ReactBucketCOLOR, ReactBucketSIZE, ReactBucketICON } from '../../generic';
+import {
+  ReactBucketCOLOR,
+  ReactBucketSIZE,
+  ReactBucketICON,
+  ReactBucketShorthandItem
+} from '../../generic';
+
+import { ButtonProps } from '../Button';
 
 export interface FieldProps extends StrictFieldProps {
   [key: string]: any
@@ -8,7 +15,7 @@ export interface FieldProps extends StrictFieldProps {
 
 export interface StrictFieldProps {
   /** Action Button */
-  action?: any
+  action?: ReactBucketShorthandItem<ButtonProps>
 
   /** Action Position */
   actionPosition?: 'left' | 'right'
@@ -50,7 +57,7 @@ export interface StrictFieldProps {
   full?: boolean
 
   /** Hint Element */
-  hint?: any
+  hint?: React.ReactNode
 
   /** The hint color */
   hintColor?: ReactBucketCOLOR
@@ -74,7 +81,7 @@ export interface StrictFieldProps {
   label?: string
 
   /** Input messages to Show */
-  messages?: string[]
+  messages?: React.ReactNode[]
 
   /** Set the Field as Required */
   required?: boolean
@@ -93,8 +100,6 @@ export interface StrictFieldProps {
 
 }
 
-interface FieldComponent extends React.StatelessComponent<FieldProps> { }
-
-declare const Field: FieldComponent
+declare const Field: React.FunctionComponent<FieldProps>
 
 export default Field

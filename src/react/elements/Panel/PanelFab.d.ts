@@ -26,16 +26,18 @@ export interface StrictPanelFabProps {
   /** Fab Icon */
   icon?: ReactBucketICON
 
-  /** On Fab Click Function */
-  onFabClick?: Function
+  /**
+   * Called after user's click.
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>, props: PanelFabProps) => void
 
   /** Primary State for FAB */
   primary?: boolean
 
 }
 
-interface PanelFabComponent extends React.StatelessComponent<PanelFabProps> { }
-
-declare const PanelFab: PanelFabComponent
+declare const PanelFab: React.FunctionComponent<PanelFabProps>
 
 export default PanelFab

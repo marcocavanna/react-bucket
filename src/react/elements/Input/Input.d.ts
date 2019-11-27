@@ -31,6 +31,14 @@ export interface StrictInputProps extends StrictFieldProps, React.InputHTMLAttri
    */
   maskChar?: string | null;
 
+  /**
+   * Called on change.
+   *
+   * @param {ChangeEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props and a proposed value.
+   */
+  onChange?: (event: React.FormEvent<HTMLInputElement>, props: InputOnChangeData) => void,
+
   /** Input Tab Index */
   tabIndex?: number
 
@@ -38,6 +46,10 @@ export interface StrictInputProps extends StrictFieldProps, React.InputHTMLAttri
   type?: 'date' | 'email' | 'file' | 'image' | 'number' | 'password' | 'search' | 'tel' | 'text' | 'time' | 'url'
 }
 
-declare class Input extends React.Component<InputProps, {}> { }
+export interface InputOnChangeData extends InputProps {
+  value: string
+}
+
+declare class Input extends React.PureComponent<InputProps, {}> { }
 
 export default Input

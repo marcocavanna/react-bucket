@@ -33,6 +33,14 @@ class Input extends PureComponent {
     /** Char to use while Masking */
     maskChar: PropTypes.string,
 
+    /**
+     * Called on change.
+     *
+     * @param {ChangeEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props and a proposed value.
+     */
+    onChange: PropTypes.func,
+
     /** Set the Field as Required */
     required: PropTypes.bool,
 

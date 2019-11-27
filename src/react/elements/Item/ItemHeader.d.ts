@@ -24,8 +24,6 @@ export interface StrictItemHeaderProps {
 
 }
 
-interface ItemHeaderComponent extends React.StatelessComponent<ItemHeaderProps> { }
-
-declare const ItemHeader: ItemHeaderComponent
+declare const ItemHeader: React.FunctionComponent<ItemHeaderProps>
 
 export default ItemHeader

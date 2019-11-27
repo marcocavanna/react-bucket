@@ -6,11 +6,9 @@ export interface FieldMessagesProps extends StrictFieldMessagesProps {
 
 export interface StrictFieldMessagesProps {
   /** Messages to show */
-  content?: React.ReactNode
+  content?: React.ReactNode[]
 }
 
-interface FieldMessagesComponent extends React.StatelessComponent<FieldMessagesProps> { }
-
-declare const FieldMessages: FieldMessagesComponent
+declare const FieldMessages: React.FunctionComponent<FieldMessagesProps>
 
 export default FieldMessages

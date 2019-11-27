@@ -1,5 +1,9 @@
 import * as React from 'react'
 
+import { ReactBucketShorthandItem } from '../../generic';
+
+import { ItemHeaderProps } from './ItemHeader';
+
 export interface ItemContentProps extends StrictItemContentProps {
   [key: string]: any
 }
@@ -18,14 +22,12 @@ export interface StrictItemContentProps {
   content?: React.ReactNode
 
   /** Header Shorthand */
-  header?: string
+  header?: ReactBucketShorthandItem<ItemHeaderProps>
 
   /** Truncated Content */
   notTruncated?: boolean
 }
 
-interface ItemContentComponent extends React.StatelessComponent<ItemContentProps> { }
-
-declare const ItemContent: ItemContentComponent
+declare const ItemContent: React.FunctionComponent<ItemContentProps>
 
 export default ItemContent

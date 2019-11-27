@@ -34,6 +34,22 @@ class Select extends PureComponent {
     /** Set if must show loader */
     loading: PropTypes.bool,
 
+    /**
+     * Fire on Select Blur
+     *
+     * @param {SyntethicEvent} event The Change Event
+     * @param {object} props All props
+     */
+    onBlur: PropTypes.func,
+
+    /**
+     * Fire on Select Change
+     *
+     * @param {any} value The Selected Value
+     * @param {object} props All props plus value and action
+     */
+    onChange: PropTypes.func,
+
     /** Select Options */
     options: PropTypes.arrayOf(PropTypes.object),
 
@@ -48,9 +64,6 @@ class Select extends PureComponent {
     clearable : true,
     options   : []
   }
-
-  /** Create the Select Ref */
-  selectRef = createRef()
 
   /**
    * TabIndex will be computed

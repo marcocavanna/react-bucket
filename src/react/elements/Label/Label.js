@@ -43,7 +43,14 @@ class Label extends React.PureComponent {
     detail: PropTypes.any,
 
     /** Icon Shorthand */
-    icon: customPropTypes.fontAwesome
+    icon: customPropTypes.fontAwesome,
+
+    /**
+     * Called after user's click.
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
+    onClick: PropTypes.func
   }
 
   /**

@@ -17,7 +17,7 @@ function PanelFab(props) {
     color,
     disabled,
     icon,
-    onFabClick,
+    onClick,
     primary
   } = props;
 
@@ -30,7 +30,7 @@ function PanelFab(props) {
         !childrenUtils.isNil(children)
           ? children
           : icon && Button.create(
-            { fab: true, icon, disabled, color, onClick: onFabClick, primary },
+            { fab: true, icon, disabled, color, onClick, primary },
             { autoGenerateKey: false }
           )
       }
@@ -55,8 +55,12 @@ PanelFab.propTypes = {
   /** Icon ShortHand */
   icon: customPropTypes.fontAwesome,
 
-  /** On Fab Click Function */
-  onFabClick: PropTypes.func,
+  /**
+   * Called after user's click.
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onClick: PropTypes.func,
 
   /** Primary State */
   primary: PropTypes.bool

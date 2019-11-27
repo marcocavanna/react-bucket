@@ -24,9 +24,6 @@ export interface StrictLabelGroupProps {
 
 }
 
-interface LabelGroupComponent extends React.StatelessComponent<LabelGroupProps> { }
-/** In case of subcomponent append Name: typeof ImportedComponent in the interface */
-
-declare const LabelGroup: LabelGroupComponent
+declare const LabelGroup: React.FunctionComponent<LabelGroupProps>
 
 export default LabelGroup

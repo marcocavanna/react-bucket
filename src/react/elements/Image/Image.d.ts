@@ -1,5 +1,10 @@
 import * as React from 'react'
 
+import { ReactBucketShorthandItem } from '../../generic';
+
+import { LabelProps } from '../Label';
+import { DimmerProps } from '../../modules/Dimmer'
+
 export interface ImageProps extends StrictImageProps {
   [key: string]: any
 }
@@ -27,7 +32,7 @@ export interface StrictImageProps {
   content?: React.ReactNode
 
   /** Dimmer Shorthand */
-  dimmer?: any
+  dimmer?: ReactBucketShorthandItem<DimmerProps>
 
   /** Show image as disabled */
   disabled?: boolean
@@ -42,7 +47,7 @@ export interface StrictImageProps {
   inline?: boolean
 
   /** Add Label */
-  label?: any
+  label?: ReactBucketShorthandItem<LabelProps>
 
   /** Round Corners */
   rounded?: boolean
@@ -55,8 +60,6 @@ export interface StrictImageProps {
 
 }
 
-interface ImageComponent extends React.StatelessComponent<ImageProps> { }
-
-declare const Image: ImageComponent
+declare const Image: React.FunctionComponent<ImageProps>
 
 export default Image

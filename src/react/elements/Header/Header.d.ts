@@ -1,9 +1,11 @@
 import * as React from 'react';
 
-import Subheader from './HeaderSubheader'
+import Subheader, { HeaderSubheaderProps } from './HeaderSubheader'
 import Content from './HeaderContent'
 
-import { ReactBucketCOLOR, ReactBucketALIGN, ReactBucketRESPONSIVE, ReactBucketFONTWEIGHT, ReactBucketICON } from '../../generic'
+import { ReactBucketCOLOR, ReactBucketALIGN, ReactBucketICON, ReactBucketShorthandItem } from '../../generic'
+
+import { ImageProps } from '../Image';
 
 export interface HeaderProps extends StrictHeaderProps {
   [key: string]: any
@@ -35,17 +37,17 @@ export interface StrictHeaderProps {
   icon?: ReactBucketICON
 
   /** Image Item */
-  image?: any
+  image?: ReactBucketShorthandItem<ImageProps>
 
   /** Subheader shorthand */
-  subheader?: any
+  subheader?: ReactBucketShorthandItem<HeaderSubheaderProps>
 
   /** Text Alignment */
   textAlign?: ReactBucketALIGN
 }
 
-interface HeaderComponent extends React.StatelessComponent<HeaderProps> {
-  Subheader?: typeof Subheader
+interface HeaderComponent extends React.FunctionComponent<HeaderProps> {
+  Subheader: typeof Subheader
   Content: typeof Content
 }
 

@@ -26,10 +26,10 @@ export interface StrictSelectProps extends StrictFieldProps, ReactSelectProps {
   loading?: boolean
 
   /** onBlur Handler */
-  onBlur(e: React.SyntheticEvent): void
+  onBlur?: (e: React.FormEvent<HTMLSelectElement>, props: SelectProps) => void
 
   /** onChange handler */
-  onChange(data: any, props: StrictSelectProps): void
+  onChange?: (value: any, props: SelectOnChangeData) => void
 
   /** Set Options */
   options?: ReactSelect.OptionTypeBase[]
@@ -41,7 +41,12 @@ export interface StrictSelectProps extends StrictFieldProps, ReactSelectProps {
   tabIndex?: number
 }
 
-interface SelectComponent extends React.StatelessComponent<SelectProps> { }
+export interface SelectOnChangeData extends SelectProps {
+  value: any,
+  action: ReactSelect.ActionTypes
+}
+
+interface SelectComponent extends React.PureComponent<SelectProps> { }
 
 declare const Select: SelectComponent
 

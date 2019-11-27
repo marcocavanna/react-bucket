@@ -38,7 +38,7 @@ export interface StrictToastProps {
   info?: boolean
 
   /** On Click Handler */
-  onClick?: (e: React.SyntheticEvent, props: ToastProps) => void
+  onClick?: (e: React.MouseEvent<HTMLDivElement>, props: ToastProps) => void
 
   /** Toast with primary Style */
   primary?: boolean
@@ -53,7 +53,7 @@ export interface StrictToastProps {
   warning?: boolean
 }
 
-interface ToastComponent extends React.StatelessComponent<ToastProps> {
+interface ToastComponent extends React.FunctionComponent<ToastProps> {
   Header: typeof ToastHeader
   Content: typeof ToastContent
 }

@@ -36,7 +36,7 @@ export interface StrictLayoutProps {
 }
 
 interface LayoutComponent extends React.StatelessComponent<LayoutProps> {
-  Row?: typeof Row
+  Row: typeof Row
   Column: typeof Column
 }
 

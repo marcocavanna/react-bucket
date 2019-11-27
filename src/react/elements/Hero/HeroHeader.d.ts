@@ -24,8 +24,6 @@ export interface StrictHeroHeaderProps {
 
 }
 
-interface HeroHeaderComponent extends React.StatelessComponent<HeroHeaderProps> { }
-
-declare const HeroHeader: HeroHeaderComponent
+declare const HeroHeader: React.FunctionComponent<HeroHeaderProps>
 
 export default HeroHeader

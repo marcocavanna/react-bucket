@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { ReactBucketICON } from '../../generic';
+import { ReactBucketICON, ReactBucketShorthandCollection } from '../../generic';
 
 import { ButtonProps } from '../Button';
 
@@ -32,10 +32,10 @@ export interface StrictHeroProps {
   heroIcon?: ReactBucketICON
 
   /** Array of Tools */
-  tools?: ButtonProps[]
+  tools?: ReactBucketShorthandCollection<ButtonProps>
 }
 
-interface HeroComponent extends React.StatelessComponent<HeroProps> {
+interface HeroComponent extends React.FunctionComponent<HeroProps> {
   Header: typeof HeroHeader
   Content: typeof HeroContent
   Tools: typeof HeroTools

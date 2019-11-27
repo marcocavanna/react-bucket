@@ -52,8 +52,6 @@ export interface StrictProgressProps extends FieldProps {
   value?: number
 }
 
-interface ProgressComponent extends React.StatelessComponent<ProgressProps> { }
-
-declare const Progress: ProgressComponent
+declare const Progress: React.FunctionComponent<ProgressProps>
 
 export default Progress

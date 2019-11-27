@@ -19,9 +19,6 @@ export interface StrictLabelDetailProps {
 
 }
 
-interface LabelDetailComponent extends React.StatelessComponent<LabelDetailProps> { }
-/** In case of subcomponent append Name: typeof ImportedComponent in the interface */
-
-declare const LabelDetail: LabelDetailComponent
+declare const LabelDetail: React.FunctionComponent<LabelDetailProps>
 
 export default LabelDetail

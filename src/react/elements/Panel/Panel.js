@@ -56,7 +56,7 @@ function Panel(props) {
     <ElementType {...rest} className={classes}>
       {panelHeaderElement}
       {childrenUtils.isNil(children) ? panelBodyElement : children}
-      {typeof fab !== 'boolean' && fab && <PanelFab icon={fab} onFabClick={onFabClick} />}
+      {typeof fab !== 'boolean' && fab && <PanelFab icon={fab} onClick={onFabClick} />}
     </ElementType>
   );
 }
@@ -92,7 +92,11 @@ Panel.propTypes = {
   /** Loading Style for Panel */
   loading: PropTypes.bool,
 
-  /** Fab Click Handler Function */
+  /**
+   * Called after user's click.
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
   onFabClick: PropTypes.func,
 
   /** Subheader Shorthand Method */

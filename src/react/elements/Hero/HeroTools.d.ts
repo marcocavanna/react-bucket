@@ -1,5 +1,7 @@
 import * as React from 'react'
 
+import { ReactBucketShorthandCollection } from '../../generic';
+
 import { ButtonProps } from '../Button';
 
 export interface HeroToolsProps extends StrictHeroToolsProps {
@@ -17,11 +19,9 @@ export interface StrictHeroToolsProps {
   className?: string
 
   /** Tools Array */
-  tools?: ButtonProps[]
+  tools?: ReactBucketShorthandCollection<ButtonProps>
 }
 
-interface HeroToolsComponent extends React.StatelessComponent<HeroToolsProps> { }
-
-declare const HeroTools: HeroToolsComponent
+declare const HeroTools: React.FunctionComponent<HeroToolsProps>
 
 export default HeroTools

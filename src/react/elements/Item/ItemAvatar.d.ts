@@ -60,8 +60,6 @@ export interface StrictItemAvatarProps {
 
 }
 
-interface ItemAvatarComponent extends React.StatelessComponent<ItemAvatarProps> { }
-
-declare const ItemAvatar: ItemAvatarComponent
+declare const ItemAvatar: React.FunctionComponent<ItemAvatarProps>
 
 export default ItemAvatar

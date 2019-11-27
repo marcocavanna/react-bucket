@@ -28,6 +28,6 @@ export interface StrictDividerProps {
 
 }
 
-declare const Divider: React.StatelessComponent<DividerProps>
+declare const Divider: React.FunctionComponent<DividerProps>
 
 export default Divider

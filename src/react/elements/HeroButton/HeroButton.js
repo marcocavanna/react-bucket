@@ -75,10 +75,17 @@ HeroButton.propTypes = {
   discreet: PropTypes.bool,
 
   /** Header shorthand */
-  header: PropTypes.any,
+  header: PropTypes.node,
 
   /** Icon Shorthand */
   icon: customPropTypes.fontAwesome,
+
+  /**
+   * Called after user's click.
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onClick: PropTypes.func,
 
   /** Color Variation */
   variation: PropTypes.oneOfType([

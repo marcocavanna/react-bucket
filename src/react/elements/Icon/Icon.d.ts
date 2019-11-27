@@ -34,8 +34,12 @@ export interface StrictIconProps {
   /** Icon Name */
   name?: ReactBucketICON
 
-  /** OnClick Handler */
-  onClick?: Function
+  /**
+   * Called after user's click.
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} props - All props.
+   */
+  onClick?: (event: React.MouseEvent<HTMLElement>, props: IconProps) => void,
 
   /** Rotate Icon */
   rotate?: 90 | 180 | 270 | '90' | '180' | '270'
@@ -50,8 +54,6 @@ export interface StrictIconProps {
   style?: 'brand' | 'light' | 'regular' | 'solid'
 }
 
-declare class Icon extends React.PureComponent<IconProps, {}> {
-
-}
+declare class Icon extends React.PureComponent<IconProps, {}> { }
 
 export default Icon

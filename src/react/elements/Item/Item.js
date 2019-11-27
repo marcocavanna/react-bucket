@@ -94,7 +94,11 @@ Item.propTypes = {
   /** Header Shorthand */
   header: PropTypes.any,
 
-  /** On Click Function */
+  /**
+   * Called after user's click.
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
   onClick: PropTypes.func,
 
   /** Tools shorthand Factory */

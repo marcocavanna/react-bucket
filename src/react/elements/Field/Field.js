@@ -53,7 +53,7 @@ function Field(props) {
   const classes = cx(
     'field',
     classByKey(text && !form, 'text'),
-    classByKey(form, 'form-field'),
+    classByKey(form || checkbox || radio || input, 'form-field'),
     classByKey(success, 'is-success'),
     classByKey(warning, 'is-warning'),
     classByKey(error, 'is-danger'),
@@ -197,7 +197,7 @@ Field.propTypes = {
   label: PropTypes.any,
 
   /** Messages to show */
-  messages: PropTypes.arrayOf(PropTypes.string),
+  messages: PropTypes.arrayOf(PropTypes.node),
 
   /** Set the field as radio container */
   radio: PropTypes.bool,

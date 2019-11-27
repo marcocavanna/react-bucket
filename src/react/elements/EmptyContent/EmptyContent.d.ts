@@ -31,8 +31,6 @@ export interface StrictEmptyContentProps extends StrictContainerProps {
   textAlign?: ReactBucketALIGN
 }
 
-interface EmptyContentComponent extends React.StatelessComponent<EmptyContentProps> { }
-
-declare const EmptyContent: EmptyContentComponent
+declare const EmptyContent: React.FunctionComponent<EmptyContentProps>
 
 export default EmptyContent

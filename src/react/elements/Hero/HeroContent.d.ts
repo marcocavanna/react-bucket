@@ -18,8 +18,6 @@ export interface StrictHeroContentProps {
   content?: React.ReactNode
 }
 
-interface HeroContentComponent extends React.StatelessComponent<HeroContentProps> { }
-
-declare const HeroContent: HeroContentComponent
+declare const HeroContent: React.FunctionComponent<HeroContentProps>
 
 export default HeroContent
