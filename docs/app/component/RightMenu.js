@@ -1,29 +1,45 @@
-/* eslint-disable class-methods-use-this */
-/* eslint-disable no-useless-constructor */
-/* eslint-disable react/require-optimization */
+
 import React from 'react';
-import { NavLink, Link, withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { NavHashLink as NavLink } from 'react-router-hash-link';
 
-import { Layout, Menu, DropdownMenu } from '../../../src/react';
+import { Menu, Panel } from '../../../src/react';
 
-class RightMenu extends React.Component {
+function RightMenu(props) {
 
-  state = {}
+  const {
+    examples
+  } = props;
 
-  constructor(props) {
-    super(props);
-
-    const { pathname } = this.props.location;
-
-    console.log(pathname);
-  }
-
-  render() {
-    return (
-      <h1>prop dropdown menu</h1>
-    );
-  }
+  return (
+    <Menu vertical secondary className=''>
+      <Panel>
+        <Panel.Body>
+          {
+            Object.getOwnPropertyNames(examples)
+              .map(exampleKey => (
+                <Menu.Item
+                  key={exampleKey}
+                  smooth
+                  as={NavLink}
+                  content={examples[exampleKey].header}
+                  to={`#${exampleKey}`}
+                />
+              ))
+              }
+        </Panel.Body>
+      </Panel>
+    </Menu>
+  );
 
 }
 
-export default withRouter(RightMenu);
+RightMenu.propTypes = {
+  examples: PropTypes.object
+};
+
+RightMenu.defaultProps = {
+  examples: {}
+};
+
+export default RightMenu;
