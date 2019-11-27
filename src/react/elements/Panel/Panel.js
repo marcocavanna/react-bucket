@@ -5,6 +5,7 @@ import cx from 'classnames';
 import PanelHeader from './PanelHeader';
 import PanelBody from './PanelBody';
 import PanelFab from './PanelFab';
+import PanelSection from './PanelSection';
 
 import {
   customPropTypes,
@@ -107,5 +108,6 @@ Panel.propTypes = {
 Panel.Fab = PanelFab;
 Panel.Header = PanelHeader;
 Panel.Body = PanelBody;
+Panel.Section = PanelSection;
 
 export default Panel;

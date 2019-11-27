@@ -5,6 +5,7 @@ import { ReactBucketALIGN, ReactBucketCOLOR, ReactBucketICON } from '../../gener
 import PanelFab, { PanelFabProps } from './PanelFab';
 import PanelHeader from './PanelHeader'
 import PanelBody from './PanelBody'
+import PanelSection from './PanelSection'
 
 export interface PanelProps extends StrictPanelProps {
   [key: string]: any
@@ -56,6 +57,7 @@ interface PanelComponent extends React.StatelessComponent<PanelProps> {
   Fab: typeof PanelFab
   Body: typeof PanelBody
   Header: typeof PanelHeader
+  Section: typeof PanelSection
 }
 
 declare const Panel: PanelComponent
