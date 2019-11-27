@@ -5,6 +5,8 @@ import { isObject } from '@appbuckets/rabbit';
 
 import { Hero, Header, Panel, Layout, Spacer } from '../../../src/react';
 
+import { RightMenu } from '../component';
+
 import ComponentProps from './ComponentProps';
 
 const withComponentDoc = specs => class ComponentDocs extends React.PureComponent {
@@ -65,7 +67,7 @@ const withComponentDoc = specs => class ComponentDocs extends React.PureComponen
 
         <Layout>
           <Layout.Row>
-            <Layout.Column>
+            <Layout.Column is={10}>
 
               {/* Render Props Section */}
               <ComponentProps propsList={props} />
@@ -73,9 +75,11 @@ const withComponentDoc = specs => class ComponentDocs extends React.PureComponen
               {this.renderExamples(examples)}
 
             </Layout.Column>
+            <Layout.Column>
+              <RightMenu examples={examples} />
+            </Layout.Column>
           </Layout.Row>
         </Layout>
-
       </React.Fragment>
     );
   }

@@ -1,54 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { isObject } from '@appbuckets/rabbit';
 
-import { Table, Header, Checkbox, Tabs } from '../../../src/react';
+import { Header, Checkbox, Tabs } from '../../../src/react';
 
-class ComponentProps extends React.PureComponent {
+import RenderPropTable from './RenderPropTable';
 
-  static propTypes = {
-    propsList: PropTypes.object
-  }
+function ComponentProps(props) {
 
-  state = {
-    viewProps: false
-  }
+  const [viewProps, setViewProps] = useState(false);
 
-  handlePropsVisibleChange = () => this.setState(({ viewProps }) => ({ viewProps: !viewProps }))
+  const handlePropsVisibleChange = () => setViewProps(!viewProps);
 
-  renderPropsTable = propsData => (
-    <Table
-      style={{ tableLayout: 'initial' }}
-      headerRow={[
-        <Table.HeaderCell key={1} textAlign='right' content='Name' />,
-        'TYpe',
-        'Description'
-      ]}
-      tableData={propsData}
-      renderBodyRow={(data, index) => (
-        <Table.Row
-          cells={[
-            <Table.Cell key={1} textAlign='right' content={<code>{index}</code>} />,
-            <Table.Cell key={2} content={data.type} />,
-            <Table.Cell key={3} content={data.comment} />
-          ]}
-        />
-      )}
-    />
-  )
-
-  renderProps = (props) => {
+  const renderProps = (prop) => {
     /** If not an Object, return null */
-    if (!isObject(props)) {
+    if (!isObject(prop)) {
       return null;
     }
 
-    /** Get ViewProps from State */
-    const { viewProps } = this.state;
-
     /** Check if must render Tabs */
-    const propsSection = Object.getOwnPropertyNames(props);
+    const propsSection = Object.getOwnPropertyNames(prop);
 
     /** Return props Panels */
     return (
@@ -59,7 +31,7 @@ class ComponentProps extends React.PureComponent {
           size='large'
           label={viewProps ? 'View Examples' : 'View Props'}
           checked={viewProps}
-          onChange={this.handlePropsVisibleChange}
+          onChange={handlePropsVisibleChange}
         />
 
         {viewProps && propsSection.length > 0 && (
@@ -69,12 +41,12 @@ class ComponentProps extends React.PureComponent {
 
             {/* Show Props Tabs */}
             {propsSection.length === 1
-              ? this.renderPropsTable(props[propsSection[0]])
+              ? <RenderPropTable propsData={prop[propsSection[0]]} />
               : (
                 <Tabs
                   panels={propsSection.map(sectionKey => ({
                     trigger : sectionKey,
-                    panel   : this.renderPropsTable(props[sectionKey])
+                    panel   : <RenderPropTable propsData={prop[sectionKey]} />
                   }))}
                 />
               )}
@@ -83,20 +55,20 @@ class ComponentProps extends React.PureComponent {
 
       </React.Fragment>
     );
-  }
+  };
 
-  render() {
-
-    const { propsList } = this.props;
-
-    return (
-      <React.Fragment>
-        {this.renderProps(propsList)}
-      </React.Fragment>
-    );
-
-  }
+  const { propsList } = props;
+  
+  return (
+    <React.Fragment>
+      {renderProps(propsList)}
+    </React.Fragment>
+  );
 
 }
+
+ComponentProps.propTypes = {
+  propsList: PropTypes.object
+};
 
 export default ComponentProps;

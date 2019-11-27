@@ -3,7 +3,7 @@ import React from 'react';
 
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import { RightMenu, SideBar, Home } from './component';
+import { SideBar, Home } from './component';
 
 import withComponentDoc from './HOC/with-component-doc';
 import * as Docs from './docs';
@@ -18,7 +18,7 @@ const App = () => (
         <Layout.Column is={2}>
           <SideBar />
         </Layout.Column>
-        <Layout.Column is={8}>
+        <Layout.Column is={10}>
           <Switch>
             <Route exact path='/' component={Home} />
             {
@@ -34,9 +34,6 @@ const App = () => (
                 ))
             }
           </Switch>
-        </Layout.Column>
-        <Layout.Column is={2}>
-          <RightMenu />
         </Layout.Column>
       </Layout.Row>
     </Layout>
