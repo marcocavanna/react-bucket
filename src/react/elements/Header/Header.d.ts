@@ -3,8 +3,7 @@ import * as React from 'react';
 import Subheader from './HeaderSubheader'
 import Content from './HeaderContent'
 
-import { AppBucketsICON } from '../../../fontawesome/icon-file-generator/fa-icon'
-import { AppBucketsCOLORS, AppBucketsALIGN, AppBucketsRESPONSIVE, AppBucketsFONTWEIGHT } from '../../generic'
+import { AppBucketsCOLORS, AppBucketsALIGN, AppBucketsRESPONSIVE, AppBucketsFONTWEIGHT, ReactBucketICON } from '../../generic'
 
 export interface HeaderProps extends StrictHeaderProps {
   [key: string]: any
@@ -33,7 +32,7 @@ export interface StrictHeaderProps {
   dividing?: boolean,
 
   /** Icon Item */
-  icon?: AppBucketsICON,
+  icon?: ReactBucketICON,
 
   /** Image Item */
   image?: any,

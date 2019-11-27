@@ -4,7 +4,7 @@ import cx from 'classnames';
 
 import _ from 'lodash';
 
-import fontAwesomeClass from '../../../fontawesome/icon-file-generator/get-fontawesom-icon';
+import fontAwesomeClass from '../../../fontawesome';
 
 import {
   customPropTypes,

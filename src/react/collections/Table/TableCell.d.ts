@@ -2,10 +2,9 @@ import * as React from 'react'
 
 import {
   AppBucketsALIGN,
-  AppBucketsVERTICALALIGN
+  AppBucketsVERTICALALIGN,
+  ReactBucketICON
 } from '../../generic'
-
-import { AppBucketsICON } from '../../../fontawesome/icon-file-generator/fa-icon';
 
 export interface TableCellProps extends StrictTableCellProps {
   [key: string]: any
@@ -31,7 +30,7 @@ export interface StrictTableCellProps {
   error?: boolean,
 
   /** Icon Shorthand */
-  icon?: AppBucketsICON,
+  icon?: ReactBucketICON,
 
   /** Set cell as Selectable */
   selectable?: boolean,

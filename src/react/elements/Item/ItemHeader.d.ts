@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { AppBucketsICON } from '../../../fontawesome/icon-file-generator/fa-icon'
+import { ReactBucketICON } from '../../generic'
 
 export interface ItemHeaderProps extends StrictItemHeaderProps {
   [key: string]: any
@@ -20,7 +20,7 @@ export interface StrictItemHeaderProps {
   content?: any,
 
   /** Icon Shorthand */
-  icon?: AppBucketsICON
+  icon?: ReactBucketICON
 
 }
 

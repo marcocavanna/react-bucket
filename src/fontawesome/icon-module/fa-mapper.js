@@ -1007,6 +1007,12 @@ module.exports = {
     },
     unicode: 'f64a'
   },
+  'buy n large': {
+    classes: {
+      brands: 'fab fa-buy-n-large'
+    },
+    unicode: 'f8a6'
+  },
   buysellads: {
     classes: {
       brands: 'fab fa-buysellads'
@@ -1835,6 +1841,12 @@ module.exports = {
       regular: 'far fa-copyright'
     },
     unicode: 'f1f9'
+  },
+  'cotton bureau': {
+    classes: {
+      brands: 'fab fa-cotton-bureau'
+    },
+    unicode: 'f89e'
   },
   couch: {
     classes: {
@@ -3799,6 +3811,18 @@ module.exports = {
     },
     unicode: 'f292'
   },
+  'hat cowboy': {
+    classes: {
+      solid: 'fas fa-hat-cowboy'
+    },
+    unicode: 'f8c0'
+  },
+  'hat cowboy side': {
+    classes: {
+      solid: 'fas fa-hat-cowboy-side'
+    },
+    unicode: 'f8c1'
+  },
   'hat wizard': {
     classes: {
       solid: 'fas fa-hat-wizard'
@@ -4780,6 +4804,12 @@ module.exports = {
     },
     unicode: 'f136'
   },
+  mdb: {
+    classes: {
+      brands: 'fab fa-mdb'
+    },
+    unicode: 'f8ca'
+  },
   medal: {
     classes: {
       solid: 'fas fa-medal'
@@ -5062,6 +5092,12 @@ module.exports = {
     },
     unicode: 'f6fc'
   },
+  mouse: {
+    classes: {
+      solid: 'fas fa-mouse'
+    },
+    unicode: 'f8cc'
+  },
   'mouse pointer': {
     classes: {
       solid: 'fas fa-mouse-pointer'
@@ -5226,6 +5262,12 @@ module.exports = {
       brands: 'fab fa-optin-monster'
     },
     unicode: 'f23c'
+  },
+  orcid: {
+    classes: {
+      brands: 'fab fa-orcid'
+    },
+    unicode: 'f8d2'
   },
   osi: {
     classes: {
@@ -5915,6 +5957,12 @@ module.exports = {
       solid: 'fas fa-receipt'
     },
     unicode: 'f543'
+  },
+  'record vinyl': {
+    classes: {
+      solid: 'fas fa-record-vinyl'
+    },
+    unicode: 'f8d9'
   },
   recycle: {
     classes: {
@@ -7108,6 +7156,12 @@ module.exports = {
     },
     unicode: 'f5c3'
   },
+  swift: {
+    classes: {
+      brands: 'fab fa-swift'
+    },
+    unicode: 'f8e1'
+  },
   swimmer: {
     classes: {
       solid: 'fas fa-swimmer'
@@ -7682,6 +7736,12 @@ module.exports = {
       brands: 'fab fa-uikit'
     },
     unicode: 'f403'
+  },
+  umbraco: {
+    classes: {
+      brands: 'fab fa-umbraco'
+    },
+    unicode: 'f8e8'
   },
   umbrella: {
     classes: {

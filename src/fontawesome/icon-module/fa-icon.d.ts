@@ -1,4 +1,4 @@
-export type AppBucketsICON = '500px' |
+export type ReactBucketICON = '500px' |
   'accessible icon' |
   'accusoft' |
   'acquisitions incorporated' |
@@ -164,6 +164,7 @@ export type AppBucketsICON = '500px' |
   'bus' |
   'bus alt' |
   'business time' |
+  'buy n large' |
   'buysellads' |
   'calculator' |
   'calendar' |
@@ -298,6 +299,7 @@ export type AppBucketsICON = '500px' |
   'cookie bite' |
   'copy' |
   'copyright' |
+  'cotton bureau' |
   'couch' |
   'cpanel' |
   'creative commons' |
@@ -616,6 +618,8 @@ export type AppBucketsICON = '500px' |
   'hanukiah' |
   'hard hat' |
   'hashtag' |
+  'hat cowboy' |
+  'hat cowboy side' |
   'hat wizard' |
   'haykal' |
   'hdd' |
@@ -776,6 +780,7 @@ export type AppBucketsICON = '500px' |
   'mask' |
   'mastodon' |
   'maxcdn' |
+  'mdb' |
   'medal' |
   'medapps' |
   'medium' |
@@ -822,6 +827,7 @@ export type AppBucketsICON = '500px' |
   'mosque' |
   'motorcycle' |
   'mountain' |
+  'mouse' |
   'mouse pointer' |
   'mug hot' |
   'music' |
@@ -849,6 +855,7 @@ export type AppBucketsICON = '500px' |
   'openid' |
   'opera' |
   'optin monster' |
+  'orcid' |
   'osi' |
   'otter' |
   'outdent' |
@@ -963,6 +970,7 @@ export type AppBucketsICON = '500px' |
   'readme' |
   'rebel' |
   'receipt' |
+  'record vinyl' |
   'recycle' |
   'red river' |
   'reddit' |
@@ -1159,6 +1167,7 @@ export type AppBucketsICON = '500px' |
   'surprise' |
   'suse' |
   'swatchbook' |
+  'swift' |
   'swimmer' |
   'swimming pool' |
   'symfony' |
@@ -1254,6 +1263,7 @@ export type AppBucketsICON = '500px' |
   'uber' |
   'ubuntu' |
   'uikit' |
+  'umbraco' |
   'umbrella' |
   'umbrella beach' |
   'underline' |

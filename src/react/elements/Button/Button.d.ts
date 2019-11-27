@@ -1,10 +1,9 @@
 import * as React from 'react'
 
-import { AppBucketsICON } from '../../../fontawesome/icon-file-generator/fa-icon';
-
 import {
   AppBucketsCOLORS,
-  AppBucketsSIZE
+  AppBucketsSIZE,
+  ReactBucketICON
 } from '../../generic';
 
 import ButtonGroup from './ButtonGroup';
@@ -39,7 +38,7 @@ export interface StrictButtonProps extends React.ButtonHTMLAttributes<HTMLButton
   flat?: boolean,
 
   /** Icon Property or Definition */
-  icon?: boolean | AppBucketsICON,
+  icon?: boolean | ReactBucketICON,
 
   /** Info Color */
   info?: boolean,

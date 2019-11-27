@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { AppBucketsICON } from '../../../fontawesome/icon-file-generator/fa-icon'
+import { ReactBucketICON } from '../../generic';
 
 import { ButtonProps } from '../Button';
 
@@ -29,7 +29,7 @@ export interface StrictHeroProps {
   header?: React.ReactNode,
 
   /** Hero Icon to Show */
-  heroIcon?: AppBucketsICON
+  heroIcon?: ReactBucketICON
 
   /** Array of Tools */
   tools?: ButtonProps[]

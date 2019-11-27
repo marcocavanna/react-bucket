@@ -1,7 +1,6 @@
 import * as React from 'react'
 
-import { AppBucketsALIGN, AppBucketsCOLORS } from '../../generic';
-import { AppBucketsICON } from '../../../fontawesome/icon-file-generator/fa-icon';
+import { AppBucketsALIGN, AppBucketsCOLORS, ReactBucketICON } from '../../generic';
 
 import { StrictContainerProps } from '../Container';
 
@@ -26,7 +25,7 @@ export interface StrictEmptyContentProps extends StrictContainerProps {
   header?: string
 
   /** Icon to Show */
-  icon?: AppBucketsICON
+  icon?: ReactBucketICON
 
   /** Text Align */
   textAlign?: AppBucketsALIGN

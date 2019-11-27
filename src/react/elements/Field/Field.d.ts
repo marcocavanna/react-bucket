@@ -1,7 +1,6 @@
 import * as React from 'react'
 
-import { AppBucketsICON } from '../../../fontawesome/icon-file-generator/fa-icon';
-import { AppBucketsCOLORS, AppBucketsSIZE } from '../../generic';
+import { AppBucketsCOLORS, AppBucketsSIZE, ReactBucketICON } from '../../generic';
 
 export interface FieldProps extends StrictFieldProps {
   [key: string]: any
@@ -57,7 +56,7 @@ export interface StrictFieldProps {
   hintColor?: AppBucketsCOLORS
 
   /** Icon Element */
-  icon?: AppBucketsICON
+  icon?: ReactBucketICON
 
   /** Icon Position */
   iconPosition?: 'left' | 'right'

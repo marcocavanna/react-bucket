@@ -1,5 +1,7 @@
 import * as React from 'react'
 
+export { ReactBucketICON } from '../fontawesome/icon-module/fa-icon';
+
 /**
  * Alignment
  */
@@ -53,7 +55,7 @@ export type AppBucketsBRANDCOLOR =
   | 'success'
   | 'info'
 
-export type AppBucketsUICOLOR = 
+export type AppBucketsUICOLOR =
   | 'text'
   | 'text-tint'
   | 'text-shade'

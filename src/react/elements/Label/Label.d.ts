@@ -1,7 +1,6 @@
 import * as React from 'react'
 
-import { AppBucketsICON } from '../../../fontawesome/icon-file-generator/fa-icon'
-import { AppBucketsCOLORS } from '../../generic'
+import { AppBucketsCOLORS, ReactBucketICON } from '../../generic'
 
 import LabelDetail from './LabelDetail'
 import LabelGroup from './LabelGroup'
@@ -30,7 +29,7 @@ export interface StrictLabelProps {
   detail?: any,
 
   /** Icon Shorthand */
-  icon?: AppBucketsICON
+  icon?: ReactBucketICON
 }
 
 declare class Label extends React.Component<LabelProps, {}> {

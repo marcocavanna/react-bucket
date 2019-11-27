@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import fontAwesomeClass from '../../fontawesome/icon-file-generator/fa-icon.module';
+import fontAwesomeClass from '../../fontawesome/icon-module/fa-mapper';
 
 const fontAwesomeArray = Object.getOwnPropertyNames(fontAwesomeClass);
 

@@ -1,7 +1,6 @@
 import * as React from 'react'
 
-import { AppBucketsICON } from '../../../fontawesome/icon-file-generator/fa-icon'
-import { AppBucketsCOLORS, AppBucketsALIGN } from '../../generic'
+import { AppBucketsCOLORS, AppBucketsALIGN, ReactBucketICON } from '../../generic'
 
 export interface PanelHeaderProps extends StrictPanelHeaderProps {
   [key: string]: any
@@ -24,7 +23,7 @@ export interface StrictPanelHeaderProps {
   header?: string,
 
   /** Header Icon */
-  icon?: AppBucketsICON,
+  icon?: ReactBucketICON,
 
   /** Subheader Text */
   subheader?: string,

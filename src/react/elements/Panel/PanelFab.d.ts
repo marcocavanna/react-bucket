@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { AppBucketsICON } from '../../../fontawesome/icon-file-generator/fa-icon';
+import { ReactBucketICON } from '../../generic';
 
 import {
   AppBucketsCOLORS
@@ -24,7 +24,7 @@ export interface StrictPanelFabProps {
   color?: AppBucketsCOLORS,
 
   /** Fab Icon */
-  icon?: AppBucketsICON,
+  icon?: ReactBucketICON,
 
   /** On Fab Click Function */
   onFabClick?: Function,

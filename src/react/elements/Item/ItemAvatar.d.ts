@@ -1,7 +1,6 @@
 import * as React from 'react'
 
-import { AppBucketsICON } from '../../../fontawesome/icon-file-generator/fa-icon'
-import { AppBucketsCOLORS, AppBucketsSIZE } from '../../generic'
+import { AppBucketsCOLORS, AppBucketsSIZE, ReactBucketICON } from '../../generic'
 
 export interface ItemAvatarProps extends StrictItemAvatarProps {
   [key: string]: any
@@ -36,7 +35,7 @@ export interface StrictItemAvatarProps {
   generateBackground?: boolean | string,
 
   /** Set Avatar Icon */
-  icon?: AppBucketsICON,
+  icon?: ReactBucketICON,
 
   /** Set Avatar Image */
   image?: string,

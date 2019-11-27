@@ -1,7 +1,6 @@
 import * as React from 'react'
 
-import { AppBucketsICON } from '../../../fontawesome/icon-file-generator/fa-icon'
-import { AppBucketsALIGN, AppBucketsCOLORS } from '../../generic'
+import { AppBucketsALIGN, AppBucketsCOLORS, ReactBucketICON } from '../../generic'
 
 import PanelFab, { PanelFabProps } from './PanelFab';
 import PanelHeader from './PanelHeader'
@@ -28,13 +27,13 @@ export interface StrictPanelProps {
   content?: React.ReactNode,
 
   /** Panel has Fab Button */
-  fab?: boolean | AppBucketsICON
+  fab?: boolean | ReactBucketICON
 
   /** Header Shorthand */
   header?: string,
 
   /** Icon Method Shorthand */
-  icon?: AppBucketsICON,
+  icon?: ReactBucketICON,
 
   /** Loading Style for Panel */
   loading?: boolean

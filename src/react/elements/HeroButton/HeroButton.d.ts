@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { AppBucketsICON } from '../../../fontawesome/icon-file-generator/fa-icon';
+import { ReactBucketICON } from '../../generic';
 
 export interface HeroButtonProps extends StrictHeroButtonProps {
   [key: string]: any
@@ -29,7 +29,7 @@ export interface StrictHeroButtonProps {
   header?: string
 
   /** Hero Icon */
-  icon?: AppBucketsICON
+  icon?: ReactBucketICON
 
   /** Color Variation */
   variation?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8'

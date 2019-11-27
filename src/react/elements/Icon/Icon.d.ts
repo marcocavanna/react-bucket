@@ -1,7 +1,6 @@
 import * as React from 'react';
 
-import { AppBucketsICON } from '../../../fontawesome/icon-file-generator/fa-icon';
-import { AppBucketsCOLORS, AppBucketsSIZE } from '../../generic'
+import { AppBucketsCOLORS, AppBucketsSIZE, ReactBucketICON } from '../../generic'
 
 export interface IconProps extends StrictIconProps {
   [key: string]: any
@@ -33,7 +32,7 @@ export interface StrictIconProps {
   link?: boolean,
 
   /** Icon Name */
-  name: AppBucketsICON,
+  name: ReactBucketICON,
 
   /** OnClick Handler */
   onClick?: Function,

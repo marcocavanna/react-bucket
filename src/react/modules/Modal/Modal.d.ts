@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { AppBucketsICON } from '../../../fontawesome/icon-file-generator/fa-icon';
+import { ReactBucketICON } from '../../generic';
 
 import { StrictPortalProps } from '../../addons/Portal';
 import { ButtonProps } from '../../elements/Button';
@@ -36,7 +36,7 @@ export interface StrictModalProps {
   className?: string,
 
   /** The Modal Close Icn */
-  closeIcon?: React.ReactNode | boolean | AppBucketsICON,
+  closeIcon?: React.ReactNode | boolean | ReactBucketICON,
 
   /** Set if a modal must close on dimmer click */
   closeOnDimmerClick?: boolean,

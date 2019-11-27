@@ -4,12 +4,9 @@ import {
   AppBucketsShorthandCollection,
   AppBucketsShorthandContent,
   AppBucketsShorthandItem,
-  AppBucketsSIZE
+  AppBucketsSIZE,
+  ReactBucketICON
 } from '../../generic'
-
-import {
-  AppBucketsICON
-} from '../../../fontawesome/icon-file-generator/fa-icon'
 
 import MessageContent from './MessageContent'
 import { default as MessageHeader, MessageHeaderProps } from './MessageHeader'
@@ -40,7 +37,7 @@ export interface StrictMessageProps {
   header?: AppBucketsShorthandItem<MessageHeaderProps>
 
   /** Add an icon by icon name or pass an <Icon /.> */
-  icon?: AppBucketsICON | boolean
+  icon?: ReactBucketICON | boolean
 
   /** A message may be formatted to display information. */
   info?: boolean

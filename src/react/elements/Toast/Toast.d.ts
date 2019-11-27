@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { AppBucketsICON } from '../../../fontawesome/icon-file-generator/fa-icon'
+import { ReactBucketICON } from '../../generic'
 
 import ToastHeader from './ToastHeader';
 import ToastContent from './ToastContent';
@@ -23,7 +23,7 @@ export interface StrictToastProps {
   content?: any
 
   /** Set if toast is dismissable, using a string to define icon */
-  dismissable?: boolean | AppBucketsICON
+  dismissable?: boolean | ReactBucketICON
 
   /** Toast with error Style */
   error?: boolean
@@ -32,7 +32,7 @@ export interface StrictToastProps {
   header?: any
 
   /** Icon shorthand */
-  icon?: AppBucketsICON
+  icon?: ReactBucketICON
 
   /** Toast with info Style */
   info?: boolean

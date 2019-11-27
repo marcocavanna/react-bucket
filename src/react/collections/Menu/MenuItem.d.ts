@@ -1,7 +1,6 @@
 import * as React from 'react'
 
-import { AppBucketsCOLORS } from '../../generic';
-import { AppBucketsICON } from '../../../fontawesome/icon-file-generator/fa-icon';
+import { AppBucketsCOLORS, ReactBucketICON } from '../../generic';
 
 export interface MenuHeaderProps extends StrictMenuHeaderProps {
   [key: string]: any
@@ -33,7 +32,7 @@ export interface StrictMenuHeaderProps {
   header: boolean,
 
   /** Icon */
-  icon: boolean | AppBucketsICON,
+  icon: boolean | ReactBucketICON,
 
   /** Name Shorthand */
   name: string,
