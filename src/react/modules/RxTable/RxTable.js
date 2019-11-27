@@ -21,7 +21,8 @@ import {
   classByKey
 } from '../../lib';
 
-class RxTable extends React.PureComponent {
+// eslint-disable-next-line react/require-optimization
+class RxTable extends React.Component {
 
   static Cell = Table.Cell
 

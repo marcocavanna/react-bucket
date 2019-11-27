@@ -16,8 +16,8 @@ const FormikCheckboxComponent = ({ state, meta, rest: rawRest }) => {
   return (
     <Checkbox
       {...rest}
-      {...getFormFieldStateProps(state, meta)}
-      defaultChecked={!!value}
+      {...getFormFieldStateProps(state, meta, rest)}
+      checked={!!value}
     />
   );
 };
@@ -31,7 +31,7 @@ FormikCheckboxComponent.propTypes = {
 const FormikCheckbox = withFormikField({
   Component    : FormikCheckboxComponent,
   handleChange : (formik, { name }, e, { checked }) => {
-    formik.setFieldValue(name, checked);
+    formik.setFieldValue(name, !!checked);
   }
 });
 

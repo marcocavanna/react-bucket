@@ -58,6 +58,9 @@ export default class Checkbox extends Component {
     /** On Change Event Handler */
     onChange: PropTypes.func,
 
+    /** Function to execute on checked */
+    onChecked: PropTypes.func,
+
     /** On Click Event Handler */
     onClick: PropTypes.func,
 
@@ -66,6 +69,9 @@ export default class Checkbox extends Component {
 
     /** On Mouse Up Event Handler */
     onMouseUp: PropTypes.func,
+
+    /** Function to execute on unchecked */
+    onUnchecked: PropTypes.func,
 
     /** Format a checkbox using radio style */
     radio: PropTypes.bool,
@@ -165,11 +171,22 @@ export default class Checkbox extends Component {
       return;
     }
 
-    _.invoke(this.props, 'onChange', e, {
+    const changeHandlerParams = [e, {
       ...this.props,
       checked       : !checked,
       indeterminate : false
-    });
+    }];
+
+    _.invoke(this.props, 'onChange', ...changeHandlerParams);
+
+    /** If will be checked, invoke the onChecked function */
+    if (!checked) {
+      _.invoke(this.props, 'onChecked', ...changeHandlerParams);
+    }
+    /** Else, invoke the onUnchecked handler */
+    else {
+      _.invoke(this.props, 'onUnchecked', ...changeHandlerParams);
+    }
 
     this.trySetState({ checked: !checked, indeterminate: false });
   }

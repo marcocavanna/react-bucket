@@ -13,7 +13,7 @@ export interface ButtonProps extends StrictButtonProps {
   [key: string]: any
 }
 
-export interface StrictButtonProps {
+export interface StrictButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /** An element used to render */
   as?: any,
 

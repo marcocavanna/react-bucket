@@ -42,6 +42,9 @@ class Modal extends Component {
     /** An element used to render the Component */
     as: customPropTypes.as,
 
+    /** Autosized Width */
+    autosized: PropTypes.bool,
+
     /** Reduce Modal graphic */
     basic: PropTypes.bool,
 
@@ -283,6 +286,7 @@ class Modal extends Component {
     /** Get Content Props */
     const {
       actions,
+      autosized,
       basic,
       children,
       className,
@@ -306,6 +310,7 @@ class Modal extends Component {
       classByKey(basic, 'is-basic'),
       classByKey(this.legacy, 'is-legacy'),
       classByKey(scrolling, 'is-scrolling'),
+      classByKey(autosized, 'is-autosized'),
       className
     );
 

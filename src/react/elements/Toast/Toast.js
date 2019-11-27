@@ -14,7 +14,6 @@ import ToastHeader from './ToastHeader';
 import ToastContent from './ToastContent';
 
 import Icon from '../Icon';
-import Button from '../Button';
 
 function Toast(props) {
 

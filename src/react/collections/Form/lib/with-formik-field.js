@@ -77,11 +77,11 @@ const withFormikField = ({
   return (
     <Component
       state={{
-        hasMessages: error || success || warning,
-        error,
-        message,
-        success,
-        warning,
+        hasMessages : error || success || warning || rest.error || rest.success || rest.warning,
+        error       : error || rest.error,
+        message     : message || rest.messages,
+        success     : success || rest.success,
+        warning     : warning || rest.warning,
         isSubmitting
       }}
       meta={meta}

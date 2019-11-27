@@ -43,6 +43,9 @@ export interface StrictCheckboxProps extends StrictFieldProps {
   /** On Change Event Handler */
   onChange: (e: React.SyntheticEvent, props: StrictCheckboxProps) => void,
 
+  /** Function to execute on checked */
+  onChecked: (e: React.SyntheticEvent, props: StrictCheckboxProps) => void
+
   /** On Click Event Handler */
   onClick: (e: React.SyntheticEvent, props: StrictCheckboxProps) => void,
 
@@ -51,6 +54,9 @@ export interface StrictCheckboxProps extends StrictFieldProps {
 
   /** On Mouse Up Event Handler */
   onMouseUp: (e: React.SyntheticEvent, props: StrictCheckboxProps) => void,
+
+  /** Function to execute on unchecked */
+  onUnchecked: (e: React.SyntheticEvent, props: StrictCheckboxProps) => void
 
   /** Format a checkbox using radio style */
   radio: boolean,

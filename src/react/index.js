@@ -9,6 +9,8 @@ export { default as Ref } from './addons/Ref';
 /**
  * Collections Export
  */
+export { default as DayPicker } from './collections/DayPicker';
+
 export { default as DropdownMenu } from './collections/DropdownMenu';
 
 export { default as Form } from './collections/Form';
@@ -58,6 +60,8 @@ export { default as Label } from './elements/Label';
 export { default as Loader } from './elements/Loader';
 
 export { default as Panel } from './elements/Panel';
+
+export { default as Progress } from './elements/Progress';
 
 export { default as Select } from './elements/Select';
 

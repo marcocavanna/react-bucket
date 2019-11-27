@@ -221,6 +221,10 @@
     to mobile resolution
     On Phone, modals are full width/height
 ******/
+.modals > .modal.is-autosized {
+  width: auto !important;
+}
+
 .modals {
   padding: 0;
 

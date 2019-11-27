@@ -1,6 +1,9 @@
 import React, { PureComponent, createRef } from 'react';
 import PropTypes from 'prop-types';
 
+import InputMask from 'react-input-mask';
+
+import { isValidString } from '@appbuckets/rabbit';
 import _ from 'lodash';
 
 import {
@@ -15,12 +18,20 @@ import Field from '../Field';
 
 class Input extends PureComponent {
 
-  /**
-   * Define Component PropTypes
-   */
+  /** Define Component PropTypes */
   static propTypes = {
+
+    /** Show Mask on Maskered Input */
+    alwaysShowMask: PropTypes.bool,
+
     /** Disabled style */
     disabled: PropTypes.bool,
+
+    /** Mask the Input Field */
+    mask: PropTypes.string,
+
+    /** Char to use while Masking */
+    maskChar: PropTypes.string,
 
     /** Set the Field as Required */
     required: PropTypes.bool,
@@ -32,16 +43,12 @@ class Input extends PureComponent {
     type: PropTypes.string
   }
 
-  /**
-   * Set Default Property
-   */
+  /** Set Default Property */
   static defaultProps = {
     type: 'text'
   }
 
-  /**
-   * Create Input Ref
-   */
+  /** Create Input Ref */
   inputRef = createRef()
 
   /**
@@ -99,12 +106,31 @@ class Input extends PureComponent {
     ];
   }
 
-  /**
-   * Render Component Function
-   */
+  /** Render Input Component */
+  renderInput(rest, htmlInputProps) {
+    /** Check if Input is Maskered */
+    const { mask, maskChar, alwaysShowMask, type } = this.props;
+
+    if (isValidString(mask)) {
+      return (
+        <InputMask
+          {...rest}
+          type={type || 'text'}
+          alwaysShowMask={alwaysShowMask}
+          mask={mask}
+          maskChar={maskChar}
+          {...htmlInputProps}
+        />
+      );
+    }
+
+    return <input {...rest} type={type || 'text'} {...htmlInputProps} />;
+  }
+
+  /** Render Component Function */
   render() {
 
-    const { disabled, required, type } = this.props;
+    const { disabled, required } = this.props;
 
     const [
       htmlInputProps,
@@ -122,7 +148,7 @@ class Input extends PureComponent {
 
     return (
       <Field {...fieldProps} form input as={ElementType}>
-        <input {...rest} type={type || 'text'} {...htmlInputProps} />
+        {this.renderInput(rest, htmlInputProps)}
       </Field>
     );
   }

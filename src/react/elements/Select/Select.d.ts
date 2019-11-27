@@ -1,13 +1,15 @@
 import * as React from 'react'
 import * as ReactSelect from 'react-select';
 
+import { Props as ReactSelectProps } from 'react-select';
+
 import { StrictFieldProps } from '../Field';
 
 export interface SelectProps extends StrictSelectProps {
   [key: string]: any
 }
 
-export interface StrictSelectProps extends StrictFieldProps {
+export interface StrictSelectProps extends StrictFieldProps, ReactSelectProps {
   /** Set the Select as Async Type */
   async?: boolean
 

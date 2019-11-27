@@ -20,6 +20,9 @@ export interface StrictModalProps {
   /** Shorthand Properties for Modal Actions */
   actions?: ButtonProps[],
 
+  /** Autosized Width */
+  autosized?: boolean
+
   /** Reduce Modal graphic */
   basic?: boolean,
 
