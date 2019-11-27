@@ -37,7 +37,7 @@ function HeroButton(props) {
   const rest = getUnhandledProps(HeroButton, props);
   const ElementType = getElementType(HeroButton, props);
 
-  const IconElement = icon && Icon.create(icon);
+  const IconElement = icon && Icon.create(icon, { autoGenerateKey: false });
 
   const handleClick = (e) => {
     if (disabled) {

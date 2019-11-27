@@ -47,10 +47,10 @@ function Panel(props) {
   const ElementType = getElementType(Panel, props);
 
   const panelHeaderElement = header || subheader || icon
-    ? PanelHeader.create({ header, subheader, icon })
+    ? PanelHeader.create({ header, subheader, icon }, { autoGenerateKey: false })
     : null;
 
-  const panelBodyElement = PanelBody.create({ content });
+  const panelBodyElement = PanelBody.create({ content }, { autoGenerateKey: false });
 
   return (
     <ElementType {...rest} className={classes}>

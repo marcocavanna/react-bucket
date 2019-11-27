@@ -58,7 +58,7 @@ function TableCell(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {icon ? Icon.create(icon) : null}
+      {icon ? Icon.create(icon, { autoGenerateKey: false }) : null}
       {content}
     </ElementType>
   );

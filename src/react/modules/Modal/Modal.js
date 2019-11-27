@@ -322,8 +322,9 @@ class Modal extends Component {
     const closeIconName = closeIcon === true ? 'times' : closeIcon;
     const closeIconElement = !!closeIcon && Icon
       .create(closeIconName, {
-        overrideProps : this.handleIconOverrides,
-        defaultProps  : { className: 'modal-close' }
+        autoGenerateKey : false,
+        overrideProps   : this.handleIconOverrides,
+        defaultProps    : { className: 'modal-close' }
       });
 
     return (
@@ -337,7 +338,9 @@ class Modal extends Component {
             <React.Fragment>
               {ModalHeader.create(header, { autoGenerateKey: false })}
               {ModalContent.create(content, { autoGenerateKey: false })}
-              {ModalActions.create(actions, { overrideProps: this.handleActionsOverrides })}
+              {ModalActions.create(
+                actions, { autoGenerateKey: false, overrideProps: this.handleActionsOverrides }
+              )}
             </React.Fragment>
           ) : (
             typeof children === 'function'

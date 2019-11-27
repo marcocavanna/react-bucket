@@ -69,8 +69,8 @@ function Toast(props) {
     );
   }
 
-  const headerElement = header && ToastHeader.create(header);
-  const contentElement = content && ToastContent.create(content);
+  const headerElement = header && ToastHeader.create(header, { autoGenerateKey: false });
+  const contentElement = content && ToastContent.create(content, { autoGenerateKey: false });
 
   const dimissIconName = typeof dismissable === 'string' ? dismissable : 'times';
 

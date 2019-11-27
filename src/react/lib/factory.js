@@ -96,6 +96,16 @@ export function createShorthand(Component, mapValueToProps, val, options = {}) {
     const { childKey } = props;
     const { autoGenerateKey = true } = options;
 
+    /** Show a warning for undefined autoGenerateKey Props */
+    if (process.env.NODE_ENV === 'development' && typeof options.autoGenerateKey !== 'boolean') {
+      // eslint-disable-next-line no-console
+      console.warn([
+        'An undefined autoGenerateKey options has been found.',
+        ' Also if autoGenerateKey is precalculated to true value',
+        ' it is a best practice to define it to avoid error'
+      ].join(' '));
+    }
+
     if (!_.isNil(childKey)) {
       // apply and consume the childKey
       props.key = typeof childKey === 'function' ? childKey(props) : childKey;

@@ -37,9 +37,9 @@ function Hero(props) {
   const rest = getUnhandledProps(Hero, props);
   const ElementType = getElementType(Hero, props);
 
-  const HeaderElement = header && HeroHeader.create(header);
-  const ContentElement = content && HeroContent.create(content);
-  const ToolsElement = tools && HeroTools.create(tools);
+  const HeaderElement = header && HeroHeader.create(header, { autoGenerateKey: false });
+  const ContentElement = content && HeroContent.create(content, { autoGenerateKey: false });
+  const ToolsElement = tools && HeroTools.create(tools, { autoGenerateKey: false });
   const IconElement = heroIcon && (
     <div className='hero-icon'>
       <Icon name={heroIcon} />

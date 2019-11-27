@@ -60,7 +60,7 @@ function Item(props) {
           ? children
           : (header || content) && <ItemContent content={content} header={header} />
       }
-      {tools && ItemTools.create(tools)}
+      {tools && ItemTools.create(tools, { autoGenerateKey: false })}
     </ElementType>
   );
 

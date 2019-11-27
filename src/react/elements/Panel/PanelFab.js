@@ -30,7 +30,8 @@ function PanelFab(props) {
         !childrenUtils.isNil(children)
           ? children
           : icon && Button.create(
-            { fab: true, icon, disabled, color, onClick: onFabClick, primary }
+            { fab: true, icon, disabled, color, onClick: onFabClick, primary },
+            { autoGenerateKey: false }
           )
       }
     </ElementType>

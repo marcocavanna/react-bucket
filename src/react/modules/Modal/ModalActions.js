@@ -47,7 +47,9 @@ function ModalActions(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {_.map(actions, action => Button.create(action, { overrideProps: handleButtonOverrides }))}
+      {_.map(actions, action => Button.create(
+        action, { autoGenerateKey: false, overrideProps: handleButtonOverrides }
+      ))}
     </ElementType>
   );
 

@@ -75,7 +75,8 @@ function DropdownMenu(props) {
             {
               Array.isArray(items)
                 ? items.map(item => MenuItem.create(item, {
-                  overrideProps: ({ onClick, ...itemRest }) => ({
+                  autoGenerateKey : true,
+                  overrideProps   : ({ onClick, ...itemRest }) => ({
                     onClick: (...args) => {
                       if (typeof onClick === 'function') {
                         onClick(...args);

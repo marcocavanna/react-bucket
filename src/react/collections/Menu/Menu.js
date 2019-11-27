@@ -80,7 +80,8 @@ class Menu extends Component {
 
     return _.map(items, (item, index) => (
       MenuItem.create(item, {
-        defaultProps: {
+        autoGenerateKey : true,
+        defaultProps    : {
           active: parseInt(activeIndex, 10) === index,
           index
         },

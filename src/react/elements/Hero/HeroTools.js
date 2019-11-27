@@ -30,7 +30,7 @@ function HeroTools(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {tools.map(tool => Button.create(tool))}
+      {tools.map(tool => Button.create(tool, { autoGenerateKey: true }))}
     </ElementType>
   );
 

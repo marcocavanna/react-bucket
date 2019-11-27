@@ -97,7 +97,8 @@ class Tabs extends Component {
     /** Else, render all tabs */
     return panels.map(({ panel }, index) => (
       TabPanel.create(panel, {
-        overrideProps: {
+        autoGenerateKey : true,
+        overrideProps   : {
           active: index === activeIndex
         }
       })

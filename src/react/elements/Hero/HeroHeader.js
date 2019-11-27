@@ -37,7 +37,7 @@ function HeroHeader(props) {
     );
   }
 
-  const IconElement = icon && Icon.create(icon);
+  const IconElement = icon && Icon.create(icon, { autoGenerateKey: false });
 
   return (
     <ElementType {...rest} className={classes}>
