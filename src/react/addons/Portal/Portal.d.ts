@@ -7,7 +7,7 @@ export interface PortalProps extends StrictPortalProps {
 
 export interface StrictPortalProps {
   /** Primary content. */
-  children?: React.ReactNode
+  children?: React.ReactNode,
 
   /** Controls whether or not the portal should close on a click outside. */
   closeOnDocumentClick?: boolean

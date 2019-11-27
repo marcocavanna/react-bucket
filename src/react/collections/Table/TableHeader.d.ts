@@ -15,7 +15,7 @@ export interface StrictTableHeaderProps {
   className?: string,
 
   /** Content Shordhand */
-  content?: any
+  content?: React.ReactNode,
 
 }
 

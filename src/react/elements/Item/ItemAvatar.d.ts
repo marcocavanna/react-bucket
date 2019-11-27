@@ -23,7 +23,7 @@ export interface StrictItemAvatarProps {
   color?: AppBucketsCOLORS,
 
   /** Set Avatar Placeholder */
-  content?: string,
+  content?: React.ReactNode,
 
   /** Set Danger Style */
   danger?: boolean,

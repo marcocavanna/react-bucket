@@ -23,7 +23,7 @@ export interface StrictLoaderProps {
   centered?: boolean,
 
   /** Content Property */
-  content?: any,
+  content?: React.ReactNode,
 
   /** Inline Loader */
   inline?: boolean,

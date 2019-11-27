@@ -14,7 +14,7 @@ export interface ItemProps extends StrictItemProps {
 export interface StrictItemProps {
   /** Active State */
   active?: boolean | 'primary' | 'secondary' | 'success' | 'danger' | 'warning',
-  
+
   /** An element used to render */
   as?: any,
 
@@ -28,7 +28,7 @@ export interface StrictItemProps {
   className?: string,
 
   /** Content shorthand */
-  content?: any,
+  content?: React.ReactNode,
 
   /** Disabled State */
   disabled?: boolean

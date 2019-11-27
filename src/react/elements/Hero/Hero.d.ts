@@ -23,7 +23,7 @@ export interface StrictHeroProps {
   className?: string,
 
   /** Content Shorthand */
-  content?: React.ReactNode
+  content?: React.ReactNode,
 
   /** Header shorthand */
   header?: React.ReactNode,

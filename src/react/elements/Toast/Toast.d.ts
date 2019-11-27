@@ -20,7 +20,7 @@ export interface StrictToastProps {
   className?: string,
 
   /** Content shorthand */
-  content?: any
+  content?: React.ReactNode,
 
   /** Set if toast is dismissable, using a string to define icon */
   dismissable?: boolean | ReactBucketICON

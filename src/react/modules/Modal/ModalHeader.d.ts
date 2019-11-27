@@ -15,7 +15,7 @@ export interface StrictModalHeaderProps {
   className?: string,
 
   /** Content Shorthand */
-  content?: React.ReactNode
+  content?: React.ReactNode,
 }
 
 interface ModalHeaderComponent extends React.StatelessComponent<ModalHeaderProps> { }

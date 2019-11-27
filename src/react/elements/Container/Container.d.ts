@@ -39,7 +39,7 @@ export interface StrictContainerProps {
   className?: string,
 
   /** Content Shorthand */
-  content: any,
+  content: React.ReactNode,
 
   /** Box Shadow */
   dpElevation: DPELEVATION,

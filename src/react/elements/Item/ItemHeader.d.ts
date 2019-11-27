@@ -17,7 +17,7 @@ export interface StrictItemHeaderProps {
   className?: string,
 
   /** Content Shorthand */
-  content?: any,
+  content?: React.ReactNode,
 
   /** Icon Shorthand */
   icon?: ReactBucketICON

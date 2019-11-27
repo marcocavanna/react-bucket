@@ -21,7 +21,7 @@ export interface StrictTableCellProps {
   className?: string,
 
   /** Cell content Shorthand */
-  content?: any,
+  content?: React.ReactNode,
 
   /** Disable Cell */
   disabled?: boolean,

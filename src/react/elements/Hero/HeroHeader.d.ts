@@ -17,7 +17,7 @@ export interface StrictHeroHeaderProps {
   className?: string,
 
   /** Content shorthand */
-  content?: React.ReactNode
+  content?: React.ReactNode,
 
   /** Icon element */
   icon?: ReactBucketICON

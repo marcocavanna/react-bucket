@@ -24,7 +24,7 @@ export interface StrictImageProps {
   className?: string,
 
   /** Content Shorthand */
-  content?: any,
+  content?: React.ReactNode,
 
   /** Dimmer Shorthand */
   dimmer?: any,

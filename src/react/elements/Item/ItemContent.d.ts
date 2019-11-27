@@ -15,7 +15,7 @@ export interface StrictItemContentProps {
   className?: string,
 
   /** Content shorthand */
-  content?: any,
+  content?: React.ReactNode,
 
   /** Header Shorthand */
   header?: string,

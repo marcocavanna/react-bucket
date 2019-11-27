@@ -18,7 +18,7 @@ export interface StrictTabPanelProps {
   className?: string,
 
   /** Content shorthand */
-  content?: React.ReactNode
+  content?: React.ReactNode,
 
   /** Loading state for tab panel */
   loading: boolean

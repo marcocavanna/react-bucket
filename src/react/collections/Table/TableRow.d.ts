@@ -18,7 +18,7 @@ export interface StrictTableRowProps {
   cells: string[],
 
   /** Children props */
-  children: React.ReactNode,
+  children?: React.ReactNode,
 
   /** User defined Classes */
   className: string,

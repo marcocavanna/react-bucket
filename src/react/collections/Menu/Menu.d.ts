@@ -25,7 +25,7 @@ export interface StrictMenuProps {
   className?: string,
 
   /** Content Shorthand */
-  content?: any,
+  content?: React.ReactNode,
 
   /** Inital Active Index value */
   defaultActiveIndex?: number | string,

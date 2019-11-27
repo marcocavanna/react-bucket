@@ -20,7 +20,7 @@ export interface StrictModalActionsProps {
   className?: string,
 
   /** Content Shorthand */
-  content?: React.ReactNode
+  content?: React.ReactNode,
 
   /** On action Click handler */
   onActionClick?: (e: React.SyntheticEvent, props: ButtonProps) => void

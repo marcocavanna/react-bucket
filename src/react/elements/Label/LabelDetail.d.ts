@@ -15,7 +15,7 @@ export interface StrictLabelDetailProps {
   className?: string,
 
   /** Label Content */
-  content?: string
+  content?: React.ReactNode,
 
 }
 

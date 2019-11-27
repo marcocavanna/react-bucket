@@ -15,7 +15,7 @@ export interface StrictPopupHeaderProps {
   className?: string,
 
   /** Content Shorthand */
-  content?: any
+  content?: React.ReactNode,
 
 }
 

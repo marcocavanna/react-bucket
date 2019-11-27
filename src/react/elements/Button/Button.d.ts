@@ -26,7 +26,7 @@ export interface StrictButtonProps extends React.ButtonHTMLAttributes<HTMLButton
   color?: AppBucketsCOLORS,
 
   /** Button Content Property */
-  content?: any,
+  content?: React.ReactNode,
 
   /** Danger Color */
   danger?: boolean,

@@ -6,7 +6,7 @@ export interface RefForwardProps extends StrictRefForwardProps {
 
 export interface StrictRefForwardProps {
   /** Primary content. */
-  children?: React.ReactElement<any>
+  children?: React.ReactNode,
 
   /**
    * Called when a child component will be mounted or updated.

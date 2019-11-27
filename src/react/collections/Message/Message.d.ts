@@ -22,13 +22,13 @@ export interface StrictMessageProps {
   as?: any
 
   /** Primary content. */
-  children?: React.ReactNode
+  children?: React.ReactNode,
 
   /** Additional classes. */
   className?: string
 
   /** Shorthand for primary content. */
-  content?: AppBucketsShorthandContent
+  content?: React.ReactNode,
 
   /** A message may be formatted to display a negative message. Same as `negative`. */
   error?: boolean

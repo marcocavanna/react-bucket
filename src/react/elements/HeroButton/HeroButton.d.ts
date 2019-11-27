@@ -17,7 +17,7 @@ export interface StrictHeroButtonProps {
   className?: string,
 
   /** Content Shorthand */
-  content?: string
+  content?: React.ReactNode,
 
   /** Disable Button */
   disabled?: boolean

@@ -15,7 +15,7 @@ export interface StrictHeroContentProps {
   className?: string,
 
   /** Content Shorthand */
-  content?: React.ReactNode
+  content?: React.ReactNode,
 }
 
 interface HeroContentComponent extends React.StatelessComponent<HeroContentProps> { }

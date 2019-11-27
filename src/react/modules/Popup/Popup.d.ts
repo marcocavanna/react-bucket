@@ -25,7 +25,7 @@ export interface StrictPopupProps extends StrictPortalProps {
   className?: string,
 
   /** Content Shorthand */
-  content?: any,
+  content?: React.ReactNode,
 
   /** Disabled State */
   disabled?: boolean,

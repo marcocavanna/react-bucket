@@ -19,7 +19,7 @@ export interface StrictEmptyContentProps extends StrictContainerProps {
   color?: AppBucketsCOLORS
 
   /** Content Shorthand */
-  content?: React.ReactNode
+  content?: React.ReactNode,
 
   /** Header content */
   header?: string

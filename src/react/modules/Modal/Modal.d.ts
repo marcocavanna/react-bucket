@@ -45,7 +45,7 @@ export interface StrictModalProps {
   closeOnDocumentClick?: boolean,
 
   /** Content Shorthand */
-  content?: any,
+  content?: React.ReactNode,
 
   /** Initial open value */
   defaultOpen?: boolean,

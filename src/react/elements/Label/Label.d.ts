@@ -23,7 +23,7 @@ export interface StrictLabelProps {
   color?: AppBucketsCOLORS,
 
   /** Content Shorthand */
-  content?: any,
+  content?: React.ReactNode,
 
   /** Detail Short hand */
   detail?: any,

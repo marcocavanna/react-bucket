@@ -14,13 +14,13 @@ export interface StrictDimmerInnerProps {
   active?: boolean
 
   /** Primary content. */
-  children?: React.ReactNode
+  children?: React.ReactNode,
 
   /** Additional classes. */
   className?: string
 
   /** Shorthand for primary content. */
-  content?: AppBucketsShorthandContent
+  content?: React.ReactNode,
 
   /** A disabled dimmer cannot be activated */
   disabled?: boolean

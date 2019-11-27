@@ -10,13 +10,13 @@ export interface StrictMessageItemProps {
   as?: any
 
   /** Primary content. */
-  children?: React.ReactNode
+  children?: React.ReactNode,
 
   /** Additional classes. */
   className?: string
 
   /** Shorthand for primary content. */
-  content?: AppBucketsShorthandContent
+  content?: React.ReactNode,
 }
 
 declare const MessageItem: React.StatelessComponent<MessageItemProps>

@@ -29,7 +29,7 @@ export interface StrictFieldProps {
   className?: string,
 
   /** Content Element */
-  content?: any
+  content?: React.ReactNode,
 
   /** ClassName for Content Element */
   contentClassName?: string

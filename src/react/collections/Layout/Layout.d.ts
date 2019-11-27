@@ -15,10 +15,10 @@ export interface StrictLayoutProps {
 
   /** Custom background color */
   background?: AppBucketsCOLORS,
-  
+
   /** Children Node */
   children?: React.ReactNode,
-  
+
   /** User defined class */
   className?: string,
 

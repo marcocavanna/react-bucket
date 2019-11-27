@@ -15,7 +15,7 @@ export interface StrictDividerProps {
   className?: string,
 
   /** Content Property */
-  content?: string,
+  content?: React.ReactNode,
 
   /** Hidden Boolean */
   hidden?: boolean,

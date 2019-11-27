@@ -23,7 +23,7 @@ export interface StrictMenuHeaderProps {
   color: AppBucketsCOLORS,
 
   /** Content ShordHand */
-  content: any,
+  content: React.ReactNode,
 
   /** Disabled State */
   disabled: boolean,
