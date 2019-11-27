@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { AppBucketsSIZE } from '../../generic';
+import { ReactBucketSIZE } from '../../generic';
 
 import { FieldProps } from '../Field';
 
@@ -46,7 +46,7 @@ export interface StrictProgressProps extends FieldProps {
   min?: number
 
   /** Size Variation */
-  size?: AppBucketsSIZE
+  size?: ReactBucketSIZE
 
   /** Set the Progress value */
   value?: number

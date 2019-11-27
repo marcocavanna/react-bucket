@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { AppBucketsSIZE } from '../../generic';
+import { ReactBucketSIZE } from '../../generic';
 
 import PopupHeader from './PopupHeader';
 import PopupContent from './PopupContent';
@@ -81,7 +81,7 @@ export interface StrictPopupProps extends StrictPortalProps {
   popperDependencies?: any[]
 
   /** Size modifier */
-  size?: AppBucketsSIZE
+  size?: ReactBucketSIZE
 
   /** User defined Style */
   style?: Object

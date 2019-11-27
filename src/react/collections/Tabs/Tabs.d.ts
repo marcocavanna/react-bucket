@@ -1,14 +1,14 @@
 import * as React from 'react'
 
-import { AppBucketsCOLUMNWIDTH } from '../../generic';
+import { ReactBucketCOLUMNWIDTH } from '../../generic';
 import { LayoutProps } from '../Layout';
 import { MenuProps } from '../Menu';
 
 import TabPanel from './TabPanel';
 
 interface LayoutTabsProps extends LayoutProps {
-  panelWidth?: AppBucketsCOLUMNWIDTH
-  menuWidth?: AppBucketsCOLUMNWIDTH
+  panelWidth?: ReactBucketCOLUMNWIDTH
+  menuWidth?: ReactBucketCOLUMNWIDTH
 }
 
 export interface TabsProps extends StrictTabsProps {

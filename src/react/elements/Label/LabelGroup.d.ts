@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { AppBucketsSIZE } from '../../generic'
+import { ReactBucketSIZE } from '../../generic'
 
 export interface LabelGroupProps extends StrictLabelGroupProps {
   [key: string]: any
@@ -20,7 +20,7 @@ export interface StrictLabelGroupProps {
   content?: React.ReactNode
 
   /** Size */
-  size?: AppBucketsSIZE
+  size?: ReactBucketSIZE
 
 }
 

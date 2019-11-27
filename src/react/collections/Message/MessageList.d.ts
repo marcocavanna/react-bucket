@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { AppBucketsShorthandCollection } from '../../generic'
+import { ReactBucketShorthandCollection } from '../../generic'
 import { MessageItemProps } from './MessageItem'
 
 export interface MessageListProps extends StrictMessageListProps {
@@ -18,7 +18,7 @@ export interface StrictMessageListProps {
   className?: string
 
   /** Shorthand Message.Items. */
-  items?: AppBucketsShorthandCollection<MessageItemProps>
+  items?: ReactBucketShorthandCollection<MessageItemProps>
 }
 
 declare const MessageList: React.StatelessComponent<MessageListProps>

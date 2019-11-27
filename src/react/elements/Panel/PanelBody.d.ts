@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { AppBucketsCOLORS, AppBucketsALIGN, AppBucketsFONTWEIGHT } from '../../generic'
+import { ReactBucketCOLORS, ReactBucketALIGN, ReactBucketFONTWEIGHT } from '../../generic'
 
 export interface PanelBodyProps extends StrictPanelBodyProps {
   [key: string]: any
@@ -17,16 +17,16 @@ export interface StrictPanelBodyProps {
   className?: string
 
   /** Text Color */
-  color?: AppBucketsCOLORS
+  color?: ReactBucketCOLORS
 
   /** Content */
   content?: React.ReactNode
 
   /** Font weight */
-  fontWeight?: AppBucketsFONTWEIGHT
+  fontWeight?: ReactBucketFONTWEIGHT
 
   /** Text Align */
-  textAlign?: AppBucketsALIGN
+  textAlign?: ReactBucketALIGN
 
 }
 

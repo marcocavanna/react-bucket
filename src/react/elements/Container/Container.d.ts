@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { AppBucketsCOLORS, AppBucketsBREAKPOINTS, AppBucketsALIGN } from '../../generic';
+import { ReactBucketCOLORS, ReactBucketBREAKPOINTS, ReactBucketALIGN } from '../../generic';
 
 declare type DPELEVATION = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12' | '13' | '14' | '15' | '16' | '17' | '18' | '19' | '20' | '21' | '22' | '23' | '24'
 
@@ -15,22 +15,22 @@ export interface StrictContainerProps {
   as?: any
 
   /** Container Background Color */
-  background?: AppBucketsCOLORS
+  background?: ReactBucketCOLORS
 
   /** Display container as Block */
-  block?: boolean | AppBucketsBREAKPOINTS
+  block?: boolean | ReactBucketBREAKPOINTS
 
   /** Display Border Bottom */
-  borderedBottom?: boolean | AppBucketsBREAKPOINTS
+  borderedBottom?: boolean | ReactBucketBREAKPOINTS
 
   /** Display Border Left */
-  borderedLeft?: boolean | AppBucketsBREAKPOINTS
+  borderedLeft?: boolean | ReactBucketBREAKPOINTS
 
   /** Display Border Right */
-  borderedRight?: boolean | AppBucketsBREAKPOINTS
+  borderedRight?: boolean | ReactBucketBREAKPOINTS
 
   /** Display Border Top */
-  borderedTop?: boolean | AppBucketsBREAKPOINTS
+  borderedTop?: boolean | ReactBucketBREAKPOINTS
 
   /** Children Node */
   children?: React.ReactNode
@@ -45,7 +45,7 @@ export interface StrictContainerProps {
   dpElevation?: DPELEVATION
 
   /** Display container as Flex */
-  flex?: boolean | AppBucketsBREAKPOINTS
+  flex?: boolean | ReactBucketBREAKPOINTS
 
   /** Change container font size */
   fontSize?: 'small' | 'normal' | 'large'
@@ -54,13 +54,13 @@ export interface StrictContainerProps {
   fontWeight?: 'light' | 'regular' | 'semi-bold' | 'bold'
 
   /** Hide the container */
-  hidden?: boolean | AppBucketsBREAKPOINTS
+  hidden?: boolean | ReactBucketBREAKPOINTS
 
   /** Display container as Inline */
-  inline?: boolean | AppBucketsBREAKPOINTS
+  inline?: boolean | ReactBucketBREAKPOINTS
 
   /** Display container as Inline Block */
-  inlineBlock?: boolean | AppBucketsBREAKPOINTS
+  inlineBlock?: boolean | ReactBucketBREAKPOINTS
 
   /** Set container Margin */
   margin?: MARGINPADDING
@@ -105,16 +105,16 @@ export interface StrictContainerProps {
   paddingY?: MARGINPADDING
 
   /** Set Text Align */
-  textAlign?: AppBucketsALIGN | 'justify'
+  textAlign?: ReactBucketALIGN | 'justify'
 
   /** Set Text Color */
-  textColor?: AppBucketsCOLORS
+  textColor?: ReactBucketCOLORS
 
   /** Set Text Transform */
   textTransform?: 'capitalize' | 'lowercase' | 'uppercase'
 
   /** Set container as Visible */
-  visible: boolean | AppBucketsBREAKPOINTS
+  visible: boolean | ReactBucketBREAKPOINTS
 
 }
 

@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { AppBucketsCOLORS, AppBucketsSIZE, ReactBucketICON } from '../../generic';
+import { ReactBucketCOLORS, ReactBucketSIZE, ReactBucketICON } from '../../generic';
 
 export interface FieldProps extends StrictFieldProps {
   [key: string]: any
@@ -53,7 +53,7 @@ export interface StrictFieldProps {
   hint?: any
 
   /** The hint color */
-  hintColor?: AppBucketsCOLORS
+  hintColor?: ReactBucketCOLORS
 
   /** Icon Element */
   icon?: ReactBucketICON
@@ -80,7 +80,7 @@ export interface StrictFieldProps {
   required?: boolean
 
   /** Adjust field size */
-  size?: AppBucketsSIZE
+  size?: ReactBucketSIZE
 
   /** Set the Success Style */
   success?: boolean

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { AppBucketsShorthandContent } from '../../generic'
+import { ReactBucketShorthandContent } from '../../generic'
 
 export interface MessageHeaderProps extends StrictMessageHeaderProps {
   [key: string]: any

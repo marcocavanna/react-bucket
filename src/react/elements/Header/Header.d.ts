@@ -3,7 +3,7 @@ import * as React from 'react';
 import Subheader from './HeaderSubheader'
 import Content from './HeaderContent'
 
-import { AppBucketsCOLORS, AppBucketsALIGN, AppBucketsRESPONSIVE, AppBucketsFONTWEIGHT, ReactBucketICON } from '../../generic'
+import { ReactBucketCOLORS, ReactBucketALIGN, ReactBucketRESPONSIVE, ReactBucketFONTWEIGHT, ReactBucketICON } from '../../generic'
 
 export interface HeaderProps extends StrictHeaderProps {
   [key: string]: any
@@ -20,7 +20,7 @@ export interface StrictHeaderProps {
   className?: string
 
   /** Custom Font Color */
-  color?: AppBucketsCOLORS
+  color?: ReactBucketCOLORS
 
   /** Content shorthand */
   content?: React.ReactNode
@@ -41,7 +41,7 @@ export interface StrictHeaderProps {
   subheader?: any
 
   /** Text Alignment */
-  textAlign?: AppBucketsALIGN
+  textAlign?: ReactBucketALIGN
 }
 
 interface HeaderComponent extends React.StatelessComponent<HeaderProps> {

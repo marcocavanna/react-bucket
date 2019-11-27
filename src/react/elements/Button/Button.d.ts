@@ -1,8 +1,8 @@
 import * as React from 'react'
 
 import {
-  AppBucketsCOLORS,
-  AppBucketsSIZE,
+  ReactBucketCOLORS,
+  ReactBucketSIZE,
   ReactBucketICON
 } from '../../generic';
 
@@ -23,7 +23,7 @@ export interface StrictButtonProps extends React.ButtonHTMLAttributes<HTMLButton
   circle?: boolean
 
   /** Button Background Color */
-  color?: AppBucketsCOLORS
+  color?: ReactBucketCOLORS
 
   /** Button Content Property */
   content?: React.ReactNode
@@ -71,7 +71,7 @@ export interface StrictButtonProps extends React.ButtonHTMLAttributes<HTMLButton
   secondary?: boolean
 
   /** Change Button Size */
-  size?: AppBucketsSIZE
+  size?: ReactBucketSIZE
 
   /** Success Color */
   success?: boolean

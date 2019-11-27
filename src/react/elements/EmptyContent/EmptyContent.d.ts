@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { AppBucketsALIGN, AppBucketsCOLORS, ReactBucketICON } from '../../generic';
+import { ReactBucketALIGN, ReactBucketCOLORS, ReactBucketICON } from '../../generic';
 
 import { StrictContainerProps } from '../Container';
 
@@ -16,7 +16,7 @@ export interface StrictEmptyContentProps extends StrictContainerProps {
   className?: string
 
   /** Text Color */
-  color?: AppBucketsCOLORS
+  color?: ReactBucketCOLORS
 
   /** Content Shorthand */
   content?: React.ReactNode
@@ -28,7 +28,7 @@ export interface StrictEmptyContentProps extends StrictContainerProps {
   icon?: ReactBucketICON
 
   /** Text Align */
-  textAlign?: AppBucketsALIGN
+  textAlign?: ReactBucketALIGN
 }
 
 interface EmptyContentComponent extends React.StatelessComponent<EmptyContentProps> { }

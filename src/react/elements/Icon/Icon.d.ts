@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { AppBucketsCOLORS, AppBucketsSIZE, ReactBucketICON } from '../../generic'
+import { ReactBucketCOLORS, ReactBucketSIZE, ReactBucketICON } from '../../generic'
 
 export interface IconProps extends StrictIconProps {
   [key: string]: any
@@ -17,7 +17,7 @@ export interface StrictIconProps {
   className?: string
 
   /** Icon Color */
-  color?: AppBucketsCOLORS
+  color?: ReactBucketCOLORS
 
   /** Set icon as disabled */
   disabled?: boolean
@@ -41,7 +41,7 @@ export interface StrictIconProps {
   rotate?: 90 | 180 | 270 | '90' | '180' | '270'
 
   /** Icon Size */
-  size?: AppBucketsSIZE
+  size?: ReactBucketSIZE
 
   /** Animate an Icon using Spin */
   spin?: boolean

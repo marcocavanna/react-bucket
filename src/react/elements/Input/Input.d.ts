@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { AppBucketsSIZE } from '../../generic'
+import { ReactBucketSIZE } from '../../generic'
 
 import { StrictFieldProps } from '../Field';
 

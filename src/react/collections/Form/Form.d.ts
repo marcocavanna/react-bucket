@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { AppBucketsSIZE } from '../../generic';
+import { ReactBucketSIZE } from '../../generic';
 
 import Input from '../../elements/Input';
 import FormikCheckbox from './FormikCheckbox';
@@ -32,7 +32,7 @@ export interface StrictFormProps extends React.DetailedHTMLProps<React.FormHTMLA
   loading?: bool
 
   /** Change form size */
-  size?: AppBucketsSIZE
+  size?: ReactBucketSIZE
 
   /** Automatically show Success */
   success?: bool

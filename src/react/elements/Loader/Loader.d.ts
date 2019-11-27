@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { AppBucketsSIZE } from '../../generic'
+import { ReactBucketSIZE } from '../../generic'
 
 export interface LoaderProps extends StrictLoaderProps {
   [key: string]: any
@@ -32,7 +32,7 @@ export interface StrictLoaderProps {
   inverted?: boolean
 
   /** Size Style */
-  size?: AppBucketsSIZE
+  size?: ReactBucketSIZE
 
 }
 

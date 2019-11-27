@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { AppBucketsCOLORS, ReactBucketICON } from '../../generic'
+import { ReactBucketCOLORS, ReactBucketICON } from '../../generic'
 
 import LabelDetail from './LabelDetail'
 import LabelGroup from './LabelGroup'
@@ -20,7 +20,7 @@ export interface StrictLabelProps {
   className?: string
 
   /** Color Content */
-  color?: AppBucketsCOLORS
+  color?: ReactBucketCOLORS
 
   /** Content Shorthand */
   content?: React.ReactNode

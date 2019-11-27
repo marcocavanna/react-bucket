@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { AppBucketsALIGN, AppBucketsCOLORS, ReactBucketICON } from '../../generic'
+import { ReactBucketALIGN, ReactBucketCOLORS, ReactBucketICON } from '../../generic'
 
 import PanelFab, { PanelFabProps } from './PanelFab';
 import PanelHeader from './PanelHeader'
@@ -21,7 +21,7 @@ export interface StrictPanelProps {
   className?: string
 
   /** Text Color */
-  color?: AppBucketsCOLORS
+  color?: ReactBucketCOLORS
 
   /** Content Shorthand */
   content?: React.ReactNode
@@ -48,7 +48,7 @@ export interface StrictPanelProps {
   table?: boolean
 
   /** Text Align */
-  textAlign?: AppBucketsALIGN
+  textAlign?: ReactBucketALIGN
 
 }
 

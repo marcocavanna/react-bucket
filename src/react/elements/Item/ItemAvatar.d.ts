@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { AppBucketsCOLORS, AppBucketsSIZE, ReactBucketICON } from '../../generic'
+import { ReactBucketCOLORS, ReactBucketSIZE, ReactBucketICON } from '../../generic'
 
 export interface ItemAvatarProps extends StrictItemAvatarProps {
   [key: string]: any
@@ -20,7 +20,7 @@ export interface StrictItemAvatarProps {
   className?: string
 
   /** Set Avatar Color */
-  color?: AppBucketsCOLORS
+  color?: ReactBucketCOLORS
 
   /** Set Avatar Placeholder */
   content?: React.ReactNode
@@ -50,7 +50,7 @@ export interface StrictItemAvatarProps {
   secondary?: boolean
 
   /** Change Avatar Size */
-  size?: AppBucketsSIZE
+  size?: ReactBucketSIZE
 
   /** Set Success Style */
   success?: boolean

@@ -1,10 +1,10 @@
 import * as React from 'react'
 
 import {
-  AppBucketsShorthandCollection,
-  AppBucketsShorthandContent,
-  AppBucketsShorthandItem,
-  AppBucketsSIZE,
+  ReactBucketShorthandCollection,
+  ReactBucketShorthandContent,
+  ReactBucketShorthandItem,
+  ReactBucketSIZE,
   ReactBucketICON
 } from '../../generic'
 
@@ -34,7 +34,7 @@ export interface StrictMessageProps {
   error?: boolean
 
   /** Shorthand for MessageHeader. */
-  header?: AppBucketsShorthandItem<MessageHeaderProps>
+  header?: ReactBucketShorthandItem<MessageHeaderProps>
 
   /** Add an icon by icon name or pass an <Icon /.> */
   icon?: ReactBucketICON | boolean
@@ -43,7 +43,7 @@ export interface StrictMessageProps {
   info?: boolean
 
   /** Array shorthand items for the MessageList. Mutually exclusive with children. */
-  list?: AppBucketsShorthandCollection<MessageItemProps>
+  list?: ReactBucketShorthandCollection<MessageItemProps>
 
   /**
    * A message that the user can choose to hide.
@@ -61,7 +61,7 @@ export interface StrictMessageProps {
   secondary?: boolean
 
   /** A message can have different sizes. */
-  size?: AppBucketsSIZE
+  size?: ReactBucketSIZE
 
   /** A message may be formatted to display a positive message.  Same as `positive`. */
   success?: boolean

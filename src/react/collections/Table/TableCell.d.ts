@@ -1,8 +1,8 @@
 import * as React from 'react'
 
 import {
-  AppBucketsALIGN,
-  AppBucketsVERTICALALIGN,
+  ReactBucketALIGN,
+  ReactBucketVERTICALALIGN,
   ReactBucketICON
 } from '../../generic'
 
@@ -39,10 +39,10 @@ export interface StrictTableCellProps {
   success?: boolean
 
   /** Set Text align */
-  textAlign?: AppBucketsALIGN
+  textAlign?: ReactBucketALIGN
 
   /** Set Cell Vertical Align */
-  verticalAlign?: AppBucketsVERTICALALIGN
+  verticalAlign?: ReactBucketVERTICALALIGN
 
   /** Set Cell as Warning */
   warning?: boolean
