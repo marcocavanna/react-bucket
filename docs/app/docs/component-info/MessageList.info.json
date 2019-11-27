@@ -2,7 +2,7 @@
   "displayName": "MessageList",
   "props": [
     {
-      "type": "custom",
+      "type": "elementType",
       "required": false,
       "description": [
         "An element type to render as (string or function)."

@@ -2,7 +2,7 @@
   "displayName": "Header",
   "props": [
     {
-      "type": "custom",
+      "type": "elementType",
       "required": false,
       "description": [
         "An element used to render the component"
@@ -38,7 +38,7 @@
       "name": "color"
     },
     {
-      "type": "any",
+      "type": "node",
       "required": false,
       "description": [
         "Shorthand Properties for Content"

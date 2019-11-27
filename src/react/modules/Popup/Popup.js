@@ -90,7 +90,7 @@ class Popup extends PureComponent {
     popperModifiers: PropTypes.object,
 
     /** Position for the popover. */
-    position: PropTypes.oneOf(positions),
+    position: PropTypes.string,
 
     /** Size modifier */
     size: customPropTypes.size,

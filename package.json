@@ -130,6 +130,7 @@
     "postcss-single-line": "^1.0.0",
     "puppeteer": "^2.0.0",
     "react-docgen": "^4.1.1",
+    "react-docgen-external-proptypes-handler": "^2.0.0",
     "recast": "^0.18.5",
     "rimraf": "^2.6.3",
     "sass": "^1.23.7",

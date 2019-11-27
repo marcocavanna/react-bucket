@@ -2,7 +2,7 @@
   "displayName": "MessageHeader",
   "props": [
     {
-      "type": "custom",
+      "type": "elementType",
       "required": false,
       "description": [
         "An element type to render as (string or function)."
@@ -29,7 +29,7 @@
       "name": "className"
     },
     {
-      "type": "any",
+      "type": "node",
       "required": false,
       "description": [
         "Shorthand for primary content."

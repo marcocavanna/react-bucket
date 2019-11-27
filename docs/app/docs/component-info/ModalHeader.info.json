@@ -2,13 +2,22 @@
   "displayName": "ModalHeader",
   "props": [
     {
-      "type": "custom",
+      "type": "elementType",
       "required": false,
       "description": [
         "An element used to render the component"
       ],
       "tags": [],
       "name": "as"
+    },
+    {
+      "type": "node",
+      "required": false,
+      "description": [
+        "Primary content."
+      ],
+      "tags": [],
+      "name": "children"
     },
     {
       "type": "string",

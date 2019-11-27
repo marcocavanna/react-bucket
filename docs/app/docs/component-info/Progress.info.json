@@ -1,0 +1,154 @@
+{
+  "displayName": "Progress",
+  "props": [
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Show an Active White Shadow"
+      ],
+      "tags": [],
+      "name": "active"
+    },
+    {
+      "type": "elementType",
+      "required": false,
+      "description": [
+        "An element used to render the Component"
+      ],
+      "tags": [],
+      "name": "as"
+    },
+    {
+      "type": "string",
+      "required": false,
+      "description": [
+        "User defined classes"
+      ],
+      "tags": [],
+      "name": "className"
+    },
+    {
+      "type": "enum",
+      "required": false,
+      "description": [
+        "Set Progress Direction"
+      ],
+      "defaultValue": "'left'",
+      "tags": [],
+      "value": [
+        "left",
+        "right"
+      ],
+      "name": "direction"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Remove Colors"
+      ],
+      "tags": [],
+      "name": "discrete"
+    },
+    {
+      "type": "func",
+      "required": false,
+      "description": [
+        "Format Limits"
+      ],
+      "defaultValue": "limit => limit",
+      "tags": [],
+      "name": "formatLimits"
+    },
+    {
+      "type": "bool|enum|func",
+      "required": false,
+      "description": [
+        "Show indicator for current value"
+      ],
+      "tags": [],
+      "value": [
+        "percent",
+        "steps"
+      ],
+      "name": "indicator"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Invert the Bar Color logic, max value will be danger colored"
+      ],
+      "tags": [],
+      "name": "inverted"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Show Progress Limits"
+      ],
+      "tags": [],
+      "name": "limits"
+    },
+    {
+      "type": "number",
+      "required": false,
+      "description": [
+        "Maximum Bar Value"
+      ],
+      "defaultValue": "100",
+      "tags": [],
+      "name": "max"
+    },
+    {
+      "type": "number",
+      "required": false,
+      "description": [
+        "Minimum Bar Value"
+      ],
+      "defaultValue": "0",
+      "tags": [],
+      "name": "min"
+    },
+    {
+      "type": "custom",
+      "required": false,
+      "description": [
+        "Size Variation"
+      ],
+      "tags": [],
+      "name": "size"
+    },
+    {
+      "type": "number",
+      "required": false,
+      "description": [
+        "Bar Value"
+      ],
+      "defaultValue": "0",
+      "tags": [],
+      "name": "value"
+    }
+  ],
+  "constructorName": "Progress",
+  "type": "element",
+  "isParent": true,
+  "isChild": false,
+  "parentDisplayName": null,
+  "subcomponentName": null,
+  "subcomponents": [],
+  "apiPath": "Progress",
+  "componentClassName": "progress",
+  "docblock": {
+    "tags": [],
+    "description": [
+      ""
+    ]
+  },
+  "examplesExist": false,
+  "repoPath": "src/react/elements/Progress/Progress.js",
+  "filename": "Progress.js",
+  "filenameWithoutExt": "Progress"
+}

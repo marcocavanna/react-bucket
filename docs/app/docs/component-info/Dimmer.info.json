@@ -11,7 +11,7 @@
       "name": "active"
     },
     {
-      "type": "any",
+      "type": "node",
       "required": false,
       "description": [
         "Dimmer Inner Content Shorthand"

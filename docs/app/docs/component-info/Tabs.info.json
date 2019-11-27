@@ -12,7 +12,7 @@
       "name": "activeIndex"
     },
     {
-      "type": "custom",
+      "type": "elementType",
       "required": false,
       "description": [
         "An element used to render the Component"

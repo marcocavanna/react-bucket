@@ -1,5 +1,6 @@
 import * as customPropTypes from './customPropTypes';
 import * as childrenUtils from './childrenUtils';
+import * as RBUI from './RBUI';
 
 export { getUnhandledProps } from './getUnhandledProps';
 
@@ -33,5 +34,6 @@ export * from './refUtils';
 
 export {
   customPropTypes,
-  childrenUtils
+  childrenUtils,
+  RBUI
 };

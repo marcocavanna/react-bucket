@@ -2,7 +2,7 @@
   "displayName": "Popup",
   "props": [
     {
-      "type": "custom",
+      "type": "elementType",
       "required": false,
       "description": [
         "An Element used to render the Component"
@@ -21,6 +21,15 @@
       "name": "basic"
     },
     {
+      "type": "node",
+      "required": false,
+      "description": [
+        "Primary content."
+      ],
+      "tags": [],
+      "name": "children"
+    },
+    {
       "type": "string",
       "required": false,
       "description": [
@@ -30,7 +39,7 @@
       "name": "className"
     },
     {
-      "type": "any",
+      "type": "node",
       "required": false,
       "description": [
         "Content Shorthand"
@@ -166,17 +175,13 @@
       "name": "popperModifiers"
     },
     {
-      "type": "enum",
+      "type": "string",
       "required": false,
       "description": [
         "Position for the popover."
       ],
       "defaultValue": "'top left'",
       "tags": [],
-      "value": [
-        "center",
-        "bottom"
-      ],
       "name": "position"
     },
     {

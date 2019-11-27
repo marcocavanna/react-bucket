@@ -11,13 +11,22 @@
       "name": "actions"
     },
     {
-      "type": "custom",
+      "type": "elementType",
       "required": false,
       "description": [
         "An element used to render the Component"
       ],
       "tags": [],
       "name": "as"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
+        "Autosized Width"
+      ],
+      "tags": [],
+      "name": "autosized"
     },
     {
       "type": "bool",
@@ -37,6 +46,15 @@
       "defaultValue": "true",
       "tags": [],
       "name": "centered"
+    },
+    {
+      "type": "node",
+      "required": false,
+      "description": [
+        "Primary content."
+      ],
+      "tags": [],
+      "name": "children"
     },
     {
       "type": "string",

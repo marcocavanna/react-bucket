@@ -11,7 +11,7 @@
       "name": "action"
     },
     {
-      "type": "custom",
+      "type": "elementType",
       "required": false,
       "description": [
         "An element used to render the componenet"
@@ -92,7 +92,9 @@
   "subcomponentName": null,
   "subcomponents": [
     "FormikCheckbox",
+    "FormikDayPicker",
     "FormikInput",
+    "FormikRadio",
     "FormikSelect"
   ],
   "apiPath": "Form",

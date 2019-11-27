@@ -11,7 +11,7 @@
       "name": "active"
     },
     {
-      "type": "custom",
+      "type": "elementType",
       "required": false,
       "description": [
         "An Element used to Render the Component"
@@ -19,6 +19,15 @@
       "defaultValue": "'td'",
       "tags": [],
       "name": "as"
+    },
+    {
+      "type": "node",
+      "required": false,
+      "description": [
+        "Primary content."
+      ],
+      "tags": [],
+      "name": "children"
     },
     {
       "type": "string",
@@ -30,7 +39,7 @@
       "name": "className"
     },
     {
-      "type": "any",
+      "type": "node",
       "required": false,
       "description": [
         "Cell content Shorthand"

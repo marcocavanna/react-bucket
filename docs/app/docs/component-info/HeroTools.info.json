@@ -2,7 +2,7 @@
   "displayName": "HeroTools",
   "props": [
     {
-      "type": "custom",
+      "type": "elementType",
       "required": false,
       "description": [
         "An element used to show the Component"

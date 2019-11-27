@@ -48,6 +48,62 @@
       "name": "loading"
     },
     {
+      "type": "func",
+      "required": false,
+      "description": [
+        "Fire on Select Blur"
+      ],
+      "tags": [
+        {
+          "title": "param",
+          "description": "The Change Event",
+          "type": {
+            "type": "NameExpression",
+            "name": "SyntethicEvent"
+          },
+          "name": "event"
+        },
+        {
+          "title": "param",
+          "description": "All props",
+          "type": {
+            "type": "NameExpression",
+            "name": "object"
+          },
+          "name": "props"
+        }
+      ],
+      "name": "onBlur"
+    },
+    {
+      "type": "func",
+      "required": false,
+      "description": [
+        "Fire on Select Change"
+      ],
+      "tags": [
+        {
+          "title": "param",
+          "description": "The Selected Value",
+          "type": {
+            "type": "NameExpression",
+            "name": "any"
+          },
+          "name": "value"
+        },
+        {
+          "title": "param",
+          "description": "All props plus value and action",
+          "type": {
+            "type": "NameExpression",
+            "name": "object"
+          },
+          "name": "props"
+        }
+      ],
+      "name": "onChange"
+    },
+    {
       "type": "arrayOf",
       "required": false,
       "description": [

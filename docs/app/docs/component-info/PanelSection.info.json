@@ -1,5 +1,5 @@
 {
-  "displayName": "PanelHeader",
+  "displayName": "PanelSection",
   "props": [
     {
       "type": "elementType",
@@ -23,66 +23,49 @@
       "type": "string",
       "required": false,
       "description": [
-        "Additional Classes"
+        "User defined classname"
       ],
       "tags": [],
       "name": "className"
     },
     {
-      "type": "string",
+      "type": "element",
       "required": false,
       "description": [
-        "Text Color"
+        "Content Shorthand"
       ],
       "tags": [],
-      "name": "color"
+      "name": "content"
     },
     {
-      "type": "string",
+      "type": "bool",
       "required": false,
       "description": [
-        "Header Shorthand Method"
+        "Draw a divider line above the section"
       ],
+      "defaultValue": "true",
       "tags": [],
-      "name": "header"
+      "name": "divided"
     },
     {
-      "type": "custom",
+      "type": "node",
       "required": false,
       "description": [
-        "Icon ShortHand"
+        "Label Shorthand"
       ],
       "tags": [],
-      "name": "icon"
-    },
-    {
-      "type": "string",
-      "required": false,
-      "description": [
-        "Subheader Shorthand Method"
-      ],
-      "tags": [],
-      "name": "subheader"
-    },
-    {
-      "type": "custom",
-      "required": false,
-      "description": [
-        "Text Align"
-      ],
-      "tags": [],
-      "name": "textAlign"
+      "name": "label"
     }
   ],
-  "constructorName": "PanelHeader",
+  "constructorName": "PanelSection",
   "type": "element",
   "isParent": false,
   "isChild": true,
   "parentDisplayName": "Panel",
-  "subcomponentName": "Header",
+  "subcomponentName": "Section",
   "subcomponents": null,
-  "apiPath": "Panel.Header",
-  "componentClassName": "header",
+  "apiPath": "Panel.Section",
+  "componentClassName": "section",
   "docblock": {
     "tags": [],
     "description": [
@@ -90,7 +73,7 @@
     ]
   },
   "examplesExist": false,
-  "repoPath": "src/react/elements/Panel/PanelHeader.js",
-  "filename": "PanelHeader.js",
-  "filenameWithoutExt": "PanelHeader"
+  "repoPath": "src/react/elements/Panel/PanelSection.js",
+  "filename": "PanelSection.js",
+  "filenameWithoutExt": "PanelSection"
 }

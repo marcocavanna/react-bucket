@@ -2,7 +2,7 @@
   "displayName": "Spacer",
   "props": [
     {
-      "type": "custom",
+      "type": "elementType",
       "required": false,
       "description": [
         "An Element Used to Render the Component"

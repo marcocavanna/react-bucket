@@ -95,7 +95,7 @@ class Button extends PureComponent {
     secondary: PropTypes.bool,
 
     /** Change Button Size */
-    size: customPropTypes.size,
+    size: PropTypes.oneOf(['extra-small', 'small', 'normal', 'large', 'big', 'huge']),
 
     /** Success Color */
     success: PropTypes.bool,

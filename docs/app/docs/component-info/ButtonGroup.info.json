@@ -2,13 +2,22 @@
   "displayName": "ButtonGroup",
   "props": [
     {
-      "type": "custom",
+      "type": "elementType",
       "required": false,
       "description": [
         "Element Used to Render the Component"
       ],
       "tags": [],
       "name": "as"
+    },
+    {
+      "type": "node",
+      "required": false,
+      "description": [
+        "Primary content."
+      ],
+      "tags": [],
+      "name": "children"
     },
     {
       "type": "bool",

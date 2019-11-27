@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import fontAwesomeClass from '../../fontawesome/icon-module/fa-mapper';
 
+import * as RBUI from './RBUI';
+
 const fontAwesomeArray = Object.getOwnPropertyNames(fontAwesomeClass);
 
 export const as = (...args) => PropTypes
@@ -22,7 +24,7 @@ export const breakpoints = (...args) => PropTypes
   .oneOf(['on phone', 'on tablet', 'on desktop', 'on large desktop'])(...args);
 
 export const size = (...args) => PropTypes
-  .oneOf(['extra-small', 'small', 'normal', 'large', 'big', 'huge'])(...args);
+  .oneOf(RBUI.SIZE)(...args);
 
 export const columnsWidth = (...args) => PropTypes
   .oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'])(...args);

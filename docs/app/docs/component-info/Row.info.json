@@ -2,7 +2,7 @@
   "displayName": "Row",
   "props": [
     {
-      "type": "custom",
+      "type": "elementType",
       "required": false,
       "description": [
         "An element used to render the component"

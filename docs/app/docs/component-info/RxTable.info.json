@@ -2,6 +2,15 @@
   "displayName": "RxTable",
   "props": [
     {
+      "type": "node",
+      "required": false,
+      "description": [
+        "Primary content."
+      ],
+      "tags": [],
+      "name": "children"
+    },
+    {
       "type": "string",
       "required": false,
       "description": [
