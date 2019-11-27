@@ -37,7 +37,7 @@ function ModalActions(props) {
   const rest = getUnhandledProps(ModalActions, props);
   const ElementType = getElementType(ModalActions, props);
 
-  if (!childrenUtils.isNil(children) || !children.isNil(content)) {
+  if (!childrenUtils.isNil(children) || !childrenUtils.isNil(content)) {
     return (
       <ElementType {...rest} className={classes}>
         {childrenUtils.isNil(children) ? content : children}
@@ -59,6 +59,9 @@ ModalActions.propTypes = {
 
   /** An element used to render the component */
   as: PropTypes.elementType,
+
+  /** Primary content. */
+  children: PropTypes.node,
 
   /** User Defined classes */
   className: PropTypes.string,

@@ -97,6 +97,9 @@ Image.propTypes = {
   /** Define if image is Bordered */
   bordered: PropTypes.bool,
 
+  /** Primary content. */
+  children: PropTypes.node,
+
   /** Define if image is Circular */
   circular: PropTypes.bool,
 

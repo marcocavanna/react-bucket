@@ -79,6 +79,9 @@ Item.propTypes = {
   /** Avatar Properties Shorthand */
   avatar: PropTypes.object,
 
+  /** Primary content. */
+  children: PropTypes.node,
+
   /** User Defined Classes */
   className: PropTypes.string,
 

@@ -51,6 +51,9 @@ ItemHeader.propTypes = {
   /** An element used to Render the Component */
   as: PropTypes.elementType,
 
+  /** Primary content. */
+  children: PropTypes.node,
+
   /** User Defined Classes */
   className: PropTypes.string,
 

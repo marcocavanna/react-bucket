@@ -42,6 +42,9 @@ PanelFab.propTypes = {
   /** An Element used to render the Component */
   as: PropTypes.elementType,
 
+  /** Primary content. */
+  children: PropTypes.node,
+
   /** Button Fab Color */
   color: PropTypes.string,
 

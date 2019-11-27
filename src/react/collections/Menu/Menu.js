@@ -28,6 +28,9 @@ class Menu extends Component {
     /** Menu can have no border */
     borderless: PropTypes.bool,
 
+    /** Primary content. */
+    children: PropTypes.node,
+
     /** User defined Class */
     className: PropTypes.string,
 

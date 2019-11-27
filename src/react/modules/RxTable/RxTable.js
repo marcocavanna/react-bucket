@@ -35,6 +35,9 @@ class RxTable extends React.Component {
   static Tools = RxTableTools
 
   static propTypes = {
+    /** Primary content. */
+    children: PropTypes.node,
+
     /** User Defined Classes */
     className: PropTypes.string,
 

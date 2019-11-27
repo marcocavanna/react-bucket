@@ -143,6 +143,9 @@ Field.propTypes = {
   /** Set the field as a Checkbox container */
   checkbox: PropTypes.bool,
 
+  /** Primary content. */
+  children: PropTypes.node,
+
   /** User defined classes */
   className: PropTypes.string,
 

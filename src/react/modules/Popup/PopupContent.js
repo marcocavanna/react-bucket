@@ -37,6 +37,9 @@ PopupContent.propTypes = {
   /** An Element used to render the component */
   as: PropTypes.elementType,
 
+  /** Primary content. */
+  children: PropTypes.node,
+
   /** Additional User Classes */
   className: PropTypes.string,
 

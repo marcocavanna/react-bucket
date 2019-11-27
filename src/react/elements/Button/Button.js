@@ -26,6 +26,9 @@ class Button extends PureComponent {
     /** Element used to Render the Component */
     as: PropTypes.elementType,
 
+    /** Primary content. */
+    children: PropTypes.node,
+
     /** Circle Button */
     circle: PropTypes.bool,
 

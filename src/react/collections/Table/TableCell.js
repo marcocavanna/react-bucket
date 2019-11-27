@@ -72,6 +72,9 @@ TableCell.propTypes = {
   /** An Element used to Render the Component */
   as: PropTypes.elementType,
 
+  /** Primary content. */
+  children: PropTypes.node,
+
   /** User Defined Class */
   className: PropTypes.string,
 

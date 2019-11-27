@@ -109,6 +109,9 @@ Toast.propTypes = {
   /** An element used to render the component */
   as: PropTypes.elementType,
 
+  /** Primary content. */
+  children: PropTypes.node,
+
   /** User defined Classes */
   className: PropTypes.string,
 

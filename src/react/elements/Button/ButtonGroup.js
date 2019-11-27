@@ -36,6 +36,9 @@ ButtonGroup.propTypes = {
   /** Element Used to Render the Component */
   as: PropTypes.elementType,
 
+  /** Primary content. */
+  children: PropTypes.node,
+
   /** Button Group Full Width */
   full: PropTypes.bool,
 

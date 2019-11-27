@@ -32,6 +32,9 @@ LabelDetail.propTypes = {
   /** An element used to render the Compoenent */
   as: PropTypes.elementType,
 
+  /** Primary content. */
+  children: PropTypes.node,
+
   /** Additional Class */
   className: PropTypes.string,
 

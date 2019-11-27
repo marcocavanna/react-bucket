@@ -142,6 +142,9 @@ Container.propTypes = {
   /** Display Border Top */
   borderedTop: customPropTypes.responsiveProperty,
 
+  /** Primary content. */
+  children: PropTypes.node,
+
   /** User defined Classes */
   className: PropTypes.string,
 

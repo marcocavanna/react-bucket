@@ -37,6 +37,9 @@ ModalContent.propTypes = {
   /** An element used to render the component */
   as: PropTypes.elementType,
 
+  /** Primary content. */
+  children: PropTypes.node,
+
   /** Additional user defined classes */
   className: PropTypes.string,
 

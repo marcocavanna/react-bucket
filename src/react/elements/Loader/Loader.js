@@ -56,6 +56,9 @@ Loader.propTypes = {
   /** Centered Loader */
   centered: PropTypes.bool,
 
+  /** Primary content. */
+  children: PropTypes.node,
+
   /** User defined Class */
   className: PropTypes.string,
 

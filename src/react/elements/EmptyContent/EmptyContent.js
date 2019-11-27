@@ -54,6 +54,9 @@ function EmptyContent(props) {
 }
 
 EmptyContent.propTypes = {
+  /** Primary content. */
+  children: PropTypes.node,
+
   /** User defined classes */
   className: PropTypes.string,
 

@@ -35,6 +35,9 @@ class Popup extends PureComponent {
     /** Basic Style */
     basic: PropTypes.bool,
 
+    /** Primary content. */
+    children: PropTypes.node,
+
     /** User Defined Classes */
     className: PropTypes.string,
 

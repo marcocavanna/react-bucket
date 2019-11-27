@@ -25,6 +25,9 @@ export default class DimmerInner extends PureComponent {
     /** An element type to render as (string or function). */
     as: PropTypes.elementType,
 
+    /** Primary content. */
+    children: PropTypes.node,
+
     /** Additional classes. */
     className: PropTypes.string,
 

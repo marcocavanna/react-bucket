@@ -47,6 +47,9 @@ ItemGroup.propTypes = {
   /** An Element used to Render the Component */
   as: PropTypes.elementType,
 
+  /** Primary content. */
+  children: PropTypes.node,
+
   /** User Defined Classes */
   className: PropTypes.string,
 

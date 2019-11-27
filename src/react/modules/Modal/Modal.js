@@ -51,6 +51,9 @@ class Modal extends Component {
     /** Show a modal centered */
     centered: PropTypes.bool,
 
+    /** Primary content. */
+    children: PropTypes.node,
+
     /** Additional user defined classes */
     className: PropTypes.string,
 
