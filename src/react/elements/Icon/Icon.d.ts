@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { ReactBucketCOLORS, ReactBucketSIZE, ReactBucketICON } from '../../generic'
+import { ReactBucketCOLOR, ReactBucketSIZE, ReactBucketICON } from '../../generic'
 
 export interface IconProps extends StrictIconProps {
   [key: string]: any
@@ -17,7 +17,7 @@ export interface StrictIconProps {
   className?: string
 
   /** Icon Color */
-  color?: ReactBucketCOLORS
+  color?: ReactBucketCOLOR
 
   /** Set icon as disabled */
   disabled?: boolean

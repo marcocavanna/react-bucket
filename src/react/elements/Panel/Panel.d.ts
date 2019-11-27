@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { ReactBucketALIGN, ReactBucketCOLORS, ReactBucketICON } from '../../generic'
+import { ReactBucketALIGN, ReactBucketCOLOR, ReactBucketICON } from '../../generic'
 
 import PanelFab, { PanelFabProps } from './PanelFab';
 import PanelHeader from './PanelHeader'
@@ -21,7 +21,7 @@ export interface StrictPanelProps {
   className?: string
 
   /** Text Color */
-  color?: ReactBucketCOLORS
+  color?: ReactBucketCOLOR
 
   /** Content Shorthand */
   content?: React.ReactNode

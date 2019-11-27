@@ -3,7 +3,7 @@ import * as React from 'react'
 import { ReactBucketICON } from '../../generic';
 
 import {
-  ReactBucketCOLORS
+  ReactBucketCOLOR
 } from '../../generic'
 
 export interface PanelFabProps extends StrictPanelFabProps {
@@ -21,7 +21,7 @@ export interface StrictPanelFabProps {
   className?: string
 
   /** Fab Color */
-  color?: ReactBucketCOLORS
+  color?: ReactBucketCOLOR
 
   /** Fab Icon */
   icon?: ReactBucketICON

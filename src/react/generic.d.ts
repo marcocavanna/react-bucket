@@ -15,7 +15,7 @@ export type ReactBucketFLEXHORIZONTALALIGN = 'on start' | 'centered' | 'on end' 
  * Responsive
  */
 export type ReactBucketRESPONSIVE = 'phone' | 'tablet' | 'desktop' | 'large-desktop'
-export type ReactBucketBREAKPOINTS = 'on phone' | 'on tablet' | 'on desktop' | 'on large desktop'
+export type ReactBucketBREAKPOINT = 'on phone' | 'on tablet' | 'on desktop' | 'on large desktop'
 
 /**
  * Width
@@ -99,4 +99,4 @@ export type ReactBucketSOCIALCOLOR =
   | 'yahoo'
   | 'telegram'
 
-export type ReactBucketCOLORS = ReactBucketBRANDCOLOR | ReactBucketUICOLOR | ReactBucketSOCIALCOLOR
+export type ReactBucketCOLOR = ReactBucketBRANDCOLOR | ReactBucketUICOLOR | ReactBucketSOCIALCOLOR

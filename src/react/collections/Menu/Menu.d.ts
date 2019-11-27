@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { ReactBucketCOLORS } from '../../generic'
+import { ReactBucketCOLOR } from '../../generic'
 
 import MenuItem from './MenuItem';
 

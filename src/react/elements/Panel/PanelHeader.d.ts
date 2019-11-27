@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { ReactBucketCOLORS, ReactBucketALIGN, ReactBucketICON } from '../../generic'
+import { ReactBucketCOLOR, ReactBucketALIGN, ReactBucketICON } from '../../generic'
 
 export interface PanelHeaderProps extends StrictPanelHeaderProps {
   [key: string]: any
@@ -17,7 +17,7 @@ export interface StrictPanelHeaderProps {
   className?: string
 
   /** Text Color */
-  color?: ReactBucketCOLORS
+  color?: ReactBucketCOLOR
 
   /** Header Text */
   header?: string

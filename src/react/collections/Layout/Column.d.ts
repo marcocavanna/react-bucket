@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { ReactBucketALIGN, ReactBucketCOLORS, ReactBucketCOLUMNWIDTH, ReactBucketCOLUMNOFFSET, ReactBucketFLEXVERTICALALIGN } from '../../generic'
+import { ReactBucketALIGN, ReactBucketCOLOR, ReactBucketCOLUMNWIDTH, ReactBucketCOLUMNOFFSET, ReactBucketFLEXVERTICALALIGN } from '../../generic'
 
 export interface ColumnProps extends StrictColumnProps {
   [key: string]: any
@@ -17,7 +17,7 @@ export interface StrictColumnProps {
   className?: string
 
   /** Custom Font Color */
-  color?: ReactBucketCOLORS
+  color?: ReactBucketCOLOR
 
   /** Base Column Width */
   is?: ReactBucketCOLUMNWIDTH

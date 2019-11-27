@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { ReactBucketCOLORS, ReactBucketFONTWEIGHT } from '../../generic';
+import { ReactBucketCOLOR, ReactBucketFONTWEIGHT } from '../../generic';
 
 export interface HeaderContentProps extends StrictHeaderContentProps {
   [key: string]: any
@@ -17,7 +17,7 @@ export interface StrictHeaderContentProps {
   className?: string
 
   /** Custom Font Color */
-  color?: ReactBucketCOLORS
+  color?: ReactBucketCOLOR
 
   /** Content Property */
   content: React.ReactNode

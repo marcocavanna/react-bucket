@@ -3,7 +3,7 @@ import * as React from 'react'
 import Row from './Row'
 import Column from './Column'
 
-import { ReactBucketALIGN, ReactBucketRESPONSIVE, ReactBucketCOLORS } from '../../generic'
+import { ReactBucketALIGN, ReactBucketRESPONSIVE, ReactBucketCOLOR } from '../../generic'
 
 export interface LayoutProps extends StrictLayoutProps {
   [key: string]: any
@@ -14,7 +14,7 @@ export interface StrictLayoutProps {
   as?: React.ElementType
 
   /** Custom background color */
-  background?: ReactBucketCOLORS
+  background?: ReactBucketCOLOR
 
   /** Children Node */
   children?: React.ReactNode
@@ -23,7 +23,7 @@ export interface StrictLayoutProps {
   className?: string
 
   /** Custom Font Color */
-  color?: ReactBucketCOLORS
+  color?: ReactBucketCOLOR
 
   /** Fluid property */
   fluid?: boolean

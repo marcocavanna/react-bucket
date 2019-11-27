@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { ReactBucketCOLORS, ReactBucketICON } from '../../generic';
+import { ReactBucketCOLOR, ReactBucketICON } from '../../generic';
 
 export interface MenuHeaderProps extends StrictMenuHeaderProps {
   [key: string]: any
@@ -8,7 +8,7 @@ export interface MenuHeaderProps extends StrictMenuHeaderProps {
 
 export interface StrictMenuHeaderProps {
   /** Display as Active */
-  active?: boolean | ReactBucketCOLORS
+  active?: boolean | ReactBucketCOLOR
 
   /** An element used to render */
   as?: React.ElementType
@@ -20,7 +20,7 @@ export interface StrictMenuHeaderProps {
   className?: string
 
   /** Custom Color */
-  color?: ReactBucketCOLORS
+  color?: ReactBucketCOLOR
 
   /** Content ShordHand */
   content?: React.ReactNode
