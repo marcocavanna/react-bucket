@@ -9,7 +9,7 @@ export interface RefProps extends StrictRefProps {
 
 export interface StrictRefProps {
   /** Primary content. */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /**
    * Called when componentDidMount.

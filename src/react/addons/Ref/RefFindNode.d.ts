@@ -6,7 +6,7 @@ export interface RefFindNodeProps extends StrictRefFindNodeProps {
 
 export interface StrictRefFindNodeProps {
   /** Primary content. */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /**
    * Called when a child component will be mounted or updated.

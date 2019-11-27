@@ -8,16 +8,16 @@ export interface HeaderSubheaderProps extends StrictHeaderSubheaderProps {
 
 export interface StrictHeaderSubheaderProps {
   /** An element used to render */
-  as?: any,
+  as?: any
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Custom Font Color */
-  color?: AppBucketsCOLORS,
+  color?: AppBucketsCOLORS
 
   /** Content Property */
   content: React.ReactNode

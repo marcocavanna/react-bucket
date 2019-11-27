@@ -8,16 +8,16 @@ export interface HeroHeaderProps extends StrictHeroHeaderProps {
 
 export interface StrictHeroHeaderProps {
   /** An element used to render */
-  as?: any,
+  as?: any
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Content shorthand */
-  content?: React.ReactNode,
+  content?: React.ReactNode
 
   /** Icon element */
   icon?: ReactBucketICON

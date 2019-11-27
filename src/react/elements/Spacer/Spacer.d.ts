@@ -6,10 +6,10 @@ export interface SpacerProps extends StrictSpacerProps {
 
 export interface StrictSpacerProps {
   /** An element used to render */
-  as?: any,
+  as?: any
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Spacer Height */
   height?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8'

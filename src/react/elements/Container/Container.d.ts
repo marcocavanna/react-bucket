@@ -12,106 +12,106 @@ export interface ContainerProps extends StrictContainerProps {
 
 export interface StrictContainerProps {
   /** An element used to render */
-  as?: any,
+  as?: any
 
   /** Container Background Color */
-  background: AppBucketsCOLORS,
+  background?: AppBucketsCOLORS
 
   /** Display container as Block */
-  block: boolean | AppBucketsBREAKPOINTS,
+  block?: boolean | AppBucketsBREAKPOINTS
 
   /** Display Border Bottom */
-  borderedBottom: boolean | AppBucketsBREAKPOINTS,
+  borderedBottom?: boolean | AppBucketsBREAKPOINTS
 
   /** Display Border Left */
-  borderedLeft: boolean | AppBucketsBREAKPOINTS,
+  borderedLeft?: boolean | AppBucketsBREAKPOINTS
 
   /** Display Border Right */
-  borderedRight: boolean | AppBucketsBREAKPOINTS,
+  borderedRight?: boolean | AppBucketsBREAKPOINTS
 
   /** Display Border Top */
-  borderedTop: boolean | AppBucketsBREAKPOINTS,
+  borderedTop?: boolean | AppBucketsBREAKPOINTS
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Content Shorthand */
-  content: React.ReactNode,
+  content?: React.ReactNode
 
   /** Box Shadow */
-  dpElevation: DPELEVATION,
+  dpElevation?: DPELEVATION
 
   /** Display container as Flex */
-  flex: boolean | AppBucketsBREAKPOINTS,
+  flex?: boolean | AppBucketsBREAKPOINTS
 
   /** Change container font size */
-  fontSize: 'small' | 'normal' | 'large',
+  fontSize?: 'small' | 'normal' | 'large'
 
   /** Change container font weight */
-  fontWeight: 'light' | 'regular' | 'semi-bold' | 'bold',
+  fontWeight?: 'light' | 'regular' | 'semi-bold' | 'bold'
 
   /** Hide the container */
-  hidden: boolean | AppBucketsBREAKPOINTS,
+  hidden?: boolean | AppBucketsBREAKPOINTS
 
   /** Display container as Inline */
-  inline: boolean | AppBucketsBREAKPOINTS,
+  inline?: boolean | AppBucketsBREAKPOINTS
 
   /** Display container as Inline Block */
-  inlineBlock: boolean | AppBucketsBREAKPOINTS,
+  inlineBlock?: boolean | AppBucketsBREAKPOINTS
 
   /** Set container Margin */
-  margin: MARGINPADDING,
+  margin?: MARGINPADDING
 
   /** Set container Margin Bottom */
-  marginBottom: MARGINPADDING,
+  marginBottom?: MARGINPADDING
 
   /** Set container Margin Left */
-  marginLeft: MARGINPADDING,
+  marginLeft?: MARGINPADDING
 
   /** Set container Margin Right */
-  marginRight: MARGINPADDING,
+  marginRight?: MARGINPADDING
 
   /** Set container Margin Top */
-  marginTop: MARGINPADDING,
+  marginTop?: MARGINPADDING
 
   /** Set container Margin X */
-  marginX: MARGINPADDING,
+  marginX?: MARGINPADDING
 
   /** Set container Margin Y */
-  marginY: MARGINPADDING,
+  marginY?: MARGINPADDING
 
   /** Set container Padding */
-  padding: MARGINPADDING,
+  padding?: MARGINPADDING
 
   /** Set container Padding Bottom */
-  paddingBottom: MARGINPADDING,
+  paddingBottom?: MARGINPADDING
 
   /** Set container Padding Left */
-  paddingLeft: MARGINPADDING,
+  paddingLeft?: MARGINPADDING
 
   /** Set container Padding Right */
-  paddingRight: MARGINPADDING,
+  paddingRight?: MARGINPADDING
 
   /** Set container Padding Top */
-  paddingTop: MARGINPADDING,
+  paddingTop?: MARGINPADDING
 
   /** Set container Padding X */
-  paddingX: MARGINPADDING,
+  paddingX?: MARGINPADDING
 
   /** Set container Padding Y */
-  paddingY: MARGINPADDING,
+  paddingY?: MARGINPADDING
 
   /** Set Text Align */
-  textAlign: AppBucketsALIGN | 'justify',
+  textAlign?: AppBucketsALIGN | 'justify'
 
   /** Set Text Color */
-  textColor: AppBucketsCOLORS,
+  textColor?: AppBucketsCOLORS
 
   /** Set Text Transform */
-  textTransform: 'capitalize' | 'lowercase' | 'uppercase',
+  textTransform?: 'capitalize' | 'lowercase' | 'uppercase'
 
   /** Set container as Visible */
   visible: boolean | AppBucketsBREAKPOINTS

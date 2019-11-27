@@ -14,70 +14,70 @@ export interface ButtonProps extends StrictButtonProps {
 
 export interface StrictButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /** An element used to render */
-  as?: any,
+  as?: any
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** Circle Button */
-  circle?: boolean,
+  circle?: boolean
 
   /** Button Background Color */
-  color?: AppBucketsCOLORS,
+  color?: AppBucketsCOLORS
 
   /** Button Content Property */
-  content?: React.ReactNode,
+  content?: React.ReactNode
 
   /** Danger Color */
-  danger?: boolean,
+  danger?: boolean
 
   /** Disabled State */
-  disabled?: boolean,
+  disabled?: boolean
 
   /** Display Button as Flat */
-  flat?: boolean,
+  flat?: boolean
 
   /** Icon Property or Definition */
-  icon?: boolean | ReactBucketICON,
+  icon?: boolean | ReactBucketICON
 
   /** Info Color */
-  info?: boolean,
+  info?: boolean
 
   /** Generate Button as Fab */
-  fab?: boolean,
+  fab?: boolean
 
   /** Set fullwidth Button */
-  full?: boolean,
+  full?: boolean
 
   /** Icon Position */
-  iconPosition?: 'left' | 'right',
+  iconPosition?: 'left' | 'right'
 
   /** Inverted Color */
-  inverted?: boolean,
+  inverted?: boolean
 
   /** Button with Loader */
-  loading?: boolean,
+  loading?: boolean
 
   /** Primary Color */
-  primary?: boolean,
+  primary?: boolean
 
   /** Role Attributes */
-  role?: boolean,
+  role?: boolean
 
   /** Render Rounded Button */
-  rounded?: boolean,
+  rounded?: boolean
 
   /** Secondary Color */
-  secondary?: boolean,
+  secondary?: boolean
 
   /** Change Button Size */
-  size?: AppBucketsSIZE,
+  size?: AppBucketsSIZE
 
   /** Success Color */
-  success?: boolean,
+  success?: boolean
 
   /** Tab Index Order */
-  tabIndex?: number,
+  tabIndex?: number
 
   /** Warning Color */
   warning?: boolean

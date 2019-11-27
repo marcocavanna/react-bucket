@@ -8,13 +8,13 @@ export interface FieldProps extends StrictFieldProps {
 
 export interface StrictFieldProps {
   /** Action Button */
-  action?: any,
+  action?: any
 
   /** Action Position */
   actionPosition?: 'left' | 'right'
 
   /** An element used to render */
-  as?: any,
+  as?: any
 
   /** Bordered Field */
   bordered?: boolean
@@ -23,13 +23,13 @@ export interface StrictFieldProps {
   checkbox?: boolean
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Content Element */
-  content?: React.ReactNode,
+  content?: React.ReactNode
 
   /** ClassName for Content Element */
   contentClassName?: string

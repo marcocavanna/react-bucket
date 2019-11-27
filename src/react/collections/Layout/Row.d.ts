@@ -8,25 +8,25 @@ export interface RowProps extends StrictRowProps {
 
 export interface StrictRowProps {
   /** An element used to render */
-  as?: any,
+  as?: any
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Custom Font Color */
-  color?: AppBucketsCOLORS,
+  color?: AppBucketsCOLORS
 
   /** Fluid property */
-  columnsAlign?: AppBucketsFLEXHORIZONTALALIGN,
+  columnsAlign?: AppBucketsFLEXHORIZONTALALIGN
 
   /** Text Alignment */
-  textAlign?: AppBucketsALIGN,
+  textAlign?: AppBucketsALIGN
 
   /** Columns Vertical Align */
-  verticalAlign?: AppBucketsFLEXVERTICALALIGN,
+  verticalAlign?: AppBucketsFLEXVERTICALALIGN
 
   /** Without Gap */
   withoutGap?: AppBucketsBREAKPOINTS

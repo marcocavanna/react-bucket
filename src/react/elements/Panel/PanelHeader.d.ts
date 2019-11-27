@@ -8,25 +8,25 @@ export interface PanelHeaderProps extends StrictPanelHeaderProps {
 
 export interface StrictPanelHeaderProps {
   /** An element used to render */
-  as?: any,
+  as?: any
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Text Color */
   color?: AppBucketsCOLORS
 
   /** Header Text */
-  header?: string,
+  header?: string
 
   /** Header Icon */
-  icon?: ReactBucketICON,
+  icon?: ReactBucketICON
 
   /** Subheader Text */
-  subheader?: string,
+  subheader?: string
 
   /** Text Align */
   textAlign?: AppBucketsALIGN

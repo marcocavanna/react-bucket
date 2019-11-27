@@ -11,16 +11,16 @@ export interface StrictModalActionsProps {
   actions?: ButtonProps[]
 
   /** An element used to render */
-  as?: any,
+  as?: any
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Content Shorthand */
-  content?: React.ReactNode,
+  content?: React.ReactNode
 
   /** On action Click handler */
   onActionClick?: (e: React.SyntheticEvent, props: ButtonProps) => void

@@ -6,49 +6,49 @@ export interface ImageProps extends StrictImageProps {
 
 export interface StrictImageProps {
   /** An element used to render */
-  as?: any,
+  as?: any
 
   /** Define if image is avatar style */
-  avatar?: boolean,
+  avatar?: boolean
 
   /** Define if image is Bordered */
-  bordered?: boolean,
+  bordered?: boolean
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** Define if image is Circular */
-  circular?: boolean,
+  circular?: boolean
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Content Shorthand */
-  content?: React.ReactNode,
+  content?: React.ReactNode
 
   /** Dimmer Shorthand */
-  dimmer?: any,
+  dimmer?: any
 
   /** Show image as disabled */
-  disabled?: boolean,
+  disabled?: boolean
 
   /** Show image full width */
-  full?: boolean,
+  full?: boolean
 
   /** Render the Image as a Tag */
-  href?: string,
+  href?: string
 
   /** Show image as Inline Block */
-  inline?: boolean,
+  inline?: boolean
 
   /** Add Label */
-  label?: any,
+  label?: any
 
   /** Round Corners */
-  rounded?: boolean,
+  rounded?: boolean
 
   /** Add Space on left/right */
-  spaced?: boolean | 'left' | 'right',
+  spaced?: boolean | 'left' | 'right'
 
   /** Wrap Image */
   wrapped?: boolean

@@ -6,19 +6,19 @@ export interface ItemContentProps extends StrictItemContentProps {
 
 export interface StrictItemContentProps {
   /** An element used to render */
-  as?: any,
+  as?: any
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Content shorthand */
-  content?: React.ReactNode,
+  content?: React.ReactNode
 
   /** Header Shorthand */
-  header?: string,
+  header?: string
 
   /** Truncated Content */
   notTruncated?: boolean

@@ -6,28 +6,28 @@ export interface DropdownMenuProps extends StrictDropdownMenuProps {
 
 export interface StrictDropdownMenuProps {
   /** An element used to render */
-  as?: any,
+  as?: any
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Content Shorthand */
-  content?: React.ReactNode,
+  content?: React.ReactNode
 
   /** Event Stack name */
-  eventStack: string,
+  eventStack?: string
 
   /** Items Shorthand */
-  items: React.ReactElement[],
+  items?: React.ReactElement[]
 
   /** On Menu Close Handler */
-  onClose: (e: React.SyntheticEvent, props: StrictDropdownMenuProps) => void,
+  onClose?: (e: React.SyntheticEvent, props: StrictDropdownMenuProps) => void
 
   /** On Menu Open Handler */
-  onOpen: (e: React.SyntheticEvent, props: StrictDropdownMenuProps) => void,
+  onOpen?: (e: React.SyntheticEvent, props: StrictDropdownMenuProps) => void
 
   /** Trigger Element */
   trigger: React.ReactElement

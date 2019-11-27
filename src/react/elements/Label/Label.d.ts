@@ -11,22 +11,22 @@ export interface LabelProps extends StrictLabelProps {
 
 export interface StrictLabelProps {
   /** An element used to render */
-  as?: any,
+  as?: any
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Color Content */
-  color?: AppBucketsCOLORS,
+  color?: AppBucketsCOLORS
 
   /** Content Shorthand */
-  content?: React.ReactNode,
+  content?: React.ReactNode
 
   /** Detail Short hand */
-  detail?: any,
+  detail?: any
 
   /** Icon Shorthand */
   icon?: ReactBucketICON

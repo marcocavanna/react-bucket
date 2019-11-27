@@ -8,16 +8,16 @@ export interface HeaderContentProps extends StrictHeaderContentProps {
 
 export interface StrictHeaderContentProps {
   /** An element used to render */
-  as?: any,
+  as?: any
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Custom Font Color */
-  color?: AppBucketsCOLORS,
+  color?: AppBucketsCOLORS
 
   /** Content Property */
   content: React.ReactNode

@@ -6,7 +6,7 @@ export interface PortalInnerProps extends StrictPortalInnerProps {
 
 export interface StrictPortalInnerProps {
   /** Primary content. */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** Called with a ref to the inner node. */
   innerRef?: React.Ref<any>

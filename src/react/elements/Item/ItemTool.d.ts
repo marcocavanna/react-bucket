@@ -8,13 +8,13 @@ export interface ItemToolProps extends StrictItemToolProps {
 
 export interface StrictItemToolProps extends StrictButtonProps {
   /** An element used to render */
-  as?: any,
+  as?: any
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
 }
 

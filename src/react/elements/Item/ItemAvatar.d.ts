@@ -8,52 +8,52 @@ export interface ItemAvatarProps extends StrictItemAvatarProps {
 
 export interface StrictItemAvatarProps {
   /** An element used to render */
-  as?: any,
+  as?: any
 
   /** Centered */
-  centered?: boolean,
+  centered?: boolean
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Set Avatar Color */
-  color?: AppBucketsCOLORS,
+  color?: AppBucketsCOLORS
 
   /** Set Avatar Placeholder */
-  content?: React.ReactNode,
+  content?: React.ReactNode
 
   /** Set Danger Style */
-  danger?: boolean,
+  danger?: boolean
 
   /** Disabled State */
-  disabled?: boolean,
+  disabled?: boolean
 
   /** Set the Random Background color generator */
-  generateBackground?: boolean | string,
+  generateBackground?: boolean | string
 
   /** Set Avatar Icon */
-  icon?: ReactBucketICON,
+  icon?: ReactBucketICON
 
   /** Set Avatar Image */
-  image?: string,
+  image?: string
 
   /** Inline Style */
-  inline?: boolean,
+  inline?: boolean
 
   /** Set Primary Style */
-  primary?: boolean,
+  primary?: boolean
 
   /** Set Secondary Style */
-  secondary?: boolean,
+  secondary?: boolean
 
   /** Change Avatar Size */
-  size?: AppBucketsSIZE,
+  size?: AppBucketsSIZE
 
   /** Set Success Style */
-  success?: boolean,
+  success?: boolean
 
   /** Set Warning Style */
   warning?: boolean

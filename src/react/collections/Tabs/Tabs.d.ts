@@ -20,13 +20,13 @@ export interface StrictTabsProps {
   activeIndex?: string | number
 
   /** An element used to render */
-  as?: any,
+  as?: any
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** The initial active index */
   defaultActiveIndex?: string | number

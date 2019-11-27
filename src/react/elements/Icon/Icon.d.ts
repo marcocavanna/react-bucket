@@ -8,43 +8,43 @@ export interface IconProps extends StrictIconProps {
 
 export interface StrictIconProps {
   /** An element used to render */
-  as?: any,
+  as?: any
 
   /** Display Icon Border */
-  bordered?: boolean,
+  bordered?: boolean
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Icon Color */
-  color?: AppBucketsCOLORS,
+  color?: AppBucketsCOLORS
 
   /** Set icon as disabled */
-  disabled?: boolean,
+  disabled?: boolean
 
   /** Fitted Icon has no Margin and Auto Width */
-  fitted?: boolean,
+  fitted?: boolean
 
   /** Flip an Icon */
-  flip?: 'horizontal' | 'vertical' | 'both',
+  flip?: 'horizontal' | 'vertical' | 'both'
 
   /** Icon as Link */
-  link?: boolean,
+  link?: boolean
 
   /** Icon Name */
-  name: ReactBucketICON,
+  name?: ReactBucketICON
 
   /** OnClick Handler */
-  onClick?: Function,
+  onClick?: Function
 
   /** Rotate Icon */
-  rotate?: 90 | 180 | 270 | '90' | '180' | '270',
+  rotate?: 90 | 180 | 270 | '90' | '180' | '270'
 
   /** Icon Size */
-  size?: AppBucketsSIZE,
+  size?: AppBucketsSIZE
 
   /** Animate an Icon using Spin */
-  spin?: boolean,
+  spin?: boolean
 
   /** Icon Style */
   style?: 'brand' | 'light' | 'regular' | 'solid'

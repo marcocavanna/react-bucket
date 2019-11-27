@@ -12,25 +12,25 @@ export interface PanelFabProps extends StrictPanelFabProps {
 
 export interface StrictPanelFabProps {
   /** An element used to render */
-  as?: any,
+  as?: any
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Fab Color */
-  color?: AppBucketsCOLORS,
+  color?: AppBucketsCOLORS
 
   /** Fab Icon */
-  icon?: ReactBucketICON,
+  icon?: ReactBucketICON
 
   /** On Fab Click Function */
-  onFabClick?: Function,
+  onFabClick?: Function
 
   /** Primary State for FAB */
-  primary?: boolean,
+  primary?: boolean
 
 }
 

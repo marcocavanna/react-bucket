@@ -13,10 +13,10 @@ export interface RxTableProps extends StrictRxTableProps {
 
 export interface StrictRxTableProps {
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Error Component that will be show if an error occured while loading data */
   error?: React.ReactNode

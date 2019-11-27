@@ -12,28 +12,28 @@ export interface PanelProps extends StrictPanelProps {
 
 export interface StrictPanelProps {
   /** An element used to render */
-  as?: any,
+  as?: any
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Text Color */
-  color?: AppBucketsCOLORS,
+  color?: AppBucketsCOLORS
 
   /** Content Shorthand */
-  content?: React.ReactNode,
+  content?: React.ReactNode
 
   /** Panel has Fab Button */
   fab?: boolean | ReactBucketICON
 
   /** Header Shorthand */
-  header?: string,
+  header?: string
 
   /** Icon Method Shorthand */
-  icon?: ReactBucketICON,
+  icon?: ReactBucketICON
 
   /** Loading Style for Panel */
   loading?: boolean
@@ -42,7 +42,7 @@ export interface StrictPanelProps {
   onFabClick?: (e: React.SyntheticEvent, props: PanelFabProps) => void
 
   /** Subheader Shorthand */
-  subheader?: string,
+  subheader?: string
 
   /** Set Panel has table container */
   table?: boolean

@@ -12,7 +12,7 @@ export interface StrictMessageListProps {
   as?: any
 
   /** Primary content. */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** Additional classes. */
   className?: string

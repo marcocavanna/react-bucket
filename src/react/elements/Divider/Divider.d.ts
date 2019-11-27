@@ -6,22 +6,22 @@ export interface DividerProps extends StrictDividerProps {
 
 export interface StrictDividerProps {
   /** An element used to render */
-  as?: any,
+  as?: any
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Content Property */
-  content?: React.ReactNode,
+  content?: React.ReactNode
 
   /** Hidden Boolean */
-  hidden?: boolean,
+  hidden?: boolean
 
   /** Horizontal Divider */
-  horizontal?: boolean,
+  horizontal?: boolean
 
   /** Inverted Colors */
   inverted?: boolean

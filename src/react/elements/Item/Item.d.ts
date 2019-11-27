@@ -13,31 +13,31 @@ export interface ItemProps extends StrictItemProps {
 
 export interface StrictItemProps {
   /** Active State */
-  active?: boolean | 'primary' | 'secondary' | 'success' | 'danger' | 'warning',
+  active?: boolean | 'primary' | 'secondary' | 'success' | 'danger' | 'warning'
 
   /** An element used to render */
-  as?: any,
+  as?: any
 
   /** Avatar Properties Shorthand */
-  avatar?: StrictItemAvatarProps,
+  avatar?: StrictItemAvatarProps
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Content shorthand */
-  content?: React.ReactNode,
+  content?: React.ReactNode
 
   /** Disabled State */
   disabled?: boolean
 
   /** Header Shorthand */
-  header?: string,
+  header?: string
 
   /** OnClick Function */
-  onClick?: Function,
+  onClick?: Function
 
   /** Tools shorthand */
   tools?: StrictItemToolProps[]
@@ -45,11 +45,11 @@ export interface StrictItemProps {
 }
 
 interface ItemComponent extends React.StatelessComponent<ItemProps> {
-  Avatar: typeof ItemAvatar,
-  Header: typeof ItemHeader,
-  Content: typeof ItemContent,
-  Group: typeof ItemGroup,
-  Tools: typeof ItemTools,
+  Avatar?: typeof ItemAvatar
+  Header?: typeof ItemHeader
+  Content?: typeof ItemContent
+  Group?: typeof ItemGroup
+  Tools?: typeof ItemTools
   Tool: typeof ItemTool
 }
 

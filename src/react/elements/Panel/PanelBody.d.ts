@@ -8,22 +8,22 @@ export interface PanelBodyProps extends StrictPanelBodyProps {
 
 export interface StrictPanelBodyProps {
   /** An element used to render */
-  as?: any,
+  as?: any
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Text Color */
-  color?: AppBucketsCOLORS,
+  color?: AppBucketsCOLORS
 
   /** Content */
-  content?: React.ReactNode,
+  content?: React.ReactNode
 
   /** Font weight */
-  fontWeight?: AppBucketsFONTWEIGHT,
+  fontWeight?: AppBucketsFONTWEIGHT
 
   /** Text Align */
   textAlign?: AppBucketsALIGN

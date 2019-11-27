@@ -11,32 +11,32 @@ export interface LayoutProps extends StrictLayoutProps {
 
 export interface StrictLayoutProps {
   /** An element used to render */
-  as?: any,
+  as?: any
 
   /** Custom background color */
-  background?: AppBucketsCOLORS,
+  background?: AppBucketsCOLORS
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Custom Font Color */
-  color?: AppBucketsCOLORS,
+  color?: AppBucketsCOLORS
 
   /** Fluid property */
-  fluid?: boolean,
+  fluid?: boolean
 
   /** Text Alignment */
-  textAlign?: AppBucketsALIGN,
+  textAlign?: AppBucketsALIGN
 
   /** Container Fixed Width */
   width?: AppBucketsRESPONSIVE
 }
 
 interface LayoutComponent extends React.StatelessComponent<LayoutProps> {
-  Row: typeof Row,
+  Row?: typeof Row
   Column: typeof Column
 }
 

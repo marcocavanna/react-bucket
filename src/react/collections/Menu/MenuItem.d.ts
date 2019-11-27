@@ -8,37 +8,37 @@ export interface MenuHeaderProps extends StrictMenuHeaderProps {
 
 export interface StrictMenuHeaderProps {
   /** Display as Active */
-  active: boolean | AppBucketsCOLORS,
+  active?: boolean | AppBucketsCOLORS
 
   /** An element used to render */
-  as?: any,
+  as?: any
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Custom Color */
-  color: AppBucketsCOLORS,
+  color?: AppBucketsCOLORS
 
   /** Content ShordHand */
-  content: React.ReactNode,
+  content?: React.ReactNode
 
   /** Disabled State */
-  disabled: boolean,
+  disabled?: boolean
 
   /** Header Style */
-  header: boolean,
+  header?: boolean
 
   /** Icon */
-  icon: boolean | ReactBucketICON,
+  icon?: boolean | ReactBucketICON
 
   /** Name Shorthand */
-  name: string,
+  name?: string
 
   /** OnClick Handler */
-  onClick: Function,
+  onClick?: Function
 
   /** On Right Position */
   right: boolean

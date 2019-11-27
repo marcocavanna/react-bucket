@@ -12,37 +12,37 @@ export interface TableCellProps extends StrictTableCellProps {
 
 export interface StrictTableCellProps {
   /** Set the Cell as Active */
-  active?: boolean,
+  active?: boolean
 
   /** An Element used to Render the Component */
-  as?: any,
+  as?: any
 
   /** User Defined Class */
-  className?: string,
+  className?: string
 
   /** Cell content Shorthand */
-  content?: React.ReactNode,
+  content?: React.ReactNode
 
   /** Disable Cell */
-  disabled?: boolean,
+  disabled?: boolean
 
   /** Cell Error Style */
-  error?: boolean,
+  error?: boolean
 
   /** Icon Shorthand */
-  icon?: ReactBucketICON,
+  icon?: ReactBucketICON
 
   /** Set cell as Selectable */
-  selectable?: boolean,
+  selectable?: boolean
 
   /** Set cell as Success */
-  success?: boolean,
+  success?: boolean
 
   /** Set Text align */
-  textAlign?: AppBucketsALIGN,
+  textAlign?: AppBucketsALIGN
 
   /** Set Cell Vertical Align */
-  verticalAlign?: AppBucketsVERTICALALIGN,
+  verticalAlign?: AppBucketsVERTICALALIGN
 
   /** Set Cell as Warning */
   warning?: boolean

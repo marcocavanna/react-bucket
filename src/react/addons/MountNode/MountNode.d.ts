@@ -7,7 +7,7 @@ export interface MountNodeProps extends StrictMountNodeProps {
 export interface StrictMountNodeProps {
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** The DOM node where will apply class names, default to document.body */
   node?: HTMLElement | React.Ref<any>

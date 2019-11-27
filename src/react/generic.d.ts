@@ -27,9 +27,9 @@ export type AppBucketsCOLUMNOFFSET = '1' | '2' | '3' | '4' | '5' | '6' | '7' | '
  * Content Short Hand
  */
 export type AppBucketsShorthandItemFunc<TProps> = (
-  component: React.ReactType<TProps>,
-  props: TProps,
-  children?: React.ReactNode,
+  component?: React.ReactType<TProps>
+  props?: TProps
+  children?: React.ReactNode
 ) => React.ReactElement<any> | null
 
 export type AppBucketsShorthandCollection<TProps> = AppBucketsShorthandItem<TProps>[]

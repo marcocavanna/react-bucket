@@ -6,16 +6,16 @@ export interface LabelDetailProps extends StrictLabelDetailProps {
 
 export interface StrictLabelDetailProps {
   /** An element used to render */
-  as?: any,
+  as?: any
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Label Content */
-  content?: React.ReactNode,
+  content?: React.ReactNode
 
 }
 

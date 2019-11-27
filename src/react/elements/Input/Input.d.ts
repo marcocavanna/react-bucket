@@ -13,7 +13,7 @@ export interface StrictInputProps extends StrictFieldProps, React.InputHTMLAttri
   alwaysShowMask?: boolean
 
   /** Disabled Field */
-  disabled?: boolean,
+  disabled?: boolean
 
   /**
    * Mask string. Format characters are:
@@ -32,10 +32,10 @@ export interface StrictInputProps extends StrictFieldProps, React.InputHTMLAttri
   maskChar?: string | null;
 
   /** Input Tab Index */
-  tabIndex?: number,
+  tabIndex?: number
 
   /** Input Type */
-  type?: 'date' | 'email' | 'file' | 'image' | 'number' | 'password' | 'search' | 'tel' | 'text' | 'time' | 'url',
+  type?: 'date' | 'email' | 'file' | 'image' | 'number' | 'password' | 'search' | 'tel' | 'text' | 'time' | 'url'
 }
 
 declare class Input extends React.Component<InputProps, {}> { }

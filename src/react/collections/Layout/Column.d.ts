@@ -8,19 +8,19 @@ export interface ColumnProps extends StrictColumnProps {
 
 export interface StrictColumnProps {
   /** An element used to render */
-  as?: any,
+  as?: any
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Custom Font Color */
-  color?: AppBucketsCOLORS,
+  color?: AppBucketsCOLORS
 
   /** Base Column Width */
-  is?: AppBucketsCOLUMNWIDTH,
+  is?: AppBucketsCOLUMNWIDTH
 
   /** Responsive Columns Width */
   onTabletIs?       : AppBucketsCOLUMNWIDTH,
@@ -28,7 +28,7 @@ export interface StrictColumnProps {
   onLargeDesktopIs? : AppBucketsCOLUMNWIDTH,
 
   /** Base Column Offset */
-  offsettedBy?: AppBucketsCOLUMNOFFSET,
+  offsettedBy?: AppBucketsCOLUMNOFFSET
 
   /** Responsive Column Offset */
   onTabletOffsettedBy?       : AppBucketsCOLUMNOFFSET,
@@ -36,7 +36,7 @@ export interface StrictColumnProps {
   onLargeDesktopOffsettedBy? : AppBucketsCOLUMNOFFSET,
 
   /** Text Alignment */
-  textAlign?: AppBucketsALIGN,
+  textAlign?: AppBucketsALIGN
 
   /** Columns Vertical Align */
   verticalAlign?: AppBucketsFLEXVERTICALALIGN

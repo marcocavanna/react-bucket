@@ -8,28 +8,28 @@ export interface LoaderProps extends StrictLoaderProps {
 
 export interface StrictLoaderProps {
   /** Active Props */
-  active?: boolean,
+  active?: boolean
 
   /** An element used to render */
-  as?: any,
+  as?: any
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Centered Loader */
-  centered?: boolean,
+  centered?: boolean
 
   /** Content Property */
-  content?: React.ReactNode,
+  content?: React.ReactNode
 
   /** Inline Loader */
-  inline?: boolean,
+  inline?: boolean
 
   /** Inverted Props */
-  inverted?: boolean,
+  inverted?: boolean
 
   /** Size Style */
   size?: AppBucketsSIZE

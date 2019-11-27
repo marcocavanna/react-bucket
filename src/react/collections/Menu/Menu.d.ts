@@ -10,43 +10,43 @@ export interface MenuProps extends StrictMenuProps {
 
 export interface StrictMenuProps {
   /** An element used to render */
-  as?: any,
+  as?: any
 
   /** Index of the current active menu item */
-  activeIndex?: number | string,
+  activeIndex?: number | string
 
   /** Menu can have no border */
-  borderless?: boolean,
+  borderless?: boolean
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Content Shorthand */
-  content?: React.ReactNode,
+  content?: React.ReactNode
 
   /** Inital Active Index value */
-  defaultActiveIndex?: number | string,
+  defaultActiveIndex?: number | string
 
   /** Item Shorthand */
-  items?: any,
+  items?: any
 
   /** On Item Click Handler to be used without children */
-  onItemClick?: Function,
+  onItemClick?: Function
 
   /** A menu can have secondary style */
-  secondary?: boolean,
+  secondary?: boolean
 
   /** Tab Style */
-  tab?: boolean,
+  tab?: boolean
 
   /** Render as Text Only */
-  text?: boolean,
+  text?: boolean
 
   /** Vertical Menu */
-  vertical?: boolean,
+  vertical?: boolean
 
 }
 

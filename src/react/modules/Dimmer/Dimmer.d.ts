@@ -12,7 +12,7 @@ export interface StrictDimmerProps {
   active?: boolean
 
   /** Dimmer Inner Content Shorthand */
-  content?: React.ReactNode,
+  content?: React.ReactNode
 
   /** A dimmer can be formatted to be fixed to the page. */
   page?: boolean

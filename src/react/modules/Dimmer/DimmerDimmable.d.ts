@@ -11,13 +11,13 @@ export interface StrictDimmerDimmableProps {
   as?: any
 
   /** Primary content. */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** Additional classes. */
   className?: string
 
   /** Shorthand for primary content. */
-  content?: React.ReactNode,
+  content?: React.ReactNode
 
   /** Controls whether or not the dim is displayed. */
   dimmed?: boolean

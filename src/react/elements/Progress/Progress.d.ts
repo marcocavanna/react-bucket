@@ -10,16 +10,16 @@ export interface ProgressProps extends StrictProgressProps {
 
 export interface StrictProgressProps extends FieldProps {
   /** Show an Active White Shadow */
-  active?: boolean,
+  active?: boolean
 
   /** An element used to render */
-  as?: any,
+  as?: any
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Set Progress Direction */
   direction?: 'left' | 'right'

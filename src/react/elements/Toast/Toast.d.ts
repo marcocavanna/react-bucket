@@ -11,16 +11,16 @@ export interface ToastProps extends StrictToastProps {
 
 export interface StrictToastProps {
   /** An element used to render */
-  as?: any,
+  as?: any
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Content shorthand */
-  content?: React.ReactNode,
+  content?: React.ReactNode
 
   /** Set if toast is dismissable, using a string to define icon */
   dismissable?: boolean | ReactBucketICON

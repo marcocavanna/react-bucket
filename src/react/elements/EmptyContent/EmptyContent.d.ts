@@ -10,16 +10,16 @@ export interface EmptyContentProps extends StrictEmptyContentProps {
 
 export interface StrictEmptyContentProps extends StrictContainerProps {
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Text Color */
   color?: AppBucketsCOLORS
 
   /** Content Shorthand */
-  content?: React.ReactNode,
+  content?: React.ReactNode
 
   /** Header content */
   header?: string

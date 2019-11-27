@@ -13,52 +13,52 @@ export interface PopupProps extends StrictPopupProps {
 
 export interface StrictPopupProps extends StrictPortalProps {
   /** An element used to render */
-  as?: any,
+  as?: any
 
   /** Basic Style */
-  basic: boolean,
+  basic?: boolean
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Content Shorthand */
-  content?: React.ReactNode,
+  content?: React.ReactNode
 
   /** Disabled State */
-  disabled?: boolean,
+  disabled?: boolean
 
   /** Header Shorthand */
-  header?: any,
+  header?: any
 
   /** Hide on Close */
-  hideOnScroll?: boolean,
+  hideOnScroll?: boolean
 
   /** Not close popper on hover */
-  hoverable?: boolean,
+  hoverable?: boolean
 
   /** Inverted Style */
-  inverted?: boolean,
+  inverted?: boolean
 
   /** Offset properties with units px, % %p, vw, vh */
-  offset?: number | string,
+  offset?: number | string
 
   /** Triggers to Open the Popup */
-  on?: 'hover' | 'click' | 'focus' | ('hover' | 'click' | 'focus')[],
+  on?: 'hover' | 'click' | 'focus' | ('hover' | 'click' | 'focus')[]
 
   /** onClose Handler */
-  onClose?: Function,
+  onClose?: Function
 
   /** onMount Handler */
-  onMount?: Function,
+  onMount?: Function
 
   /** onUnmount Handler */
-  onUnmount?: Function,
+  onUnmount?: Function
 
   /** onOpen Handler */
-  onOpen?: Function,
+  onOpen?: Function
 
   /** Handler on Outside Portal Click */
   onOutsideClick: Function
@@ -75,19 +75,19 @@ export interface StrictPopupProps extends StrictPortalProps {
     | 'bottom center',
 
   /** An object containing custom settings for the Popper.js modifiers. */
-  popperModifiers?: object,
+  popperModifiers?: object
 
   /** A popup can have dependencies which update will schedule a position update. */
-  popperDependencies?: any[],
+  popperDependencies?: any[]
 
   /** Size modifier */
-  size?: AppBucketsSIZE,
+  size?: AppBucketsSIZE
 
   /** User defined Style */
-  style?: Object,
+  style?: Object
 
   /** Element to be rendered in-place where the popup is defined. */
-  trigger?: React.ReactNode,
+  trigger?: React.ReactNode
 
 }
 

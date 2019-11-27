@@ -8,16 +8,16 @@ export interface LabelGroupProps extends StrictLabelGroupProps {
 
 export interface StrictLabelGroupProps {
   /** An element used to render */
-  as?: any,
+  as?: any
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Content ShortHand */
-  content?: React.ReactNode,
+  content?: React.ReactNode
 
   /** Size */
   size?: AppBucketsSIZE

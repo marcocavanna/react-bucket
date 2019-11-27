@@ -11,41 +11,41 @@ export interface HeaderProps extends StrictHeaderProps {
 
 export interface StrictHeaderProps {
   /** An element used to render */
-  as?: any,
+  as?: any
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Custom Font Color */
-  color?: AppBucketsCOLORS,
+  color?: AppBucketsCOLORS
 
   /** Content shorthand */
-  content?: React.ReactNode,
+  content?: React.ReactNode
 
   /** Disable Header */
-  disabled?: boolean,
+  disabled?: boolean
 
   /** Dividing Header */
-  dividing?: boolean,
+  dividing?: boolean
 
   /** Icon Item */
-  icon?: ReactBucketICON,
+  icon?: ReactBucketICON
 
   /** Image Item */
-  image?: any,
+  image?: any
 
   /** Subheader shorthand */
-  subheader?: any,
+  subheader?: any
 
   /** Text Alignment */
-  textAlign?: AppBucketsALIGN,
+  textAlign?: AppBucketsALIGN
 }
 
 interface HeaderComponent extends React.StatelessComponent<HeaderProps> {
-  Subheader: typeof Subheader,
+  Subheader?: typeof Subheader
   Content: typeof Content
 }
 

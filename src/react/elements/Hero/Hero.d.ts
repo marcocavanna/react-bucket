@@ -14,19 +14,19 @@ export interface HeroProps extends StrictHeroProps {
 
 export interface StrictHeroProps {
   /** An element used to render */
-  as?: any,
+  as?: any
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Content Shorthand */
-  content?: React.ReactNode,
+  content?: React.ReactNode
 
   /** Header shorthand */
-  header?: React.ReactNode,
+  header?: React.ReactNode
 
   /** Hero Icon to Show */
   heroIcon?: ReactBucketICON

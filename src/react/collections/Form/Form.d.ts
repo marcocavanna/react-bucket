@@ -14,28 +14,28 @@ export interface FormProps extends StrictFormProps {
 
 export interface StrictFormProps extends React.DetailedHTMLProps<React.FormHTMLAttributes<HTMLFormElement>, HTMLFormElement> {
   /** The Action */
-  action?: string,
+  action?: string
 
   /** An element used to render the componenet */
-  as?: any,
+  as?: any
 
   /** Childrens */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** Additional User defined classes */
-  className?: string,
+  className?: string
 
   /** Automatically show error message */
-  error?: bool,
+  error?: bool
 
   /** Automatically show loading */
-  loading?: bool,
+  loading?: bool
 
   /** Change form size */
-  size?: AppBucketsSIZE,
+  size?: AppBucketsSIZE
 
   /** Automatically show Success */
-  success?: bool,
+  success?: bool
 
   /** Automatically show warning */
   warning?: bool
