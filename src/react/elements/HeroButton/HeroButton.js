@@ -66,7 +66,7 @@ HeroButton.propTypes = {
   className: PropTypes.string,
 
   /** Content Shorthand */
-  content: PropTypes.any,
+  content: PropTypes.node,
 
   /** Disable Button */
   disabled: PropTypes.bool,

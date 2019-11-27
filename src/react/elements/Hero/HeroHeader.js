@@ -59,7 +59,7 @@ HeroHeader.propTypes = {
   className: PropTypes.string,
 
   /** Content Shorthand */
-  content: PropTypes.any,
+  content: PropTypes.node,
 
   /** Header Shorthand */
   icon: customPropTypes.fontAwesome

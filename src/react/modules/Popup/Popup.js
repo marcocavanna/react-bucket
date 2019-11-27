@@ -42,7 +42,7 @@ class Popup extends PureComponent {
     className: PropTypes.string,
 
     /** Content Shorthand */
-    content: PropTypes.any,
+    content: PropTypes.node,
 
     /** Disabled State */
     disabled: PropTypes.bool,

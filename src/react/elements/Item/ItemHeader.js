@@ -58,7 +58,7 @@ ItemHeader.propTypes = {
   className: PropTypes.string,
 
   /** Content Shorthand */
-  content: PropTypes.any,
+  content: PropTypes.node,
 
   /** Icon Shorthand */
   icon: customPropTypes.fontAwesome

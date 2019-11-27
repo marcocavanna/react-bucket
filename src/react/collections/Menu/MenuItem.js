@@ -38,7 +38,7 @@ class MenuItem extends React.PureComponent {
     color: PropTypes.string,
 
     /** Content ShordHand */
-    content: PropTypes.any,
+    content: PropTypes.node,
 
     /** Disabled State */
     disabled: PropTypes.bool,

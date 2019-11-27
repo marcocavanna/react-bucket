@@ -45,7 +45,7 @@ LabelGroup.propTypes = {
   className: PropTypes.string,
 
   /** Content ShortHand */
-  content: PropTypes.any,
+  content: PropTypes.node,
 
   /** Size */
   size: customPropTypes.size

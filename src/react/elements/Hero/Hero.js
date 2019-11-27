@@ -75,7 +75,7 @@ Hero.propTypes = {
   className: PropTypes.string,
 
   /** Content Shorthand */
-  content: PropTypes.any,
+  content: PropTypes.node,
 
   /** Header Shorthand */
   header: PropTypes.any,

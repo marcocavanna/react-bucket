@@ -63,7 +63,7 @@ Loader.propTypes = {
   className: PropTypes.string,
 
   /** Content Property */
-  content: PropTypes.any,
+  content: PropTypes.node,
 
   /** Inline Loader */
   inline: PropTypes.bool,

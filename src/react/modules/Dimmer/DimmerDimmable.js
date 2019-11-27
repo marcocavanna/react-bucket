@@ -42,7 +42,7 @@ DimmerDimmable.propTypes = {
   className: PropTypes.string,
 
   /** Shorthand for primary content. */
-  content: PropTypes.any,
+  content: PropTypes.node,
 
   /** Controls whether or not the dim is displayed. */
   dimmed: PropTypes.bool

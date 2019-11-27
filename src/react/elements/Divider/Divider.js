@@ -52,7 +52,7 @@ Divider.propTypes = {
   className: PropTypes.string,
 
   /** Content String */
-  content: PropTypes.string,
+  content: PropTypes.node,
 
   /** Hidden */
   hidden: PropTypes.bool,

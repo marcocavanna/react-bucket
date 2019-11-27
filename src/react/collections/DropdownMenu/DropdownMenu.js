@@ -109,7 +109,7 @@ DropdownMenu.propTypes = {
   className: PropTypes.string,
 
   /** Content Shorthand */
-  content: PropTypes.any,
+  content: PropTypes.node,
 
   /** Event Stack name */
   eventStack: PropTypes.string,

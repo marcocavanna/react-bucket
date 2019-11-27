@@ -95,7 +95,7 @@ Header.propTypes = {
   color: PropTypes.string,
 
   /** Shorthand Properties for Content */
-  content: PropTypes.any,
+  content: PropTypes.node,
 
   /** Disable Header */
   disabled: PropTypes.bool,

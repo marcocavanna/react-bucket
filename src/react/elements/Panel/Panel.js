@@ -74,7 +74,7 @@ Panel.propTypes = {
   color: PropTypes.string,
 
   /** Shorthand Properties for Content */
-  content: PropTypes.any,
+  content: PropTypes.node,
 
   /** Panel has Fab */
   fab: PropTypes.oneOfType([

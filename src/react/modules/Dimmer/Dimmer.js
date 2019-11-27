@@ -23,7 +23,7 @@ export default class Dimmer extends PureComponent {
     active: PropTypes.bool,
 
     /** Dimmer Inner Content Shorthand */
-    content: PropTypes.any,
+    content: PropTypes.node,
 
     /** Append Loader inside Dimmer */
     loading: PropTypes.bool,

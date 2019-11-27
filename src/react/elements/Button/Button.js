@@ -39,7 +39,7 @@ class Button extends PureComponent {
     color: PropTypes.string,
 
     /** Button Content Property */
-    content: PropTypes.string,
+    content: PropTypes.node,
 
     /** Danger Color */
     danger: PropTypes.bool,

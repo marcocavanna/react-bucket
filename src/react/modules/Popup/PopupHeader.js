@@ -44,7 +44,7 @@ PopupHeader.propTypes = {
   className: PropTypes.string,
 
   /** Content Shorthand */
-  content: PropTypes.any
+  content: PropTypes.node
 };
 
 PopupHeader.create = createShorthandFactory(PopupHeader, content => ({ content }));

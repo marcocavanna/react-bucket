@@ -35,7 +35,7 @@ class Menu extends Component {
     className: PropTypes.string,
 
     /** Content Shorthand */
-    content: PropTypes.any,
+    content: PropTypes.node,
 
     /** Inital Active Index value */
     defaultActiveIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),

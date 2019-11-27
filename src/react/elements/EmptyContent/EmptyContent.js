@@ -64,7 +64,7 @@ EmptyContent.propTypes = {
   color: PropTypes.string,
 
   /** Content Shorthand */
-  content: PropTypes.any,
+  content: PropTypes.node,
 
   /** Empty Content Header */
   header: PropTypes.string,

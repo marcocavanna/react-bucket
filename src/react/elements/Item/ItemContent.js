@@ -59,7 +59,7 @@ ItemContent.propTypes = {
   className: PropTypes.string,
 
   /** Content shorthand */
-  content: PropTypes.any,
+  content: PropTypes.node,
 
   /** Header Shorthand */
   header: PropTypes.any,

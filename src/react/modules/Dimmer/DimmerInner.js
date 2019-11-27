@@ -32,7 +32,7 @@ export default class DimmerInner extends PureComponent {
     className: PropTypes.string,
 
     /** Shorthand for primary content. */
-    content: PropTypes.any,
+    content: PropTypes.node,
 
     /** A disabled dimmer cannot be activated */
     disabled: PropTypes.bool,

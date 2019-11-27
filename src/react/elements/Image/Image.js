@@ -107,7 +107,7 @@ Image.propTypes = {
   className: PropTypes.string,
 
   /** Content Shorthand */
-  content: PropTypes.any,
+  content: PropTypes.node,
 
   /** Dimmer Shorthand */
   dimmer: PropTypes.any,

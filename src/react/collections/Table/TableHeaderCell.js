@@ -46,7 +46,7 @@ TableHeaderCell.propTypes = {
   className: PropTypes.string,
 
   /** Header Content shorthand */
-  content: PropTypes.any,
+  content: PropTypes.node,
 
   /** Set the Cell as Sorted */
   sorted: PropTypes.oneOfType([

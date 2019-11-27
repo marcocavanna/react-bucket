@@ -43,7 +43,7 @@ ToastHeader.propTypes = {
   className: PropTypes.string,
 
   /** Content Shorthand */
-  content: PropTypes.any
+  content: PropTypes.node
 };
 
 ToastHeader.create = createShorthandFactory(ToastHeader, content => ({ content }));

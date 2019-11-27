@@ -43,7 +43,7 @@ TableHeader.propTypes = {
   className: PropTypes.string,
 
   /** Content shorthand */
-  content: PropTypes.any
+  content: PropTypes.node
 };
 
 TableHeader.defaultProps = {

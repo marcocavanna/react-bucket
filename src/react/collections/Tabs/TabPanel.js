@@ -52,7 +52,7 @@ TabPanel.propTypes = {
   className: PropTypes.string,
 
   /** Content shorthand */
-  content: PropTypes.any,
+  content: PropTypes.node,
 
   /** Loading state for a Panel */
   loading: PropTypes.bool

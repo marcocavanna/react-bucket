@@ -39,7 +39,7 @@ LabelDetail.propTypes = {
   className: PropTypes.string,
 
   /** Shorthand for content */
-  content: PropTypes.any
+  content: PropTypes.node
 };
 
 LabelDetail.create = createShorthandFactory(LabelDetail, content => ({ content }));

@@ -44,7 +44,7 @@ HeroContent.propTypes = {
   className: PropTypes.string,
 
   /** Content Shorthand */
-  content: PropTypes.any
+  content: PropTypes.node
 };
 
 HeroContent.create = createShorthandFactory(HeroContent, content => ({ content }));

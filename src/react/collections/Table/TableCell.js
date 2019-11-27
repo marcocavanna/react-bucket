@@ -79,7 +79,7 @@ TableCell.propTypes = {
   className: PropTypes.string,
 
   /** Cell content Shorthand */
-  content: PropTypes.any,
+  content: PropTypes.node,
 
   /** Disable Cell */
   disabled: PropTypes.bool,

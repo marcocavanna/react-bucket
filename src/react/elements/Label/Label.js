@@ -37,7 +37,7 @@ class Label extends React.PureComponent {
     color: PropTypes.string,
 
     /** Content ShortHand */
-    content: PropTypes.any,
+    content: PropTypes.node,
 
     /** Detail Shorthand */
     detail: PropTypes.any,

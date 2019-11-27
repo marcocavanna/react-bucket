@@ -116,7 +116,7 @@ Toast.propTypes = {
   className: PropTypes.string,
 
   /** Toast Content Shorthand */
-  content: PropTypes.any,
+  content: PropTypes.node,
 
   /** Is toast dismissable manually? */
   dismissable: PropTypes.oneOfType([

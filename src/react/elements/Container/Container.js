@@ -149,7 +149,7 @@ Container.propTypes = {
   className: PropTypes.string,
 
   /** Content Shorthand */
-  content: PropTypes.any,
+  content: PropTypes.node,
 
   /** Box Shadow */
   dpElevation: customPropTypes.numbersRange(1, 24),

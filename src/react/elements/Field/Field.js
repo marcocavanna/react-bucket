@@ -150,7 +150,7 @@ Field.propTypes = {
   className: PropTypes.string,
 
   /** Field Content */
-  content: PropTypes.any,
+  content: PropTypes.node,
 
   /** ClassName for Content Element */
   contentClassName: PropTypes.string,

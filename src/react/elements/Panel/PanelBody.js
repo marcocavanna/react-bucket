@@ -56,7 +56,7 @@ PanelBody.propTypes = {
   color: PropTypes.string,
 
   /** Shorthand Properties for Content */
-  content: PropTypes.any,
+  content: PropTypes.node,
 
   /** Font Weight Property */
   fontWeight: PropTypes.string,

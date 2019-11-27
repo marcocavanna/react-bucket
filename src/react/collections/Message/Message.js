@@ -34,7 +34,7 @@ export default class Message extends PureComponent {
     className: PropTypes.string,
 
     /** Shorthand for primary content. */
-    content: PropTypes.any,
+    content: PropTypes.node,
 
     /** A message may be formatted to display a negative message. Same as `negative`. */
     error: PropTypes.bool,

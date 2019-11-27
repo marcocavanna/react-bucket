@@ -43,7 +43,7 @@ MessageItem.propTypes = {
   className: PropTypes.string,
 
   /** Shorthand for primary content. */
-  content: PropTypes.any
+  content: PropTypes.node
 };
 
 MessageItem.defaultProps = {

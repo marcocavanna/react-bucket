@@ -42,7 +42,7 @@ MessageContent.propTypes = {
   className: PropTypes.string,
 
   /** Shorthand for primary content. */
-  content: PropTypes.any
+  content: PropTypes.node
 };
 
 export default MessageContent;
