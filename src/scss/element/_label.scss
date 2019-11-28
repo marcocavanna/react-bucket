@@ -2,13 +2,19 @@
   display: inline-block;
   line-height: 1;
   vertical-align: baseline;
-  margin: 0 pixel-to-em(6px);
   background-color: $grey-lightest;
   font-size: pixel-to-em($font-size - 2px);
   padding: pixel-to-em(6px) pixel-to-em(10px);
   border-radius: pixel-to-em($border-radius);
   color: $text-tint;
   font-weight: $bold;
+
+  @include background-variation($brand: true, $ui: true, $social: true)
+
+}
+
+.labels > .label {
+  margin: 0 pixel-to-em(6px);
 
   &:first-child {
     margin-left: 0;
@@ -17,7 +23,4 @@
   &:last-child {
     margin-right: 0;
   }
-
-  @include background-variation($brand: true, $ui: true, $social: true)
-
 }
