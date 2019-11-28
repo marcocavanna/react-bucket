@@ -4,7 +4,6 @@ import cx from 'classnames';
 
 import {
   childrenUtils,
-  customPropTypes,
   getElementType,
   getUnhandledProps
 } from '../../lib';
@@ -35,7 +34,7 @@ function TableBody(props) {
 
 TableBody.propTypes = {
   /** An element used to render the Component */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Children Props */
   children: PropTypes.node,
@@ -44,7 +43,7 @@ TableBody.propTypes = {
   className: PropTypes.string,
 
   /** Content shorthand */
-  content: PropTypes.any
+  content: PropTypes.node
 };
 
 TableBody.defaultProps = {

@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { AppBucketsICON } from '../../../fontawesome/icon-file-generator/fa-icon';
+import { ReactBucketICON } from '../../generic';
 
 import { StrictPortalProps } from '../../addons/Portal';
 import { ButtonProps } from '../../elements/Button';
@@ -15,73 +15,76 @@ export interface ModalProps extends StrictModalProps {
 
 export interface StrictModalProps {
   /** An element used to render */
-  as?: any,
+  as?: React.ElementType
 
   /** Shorthand Properties for Modal Actions */
-  actions?: ButtonProps[],
+  actions?: ButtonProps[]
+
+  /** Autosized Width */
+  autosized?: boolean
 
   /** Reduce Modal graphic */
-  basic?: boolean,
+  basic?: boolean
 
   /** Show a modal centered */
-  centered?: boolean,
+  centered?: boolean
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** The Modal Close Icn */
-  closeIcon?: React.ReactNode | boolean | AppBucketsICON,
+  closeIcon?: React.ReactNode | boolean | ReactBucketICON
 
   /** Set if a modal must close on dimmer click */
-  closeOnDimmerClick?: boolean,
+  closeOnDimmerClick?: boolean
 
   /** Set if modal must close on document click */
-  closeOnDocumentClick?: boolean,
+  closeOnDocumentClick?: boolean
 
   /** Content Shorthand */
-  content?: any,
+  content?: React.ReactNode
 
   /** Initial open value */
-  defaultOpen?: boolean,
+  defaultOpen?: boolean
 
   /** Set dimmer properties */
-  dimmer?: boolean | 'inverted' | 'blurring',
+  dimmer?: boolean | 'inverted' | 'blurring'
 
   /** Event Pool namespace */
-  eventPool?: string,
+  eventPool?: string
 
   /** Modal header shorthand */
-  header?: React.ReactNode,
+  header?: React.ReactNode
 
   /** Node where to mount Modal */
-  mountNode?: any,
+  mountNode?: any
 
   /** On Action click function handler */
-  onActionClick?: (e: React.MouseEvent<HTMLElement>, props: ModalProps) => void,
+  onActionClick?: (e: React.MouseEvent<HTMLElement>, props: ModalProps) => void
 
   /** On Close Function handler */
-  onClose?: (e: React.MouseEvent<HTMLElement>, props: ModalProps) => void,
+  onClose?: (e: React.MouseEvent<HTMLElement>, props: ModalProps) => void
 
   /** On Mount Function handler */
-  onMount?: (nothing: null, props: ModalProps) => void,
+  onMount?: (nothing: null, props: ModalProps) => void
 
   /** On Open Function handler */
-  onOpen?: (e: React.MouseEvent<HTMLElement>, props: ModalProps) => void,
+  onOpen?: (e: React.MouseEvent<HTMLElement>, props: ModalProps) => void
 
   /** On Unmount function handler */
-  onUnmount?: (nothing: null, props: ModalProps) => void,
+  onUnmount?: (nothing: null, props: ModalProps) => void
 
   /** Set if the modal is opened or not */
-  open?: boolean,
+  open?: boolean
 
   /** Size Modal Props */
-  size?: 'small' | 'big',
+  size?: 'small' | 'big'
 
   /** Custom Style */
-  style?: React.CSSProperties,
+  style?: React.CSSProperties
 
   /** The element that will trigger the Modal */
   trigger?: React.ReactNode

@@ -3,15 +3,15 @@
   $__colors-variations: ();
 
   @if $brand == true {
-    $__colors-variations: map-merge($__colors-variations, $ui-bucket-brand-colors-map);
+    $__colors-variations: map-merge($__colors-variations, $react-bucket-brand-colors-map);
   }
 
   @if $ui == true {
-    $__colors-variations: map-merge($__colors-variations, $ui-bucket-ui-colors-map);
+    $__colors-variations: map-merge($__colors-variations, $react-bucket-ui-colors-map);
   }
 
   @if $social == true {
-    $__colors-variations: map-merge($__colors-variations, $ui-bucket-socials-color-map);
+    $__colors-variations: map-merge($__colors-variations, $react-bucket-socials-color-map);
   }
 
   @each $label, $color in $__colors-variations {
@@ -29,7 +29,7 @@
           box-shadow: none;
           transition: all linear .1s;
           will-change: box-shadow;
-  
+
           @include without-touch-hover {
             #{$property-variation}: color-tint($color, .5);
             box-shadow: 0px 1px 10px transparentize(color-shade($color), .4);
@@ -42,14 +42,14 @@
             #{$property-variation}: color-shade($color, .75);
           }
         }
-    
+
         @if $with-focus == true {
           &:focus, &.is-focused {
             box-shadow: 0px 0px 1px 2px color-shade($color, 1.5) inset !important;
             #{$property-variation}: color-tint($color, .75) !important;
           }
         }
-    
+
         @if $with-active == true {
           &:active, &.is-active {
             #{$property-variation}: color-shade($color, 1.25) !important;
@@ -72,7 +72,7 @@
   $active-color: null,
   $focus-color: null
 ) {
-  
+
   $__color-for-contrast: $base-color;
 
   @if $base-color == transparent {
@@ -111,7 +111,7 @@
         transition: $property-variation linear .1s;
         will-change: $property-variation;
       }
-  
+
       @include without-touch-hover {
         @if $hover-will-drop-shadow == true {
           #{$property-variation}: color-tint($__color-for-contrast, .5);
@@ -120,13 +120,13 @@
           #{$property-variation}: $active-color;
         }
       }
-  
+
       @if $with-active == true {
         &:active, &.is-active {
           #{$property-variation}: color-shade($active-color, .25) !important;
         }
       }
-  
+
       @if $with-focus == true {
         &:focus, &.is-focused {
           box-shadow: 0px 0px 1px 2px color-shade($__color-for-contrast, 1.5) inset !important;
@@ -138,11 +138,11 @@
 
   @if $ui == true or $brand == true or $social == true {
     $__hover_mode: true;
-  
+
     @if $hover-will-drop-shadow == true {
       $__hover_mode: 'shadow';
     }
-  
+
     @include background-variation(
       $brand: $brand,
       $ui: $ui,

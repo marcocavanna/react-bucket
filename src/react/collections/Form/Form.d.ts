@@ -1,10 +1,12 @@
 import * as React from 'react';
 
-import { AppBucketsSIZE } from '../../generic';
+import { ReactBucketSIZE } from '../../generic';
 
 import Input from '../../elements/Input';
 import FormikCheckbox from './FormikCheckbox';
+import FormikDayPicker from './FormikDayPicker';
 import FormikInput from './FormikInput';
+import FormikRadio from './FormikRadio';
 import FormikSelect from './FormikSelect';
 
 export interface FormProps extends StrictFormProps {
@@ -13,28 +15,28 @@ export interface FormProps extends StrictFormProps {
 
 export interface StrictFormProps extends React.DetailedHTMLProps<React.FormHTMLAttributes<HTMLFormElement>, HTMLFormElement> {
   /** The Action */
-  action?: string,
+  action?: string
 
   /** An element used to render the componenet */
-  as?: any,
+  as?: React.ElementType
 
   /** Childrens */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** Additional User defined classes */
-  className?: string,
+  className?: string
 
   /** Automatically show error message */
-  error?: bool,
+  error?: bool
 
   /** Automatically show loading */
-  loading?: bool,
+  loading?: bool
 
   /** Change form size */
-  size?: AppBucketsSIZE,
+  size?: ReactBucketSIZE
 
   /** Automatically show Success */
-  success?: bool,
+  success?: bool
 
   /** Automatically show warning */
   warning?: bool
@@ -43,7 +45,9 @@ export interface StrictFormProps extends React.DetailedHTMLProps<React.FormHTMLA
 declare interface Form extends React.ComponentClass<FormProps, {}> {
   Input: typeof Input
   FormikCheckbox: typeof FormikCheckbox
+  FormikDayPicker: typeof FormikDayPicker
   FormikInput: typeof FormikInput
+  FormikRadio: typeof FormikRadio
   FormikSelect: typeof FormikSelect
 }
 

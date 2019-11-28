@@ -44,7 +44,7 @@ function PanelBody(props) {
 
 PanelBody.propTypes = {
   /** An element used to render the component */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Primary Content */
   children: PropTypes.node,
@@ -56,7 +56,7 @@ PanelBody.propTypes = {
   color: PropTypes.string,
 
   /** Shorthand Properties for Content */
-  content: PropTypes.any,
+  content: PropTypes.node,
 
   /** Font Weight Property */
   fontWeight: PropTypes.string,

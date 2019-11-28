@@ -1,9 +1,9 @@
 import * as React from 'react'
 
-import { AppBucketsICON } from '../../../fontawesome/icon-file-generator/fa-icon';
+import { ReactBucketICON } from '../../generic';
 
 import {
-  AppBucketsCOLORS
+  ReactBucketCOLOR
 } from '../../generic'
 
 export interface PanelFabProps extends StrictPanelFabProps {
@@ -12,30 +12,32 @@ export interface PanelFabProps extends StrictPanelFabProps {
 
 export interface StrictPanelFabProps {
   /** An element used to render */
-  as?: any,
+  as?: React.ElementType
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Fab Color */
-  color?: AppBucketsCOLORS,
+  color?: ReactBucketCOLOR
 
   /** Fab Icon */
-  icon?: AppBucketsICON,
+  icon?: ReactBucketICON
 
-  /** On Fab Click Function */
-  onFabClick?: Function,
+  /**
+   * Called after user's click.
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>, props: PanelFabProps) => void
 
   /** Primary State for FAB */
-  primary?: boolean,
+  primary?: boolean
 
 }
 
-interface PanelFabComponent extends React.StatelessComponent<PanelFabProps> { }
-
-declare const PanelFab: PanelFabComponent
+declare const PanelFab: React.FunctionComponent<PanelFabProps>
 
 export default PanelFab

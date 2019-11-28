@@ -1,14 +1,12 @@
 import * as React from 'react'
 
-import { AppBucketsShorthandContent } from '../../generic'
-
 export interface DimmerDimmableProps extends StrictDimmerDimmableProps {
   [key: string]: any
 }
 
 export interface StrictDimmerDimmableProps {
   /** An element type to render as (string or function). */
-  as?: any
+  as?: React.ElementType
 
   /** Primary content. */
   children?: React.ReactNode
@@ -17,7 +15,7 @@ export interface StrictDimmerDimmableProps {
   className?: string
 
   /** Shorthand for primary content. */
-  content?: AppBucketsShorthandContent
+  content?: React.ReactNode
 
   /** Controls whether or not the dim is displayed. */
   dimmed?: boolean

@@ -47,7 +47,7 @@ function PanelHeader(props) {
   }
 
   const headerElement = header || subheader
-    ? Header.create({ content: header, subheader, icon })
+    ? Header.create({ content: header, subheader, icon }, { autoGenerateKey: false })
     : null;
 
   return (
@@ -61,7 +61,7 @@ function PanelHeader(props) {
 
 PanelHeader.propTypes = {
   /** An element used to render the component */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Primary Content */
   children: PropTypes.node,

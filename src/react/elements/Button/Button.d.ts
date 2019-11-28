@@ -1,10 +1,9 @@
 import * as React from 'react'
 
-import { AppBucketsICON } from '../../../fontawesome/icon-file-generator/fa-icon';
-
 import {
-  AppBucketsCOLORS,
-  AppBucketsSIZE
+  ReactBucketCOLOR,
+  ReactBucketSIZE,
+  ReactBucketICON
 } from '../../generic';
 
 import ButtonGroup from './ButtonGroup';
@@ -13,72 +12,79 @@ export interface ButtonProps extends StrictButtonProps {
   [key: string]: any
 }
 
-export interface StrictButtonProps {
+export interface StrictButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /** An element used to render */
-  as?: any,
+  as?: React.ElementType
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** Circle Button */
-  circle?: boolean,
+  circle?: boolean
 
   /** Button Background Color */
-  color?: AppBucketsCOLORS,
+  color?: ReactBucketCOLOR
 
   /** Button Content Property */
-  content?: any,
+  content?: React.ReactNode
 
   /** Danger Color */
-  danger?: boolean,
+  danger?: boolean
 
   /** Disabled State */
-  disabled?: boolean,
+  disabled?: boolean
 
   /** Display Button as Flat */
-  flat?: boolean,
+  flat?: boolean
 
   /** Icon Property or Definition */
-  icon?: boolean | AppBucketsICON,
+  icon?: boolean | ReactBucketICON
 
   /** Info Color */
-  info?: boolean,
+  info?: boolean
 
   /** Generate Button as Fab */
-  fab?: boolean,
+  fab?: boolean
 
   /** Set fullwidth Button */
-  full?: boolean,
+  full?: boolean
 
   /** Icon Position */
-  iconPosition?: 'left' | 'right',
+  iconPosition?: 'left' | 'right'
 
   /** Inverted Color */
-  inverted?: boolean,
+  inverted?: boolean
 
   /** Button with Loader */
-  loading?: boolean,
+  loading?: boolean
+
+  /**
+   * Called after user's click
+   * @param {React.SyntheticEvent} event The React Click event
+   * @param {object} props Button Props
+   */
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>, props: ButtonProps) => void
 
   /** Primary Color */
-  primary?: boolean,
+  primary?: boolean
 
   /** Role Attributes */
-  role?: boolean,
+  role?: boolean
 
   /** Render Rounded Button */
-  rounded?: boolean,
+  rounded?: boolean
 
   /** Secondary Color */
-  secondary?: boolean,
+  secondary?: boolean
 
   /** Change Button Size */
-  size?: AppBucketsSIZE,
+  size?: ReactBucketSIZE
 
   /** Success Color */
-  success?: boolean,
+  success?: boolean
 
   /** Tab Index Order */
-  tabIndex?: number,
+  tabIndex?: number
 
   /** Warning Color */
   warning?: boolean

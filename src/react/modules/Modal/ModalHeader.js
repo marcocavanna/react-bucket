@@ -5,7 +5,6 @@ import cx from 'classnames';
 import {
   childrenUtils,
   createShorthandFactory,
-  customPropTypes,
   getElementType,
   getUnhandledProps
 } from '../../lib';
@@ -36,7 +35,10 @@ function ModalHeader(props) {
 
 ModalHeader.propTypes = {
   /** An element used to render the component */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
+
+  /** Primary content. */
+  children: PropTypes.node,
 
   /** Additional classes */
   className: PropTypes.string,

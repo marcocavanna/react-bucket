@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { AppBucketsCOLORS, AppBucketsBREAKPOINTS, AppBucketsALIGN } from '../../generic';
+import { ReactBucketCOLOR, ReactBucketBREAKPOINT, ReactBucketALIGN } from '../../generic';
 
 declare type DPELEVATION = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12' | '13' | '14' | '15' | '16' | '17' | '18' | '19' | '20' | '21' | '22' | '23' | '24'
 
@@ -12,115 +12,112 @@ export interface ContainerProps extends StrictContainerProps {
 
 export interface StrictContainerProps {
   /** An element used to render */
-  as?: any,
+  as?: React.ElementType
 
   /** Container Background Color */
-  background: AppBucketsCOLORS,
+  background?: ReactBucketCOLOR
 
   /** Display container as Block */
-  block: boolean | AppBucketsBREAKPOINTS,
+  block?: boolean | ReactBucketBREAKPOINT
 
   /** Display Border Bottom */
-  borderedBottom: boolean | AppBucketsBREAKPOINTS,
+  borderedBottom?: boolean | ReactBucketBREAKPOINT
 
   /** Display Border Left */
-  borderedLeft: boolean | AppBucketsBREAKPOINTS,
+  borderedLeft?: boolean | ReactBucketBREAKPOINT
 
   /** Display Border Right */
-  borderedRight: boolean | AppBucketsBREAKPOINTS,
+  borderedRight?: boolean | ReactBucketBREAKPOINT
 
   /** Display Border Top */
-  borderedTop: boolean | AppBucketsBREAKPOINTS,
+  borderedTop?: boolean | ReactBucketBREAKPOINT
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Content Shorthand */
-  content: any,
+  content?: React.ReactNode
 
   /** Box Shadow */
-  dpElevation: DPELEVATION,
+  dpElevation?: DPELEVATION
 
   /** Display container as Flex */
-  flex: boolean | AppBucketsBREAKPOINTS,
+  flex?: boolean | ReactBucketBREAKPOINT
 
   /** Change container font size */
-  fontSize: 'small' | 'normal' | 'large',
+  fontSize?: 'small' | 'normal' | 'large'
 
   /** Change container font weight */
-  fontWeight: 'light' | 'regular' | 'semi-bold' | 'bold',
+  fontWeight?: 'light' | 'regular' | 'semi-bold' | 'bold'
 
   /** Hide the container */
-  hidden: boolean | AppBucketsBREAKPOINTS,
+  hidden?: boolean | ReactBucketBREAKPOINT
 
   /** Display container as Inline */
-  inline: boolean | AppBucketsBREAKPOINTS,
+  inline?: boolean | ReactBucketBREAKPOINT
 
   /** Display container as Inline Block */
-  inlineBlock: boolean | AppBucketsBREAKPOINTS,
+  inlineBlock?: boolean | ReactBucketBREAKPOINT
 
   /** Set container Margin */
-  margin: MARGINPADDING,
+  margin?: MARGINPADDING
 
   /** Set container Margin Bottom */
-  marginBottom: MARGINPADDING,
+  marginBottom?: MARGINPADDING
 
   /** Set container Margin Left */
-  marginLeft: MARGINPADDING,
+  marginLeft?: MARGINPADDING
 
   /** Set container Margin Right */
-  marginRight: MARGINPADDING,
+  marginRight?: MARGINPADDING
 
   /** Set container Margin Top */
-  marginTop: MARGINPADDING,
+  marginTop?: MARGINPADDING
 
   /** Set container Margin X */
-  marginX: MARGINPADDING,
+  marginX?: MARGINPADDING
 
   /** Set container Margin Y */
-  marginY: MARGINPADDING,
+  marginY?: MARGINPADDING
 
   /** Set container Padding */
-  padding: MARGINPADDING,
+  padding?: MARGINPADDING
 
   /** Set container Padding Bottom */
-  paddingBottom: MARGINPADDING,
+  paddingBottom?: MARGINPADDING
 
   /** Set container Padding Left */
-  paddingLeft: MARGINPADDING,
+  paddingLeft?: MARGINPADDING
 
   /** Set container Padding Right */
-  paddingRight: MARGINPADDING,
+  paddingRight?: MARGINPADDING
 
   /** Set container Padding Top */
-  paddingTop: MARGINPADDING,
+  paddingTop?: MARGINPADDING
 
   /** Set container Padding X */
-  paddingX: MARGINPADDING,
+  paddingX?: MARGINPADDING
 
   /** Set container Padding Y */
-  paddingY: MARGINPADDING,
+  paddingY?: MARGINPADDING
 
   /** Set Text Align */
-  textAlign: AppBucketsALIGN | 'justify',
+  textAlign?: ReactBucketALIGN | 'justify'
 
   /** Set Text Color */
-  textColor: AppBucketsCOLORS,
+  textColor?: ReactBucketCOLOR
 
   /** Set Text Transform */
-  textTransform: 'capitalize' | 'lowercase' | 'uppercase',
+  textTransform?: 'capitalize' | 'lowercase' | 'uppercase'
 
   /** Set container as Visible */
-  visible: boolean | AppBucketsBREAKPOINTS
+  visible: boolean | ReactBucketBREAKPOINT
 
 }
 
-interface ContainerComponent extends React.StatelessComponent<ContainerProps> { }
-/** In case of subcomponent append Name: typeof ImportedComponent in the interface */
-
-declare const Container: ContainerComponent
+declare const Container: React.FunctionComponent<ContainerProps>
 
 export default Container

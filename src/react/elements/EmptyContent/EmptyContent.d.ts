@@ -1,7 +1,6 @@
 import * as React from 'react'
 
-import { AppBucketsALIGN, AppBucketsCOLORS } from '../../generic';
-import { AppBucketsICON } from '../../../fontawesome/icon-file-generator/fa-icon';
+import { ReactBucketALIGN, ReactBucketCOLOR, ReactBucketICON } from '../../generic';
 
 import { StrictContainerProps } from '../Container';
 
@@ -11,13 +10,13 @@ export interface EmptyContentProps extends StrictEmptyContentProps {
 
 export interface StrictEmptyContentProps extends StrictContainerProps {
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Text Color */
-  color?: AppBucketsCOLORS
+  color?: ReactBucketCOLOR
 
   /** Content Shorthand */
   content?: React.ReactNode
@@ -26,14 +25,12 @@ export interface StrictEmptyContentProps extends StrictContainerProps {
   header?: string
 
   /** Icon to Show */
-  icon?: AppBucketsICON
+  icon?: ReactBucketICON
 
   /** Text Align */
-  textAlign?: AppBucketsALIGN
+  textAlign?: ReactBucketALIGN
 }
 
-interface EmptyContentComponent extends React.StatelessComponent<EmptyContentProps> { }
-
-declare const EmptyContent: EmptyContentComponent
+declare const EmptyContent: React.FunctionComponent<EmptyContentProps>
 
 export default EmptyContent

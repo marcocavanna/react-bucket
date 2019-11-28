@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 import { isTouch } from '@appbuckets/rabbit';
 
-import '../src/ui-bucket.scss';
+import '../src/scss/react-bucket.scss';
 
 import App from './app';
 

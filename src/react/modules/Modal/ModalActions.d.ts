@@ -11,13 +11,13 @@ export interface StrictModalActionsProps {
   actions?: ButtonProps[]
 
   /** An element used to render */
-  as?: any,
+  as?: React.ElementType
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Content Shorthand */
   content?: React.ReactNode

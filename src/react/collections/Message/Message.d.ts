@@ -1,15 +1,10 @@
 import * as React from 'react'
 
 import {
-  AppBucketsShorthandCollection,
-  AppBucketsShorthandContent,
-  AppBucketsShorthandItem,
-  AppBucketsSIZE
+  ReactBucketShorthandItem,
+  ReactBucketSIZE,
+  ReactBucketICON
 } from '../../generic'
-
-import {
-  AppBucketsICON
-} from '../../../fontawesome/icon-file-generator/fa-icon'
 
 import MessageContent from './MessageContent'
 import { default as MessageHeader, MessageHeaderProps } from './MessageHeader'
@@ -22,7 +17,7 @@ export interface MessageProps extends StrictMessageProps {
 
 export interface StrictMessageProps {
   /** An element type to render as (string or function). */
-  as?: any
+  as?: React.ElementType
 
   /** Primary content. */
   children?: React.ReactNode
@@ -31,22 +26,22 @@ export interface StrictMessageProps {
   className?: string
 
   /** Shorthand for primary content. */
-  content?: AppBucketsShorthandContent
+  content?: React.ReactNode
 
   /** A message may be formatted to display a negative message. Same as `negative`. */
   error?: boolean
 
   /** Shorthand for MessageHeader. */
-  header?: AppBucketsShorthandItem<MessageHeaderProps>
+  header?: ReactBucketShorthandItem<MessageHeaderProps>
 
   /** Add an icon by icon name or pass an <Icon /.> */
-  icon?: AppBucketsICON | boolean
+  icon?: ReactBucketICON | boolean
 
   /** A message may be formatted to display information. */
   info?: boolean
 
   /** Array shorthand items for the MessageList. Mutually exclusive with children. */
-  list?: AppBucketsShorthandCollection<MessageItemProps>
+  list?: MessageItemProps[]
 
   /**
    * A message that the user can choose to hide.
@@ -64,7 +59,7 @@ export interface StrictMessageProps {
   secondary?: boolean
 
   /** A message can have different sizes. */
-  size?: AppBucketsSIZE
+  size?: ReactBucketSIZE
 
   /** A message may be formatted to display a positive message.  Same as `positive`. */
   success?: boolean

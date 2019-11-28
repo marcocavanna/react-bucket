@@ -122,7 +122,7 @@ function Container(props) {
 
 Container.propTypes = {
   /** An element used to render the component */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Container Background Color */
   background: PropTypes.string,
@@ -142,11 +142,14 @@ Container.propTypes = {
   /** Display Border Top */
   borderedTop: customPropTypes.responsiveProperty,
 
+  /** Primary content. */
+  children: PropTypes.node,
+
   /** User defined Classes */
   className: PropTypes.string,
 
   /** Content Shorthand */
-  content: PropTypes.any,
+  content: PropTypes.node,
 
   /** Box Shadow */
   dpElevation: customPropTypes.numbersRange(1, 24),

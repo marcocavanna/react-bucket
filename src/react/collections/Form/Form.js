@@ -14,7 +14,9 @@ import {
 
 import Input from '../../elements/Input';
 import FormikCheckbox from './FormikCheckbox';
+import FormikDayPicker from './FormikDayPicker';
 import FormikInput from './FormikInput';
+import FormikRadio from './FormikRadio';
 import FormikSelect from './FormikSelect';
 
 class Form extends React.PureComponent {
@@ -24,7 +26,7 @@ class Form extends React.PureComponent {
     action: PropTypes.string,
 
     /** An element used to render the componenet */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** Childrens */
     children: PropTypes.node,
@@ -56,7 +58,11 @@ class Form extends React.PureComponent {
 
   static FormikCheckbox = FormikCheckbox
 
+  static FormikDayPicker = FormikDayPicker
+
   static FormikInput = FormikInput
+
+  static FormikRadio = FormikRadio
 
   static FormikSelect = FormikSelect
 

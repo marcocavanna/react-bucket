@@ -1,13 +1,15 @@
 import * as React from 'react'
 import * as ReactSelect from 'react-select';
 
+import { Props as ReactSelectProps } from 'react-select';
+
 import { StrictFieldProps } from '../Field';
 
 export interface SelectProps extends StrictSelectProps {
   [key: string]: any
 }
 
-export interface StrictSelectProps extends StrictFieldProps {
+export interface StrictSelectProps extends StrictFieldProps, ReactSelectProps {
   /** Set the Select as Async Type */
   async?: boolean
 
@@ -24,10 +26,10 @@ export interface StrictSelectProps extends StrictFieldProps {
   loading?: boolean
 
   /** onBlur Handler */
-  onBlur(e: React.SyntheticEvent): void
+  onBlur?: (e: React.FormEvent<HTMLSelectElement>, props: SelectProps) => void
 
   /** onChange handler */
-  onChange(data: any, props: StrictSelectProps): void
+  onChange?: (value: any, props: SelectOnChangeData) => void
 
   /** Set Options */
   options?: ReactSelect.OptionTypeBase[]
@@ -39,7 +41,12 @@ export interface StrictSelectProps extends StrictFieldProps {
   tabIndex?: number
 }
 
-interface SelectComponent extends React.StatelessComponent<SelectProps> { }
+export interface SelectOnChangeData extends SelectProps {
+  value: any,
+  action: ReactSelect.ActionTypes
+}
+
+interface SelectComponent extends React.PureComponent<SelectProps> { }
 
 declare const Select: SelectComponent
 

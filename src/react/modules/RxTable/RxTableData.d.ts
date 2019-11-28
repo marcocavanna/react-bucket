@@ -112,6 +112,12 @@ export interface IRxTableDataOptions {
    */
   filtering?: IRxTableDataFilteringOptions
 
+  /** Group Data */
+  group?: {
+    /** Set grouping Fields */
+    fields?: string[]
+  }
+
   /**
    * Set the name of the Field
    * that will be used as key

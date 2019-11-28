@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { AppBucketsALIGN, AppBucketsCOLORS, AppBucketsCOLUMNWIDTH, AppBucketsCOLUMNOFFSET, AppBucketsFLEXVERTICALALIGN } from '../../generic'
+import { ReactBucketALIGN, ReactBucketCOLOR, ReactBucketCOLUMNWIDTH, ReactBucketCOLUMNOFFSET, ReactBucketFLEXVERTICALALIGN } from '../../generic'
 
 export interface ColumnProps extends StrictColumnProps {
   [key: string]: any
@@ -8,38 +8,38 @@ export interface ColumnProps extends StrictColumnProps {
 
 export interface StrictColumnProps {
   /** An element used to render */
-  as?: any,
+  as?: React.ElementType
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Custom Font Color */
-  color?: AppBucketsCOLORS,
+  color?: ReactBucketCOLOR
 
   /** Base Column Width */
-  is?: AppBucketsCOLUMNWIDTH,
+  is?: ReactBucketCOLUMNWIDTH
 
   /** Responsive Columns Width */
-  onTabletIs?       : AppBucketsCOLUMNWIDTH,
-  onDesktopIs?      : AppBucketsCOLUMNWIDTH,
-  onLargeDesktopIs? : AppBucketsCOLUMNWIDTH,
+  onTabletIs?       : ReactBucketCOLUMNWIDTH,
+  onDesktopIs?      : ReactBucketCOLUMNWIDTH,
+  onLargeDesktopIs? : ReactBucketCOLUMNWIDTH,
 
   /** Base Column Offset */
-  offsettedBy?: AppBucketsCOLUMNOFFSET,
+  offsettedBy?: ReactBucketCOLUMNOFFSET
 
   /** Responsive Column Offset */
-  onTabletOffsettedBy?       : AppBucketsCOLUMNOFFSET,
-  onDesktopOffsettedBy?      : AppBucketsCOLUMNOFFSET,
-  onLargeDesktopOffsettedBy? : AppBucketsCOLUMNOFFSET,
+  onTabletOffsettedBy?       : ReactBucketCOLUMNOFFSET,
+  onDesktopOffsettedBy?      : ReactBucketCOLUMNOFFSET,
+  onLargeDesktopOffsettedBy? : ReactBucketCOLUMNOFFSET,
 
   /** Text Alignment */
-  textAlign?: AppBucketsALIGN,
+  textAlign?: ReactBucketALIGN
 
   /** Columns Vertical Align */
-  verticalAlign?: AppBucketsFLEXVERTICALALIGN
+  verticalAlign?: ReactBucketFLEXVERTICALALIGN
 
 }
 

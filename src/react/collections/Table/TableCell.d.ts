@@ -1,11 +1,10 @@
 import * as React from 'react'
 
 import {
-  AppBucketsALIGN,
-  AppBucketsVERTICALALIGN
+  ReactBucketALIGN,
+  ReactBucketVERTICALALIGN,
+  ReactBucketICON
 } from '../../generic'
-
-import { AppBucketsICON } from '../../../fontawesome/icon-file-generator/fa-icon';
 
 export interface TableCellProps extends StrictTableCellProps {
   [key: string]: any
@@ -13,37 +12,37 @@ export interface TableCellProps extends StrictTableCellProps {
 
 export interface StrictTableCellProps {
   /** Set the Cell as Active */
-  active?: boolean,
+  active?: boolean
 
   /** An Element used to Render the Component */
-  as?: any,
+  as?: React.ElementType
 
   /** User Defined Class */
-  className?: string,
+  className?: string
 
   /** Cell content Shorthand */
-  content?: any,
+  content?: React.ReactNode
 
   /** Disable Cell */
-  disabled?: boolean,
+  disabled?: boolean
 
   /** Cell Error Style */
-  error?: boolean,
+  error?: boolean
 
   /** Icon Shorthand */
-  icon?: AppBucketsICON,
+  icon?: ReactBucketICON
 
   /** Set cell as Selectable */
-  selectable?: boolean,
+  selectable?: boolean
 
   /** Set cell as Success */
-  success?: boolean,
+  success?: boolean
 
   /** Set Text align */
-  textAlign?: AppBucketsALIGN,
+  textAlign?: ReactBucketALIGN
 
   /** Set Cell Vertical Align */
-  verticalAlign?: AppBucketsVERTICALALIGN,
+  verticalAlign?: ReactBucketVERTICALALIGN
 
   /** Set Cell as Warning */
   warning?: boolean

@@ -2,7 +2,7 @@
   "displayName": "Table",
   "props": [
     {
-      "type": "custom",
+      "type": "elementType",
       "required": false,
       "description": [
         "An Element used to Render the Component"

@@ -51,16 +51,19 @@ Loader.propTypes = {
   active: PropTypes.bool,
 
   /** Element used to Render Loader */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Centered Loader */
   centered: PropTypes.bool,
+
+  /** Primary content. */
+  children: PropTypes.node,
 
   /** User defined Class */
   className: PropTypes.string,
 
   /** Content Property */
-  content: PropTypes.any,
+  content: PropTypes.node,
 
   /** Inline Loader */
   inline: PropTypes.bool,

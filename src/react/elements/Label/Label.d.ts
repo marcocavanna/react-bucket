@@ -1,9 +1,8 @@
 import * as React from 'react'
 
-import { AppBucketsICON } from '../../../fontawesome/icon-file-generator/fa-icon'
-import { AppBucketsCOLORS } from '../../generic'
+import { ReactBucketCOLOR, ReactBucketICON, ReactBucketShorthandItem } from '../../generic'
 
-import LabelDetail from './LabelDetail'
+import LabelDetail, { LabelDetailProps } from './LabelDetail'
 import LabelGroup from './LabelGroup'
 
 export interface LabelProps extends StrictLabelProps {
@@ -12,30 +11,39 @@ export interface LabelProps extends StrictLabelProps {
 
 export interface StrictLabelProps {
   /** An element used to render */
-  as?: any,
+  as?: React.ElementType
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Color Content */
-  color?: AppBucketsCOLORS,
+  color?: ReactBucketCOLOR
 
   /** Content Shorthand */
-  content?: any,
+  content?: React.ReactNode
 
   /** Detail Short hand */
-  detail?: any,
+  detail?: ReactBucketShorthandItem<LabelDetailProps>
 
   /** Icon Shorthand */
-  icon?: AppBucketsICON
+  icon?: ReactBucketICON
+
+  /**
+   * Called after user's click.
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onClick?: (event: React.MouseEvent<HTMLDivElement>, props: LabelProps) => void
 }
 
-declare class Label extends React.Component<LabelProps, {}> {
-  static Detail: typeof LabelDetail;
-  static Group: typeof LabelGroup;
+declare interface LabelComponent extends React.FunctionComponent<LabelProps, {}> {
+  Detail: typeof LabelDetail
+  Group: typeof LabelGroup
 }
+
+declare const Label: LabelComponent
 
 export default Label

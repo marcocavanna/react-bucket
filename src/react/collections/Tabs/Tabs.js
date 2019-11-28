@@ -6,8 +6,7 @@ import _ from 'lodash';
 import {
   AutoControlledComponent as Component,
   getElementType,
-  getUnhandledProps,
-  customPropTypes
+  getUnhandledProps
 } from '../../lib';
 
 import Menu from '../Menu';
@@ -27,7 +26,7 @@ class Tabs extends Component {
     ]),
 
     /** An element used to render the Component */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** The initial active index */
     defaultActiveIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
@@ -98,7 +97,8 @@ class Tabs extends Component {
     /** Else, render all tabs */
     return panels.map(({ panel }, index) => (
       TabPanel.create(panel, {
-        overrideProps: {
+        autoGenerateKey : true,
+        overrideProps   : {
           active: index === activeIndex
         }
       })

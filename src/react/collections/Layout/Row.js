@@ -46,7 +46,7 @@ function Row(props) {
 
 Row.propTypes = {
   /** An element used to render the component */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Children Node */
   children: PropTypes.node,

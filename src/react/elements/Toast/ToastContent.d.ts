@@ -6,18 +6,18 @@ export interface ToastContentProps extends StrictToastContentProps {
 
 export interface StrictToastContentProps {
   /** An element used to render */
-  as?: any,
+  as?: React.ElementType
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
+  /** Content Shorthand */
+  content?: React.ReactNode
 }
 
-interface ToastContentComponent extends React.StatelessComponent<ToastContentProps> { }
-
-declare const ToastContent: ToastContentComponent
+declare const ToastContent: React.FunctionComponent<ToastContentProps>
 
 export default ToastContent

@@ -2,13 +2,22 @@
   "displayName": "PanelFab",
   "props": [
     {
-      "type": "custom",
+      "type": "elementType",
       "required": false,
       "description": [
         "An Element used to render the Component"
       ],
       "tags": [],
       "name": "as"
+    },
+    {
+      "type": "node",
+      "required": false,
+      "description": [
+        "Primary content."
+      ],
+      "tags": [],
+      "name": "children"
     },
     {
       "type": "string",
@@ -41,10 +50,29 @@
       "type": "func",
       "required": false,
       "description": [
-        "On Fab Click Function"
+        "Called after user's click."
       ],
-      "tags": [],
-      "name": "onFabClick"
+      "tags": [
+        {
+          "title": "param",
+          "description": "React's original SyntheticEvent.",
+          "type": {
+            "type": "NameExpression",
+            "name": "SyntheticEvent"
+          },
+          "name": "event"
+        },
+        {
+          "title": "param",
+          "description": "All props.",
+          "type": {
+            "type": "NameExpression",
+            "name": "object"
+          },
+          "name": "data"
+        }
+      ],
+      "name": "onClick"
     },
     {
       "type": "bool",

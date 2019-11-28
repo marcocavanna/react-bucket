@@ -1,11 +1,13 @@
 import * as React from 'react'
 
-import ItemAvatar, { StrictItemAvatarProps } from './ItemAvatar';
+import { ReactBucketShorthandItem, ReactBucketShorthandCollection } from '../../generic';
+
+import ItemAvatar, { ItemAvatarProps } from './ItemAvatar';
 import ItemHeader from './ItemHeader';
 import ItemContent from './ItemContent';
 import ItemGroup from './ItemGroup';
 import ItemTools from './ItemTools';
-import ItemTool, { StrictItemToolProps } from './ItemTool';
+import ItemTool, { ItemToolProps } from './ItemTool';
 
 export interface ItemProps extends StrictItemProps {
   [key: string]: any
@@ -13,43 +15,47 @@ export interface ItemProps extends StrictItemProps {
 
 export interface StrictItemProps {
   /** Active State */
-  active?: boolean | 'primary' | 'secondary' | 'success' | 'danger' | 'warning',
-  
+  active?: boolean | 'primary' | 'secondary' | 'success' | 'danger' | 'warning'
+
   /** An element used to render */
-  as?: any,
+  as?: React.ElementType
 
   /** Avatar Properties Shorthand */
-  avatar?: StrictItemAvatarProps,
+  avatar?: ReactBucketShorthandItem<ItemAvatarProps>
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Content shorthand */
-  content?: any,
+  content?: React.ReactNode
 
   /** Disabled State */
   disabled?: boolean
 
   /** Header Shorthand */
-  header?: string,
+  header?: string
 
-  /** OnClick Function */
-  onClick?: Function,
+  /**
+   * Called after user's click.
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onClick?: (event: React.MouseEvent<HTMLDivElement>, props: ItemProps) => void,
 
   /** Tools shorthand */
-  tools?: StrictItemToolProps[]
+  tools?: ReactBucketShorthandCollection<ItemToolProps>
 
 }
 
-interface ItemComponent extends React.StatelessComponent<ItemProps> {
-  Avatar: typeof ItemAvatar,
-  Header: typeof ItemHeader,
-  Content: typeof ItemContent,
-  Group: typeof ItemGroup,
-  Tools: typeof ItemTools,
+interface ItemComponent extends React.FunctionComponent<ItemProps> {
+  Avatar: typeof ItemAvatar
+  Header: typeof ItemHeader
+  Content: typeof ItemContent
+  Group: typeof ItemGroup
+  Tools: typeof ItemTools
   Tool: typeof ItemTool
 }
 

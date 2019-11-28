@@ -49,13 +49,16 @@ function ItemHeader(props) {
 
 ItemHeader.propTypes = {
   /** An element used to Render the Component */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
+
+  /** Primary content. */
+  children: PropTypes.node,
 
   /** User Defined Classes */
   className: PropTypes.string,
 
   /** Content Shorthand */
-  content: PropTypes.any,
+  content: PropTypes.node,
 
   /** Icon Shorthand */
   icon: customPropTypes.fontAwesome

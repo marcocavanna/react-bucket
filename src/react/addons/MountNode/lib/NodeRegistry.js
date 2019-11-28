@@ -35,4 +35,4 @@ export default class NodeRegistry {
     callback(ref, this.nodes.get(ref));
   }
 
-};
+}

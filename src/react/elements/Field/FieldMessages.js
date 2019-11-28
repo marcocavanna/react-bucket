@@ -26,7 +26,7 @@ function FieldMessages(props) {
 
 FieldMessages.propTypes = {
   /** Messages List */
-  content: PropTypes.arrayOf(PropTypes.string)
+  content: PropTypes.arrayOf(PropTypes.node)
 };
 
 FieldMessages.create = createShorthandFactory(FieldMessages, content => ({ content }));

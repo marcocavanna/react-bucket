@@ -25,7 +25,7 @@
 }
 
 @if $generate-text-brand-colors == true {
-  @each $label, $color in $ui-bucket-brand-colors-map {
+  @each $label, $color in $react-bucket-brand-colors-map {
     @include property-for-each-breakpoint('has-text-#{$label}', $attach-to-selector: false, $property-with-breakpoint: $generate-responsive-text-brand-colors) {
       color: $color !important;
     }
@@ -33,7 +33,7 @@
 }
 
 @if $generate-text-ui-colors == true {
-  @each $label, $color in $ui-bucket-ui-colors-map {
+  @each $label, $color in $react-bucket-ui-colors-map {
     @include property-for-each-breakpoint('has-text-#{$label}', $attach-to-selector: false, $property-with-breakpoint: $generate-responsive-text-ui-colors) {
       color: $color !important;
     }
@@ -41,7 +41,7 @@
 }
 
 @if $generate-text-socials-colors == true {
-  @each $label, $color in $ui-bucket-socials-color-map {
+  @each $label, $color in $react-bucket-socials-color-map {
     @include property-for-each-breakpoint('has-text-#{$label}', $attach-to-selector: false, $property-with-breakpoint: $generate-responsive-text-socials-colors) {
       color: $color !important;
     }

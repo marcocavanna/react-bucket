@@ -4,7 +4,7 @@ import cx from 'classnames';
 
 import _ from 'lodash';
 
-import fontAwesomeClass from '../../../fontawesome/icon-file-generator/get-fontawesom-icon';
+import fontAwesomeClass from '../../../fontawesome';
 
 import {
   customPropTypes,
@@ -22,7 +22,7 @@ class Icon extends PureComponent {
    */
   static propTypes = {
     /** Element used to Render Component */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** Display Icon Border */
     bordered: PropTypes.bool,
@@ -48,7 +48,11 @@ class Icon extends PureComponent {
     /** Icon Name */
     name: customPropTypes.fontAwesome,
 
-    /** On Click Handler */
+    /**
+     * Called after user's click.
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
     onClick: PropTypes.func,
 
     /** Rotate Icon */

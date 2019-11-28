@@ -5,7 +5,6 @@ import cx from 'classnames';
 import ItemHeader from './ItemHeader';
 
 import {
-  customPropTypes,
   childrenUtils,
   createShorthandFactory,
   getElementType,
@@ -51,16 +50,19 @@ function ItemContent(props) {
 
 ItemContent.propTypes = {
   /** An element used to render the component */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
+
+  /** Primary content. */
+  children: PropTypes.node,
 
   /** User Defined Classes */
   className: PropTypes.string,
 
   /** Content shorthand */
-  content: PropTypes.any,
+  content: PropTypes.node,
 
   /** Header Shorthand */
-  header: PropTypes.any,
+  header: PropTypes.node,
 
   /** Truncated Content */
   notTruncated: PropTypes.bool

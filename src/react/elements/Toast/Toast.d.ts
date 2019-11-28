@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { AppBucketsICON } from '../../../fontawesome/icon-file-generator/fa-icon'
+import { ReactBucketICON } from '../../generic'
 
 import ToastHeader from './ToastHeader';
 import ToastContent from './ToastContent';
@@ -11,19 +11,19 @@ export interface ToastProps extends StrictToastProps {
 
 export interface StrictToastProps {
   /** An element used to render */
-  as?: any,
+  as?: React.ElementType
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Content shorthand */
-  content?: any
+  content?: React.ReactNode
 
   /** Set if toast is dismissable, using a string to define icon */
-  dismissable?: boolean | AppBucketsICON
+  dismissable?: boolean | ReactBucketICON
 
   /** Toast with error Style */
   error?: boolean
@@ -32,13 +32,13 @@ export interface StrictToastProps {
   header?: any
 
   /** Icon shorthand */
-  icon?: AppBucketsICON
+  icon?: ReactBucketICON
 
   /** Toast with info Style */
   info?: boolean
 
   /** On Click Handler */
-  onClick?: (e: React.SyntheticEvent, props: ToastProps) => void
+  onClick?: (e: React.MouseEvent<HTMLDivElement>, props: ToastProps) => void
 
   /** Toast with primary Style */
   primary?: boolean
@@ -53,7 +53,7 @@ export interface StrictToastProps {
   warning?: boolean
 }
 
-interface ToastComponent extends React.StatelessComponent<ToastProps> {
+interface ToastComponent extends React.FunctionComponent<ToastProps> {
   Header: typeof ToastHeader
   Content: typeof ToastContent
 }

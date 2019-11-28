@@ -11,7 +11,7 @@
       "name": "active"
     },
     {
-      "type": "custom",
+      "type": "elementType",
       "required": false,
       "description": [
         "An element used to render the content"
@@ -21,7 +21,7 @@
       "name": "as"
     },
     {
-      "type": "custom",
+      "type": "elementType",
       "required": false,
       "description": [
         "Set the element used to Render the Cells"

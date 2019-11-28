@@ -1,51 +1,53 @@
 import * as React from 'react'
 
+export { ReactBucketICON } from '../fontawesome/icon-module/fa-icon';
+
 /**
  * Alignment
  */
-export type AppBucketsALIGN = 'left' | 'center' | 'right'
-export type AppBucketsFONTWEIGHT = 'light' | 'regular' | 'semi-bold' | 'bold'
-export type AppBucketsVERTICALALIGN = 'on top' | 'center' | 'on bottom'
-export type AppBucketsFLEXVERTICALALIGN = AppBucketsVERTICALALIGN | 'stretched'
-export type AppBucketsFLEXHORIZONTALALIGN = 'on start' | 'centered' | 'on end' | 'spaced between' | 'spaced around'
+export type ReactBucketALIGN = 'left' | 'center' | 'right'
+export type ReactBucketFONTWEIGHT = 'light' | 'regular' | 'semi-bold' | 'bold'
+export type ReactBucketVERTICALALIGN = 'on top' | 'center' | 'on bottom'
+export type ReactBucketFLEXVERTICALALIGN = ReactBucketVERTICALALIGN | 'stretched'
+export type ReactBucketFLEXHORIZONTALALIGN = 'on start' | 'centered' | 'on end' | 'spaced between' | 'spaced around'
 
 /**
  * Responsive
  */
-export type AppBucketsRESPONSIVE = 'phone' | 'tablet' | 'desktop' | 'large-desktop'
-export type AppBucketsBREAKPOINTS = 'on phone' | 'on tablet' | 'on desktop' | 'on large desktop'
+export type ReactBucketRESPONSIVE = 'phone' | 'tablet' | 'desktop' | 'large-desktop'
+export type ReactBucketBREAKPOINT = 'on phone' | 'on tablet' | 'on desktop' | 'on large desktop'
 
 /**
  * Width
  */
-export type AppBucketsCOLUMNWIDTH = '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12'
-export type AppBucketsCOLUMNOFFSET = '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11'
+export type ReactBucketCOLUMNWIDTH = '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12'
+export type ReactBucketCOLUMNOFFSET = '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11'
 
 /**
  * Content Short Hand
  */
-export type AppBucketsShorthandItemFunc<TProps> = (
-  component: React.ReactType<TProps>,
-  props: TProps,
-  children?: React.ReactNode | React.ReactNodeArray,
+export type ReactBucketShorthandItemFunc<TProps> = (
+  component?: React.ReactType<TProps>,
+  props?: TProps,
+  children?: React.ReactNode
 ) => React.ReactElement<any> | null
 
-export type AppBucketsShorthandCollection<TProps> = AppBucketsShorthandItem<TProps>[]
-export type AppBucketsShorthandContent = React.ReactNode
-export type AppBucketsShorthandItem<TProps> =
+export type ReactBucketShorthandCollection<TProps> = ReactBucketShorthandItem<TProps>[]
+export type ReactBucketShorthandContent = React.ReactNode
+export type ReactBucketShorthandItem<TProps> =
   | React.ReactNode
   | TProps
-  | AppBucketsShorthandItemFunc<TProps>
+  | ReactBucketShorthandItemFunc<TProps>
 
 /**
  * Size
  */
-export type AppBucketsSIZE = 'extra-small' | 'small' | 'normal' | 'large' | 'big' | 'huge'
+export type ReactBucketSIZE = 'extra-small' | 'small' | 'normal' | 'large' | 'big' | 'huge'
 
 /**
  * Colors
  */
-export type AppBucketsBRANDCOLOR =
+export type ReactBucketBRANDCOLOR =
   | 'primary'
   | 'secondary'
   | 'danger'
@@ -53,7 +55,7 @@ export type AppBucketsBRANDCOLOR =
   | 'success'
   | 'info'
 
-export type AppBucketsUICOLOR = 
+export type ReactBucketUICOLOR =
   | 'text'
   | 'text-tint'
   | 'text-shade'
@@ -75,7 +77,7 @@ export type AppBucketsUICOLOR =
   | 'grey-dark'
   | 'grey-darkest'
 
-export type AppBucketsSOCIALCOLOR =
+export type ReactBucketSOCIALCOLOR =
   | 'facebook'
   | 'twitter'
   | 'youtube'
@@ -97,4 +99,4 @@ export type AppBucketsSOCIALCOLOR =
   | 'yahoo'
   | 'telegram'
 
-export type AppBucketsCOLORS = AppBucketsBRANDCOLOR | AppBucketsUICOLOR | AppBucketsSOCIALCOLOR
+export type ReactBucketCOLOR = ReactBucketBRANDCOLOR | ReactBucketUICOLOR | ReactBucketSOCIALCOLOR

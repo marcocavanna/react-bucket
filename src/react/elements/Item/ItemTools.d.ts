@@ -1,6 +1,8 @@
 import * as React from 'react'
 
-import { StrictItemToolProps } from './ItemTool';
+import { ReactBucketShorthandCollection } from '../../generic';
+
+import { ItemToolProps } from './ItemTool';
 
 export interface ItemToolsProps extends StrictItemToolsProps {
   [key: string]: any
@@ -8,20 +10,18 @@ export interface ItemToolsProps extends StrictItemToolsProps {
 
 export interface StrictItemToolsProps {
   /** An element used to render */
-  as?: any,
+  as?: React.ElementType
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Tools Shorthand */
-  tools?: StrictItemToolProps[]
+  tools?: ReactBucketShorthandCollection<StrictItemToolProps>
 }
 
-interface ItemToolsComponent extends React.StatelessComponent<ItemToolsProps> { }
-
-declare const ItemTools: ItemToolsComponent
+declare const ItemTools: React.FunctionComponent<ItemToolsProps>
 
 export default ItemTools

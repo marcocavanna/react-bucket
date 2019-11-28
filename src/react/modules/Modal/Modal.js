@@ -40,13 +40,19 @@ class Modal extends Component {
     actions: PropTypes.array,
 
     /** An element used to render the Component */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
+
+    /** Autosized Width */
+    autosized: PropTypes.bool,
 
     /** Reduce Modal graphic */
     basic: PropTypes.bool,
 
     /** Show a modal centered */
     centered: PropTypes.bool,
+
+    /** Primary content. */
+    children: PropTypes.node,
 
     /** Additional user defined classes */
     className: PropTypes.string,
@@ -283,6 +289,7 @@ class Modal extends Component {
     /** Get Content Props */
     const {
       actions,
+      autosized,
       basic,
       children,
       className,
@@ -306,6 +313,7 @@ class Modal extends Component {
       classByKey(basic, 'is-basic'),
       classByKey(this.legacy, 'is-legacy'),
       classByKey(scrolling, 'is-scrolling'),
+      classByKey(autosized, 'is-autosized'),
       className
     );
 
@@ -314,8 +322,9 @@ class Modal extends Component {
     const closeIconName = closeIcon === true ? 'times' : closeIcon;
     const closeIconElement = !!closeIcon && Icon
       .create(closeIconName, {
-        overrideProps : this.handleIconOverrides,
-        defaultProps  : { className: 'modal-close' }
+        autoGenerateKey : false,
+        overrideProps   : this.handleIconOverrides,
+        defaultProps    : { className: 'modal-close' }
       });
 
     return (
@@ -329,7 +338,9 @@ class Modal extends Component {
             <React.Fragment>
               {ModalHeader.create(header, { autoGenerateKey: false })}
               {ModalContent.create(content, { autoGenerateKey: false })}
-              {ModalActions.create(actions, { overrideProps: this.handleActionsOverrides })}
+              {ModalActions.create(
+                actions, { autoGenerateKey: false, overrideProps: this.handleActionsOverrides }
+              )}
             </React.Fragment>
           ) : (
             typeof children === 'function'

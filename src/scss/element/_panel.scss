@@ -9,7 +9,7 @@
     padding: $panel-padding-vertical $panel-padding-horizontal $panel-padding-vertical / 2;
 
     + .panel-body {
-      padding-top: $panel-padding-vertical / 2;
+      padding-top: 0;
     }
   }
 
@@ -73,6 +73,35 @@
       box-shadow: 0px 0px 0px 1px transparent;
       visibility: visible;
       z-index: 101;
+    }
+  }
+}
+
+
+/******
+    Style the Panel Section
+******/
+.panel > .panel-body {
+  /*---
+    Base Section Style
+  ---*/
+  .panel-section {
+    display: block;
+    margin-top: 1.5em;
+
+    > label {
+      display: block;
+      font-weight: $bold;
+      color: $grey-light;
+      text-transform: uppercase;
+      margin-bottom: .5em;
+      font-size: .85em;
+    }
+
+    &.is-divided {
+      margin-top: .75em;
+      padding-top: .75em;
+      border-top: solid 1px $grey-lightest;
     }
   }
 }

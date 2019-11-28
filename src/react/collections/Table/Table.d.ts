@@ -13,13 +13,13 @@ export interface TableProps extends StrictTableProps {
 
 export interface StrictTableProps {
   /** An element used to render */
-  as?: any,
+  as?: React.ElementType
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Set Sortable Behaviour */
   sortable?: boolean

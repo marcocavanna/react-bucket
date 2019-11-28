@@ -52,7 +52,7 @@ Layout.Column = Column;
 
 Layout.propTypes = {
   /** An element used to render the component */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Custom background Color */
   background: PropTypes.string,

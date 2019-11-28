@@ -11,7 +11,7 @@
       "name": "active"
     },
     {
-      "type": "custom",
+      "type": "elementType",
       "required": false,
       "description": [
         "Element used to Render Loader"
@@ -29,6 +29,15 @@
       "name": "centered"
     },
     {
+      "type": "node",
+      "required": false,
+      "description": [
+        "Primary content."
+      ],
+      "tags": [],
+      "name": "children"
+    },
+    {
       "type": "string",
       "required": false,
       "description": [
@@ -38,7 +47,7 @@
       "name": "className"
     },
     {
-      "type": "any",
+      "type": "node",
       "required": false,
       "description": [
         "Content Property"

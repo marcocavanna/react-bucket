@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 
 import {
-  customPropTypes,
   createShorthandFactory,
   getElementType,
   getUnhandledProps,
@@ -33,7 +32,7 @@ Spacer.defaultProps = {
 
 Spacer.propTypes = {
   /** An Element Used to Render the Component */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** User Defined Class Name */
   className: PropTypes.string,

@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { AppBucketsICON } from '../../../fontawesome/icon-file-generator/fa-icon';
+import { ReactBucketICON } from '../../generic';
 
 export interface HeroButtonProps extends StrictHeroButtonProps {
   [key: string]: any
@@ -8,16 +8,16 @@ export interface HeroButtonProps extends StrictHeroButtonProps {
 
 export interface StrictHeroButtonProps {
   /** An element used to render */
-  as?: any,
+  as?: React.ElementType
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Content Shorthand */
-  content?: string
+  content?: React.ReactNode
 
   /** Disable Button */
   disabled?: boolean
@@ -26,17 +26,22 @@ export interface StrictHeroButtonProps {
   discreet?: boolean
 
   /** Hero Header */
-  header?: string
+  header?: React.ReactNode
 
   /** Hero Icon */
-  icon?: AppBucketsICON
+  icon?: ReactBucketICON
+
+  /**
+   * Called after user's click.
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} props - All props.
+   */
+  onClick: (event: React.MouseEvent<HTMLDivElement>, props: HeroButtonProps) => void,
 
   /** Color Variation */
   variation?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8'
 }
 
-interface HeroButtonComponent extends React.StatelessComponent<HeroButtonProps> { }
-
-declare const HeroButton: HeroButtonComponent
+declare const HeroButton: React.FunctionComponent<HeroButtonProps>
 
 export default HeroButton

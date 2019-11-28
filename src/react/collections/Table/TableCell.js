@@ -58,7 +58,7 @@ function TableCell(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {icon ? Icon.create(icon) : null}
+      {icon ? Icon.create(icon, { autoGenerateKey: false }) : null}
       {content}
     </ElementType>
   );
@@ -70,13 +70,16 @@ TableCell.propTypes = {
   active: PropTypes.bool,
 
   /** An Element used to Render the Component */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
+
+  /** Primary content. */
+  children: PropTypes.node,
 
   /** User Defined Class */
   className: PropTypes.string,
 
   /** Cell content Shorthand */
-  content: PropTypes.any,
+  content: PropTypes.node,
 
   /** Disable Cell */
   disabled: PropTypes.bool,

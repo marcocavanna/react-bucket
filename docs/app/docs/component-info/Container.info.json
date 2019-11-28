@@ -2,7 +2,7 @@
   "displayName": "Container",
   "props": [
     {
-      "type": "custom",
+      "type": "elementType",
       "required": false,
       "description": [
         "An element used to render the component"
@@ -65,6 +65,15 @@
       "name": "borderedTop"
     },
     {
+      "type": "node",
+      "required": false,
+      "description": [
+        "Primary content."
+      ],
+      "tags": [],
+      "name": "children"
+    },
+    {
       "type": "string",
       "required": false,
       "description": [
@@ -74,7 +83,7 @@
       "name": "className"
     },
     {
-      "type": "any",
+      "type": "node",
       "required": false,
       "description": [
         "Content Shorthand"

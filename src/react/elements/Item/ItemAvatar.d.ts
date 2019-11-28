@@ -1,7 +1,6 @@
 import * as React from 'react'
 
-import { AppBucketsICON } from '../../../fontawesome/icon-file-generator/fa-icon'
-import { AppBucketsCOLORS, AppBucketsSIZE } from '../../generic'
+import { ReactBucketCOLOR, ReactBucketSIZE, ReactBucketICON } from '../../generic'
 
 export interface ItemAvatarProps extends StrictItemAvatarProps {
   [key: string]: any
@@ -9,60 +8,58 @@ export interface ItemAvatarProps extends StrictItemAvatarProps {
 
 export interface StrictItemAvatarProps {
   /** An element used to render */
-  as?: any,
+  as?: React.ElementType
 
   /** Centered */
-  centered?: boolean,
+  centered?: boolean
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Set Avatar Color */
-  color?: AppBucketsCOLORS,
+  color?: ReactBucketCOLOR
 
   /** Set Avatar Placeholder */
-  content?: string,
+  content?: React.ReactNode
 
   /** Set Danger Style */
-  danger?: boolean,
+  danger?: boolean
 
   /** Disabled State */
-  disabled?: boolean,
+  disabled?: boolean
 
   /** Set the Random Background color generator */
-  generateBackground?: boolean | string,
+  generateBackground?: boolean | string
 
   /** Set Avatar Icon */
-  icon?: AppBucketsICON,
+  icon?: ReactBucketICON
 
   /** Set Avatar Image */
-  image?: string,
+  image?: string
 
   /** Inline Style */
-  inline?: boolean,
+  inline?: boolean
 
   /** Set Primary Style */
-  primary?: boolean,
+  primary?: boolean
 
   /** Set Secondary Style */
-  secondary?: boolean,
+  secondary?: boolean
 
   /** Change Avatar Size */
-  size?: AppBucketsSIZE,
+  size?: ReactBucketSIZE
 
   /** Set Success Style */
-  success?: boolean,
+  success?: boolean
 
   /** Set Warning Style */
   warning?: boolean
 
 }
 
-interface ItemAvatarComponent extends React.StatelessComponent<ItemAvatarProps> { }
-
-declare const ItemAvatar: ItemAvatarComponent
+declare const ItemAvatar: React.FunctionComponent<ItemAvatarProps>
 
 export default ItemAvatar

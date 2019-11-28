@@ -1,7 +1,6 @@
 import * as React from 'react'
 
-import { AppBucketsICON } from '../../../fontawesome/icon-file-generator/fa-icon'
-import { AppBucketsCOLORS, AppBucketsALIGN } from '../../generic'
+import { ReactBucketCOLOR, ReactBucketALIGN, ReactBucketICON } from '../../generic'
 
 export interface PanelHeaderProps extends StrictPanelHeaderProps {
   [key: string]: any
@@ -9,33 +8,31 @@ export interface PanelHeaderProps extends StrictPanelHeaderProps {
 
 export interface StrictPanelHeaderProps {
   /** An element used to render */
-  as?: any,
+  as?: React.ElementType
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Text Color */
-  color?: AppBucketsCOLORS
+  color?: ReactBucketCOLOR
 
   /** Header Text */
-  header?: string,
+  header?: React.ReactNode
 
   /** Header Icon */
-  icon?: AppBucketsICON,
+  icon?: ReactBucketICON
 
   /** Subheader Text */
-  subheader?: string,
+  subheader?: React.ReactNode
 
   /** Text Align */
-  textAlign?: AppBucketsALIGN
+  textAlign?: ReactBucketALIGN
 
 }
 
-interface PanelHeaderComponent extends React.StatelessComponent<PanelHeaderProps> { }
-
-declare const PanelHeader: PanelHeaderComponent
+declare const PanelHeader: React.FunctionComponent<PanelHeaderProps>
 
 export default PanelHeader

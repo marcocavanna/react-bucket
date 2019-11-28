@@ -4,7 +4,6 @@ import cx from 'classnames';
 
 import {
   childrenUtils,
-  customPropTypes,
   getElementType,
   getUnhandledProps,
   classByKey
@@ -34,13 +33,16 @@ function DimmerDimmable(props) {
 
 DimmerDimmable.propTypes = {
   /** An element type to render as (string or function). */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
+
+  /** Primary content. */
+  children: PropTypes.node,
 
   /** Additional classes. */
   className: PropTypes.string,
 
   /** Shorthand for primary content. */
-  content: PropTypes.any,
+  content: PropTypes.node,
 
   /** Controls whether or not the dim is displayed. */
   dimmed: PropTypes.bool

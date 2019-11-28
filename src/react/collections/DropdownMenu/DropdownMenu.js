@@ -6,7 +6,6 @@ import _ from 'lodash';
 
 import {
   childrenUtils,
-  customPropTypes,
   getElementType,
   getUnhandledProps,
   createShorthandFactory
@@ -76,7 +75,8 @@ function DropdownMenu(props) {
             {
               Array.isArray(items)
                 ? items.map(item => MenuItem.create(item, {
-                  overrideProps: ({ onClick, ...itemRest }) => ({
+                  autoGenerateKey : true,
+                  overrideProps   : ({ onClick, ...itemRest }) => ({
                     onClick: (...args) => {
                       if (typeof onClick === 'function') {
                         onClick(...args);
@@ -101,7 +101,7 @@ function DropdownMenu(props) {
 
 DropdownMenu.propTypes = {
   /** An element used to render the component */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Children Content */
   children: PropTypes.node,
@@ -110,7 +110,7 @@ DropdownMenu.propTypes = {
   className: PropTypes.string,
 
   /** Content Shorthand */
-  content: PropTypes.any,
+  content: PropTypes.node,
 
   /** Event Stack name */
   eventStack: PropTypes.string,

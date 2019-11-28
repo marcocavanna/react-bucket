@@ -5,6 +5,7 @@ import cx from 'classnames';
 import PanelHeader from './PanelHeader';
 import PanelBody from './PanelBody';
 import PanelFab from './PanelFab';
+import PanelSection from './PanelSection';
 
 import {
   customPropTypes,
@@ -46,23 +47,23 @@ function Panel(props) {
   const ElementType = getElementType(Panel, props);
 
   const panelHeaderElement = header || subheader || icon
-    ? PanelHeader.create({ header, subheader, icon })
+    ? PanelHeader.create({ header, subheader, icon }, { autoGenerateKey: false })
     : null;
 
-  const panelBodyElement = PanelBody.create({ content });
+  const panelBodyElement = PanelBody.create({ content }, { autoGenerateKey: false });
 
   return (
     <ElementType {...rest} className={classes}>
       {panelHeaderElement}
       {childrenUtils.isNil(children) ? panelBodyElement : children}
-      {typeof fab !== 'boolean' && fab && <PanelFab icon={fab} onFabClick={onFabClick} />}
+      {typeof fab !== 'boolean' && fab && <PanelFab icon={fab} onClick={onFabClick} />}
     </ElementType>
   );
 }
 
 Panel.propTypes = {
   /** An element used to render the component */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Primary Content */
   children: PropTypes.node,
@@ -74,7 +75,7 @@ Panel.propTypes = {
   color: PropTypes.string,
 
   /** Shorthand Properties for Content */
-  content: PropTypes.any,
+  content: PropTypes.node,
 
   /** Panel has Fab */
   fab: PropTypes.oneOfType([
@@ -91,7 +92,11 @@ Panel.propTypes = {
   /** Loading Style for Panel */
   loading: PropTypes.bool,
 
-  /** Fab Click Handler Function */
+  /**
+   * Called after user's click.
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
   onFabClick: PropTypes.func,
 
   /** Subheader Shorthand Method */
@@ -107,5 +112,6 @@ Panel.propTypes = {
 Panel.Fab = PanelFab;
 Panel.Header = PanelHeader;
 Panel.Body = PanelBody;
+Panel.Section = PanelSection;
 
 export default Panel;

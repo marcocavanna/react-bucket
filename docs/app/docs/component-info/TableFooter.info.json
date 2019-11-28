@@ -2,7 +2,7 @@
   "displayName": "TableFooter",
   "props": [
     {
-      "type": "custom",
+      "type": "elementType",
       "required": false,
       "description": [
         "An element used to render the Component"

@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { AppBucketsShorthandContent } from '../../generic'
 
 export interface MessageHeaderProps extends StrictMessageHeaderProps {
   [key: string]: any
@@ -7,7 +6,7 @@ export interface MessageHeaderProps extends StrictMessageHeaderProps {
 
 export interface StrictMessageHeaderProps {
   /** An element type to render as (string or function). */
-  as?: any
+  as?: React.ElementType
 
   /** Primary content. */
   children?: React.ReactNode
@@ -16,7 +15,7 @@ export interface StrictMessageHeaderProps {
   className?: string
 
   /** Shorthand for primary content. */
-  content?: AppBucketsShorthandContent
+  content?: React.ReactNode
 }
 
 declare const MessageHeader: React.StatelessComponent<MessageHeaderProps>

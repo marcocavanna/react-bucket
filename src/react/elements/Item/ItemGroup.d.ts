@@ -1,6 +1,8 @@
 import * as React from 'react'
 
-import { StrictItemProps } from './Item';
+import { ReactBucketShorthandCollection } from '../../generic'
+
+import { ItemProps } from './Item';
 
 export interface ItemGroupProps extends StrictItemGroupProps {
   [key: string]: any
@@ -8,26 +10,24 @@ export interface ItemGroupProps extends StrictItemGroupProps {
 
 export interface StrictItemGroupProps {
   /** An element used to render */
-  as?: any,
+  as?: React.ElementType
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Set Item as Clickable */
-  clickableItems?: boolean,
+  clickableItems?: boolean
 
   /** Divided */
   divided?: boolean
 
   /** Items Shorthand */
-  items?: StrictItemProps[]
+  items?: ReactBucketShorthandCollection<ItemProps>
 }
 
-interface ItemGroupComponent extends React.StatelessComponent<ItemGroupProps> { }
-
-declare const ItemGroup: ItemGroupComponent
+declare const ItemGroup: React.FunctionComponent<ItemGroupProps>
 
 export default ItemGroup

@@ -37,7 +37,7 @@ function HeroButton(props) {
   const rest = getUnhandledProps(HeroButton, props);
   const ElementType = getElementType(HeroButton, props);
 
-  const IconElement = icon && Icon.create(icon);
+  const IconElement = icon && Icon.create(icon, { autoGenerateKey: false });
 
   const handleClick = (e) => {
     if (disabled) {
@@ -60,13 +60,13 @@ function HeroButton(props) {
 
 HeroButton.propTypes = {
   /** An element used to render the component */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** User defined classes */
   className: PropTypes.string,
 
   /** Content Shorthand */
-  content: PropTypes.any,
+  content: PropTypes.node,
 
   /** Disable Button */
   disabled: PropTypes.bool,
@@ -75,10 +75,17 @@ HeroButton.propTypes = {
   discreet: PropTypes.bool,
 
   /** Header shorthand */
-  header: PropTypes.any,
+  header: PropTypes.node,
 
   /** Icon Shorthand */
   icon: customPropTypes.fontAwesome,
+
+  /**
+   * Called after user's click.
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onClick: PropTypes.func,
 
   /** Color Variation */
   variation: PropTypes.oneOfType([

@@ -2,7 +2,7 @@
   "displayName": "TableHeaderCell",
   "props": [
     {
-      "type": "custom",
+      "type": "elementType",
       "required": false,
       "description": [
         "An element used to render the component"
@@ -21,7 +21,7 @@
       "name": "className"
     },
     {
-      "type": "any",
+      "type": "node",
       "required": false,
       "description": [
         "Header Content shorthand"

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 
 import {
-  customPropTypes,
   getElementType,
   getUnhandledProps,
   classByKey
@@ -35,7 +34,10 @@ function ButtonGroup(props) {
 
 ButtonGroup.propTypes = {
   /** Element Used to Render the Component */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
+
+  /** Primary content. */
+  children: PropTypes.node,
 
   /** Button Group Full Width */
   full: PropTypes.bool,

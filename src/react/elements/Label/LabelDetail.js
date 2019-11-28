@@ -5,7 +5,6 @@ import cx from 'classnames';
 import {
   childrenUtils,
   createShorthandFactory,
-  customPropTypes,
   getElementType,
   getUnhandledProps
 } from '../../lib';
@@ -31,13 +30,16 @@ function LabelDetail(props) {
 
 LabelDetail.propTypes = {
   /** An element used to render the Compoenent */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
+
+  /** Primary content. */
+  children: PropTypes.node,
 
   /** Additional Class */
   className: PropTypes.string,
 
   /** Shorthand for content */
-  content: PropTypes.any
+  content: PropTypes.node
 };
 
 LabelDetail.create = createShorthandFactory(LabelDetail, content => ({ content }));

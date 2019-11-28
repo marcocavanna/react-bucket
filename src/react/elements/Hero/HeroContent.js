@@ -5,7 +5,6 @@ import cx from 'classnames';
 import {
   childrenUtils,
   createShorthandFactory,
-  customPropTypes,
   getElementType,
   getUnhandledProps
 } from '../../lib';
@@ -36,13 +35,16 @@ function HeroContent(props) {
 
 HeroContent.propTypes = {
   /** An element used to render the component */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
+
+  /** Primary content. */
+  children: PropTypes.node,
 
   /** User Defined classes */
   className: PropTypes.string,
 
   /** Content Shorthand */
-  content: PropTypes.any
+  content: PropTypes.node
 };
 
 HeroContent.create = createShorthandFactory(HeroContent, content => ({ content }));

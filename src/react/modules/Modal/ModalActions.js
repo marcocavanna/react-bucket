@@ -7,7 +7,6 @@ import _ from 'lodash';
 import {
   childrenUtils,
   createShorthandFactory,
-  customPropTypes,
   getElementType,
   getUnhandledProps
 } from '../../lib';
@@ -38,7 +37,7 @@ function ModalActions(props) {
   const rest = getUnhandledProps(ModalActions, props);
   const ElementType = getElementType(ModalActions, props);
 
-  if (!childrenUtils.isNil(children) || !children.isNil(content)) {
+  if (!childrenUtils.isNil(children) || !childrenUtils.isNil(content)) {
     return (
       <ElementType {...rest} className={classes}>
         {childrenUtils.isNil(children) ? content : children}
@@ -48,7 +47,9 @@ function ModalActions(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {_.map(actions, action => Button.create(action, { overrideProps: handleButtonOverrides }))}
+      {_.map(actions, action => Button.create(
+        action, { autoGenerateKey: false, overrideProps: handleButtonOverrides }
+      ))}
     </ElementType>
   );
 
@@ -59,7 +60,10 @@ ModalActions.propTypes = {
   actions: PropTypes.array,
 
   /** An element used to render the component */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
+
+  /** Primary content. */
+  children: PropTypes.node,
 
   /** User Defined classes */
   className: PropTypes.string,

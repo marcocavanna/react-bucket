@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-const signale = require('signale');
 
 /**
  * FontAwesome Json File can be downloaded on
@@ -99,7 +98,7 @@ fs.writeFileSync(
  * Write the Js Module
  */
 fs.writeFileSync(
-  path.resolve(__dirname, 'fa-icon.module.js'),
+  path.resolve(__dirname, 'fa-mapper.js'),
   `/* eslint-disable key-spacing */\nmodule.exports = {\n${purgedFaModule.join(',\n')}\n};\n`,
   { encoding: 'utf8' }
 );
@@ -109,8 +108,8 @@ fs.writeFileSync(
  */
 fs.writeFileSync(
   path.resolve(__dirname, 'fa-icon.d.ts'),
-  `export type AppBucketsICON = ${allFaIcon.join(' |\n  ')}`,
+  `export type ReactBucketICON = ${allFaIcon.join(' |\n  ')}`,
   { encoding: 'utf8' }
 );
 
-signale.success(`A Total of ${totalIcon} FontAwesome Icon has been produced`);
+global.console.log(`A Total of ${totalIcon} FontAwesome Icon has been produced`);

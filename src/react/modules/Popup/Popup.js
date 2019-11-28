@@ -30,16 +30,19 @@ class Popup extends PureComponent {
 
   static propTypes = {
     /** An Element used to render the Component */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** Basic Style */
     basic: PropTypes.bool,
+
+    /** Primary content. */
+    children: PropTypes.node,
 
     /** User Defined Classes */
     className: PropTypes.string,
 
     /** Content Shorthand */
-    content: PropTypes.any,
+    content: PropTypes.node,
 
     /** Disabled State */
     disabled: PropTypes.bool,
@@ -87,7 +90,7 @@ class Popup extends PureComponent {
     popperModifiers: PropTypes.object,
 
     /** Position for the popover. */
-    position: PropTypes.oneOf(['center', 'bottom']),
+    position: PropTypes.string,
 
     /** Size modifier */
     size: customPropTypes.size,

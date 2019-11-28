@@ -1,11 +1,11 @@
 import * as React from 'react'
 
-import { AppBucketsICON } from '../../../fontawesome/icon-file-generator/fa-icon'
-import { AppBucketsALIGN, AppBucketsCOLORS } from '../../generic'
+import { ReactBucketALIGN, ReactBucketCOLOR, ReactBucketICON, ReactBucketShorthandItem } from '../../generic'
 
 import PanelFab, { PanelFabProps } from './PanelFab';
 import PanelHeader from './PanelHeader'
-import PanelBody from './PanelBody'
+import PanelBody, { PanelBodyProps } from './PanelBody'
+import PanelSection from './PanelSection'
 
 export interface PanelProps extends StrictPanelProps {
   [key: string]: any
@@ -13,50 +13,51 @@ export interface PanelProps extends StrictPanelProps {
 
 export interface StrictPanelProps {
   /** An element used to render */
-  as?: any,
+  as?: React.ElementType
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Text Color */
-  color?: AppBucketsCOLORS,
+  color?: ReactBucketCOLOR
 
   /** Content Shorthand */
-  content?: React.ReactNode,
+  content?: ReactBucketShorthandItem<PanelBodyProps>
 
   /** Panel has Fab Button */
-  fab?: boolean | AppBucketsICON
+  fab?: boolean | ReactBucketICON
 
   /** Header Shorthand */
-  header?: string,
+  header?: React.ReactNode
 
   /** Icon Method Shorthand */
-  icon?: AppBucketsICON,
+  icon?: ReactBucketICON
 
   /** Loading Style for Panel */
   loading?: boolean
 
   /** Fab Click handler Function */
-  onFabClick?: (e: React.SyntheticEvent, props: PanelFabProps) => void
+  onFabClick?: (e: React.MouseEvent<HTMLButtonElement>, props: PanelFabProps) => void
 
   /** Subheader Shorthand */
-  subheader?: string,
+  subheader?: React.ReactNode
 
   /** Set Panel has table container */
   table?: boolean
 
   /** Text Align */
-  textAlign?: AppBucketsALIGN
+  textAlign?: ReactBucketALIGN
 
 }
 
-interface PanelComponent extends React.StatelessComponent<PanelProps> {
+interface PanelComponent extends React.FunctionComponent<PanelProps> {
   Fab: typeof PanelFab
   Body: typeof PanelBody
   Header: typeof PanelHeader
+  Section: typeof PanelSection
 }
 
 declare const Panel: PanelComponent

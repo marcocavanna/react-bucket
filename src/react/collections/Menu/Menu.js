@@ -6,7 +6,6 @@ import _ from 'lodash';
 
 import {
   AutoControlledComponent as Component,
-  customPropTypes,
   classByKey,
   getElementType,
   getUnhandledProps,
@@ -24,16 +23,19 @@ class Menu extends Component {
     activeIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
     /** An Element used to Render the Component */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** Menu can have no border */
     borderless: PropTypes.bool,
+
+    /** Primary content. */
+    children: PropTypes.node,
 
     /** User defined Class */
     className: PropTypes.string,
 
     /** Content Shorthand */
-    content: PropTypes.any,
+    content: PropTypes.node,
 
     /** Inital Active Index value */
     defaultActiveIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
@@ -78,7 +80,8 @@ class Menu extends Component {
 
     return _.map(items, (item, index) => (
       MenuItem.create(item, {
-        defaultProps: {
+        autoGenerateKey : true,
+        defaultProps    : {
           active: parseInt(activeIndex, 10) === index,
           index
         },

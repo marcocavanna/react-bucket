@@ -2,7 +2,7 @@
   "displayName": "Checkbox",
   "props": [
     {
-      "type": "custom",
+      "type": "elementType",
       "required": false,
       "description": [
         "An element used to render the component"
@@ -96,37 +96,169 @@
       "type": "func",
       "required": false,
       "description": [
-        "On Change Event Handler"
+        "Called when the user attempts to change the checked state."
       ],
-      "tags": [],
+      "tags": [
+        {
+          "title": "param",
+          "description": "React's original SyntheticEvent.",
+          "type": {
+            "type": "NameExpression",
+            "name": "SyntheticEvent"
+          },
+          "name": "event"
+        },
+        {
+          "title": "param",
+          "description": "All props and proposed checked/indeterminate state.",
+          "type": {
+            "type": "NameExpression",
+            "name": "object"
+          },
+          "name": "data"
+        }
+      ],
       "name": "onChange"
     },
     {
       "type": "func",
       "required": false,
       "description": [
-        "On Click Event Handler"
+        "Called when Checkbox has been checked"
       ],
-      "tags": [],
+      "tags": [
+        {
+          "title": "param",
+          "description": "React's original SyntheticEvent.",
+          "type": {
+            "type": "NameExpression",
+            "name": "SyntheticEvent"
+          },
+          "name": "event"
+        },
+        {
+          "title": "param",
+          "description": "All props and proposed checked/indeterminate state.",
+          "type": {
+            "type": "NameExpression",
+            "name": "object"
+          },
+          "name": "data"
+        }
+      ],
+      "name": "onChecked"
+    },
+    {
+      "type": "func",
+      "required": false,
+      "description": [
+        "Called when the checkbox or label is clicked."
+      ],
+      "tags": [
+        {
+          "title": "param",
+          "description": "React's original SyntheticEvent.",
+          "type": {
+            "type": "NameExpression",
+            "name": "SyntheticEvent"
+          },
+          "name": "event"
+        },
+        {
+          "title": "param",
+          "description": "All props and current checked/indeterminate state.",
+          "type": {
+            "type": "NameExpression",
+            "name": "object"
+          },
+          "name": "data"
+        }
+      ],
       "name": "onClick"
     },
     {
       "type": "func",
       "required": false,
       "description": [
-        "On Mouse Down Event Handler"
+        "Called when the user presses down on the mouse."
       ],
-      "tags": [],
+      "tags": [
+        {
+          "title": "param",
+          "description": "React's original SyntheticEvent.",
+          "type": {
+            "type": "NameExpression",
+            "name": "SyntheticEvent"
+          },
+          "name": "event"
+        },
+        {
+          "title": "param",
+          "description": "All props and current checked/indeterminate state.",
+          "type": {
+            "type": "NameExpression",
+            "name": "object"
+          },
+          "name": "data"
+        }
+      ],
       "name": "onMouseDown"
     },
     {
       "type": "func",
       "required": false,
       "description": [
-        "On Mouse Up Event Handler"
+        "Called when the user releases the mouse."
       ],
-      "tags": [],
+      "tags": [
+        {
+          "title": "param",
+          "description": "React's original SyntheticEvent.",
+          "type": {
+            "type": "NameExpression",
+            "name": "SyntheticEvent"
+          },
+          "name": "event"
+        },
+        {
+          "title": "param",
+          "description": "All props and current checked/indeterminate state.",
+          "type": {
+            "type": "NameExpression",
+            "name": "object"
+          },
+          "name": "data"
+        }
+      ],
       "name": "onMouseUp"
+    },
+    {
+      "type": "func",
+      "required": false,
+      "description": [
+        "Called when Checkbox has been unchecked"
+      ],
+      "tags": [
+        {
+          "title": "param",
+          "description": "React's original SyntheticEvent.",
+          "type": {
+            "type": "NameExpression",
+            "name": "SyntheticEvent"
+          },
+          "name": "event"
+        },
+        {
+          "title": "param",
+          "description": "All props and proposed checked/indeterminate state.",
+          "type": {
+            "type": "NameExpression",
+            "name": "object"
+          },
+          "name": "data"
+        }
+      ],
+      "name": "onUnchecked"
     },
     {
       "type": "bool",

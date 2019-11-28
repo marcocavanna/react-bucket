@@ -6,7 +6,6 @@ import _ from 'lodash';
 
 import {
   childrenUtils,
-  customPropTypes,
   getElementType,
   getUnhandledProps,
   classByKey
@@ -58,7 +57,7 @@ function Table(props) {
 
   /** Compute the Table Headers */
   const hasHeaderRows = headerRow || headerRows;
-  const headerShorthandOptions = { defaultProps: { cellAs: 'th' } };
+  const headerShorthandOptions = { defaultProps: { cellAs: 'th' }, autoGenerateKey: true };
   const headerElement = hasHeaderRows && (
     <TableHeader>
       {headerRow && TableRow.create(headerRow, headerShorthandOptions)}
@@ -71,10 +70,10 @@ function Table(props) {
   const hasFooterRows = footerRow || footerRows;
   const footerElement = hasFooterRows && (
     <TableFooter>
-      {footerRow && TableRow.create(footerRow)}
+      {footerRow && TableRow.create(footerRow, { autoGenerateKey: true })}
       {footerRows
         && _.map(footerRows, footerRowData => TableRow
-          .create(footerRowData))}
+          .create(footerRowData, { autoGenerateKey: true }))}
     </TableFooter>
   );
 
@@ -83,7 +82,9 @@ function Table(props) {
       {headerElement}
       <TableBody>
         {renderBodyRow
-          && _.map(tableData, (data, index) => TableRow.create(renderBodyRow(data, index)))}
+          && _.map(tableData, (data, index) => TableRow.create(
+            renderBodyRow(data, index), { autoGenerateKey: true }
+          ))}
       </TableBody>
       {footerElement}
     </ElementType>
@@ -93,7 +94,7 @@ function Table(props) {
 
 Table.propTypes = {
   /** An Element used to Render the Component */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Children Node */
   children: PropTypes.node,

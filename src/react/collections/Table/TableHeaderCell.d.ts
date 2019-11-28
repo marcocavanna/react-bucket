@@ -8,13 +8,13 @@ export interface TableHeaderCellProps extends StrictTableHeaderCellProps {
 
 export interface StrictTableHeaderCellProps extends StrictTableCellProps {
   /** An element used to render */
-  as?: any,
+  as?: React.ElementType
 
   /** Children Node */
-  className?: string,
+  className?: string
 
   /** User defined class */
-  sorted?: 'asc' | 'desc',
+  sorted?: 'asc' | 'desc'
 
   /** A cell header can be unsortable, hiding sortin control */
   unsortable?: boolean

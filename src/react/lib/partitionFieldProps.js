@@ -38,6 +38,7 @@ export const allFieldProps = [
   'content'
 ];
 
+/** @returns {[fieldProps, rest]} */
 export const partitionFieldProps = (props) => {
 
   const fieldProps = {};

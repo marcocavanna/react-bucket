@@ -36,13 +36,16 @@ function LabelGroup(props) {
 
 LabelGroup.propTypes = {
   /** An Element used to Render the Component */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
+
+  /** Primary content. */
+  children: PropTypes.node,
 
   /** User Defined Class */
   className: PropTypes.string,
 
   /** Content ShortHand */
-  content: PropTypes.any,
+  content: PropTypes.node,
 
   /** Size */
   size: customPropTypes.size

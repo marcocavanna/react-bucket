@@ -2,13 +2,22 @@
   "displayName": "Toast",
   "props": [
     {
-      "type": "custom",
+      "type": "elementType",
       "required": false,
       "description": [
         "An element used to render the component"
       ],
       "tags": [],
       "name": "as"
+    },
+    {
+      "type": "node",
+      "required": false,
+      "description": [
+        "Primary content."
+      ],
+      "tags": [],
+      "name": "children"
     },
     {
       "type": "string",
@@ -20,7 +29,7 @@
       "name": "className"
     },
     {
-      "type": "any",
+      "type": "node",
       "required": false,
       "description": [
         "Toast Content Shorthand"
@@ -78,9 +87,28 @@
       "type": "func",
       "required": false,
       "description": [
-        "On Click Handler"
+        "Called after user's click."
       ],
-      "tags": [],
+      "tags": [
+        {
+          "title": "param",
+          "description": "React's original SyntheticEvent.",
+          "type": {
+            "type": "NameExpression",
+            "name": "SyntheticEvent"
+          },
+          "name": "event"
+        },
+        {
+          "title": "param",
+          "description": "All props.",
+          "type": {
+            "type": "NameExpression",
+            "name": "object"
+          },
+          "name": "data"
+        }
+      ],
       "name": "onClick"
     },
     {

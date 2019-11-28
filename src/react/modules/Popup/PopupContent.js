@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 
 import {
-  customPropTypes,
   childrenUtils,
   createShorthandFactory,
   getUnhandledProps,
@@ -36,13 +35,16 @@ function PopupContent(props) {
 
 PopupContent.propTypes = {
   /** An Element used to render the component */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
+
+  /** Primary content. */
+  children: PropTypes.node,
 
   /** Additional User Classes */
   className: PropTypes.string,
 
   /** Content Shorthand */
-  content: PropTypes.any
+  content: PropTypes.node
 };
 
 PopupContent.create = createShorthandFactory(PopupContent, content => ({ content }));

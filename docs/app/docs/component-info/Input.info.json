@@ -5,10 +5,65 @@
       "type": "bool",
       "required": false,
       "description": [
+        "Show Mask on Maskered Input"
+      ],
+      "tags": [],
+      "name": "alwaysShowMask"
+    },
+    {
+      "type": "bool",
+      "required": false,
+      "description": [
         "Disabled style"
       ],
       "tags": [],
       "name": "disabled"
+    },
+    {
+      "type": "string",
+      "required": false,
+      "description": [
+        "Mask the Input Field"
+      ],
+      "tags": [],
+      "name": "mask"
+    },
+    {
+      "type": "string",
+      "required": false,
+      "description": [
+        "Char to use while Masking"
+      ],
+      "tags": [],
+      "name": "maskChar"
+    },
+    {
+      "type": "func",
+      "required": false,
+      "description": [
+        "Called on change."
+      ],
+      "tags": [
+        {
+          "title": "param",
+          "description": "React's original SyntheticEvent.",
+          "type": {
+            "type": "NameExpression",
+            "name": "ChangeEvent"
+          },
+          "name": "event"
+        },
+        {
+          "title": "param",
+          "description": "All props and a proposed value.",
+          "type": {
+            "type": "NameExpression",
+            "name": "object"
+          },
+          "name": "data"
+        }
+      ],
+      "name": "onChange"
     },
     {
       "type": "bool",

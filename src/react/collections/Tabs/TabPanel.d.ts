@@ -6,16 +6,16 @@ export interface TabPanelProps extends StrictTabPanelProps {
 
 export interface StrictTabPanelProps {
   /** Set the Tab as Active */
-  active?: boolean,
+  active?: boolean
 
   /** An element used to render */
-  as?: any,
+  as?: React.ElementType
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Content shorthand */
   content?: React.ReactNode

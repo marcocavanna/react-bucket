@@ -37,7 +37,7 @@ function HeroHeader(props) {
     );
   }
 
-  const IconElement = icon && Icon.create(icon);
+  const IconElement = icon && Icon.create(icon, { autoGenerateKey: false });
 
   return (
     <ElementType {...rest} className={classes}>
@@ -50,13 +50,16 @@ function HeroHeader(props) {
 
 HeroHeader.propTypes = {
   /** An element used to render the component */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
+
+  /** Primary content. */
+  children: PropTypes.node,
 
   /** User Defined classes */
   className: PropTypes.string,
 
   /** Content Shorthand */
-  content: PropTypes.any,
+  content: PropTypes.node,
 
   /** Header Shorthand */
   icon: customPropTypes.fontAwesome

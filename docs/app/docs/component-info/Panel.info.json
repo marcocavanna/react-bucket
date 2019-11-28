@@ -2,7 +2,7 @@
   "displayName": "Panel",
   "props": [
     {
-      "type": "custom",
+      "type": "elementType",
       "required": false,
       "description": [
         "An element used to render the component"
@@ -38,7 +38,7 @@
       "name": "color"
     },
     {
-      "type": "any",
+      "type": "node",
       "required": false,
       "description": [
         "Shorthand Properties for Content"
@@ -87,9 +87,28 @@
       "type": "func",
       "required": false,
       "description": [
-        "Fab Click Handler Function"
+        "Called after user's click."
       ],
-      "tags": [],
+      "tags": [
+        {
+          "title": "param",
+          "description": "React's original SyntheticEvent.",
+          "type": {
+            "type": "NameExpression",
+            "name": "SyntheticEvent"
+          },
+          "name": "event"
+        },
+        {
+          "title": "param",
+          "description": "All props.",
+          "type": {
+            "type": "NameExpression",
+            "name": "object"
+          },
+          "name": "data"
+        }
+      ],
       "name": "onFabClick"
     },
     {
@@ -129,7 +148,8 @@
   "subcomponents": [
     "PanelBody",
     "PanelFab",
-    "PanelHeader"
+    "PanelHeader",
+    "PanelSection"
   ],
   "apiPath": "Panel",
   "componentClassName": "panel",

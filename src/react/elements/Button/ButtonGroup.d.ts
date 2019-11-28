@@ -6,24 +6,22 @@ export interface ButtonGroupProps extends StrictButtonGroupProps {
 
 export interface StrictButtonGroupProps {
   /** An element used to render */
-  as?: any,
+  as?: React.ElementType
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Full Width button Group */
-  full?: boolean,
+  full?: boolean
 
   /** Set Vertical Display */
   vertical?: boolean
 
 }
 
-interface ButtonGroupComponent extends React.StatelessComponent<ButtonGroupProps> { }
-
-declare const ButtonGroup: ButtonGroupComponent
+declare const ButtonGroup: React.FunctionComponent<ButtonGroupProps>
 
 export default ButtonGroup

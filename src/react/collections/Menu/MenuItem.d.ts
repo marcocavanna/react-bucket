@@ -1,7 +1,6 @@
 import * as React from 'react'
 
-import { AppBucketsCOLORS } from '../../generic';
-import { AppBucketsICON } from '../../../fontawesome/icon-file-generator/fa-icon';
+import { ReactBucketCOLOR, ReactBucketICON } from '../../generic';
 
 export interface MenuHeaderProps extends StrictMenuHeaderProps {
   [key: string]: any
@@ -9,37 +8,37 @@ export interface MenuHeaderProps extends StrictMenuHeaderProps {
 
 export interface StrictMenuHeaderProps {
   /** Display as Active */
-  active: boolean | AppBucketsCOLORS,
+  active?: boolean | ReactBucketCOLOR
 
   /** An element used to render */
-  as?: any,
+  as?: React.ElementType
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Custom Color */
-  color: AppBucketsCOLORS,
+  color?: ReactBucketCOLOR
 
   /** Content ShordHand */
-  content: any,
+  content?: React.ReactNode
 
   /** Disabled State */
-  disabled: boolean,
+  disabled?: boolean
 
   /** Header Style */
-  header: boolean,
+  header?: boolean
 
   /** Icon */
-  icon: boolean | AppBucketsICON,
+  icon?: boolean | ReactBucketICON
 
   /** Name Shorthand */
-  name: string,
+  name?: string
 
   /** OnClick Handler */
-  onClick: Function,
+  onClick?: Function
 
   /** On Right Position */
   right: boolean

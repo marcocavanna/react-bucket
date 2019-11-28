@@ -6,34 +6,34 @@ export interface TableRowProps extends StrictTableRowProps {
 
 export interface StrictTableRowProps {
   /** Set Row as Active */
-  active: boolean,
+  active?: boolean
 
   /** An element used to render the content */
-  as: any,
+  as?: React.ElementType
 
   /** Set the element used to Render the Cells */
-  cellAs: any,
+  cellAs?: any
 
   /** Array of string used to render the cells */
-  cells: string[],
+  cells?: string[]
 
   /** Children props */
-  children: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined Classes */
-  className: string,
+  className?: string
 
   /** Set Row as Disabled */
-  disabled: boolean,
+  disabled?: boolean
 
   /** Set Row as Error */
-  error: boolean,
+  error?: boolean
 
   /** Set a Row as Selectable */
-  selectable: boolean,
+  selectable?: boolean
 
   /** Set Row as Success */
-  success: boolean,
+  success?: boolean
 
   /** Set Row as Warning */
   warning: boolean

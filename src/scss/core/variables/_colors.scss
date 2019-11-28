@@ -77,7 +77,7 @@ $success         : $green;
 $success-shade   : color-shade($success);
 $success-tint    : color-tint($success);
 
-$ui-bucket-ui-colors-map: (
+$react-bucket-ui-colors-map: (
   text          : $text,
   text-tint     : $text-tint,
   text-shade    : $text-shade,
@@ -102,7 +102,7 @@ $ui-bucket-ui-colors-map: (
   grey-darkest  : $grey-darkest
 );
 
-$ui-bucket-socials-color-map: (
+$react-bucket-socials-color-map: (
   facebook    : $facebook,
   twitter     : $twitter,
   youtube     : $youtube,
@@ -125,7 +125,7 @@ $ui-bucket-socials-color-map: (
   telegram    : $telegram
 );
 
-$ui-bucket-brand-colors-map: (
+$react-bucket-brand-colors-map: (
   primary     : $primary,
   secondary   : $secondary,
   warning     : $warning,
@@ -135,4 +135,4 @@ $ui-bucket-brand-colors-map: (
 );
 
 /* Color Map */
-$ui-bucket-color-map: map-merge(map-merge($ui-bucket-ui-colors-map, $ui-bucket-socials-color-map), $ui-bucket-brand-colors-map );
+$react-bucket-color-map: map-merge(map-merge($react-bucket-ui-colors-map, $react-bucket-socials-color-map), $react-bucket-brand-colors-map );

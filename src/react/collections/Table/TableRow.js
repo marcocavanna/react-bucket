@@ -7,7 +7,6 @@ import _ from 'lodash';
 import {
   childrenUtils,
   createShorthandFactory,
-  customPropTypes,
   getElementType,
   getUnhandledProps,
   classByKey
@@ -54,7 +53,9 @@ function TableRow(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {_.map(cells, cell => TableCell.create(cell, { defaultProps: { as: cellAs } }))}
+      {_.map(cells, cell => TableCell.create(
+        cell, { defaultProps: { as: cellAs }, autoGenerateKey: true }
+      ))}
     </ElementType>
   );
 
@@ -65,10 +66,10 @@ TableRow.propTypes = {
   active: PropTypes.bool,
 
   /** An element used to render the content */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Set the element used to Render the Cells */
-  cellAs: customPropTypes.as,
+  cellAs: PropTypes.elementType,
 
   /** Array of string used to render the cells */
   cells: PropTypes.arrayOf(PropTypes.any),

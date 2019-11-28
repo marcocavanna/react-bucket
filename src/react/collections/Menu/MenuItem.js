@@ -26,7 +26,10 @@ class MenuItem extends React.PureComponent {
     ]),
 
     /** An element used to render */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
+
+    /** Primary content. */
+    children: PropTypes.node,
 
     /** User Defined Classes */
     className: PropTypes.string,
@@ -35,7 +38,7 @@ class MenuItem extends React.PureComponent {
     color: PropTypes.string,
 
     /** Content ShordHand */
-    content: PropTypes.any,
+    content: PropTypes.node,
 
     /** Disabled State */
     disabled: PropTypes.bool,

@@ -1,7 +1,13 @@
 import * as React from 'react'
 
-import { AppBucketsICON } from '../../../fontawesome/icon-file-generator/fa-icon';
-import { AppBucketsCOLORS, AppBucketsSIZE } from '../../generic';
+import {
+  ReactBucketCOLOR,
+  ReactBucketSIZE,
+  ReactBucketICON,
+  ReactBucketShorthandItem
+} from '../../generic';
+
+import { ButtonProps } from '../Button';
 
 export interface FieldProps extends StrictFieldProps {
   [key: string]: any
@@ -9,13 +15,13 @@ export interface FieldProps extends StrictFieldProps {
 
 export interface StrictFieldProps {
   /** Action Button */
-  action?: any,
+  action?: ReactBucketShorthandItem<ButtonProps>
 
   /** Action Position */
   actionPosition?: 'left' | 'right'
 
   /** An element used to render */
-  as?: any,
+  as?: React.ElementType
 
   /** Bordered Field */
   bordered?: boolean
@@ -24,13 +30,13 @@ export interface StrictFieldProps {
   checkbox?: boolean
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Content Element */
-  content?: any
+  content?: React.ReactNode
 
   /** ClassName for Content Element */
   contentClassName?: string
@@ -51,13 +57,13 @@ export interface StrictFieldProps {
   full?: boolean
 
   /** Hint Element */
-  hint?: any
+  hint?: React.ReactNode
 
   /** The hint color */
-  hintColor?: AppBucketsCOLORS
+  hintColor?: ReactBucketCOLOR
 
   /** Icon Element */
-  icon?: AppBucketsICON
+  icon?: ReactBucketICON
 
   /** Icon Position */
   iconPosition?: 'left' | 'right'
@@ -75,13 +81,13 @@ export interface StrictFieldProps {
   label?: string
 
   /** Input messages to Show */
-  messages?: string[]
+  messages?: React.ReactNode[]
 
   /** Set the Field as Required */
   required?: boolean
 
   /** Adjust field size */
-  size?: AppBucketsSIZE
+  size?: ReactBucketSIZE
 
   /** Set the Success Style */
   success?: boolean
@@ -94,8 +100,6 @@ export interface StrictFieldProps {
 
 }
 
-interface FieldComponent extends React.StatelessComponent<FieldProps> { }
-
-declare const Field: FieldComponent
+declare const Field: React.FunctionComponent<FieldProps>
 
 export default Field

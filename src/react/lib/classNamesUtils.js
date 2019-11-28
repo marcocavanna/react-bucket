@@ -1,5 +1,5 @@
 /**
- * AppBucket UI will use some of key property
+ * ReactBucket UI will use some of key property
  * to retreive class names.
  * Use one of this utility in combination
  * with classnames module
@@ -11,12 +11,13 @@
  * fallback to true, className will be appended
  * @param {*} value The Props Value
  * @param {String} className The Classname to return
+ * @param {String} elseClassName Classname to use if value is falsy
  *
  * @example
  * <Button primary />
  * <button class="is-primary"></button>
  */
-export const classByKey = (value, className) => value && className;
+export const classByKey = (value, className, elseClassName) => (value ? className : elseClassName);
 
 /**
  * Classname that will append 'is-' keyword

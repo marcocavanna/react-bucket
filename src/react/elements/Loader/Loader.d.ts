@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { AppBucketsSIZE } from '../../generic'
+import { ReactBucketSIZE } from '../../generic'
 
 export interface LoaderProps extends StrictLoaderProps {
   [key: string]: any
@@ -8,37 +8,34 @@ export interface LoaderProps extends StrictLoaderProps {
 
 export interface StrictLoaderProps {
   /** Active Props */
-  active?: boolean,
+  active?: boolean
 
   /** An element used to render */
-  as?: any,
+  as?: React.ElementType
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Centered Loader */
-  centered?: boolean,
+  centered?: boolean
 
   /** Content Property */
-  content?: any,
+  content?: React.ReactNode
 
   /** Inline Loader */
-  inline?: boolean,
+  inline?: boolean
 
   /** Inverted Props */
-  inverted?: boolean,
+  inverted?: boolean
 
   /** Size Style */
-  size?: AppBucketsSIZE
+  size?: ReactBucketSIZE
 
 }
 
-interface LoaderComponent extends React.StatelessComponent<LoaderProps> { }
-/** In case of subcomponent append Name: typeof ImportedComponent in the interface */
-
-declare const Loader: LoaderComponent
+declare const Loader: React.FunctionComponent<LoaderProps>
 
 export default Loader

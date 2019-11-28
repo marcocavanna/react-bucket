@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { AppBucketsShorthandContent } from '../../generic'
 
 export interface MessageItemProps extends StrictMessageItemProps {
   [key: string]: any
@@ -7,7 +6,7 @@ export interface MessageItemProps extends StrictMessageItemProps {
 
 export interface StrictMessageItemProps {
   /** An element type to render as (string or function). */
-  as?: any
+  as?: React.ElementType
 
   /** Primary content. */
   children?: React.ReactNode
@@ -16,7 +15,7 @@ export interface StrictMessageItemProps {
   className?: string
 
   /** Shorthand for primary content. */
-  content?: AppBucketsShorthandContent
+  content?: React.ReactNode
 }
 
 declare const MessageItem: React.StatelessComponent<MessageItemProps>

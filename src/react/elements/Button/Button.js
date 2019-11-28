@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
+import { isObject } from '@appbuckets/rabbit';
 import _ from 'lodash';
 
 import {
@@ -24,7 +25,10 @@ class Button extends PureComponent {
    */
   static propTypes = {
     /** Element used to Render the Component */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
+
+    /** Primary content. */
+    children: PropTypes.node,
 
     /** Circle Button */
     circle: PropTypes.bool,
@@ -36,7 +40,7 @@ class Button extends PureComponent {
     color: PropTypes.string,
 
     /** Button Content Property */
-    content: PropTypes.string,
+    content: PropTypes.node,
 
     /** Danger Color */
     danger: PropTypes.bool,
@@ -250,13 +254,7 @@ class Button extends PureComponent {
 }
 
 
-Button.create = createShorthandFactory(Button, (val) => {
-  if (_.isObject(val) && !_.isArray(val)) {
-    return val;
-  }
-
-  return { content: val };
-});
+Button.create = createShorthandFactory(Button, val => (isObject(val) ? val : { content: val }));
 
 
 export default Button;

@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { AppBucketsSIZE } from '../../generic'
+import { ReactBucketSIZE } from '../../generic'
 
 export interface LabelGroupProps extends StrictLabelGroupProps {
   [key: string]: any
@@ -8,25 +8,22 @@ export interface LabelGroupProps extends StrictLabelGroupProps {
 
 export interface StrictLabelGroupProps {
   /** An element used to render */
-  as?: any,
+  as?: React.ElementType
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Content ShortHand */
-  content?: React.ReactNode,
+  content?: React.ReactNode
 
   /** Size */
-  size?: AppBucketsSIZE
+  size?: ReactBucketSIZE
 
 }
 
-interface LabelGroupComponent extends React.StatelessComponent<LabelGroupProps> { }
-/** In case of subcomponent append Name: typeof ImportedComponent in the interface */
-
-declare const LabelGroup: LabelGroupComponent
+declare const LabelGroup: React.FunctionComponent<LabelGroupProps>
 
 export default LabelGroup

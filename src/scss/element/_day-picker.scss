@@ -1,0 +1,239 @@
+/*
+ * ReactBucket Framwork
+ *
+ * Day-picker @ _day-picker.scss in 'Element'
+ *
+ * Defined at 2019-11-21
+ * Copyright Marco Cavanna • 2019
+ */
+
+
+/******
+    DayPicker Container
+******/
+.DayPicker {
+  font: 1em;
+  color: inherit;
+  display: inline-block;
+}
+
+/******
+    DayPicker Wrapper Element
+******/
+.DayPicker .DayPicker-wrapper {
+  position: relative;
+  flex-direction: row;
+  padding-bottom: 1em;
+
+  @include unselectable;
+}
+
+/******
+    DayPicker Months Container
+******/
+.DayPicker .DayPicker-Months {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  .DayPicker-Month {
+    display: table;
+    margin: 0 1em;
+    margin-top: 1em;
+    border-spacing: 0;
+    border-collapse: collapse;
+
+    @include unselectable;
+  }
+}
+
+/******
+    DayPicker NavBar
+******/
+.DayPicker .DayPicker-NavBar {
+  .DayPicker-NavButton {
+    position: absolute;
+    top: .7em;
+    right: 1.25em;
+    left: auto;
+    display: inline-block;
+    margin-top: 2px;
+  }
+
+  .DayPicker-NavButton--prev {
+    margin-right: 1.5em;
+
+    &:before {
+      @include fontAwesomeFamilySolid;
+      content: fa-content($fa-var-angle-left);
+      font-size: 1.5em;
+    }
+  }
+
+
+  .DayPicker-NavButton--next:before {
+    @include fontAwesomeFamilySolid;
+    content: fa-content($fa-var-angle-right);
+    font-size: 1.5em;
+  }
+
+  .DayPicker-NavButton--interactionDisabled {
+    display: none;
+  }
+}
+
+/******
+    DayPicker Caption
+******/
+.DayPicker .DayPicker-Caption {
+  display: table-caption;
+  margin-bottom: .5em;
+  padding: 0 .5em;
+  text-align: left;
+
+  > div {
+    font-weight: $semi-bold;
+    font-size: 1.15em;
+  }
+}
+
+/******
+    DayPicker Weeks
+******/
+.DayPicker .DayPicker-Weekdays {
+  display: table-header-group;
+  margin-top: 1em;
+
+  .DayPicker-WeekdaysRow {
+    display: table-row;
+
+    .DayPicker-Weekday {
+      display: table-cell;
+      padding: .5em;
+      color: $text-lightest;
+      text-align: center;
+      font-weight: $semi-bold;
+
+      abbr[title] {
+        border-bottom: none;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+/******
+    DayPicker Body Content
+******/
+.DayPicker .DayPicker-Body {
+  display: table-row-group;
+
+  .DayPicker-Week {
+    display: table-row;
+  }
+
+  .DayPicker-WeekNumber {
+    display: table-cell;
+    padding: .5em;
+    width: 2.5em;
+    border-right: solid 1px $grey-light;
+    vertical-align: middle;
+    text-align: right;
+    cursor: pointer;
+    font-size: .75em;
+    font-weight: $semi-bold;
+    opacity: .4;
+  }
+
+  .DayPicker-Day {
+    display: table-cell;
+    padding: .5em;
+    vertical-align: middle;
+    text-align: center;
+    border-radius: $border-radius;
+  }
+}
+
+/******
+    DayPicker Footer
+******/
+.DayPicker .DayPicker-Footer {
+  padding-top: .5em;
+  text-align: center;
+}
+
+/******
+    DayPicker Today Jump Button
+******/
+.DayPicker .DayPicker-TodayButton {
+  @extend .button;
+  @extend .button.is-primary;
+  @extend .button.is-small;
+}
+
+/******
+    DayPicker State
+    and UI Variations
+******/
+.DayPicker--interactionDisabled {
+  .DayPicker-NavBar {
+    display: none;
+  }
+}
+
+.DayPicker:not(.DayPicker--interactionDisabled) {
+  .DayPicker-NavButton {
+    cursor: pointer;
+    color: inherit;
+    transition: color $transition-duration $transition-ease;
+
+    @include without-touch-hover {
+      color: $primary;
+    }
+  }
+
+  .DayPicker-Day {
+    /* Today */
+    &.DayPicker-Day--today:not(.DayPicker-Day--selected) {
+      color: $orange;
+      background-color: $white-shade !important;
+      font-weight: $bold;
+    }
+
+    /* Outside Day Month */
+    &.DayPicker-Day--outside {
+      color: $grey-dark;
+      cursor: default;
+    }
+
+    /* Disabled Date */
+    &.DayPicker-Day--disabled {
+      opacity: $disabled-opacity;
+      cursor: default;
+    }
+
+    /* Selected Days */
+    &.DayPicker-Day--selected {
+      background-color: $primary !important;
+      color: $white-shade;
+      font-weight: $bold;
+    }
+
+    &:not(.DayPicker-Day--outside) {
+      cursor: pointer;
+      background-color: transparent;
+      transition: background-color $transition-duration $transition-ease;
+
+      @include without-touch-hover {
+        background-color: $white-shade-2;
+      }
+    }
+  }
+}
+
+/******
+    DayPicker Modifiers
+******/
+.DayPicker {
+
+}

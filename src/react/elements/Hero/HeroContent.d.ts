@@ -6,20 +6,18 @@ export interface HeroContentProps extends StrictHeroContentProps {
 
 export interface StrictHeroContentProps {
   /** An element used to render */
-  as?: any,
+  as?: React.ElementType
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Content Shorthand */
   content?: React.ReactNode
 }
 
-interface HeroContentComponent extends React.StatelessComponent<HeroContentProps> { }
-
-declare const HeroContent: HeroContentComponent
+declare const HeroContent: React.FunctionComponent<HeroContentProps>
 
 export default HeroContent

@@ -1,14 +1,14 @@
 import * as React from 'react'
 
-import { AppBucketsCOLUMNWIDTH } from '../../generic';
+import { ReactBucketCOLUMNWIDTH } from '../../generic';
 import { LayoutProps } from '../Layout';
 import { MenuProps } from '../Menu';
 
 import TabPanel from './TabPanel';
 
 interface LayoutTabsProps extends LayoutProps {
-  panelWidth?: AppBucketsCOLUMNWIDTH
-  menuWidth?: AppBucketsCOLUMNWIDTH
+  panelWidth?: ReactBucketCOLUMNWIDTH
+  menuWidth?: ReactBucketCOLUMNWIDTH
 }
 
 export interface TabsProps extends StrictTabsProps {
@@ -20,13 +20,13 @@ export interface StrictTabsProps {
   activeIndex?: string | number
 
   /** An element used to render */
-  as?: any,
+  as?: React.ElementType
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** The initial active index */
   defaultActiveIndex?: string | number

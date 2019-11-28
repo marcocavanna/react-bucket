@@ -25,7 +25,10 @@ class Label extends React.PureComponent {
    */
   static propTypes = {
     /** An element used to render the component */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
+
+    /** Primary content. */
+    children: PropTypes.node,
 
     /** User Defined Class */
     className: PropTypes.string,
@@ -34,13 +37,20 @@ class Label extends React.PureComponent {
     color: PropTypes.string,
 
     /** Content ShortHand */
-    content: PropTypes.any,
+    content: PropTypes.node,
 
     /** Detail Shorthand */
     detail: PropTypes.any,
 
     /** Icon Shorthand */
-    icon: customPropTypes.fontAwesome
+    icon: customPropTypes.fontAwesome,
+
+    /**
+     * Called after user's click.
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
+    onClick: PropTypes.func
   }
 
   /**

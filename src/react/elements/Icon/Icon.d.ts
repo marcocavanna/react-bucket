@@ -1,7 +1,6 @@
 import * as React from 'react';
 
-import { AppBucketsICON } from '../../../fontawesome/icon-file-generator/fa-icon';
-import { AppBucketsCOLORS, AppBucketsSIZE } from '../../generic'
+import { ReactBucketCOLOR, ReactBucketSIZE, ReactBucketICON } from '../../generic'
 
 export interface IconProps extends StrictIconProps {
   [key: string]: any
@@ -9,50 +8,52 @@ export interface IconProps extends StrictIconProps {
 
 export interface StrictIconProps {
   /** An element used to render */
-  as?: any,
+  as?: React.ElementType
 
   /** Display Icon Border */
-  bordered?: boolean,
+  bordered?: boolean
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Icon Color */
-  color?: AppBucketsCOLORS,
+  color?: ReactBucketCOLOR
 
   /** Set icon as disabled */
-  disabled?: boolean,
+  disabled?: boolean
 
   /** Fitted Icon has no Margin and Auto Width */
-  fitted?: boolean,
+  fitted?: boolean
 
   /** Flip an Icon */
-  flip?: 'horizontal' | 'vertical' | 'both',
+  flip?: 'horizontal' | 'vertical' | 'both'
 
   /** Icon as Link */
-  link?: boolean,
+  link?: boolean
 
   /** Icon Name */
-  name: AppBucketsICON,
+  name?: ReactBucketICON
 
-  /** OnClick Handler */
-  onClick?: Function,
+  /**
+   * Called after user's click.
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} props - All props.
+   */
+  onClick?: (event: React.MouseEvent<HTMLElement>, props: IconProps) => void,
 
   /** Rotate Icon */
-  rotate?: 90 | 180 | 270 | '90' | '180' | '270',
+  rotate?: 90 | 180 | 270 | '90' | '180' | '270'
 
   /** Icon Size */
-  size?: AppBucketsSIZE,
+  size?: ReactBucketSIZE
 
   /** Animate an Icon using Spin */
-  spin?: boolean,
+  spin?: boolean
 
   /** Icon Style */
   style?: 'brand' | 'light' | 'regular' | 'solid'
 }
 
-declare class Icon extends React.PureComponent<IconProps, {}> {
-
-}
+declare class Icon extends React.PureComponent<IconProps, {}> { }
 
 export default Icon

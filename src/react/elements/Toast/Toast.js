@@ -14,7 +14,6 @@ import ToastHeader from './ToastHeader';
 import ToastContent from './ToastContent';
 
 import Icon from '../Icon';
-import Button from '../Button';
 
 function Toast(props) {
 
@@ -70,8 +69,8 @@ function Toast(props) {
     );
   }
 
-  const headerElement = header && ToastHeader.create(header);
-  const contentElement = content && ToastContent.create(content);
+  const headerElement = header && ToastHeader.create(header, { autoGenerateKey: false });
+  const contentElement = content && ToastContent.create(content, { autoGenerateKey: false });
 
   const dimissIconName = typeof dismissable === 'string' ? dismissable : 'times';
 
@@ -108,13 +107,16 @@ Toast.Content = ToastContent;
 
 Toast.propTypes = {
   /** An element used to render the component */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
+
+  /** Primary content. */
+  children: PropTypes.node,
 
   /** User defined Classes */
   className: PropTypes.string,
 
   /** Toast Content Shorthand */
-  content: PropTypes.any,
+  content: PropTypes.node,
 
   /** Is toast dismissable manually? */
   dismissable: PropTypes.oneOfType([
@@ -134,7 +136,11 @@ Toast.propTypes = {
   /** Toast with info style */
   info: PropTypes.bool,
 
-  /** On Click Handler */
+  /**
+   * Called after user's click.
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
   onClick: PropTypes.func,
 
   /** Toast with primary style */

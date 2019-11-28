@@ -5,7 +5,6 @@ import cx from 'classnames';
 import {
   childrenUtils,
   classByPattern,
-  customPropTypes,
   getElementType,
   getUnhandledProps
 } from '../../lib';
@@ -37,7 +36,7 @@ function HeaderContent(props) {
 
 HeaderContent.propTypes = {
   /** An element used to render the component */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Primary Content */
   children: PropTypes.node,
@@ -49,7 +48,7 @@ HeaderContent.propTypes = {
   color: PropTypes.string,
 
   /** Shorthand Properties for Content */
-  content: PropTypes.any
+  content: PropTypes.node
 };
 
 export default HeaderContent;

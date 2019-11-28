@@ -5,7 +5,6 @@ import cx from 'classnames';
 
 import _ from 'lodash';
 import {
-  customPropTypes,
   childrenUtils,
   getElementType,
   getUnhandledProps,
@@ -61,7 +60,7 @@ function Item(props) {
           ? children
           : (header || content) && <ItemContent content={content} header={header} />
       }
-      {tools && ItemTools.create(tools)}
+      {tools && ItemTools.create(tools, { autoGenerateKey: false })}
     </ElementType>
   );
 
@@ -75,16 +74,19 @@ Item.propTypes = {
   ]),
 
   /** An Element used to Render the Component */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Avatar Properties Shorthand */
   avatar: PropTypes.object,
+
+  /** Primary content. */
+  children: PropTypes.node,
 
   /** User Defined Classes */
   className: PropTypes.string,
 
   /** Content Shorthand */
-  content: PropTypes.any,
+  content: PropTypes.node,
 
   /** Disabled State */
   disabled: PropTypes.bool,
@@ -92,7 +94,11 @@ Item.propTypes = {
   /** Header Shorthand */
   header: PropTypes.any,
 
-  /** On Click Function */
+  /**
+   * Called after user's click.
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
   onClick: PropTypes.func,
 
   /** Tools shorthand Factory */

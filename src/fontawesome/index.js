@@ -1,4 +1,4 @@
-const fontAwesomePair = require('./fa-icon.module');
+const fontAwesomePair = require('./icon-module/fa-mapper');
 
 export default (name, style) => {
 

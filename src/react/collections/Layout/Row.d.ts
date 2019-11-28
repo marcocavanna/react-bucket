@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { AppBucketsALIGN, AppBucketsCOLORS, AppBucketsFLEXHORIZONTALALIGN, AppBucketsFLEXVERTICALALIGN, AppBucketsBREAKPOINTS } from '../../generic';
+import { ReactBucketALIGN, ReactBucketCOLOR, ReactBucketFLEXHORIZONTALALIGN, ReactBucketFLEXVERTICALALIGN, ReactBucketBREAKPOINT } from '../../generic';
 
 export interface RowProps extends StrictRowProps {
   [key: string]: any
@@ -8,28 +8,28 @@ export interface RowProps extends StrictRowProps {
 
 export interface StrictRowProps {
   /** An element used to render */
-  as?: any,
+  as?: React.ElementType
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Custom Font Color */
-  color?: AppBucketsCOLORS,
+  color?: ReactBucketCOLOR
 
   /** Fluid property */
-  columnsAlign?: AppBucketsFLEXHORIZONTALALIGN,
+  columnsAlign?: ReactBucketFLEXHORIZONTALALIGN
 
   /** Text Alignment */
-  textAlign?: AppBucketsALIGN,
+  textAlign?: ReactBucketALIGN
 
   /** Columns Vertical Align */
-  verticalAlign?: AppBucketsFLEXVERTICALALIGN,
+  verticalAlign?: ReactBucketFLEXVERTICALALIGN
 
   /** Without Gap */
-  withoutGap?: AppBucketsBREAKPOINTS
+  withoutGap?: ReactBucketBREAKPOINT
 }
 
 declare const Row: React.StatelessComponent<RowProps>

@@ -5,7 +5,6 @@ import cx from 'classnames';
 import _ from 'lodash';
 
 import {
-  customPropTypes,
   childrenUtils,
   classByKey,
   classByPattern,
@@ -90,13 +89,16 @@ function Image(props) {
 
 Image.propTypes = {
   /** An element used to render the componenet */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Define if image is avatar style */
   avatar: PropTypes.bool,
 
   /** Define if image is Bordered */
   bordered: PropTypes.bool,
+
+  /** Primary content. */
+  children: PropTypes.node,
 
   /** Define if image is Circular */
   circular: PropTypes.bool,
@@ -105,7 +107,7 @@ Image.propTypes = {
   className: PropTypes.string,
 
   /** Content Shorthand */
-  content: PropTypes.any,
+  content: PropTypes.node,
 
   /** Dimmer Shorthand */
   dimmer: PropTypes.any,

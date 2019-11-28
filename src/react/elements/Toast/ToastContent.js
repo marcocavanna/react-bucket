@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 
 import {
-  customPropTypes,
   getElementType,
   getUnhandledProps,
   childrenUtils,
@@ -36,13 +35,16 @@ function ToastContent(props) {
 
 ToastContent.propTypes = {
   /** An element used to render the component */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
+
+  /** Primary content. */
+  children: PropTypes.node,
 
   /** User defined Classes */
   className: PropTypes.string,
 
   /** Content Shorthand */
-  content: PropTypes.any
+  content: PropTypes.node
 };
 
 ToastContent.create = createShorthandFactory(ToastContent, content => ({ content }));

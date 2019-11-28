@@ -2,6 +2,7 @@
 import _ from 'lodash';
 import path from 'path';
 import { defaultHandlers, parse, resolver } from 'react-docgen';
+import externalPropTypesHandler from 'react-docgen-external-proptypes-handler';
 import fs from 'fs';
 
 import config from '../../../config';
@@ -22,6 +23,9 @@ const getComponentInfo = (filepath) => {
   // singular form of the component's ../../ directory
   // "element" for "src/elements/Button/Button.js"
   const componentType = path.basename(path.dirname(dir)).replace(/s$/, '');
+
+  // Append External Handlers
+  defaultHandlers.concat(externalPropTypesHandler(filepath));
 
   // start with react-docgen info
   const components = parse(contents, resolver.findAllComponentDefinitions, [

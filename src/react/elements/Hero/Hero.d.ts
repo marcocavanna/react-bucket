@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { AppBucketsICON } from '../../../fontawesome/icon-file-generator/fa-icon'
+import { ReactBucketICON, ReactBucketShorthandCollection } from '../../generic';
 
 import { ButtonProps } from '../Button';
 
@@ -14,28 +14,28 @@ export interface HeroProps extends StrictHeroProps {
 
 export interface StrictHeroProps {
   /** An element used to render */
-  as?: any,
+  as?: React.ElementType
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Content Shorthand */
   content?: React.ReactNode
 
   /** Header shorthand */
-  header?: React.ReactNode,
+  header?: React.ReactNode
 
   /** Hero Icon to Show */
-  heroIcon?: AppBucketsICON
+  heroIcon?: ReactBucketICON
 
   /** Array of Tools */
-  tools?: ButtonProps[]
+  tools?: ReactBucketShorthandCollection<ButtonProps>
 }
 
-interface HeroComponent extends React.StatelessComponent<HeroProps> {
+interface HeroComponent extends React.FunctionComponent<HeroProps> {
   Header: typeof HeroHeader
   Content: typeof HeroContent
   Tools: typeof HeroTools

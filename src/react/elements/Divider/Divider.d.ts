@@ -6,31 +6,28 @@ export interface DividerProps extends StrictDividerProps {
 
 export interface StrictDividerProps {
   /** An element used to render */
-  as?: any,
+  as?: React.ElementType
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Content Property */
-  content?: string,
+  content?: React.ReactNode
 
   /** Hidden Boolean */
-  hidden?: boolean,
+  hidden?: boolean
 
   /** Horizontal Divider */
-  horizontal?: boolean,
+  horizontal?: boolean
 
   /** Inverted Colors */
   inverted?: boolean
 
 }
 
-interface DividerComponent extends React.StatelessComponent<DividerProps> { }
-/** In case of subcomponent append Name: typeof ImportedComponent in the interface */
-
-declare const Divider: DividerComponent
+declare const Divider: React.FunctionComponent<DividerProps>
 
 export default Divider

@@ -6,22 +6,19 @@ export interface LabelDetailProps extends StrictLabelDetailProps {
 
 export interface StrictLabelDetailProps {
   /** An element used to render */
-  as?: any,
+  as?: React.ElementType
 
   /** Children Node */
-  children?: React.ReactNode,
+  children?: React.ReactNode
 
   /** User defined class */
-  className?: string,
+  className?: string
 
   /** Label Content */
-  content?: string
+  content?: React.ReactNode
 
 }
 
-interface LabelDetailComponent extends React.StatelessComponent<LabelDetailProps> { }
-/** In case of subcomponent append Name: typeof ImportedComponent in the interface */
-
-declare const LabelDetail: LabelDetailComponent
+declare const LabelDetail: React.FunctionComponent<LabelDetailProps>
 
 export default LabelDetail

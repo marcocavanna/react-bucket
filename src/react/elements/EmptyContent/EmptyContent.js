@@ -38,7 +38,7 @@ function EmptyContent(props) {
 
   const rest = getUnhandledProps(EmptyContent, props);
 
-  const IconElement = icon && Icon.create(icon);
+  const IconElement = icon && Icon.create(icon, { autoGenerateKey: false });
 
   return (
     <Container {...rest} textColor={color} textAlign={textAlign} className={classes}>
@@ -54,6 +54,9 @@ function EmptyContent(props) {
 }
 
 EmptyContent.propTypes = {
+  /** Primary content. */
+  children: PropTypes.node,
+
   /** User defined classes */
   className: PropTypes.string,
 
@@ -61,7 +64,7 @@ EmptyContent.propTypes = {
   color: PropTypes.string,
 
   /** Content Shorthand */
-  content: PropTypes.any,
+  content: PropTypes.node,
 
   /** Empty Content Header */
   header: PropTypes.string,

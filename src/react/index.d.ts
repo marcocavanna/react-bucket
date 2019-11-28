@@ -9,6 +9,10 @@ export { default as Ref, RefProps, StrictRefProps } from './addons/Ref';
 /**
  * Collections Export
  */
+export { default as DayPicker, DayPickerProps, StrictDayPickerProps } from './collections/DayPicker';
+
+export { default as DropdownMenu, DropdownMenuProps, StrictDropdownMenuProps } from './collections/DropdownMenu';
+
 export { default as Form, FormProps, StrictFormProps } from './collections/Form';
 
 export { default as Layout, LayoutProps, StrictLayoutProps } from './collections/Layout';
@@ -57,7 +61,7 @@ export { default as Loader, LoaderProps, StrictLoaderProps } from './elements/Lo
 
 export { default as Panel, PanelProps, StrictPanelProps } from './elements/Panel';
 
-export { default as Progress } from './elements/Progress';
+export { default as Progress, ProgressProps, StrictProgressProps } from './elements/Progress';
 
 export { default as Select, SelectProps, StrictSelectProps } from './elements/Select';
 

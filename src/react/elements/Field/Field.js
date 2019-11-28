@@ -42,6 +42,7 @@ function Field(props) {
     input,
     label,
     messages,
+    radio,
     required,
     size,
     success,
@@ -52,7 +53,7 @@ function Field(props) {
   const classes = cx(
     'field',
     classByKey(text && !form, 'text'),
-    classByKey(form, 'form-field'),
+    classByKey(form || checkbox || radio || input, 'form-field'),
     classByKey(success, 'is-success'),
     classByKey(warning, 'is-warning'),
     classByKey(error, 'is-danger'),
@@ -67,6 +68,7 @@ function Field(props) {
     'content',
     classByKey(checkbox, 'checkbox'),
     classByKey(input, 'input'),
+    classByKey(radio, 'radio'),
     classByKey(full, 'is-full'),
     classByKey(bordered, 'is-bordered'),
     classByKey(action, 'with-action'),
@@ -135,7 +137,7 @@ Field.propTypes = {
   actionPosition: PropTypes.oneOf(['left', 'right']),
 
   /** An element used to render the content */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Bordered Input Field */
   bordered: PropTypes.bool,
@@ -143,11 +145,14 @@ Field.propTypes = {
   /** Set the field as a Checkbox container */
   checkbox: PropTypes.bool,
 
+  /** Primary content. */
+  children: PropTypes.node,
+
   /** User defined classes */
   className: PropTypes.string,
 
   /** Field Content */
-  content: PropTypes.any,
+  content: PropTypes.node,
 
   /** ClassName for Content Element */
   contentClassName: PropTypes.string,
@@ -192,7 +197,10 @@ Field.propTypes = {
   label: PropTypes.any,
 
   /** Messages to show */
-  messages: PropTypes.arrayOf(PropTypes.string),
+  messages: PropTypes.arrayOf(PropTypes.node),
+
+  /** Set the field as radio container */
+  radio: PropTypes.bool,
 
   /** Set field as required */
   required: PropTypes.bool,

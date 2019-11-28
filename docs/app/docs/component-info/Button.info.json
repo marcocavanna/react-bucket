@@ -2,7 +2,7 @@
   "displayName": "Button",
   "props": [
     {
-      "type": "custom",
+      "type": "elementType",
       "required": false,
       "description": [
         "Element used to Render the Component"
@@ -10,6 +10,15 @@
       "defaultValue": "'button'",
       "tags": [],
       "name": "as"
+    },
+    {
+      "type": "node",
+      "required": false,
+      "description": [
+        "Primary content."
+      ],
+      "tags": [],
+      "name": "children"
     },
     {
       "type": "bool",
@@ -39,7 +48,7 @@
       "name": "color"
     },
     {
-      "type": "string",
+      "type": "node",
       "required": false,
       "description": [
         "Button Content Property"

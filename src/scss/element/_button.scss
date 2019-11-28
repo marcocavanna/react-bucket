@@ -1,15 +1,15 @@
 $__button_background_map: ();
 
 @if $button-background-ui == true {
-  $__button_background_map: map-merge($__button_background_map, $ui-bucket-ui-colors-map);
+  $__button_background_map: map-merge($__button_background_map, $react-bucket-ui-colors-map);
 }
 
 @if $button-background-brand == true {
-  $__button_background_map: map-merge($__button_background_map, $ui-bucket-brand-colors-map);
+  $__button_background_map: map-merge($__button_background_map, $react-bucket-brand-colors-map);
 }
 
 @if $button-background-socials == true {
-  $__button_background_map: map-merge($__button_background_map, $ui-bucket-socials-color-map);
+  $__button_background_map: map-merge($__button_background_map, $react-bucket-socials-color-map);
 }
 
 .button {

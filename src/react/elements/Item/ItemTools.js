@@ -5,7 +5,6 @@ import cx from 'classnames';
 import _ from 'lodash';
 
 import {
-  customPropTypes,
   childrenUtils,
   getElementType,
   getUnhandledProps,
@@ -42,7 +41,10 @@ function ItemTools(props) {
 
 ItemTools.propTypes = {
   /** An element used to render the component */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
+
+  /** Primary content. */
+  children: PropTypes.node,
 
   /** User Defined Classes */
   className: PropTypes.string,
