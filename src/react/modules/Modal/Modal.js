@@ -52,7 +52,10 @@ class Modal extends Component {
     centered: PropTypes.bool,
 
     /** Primary content. */
-    children: PropTypes.node,
+    children: PropTypes.oneOfType([
+      PropTypes.node,
+      PropTypes.func
+    ]),
 
     /** Additional user defined classes */
     className: PropTypes.string,
