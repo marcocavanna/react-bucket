@@ -3,9 +3,6 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 
 import Table from '../../collections/Table';
-import Container from '../../elements/Container';
-import Loader from '../../elements/Loader';
-import Message from '../../collections/Message';
 
 import RxTableData from './RxTableData';
 
@@ -14,10 +11,11 @@ import RxTableTools from './RxTableTools';
 import RxTableFilterInput from './RxTableFilterInput';
 import RxTablePaginationWalker from './RxTablePaginationWalker';
 
-import paginateData from './lib/paginate';
+import RxTableBody from './RxTableBody';
+import RxTableLoader from './RxTableLoader';
+import RxTableError from './RxTableError';
 
 import {
-  childrenUtils,
   classByKey
 } from '../../lib';
 
@@ -36,7 +34,7 @@ class RxTable extends React.Component {
 
   static propTypes = {
     /** Primary content. */
-    children: PropTypes.node,
+    children: PropTypes.func,
 
     /** User Defined Classes */
     className: PropTypes.string,
@@ -182,214 +180,41 @@ class RxTable extends React.Component {
     this.setState({ currentPage: newPage });
   }
 
-  getData = () => {
-    /** Get Search String */
-    const {
-      searchStr,
-      enablePagination,
-      currentPage,
-      itemsPerPage
-    } = this.state;
-
-    /** Get RxTableData instance */
-    const { rxTableData } = this.props;
-
-    const { data } = rxTableData.filter(searchStr);
-
-    if (!enablePagination) {
-      return { data };
-    }
-
-    return paginateData(data, currentPage, itemsPerPage);
-
-  }
-
-  RxTableError = (props) => {
-    const { error } = props;
-
-    const {
-      error: errorChildren
-    } = this.props;
-
-    /** Get Error Message and Header */
-    return childrenUtils.isNil(errorChildren)
-      ? <Message error header='An Error occured while loading Data' content={error} />
-      : errorChildren;
-
-  }
-
-  RxTableLoading = () => {
-    const {
-      loader: loaderChildren
-    } = this.props;
-
-    /** Get the Loader Component */
-    return (
-      <Container
-        className='rx-table rx-table-loading'
-        paddingTop='4'
-        paddingBottom='5'
-        content={childrenUtils.isNil(loaderChildren) ? (
-          <Loader active inline centered size='big' />
-        ) : loaderChildren}
-      />
-    );
-
-  }
-
-  RxTableBody = (props) => {
-
-    /** Get Filter String */
-    const { searchStr } = this.state;
-
-    /** Get the RxTableData */
-    const { rxTableData, children } = this.props;
-
-    /** Get Data from Local Props */
-    const { data } = props;
-
-    /** Get Counter */
-    const {
-      all      : allCount,
-      filtered : filteredCount
-    } = rxTableData.count;
-
-    /** If no Data exists, show message */
-    if (!allCount) {
-      const {
-        noData: noDataProp
-      } = this.props;
-
-      const NoData = childrenUtils.isNil(noDataProp)
-        ? <span>Nessun dato da Visualizzare</span>
-        : noDataProp;
-
-      return (
-        <Table.Body>
-          <Table.Row>
-            <Table.Cell colSpan={rxTableData.columns.length} className='rx-table-empty-data'>
-              {NoData}
-            </Table.Cell>
-          </Table.Row>
-        </Table.Body>
-      );
-    }
-
-    /** If no data exists for current filter string, show message */
-    if (!filteredCount) {
-      const {
-        noFound: noFoundProp
-      } = this.props;
-
-      const NoFound = childrenUtils.isNil(noFoundProp)
-        ? <span>{`No result for current search : '${searchStr}'`}</span>
-        : typeof noFoundProp === 'function'
-          ? noFoundProp(searchStr)
-          : noFoundProp;
-
-      return (
-        <Table.Body>
-          <Table.Row>
-            <Table.Cell colSpan={rxTableData.columns.length} className='rx-table-empty-filtered'>
-              {NoFound}
-            </Table.Cell>
-          </Table.Row>
-        </Table.Body>
-      );
-    }
-
-    /** Build the Row Click handler */
-    const handleRowClick = (...args) => rxTableData.onRowClick(...args);
-
-    /** Get Column Position for tools from props */
-    const { toolsColumnPosition } = this.props;
-
-    /** Get table tools compute function */
-    const computeTools = rxTableData.tools;
-
-    /** Return Data */
-    return (
-      <Table.Body>
-        {
-          data.map((item, index, arr) => (
-            <Table.Row
-              key={item[rxTableData.keyField]}
-              selectable={typeof rxTableData.onRowClick === 'function'}
-              onClick={() => handleRowClick(item, index, arr)}
-            >
-              {
-                !childrenUtils.isNil(children)
-                  ? children(item, index, arr)
-                  : (
-                    <React.Fragment>
-                      {
-                        toolsColumnPosition === 'left'
-                        && rxTableData.hasTools(item)
-                        && <RxTableTools row={item} tools={computeTools} />
-                      }
-                      {rxTableData.columns.map(({ id, ...rest }) => (
-                        <Table.Cell
-                          key={id}
-                          className={rest.className}
-                          textAlign={rest.textAlign}
-                          verticalAlign={rest.verticalAlign}
-                        >
-                          {
-                            typeof rest.cellContent === 'function'
-                              ? rest.cellContent(item, { id, ...rest })
-                              : <span className='cell-title'>{item[id]}</span>
-                          }
-                        </Table.Cell>
-                      ))}
-                      {
-                        toolsColumnPosition === 'right'
-                        && rxTableData.hasTools(item)
-                        && <RxTableTools row={item} tools={computeTools} />
-                      }
-                    </React.Fragment>
-                  )
-              }
-            </Table.Row>
-          ))
-        }
-      </Table.Body>
-    );
-  }
-
   render() {
-    /** Get RxTableRows comps */
-    const {
-      RxTableBody,
-      RxTableLoading,
-      RxTableError
-    } = this;
 
     /** Spread Props */
     const {
+      children,
       className,
+      loader,
+      noData,
+      noFound,
       rxTableData,
       toolsColumnPosition,
-      virtualizeTable
+      virtualizeTable,
+      error: errorHeader
     } = this.props;
 
     /** Spread State */
     const {
-      sorting,
+      currentPage,
+      enablePagination,
+      error,
       loaded,
       loading,
-      error,
-      enablePagination,
-      currentPage
+      itemsPerPage,
+      searchStr,
+      sorting
     } = this.state;
 
     /** If table is loading, show Progress */
     if (loading) {
-      return <RxTableLoading />;
+      return <RxTableLoader content={loader} />;
     }
 
     /** If table has error, show message */
     if (error || !loaded) {
-      return <Container className='rx-table rx-table-error' content={<RxTableError error={error} />} />;
+      return <RxTableError error={error} header={errorHeader} />;
     }
 
     /** Build table Classes */
@@ -397,14 +222,6 @@ class RxTable extends React.Component {
       classByKey(virtualizeTable, 'fixed-cell-height'),
       className
     );
-
-    /** Check props is correct instance of RxTableData */
-    if (!(rxTableData instanceof RxTableData)) {
-      return null;
-    }
-
-    /** Get Table Data */
-    const { data, totalPages } = this.getData();
 
     /** Get RxTableData Props */
     const { columns, filtering } = rxTableData;
@@ -428,20 +245,22 @@ class RxTable extends React.Component {
             onSortChange={this.handleSortChange}
           />
 
-          {/* Render Table Body */}
-          <RxTableBody data={data} />
+          {/* Table Body */}
+          <RxTableBody
+            currentPage={currentPage}
+            hasPagination={enablePagination}
+            itemsPerPage={itemsPerPage}
+            noData={noData}
+            noFound={noFound}
+            rxTableData={rxTableData}
+            search={searchStr}
+            toolsPosition={toolsColumnPosition}
+            onPageChange={this.handlePageChange}
+          >
+            {children}
+          </RxTableBody>
 
         </Table>
-
-        {/* Render the Paginator */}
-        {enablePagination
-          && (
-            <RxTablePaginationWalker
-              currentPage={currentPage}
-              totalPages={totalPages}
-              onPageChange={this.handlePageChange}
-            />
-          )}
 
       </div>
     );
