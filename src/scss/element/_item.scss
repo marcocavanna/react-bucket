@@ -37,7 +37,9 @@
       margin-bottom: 0;
     }
 
-    @include compact-margin;
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 
   &.items-are-clickable {
@@ -53,6 +55,7 @@
 
         &:last-child {
           padding-bottom: 0;
+          margin-bottom: 0;
         }
       }
 
@@ -88,6 +91,7 @@
   width: 100%;
   background-color: transparent;
   transition: background-color $transition-duration $transition-ease;
+  min-height: 42px;
 
   &.is-disabled {
     opacity: $disabled-opacity;
