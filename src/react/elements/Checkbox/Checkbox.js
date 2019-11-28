@@ -6,6 +6,7 @@ import _ from 'lodash';
 
 import {
   AutoControlledComponent as Component,
+  createHTMLLabel,
   getElementType,
   getUnhandledProps,
   htmlInputAttrs,
@@ -298,6 +299,11 @@ export default class Checkbox extends Component {
 
     const [htmlInputProps, rest] = partitionHTMLProps(unhandled, { htmlProps: htmlInputAttrs });
 
+    const labelElement = createHTMLLabel(label, {
+      defaultProps    : { htmlFor: id },
+      autoGenerateKey : false
+    }) || <label htmlFor={id} />;
+
     return (
       <Field
         {...rest}
@@ -312,7 +318,6 @@ export default class Checkbox extends Component {
         onMouseUp={this.handleMouseUp}
       >
         <Ref innerRef={this.inputRef}>
-          {/* Render the Input */}
           <input
             {...htmlInputProps}
             readOnly
@@ -326,10 +331,7 @@ export default class Checkbox extends Component {
             value={value}
           />
         </Ref>
-        {/* Label is Required to Generate the Checkbox */}
-        <Ref innerRef={this.labelRef}>
-          <label htmlFor={id}>{label}</label>
-        </Ref>
+        <Ref innerRef={this.labelRef}>{labelElement}</Ref>
       </Field>
     );
   }
