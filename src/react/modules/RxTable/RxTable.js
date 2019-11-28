@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
+import eql from 'deep-eql';
+
 import Table from '../../collections/Table';
 
 import RxTableData from './RxTableData';
@@ -77,6 +79,8 @@ class RxTable extends React.Component {
 
   _system = {
     isFirstDataLoad      : true,
+    currDataHash         : null,
+    currOptionsHash      : null,
     dataLoadedWatcher    : () => null,
     dataLoadingWatcher   : () => null
   }
@@ -146,6 +150,65 @@ class RxTable extends React.Component {
     super(props);
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    /**
+     * While data is reloading, using the silent props
+     * the dataReloading is valorized to true. If is so
+     * then skip the component update
+     */
+    if (nextProps.rxTableData.reloading) {
+      return false;
+    }
+
+    /**
+     * To check if the component should reload or not
+     * must check if there is a difference between old
+     * data/option hash from the current save in the component
+     */
+    const {
+      currDataHash,
+      currOptionsHash
+    } = this._system;
+
+    const {
+      rxTableData: {
+        dataHash    : nextDataHash,
+        optionsHash : nextOptionsHash
+      }
+    } = nextProps;
+
+    /** If hashes has been changed, update the component */
+    if ((currDataHash !== nextDataHash) || !(currOptionsHash === nextOptionsHash)) {
+      return true;
+    }
+
+    /**
+     * Next check is verifying if current state props
+     * has been changed. To use this functionality
+     * must strip from current state and from old state
+     * the property to check
+     */
+    const {
+      /** Filtering and Sorting are checked by hash */
+      filtering : currFiltering,
+      sorting   : currSorting,
+      ...currStateRest
+    } = this.state;
+
+    const {
+      filtering : nextFiltering,
+      sorting   : nextSorting,
+      ...nextStateRest
+    } = nextState;
+
+    /** If object are different, update the component */
+    if (!eql(currStateRest, nextStateRest)) {
+      return true;
+    }
+
+    return false;
+  }
+
   componentDidMount() {
     /** Get the rxTableData instance */
     const { rxTableData } = this.props;
@@ -154,6 +217,13 @@ class RxTable extends React.Component {
     this._system.dataLoadedWatcher = rxTableData.onDataLoaded(this.handleDataLoaded);
     this._system.dataLoadingWatcher = rxTableData.onDataLoading(this.handleDataLoading);
 
+  }
+
+  componentDidUpdate() {
+    /** Get new Data/Option Hash from rxTableData */
+    const { rxTableData } = this.props;
+    this._system.currDataHash = rxTableData.dataHash;
+    this._system.currOptionsHash = rxTableData.optionsHash;
   }
 
   componentWillUnmount() {

@@ -6,6 +6,8 @@ import {
   getRandomToken
 } from '@appbuckets/rabbit';
 
+import hash from 'object-hash';
+
 import Fuse from 'fuse.js';
 
 import arraySort from 'array-sort';
@@ -56,6 +58,9 @@ class RxTableData {
     /** Retreive data function */
     data: null,
 
+    /** Current Data Hash */
+    dataHash: hash([]),
+
     /** Set a state to know if data must be loaded */
     dataLoaded: false,
 
@@ -68,6 +73,9 @@ class RxTableData {
     /** Save Load Error */
     dataLoadError: null,
 
+    /** Indicate if data is beeing reloading */
+    dataReloading: false,
+
     /** Default Key Field */
     keyField: '_key',
 
@@ -76,6 +84,9 @@ class RxTableData {
 
     /** On Row Click function element */
     onRowClick: null,
+
+    /** Option Hash */
+    optionHash: hash({}),
 
     /** Row Tools Array, used to render context menu */
     rowTools: {
@@ -217,6 +228,9 @@ class RxTableData {
     /** Prepare Data */
     this._system.initialData = this._prepareData(data);
 
+    /** Generate Options Hash */
+    this._generateOptionsHash();
+
     /** Once Data has been Prepared, could by loaded */
     this._loadData();
 
@@ -242,45 +256,12 @@ class RxTableData {
     false
   )
 
-
-  /** Get the actual Sorting */
-  get sorting() {
-    return this._sort;
-  }
-
-  /** Get the actual Filtering */
-  get filtering() {
-    return this._filter;
-  }
-
   /** Return Columns Array */
   get columns() {
     return this._columns.array;
   }
 
-  get tableHasTools() {
-    return !!this._system.rowTools.tableHasTools;
-  }
-
-  get tools() {
-    return typeof this._system.rowTools.tools === 'function'
-      ? this._system.rowTools.tools
-      : () => this._system.rowTools.tools;
-  }
-
-  /** Return Key Field */
-  get keyField() {
-    return this._system.keyField;
-  }
-
-  get loading() {
-    return this._system.dataLoading;
-  }
-
-  get loaded() {
-    return this._system.dataLoaded;
-  }
-
+  /** Return current data count */
   get count() {
     return {
       all      : this._dataLength.allData,
@@ -288,10 +269,63 @@ class RxTableData {
     };
   }
 
+  /** Return the current data hash */
+  get dataHash() {
+    return this._system.dataHash;
+  }
+
+  /** Get the actual Filtering */
+  get filtering() {
+    return this._filter;
+  }
+
+  /** Return Key Field */
+  get keyField() {
+    return this._system.keyField;
+  }
+
+  /** Return loaded state */
+  get loaded() {
+    return !!this._system.dataLoaded;
+  }
+
+  /** Return loading state */
+  get loading() {
+    return !!this._system.dataLoading;
+  }
+
+  /** Return onRowClick handler, fallback to noop */
   get onRowClick() {
     return typeof this._system.onRowClick === 'function'
       ? this._system.onRowClick
       : () => { };
+  }
+
+  /** Return current options hash */
+  get optionsHash() {
+    return this._system.optionHash;
+  }
+
+  /** Return reloading state */
+  get reloading() {
+    return !!this._system.dataReloading;
+  }
+
+  /** Get the actual Sorting */
+  get sorting() {
+    return this._sort;
+  }
+
+  /** Check if table has tools to show */
+  get tableHasTools() {
+    return !!this._system.rowTools.tableHasTools;
+  }
+
+  /** Get the compute tools function */
+  get tools() {
+    return typeof this._system.rowTools.tools === 'function'
+      ? this._system.rowTools.tools
+      : () => this._system.rowTools.tools;
   }
 
   /** Return Data */
@@ -373,6 +407,9 @@ class RxTableData {
     /** Set string if is a valid string, else null */
     this._filter.search = isValidString(str) ? str : '';
 
+    /** Restore Option Hash */
+    this._generateOptionsHash();
+
     /** Return this instance */
     return this;
   }
@@ -405,13 +442,26 @@ class RxTableData {
       this._sort.reverse = false;
     }
 
+    /** Restore Options Hash */
+    this._generateOptionsHash();
+
     /** Return the Instance */
     return this;
   }
 
 
   /** Reload Data */
-  reload = ({ silent = true } = {}) => this._loadData({ silent })
+  reload = ({ silent = true } = {}) => {
+    /**
+     * dataReloading Property is usefull to
+     * avoid rerender data while a data reload
+     * has been asked in silent mode.
+     */
+    this._system.dataReloading = !!silent;
+
+    /** Reload Data */
+    this._loadData({ silent });
+  }
 
 
   /** Compute if current row has tools */
@@ -445,6 +495,14 @@ class RxTableData {
   }
 
 
+  _generateOptionsHash = () => {
+    this._system.optionHash = hash({
+      ...this._filter,
+      ...this._sort
+    });
+  }
+
+
   /** Load Data */
   _loadData = ({
     silent = false
@@ -462,9 +520,7 @@ class RxTableData {
 
       /** If function is not a Promise, it could be prepared */
       if (!isPromiseLike(result)) {
-        this._system.data = this._prepareData(result);
-        this._system.dataLoaded = true;
-        this._system.dataLoading = false;
+        this._saveData(this._prepareData(result));
         return;
       }
 
@@ -480,6 +536,10 @@ class RxTableData {
         this.onDataLoading();
       }
 
+      /**
+       * Await the result of the promise
+       * and save/load data
+       */
       result
         .then((_data) => {
           /** Check if Data must be Parsed */
@@ -487,9 +547,7 @@ class RxTableData {
             .reduce((rawData, parser) => parser(rawData), _data);
 
           /** Prepared Parsed Data */
-          this._system.data = this._prepareData(data);
-          this._system.dataLoaded = true;
-          this._system.dataLoading = false;
+          this._saveData(this._prepareData(data));
 
           this.onDataLoaded();
 
@@ -497,9 +555,7 @@ class RxTableData {
         })
         .catch((e) => {
           /** Save the Error */
-          this._system.data = null;
-          this._system.dataLoaded = false;
-          this._system.dataLoading = false;
+          this._saveData(null);
           this._system.dataLoadError = e;
 
           this.onDataLoaded();
@@ -511,9 +567,17 @@ class RxTableData {
     }
 
     /** If data is not a function, than is an Array */
-    this._system.data = this._system.initialData.slice();
-    this._system.dataLoaded = true;
+    this._saveData(this._system.initialData.slice());
+  }
+
+
+  _saveData = (_data) => {
+    /** Save Data as is */
+    this._system.data = _data;
+    this._system.dataHash = hash(_data);
+    this._system.dataLoaded = Array.isArray(_data);
     this._system.dataLoading = false;
+    this._system.dataReloading = false;
   }
 
 

@@ -216,12 +216,33 @@ declare class RxTableData<T> {
   constructor(data: () => T[], options: IRxTableDataOptions)
 
   /**
+   * Build a new RxTable Object
+   * using a function that
+   * return a Promise to retreive
+   * data that will be used
+   */
+  constructor(data: () => Promise<T[]>, options: IRxTableDataOptions)
+
+
+  /**
+   * Change the string that will
+   * be used to filter data
+   */
+  filter(str: string): this
+
+
+  /** Check if a certain row has tools to show */
+  hasTools(...args): boolean
+
+
+  /**
    * Create a Listener that will fire
    * every once the data has been loaded
    * This Listener will fire only if
    * data are passed as async function
    */
   onDataLoaded(callback: (err: any | Error, data: T[]) => void, context: any): () => void
+
 
   /**
    * Create a new Listener that will
@@ -231,6 +252,17 @@ declare class RxTableData<T> {
    * data are passed as async function.
    */
   onDataLoading(callback: () => void, context: any): () => void
+
+
+  /**
+   * Reload Table Data
+   * Setting the silent to true to avoid
+   * onDataLoading event fire if data load
+   * is an async function.
+   * Default to true
+   */
+  reload(options: { silent: boolean }): void
+
 
   /**
    * Change the Actual Sort for data
@@ -245,24 +277,20 @@ declare class RxTableData<T> {
   sort(column: string): this
 
 
-  /**
-   * Change the string that will
-   * be used to filter data
-   */
-  filter(str: string): this
-
-
-  /** Check if a certain row has tools to show */
-  hasTools(...args): boolean
-
   /** Get Tools */
   tools(...args): boolean
 
-  /**
-   * Get the actual sorting options
-   * for this set of data
-   */
-  sorting: IRxTableDataSorting
+  /** Get Columns Array */
+  columns: IRxTableDataColumn<T>[]
+
+  /** Return counter for data */
+  count: { all: number, filtered: number }
+
+  /** Array data filtered and sorted */
+  data: T[]
+
+  /** Return the Hash for the current data */
+  dataHash: string
 
   /**
    * Get actual filtering options
@@ -270,11 +298,8 @@ declare class RxTableData<T> {
    */
   filtering: IRxTableDataFiltering
 
-  /** Get Columns Array */
-  columns: IRxTableDataColumn<T>[]
-
-  /** Array data filtered and sorted */
-  data: T[]
+  /** Get the Key Field */
+  keyField: string
 
   /** Boolean that indicate if data has been loaded */
   loaded: boolean
@@ -282,26 +307,26 @@ declare class RxTableData<T> {
   /** Boolean that indicate if data is currently loading */
   loading: boolean
 
-  /** Return counter for data */
-  count: { all: number, filtered: number }
-
-  /** Get the Key Field */
-  keyField: string
-
   /** Fire the onRowClick functions */
   onRowClick(): void
 
+  /** Return the Hash for the current options */
+  optionsHash: string
+
+  /** Get the reloading state */
+  reloading: boolean
+
   /**
-   * Reload Table Data
-   * Setting the silent to true to avoid
-   * onDataLoading event fire if data load
-   * is an async function.
-   * Default to true
+   * Get the actual sorting options
+   * for this set of data
    */
-  reload(options: { silent: boolean }): void
+  sorting: IRxTableDataSorting
 
   /** Check if table has tools column */
   tableHasTools: boolean
+
+  /** Get Tools */
+  tools: () => React.ReactNode[]
 
 }
 
