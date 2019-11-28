@@ -111,13 +111,17 @@ export function createShorthand(Component, mapValueToProps, val, options = {}) {
       props.key = typeof childKey === 'function' ? childKey(props) : childKey;
       delete props.childKey;
     }
-    else if (autoGenerateKey && (valIsString || valIsNumber)) {
-      // use string/number shorthand values as the key
-      props.key = val;
-    }
-
-    if (_.isNil(props.key)) {
-      props.key = Math.floor(Math.random() * 1000000).toString();
+    else if (autoGenerateKey) {
+      if (valIsString || valIsNumber) {
+        // use string/number shorthand values as the key
+        props.key = val;
+      }
+      // TODO: Must Fix This
+      //
+      // else, generate a numeric random Hash
+      else {
+        props.key = Math.floor(Math.random() * 1000000).toString();
+      }
     }
   }
 
