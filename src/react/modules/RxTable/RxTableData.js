@@ -93,7 +93,7 @@ class RxTableData {
       /** Compute if show or not tools */
       show          : false,
       /** Save the table has tools boolean to render tools column */
-      tableHasTools : true,
+      tableHasTools : false,
       /** Tools list to use */
       tools         : []
     }
