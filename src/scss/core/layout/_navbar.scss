@@ -26,6 +26,10 @@
   background-color: $white;
   border-bottom: $navbar-border;
 
+  // NavBar box Shadow and Transition
+  box-shadow: none;
+  transition: box-shadow $transition-duration $transition-ease;
+
   /*---
       Navbar container must be
       used to wrap each navbar item element
@@ -98,6 +102,14 @@
 ==========*/
 body.with-navbar {
   padding-top: $navbar-height
+}
+
+
+/******
+    Set the BoxShadow while scrolling
+******/
+body.scrolled #navbar {
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, .2);
 }
 
 
