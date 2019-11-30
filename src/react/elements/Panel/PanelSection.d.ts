@@ -17,6 +17,9 @@ export interface StrictPanelSectionProps {
   /** Content Shorthand */
   content?: React.ReactNode
 
+  /** Prepend a Divider */
+  divided?: boolean
+
   /** Label Shorthand */
   label?: React.ReactNode
 }
