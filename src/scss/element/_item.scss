@@ -1,3 +1,17 @@
+/*
+ * ReactBucket Framwork
+ *
+ * Item @ _item.scss in 'Element'
+ *
+ * Defined at 2019-11-30
+ * Copyright Marco Cavanna • 2019
+ */
+
+
+
+/******
+    Local MIXIN
+******/
 @mixin __item-active-variation($background, $color) {
   background-color: $background !important;
 
@@ -79,6 +93,44 @@
         }
       }
     }
+  }
+}
+
+/******
+    Items Section
+******/
+.items {
+
+  /*---
+    Style Section as Label for Panel
+    @see _panel.scss
+  ---*/
+  > .section {
+    display: block;
+    font-weight: $bold;
+    color: $grey-light;
+    text-transform: uppercase;
+    margin-bottom: .5em;
+    font-size: .85em;
+  }
+
+  /*---
+    Section on Not First Items
+    list has a margin top to
+    divide sections
+  ---*/
+  + .items > .section {
+    margin-top: 1.5em;
+  }
+
+  /*---
+    Divided items list
+    must append border bottom to section
+  ---*/
+  &.are-divided > .section {
+    border-bottom: solid 2px $white-shade-2;
+    margin-bottom: .75em;
+    padding-bottom: .75em;
   }
 }
 

@@ -16,6 +16,7 @@ import {
 import ItemAvatar from './ItemAvatar';
 import ItemContent from './ItemContent';
 import ItemHeader from './ItemHeader';
+import ItemSection from './ItemSection';
 import ItemTools from './ItemTools';
 import ItemTool from './ItemTool';
 
@@ -108,6 +109,7 @@ Item.propTypes = {
 Item.Avatar = ItemAvatar;
 Item.Header = ItemHeader;
 Item.Content = ItemContent;
+Item.Section = ItemSection;
 Item.Tool = ItemTool;
 Item.Tools = ItemTools;
 

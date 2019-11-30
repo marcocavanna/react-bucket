@@ -6,6 +6,7 @@ import ItemAvatar, { ItemAvatarProps } from './ItemAvatar';
 import ItemHeader from './ItemHeader';
 import ItemContent from './ItemContent';
 import ItemGroup from './ItemGroup';
+import ItemSection from './ItemSection';
 import ItemTools from './ItemTools';
 import ItemTool, { ItemToolProps } from './ItemTool';
 
@@ -55,6 +56,7 @@ interface ItemComponent extends React.FunctionComponent<ItemProps> {
   Header: typeof ItemHeader
   Content: typeof ItemContent
   Group: typeof ItemGroup
+  Section: typeof ItemSection
   Tools: typeof ItemTools
   Tool: typeof ItemTool
 }
