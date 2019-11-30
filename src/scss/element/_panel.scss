@@ -87,7 +87,7 @@
   ---*/
   .panel-section {
     display: block;
-    margin-top: 1.5em;
+    margin-bottom: 1.5em;
 
     > label {
       display: block;
@@ -99,7 +99,6 @@
     }
 
     &.is-divided {
-      margin-top: .75em;
       padding-top: .75em;
       border-top: solid 1px $grey-lightest;
     }
