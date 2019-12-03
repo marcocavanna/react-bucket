@@ -4,6 +4,11 @@
   position: relative;
   width: auto;
 
+  > .with-columns {
+    margin-left: -$columns-gap;
+    margin-right: -$columns-gap;
+  }
+
   &:not(.is-fluid) > .with-columns {
     margin-right: 0;
     margin-left: 0;
