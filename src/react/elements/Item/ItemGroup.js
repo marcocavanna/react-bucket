@@ -37,9 +37,9 @@ function ItemGroup(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {section && ItemSection.create(section)}
+      {section && ItemSection.create(section, { autoGenerateKey: true })}
       {childrenUtils.isNil(children)
-        ? (_.isArray(items) && items.map(Item.create))
+        ? (_.isArray(items) && items.map(item => Item.create(item, { autoGenerateKey: true })))
         : children}
     </ElementType>
   );
