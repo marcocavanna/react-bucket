@@ -19,7 +19,7 @@ export interface StrictItemToolsProps {
   className?: string
 
   /** Tools Shorthand */
-  tools?: ReactBucketShorthandCollection<StrictItemToolProps>
+  tools?: ReactBucketShorthandCollection<ItemToolProps>
 }
 
 declare const ItemTools: React.FunctionComponent<ItemToolsProps>
