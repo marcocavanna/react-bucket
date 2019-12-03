@@ -312,7 +312,7 @@ class Modal extends Component {
 
     const classes = cx(
       'modal with-transition is-active',
-      classByPattern(size, 'is-%value'),
+      classByPattern(size, 'is-%value%'),
       classByKey(basic, 'is-basic'),
       classByKey(this.legacy, 'is-legacy'),
       classByKey(scrolling, 'is-scrolling'),
