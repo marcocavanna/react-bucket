@@ -6,7 +6,10 @@ export interface ItemToolProps extends StrictItemToolProps {
   [key: string]: any
 }
 
-export interface StrictItemToolProps extends ButtonProps { }
+export interface StrictItemToolProps extends ButtonProps {
+  /** Set the Tool tooltip text */
+  tooltip?: string
+}
 
 declare const ItemTool: React.FunctionComponent<ItemToolProps>
 
