@@ -1,4 +1,9 @@
 /**
+ * Export Generic Types
+ */
+export * from './generic';
+
+/**
  * Addons Export
  */
 export { default as Portal, PortalProps, StrictPortalProps } from './addons/Portal';
