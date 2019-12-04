@@ -35,7 +35,7 @@ function ItemContent(props) {
     return (
       <ElementType {...rest} className={classes}>
         {header && ItemHeader.create(header, { autoGenerateKey: false })}
-        <div className='item-text'>{content}</div>
+        {content && <div className='item-text'>{content}</div>}
       </ElementType>
     );
   }
