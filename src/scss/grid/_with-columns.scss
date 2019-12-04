@@ -4,7 +4,9 @@ $__master_row_halign: ( on-start: flex-start, centered: center, on-end: flex-end
 .with-columns {
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
+  margin-left: -$columns-gap;
+  margin-right: -$columns-gap;
+  width: calc(100% + #{$columns-gap * 2});
 
   @if $generate-container-without-gap == true {
     @include property-for-each-breakpoint('without-gap') {
