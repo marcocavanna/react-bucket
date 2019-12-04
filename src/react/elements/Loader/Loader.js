@@ -8,7 +8,8 @@ import {
   getElementType,
   classByKey,
   classByPattern,
-  customPropTypes
+  customPropTypes,
+  createShorthandFactory
 } from '../../lib';
 
 
@@ -74,5 +75,7 @@ Loader.propTypes = {
   /** Size Style */
   size: customPropTypes.size
 };
+
+Loader.create = createShorthandFactory(Loader, content => ({ content }));
 
 export default Loader;
