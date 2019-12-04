@@ -3,7 +3,7 @@ import { FuseOptions } from 'fuse.js';
 
 import { StrictTableHeaderCellProps } from '../../collections/Table/TableHeaderCell';
 
-export interface IRxTableDataColumn extends StrictTableHeaderCellProps {
+export interface IRxTableDataColumn<T> extends StrictTableHeaderCellProps {
 
   /**
    * Set the Cell Content for this column
@@ -11,7 +11,7 @@ export interface IRxTableDataColumn extends StrictTableHeaderCellProps {
    * will be executed passing item, column props
    * and entire table data as params
    */
-  cellContent?: (item: {}, props: IRxTableDataColumn, data: {}[]) => React.ReactNode
+  cellContent?: (item: T, props: IRxTableDataColumn, data: T[]) => React.ReactNode
 
   /**
    * Setting a column ID is usefull
@@ -19,7 +19,7 @@ export interface IRxTableDataColumn extends StrictTableHeaderCellProps {
    * will be used to set the initial
    * sort column.
    */
-  id?: string
+  id?: string | keyof T
 
   /**
    * If a column che be sorted, set this
@@ -29,11 +29,11 @@ export interface IRxTableDataColumn extends StrictTableHeaderCellProps {
    * If you want to define multiple sort, then
    * set this property to an Array of string
    */
-  sort?: string | string[]
+  sort?: keyof T | (keyof T)[]
 
 }
 
-export interface IRxTableDataSortingOptions {
+export interface IRxTableDataSortingOptions<T> {
 
   /**
    * Set if Table is Sortable
@@ -54,11 +54,11 @@ export interface IRxTableDataSortingOptions {
    * `initialSort: 'name'` will sort by name ASC
    * `initialSort: '-name'` will sort by name DESC
    */
-  initial: string
+  initial: keyof T
 
 }
 
-export interface IRxTableDataFilteringOptions {
+export interface IRxTableDataFilteringOptions<T> {
 
   /**
    * Set if Filtering is case sensitive/insensitive
@@ -77,7 +77,7 @@ export interface IRxTableDataFilteringOptions {
    *
    * Default `[]`
    */
-  fields: string | string[] | Function
+  fields: (keyof T)[] // string | string[] | Function
 
   /**
    * Set if filtering behaviour
@@ -101,22 +101,16 @@ export interface IRxTableDataFilteringOptions {
 
 }
 
-export interface IRxTableDataOptions {
+export interface IRxTableDataOptions<T> {
 
   /** Set Table Columns */
-  columns: IRxTableDataColumn[]
+  columns: IRxTableDataColumn<T>[]
 
   /**
    * Set the Preferences for
    * filtering data
    */
-  filtering?: IRxTableDataFilteringOptions
-
-  /** Group Data */
-  group?: {
-    /** Set grouping Fields */
-    fields?: string[]
-  }
+  filtering?: IRxTableDataFilteringOptions<T>
 
   /**
    * Set the name of the Field
@@ -148,7 +142,7 @@ export interface IRxTableDataOptions {
   }
 
   /** Set Preferences for Table Sorting */
-  sorting?: IRxTableDataSortingOptions
+  sorting?: IRxTableDataSortingOptions<T>
 }
 
 export interface IRxTableDataSorting {
@@ -206,14 +200,14 @@ declare class RxTableData<T> {
    * using an Array of Data that will
    * be used to return data
    */
-  constructor(data: T[], options: IRxTableDataOptions)
+  constructor(data: T[], options: IRxTableDataOptions<T>)
 
   /**
    * Build a new RxTable Object
    * using a function to retreive
    * data that will be used
    */
-  constructor(data: () => T[], options: IRxTableDataOptions)
+  constructor(data: () => T[], options: IRxTableDataOptions<T>)
 
   /**
    * Build a new RxTable Object
@@ -221,7 +215,7 @@ declare class RxTableData<T> {
    * return a Promise to retreive
    * data that will be used
    */
-  constructor(data: () => Promise<T[]>, options: IRxTableDataOptions)
+  constructor(data: () => Promise<T[]>, options: IRxTableDataOptions<T>)
 
 
   /**
