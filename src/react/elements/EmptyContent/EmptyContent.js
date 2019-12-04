@@ -81,6 +81,6 @@ EmptyContent.defaultProps = {
   textAlign : 'center'
 };
 
-EmptyContent.create = createShorthandFactory(EmptyContent, props => props);
+EmptyContent.create = createShorthandFactory(EmptyContent, content => ({ content }));
 
 export default EmptyContent;
