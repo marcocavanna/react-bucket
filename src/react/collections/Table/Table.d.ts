@@ -21,6 +21,9 @@ export interface StrictTableProps {
   /** User defined class */
   className?: string
 
+  /** Extend the table, removing boundary cells padding */
+  extended?: boolean
+
   /** Set the Metadata Table */
   metadataTable?: boolean
 

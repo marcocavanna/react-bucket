@@ -23,6 +23,7 @@ function Table(props) {
   const {
     children,
     className,
+    extended,
     footerRow,
     footerRows,
     headerRow,
@@ -35,6 +36,7 @@ function Table(props) {
 
   const classes = cx(
     className,
+    classByKey(extended, 'extended'),
     classByKey(metadataTable, 'metadata'),
     classByKey(sortable, 'sortable'),
     'table'
@@ -103,6 +105,9 @@ Table.propTypes = {
 
   /** User defined Classname */
   className: PropTypes.string,
+
+  /** An extended table will remove left and right padding on boundary cells */
+  extended: PropTypes.bool,
 
   /** Footer Row Data */
   footerRow: PropTypes.array,

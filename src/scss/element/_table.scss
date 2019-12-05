@@ -117,7 +117,6 @@
   width: 100%;
   max-width: 100%;
   display: table;
-  // table-layout: fixed;
 
 
   /*---
@@ -143,7 +142,7 @@
         }
 
         &:last-child {
-          padding-right: $table-cell-v-padding;
+          padding-right: $table-cell-h-padding;
         }
       }
     }
@@ -369,6 +368,31 @@
 
         .table-header-content:before {
           color: $text-lightest;
+        }
+      }
+    }
+  }
+}
+
+
+/******
+    And Extended table will remove
+    the left and right padding
+    on boundary cells to let the content
+    be on the same measure of other elements
+******/
+.extended.table {
+  .head,
+  .body,
+  .foot {
+    > .row {
+      > .cell {
+        &:first-child {
+          padding-left: 0;
+        }
+
+        &:last-child {
+          padding-right: 0;
         }
       }
     }
