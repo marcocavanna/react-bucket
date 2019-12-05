@@ -81,27 +81,22 @@
 /******
     Style the Panel Section
 ******/
-.panel > .panel-body {
-  /*---
-    Base Section Style
-  ---*/
-  .panel-section {
+.panel-section {
+  display: block;
+  margin-bottom: 1.5em;
+
+  > label {
     display: block;
-    margin-bottom: 1.5em;
+    font-weight: $bold;
+    color: $grey-light;
+    text-transform: uppercase;
+    margin-bottom: .5em;
+    font-size: .85em;
+  }
 
-    > label {
-      display: block;
-      font-weight: $bold;
-      color: $grey-light;
-      text-transform: uppercase;
-      margin-bottom: .5em;
-      font-size: .85em;
-    }
-
-    &.is-divided {
-      padding-top: .75em;
-      border-top: solid 1px $grey-lightest;
-    }
+  &.is-divided {
+    padding-top: .75em;
+    border-top: solid 1px $grey-lightest;
   }
 }
 
