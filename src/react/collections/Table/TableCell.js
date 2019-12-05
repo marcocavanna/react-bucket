@@ -62,27 +62,18 @@ function TableCell(props) {
     );
   }
 
-  /** Create the Cell Header */
-  const cellHeader = header && (
-    icon
-      ? (
-        <div className='cell-header'>
-          {Icon.create(icon, { autoGenerateKey: false })}
-          {header}
-        </div>
-      )
-      : (
-        createHTMLParagraph(header, {
-          autoGenerateKey : false,
-          overrideProps   : {
-            className: 'cell-header'
-          }
-        })
-      )
-  );
+  const cellHeader = createHTMLParagraph(header, {
+    autoGenerateKey : false,
+    overrideProps   : {
+      className : 'cell-header',
+      children  : icon
+        ? <span>{Icon.create(icon, { autoGenerateKey: false })}{header}</span>
+        : header
+    }
+  });
 
   /** Create the CellContent */
-  const cellContent = content && createHTMLParagraph(content, {
+  const cellContent = createHTMLParagraph(content, {
     autoGenerateKey : false,
     overrideProps   : {
       className: 'cell-content'
@@ -90,7 +81,7 @@ function TableCell(props) {
   });
 
   /** Create the CellMetadata */
-  const cellMetadata = metadata && createHTMLParagraph(metadata, {
+  const cellMetadata = createHTMLParagraph(metadata, {
     autoGenerateKey : false,
     overrideProps   : {
       className: 'cell-metadata'
