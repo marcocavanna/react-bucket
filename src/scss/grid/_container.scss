@@ -5,9 +5,9 @@
   width: auto;
 
   > .with-columns {
-    margin-left: 0;
-    margin-right: 0;
-    width: 100%;
+    margin-left: -$columns-gap;
+    margin-right: -$columns-gap;
+    width: calc(100% + #{$columns-gap * 2});
   }
 
   &:not(.is-fluid) > .with-columns {
