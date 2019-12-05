@@ -11,6 +11,9 @@ export interface TableCellProps extends StrictTableCellProps {
 }
 
 export interface StrictTableCellProps {
+  /** Set the Cell as Action Container */
+  action?: boolean
+
   /** Set the Cell as Active */
   active?: boolean
 
@@ -29,8 +32,14 @@ export interface StrictTableCellProps {
   /** Cell Error Style */
   error?: boolean
 
+  /** Cell Header Shorthand */
+  header?: React.ReactNode
+
   /** Icon Shorthand */
   icon?: ReactBucketICON
+
+  /** Metadata Element Shorthand */
+  metadata?: React.ReactNode
 
   /** Set cell as Selectable */
   selectable?: boolean

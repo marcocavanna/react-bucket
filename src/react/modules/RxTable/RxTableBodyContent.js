@@ -71,7 +71,7 @@ function RxTableBodyContent(props) {
                 {
                   typeof rest.cellContent === 'function'
                     ? rest.cellContent(item, { id, ...rest })
-                    : <span className='cell-title'>{item[id]}</span>
+                    : <span className='cell-header'>{item[id]}</span>
                 }
               </Table.Cell>
             ))}

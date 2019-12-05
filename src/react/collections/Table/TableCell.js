@@ -5,6 +5,7 @@ import cx from 'classnames';
 import {
   childrenUtils,
   createShorthandFactory,
+  createHTMLParagraph,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -18,13 +19,16 @@ import Icon from '../../elements/Icon';
 function TableCell(props) {
 
   const {
+    action,
     active,
     children,
     className,
     content,
     disabled,
     error,
+    header,
     icon,
+    metadata,
     selectable,
     success,
     textAlign,
@@ -33,11 +37,13 @@ function TableCell(props) {
   } = props;
 
   const classes = cx(
+    classByKey(action, 'is-action'),
     classByKey(active, 'is-active'),
     classByKey(disabled, 'is-disabled'),
     classByKey(error, 'is-error'),
     classByKey(selectable, 'is-selectable'),
     classByKey(success, 'is-success'),
+    classByKey(metadata, 'has-metadata'),
     classByPattern(textAlign, 'has-text-%value%'),
     classByValue(verticalAlign),
     classByKey(warning, 'is-warning'),
@@ -56,16 +62,55 @@ function TableCell(props) {
     );
   }
 
+  /** Create the Cell Header */
+  const cellHeader = header && (
+    icon
+      ? (
+        <div className='cell-header'>
+          {Icon.create(icon, { autoGenerateKey: false })}
+          {header}
+        </div>
+      )
+      : (
+        createHTMLParagraph(header, {
+          autoGenerateKey : false,
+          overrideProps   : {
+            className: 'cell-header'
+          }
+        })
+      )
+  );
+
+  /** Create the CellContent */
+  const cellContent = content && createHTMLParagraph(content, {
+    autoGenerateKey : false,
+    overrideProps   : {
+      className: 'cell-content'
+    }
+  });
+
+  /** Create the CellMetadata */
+  const cellMetadata = metadata && createHTMLParagraph(metadata, {
+    autoGenerateKey : false,
+    overrideProps   : {
+      className: 'cell-metadata'
+    }
+  });
+
   return (
     <ElementType {...rest} className={classes}>
-      {icon ? Icon.create(icon, { autoGenerateKey: false }) : null}
-      {content}
+      {cellMetadata}
+      {cellHeader}
+      {cellContent}
     </ElementType>
   );
 
 }
 
 TableCell.propTypes = {
+  /** Set the cell as Action Container */
+  action: PropTypes.bool,
+
   /** Set the Cell as Active */
   active: PropTypes.bool,
 
@@ -87,8 +132,14 @@ TableCell.propTypes = {
   /** Cell Error Style */
   error: PropTypes.bool,
 
+  /** Cell Header Shorthand */
+  header: PropTypes.node,
+
   /** Icon Shorthand */
   icon: customPropTypes.fontAwesome,
+
+  /** Add Metadata Info on Cell */
+  metadata: PropTypes.node,
 
   /** Set cell as Selectable */
   selectable: PropTypes.bool,

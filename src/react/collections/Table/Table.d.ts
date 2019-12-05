@@ -21,6 +21,9 @@ export interface StrictTableProps {
   /** User defined class */
   className?: string
 
+  /** Set the Metadata Table */
+  metadataTable?: boolean
+
   /** Set Sortable Behaviour */
   sortable?: boolean
 }

@@ -27,15 +27,17 @@ function Table(props) {
     footerRows,
     headerRow,
     headerRows,
+    metadataTable,
     renderBodyRow,
     sortable,
     tableData
   } = props;
 
   const classes = cx(
-    'table',
     className,
-    classByKey(sortable, 'is-sortable')
+    classByKey(metadataTable, 'metadata'),
+    classByKey(sortable, 'sortable'),
+    'table'
   );
 
   const rest = getUnhandledProps(Table, props);
@@ -113,6 +115,9 @@ Table.propTypes = {
 
   /** Header Multi Rows Data */
   headerRows: PropTypes.arrayOf(PropTypes.array),
+
+  /** Add the special metadata style */
+  metadataTable: PropTypes.bool,
 
   /** Render Function */
   renderBodyRow: PropTypes.func,
