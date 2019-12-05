@@ -94,11 +94,13 @@ class Label extends React.PureComponent {
     }
 
     return (
-      <ElementType {...rest} className={classes} onClick={this.handleClick}>
-        {icon && Icon.create(icon, { autoGenerateKey: false })}
-        {content}
-        {detail && LabelDetail.create(detail, { autoGenerateKey: false })}
-      </ElementType>
+      <div className='label-wrapper'>
+        <ElementType {...rest} className={classes} onClick={this.handleClick}>
+          {icon && Icon.create(icon, { autoGenerateKey: false })}
+          {content}
+          {detail && LabelDetail.create(detail, { autoGenerateKey: false })}
+        </ElementType>
+      </div>
     );
   }
 
