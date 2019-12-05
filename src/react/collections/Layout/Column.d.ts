@@ -19,6 +19,9 @@ export interface StrictColumnProps {
   /** Custom Font Color */
   color?: ReactBucketCOLOR
 
+  /** Content Shorthand */
+  content?: React.ReactNode
+
   /** Base Column Width */
   is?: ReactBucketCOLUMNWIDTH
 
