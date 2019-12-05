@@ -3,13 +3,17 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import {
+  childrenUtils,
   classByPattern,
   classByValue,
   responsiveClass,
   getUnhandledProps,
   getElementType,
-  customPropTypes
+  customPropTypes,
+  createShorthandFactory
 } from '../../lib';
+
+import Column from './Column';
 
 function Row(props) {
 
@@ -17,7 +21,9 @@ function Row(props) {
     children,
     className,
     color,
+    columns,
     columnsAlign,
+    content,
     textAlign,
     verticalAlign,
     withoutGap
@@ -34,12 +40,24 @@ function Row(props) {
   );
 
   const rest = getUnhandledProps(Row, props);
-
   const ElementType = getElementType(Row, props);
+
+  if (Array.isArray(columns)) {
+    return (
+      <ElementType {...rest} className={classes}>
+        {columns.map(col => Column.create(<Column />, {
+          autoGenerateKey : true,
+          overrideProps   : {
+            content: col
+          }
+        }))}
+      </ElementType>
+    );
+  }
 
   return (
     <ElementType {...rest} className={classes}>
-      {children}
+      {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   );
 }
@@ -57,8 +75,14 @@ Row.propTypes = {
   /** Custom Font Color */
   color: PropTypes.string,
 
+  /** Columns Collection Shorthand */
+  columns: PropTypes.array,
+
   /** Flex Columns Align */
   columnsAlign: customPropTypes.flexHorizontalAlign,
+
+  /** Content Shorthand */
+  content: PropTypes.node,
 
   /** Container Text Alignment */
   textAlign: customPropTypes.textAlign,
@@ -69,5 +93,7 @@ Row.propTypes = {
   /** Without Gap responsive property */
   withoutGap: customPropTypes.breakpoints
 };
+
+Row.create = createShorthandFactory(Row, content => ({ content }));
 
 export default Row;
