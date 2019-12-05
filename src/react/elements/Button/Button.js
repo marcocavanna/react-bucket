@@ -17,6 +17,7 @@ import {
 
 import ButtonGroup from './ButtonGroup';
 import Icon from '../Icon';
+import Popup from '../../modules/Popup';
 
 class Button extends PureComponent {
 
@@ -102,6 +103,9 @@ class Button extends PureComponent {
 
     /** Tab Index Order */
     tabIndex: PropTypes.number,
+
+    /** Tooltip text */
+    tooltip: PropTypes.string,
 
     /** Warning Color */
     warning: PropTypes.bool
@@ -201,6 +205,7 @@ class Button extends PureComponent {
       secondary,
       size,
       success,
+      tooltip,
       warning
     } = this.props;
 
@@ -234,7 +239,7 @@ class Button extends PureComponent {
     const role = this.getAriaRole(ElementType);
     const hasChildren = !childrenUtils.isNil(children);
 
-    return (
+    const buttonElement = (
       <ElementType
         {...rest}
         className={classes}
@@ -249,6 +254,16 @@ class Button extends PureComponent {
         {!hasChildren && icon && iconPosition === 'right' && Icon.create(icon, { autoGenerateKey: false })}
       </ElementType>
     );
+
+    return tooltip
+      ? (
+        <Popup
+          trigger={buttonElement}
+          content={tooltip}
+          position='top center'
+        />
+      )
+      : buttonElement;
   }
 
 }

@@ -86,6 +86,9 @@ export interface StrictButtonProps extends React.ButtonHTMLAttributes<HTMLButton
   /** Tab Index Order */
   tabIndex?: number
 
+  /** Tooltip Text Content */
+  tooltip?: string
+
   /** Warning Color */
   warning?: boolean
 
