@@ -361,7 +361,7 @@ class Modal extends Component {
   }
 
   render() {
-    const { open } = this.state;
+    const { open, scrolling } = this.state;
     const {
       centered,
       closeOnDocumentClick,
@@ -395,6 +395,7 @@ class Modal extends Component {
     const dimmerClasses = cx(
       'page modals dimmer with-transition is-active',
       classByKey(dimmer === 'inverted', 'is-inverted'),
+      classByKey(scrolling, 'is-scrolling'),
       classByKey(!centered, 'is-top-aligned')
     );
 

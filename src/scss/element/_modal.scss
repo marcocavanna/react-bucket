@@ -207,7 +207,7 @@
   margin: 2rem auto;
 }
 
-.is-scrolling.dimmable > .modals {
+.is-scrolling.dimmable > .modals.is-scrolling {
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
   justify-content: flex-start;
