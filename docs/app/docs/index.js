@@ -6,8 +6,6 @@ export { default as Container } from './elements/Container';
 
 export { default as Divider } from './elements/Divider';
 
-export { default as Field } from './elements/Field';
-
 export { default as Header } from './elements/Header';
 
 export { default as Hero } from './elements/Hero';
@@ -27,8 +25,6 @@ export { default as Label } from './elements/Label';
 export { default as Loader } from './elements/Loader';
 
 export { default as Panel } from './elements/Panel';
-
-export { default as Select } from './elements/Select';
 
 export { default as Spacer } from './elements/Spacer';
 
