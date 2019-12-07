@@ -3,7 +3,7 @@ import React from 'react';
 import loadComponentInfo from '../../util/loadComponentInfo';
 import ContainerInfo from '../../component-info/Container.info.json';
 
-import { Container, Header, Button, Image, Icon, Spacer } from '../../../../../src/react';
+import { Container, Header, Image, Spacer } from '../../../../../src/react';
 
 import Img from '../Image/short-paragraph.png';
 
