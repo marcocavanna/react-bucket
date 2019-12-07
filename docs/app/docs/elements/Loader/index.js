@@ -24,6 +24,16 @@ export default {
 
   examples: {
 
+    standard: {
+      header    : 'Loader',
+      subheader : 'A standard Loader.',
+      content   : (
+        <React.Fragment>
+          Da aggiornare
+        </React.Fragment>
+      )
+    }
+
   }
 
 };
