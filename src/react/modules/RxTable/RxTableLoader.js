@@ -21,7 +21,7 @@ function RxTableLoader(props) {
       paddingTop='4'
       paddingBottom='5'
       content={childrenUtils.isNil(content) ? (
-        <Loader active inline centered size='big' />
+        <Loader active centered size='big' />
       ) : content}
     />
   );
