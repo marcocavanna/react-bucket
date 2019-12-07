@@ -22,7 +22,9 @@ function Loader(props) {
     content,
     inline,
     inverted,
-    size
+    overlay,
+    size,
+    type
   } = props;
 
   const classes = cx(
@@ -34,17 +36,36 @@ function Loader(props) {
     classByPattern(size, 'is-%value%'),
     classByKey(!size, 'is-normal'),
     classByKey(centered, 'is-centered'),
+    classByKey(overlay, 'is-overlay'),
+    classByPattern(type, 'is-%value%'),
     className
   );
 
   const rest = getUnhandledProps(Loader, props);
   const ElementType = getElementType(Loader, props);
 
-  return (
-    <ElementType {...rest} className={classes}>
-      {childrenUtils.isNil(children) ? content : children}
-    </ElementType>
-  );
+  /** Circular Loader is the simpliest indicator */
+  if (type === 'circular') {
+    return (
+      <ElementType {...rest} className={classes}>
+        {childrenUtils.isNil(children) ? content : children}
+      </ElementType>
+    );
+  }
+
+  /** Dots indicator has a more complext Structure */
+  if (type === 'dots') {
+    return (
+      <ElementType {...rest} className={classes}>
+        <div className='dots'>
+          <div className='dot'></div>
+          <div className='dot'></div>
+          <div className='dot'></div>
+        </div>
+        {childrenUtils.isNil(children) ? content : children}
+      </ElementType>
+    );
+  }
 }
 
 Loader.propTypes = {
@@ -72,8 +93,18 @@ Loader.propTypes = {
   /** Inverted Props */
   inverted: PropTypes.bool,
 
+  /** Set the loader as overlay of a parent container */
+  overlay: PropTypes.bool,
+
   /** Size Style */
-  size: customPropTypes.size
+  size: customPropTypes.size,
+
+  /** Loader type */
+  type: PropTypes.oneOf(['circular', 'dots', 'indeterminate bar'])
+};
+
+Loader.defaultProps = {
+  type: 'circular'
 };
 
 Loader.create = createShorthandFactory(Loader, content => ({ content }));

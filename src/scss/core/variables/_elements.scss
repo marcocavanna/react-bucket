@@ -75,6 +75,27 @@ $navbar-element-padding:      1rem      !default;
 $default-loader-size: 20px                    !default;
 $button-loader-size:  20px                    !default;
 
+$loader-size-map: (
+  extra-small:  1rem,
+  small:        1.75rem,
+  normal:       2.5rem,
+  large:        3.5rem,
+  big:          5rem,
+  huge:         7rem
+);
+
+$loader-font-size-map: (
+  extra-small:  .5em,
+  small:        .75em,
+  normal:       1em,
+  large:        1.35em,
+  big:          2em,
+  huge:         2.5em
+);
+
+$loader-dots-animation-duration: 1s;
+$loader-dots-animation-delay: 160ms;
+
 // <Button />
 $button-background: $grey-lightest            !default;
 $button-border-radius: $border-radius-small   !default;
