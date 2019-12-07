@@ -33,3 +33,7 @@ export { default as Select } from './elements/Select';
 export { default as Spacer } from './elements/Spacer';
 
 export { default as Toast } from './elements/Toast';
+
+export { default as Table } from './elements/Table';
+
+export { default as RxTable } from './elements/RxTable';
