@@ -75,7 +75,7 @@ const withComponentDoc = specs => class ComponentDocs extends React.PureComponen
               {this.renderExamples(examples)}
 
             </Layout.Column>
-            <Layout.Column>
+            <Layout.Column is={2}>
               <RightMenu examples={examples} />
             </Layout.Column>
           </Layout.Row>
