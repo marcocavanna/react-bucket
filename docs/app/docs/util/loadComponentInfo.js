@@ -17,7 +17,7 @@ export default function loadComponentInfo(src) {
       comment      : (
         <React.Fragment>
           {prop.description.map(desc => <div key={desc}>{desc}</div>)}
-          {prop.value && prop.value.length > 0 && (
+          {Array.isArray(prop.value) && prop.value.length > 0 && (
             <Label.Group
               content={prop.value.map(value => <Label key={value} content={value} />)}
             />
