@@ -93,13 +93,24 @@
     Input addone are style to live
     all together
   ---*/
-  > .label,
+  > .label-wrapper > .label,
   > .button {
     margin: 0;
     line-height: $input-height - 1px;
     padding-top: 0;
     padding-bottom: 0;
     font-size: 1em;
+  }
+
+  > .label-wrapper > .label {
+    flex: 0 0 $input-height - 1px;
+    text-align: center;
+    color: $grey;
+    margin: 0;
+    line-height: $input-height - 1px;
+    box-shadow: none;
+    background-color: $border-color;
+    width: 38px;
   }
 
   &.with-action.action-on-right,
@@ -135,7 +146,7 @@
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
 
-        + .label,
+        + .label-wrapper .label,
         + .icon {
           border-top-left-radius: 0 !important;
           border-bottom-left-radius: 0 !important;
@@ -154,7 +165,7 @@
   /* Input Label */
   &.with-label {
     &.label-on-left {
-      > .label {
+      > .label-wrapper > .label {
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
 
@@ -165,7 +176,7 @@
       }
 
       &.with-action.action-on-left {
-        > .label {
+        > .label-wrapper > .label {
           border-top-left-radius: 0;
           border-bottom-left-radius: 0;
         }
@@ -173,13 +184,13 @@
     }
 
     &.label-on-right {
-      > .label {
+      > .label-wrapper > .label {
         border-bottom-left-radius: 0;
         border-top-left-radius: 0;
       }
 
       &.with-action.action-on-right {
-        > .label {
+        > .label-wrapper > .label {
           border-top-right-radius: 0;
           border-bottom-right-radius: 0;
         }
