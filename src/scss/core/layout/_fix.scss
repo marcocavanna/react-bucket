@@ -1,0 +1,7 @@
+/******
+    Fix for Scrollbar on Windows Browser
+******/
+
+::-webkit-scrollbar {
+  display: none;
+}
