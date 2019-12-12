@@ -19,7 +19,11 @@ const withFormikField = ({
     ...rest
   } = props;
 
-  /** Get the Formik Context */
+
+  /* --------
+   * Register the Field
+   * in Parent Formik Form
+   * -------- */
   const formik = useFormikContext();
 
   /** Get utils formik function */
@@ -35,7 +39,10 @@ const withFormikField = ({
   /** Run the effect only on certain changes */
   [registerField, unregisterField, name, validate]);
 
-  /** Get field props from formik context */
+
+  /* --------
+   * Build Component Props
+   * -------- */
   const {
     name: fieldName,
     onBlur: handleBlur,
@@ -73,7 +80,15 @@ const withFormikField = ({
   /** Get the Form State */
   const { isSubmitting } = formik;
 
-  /** Render the component passing the props */
+  /** Compute the Field Value */
+  const fieldValue = typeof computeValue === 'function'
+    ? computeValue(value, { ...fieldRest, ...rest, name })
+    : value;
+
+
+  /* --------
+   * Component Render
+   * -------- */
   return (
     <Component
       state={{
@@ -91,9 +106,7 @@ const withFormikField = ({
         name,
         onBlur   : handleBlur,
         onChange : handleChange,
-        value    : typeof computeValue === 'function'
-          ? computeValue(value, { ...fieldRest, ...rest, name })
-          : value
+        value    : fieldValue
       }}
     />
   );
