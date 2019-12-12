@@ -6,7 +6,7 @@ import {
   getRandomToken
 } from '@appbuckets/rabbit';
 
-import hash from 'object-hash';
+import hash from 'hash-sum';
 
 import Fuse from 'fuse.js';
 
