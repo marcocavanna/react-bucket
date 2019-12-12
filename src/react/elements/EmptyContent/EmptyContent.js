@@ -70,7 +70,10 @@ EmptyContent.propTypes = {
   header: PropTypes.string,
 
   /** Icon Item */
-  icon: customPropTypes.fontAwesome,
+  icon: PropTypes.oneOfType([
+    customPropTypes.fontAwesome,
+    PropTypes.node
+  ]),
 
   /** Text alignment */
   textAlign: PropTypes.string
