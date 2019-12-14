@@ -91,4 +91,6 @@ export {
   IRxTableDataOptions
 } from './modules/RxTable';
 
+export { default as Scrollable, ScrollableProps, StrictScrollableProps } from './modules/Scrollable';
+
 export as namespace IReactBucket;

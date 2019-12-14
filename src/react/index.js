@@ -80,3 +80,5 @@ export { default as Modal } from './modules/Modal';
 export { default as Popup } from './modules/Popup';
 
 export { RxTable, RxTableData } from './modules/RxTable';
+
+export { default as Scrollable } from './modules/Scrollable';

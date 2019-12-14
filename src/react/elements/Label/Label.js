@@ -87,9 +87,11 @@ class Label extends React.PureComponent {
 
     if (!childrenUtils.isNil(children)) {
       return (
-        <ElementType {...rest} className={classes}>
-          {children}
-        </ElementType>
+        <div className='label-wrapper'>
+          <ElementType {...rest} className={classes}>
+            {children}
+          </ElementType>
+        </div>
       );
     }
 

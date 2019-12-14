@@ -10,8 +10,6 @@ export interface SelectProps extends StrictSelectProps {
 }
 
 export interface StrictSelectProps extends StrictFieldProps, ReactSelectProps {
-  /** Set the Select as Async Type */
-  async?: boolean
 
   /** Set if selected option is clearable */
   clearable?: boolean
@@ -21,6 +19,9 @@ export interface StrictSelectProps extends StrictFieldProps, ReactSelectProps {
 
   /** Set if component is Disabled */
   disabled?: boolean
+
+  /** Set the Select as Async Type */
+  isAsync?: boolean
 
   /** Set if must show loader */
   loading?: boolean
