@@ -31,6 +31,9 @@
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
 
+  // Transition to Open the Sidebar
+  transition: width $transition-duration $swift-ease-in-out;
+
   /*---
       Set Sidebar Element size
       that will be used to append
@@ -43,6 +46,7 @@
     &.menu-section {
       /* Style <a> as Block */
       .menu-button {
+        position: relative;
         display: flex;
         color: $white;
         width: $sidebar-button-size;
@@ -53,8 +57,9 @@
         background-color: transparent;
         opacity: .75;
         will-change: opacity, background-color;
-        transition: opacity $transition-ease $transition-duration, background-color $transition-ease $transition-duration;
+        transition: opacity $transition-ease $transition-duration, background-color $transition-ease $transition-duration, width $transition-duration $swift-ease-in-out;
         border-radius: $border-radius;
+        overflow: hidden;
 
         @include without-touch-hover {
           background-color: rgba(0, 0, 0, .2);
@@ -65,13 +70,26 @@
           background-color: rgba(0, 0, 0, .2);
           opacity: 1;
 
-          .icon {
+          .icon,
+          .menu-title {
             text-shadow: 0 0 3px rgba(0, 0, 0, .2);
           }
         }
 
         .icon {
+          position: absolute;
           margin-right: 0;
+          width: $sidebar-button-size;
+          left: 0;
+          text-align: center;
+        }
+
+        .menu-title {
+          margin-left: 6px;
+          position: absolute;
+          font-weight: $semi-bold;
+          left: $sidebar-button-size;
+          white-space: nowrap;
         }
       }
     }
@@ -97,6 +115,26 @@
         }
       }
     }
+  }
+}
+
+
+/******
+    Sidebar Opening on Hover
+******/
+@include on-screen('tablet') {
+  #sidebar {
+    @include without-touch-hover {
+      width: 200px;
+
+      > .sidebar-element.menu-section .menu-button {
+        width: 184px;
+      }
+    }
+  }
+
+  .sidebar-tooltip {
+    display: none !important;
   }
 }
 
