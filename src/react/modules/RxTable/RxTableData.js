@@ -296,9 +296,7 @@ class RxTableData {
 
   /** Return onRowClick handler, fallback to noop */
   get onRowClick() {
-    return typeof this._system.onRowClick === 'function'
-      ? this._system.onRowClick
-      : () => { };
+    return this._system.onRowClick;
   }
 
   /** Return current options hash */
