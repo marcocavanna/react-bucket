@@ -167,6 +167,7 @@
     "react-router-dom": "^5.1.2",
     "react-router-hash-link": "^1.2.2",
     "react-select": "^3.0.8",
+    "react-textarea-autosize": "^7.1.2",
     "shallowequal": "^1.1.0",
     "smart-table-search": "^2.0.8",
     "tinycolor2": "^1.4.1"

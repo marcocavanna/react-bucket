@@ -2,6 +2,7 @@ import React, { PureComponent, createRef } from 'react';
 import PropTypes from 'prop-types';
 
 import InputMask from 'react-input-mask';
+import TextareaAutosize from 'react-textarea-autosize';
 
 import { isValidString } from '@appbuckets/rabbit';
 import _ from 'lodash';
@@ -33,6 +34,20 @@ class Input extends PureComponent {
     /** Char to use while Masking */
     maskChar: PropTypes.string,
 
+    /** Max Rows for TextArea input */
+    maxRows: PropTypes.number,
+
+    /** Min Rows for TextArea input */
+    minRows: PropTypes.number,
+
+    /**
+     * Called on Input Blur
+     *
+     * @param {ChangeEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props and a proposed value.
+     */
+    onBlur: PropTypes.func,
+
     /**
      * Called on change.
      *
@@ -47,13 +62,18 @@ class Input extends PureComponent {
     /** Tab Index for Input Element */
     tabIndex: PropTypes.number,
 
+    /** Render input as Text Area */
+    textarea: PropTypes.bool,
+
     /** The input type to use */
     type: PropTypes.string
   }
 
   /** Set Default Property */
   static defaultProps = {
-    type: 'text'
+    maxRows : 8,
+    minRows : 2,
+    type    : 'text'
   }
 
   /** Create Input Ref */
@@ -85,6 +105,12 @@ class Input extends PureComponent {
     _.invoke(this.props, 'onChange', e, { ...this.props, value });
   }
 
+  handleBlur = (e) => {
+    const value = _.get(e, 'target.value');
+
+    _.invoke(this.props, 'onBlur', e, { ...this.props, value });
+  }
+
   /**
    * Partition Props,
    * to get HTML Input props
@@ -107,6 +133,7 @@ class Input extends PureComponent {
         tabIndex,
         required,
         onChange : this.handleChange,
+        onBlur   : this.handleBlur,
         ref      : this.inputRef
       },
       fieldProps,
@@ -117,7 +144,7 @@ class Input extends PureComponent {
   /** Render Input Component */
   renderInput(rest, htmlInputProps) {
     /** Check if Input is Maskered */
-    const { mask, maskChar, alwaysShowMask, type } = this.props;
+    const { mask, maskChar, alwaysShowMask, textarea, type } = this.props;
 
     if (isValidString(mask)) {
       return (
@@ -128,6 +155,20 @@ class Input extends PureComponent {
           mask={mask}
           maskChar={maskChar}
           {...htmlInputProps}
+        />
+      );
+    }
+
+    if (textarea) {
+      /** Get min and Max Rows Props */
+      const { maxRows, minRows } = this.props;
+
+      return (
+        <TextareaAutosize
+          {...rest}
+          {...htmlInputProps}
+          maxRows={maxRows}
+          minRows={minRows}
         />
       );
     }
