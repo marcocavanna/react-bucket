@@ -5,6 +5,7 @@ import cx from 'classnames';
 import {
   childrenUtils,
   classByKey,
+  classByPattern,
   createShorthandFactory,
   getElementType,
   getUnhandledProps
@@ -17,12 +18,16 @@ function PanelSection(props) {
     children,
     content,
     divided,
-    label
+    label,
+    noMargin,
+    textAlign
   } = props;
 
   const classes = cx(
     'panel-section',
     classByKey(divided, 'is-divided'),
+    classByKey(noMargin, 'mb-0'),
+    classByPattern(textAlign, 'has-text-%value%'),
     className
   );
 
@@ -48,13 +53,19 @@ PanelSection.propTypes = {
   className: PropTypes.string,
 
   /** Content Shorthand */
-  content: PropTypes.element,
+  content: PropTypes.node,
 
   /** Draw a divider line above the section */
   divided: PropTypes.bool,
 
   /** Label Shorthand */
-  label: PropTypes.node
+  label: PropTypes.node,
+
+  /** Remove Section Bottom Margin */
+  noMargin: PropTypes.bool,
+
+  /** Section Text Align */
+  textAlign: PropTypes.string
 };
 
 PanelSection.defaultProps = {
