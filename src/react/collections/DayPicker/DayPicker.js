@@ -351,11 +351,11 @@ class DayPicker extends Component {
     /** Return the Modal Trigger Component */
     return (
       <Modal
-        {...rest}
         autosized
         open={open}
         trigger={(
           <Button
+            {...rest}
             disabled={disabled}
             icon='calendar'
             content={inputValue || placeholder}
