@@ -15,7 +15,8 @@
  input[type=email],
  input[type=password],
  input[type=search],
- input[type=text] {
+ input[type=text],
+ textarea {
    appearance: none;
  }
 
@@ -45,7 +46,8 @@
 
     Style the Input Field
   ---*/
-  > input {
+  > input,
+  > textarea {
     font-family: inherit;
     color: inherit;
     text-align: left;
@@ -82,7 +84,8 @@
 
     Apply border to input element
   ---*/
-  &.is-bordered > input {
+  &.is-bordered > input,
+  &.is-bordered > textarea {
     box-shadow: inset 0px 0px 0px 1px $border-color;
     border-radius: pixel-to-em($border-radius);
   }
@@ -117,6 +120,7 @@
   &.with-label.label-on-right,
   &.with-icon.icon-on-right {
     > input,
+    > textarea,
     > .select > .bucket__control {
       border-top-right-radius: 0;
       border-bottom-right-radius: 0;
@@ -127,6 +131,7 @@
   &.with-label.label-on-left,
   &.with-icon.icon-on-left {
     > input,
+    > textarea,
     > .select > .bucket__control {
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;

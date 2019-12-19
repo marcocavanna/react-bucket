@@ -137,6 +137,7 @@
 
     > .content {
       > input,
+      > textarea,
       > .label,
       > .button,
       > .icon {
@@ -147,7 +148,8 @@
 
   /* Style for disabled input only */
   &:not(.is-disabled) {
-    >.content > input[disabled] {
+    >.content > input[disabled]
+    >.content > textarea[disabled] {
       opacity: $disabled-opacity !important;
       pointer-events: none;
     }
@@ -164,12 +166,16 @@
 ******/
 .field {
   &.is-focused > .content:not(.is-bordered) > input,
-  > .content:not(.is-bordered) > input:focus {
+  > .content:not(.is-bordered) > input:focus,
+  &.is-focused > .content:not(.is-bordered) > textarea,
+  > .content:not(.is-bordered) > textarea:focus {
     box-shadow: inset 0px -5px 0px -3px $primary;
   }
 
   &.is-focused > .content.is-bordered > input,
-  > .content.is-bordered > input:focus {
+  > .content.is-bordered > input:focus,
+  &.is-focused > .content.is-bordered > textarea,
+  > .content.is-bordered > textarea:focus {
     box-shadow: inset 0px 0px 0px 1px $primary;
   }
 }
