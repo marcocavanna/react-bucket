@@ -42,3 +42,7 @@
 .view-content > .empty-content {
   font-size: 1.25em;
 }
+
+.panel.has-table .empty-content {
+  padding-bottom: 1em + $panel-padding-vertical;
+}
