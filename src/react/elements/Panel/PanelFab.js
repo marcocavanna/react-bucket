@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Button from '../Button';
 
 import {
+  createShorthandFactory,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -65,5 +66,7 @@ PanelFab.propTypes = {
   /** Primary State */
   primary: PropTypes.bool
 };
+
+PanelFab.create = createShorthandFactory(PanelFab, icon => ({ icon }));
 
 export default PanelFab;
