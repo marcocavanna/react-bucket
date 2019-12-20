@@ -182,7 +182,7 @@ class RxTableData {
       sorting: {
         enabled: enableSort = RxTableData.defaultSorting.enabled,
         initial: initialSort = null
-      }
+      } = {}
     } = options;
 
     const hasInitialSort = isValidString(initialSort);
