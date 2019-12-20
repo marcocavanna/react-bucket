@@ -83,7 +83,7 @@
 ******/
 .panel-section {
   display: block;
-  margin-bottom: 1.5em;
+  margin-bottom: 1em;
 
   > label {
     display: block;
@@ -95,7 +95,7 @@
   }
 
   &.is-divided {
-    padding-top: .75em;
+    padding-top: 1em;
     border-top: solid 1px $grey-lightest;
   }
 }
