@@ -338,7 +338,7 @@ class DayPicker extends Component {
                 placeholder={placeholder}
                 value={inputValue}
                 onChange={this.handleInputChange}
-                onFocus={this.handleCalendarOpen}
+                onClick={this.handleCalendarOpen}
               />
             )}
             content={dayPickerElement}
