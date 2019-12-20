@@ -519,6 +519,7 @@ class RxTableData {
       /** If function is not a Promise, it could be prepared */
       if (!isPromiseLike(result)) {
         this._saveData(this._prepareData(result));
+        this.onDataLoaded();
         return;
       }
 
@@ -566,6 +567,7 @@ class RxTableData {
 
     /** If data is not a function, than is an Array */
     this._saveData(this._system.initialData.slice());
+    this.onDataLoaded();
   }
 
 
