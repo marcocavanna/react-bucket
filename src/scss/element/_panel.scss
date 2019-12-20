@@ -120,6 +120,33 @@
   }
 
   /*---
+    Adjust Spacers
+  ---*/
+  .table > .head,
+  .table > .body,
+  .table > .foot {
+    > .row > .cell:first-child {
+      padding-left: $panel-padding-horizontal;
+    }
+  }
+
+  .table > .head,
+  .table > .body,
+  .table > .foot {
+    > .row > .cell:last-child {
+      padding-right: $panel-padding-horizontal;
+    }
+  }
+
+  /*---
+    Adjust padding bottom with fab
+  ---*/
+  &.with-fab > .panel-body {
+    padding-bottom: 1.5em;
+  }
+
+
+  /*---
     Adjust RxTable Action Row
   ---*/
   > .panel-body {
