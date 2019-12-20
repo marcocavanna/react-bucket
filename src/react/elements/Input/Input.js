@@ -1,6 +1,7 @@
 import React, { PureComponent, createRef } from 'react';
 import PropTypes from 'prop-types';
 
+import CurrencyInput from 'react-currency-input';
 import InputMask from 'react-input-mask';
 import TextareaAutosize from 'react-textarea-autosize';
 
@@ -24,6 +25,9 @@ class Input extends PureComponent {
 
     /** Show Mask on Maskered Input */
     alwaysShowMask: PropTypes.bool,
+
+    /** Currency Input */
+    currency: PropTypes.bool,
 
     /** Disabled style */
     disabled: PropTypes.bool,
@@ -94,21 +98,49 @@ class Input extends PureComponent {
     return null;
   }
 
+  computeCurrencyValue = (rawValue) => {
+    /** Assert value exists */
+    const value = rawValue || 0;
+
+    if (typeof value === 'number') {
+      return value;
+    }
+
+    const regExp = new RegExp('[^0-9-,]', 'g');
+    const unformatted = parseFloat(
+      (`${value}`)
+        .replace(regExp, '')  // Strip any invalid char
+        .replace(',', '.')    // Convert to conventional dot for decimals
+    );
+
+    return !Number.isNaN(unformatted) ? unformatted : 0;
+  }
+
   /**
    * Build an Handle Change for Element
    *
    * @param {React.SyntheticEvent} e
    */
   handleChange = (e) => {
+    const { currency } = this.props;
+
     const value = _.get(e, 'target.value');
 
-    _.invoke(this.props, 'onChange', e, { ...this.props, value });
+    _.invoke(this.props, 'onChange', e, {
+      ...this.props,
+      value: currency ? this.computeCurrencyValue(value) : value
+    });
   }
 
   handleBlur = (e) => {
+    const { currency } = this.props;
+
     const value = _.get(e, 'target.value');
 
-    _.invoke(this.props, 'onBlur', e, { ...this.props, value });
+    _.invoke(this.props, 'onBlur', e, {
+      ...this.props,
+      value: currency ? this.computeCurrencyValue(value) : value
+    });
   }
 
   /**
@@ -144,7 +176,7 @@ class Input extends PureComponent {
   /** Render Input Component */
   renderInput(rest, htmlInputProps) {
     /** Check if Input is Maskered */
-    const { mask, maskChar, alwaysShowMask, textarea, type } = this.props;
+    const { mask, maskChar, alwaysShowMask, textarea, type, currency } = this.props;
 
     if (isValidString(mask)) {
       return (
@@ -169,6 +201,19 @@ class Input extends PureComponent {
           {...htmlInputProps}
           maxRows={maxRows}
           minRows={minRows}
+        />
+      );
+    }
+
+    if (currency) {
+      return (
+        <CurrencyInput
+          {...rest}
+          {...htmlInputProps}
+          selectAllOnFocus
+          decimalSeparator=','
+          thousandSeparator='.'
+          precision='2'
         />
       );
     }
