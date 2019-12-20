@@ -13,7 +13,7 @@ const FormikInputComponent = ({ state, meta, rest }) => (
       success={meta.touched && state.success}
       warning={meta.touched && state.warning}
       messages={state.hasMessages && meta.touched ? [state.message] : null}
-      disabled={state.isSubmitting}
+      disabled={state.isSubmitting || rest.disabled}
     />
   </>
 );
