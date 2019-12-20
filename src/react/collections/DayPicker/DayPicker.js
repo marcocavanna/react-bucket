@@ -355,9 +355,9 @@ class DayPicker extends Component {
         open={open}
         trigger={(
           <Button
+            icon='calendar'
             {...rest}
             disabled={disabled}
-            icon='calendar'
             content={inputValue || placeholder}
             onClick={this.handleCalendarOpen}
           />
