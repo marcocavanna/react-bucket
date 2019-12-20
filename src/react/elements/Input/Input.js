@@ -124,11 +124,13 @@ class Input extends PureComponent {
   handleChange = (e) => {
     const { currency } = this.props;
 
-    const value = _.get(e, 'target.value');
+    const value = currency
+      ? this.computeCurrencyValue(_.get(e, 'target.value'))
+      : _.get(e, 'target.value');
 
     _.invoke(this.props, 'onChange', e, {
       ...this.props,
-      value: currency ? this.computeCurrencyValue(value) : value
+      value
     });
   }
 
@@ -206,14 +208,18 @@ class Input extends PureComponent {
     }
 
     if (currency) {
+      /** Strip the onChange Function */
+      const { onChange, ...restHtmlInputProps } = htmlInputProps;
+
       return (
         <CurrencyInput
           {...rest}
-          {...htmlInputProps}
+          {...restHtmlInputProps}
           selectAllOnFocus
           decimalSeparator=','
           thousandSeparator='.'
           precision='2'
+          onChangeEvent={onChange}
         />
       );
     }

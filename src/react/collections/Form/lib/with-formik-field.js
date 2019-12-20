@@ -16,6 +16,7 @@ const withFormikField = ({
   const {
     name,
     validate,
+    onChange: localOnFieldChange,
     ...rest
   } = props;
 
@@ -64,8 +65,18 @@ const withFormikField = ({
     if (typeof handleChangeOverwritten === 'function') {
       handleChangeOverwritten(formik, { ...fieldRest, ...rest, name: fieldName, value }, ...args);
     }
+    /** On Currency Input must set manually the number value */
+    else if (rest.currency) {
+      /** Get the value */
+      const { value: numberValue } = args[1];
+      formik.setFieldValue(fieldName, numberValue);
+    }
     else {
       originalOnChange(...args);
+    }
+    /** Fire the Local on Field Change, if Exists */
+    if (typeof localOnFieldChange === 'function') {
+      localOnFieldChange(...args);
     }
   };
 
