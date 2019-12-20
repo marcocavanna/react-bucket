@@ -298,3 +298,15 @@
     }
   }
 }
+
+/******
+    Fixed Text Right Container
+******/
+.has-text-right > .item {
+  flex-direction: row-reverse;
+
+  .item-avatar + .item-content {
+    margin-left: 0;
+    margin-right: .5em;
+  }
+}
