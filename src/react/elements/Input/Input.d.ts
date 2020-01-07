@@ -45,6 +45,9 @@ export interface StrictInputProps extends StrictFieldProps, React.InputHTMLAttri
    */
   onChange?: (event: React.FormEvent<HTMLInputElement>, props: InputOnChangeData) => void,
 
+  /** Currency Precision */
+  precision?: number,
+
   /** Input Tab Index */
   tabIndex?: number
 

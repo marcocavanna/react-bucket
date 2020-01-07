@@ -60,6 +60,9 @@ class Input extends PureComponent {
      */
     onChange: PropTypes.func,
 
+    /** Currency Input precision */
+    precision: PropTypes.number,
+
     /** Set the Field as Required */
     required: PropTypes.bool,
 
@@ -75,9 +78,10 @@ class Input extends PureComponent {
 
   /** Set Default Property */
   static defaultProps = {
-    maxRows : 8,
-    minRows : 2,
-    type    : 'text'
+    maxRows   : 8,
+    minRows   : 2,
+    precision : 2,
+    type      : 'text'
   }
 
   /** Create Input Ref */
@@ -178,7 +182,7 @@ class Input extends PureComponent {
   /** Render Input Component */
   renderInput(rest, htmlInputProps) {
     /** Check if Input is Maskered */
-    const { mask, maskChar, alwaysShowMask, textarea, type, currency } = this.props;
+    const { mask, maskChar, alwaysShowMask, textarea, type, currency, precision } = this.props;
 
     if (isValidString(mask)) {
       return (
@@ -218,7 +222,7 @@ class Input extends PureComponent {
           selectAllOnFocus
           decimalSeparator=','
           thousandSeparator='.'
-          precision='2'
+          precision={precision}
           onChangeEvent={onChange}
         />
       );
