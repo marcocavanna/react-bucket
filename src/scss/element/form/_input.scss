@@ -59,7 +59,7 @@
 
     margin: 0;
     padding: pixel-to-em($input-vertical-padding + 1) $input-horizontal-padding;
-    line-height: strip-unit(pixel-to-em($input-line-height));
+    line-height: $input-line-height;
 
     background-color: $white;
     border: none;
@@ -99,18 +99,18 @@
   > .label-wrapper > .label,
   > .button {
     margin: 0;
-    line-height: $input-height - 1px;
+    line-height: $input-height;
     padding-top: 0;
     padding-bottom: 0;
     font-size: 1em;
   }
 
   > .label-wrapper > .label {
-    flex: 0 0 $input-height - 1px;
+    flex: 0 0 $input-height;
     text-align: center;
     color: $grey;
     margin: 0;
-    line-height: $input-height - 1px;
+    line-height: $input-height;
     box-shadow: none;
     background-color: $border-color;
     width: 38px;
@@ -206,11 +206,11 @@
   /* Input Icon */
   &.with-icon {
     > .icon {
-      flex: 0 0 $input-height - 1px;
+      flex: 0 0 $input-height;
       text-align: center;
       color: $grey;
       margin: 0;
-      line-height: $input-height - 1px;
+      line-height: $input-height;
     }
 
     &.is-bordered {

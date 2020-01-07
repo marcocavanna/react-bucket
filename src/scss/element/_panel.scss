@@ -19,7 +19,7 @@
 
   &.with-fab {
     position: relative;
-    margin-bottom: $panel-margin-bottom + pixel-to-em(26);
+    margin-bottom: $panel-margin-bottom + 1.5em;
 
     > .panel-fab {
       position: absolute;
@@ -90,7 +90,7 @@
     font-weight: $bold;
     color: $grey-light;
     text-transform: uppercase;
-    margin-bottom: .5em;
+    margin-bottom: 1em;
     font-size: .85em;
   }
 

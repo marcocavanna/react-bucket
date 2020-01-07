@@ -141,8 +141,8 @@ $button-hover-will-drop-shadow: false         !default;
 
 $panel-background-color: $white       !default;
 $panel-border-radius: $border-radius  !default;
-$panel-padding-vertical: 2em          !default;
-$panel-padding-horizontal: 2em        !default;
+$panel-padding-vertical: 1.5em          !default;
+$panel-padding-horizontal: 1.5em        !default;
 $panel-margin-bottom: 1.5em           !default;
 
 
@@ -150,10 +150,11 @@ $panel-margin-bottom: 1.5em           !default;
   <Input />
 ---*/
 
-$input-line-height: 24px              !default;
-$input-vertical-padding: 6px          !default;
-$input-horizontal-padding: .75em      !default;
-$input-height: $input-line-height + ( $input-vertical-padding * 2 ) + 3;
+$input-line-height-base: 24px                         !default;
+$input-vertical-padding: 6px                          !default;
+$input-horizontal-padding: .75em                      !default;
+$input-line-height: strip-unit(pixel-to-em($input-line-height-base));
+$input-height: pixel-to-em($input-line-height-base + ($input-vertical-padding * 2));
 
 
 /*---
