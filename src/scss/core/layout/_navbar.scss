@@ -23,7 +23,7 @@
   z-index: $navbar-z-index;
 
   // Navbar Colors
-  background-color: $white;
+  background-color: $navbar-background;
   border-bottom: $navbar-border;
 
   // NavBar box Shadow and Transition
@@ -109,7 +109,7 @@ body.with-navbar {
     Set the BoxShadow while scrolling
 ******/
 body.scrolled #navbar {
-  box-shadow: 0 0 5px 0 rgba(0, 0, 0, .2);
+  box-shadow: $navbar-scrolled-box-shadow;
 }
 
 

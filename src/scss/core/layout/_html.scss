@@ -13,4 +13,12 @@ html {
   background-color: $body-bg;
 
   height: 100%;
+
+  &.small-font-size {
+    font-size: $default-small-font-size;
+  }
+
+  &.big-font-size {
+    font-size: $default-big-font-size;
+  }
 }

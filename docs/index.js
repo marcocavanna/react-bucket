@@ -13,10 +13,10 @@ import App from './app';
  * to the html element
  */
 if (!isTouch()) {
-  document.documentElement.setAttribute('class', 'no-touch');
+  document.documentElement.classList.add('no-touch');
 }
 else {
-  document.documentElement.setAttribute('class', 'with-touch');
+  document.documentElement.classList.add('with-touch');
 }
 
 /**
