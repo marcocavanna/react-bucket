@@ -1,0 +1,73 @@
+/*
+ * ReactBucket Framwork
+ *
+ * System @ _system.scss in 'Variables'
+ *
+ * Defined at 2020-01-07
+ * Copyright Marco Cavanna • 2020
+ */
+
+
+/******
+    Google Phonts Naming and Weight
+******/
+
+$google-fonts-weight-map: (
+  // Sans Serif Font
+  'Dosis'           : (200, 400, 600, 800),
+  'Lato'            : (300, 400, 700, 900),
+  'Montserrat'      : (300, 400, 600, 700),
+  'Nunito'          : (300, 400, 700, 800),
+  'Open Sans'       : (300, 400, 600, 700),
+  'Poppins'         : (300, 400, 600, 700),
+  'Quicksand'       : (300, 400, 600, 700),
+  'Roboto'          : (300, 400, 500, 700),
+  'Source Sans Pro' : (300, 400, 600, 700),
+  'Ubuntu'          : (300, 400, 500, 700),
+
+  // Monospace Font
+  'Roboto Mono'     : 400,
+  'Source Code Pro' : 400,
+  'Ubuntu Mono'     : 400
+);
+
+
+/******
+    Typography Naming List
+******/
+
+$text-align-list:   center, right, left, justify;
+$text-style-list:   capitalize, lowercase, uppercase;
+
+$icon-class-selector: 'icon', 'fab', 'far', 'fal', 'fas', 'fa';
+
+$text-property-map: (
+  align     : $text-align-list,
+  transform : $text-style-list
+);
+
+
+/******
+    Directional Text and Abbreviations
+******/
+
+$direction-map: (
+  t: 'top',
+  r: 'right',
+  b: 'bottom',
+  l: 'left'
+);
+
+
+/******
+    Numbers in letters
+******/
+
+$one-to-sixteen: one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen, fiveteen, sixteen;
+
+
+/******
+    Positions
+******/
+
+$first-to-sixteenth: first, second, third, quarter, fifth, sixth, seventh, eighth, nineth, tenth, eleventh, twelveth, thirteenth, fourteenth, fiveteenth, sixteenth;
