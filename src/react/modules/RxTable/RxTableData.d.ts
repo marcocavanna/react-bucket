@@ -292,6 +292,13 @@ declare class RxTableData<T> {
    */
   filtering: IRxTableDataFiltering
 
+  /**
+   * Check if current data has length = 0
+   * to get this value it will be checked
+   * filtered data length and not the all data length
+   */
+  isEmpty: boolean
+
   /** Get the Key Field */
   keyField: string
 

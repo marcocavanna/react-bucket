@@ -31,6 +31,7 @@ function Item(props) {
     disabled,
     header,
     onClick,
+    sortable,
     tools
   } = props;
 
@@ -39,6 +40,7 @@ function Item(props) {
     classByPattern(typeof active === 'string' && active, 'is-active-as-%value%'),
     classByKey(disabled, 'is-disabled'),
     classByKey(onClick, 'is-clickable'),
+    classByKey(sortable, 'is-sortable'),
     className,
     'item'
   );
@@ -101,6 +103,9 @@ Item.propTypes = {
    * @param {object} data - All props.
    */
   onClick: PropTypes.func,
+
+  /** Set the item as sortable */
+  sortable: PropTypes.bool,
 
   /** Tools shorthand Factory */
   tools: PropTypes.array

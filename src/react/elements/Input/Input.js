@@ -228,7 +228,7 @@ class Input extends PureComponent {
       );
     }
 
-    return <input {...rest} type={type || 'text'} {...htmlInputProps} />;
+    return <input autoComplete='off' {...rest} type={type || 'text'} {...htmlInputProps} />;
   }
 
   /** Render Component Function */

@@ -46,6 +46,9 @@ export interface StrictItemProps {
    */
   onClick?: (event: React.MouseEvent<HTMLDivElement>, props: ItemProps) => void,
 
+  /** Set the Item as Sortable */
+  sortable?: boolean
+
   /** Tools shorthand */
   tools?: ReactBucketShorthandCollection<ItemToolProps>
 

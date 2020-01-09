@@ -279,6 +279,11 @@ class RxTableData {
     return this._filter;
   }
 
+  /** Check if Data is Empty */
+  get isEmpty() {
+    return !this._dataLength.filteredData;
+  }
+
   /** Return Key Field */
   get keyField() {
     return this._system.keyField;

@@ -226,7 +226,7 @@ class Button extends PureComponent {
       classByKey(rounded, 'is-rounded'),
       classByKey(circle, 'is-circle'),
       classByKey(secondary, 'is-secondary'),
-      classByKey(size, 'is-%value%'),
+      classByPattern(size, 'is-%value%'),
       classByKey(success, 'is-success'),
       classByKey(warning, 'is-warning'),
       className

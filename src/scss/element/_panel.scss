@@ -9,7 +9,7 @@
     padding: $panel-padding-vertical $panel-padding-horizontal $panel-padding-vertical / 2;
 
     + .panel-body {
-      padding-top: 0;
+      padding-top: $panel-padding-vertical / 2;
     }
   }
 

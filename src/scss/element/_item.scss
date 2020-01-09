@@ -142,7 +142,10 @@
   align-items: center;
   width: 100%;
   background-color: transparent;
-  transition: background-color $transition-duration $transition-ease;
+
+  &:not(.is-sortable) {
+    transition: background-color $transition-duration $transition-ease;
+  }
 
   &.is-disabled {
     opacity: $disabled-opacity;
