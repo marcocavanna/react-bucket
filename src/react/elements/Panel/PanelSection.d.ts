@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { ReactBucketALIGN } from '../../generic';
+import { ReactBucketALIGN, ReactBucketFONTWEIGHT } from '../../generic';
 
 export interface PanelSectionProps extends StrictPanelSectionProps {
   [key: string]: any
@@ -21,6 +21,9 @@ export interface StrictPanelSectionProps {
 
   /** Prepend a Divider */
   divided?: boolean
+
+  /** Set the Font Weight */
+  fontWeight: ReactBucketFONTWEIGHT
 
   /** Label Shorthand */
   label?: React.ReactNode,

@@ -7,18 +7,19 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  partitionFieldProps,
   classByKey,
-  classByPattern
+  classByPattern,
+  childrenUtils
 } from '../../lib';
-
-import Field from '../Field';
 
 function Progress(props) {
 
   const {
     active,
+    children,
     className,
+    circular,
+    content,
     direction,
     discrete,
     formatLimits,
@@ -45,15 +46,15 @@ function Progress(props) {
     ? _value
     : _max;
 
-  /** Get the Progress Color */
-  const colorStep = progressValue <= 33
-    ? 'low'
-    : progressValue > 33 && progressValue <= 66
-      ? 'mid'
-      : 'high';
-
   /** Generate Progress Width */
   const progressWidth = Math.round(((progressValue - _min) / (progressMax - _min)) * 100);
+
+  /** Get the Progress Color */
+  const colorStep = progressWidth <= 33
+    ? 'low'
+    : progressWidth > 33 && progressWidth <= 66
+      ? 'mid'
+      : 'high';
 
   /** Build Classes */
   const classes = cx(
@@ -65,16 +66,15 @@ function Progress(props) {
     classByKey(inverted, 'is-inverted'),
     classByKey(limits, 'with-limits'),
     classByKey(hasOverValue, 'is-overvalue'),
+    classByKey(circular, 'is-circular'),
+    classByKey(content || children, 'has-content'),
     classByPattern(size, 'is-%value%'),
     colorStep,
     className
   );
 
-  const rawRest = getUnhandledProps(Progress, props);
+  const rest = getUnhandledProps(Progress, props);
   const ElementType = getElementType(Progress, props);
-
-  /** Partition Field Props */
-  const [fieldProps, rest] = partitionFieldProps(rawRest);
 
   /** Build the Indicator Element */
   const indicatorElement = indicator && (
@@ -93,21 +93,100 @@ function Progress(props) {
     </div>
   );
 
-  return (
-    <Field
-      {...fieldProps}
-      as={ElementType}
-      content={(
-        <div {...rest} className={classes}>
-          {limitsElement}
-          <div className='bar'>
-            <div className='value' style={{ width: `${progressWidth > 0 ? progressWidth : 0}%` }}>
-              {indicatorElement}
-            </div>
+  /** Build Content if Exists */
+  const contentElement = !!(children || content) && (
+    <div className='progress-content'>
+      {childrenUtils.isNil(children) ? content : children}
+    </div>
+  );
+
+  if (!circular) {
+    return (
+      <ElementType {...rest} className={classes}>
+        {limitsElement}
+        <div className='bar'>
+          <div className='value' style={{ width: `${progressWidth > 0 ? progressWidth : 0}%` }}>
+            {indicatorElement}
           </div>
         </div>
-      )}
-    />
+      </ElementType>
+    );
+  }
+
+  const circularProgressSize = {
+    circle   : contentElement ? 14 : 40,
+    stroke   : contentElement ? 5 : 7,
+    progress : progressWidth > 0 ? progressWidth : 0
+  };
+
+  switch (size) {
+    case 'extra-small':
+      circularProgressSize.circle /= 4;
+      circularProgressSize.stroke /= 4;
+      break;
+
+    case 'small':
+      circularProgressSize.circle /= 2;
+      circularProgressSize.stroke /= 1.75;
+      break;
+
+    case 'large':
+      circularProgressSize.circle *= 2;
+      circularProgressSize.stroke *= 2;
+      break;
+
+    case 'big':
+      circularProgressSize.circle *= 4;
+      circularProgressSize.stroke *= 4;
+      break;
+
+    case 'huge':
+      circularProgressSize.circle *= 6;
+      circularProgressSize.stroke *= 6;
+      break;
+
+    default:
+      circularProgressSize.circle *= 1;
+      circularProgressSize.stroke *= 1;
+  }
+
+  circularProgressSize.radius = (circularProgressSize.circle - circularProgressSize.stroke) / 2;
+
+  const viewBox = [0, 0, circularProgressSize.circle, circularProgressSize.circle].join(' ');
+  const dashArray = circularProgressSize.radius * Math.PI * 2;
+  const dashOffset = dashArray - dashArray * circularProgressSize.progress / 100;
+
+  return (
+    <ElementType {...rest} className={classes}>
+      <div className='progress-wrapper'>
+        <svg
+          width={circularProgressSize.circle}
+          height={circularProgressSize.circle}
+          viewBox={viewBox}
+        >
+          <circle
+            className='progress-circle-background'
+            cx={circularProgressSize.circle / 2}
+            cy={circularProgressSize.circle / 2}
+            r={circularProgressSize.radius}
+            strokeWidth={`${circularProgressSize.stroke}px`}
+          />
+          <circle
+            className='progress-circle-value'
+            cx={circularProgressSize.circle / 2}
+            cy={circularProgressSize.circle / 2}
+            r={circularProgressSize.radius}
+            strokeWidth={`${circularProgressSize.stroke}px`}
+            transform={`rotate(-90 ${circularProgressSize.circle / 2} ${circularProgressSize.circle / 2})`}
+            style={{
+              strokeDasharray  : dashArray,
+              strokeDashoffset : dashOffset
+            }}
+          />
+        </svg>
+      </div>
+      {contentElement}
+    </ElementType>
   );
 }
 
@@ -118,8 +197,17 @@ Progress.propTypes = {
   /** An element used to render the Component */
   as: PropTypes.elementType,
 
+  /** Primary Content */
+  children: PropTypes.node,
+
+  /** Draw a Circular Progress */
+  circular: PropTypes.bool,
+
   /** User defined classes */
   className: PropTypes.string,
+
+  /** Content Shorthand */
+  content: PropTypes.node,
 
   /** Set Progress Direction */
   direction: PropTypes.oneOf(['left', 'right']),

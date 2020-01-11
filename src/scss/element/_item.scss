@@ -239,7 +239,7 @@
   );
 
   + .item-content {
-    margin-left: get-em-spacer(2);
+    margin-left: get-em-spacer(3);
   }
 }
 
@@ -278,12 +278,42 @@
   }
 }
 
+/******
+    Item Meta Content
+******/
+.item.has-meta {
+
+  /*---
+    Fix Header and Tools position
+    aligning them to the top of the Item
+  ---*/
+  .item-avatar,
+  .item-tools {
+    align-self: flex-start;
+  }
+
+  /*---
+    Divide the Meta to the rest of
+    the Item Content, using padding and a border
+  ---*/
+  .item-meta {
+    padding-top: 1em;
+
+    &.is-divided {
+      padding-top: .75em;
+      margin-top: .75em;
+      border-top: $border-light;
+    }
+  }
+
+}
+
 /*==========
     Item Tools
 ==========*/
 .item-tools {
   margin-left: auto;
-  padding-left: get-em-spacer(2);
+  padding-left: get-em-spacer(3);
   display: flex;
   flex: 0 0 auto;
   align-self: center;

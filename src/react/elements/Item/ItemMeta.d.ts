@@ -17,6 +17,8 @@ export interface StrictItemMetaProps {
   /** Content shorthand */
   content?: React.ReactNode
 
+  /** Apply a divided border */
+  divided?: boolean
 }
 
 interface ItemMetaComponent extends React.StatelessComponent<ItemMetaProps> { }

@@ -6,7 +6,8 @@ import {
   getElementType,
   getUnhandledProps,
   childrenUtils,
-  createShorthandFactory
+  createShorthandFactory,
+  classByKey
 } from '../../lib';
 
 function ItemMeta(props) {
@@ -14,11 +15,13 @@ function ItemMeta(props) {
   const {
     children,
     className,
-    content
+    content,
+    divided
   } = props;
 
   const classes = cx(
     'item-meta',
+    classByKey(divided, 'is-divided'),
     className
   );
 
@@ -44,7 +47,10 @@ ItemMeta.propTypes = {
   className: PropTypes.string,
 
   /** Content shorthand */
-  content: PropTypes.node
+  content: PropTypes.node,
+
+  /** Apply a dividing border */
+  divided: PropTypes.bool
 };
 
 ItemMeta.create = createShorthandFactory(ItemMeta, content => ({ content }));

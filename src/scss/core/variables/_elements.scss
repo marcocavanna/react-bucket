@@ -46,10 +46,12 @@ $disabled-opacity: .5                         !default;
 /*---
   Borders
 ---*/
-$border-color: $grey-lightest                 !default;
-$border-color-dark: $grey-light               !default;
-$border: solid 1px $border-color              !default;
-$border-dark: solid 1px $border-color-dark    !default;
+$border-color: $grey-lightest                   !default;
+$border-color-dark: $grey-light                 !default;
+$border-color-light: $white-shade-2             !default;
+$border: solid 1px $border-color                !default;
+$border-dark: solid 1px $border-color-dark      !default;
+$border-light: solid 1px $border-color-light    !default;
 
 
 /*---

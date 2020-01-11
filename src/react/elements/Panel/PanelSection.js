@@ -20,7 +20,8 @@ function PanelSection(props) {
     divided,
     label,
     noMargin,
-    textAlign
+    textAlign,
+    fontWeight
   } = props;
 
   const classes = cx(
@@ -28,6 +29,7 @@ function PanelSection(props) {
     classByKey(divided, 'is-divided'),
     classByKey(noMargin, 'mb-0'),
     classByPattern(textAlign, 'has-text-%value%'),
+    classByPattern(fontWeight, 'has-font-%value%'),
     className
   );
 
@@ -57,6 +59,9 @@ PanelSection.propTypes = {
 
   /** Draw a divider line above the section */
   divided: PropTypes.bool,
+
+  /** Set the font weight */
+  fontWeight: PropTypes.oneOf(['light', 'regular', 'semi-bold', 'bold']),
 
   /** Label Shorthand */
   label: PropTypes.node,
