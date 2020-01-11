@@ -6,6 +6,7 @@ import ItemAvatar, { ItemAvatarProps } from './ItemAvatar';
 import ItemHeader from './ItemHeader';
 import ItemContent from './ItemContent';
 import ItemGroup from './ItemGroup';
+import ItemMeta, { ItemMetaProps } from './ItemMeta';
 import ItemSection from './ItemSection';
 import ItemTools from './ItemTools';
 import ItemTool, { ItemToolProps } from './ItemTool';
@@ -39,6 +40,9 @@ export interface StrictItemProps {
   /** Header Shorthand */
   header?: string
 
+  /** Meta Shorthand */
+  meta?: ReactBucketShorthandItem<ItemMetaProps>
+
   /**
    * Called after user's click.
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
@@ -59,6 +63,7 @@ interface ItemComponent extends React.FunctionComponent<ItemProps> {
   Header: typeof ItemHeader
   Content: typeof ItemContent
   Group: typeof ItemGroup
+  Meta: typeof ItemMeta
   Section: typeof ItemSection
   Tools: typeof ItemTools
   Tool: typeof ItemTool

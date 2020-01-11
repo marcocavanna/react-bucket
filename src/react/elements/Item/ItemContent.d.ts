@@ -3,6 +3,7 @@ import * as React from 'react'
 import { ReactBucketShorthandItem } from '../../generic';
 
 import { ItemHeaderProps } from './ItemHeader';
+import { ItemMetaProps } from './ItemMeta';
 
 export interface ItemContentProps extends StrictItemContentProps {
   [key: string]: any
@@ -23,6 +24,9 @@ export interface StrictItemContentProps {
 
   /** Header Shorthand */
   header?: ReactBucketShorthandItem<ItemHeaderProps>
+
+  /** Meta Shorthand */
+  meta?: ReactBucketShorthandItem<ItemMetaProps>
 
   /** Truncated Content */
   notTruncated?: boolean

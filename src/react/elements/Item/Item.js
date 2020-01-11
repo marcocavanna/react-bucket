@@ -16,6 +16,7 @@ import {
 import ItemAvatar from './ItemAvatar';
 import ItemContent from './ItemContent';
 import ItemHeader from './ItemHeader';
+import ItemMeta from './ItemMeta';
 import ItemSection from './ItemSection';
 import ItemTools from './ItemTools';
 import ItemTool from './ItemTool';
@@ -28,6 +29,7 @@ function Item(props) {
     children,
     className,
     content,
+    meta,
     disabled,
     header,
     onClick,
@@ -41,6 +43,7 @@ function Item(props) {
     classByKey(disabled, 'is-disabled'),
     classByKey(onClick, 'is-clickable'),
     classByKey(sortable, 'is-sortable'),
+    classByKey(meta, 'has-meta'),
     className,
     'item'
   );
@@ -61,7 +64,9 @@ function Item(props) {
       {
         !childrenUtils.isNil(children)
           ? children
-          : (header || content) && <ItemContent content={content} header={header} />
+          : (header || content || meta) && (
+            <ItemContent content={content} header={header} meta={meta} />
+          )
       }
       {tools && ItemTools.create(tools, { autoGenerateKey: false })}
     </ElementType>
@@ -97,6 +102,9 @@ Item.propTypes = {
   /** Header Shorthand */
   header: PropTypes.any,
 
+  /** Meta Shorthand */
+  meta: PropTypes.node,
+
   /**
    * Called after user's click.
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
@@ -114,6 +122,7 @@ Item.propTypes = {
 Item.Avatar = ItemAvatar;
 Item.Header = ItemHeader;
 Item.Content = ItemContent;
+Item.Meta = ItemMeta;
 Item.Section = ItemSection;
 Item.Tool = ItemTool;
 Item.Tools = ItemTools;
