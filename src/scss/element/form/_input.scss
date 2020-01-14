@@ -111,9 +111,10 @@
     color: $grey;
     margin: 0;
     line-height: $input-height;
+    height: 100%;
     box-shadow: none;
     background-color: $border-color;
-    width: 38px;
+    min-width: 38px;
   }
 
   &.with-action.action-on-right,

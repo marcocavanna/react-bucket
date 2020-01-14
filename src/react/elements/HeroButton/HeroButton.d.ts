@@ -1,12 +1,15 @@
 import * as React from 'react'
 
-import { ReactBucketICON } from '../../generic';
+import { ReactBucketICON, ReactBucketSIZE } from '../../generic';
 
 export interface HeroButtonProps extends StrictHeroButtonProps {
   [key: string]: any
 }
 
 export interface StrictHeroButtonProps {
+  /** Render the Button as Active */
+  active?: boolean
+
   /** An element used to render */
   as?: React.ElementType
 
@@ -37,6 +40,9 @@ export interface StrictHeroButtonProps {
    * @param {object} props - All props.
    */
   onClick: (event: React.MouseEvent<HTMLDivElement>, props: HeroButtonProps) => void,
+
+  /** Size Variation */
+  size: ReactBucketSIZE
 
   /** Color Variation */
   variation?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8'
