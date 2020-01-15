@@ -28,6 +28,9 @@ export interface StrictPanelSectionProps {
   /** Label Shorthand */
   label?: React.ReactNode,
 
+  /** Set Master Section */
+  master?: boolean
+
   /** Remove Margin Bottom */
   noMargin?: boolean
 

@@ -143,6 +143,10 @@
   width: 100%;
   background-color: transparent;
 
+  &.is-sortable {
+    @include unselectable();
+  }
+
   &:not(.is-sortable) {
     transition: background-color $transition-duration $transition-ease;
   }
@@ -258,6 +262,10 @@
     margin: 0;
     padding: 0;
     @include truncate-text();
+
+    + .item-text {
+      margin-top: get-em-spacer();
+    }
   }
 
   .item-text {

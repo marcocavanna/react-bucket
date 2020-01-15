@@ -21,13 +21,15 @@ function PanelSection(props) {
     label,
     noMargin,
     textAlign,
-    fontWeight
+    fontWeight,
+    master
   } = props;
 
   const classes = cx(
     'panel-section',
     classByKey(divided, 'is-divided'),
     classByKey(noMargin, 'mb-0'),
+    classByKey(master, 'is-master'),
     classByPattern(textAlign, 'has-text-%value%'),
     classByPattern(fontWeight, 'has-font-%value%'),
     className
@@ -65,6 +67,9 @@ PanelSection.propTypes = {
 
   /** Label Shorthand */
   label: PropTypes.node,
+
+  /** Set Master Section */
+  master: PropTypes.bool,
 
   /** Remove Section Bottom Margin */
   noMargin: PropTypes.bool,

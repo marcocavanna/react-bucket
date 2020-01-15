@@ -98,6 +98,16 @@
     padding-top: 1em;
     border-top: solid 1px $grey-lightest;
   }
+
+  &.is-master {
+    > label {
+      font-size: 1em;
+      color: $grey-dark;
+      padding-bottom: .5em;
+      margin-bottom: 1em;
+      border-bottom: solid 2px $grey-lightest;
+    }
+  }
 }
 
 
