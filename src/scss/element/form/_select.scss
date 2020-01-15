@@ -58,4 +58,11 @@
       background-color: $primary;
     }
   }
+
+  /* Adjust Panel as Group Section */
+  > .select > .bucket__menu .panel-section,
+  > .select > .bucket__menu .panel-section > label {
+    font-size: 1em;
+    margin-bottom: 0;
+  }
 }

@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, createRef } from 'react';
 import PropTypes from 'prop-types';
 
 import ReactSelect from 'react-select';
@@ -68,6 +68,8 @@ class Select extends PureComponent {
     options       : []
   }
 
+  selectorRef = createRef()
+
   /**
    * TabIndex will be computed
    * using disabled props and/or
@@ -92,6 +94,10 @@ class Select extends PureComponent {
     _.invoke(this.props, 'onBlur', e, this.props);
   }
 
+  focus = () => {
+    _.invoke(this.selectorRef.current, 'select.focus');
+  }
+
   render() {
 
     const {
@@ -114,6 +120,7 @@ class Select extends PureComponent {
       <Field form input as={ElementType} {...fieldProps}>
         <SelectElement
           {...rest}
+          ref={this.selectorRef}
           className='select'
           classNamePrefix='bucket'
           isClearable={clearable}
