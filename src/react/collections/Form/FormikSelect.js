@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { isObject } from '@appbuckets/rabbit';
+import { isObject, isValidString } from '@appbuckets/rabbit';
 
 import _ from 'lodash';
 
@@ -30,24 +30,65 @@ FormikSelectComponent.propTypes = {
 };
 
 const FormikSelect = withFormikField({
-  Component    : FormikSelectComponent,
-  handleChange : (formik, props, selected) => {
-    /** On simple Selector, set the value */
+  Component: FormikSelectComponent,
+
+  /** Handle Change function will set Formik Props */
+  handleChange: (formik, props, selected) => {
+
+    /**
+     * On single selector, the
+     * select arg is a plain object
+     * containing the selected item
+     */
     if (!props.isMulti) {
-      formik.setFieldValue(props.name, _.isNil(selected) ? null : selected.value);
+      /** Try to Get the Select Value */
+      const value = typeof props.getOptionValue === 'function'
+        ? props.getOptionValue(selected)
+        : selected?.value ?? selected;
+
+      /** Set the Formik Field Value */
+      formik.setFieldValue(props.name, _.isNil(value) ? null : value);
       return;
     }
+
     /** On Multi selector must append value on original array */
     formik.setFieldValue(props.name, selected);
+
   },
+
+  /** Compute Value function will get the selected items */
   computeValue: (value, { options, ...props }) => {
-    /** On Simple Selector, try to compute the value */
+
+    /**
+     * On single selector, the selected
+     * props is a plain object
+     */
     if (!props.isMulti) {
-      return (
-        value && Array.isArray(options)
-          ? options.find(opt => opt.value === value)
-          : null
-      );
+      /** Try to get the Value */
+      const selectedValue = isObject(value)
+        ? typeof props.getOptionValue === 'function'
+          ? props.getOptionValue(value)
+          : value.value
+        : value;
+
+      /** If no value, or options is not an array, return null */
+      if (!value || !Array.isArray(options)) {
+        return null;
+      }
+
+      /** Find correct option */
+      return options.find((option) => {
+        /** Compute Option Value */
+        const optionValue = typeof props.getOptionValue === 'function'
+          ? props.getOptionValue(option)
+          : isObject(option)
+            ? option.value
+            : option;
+
+        /** Compare with Selected */
+        return optionValue === selectedValue;
+      });
+
     }
 
     const selectedValues = Array.isArray(value) ? value.map(computeElementValue) : [];

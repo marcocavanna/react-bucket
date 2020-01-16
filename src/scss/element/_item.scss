@@ -145,6 +145,10 @@
 
   &.is-sortable {
     @include unselectable();
+
+    &.is-clickable {
+      background-color: $white !important;
+    }
   }
 
   &:not(.is-sortable) {
@@ -304,7 +308,8 @@
     Divide the Meta to the rest of
     the Item Content, using padding and a border
   ---*/
-  .item-meta {
+  .header + .item-meta,
+  .item-text + .item-meta {
     padding-top: 1em;
 
     &.is-divided {
