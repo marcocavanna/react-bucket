@@ -44,6 +44,9 @@ export interface StrictFieldProps {
   /** Disabled Field */
   disabled?: boolean
 
+  /** Set style as Editor Container */
+  editor?: boolean
+
   /** Error Style */
   error?: boolean
 

@@ -1,0 +1,87 @@
+/*
+ * ReactBucket Framwork
+ *
+ * Editor @ _editor.scss in 'Form'
+ *
+ * Defined at 2020-01-18
+ * Copyright Marco Cavanna • 2020
+ */
+
+
+.field.editor > .content {
+  min-height: 20em;
+  padding: 1em 2em 2em;
+  border-radius: $border-radius;
+  background-color: $white;
+
+  &.is-bordered {
+    border: $border;
+  }
+}
+
+
+/******
+    Editor Style
+******/
+.field.editor .DraftEditor-root {
+  padding-top: 1em;
+
+  ul, ol {
+    list-style: unset;
+    padding-left: 2.5em;
+  }
+}
+
+
+/******
+    Editor Tools
+******/
+.field.editor > .content > .editor-tools-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+  > .editor-tools {
+    padding: .5em;
+  }
+
+  > .editor-tools > .editor-tool {
+    cursor: default;
+    display: inline-block;
+    padding: .5em;
+    color: $text-lightest;
+    transition: color $transition-ease $transition-ease;
+    border-right: $border-light;
+    font-weight: $bold;
+    min-width: 3em;
+    text-align: center;
+
+    .icon {
+      margin: 0;
+    }
+
+    &:last-child {
+      border-right: none;
+    }
+  }
+}
+
+.field.editor:not(.is-disabled) > .content > .editor-tools-wrapper {
+  > .editor-tools > .editor-tool {
+    cursor: pointer !important;
+
+    &:not(.is-active) {
+      @include without-touch-hover {
+        color: $text;
+      }
+    }
+
+    &.is-active {
+      color: $primary;
+
+      @include without-touch-hover {
+        color: $primary-tint;
+      }
+    }
+  }
+}

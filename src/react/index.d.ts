@@ -42,6 +42,8 @@ export { default as Container, ContainerProps, StrictContainerProps } from './el
 
 export { default as Divider, DividerProps, StrictDividerProps } from './elements/Divider';
 
+export { default as Editor, EditorProps, StrictEditorProps } from './elements/Editor';
+
 export { default as EmptyContent, EmptyContentProps, StrictEmptyContentProps } from './elements/EmptyContent';
 
 export { default as Field, FieldProps, StrictFieldProps } from './elements/Field';

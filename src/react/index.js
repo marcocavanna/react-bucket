@@ -37,6 +37,8 @@ export { default as Container } from './elements/Container';
 
 export { default as Divider } from './elements/Divider';
 
+export { default as Editor } from './elements/Editor';
+
 export { default as EmptyContent } from './elements/EmptyContent';
 
 export { default as Field } from './elements/Field';

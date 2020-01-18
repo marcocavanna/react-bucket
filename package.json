@@ -151,6 +151,8 @@
     "classnames": "^2.2.6",
     "dayjs": "^1.8.17",
     "deep-eql": "^4.0.0",
+    "draft-js": "^0.11.4",
+    "draftjs-to-html": "^0.9.1",
     "formik": "^2.0.3",
     "fuse.js": "^3.4.5",
     "hash-sum": "^2.0.0",

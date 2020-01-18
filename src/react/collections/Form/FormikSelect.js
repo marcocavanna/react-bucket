@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { isObject, isValidString } from '@appbuckets/rabbit';
+import { isObject } from '@appbuckets/rabbit';
 
 import _ from 'lodash';
 
@@ -10,6 +10,7 @@ import withFormikField from './lib/with-formik-field';
 
 import Select from '../../elements/Select';
 
+/** @deprecated */
 const computeElementValue = value => (
   isObject(value)
     ? value._id || value.value
