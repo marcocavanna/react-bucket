@@ -4,6 +4,7 @@ import { ReactBucketSIZE } from '../../generic';
 
 import Input from '../../elements/Input';
 import FormikCheckbox from './FormikCheckbox';
+import FormikEditor from './FormikEditor';
 import FormikDayPicker from './FormikDayPicker';
 import FormikInput from './FormikInput';
 import FormikRadio from './FormikRadio';
@@ -45,6 +46,7 @@ export interface StrictFormProps extends React.DetailedHTMLProps<React.FormHTMLA
 declare interface Form extends React.ComponentClass<FormProps, {}> {
   Input: typeof Input
   FormikCheckbox: typeof FormikCheckbox
+  FormikEditor: typeof FormikEditor
   FormikDayPicker: typeof FormikDayPicker
   FormikInput: typeof FormikInput
   FormikRadio: typeof FormikRadio
