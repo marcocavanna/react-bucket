@@ -1,10 +1,12 @@
 import * as React from 'react'
 
+import { StrictButtonProps } from '../../elements/Button';
+
 export interface DayPickerProps extends StrictDayPickerProps {
   [key: string]: any
 }
 
-export interface StrictDayPickerProps {
+export interface StrictDayPickerProps extends StrictButtonProps {
   /** Close the Date Picker once a day has been selected */
   closeOnDayPicked?: boolean
 
@@ -48,7 +50,7 @@ export interface StrictDayPickerProps {
   open?: boolean
 
   /** Type of Calendar */
-  type: 'input' | 'modal'
+  type: 'iconButton' | 'input' | 'modal'
 }
 
 declare interface DayPickerHandlerProps extends StrictDayPickerProps {

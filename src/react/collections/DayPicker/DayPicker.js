@@ -78,7 +78,7 @@ class DayPicker extends Component {
     open: PropTypes.bool,
 
     /** Set the Calendar Trigger Type */
-    type: PropTypes.oneOf(['input', 'modal'])
+    type: PropTypes.oneOf(['iconButton', 'input', 'modal'])
   }
 
   static defaultProps = {
@@ -358,7 +358,7 @@ class DayPicker extends Component {
             icon='calendar'
             {...rest}
             disabled={disabled}
-            content={inputValue || placeholder}
+            content={type === 'iconButton' ? null : inputValue || placeholder}
             onClick={this.handleCalendarOpen}
           />
         )}
