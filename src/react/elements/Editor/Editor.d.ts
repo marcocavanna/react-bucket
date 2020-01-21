@@ -2,6 +2,8 @@ import * as React from 'react'
 
 import { RawDraftContentState, EditorState } from 'draft-js';
 
+import { FieldProps } from '../Field';
+
 declare interface ExtendedEditorProps extends EditorProps {
   value: EditorState,
   rawValue: RawDraftContentState,
@@ -12,7 +14,7 @@ export interface EditorProps extends StrictEditorProps {
   [key: string]: any
 }
 
-export interface StrictEditorProps {
+export interface StrictEditorProps extends FieldProps {
   /** An element used to render */
   as?: any,
 
@@ -27,6 +29,9 @@ export interface StrictEditorProps {
 
   /** Set max Tab Depth */
   maxTabDepth?: number
+
+  /** Field Name */
+  name?: string
 
   /** On Blur Handler */
   onBlur?: (e: React.FocusEvent<any>, props: ExtendedEditorProps) => void

@@ -90,19 +90,10 @@ export default class Editor extends Component {
       { text: 'H3', label: 'Sezione', style: 'header-three' },
       { text: 'H4', label: 'SottoSezione', style: 'header-four' }
     ],
-    // [
-    //   { icon: 'align left', label: 'Sinistra', style: 'has-text-left' },
-    //   { icon: 'align center', label: 'Centro', style: 'has-text-center' },
-    //   { icon: 'align right', label: 'Destra', style: 'has-text-right' }
-    // ],
     [
       { icon: 'list ul', label: 'Elenco Puntato', style: 'unordered-list-item' },
       { icon: 'list ol', label: 'Elenco Numerato', style: 'ordered-list-item' }
     ]
-    // [
-    //   { icon: 'quote right', label: 'Citazione', style: 'blockquote' },
-    //   { icon: 'code', label: 'Codice', style: 'code-block' }
-    // ]
   ]
 
   static inlineStyles = [
@@ -111,9 +102,6 @@ export default class Editor extends Component {
       { icon: 'italic', label: 'Corsivo', style: 'ITALIC' },
       { icon: 'underline', label: 'Sottolineato', style: 'UNDERLINE' }
     ]
-    // [
-    //   { icon: 'font', label: 'Monospace', style: 'CODE' }
-    // ]
   ]
 
 
