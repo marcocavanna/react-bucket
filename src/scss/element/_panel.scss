@@ -6,10 +6,10 @@
   margin-bottom: $panel-margin-bottom;
 
   > .panel-header {
-    padding: $panel-padding-vertical $panel-padding-horizontal $panel-padding-vertical / 2;
+    padding: $panel-padding-vertical $panel-padding-horizontal $panel-padding-vertical / 3;
 
     + .panel-body {
-      padding-top: $panel-padding-vertical / 2;
+      padding-top: $panel-padding-vertical / 3;
     }
   }
 
