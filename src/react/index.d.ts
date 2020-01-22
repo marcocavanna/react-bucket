@@ -66,6 +66,8 @@ export { default as Loader, LoaderProps, StrictLoaderProps } from './elements/Lo
 
 export { default as Panel, PanelProps, StrictPanelProps } from './elements/Panel';
 
+export { default as Place, PlaceProps, StrictPlaceProps } from './elements/Place';
+
 export { default as Progress, ProgressProps, StrictProgressProps } from './elements/Progress';
 
 export { default as Select, SelectProps, StrictSelectProps } from './elements/Select';
