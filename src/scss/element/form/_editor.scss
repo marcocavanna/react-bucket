@@ -25,10 +25,15 @@
 ******/
 .field.editor .DraftEditor-root {
   padding-top: 1em;
+  line-height: $line-height;
 
   ul, ol {
     list-style: unset;
     padding-left: 2.5em;
+  }
+
+  div[data-block="true"]:not(:first-child) {
+    margin-top: get-em-spacer(4);
   }
 }
 
@@ -82,6 +87,26 @@
       @include without-touch-hover {
         color: $primary-tint;
       }
+    }
+  }
+}
+
+
+/******
+    ReadOnly Editor is
+    shown like a normal div
+******/
+.field.editor.is-readonly {
+  margin-bottom: 0 !important;
+
+  > .content {
+    padding: 0;
+    border-radius: 0;
+    border: none;
+    min-height: auto;
+
+    .DraftEditor-root {
+      padding-top: 0;
     }
   }
 }
