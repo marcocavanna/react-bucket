@@ -60,6 +60,8 @@ class Input extends PureComponent {
      */
     onChange: PropTypes.func,
 
+    onClick: PropTypes.func,
+
     /** Currency Input precision */
     precision: PropTypes.number,
 
@@ -149,6 +151,25 @@ class Input extends PureComponent {
     });
   }
 
+  handleClick = (e) => {
+    const { disabled, currency } = this.props;
+
+    if (disabled) {
+      return;
+    }
+
+    e.stopPropagation();
+
+    const value = currency
+      ? this.computeCurrencyValue(_.get(e, 'target.value'))
+      : _.get(e, 'target.value');
+
+    _.invoke(this.props, 'onClick', e, {
+      ...this.props,
+      value
+    });
+  }
+
   /**
    * Partition Props,
    * to get HTML Input props
@@ -170,6 +191,7 @@ class Input extends PureComponent {
         type,
         tabIndex,
         required,
+        onClick  : this.handleClick,
         onChange : this.handleChange,
         onBlur   : this.handleBlur,
         ref      : this.inputRef
