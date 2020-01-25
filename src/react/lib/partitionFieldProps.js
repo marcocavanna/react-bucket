@@ -21,6 +21,7 @@ export const allFieldProps = [
   /** Display Attrs */
   'full',
   'bordered',
+  'inline',
 
   /** Action, Label and Icon Attrs */
   'label',

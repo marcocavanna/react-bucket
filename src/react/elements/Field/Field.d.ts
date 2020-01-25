@@ -68,6 +68,9 @@ export interface StrictFieldProps {
   /** Icon Element */
   icon?: ReactBucketICON
 
+  /** Display field as inline */
+  inline?: boolean
+
   /** Icon Position */
   iconPosition?: 'left' | 'right'
 

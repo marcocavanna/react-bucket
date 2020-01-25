@@ -72,7 +72,7 @@
     position: absolute;
     content: '';
     top: 50%;
-    left: 0;
+    left: 1px;
     transform: translateY(-50%);
     height: $checkbox-box-size;
     width: $checkbox-box-size;
@@ -89,7 +89,7 @@
     content: fa-content($fa-var-check);
     position: absolute;
     top: 50%;
-    left: $checkbox-box-size / 2 + .1em;
+    left: calc(#{$checkbox-box-size / 2 + .1em} + 1px);
     transform: translate(-55%, -46%);
     color: $primary;
     opacity: 0;
