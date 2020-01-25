@@ -10,6 +10,7 @@ import FormikInput from './FormikInput';
 import FormikPlace from './FormikPlace';
 import FormikRadio from './FormikRadio';
 import FormikSelect from './FormikSelect';
+import FormikTime from './FormikTime';
 
 export interface FormProps extends StrictFormProps {
   [key: string]: any
@@ -53,6 +54,7 @@ declare interface Form extends React.ComponentClass<FormProps, {}> {
   FormikPlace: typeof FormikPlace
   FormikRadio: typeof FormikRadio
   FormikSelect: typeof FormikSelect
+  FormikTime: typeof FormikTime
 }
 
 declare const FormComponent: Form

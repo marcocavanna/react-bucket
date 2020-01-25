@@ -20,6 +20,7 @@ import FormikInput from './FormikInput';
 import FormikPlace from './FormikPlace';
 import FormikRadio from './FormikRadio';
 import FormikSelect from './FormikSelect';
+import FormikTime from './FormikTime';
 
 class Form extends React.PureComponent {
 
@@ -71,6 +72,8 @@ class Form extends React.PureComponent {
   static FormikRadio = FormikRadio
 
   static FormikSelect = FormikSelect
+
+  static FormikTime = FormikTime
 
   handleFormSubmit = (e, ...args) => {
     /** Get Action from Props */
