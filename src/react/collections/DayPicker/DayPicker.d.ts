@@ -28,6 +28,9 @@ export interface StrictDayPickerProps extends StrictButtonProps {
   /** Disable the Calendar */
   disabled?: boolean
 
+  /** Set disabled Days */
+  disabledDays?: Array<Date | { after?: Date, before?: Date }>
+
   /** Set the input Value */
   inputValue?: string
 

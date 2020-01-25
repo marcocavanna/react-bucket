@@ -56,6 +56,12 @@ class DayPicker extends Component {
     /** Disable the Component */
     disabled: PropTypes.bool,
 
+    /** Set disabled days */
+    disabledDays: PropTypes.arrayOf(PropTypes.oneOfType([
+      PropTypes.instanceOf(Date),
+      PropTypes.object
+    ])),
+
     /** Get or Set the input value */
     inputValue: PropTypes.string,
 
@@ -271,7 +277,8 @@ class DayPicker extends Component {
       dateFormat,
       disabled,
       numberOfMonths,
-      type
+      type,
+      disabledDays
     } = this.props;
 
     /** Get State */
@@ -301,6 +308,9 @@ class DayPicker extends Component {
         fixedWeeks={type === 'modal'}
         numberOfMonths={numberOfMonths}
         todayButton='Oggi'
+
+        // Disabled Days
+        disabledDays={disabledDays}
 
         // Localization
         months={DayPicker.monthName}
