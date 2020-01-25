@@ -42,6 +42,12 @@ const FormikSelect = withFormikField({
      * containing the selected item
      */
     if (!props.isMulti) {
+      /** If selected is null, set value to null */
+      if (selected === null) {
+        formik.setFieldValue(props.name, null);
+        return;
+      }
+
       /** Try to Get the Select Value */
       const value = typeof props.getOptionValue === 'function'
         ? props.getOptionValue(selected)
