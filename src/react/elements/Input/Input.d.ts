@@ -31,6 +31,12 @@ export interface StrictInputProps extends StrictFieldProps, React.InputHTMLAttri
    */
   maskChar?: string | null;
 
+  /** Max TextArea Rows Count */
+  maxRows?: number
+
+  /** Min TextArea Rows Count */
+  minRows?: number
+
   /**
    * Called on change.
    *
@@ -39,8 +45,14 @@ export interface StrictInputProps extends StrictFieldProps, React.InputHTMLAttri
    */
   onChange?: (event: React.FormEvent<HTMLInputElement>, props: InputOnChangeData) => void,
 
+  /** Currency Precision */
+  precision?: number,
+
   /** Input Tab Index */
   tabIndex?: number
+
+  /** Render the component as a Text Area */
+  textarea?: boolean
 
   /** Input Type */
   type?: 'date' | 'email' | 'file' | 'image' | 'number' | 'password' | 'search' | 'tel' | 'text' | 'time' | 'url'

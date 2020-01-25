@@ -28,6 +28,7 @@ function Field(props) {
     className,
     content,
     contentClassName,
+    editor,
     error,
     disabled,
     focus,
@@ -53,7 +54,7 @@ function Field(props) {
   const classes = cx(
     'field',
     classByKey(text && !form, 'text'),
-    classByKey(form || checkbox || radio || input, 'form-field'),
+    classByKey(form || checkbox || radio || input || editor, 'form-field'),
     classByKey(success, 'is-success'),
     classByKey(warning, 'is-warning'),
     classByKey(error, 'is-danger'),
@@ -67,6 +68,7 @@ function Field(props) {
   const contentClasses = cx(
     'content',
     classByKey(checkbox, 'checkbox'),
+    classByKey(editor, 'editor'),
     classByKey(input, 'input'),
     classByKey(radio, 'radio'),
     classByKey(full, 'is-full'),
@@ -159,6 +161,9 @@ Field.propTypes = {
 
   /** Disabled style */
   disabled: PropTypes.bool,
+
+  /** Set style as Editor Container */
+  editor: PropTypes.bool,
 
   /** Error style for field */
   error: PropTypes.bool,

@@ -1,31 +1,65 @@
-/* Text Color */
+
+/*
+ * ReactBucket Framwork
+ *
+ * Colors @ _colors.scss in 'Variables'
+ *
+ * Defined at 2020-01-07
+ * Copyright Marco Cavanna • 2020
+ */
+
+
+/******
+    Text and Typography Color
+******/
+
 $text:          rgba(61, 66, 81, .95) !default;
 $text-shade:    rgb(55, 62, 77)       !default;
 $text-tint:     rgba(61, 66, 81, .8)  !default;
 
 $text-light:    rgba(61, 66, 81, .67)  !default;
-$text-lightest: rgba(61, 66, 81, .52) !default;
+$text-lightest: rgba(61, 66, 81, .52)  !default;
 
-/* Black Colors */
+
+/******
+    BackDrops
+******/
+
+$backdrop:      transparentize(#3b414f, .15) !default;
+
+
+/******
+    Blacks
+******/
+
 $black:         hsl(0, 0%, 4%)      !default;
 $black-tint:    hsl(0, 0%, 8%)      !default;
 
-/* Backdrops */
-$backdrop:      transparentize(#3b414f, .15) !default;
 
-/* White Colors */
+/******
+    Whites
+******/
+
 $white:         hsl(0, 0%, 100%)    !default;
 $white-shade:   hsl(212, 10%, 96%)  !default;
 $white-shade-2: hsl(212, 10%, 93%)  !default;
 
-/* Grey Shade */
+
+/******
+    Greys
+******/
+
 $grey-lightest: hsl(212, 10%, 88%)  !default;
 $grey-light:    hsl(212, 10%, 73%)  !default;
 $grey:          hsl(212, 10%, 57%)  !default;
 $grey-dark:     hsl(212, 10%, 45%)  !default;
 $grey-darkest:  hsl(212, 10%, 25%)  !default;
 
-/* Colors */
+
+/******
+    Base Colors
+******/
+
 $blue:          hsl(226, 48%, 54%)  !default;
 $teal:          hsl(170, 66%, 58%)  !default;
 $green:         hsl(121, 44%, 54%)  !default;
@@ -35,7 +69,11 @@ $red:           hsl(357, 72%, 58%)  !default;
 $pink:          hsl(330, 100%, 65%) !default;
 $purple:        hsl(260, 52%, 62%)  !default;
 
-/* Social Media Colors */
+
+/******
+    Social Media Colors
+******/
+
 $facebook:      hsl(214, 89%, 52%)  !default;
 $twitter:       hsl(203, 89%, 53%)  !default;
 $youtube:       hsl(0, 100%, 50%)   !default;
@@ -57,7 +95,11 @@ $slack:         hsl(299, 56%, 19%)  !default;
 $yahoo:         hsl(266, 97%, 30%)  !default;
 $telegram:      hsl(200, 100%, 40%) !default;
 
-/* UI Color */
+
+/******
+    UI Colors
+******/
+
 $primary         : $blue;
 $primary-shade   : color-shade($primary);
 $primary-tint    : color-tint($primary);
@@ -76,6 +118,11 @@ $danger-tint     : color-tint($danger);
 $success         : $green;
 $success-shade   : color-shade($success);
 $success-tint    : color-tint($success);
+
+
+/******
+    Color Mapping
+******/
 
 $react-bucket-ui-colors-map: (
   text          : $text,
@@ -134,5 +181,4 @@ $react-bucket-brand-colors-map: (
   danger      : $danger
 );
 
-/* Color Map */
 $react-bucket-color-map: map-merge(map-merge($react-bucket-ui-colors-map, $react-bucket-socials-color-map), $react-bucket-brand-colors-map );

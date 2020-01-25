@@ -11,6 +11,7 @@ $__base_column_width: percentage(1 / $columns);
   flex-grow: 1;
   max-width: 100%;
   min-width: $__base_column_width;
+  flex-basis: 0;
 
 }
 

@@ -1,3 +1,17 @@
+/*
+ * ReactBucket Framwork
+ *
+ * Item @ _item.scss in 'Element'
+ *
+ * Defined at 2019-11-30
+ * Copyright Marco Cavanna • 2019
+ */
+
+
+
+/******
+    Local MIXIN
+******/
 @mixin __item-active-variation($background, $color) {
   background-color: $background !important;
 
@@ -37,7 +51,9 @@
       margin-bottom: 0;
     }
 
-    @include compact-margin;
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 
   &.items-are-clickable {
@@ -53,6 +69,7 @@
 
         &:last-child {
           padding-bottom: 0;
+          margin-bottom: 0;
         }
       }
 
@@ -79,6 +96,44 @@
   }
 }
 
+/******
+    Items Section
+******/
+.items {
+
+  /*---
+    Style Section as Label for Panel
+    @see _panel.scss
+  ---*/
+  > .section {
+    display: block;
+    font-weight: $bold;
+    color: $grey-light;
+    text-transform: uppercase;
+    margin-bottom: .5em;
+    font-size: .85em;
+  }
+
+  /*---
+    Section on Not First Items
+    list has a margin top to
+    divide sections
+  ---*/
+  + .items > .section {
+    margin-top: 1.5em;
+  }
+
+  /*---
+    Divided items list
+    must append border bottom to section
+  ---*/
+  &.are-divided > .section {
+    border-bottom: solid 2px $white-shade-2;
+    margin-bottom: .75em;
+    padding-bottom: .75em;
+  }
+}
+
 /*==========
     Item Element
 ==========*/
@@ -87,7 +142,18 @@
   align-items: center;
   width: 100%;
   background-color: transparent;
-  transition: background-color $transition-duration $transition-ease;
+
+  &.is-sortable {
+    @include unselectable();
+
+    &.is-clickable {
+      background-color: $white !important;
+    }
+  }
+
+  &:not(.is-sortable) {
+    transition: background-color $transition-duration $transition-ease;
+  }
 
   &.is-disabled {
     opacity: $disabled-opacity;
@@ -181,7 +247,7 @@
   );
 
   + .item-content {
-    margin-left: get-em-spacer(2);
+    margin-left: get-em-spacer(3);
   }
 }
 
@@ -200,6 +266,10 @@
     margin: 0;
     padding: 0;
     @include truncate-text();
+
+    + .item-text {
+      margin-top: get-em-spacer();
+    }
   }
 
   .item-text {
@@ -220,12 +290,43 @@
   }
 }
 
+/******
+    Item Meta Content
+******/
+.item.has-meta {
+
+  /*---
+    Fix Header and Tools position
+    aligning them to the top of the Item
+  ---*/
+  .item-avatar,
+  .item-tools {
+    align-self: flex-start;
+  }
+
+  /*---
+    Divide the Meta to the rest of
+    the Item Content, using padding and a border
+  ---*/
+  .header + .item-meta,
+  .item-text + .item-meta {
+    padding-top: 1em;
+
+    &.is-divided {
+      padding-top: .75em;
+      margin-top: .75em;
+      border-top: $border-light;
+    }
+  }
+
+}
+
 /*==========
     Item Tools
 ==========*/
 .item-tools {
   margin-left: auto;
-  padding-left: get-em-spacer(2);
+  padding-left: get-em-spacer(3);
   display: flex;
   flex: 0 0 auto;
   align-self: center;
@@ -241,5 +342,17 @@
     &:last-child {
       margin-right: 0;
     }
+  }
+}
+
+/******
+    Fixed Text Right Container
+******/
+.has-text-right > .item {
+  flex-direction: row-reverse;
+
+  .item-avatar + .item-content {
+    margin-left: 0;
+    margin-right: .5em;
   }
 }

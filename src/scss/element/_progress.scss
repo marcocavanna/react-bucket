@@ -15,6 +15,7 @@
 .progress {
   display: block;
   width: 100%;
+  margin-bottom: .5em;
 }
 
 
@@ -97,50 +98,102 @@
     Progress Bar Color
 ******/
 .progress.is-colored {
-  &.low > .bar > .value {
-    background-color: $danger;
+  &.low {
+    > .bar > .value {
+      background-color: $danger;
+    }
+
+    .progress-circle-value {
+      stroke: $danger;
+    }
   }
 
-  &.mid > .bar > .value {
-    background-color: $warning;
+  &.mid {
+    > .bar > .value {
+      background-color: $warning;
+    }
+
+    .progress-circle-value {
+      stroke: $warning;
+    }
   }
 
-  &.high > .bar > .value {
-    background-color: $success;
+  &.high {
+    > .bar > .value {
+      background-color: $success;
+    }
+
+    .progress-circle-value {
+      stroke: $success;
+    }
   }
 
   /*---
     OverValue must color also
     the bar container
   ---*/
-  &.is-overvalue.high > .bar {
-    background-color: lighten($success, 15%);
+  &.is-overvalue.high {
+    > .bar {
+      background-color: lighten($success, 15%);
+    }
+
+    .progress-circle-background {
+      stroke: lighten($success, 15%);
+    }
   }
 }
 
 .progress.is-colored.is-inverted {
-  &.low > .bar > .value {
-    background-color: $success;
+  &.low {
+    > .bar > .value {
+      background-color: $success;
+    }
+
+    .progress-circle-value {
+      stroke: $success;
+    }
   }
 
-  &.high > .bar > .value {
-    background-color: $danger;
+  &.high {
+    > .bar > .value {
+      background-color: $danger;
+    }
+
+    .progress-circle-value {
+      stroke: $danger;
+    }
   }
 
   /*---
     OverValue must color also
     the bar container
   ---*/
-  &.is-overvalue.high > .bar {
-    background-color: lighten($danger, 15%);
+  &.is-overvalue.high {
+    > .bar {
+      background-color: lighten($danger, 15%);
+    }
+
+    .progress-circle-background {
+      stroke: lighten($danger, 15%);
+    }
   }
 }
 
-.progress.is-discrete.is-overvalue > .bar {
-  background-color: $grey-light;
+.progress.is-discrete.is-overvalue {
+  > .bar {
+    background-color: $grey-light;
 
-  > .value {
-    background-color: $grey;
+    > .value {
+      background-color: $grey;
+    }
+  }
+
+  .progress-circle-background {
+    stroke: $grey-light;
+  }
+
+  .progress-circle-value {
+    stroke: $grey;
   }
 }
 
@@ -182,6 +235,59 @@
 ******/
 .progress {
   @include size-variation;
+}
+
+/******
+    Progress Content
+******/
+.progress.is-circular.has-content {
+  display: flex;
+  width: 100%;
+  flex-wrap: nowrap;
+  align-items: center;
+
+  .progress-wrapper {
+    height: 1em * $line-height;
+    margin-right: .5em;
+  }
+
+  .progress-content {
+    flex-grow: 1;
+    font-size: 1rem;
+  }
+
+}
+
+.has-text-right {
+  .progress {
+    flex-direction: row-reverse;
+
+    .progress-wrapper {
+      margin-right: 0;
+      margin-left: .5em;
+    }
+  }
+}
+
+/******
+    Progress Circular
+******/
+.progress.is-circular {
+
+  .progress-circle-background,
+  .progress-circle-value {
+    fill: none;
+  }
+
+  .progress-circle-background {
+    stroke: $progress-bar-background;
+  }
+
+  .progress-circle-value {
+    stroke: $grey-light;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
 }
 
 /******

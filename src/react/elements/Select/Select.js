@@ -2,8 +2,6 @@ import React, { PureComponent, createRef } from 'react';
 import PropTypes from 'prop-types';
 
 import ReactSelect from 'react-select';
-import AsyncSelect from 'react-select/async';
-import AsyncCreatableSelect from 'react-select/async-creatable';
 import CreatableSelect from 'react-select/creatable';
 
 import _ from 'lodash';
@@ -19,8 +17,6 @@ class Select extends PureComponent {
 
   /** Define Component PropTypes */
   static propTypes = {
-    /** Set if Select is Async type */
-    async: PropTypes.bool,
 
     /** Set if the Value is Clearable */
     clearable: PropTypes.bool,
@@ -31,8 +27,14 @@ class Select extends PureComponent {
     /** Disabled Field */
     disabled: PropTypes.bool,
 
+    /** Set if Select is Async type */
+    isAsync: PropTypes.bool,
+
     /** Set if must show loader */
     loading: PropTypes.bool,
+
+    /** Menu Placement Position */
+    menuPlacement: PropTypes.oneOf(['auto', 'bottom', 'top']),
 
     /**
      * Fire on Select Blur
@@ -61,9 +63,12 @@ class Select extends PureComponent {
   }
 
   static defaultProps = {
-    clearable : true,
-    options   : []
+    clearable     : true,
+    menuPlacement : 'auto',
+    options       : []
   }
+
+  selectorRef = createRef()
 
   /**
    * TabIndex will be computed
@@ -89,15 +94,19 @@ class Select extends PureComponent {
     _.invoke(this.props, 'onBlur', e, this.props);
   }
 
+  focus = () => {
+    _.invoke(this.selectorRef.current, 'select.focus');
+  }
+
   render() {
 
     const {
-      async,
       clearable,
       creatable,
       disabled,
       loading,
-      options
+      options,
+      menuPlacement
     } = this.props;
 
     const tabIndex = this.getTabIndex();
@@ -105,24 +114,20 @@ class Select extends PureComponent {
 
     const ElementType = getElementType(Select, this.props);
 
-    const SelectElement = !async && !creatable
-      ? ReactSelect
-      : !async && creatable
-        ? CreatableSelect
-        : async && !creatable
-          ? AsyncSelect
-          : AsyncCreatableSelect;
+    const SelectElement = creatable ? CreatableSelect : ReactSelect;
 
     return (
       <Field form input as={ElementType} {...fieldProps}>
         <SelectElement
           {...rest}
+          ref={this.selectorRef}
           className='select'
           classNamePrefix='bucket'
           isClearable={clearable}
           isDisabled={disabled}
           isLoading={loading}
           options={options}
+          menuPlacement={menuPlacement}
           tabIndex={tabIndex}
           onBlur={this.handleBlur}
           onChange={this.handleChange}

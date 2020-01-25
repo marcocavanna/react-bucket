@@ -18,8 +18,14 @@ export interface StrictProgressProps extends FieldProps {
   /** Children Node */
   children?: React.ReactNode
 
+  /** Draw Circular Progress */
+  circular?: boolean
+
   /** User defined class */
   className?: string
+
+  /** Content Shorthand */
+  content?: React.ReactNode
 
   /** Set Progress Direction */
   direction?: 'left' | 'right'

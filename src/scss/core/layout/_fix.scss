@@ -1,0 +1,20 @@
+/******
+    Fix for Scrollbar on Windows Browser
+******/
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+*, *:focus {
+  outline: none !important;
+}
+
+.sticky-container {
+  height: 100%;
+}
+
+.sortable-helper {
+  background-color: $white !important;
+  @include dpShadow(2);
+}

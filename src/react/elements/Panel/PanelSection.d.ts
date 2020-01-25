@@ -1,5 +1,7 @@
 import * as React from 'react'
 
+import { ReactBucketALIGN, ReactBucketFONTWEIGHT } from '../../generic';
+
 export interface PanelSectionProps extends StrictPanelSectionProps {
   [key: string]: any
 }
@@ -17,8 +19,23 @@ export interface StrictPanelSectionProps {
   /** Content Shorthand */
   content?: React.ReactNode
 
+  /** Prepend a Divider */
+  divided?: boolean
+
+  /** Set the Font Weight */
+  fontWeight: ReactBucketFONTWEIGHT
+
   /** Label Shorthand */
-  label?: React.ReactNode
+  label?: React.ReactNode,
+
+  /** Set Master Section */
+  master?: boolean
+
+  /** Remove Margin Bottom */
+  noMargin?: boolean
+
+  /** Panel Section text Alignment */
+  textAlign?: ReactBucketALIGN
 }
 
 declare const PanelSection: React.FunctionComponent<PanelSectionProps>

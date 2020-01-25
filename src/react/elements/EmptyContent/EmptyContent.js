@@ -70,7 +70,10 @@ EmptyContent.propTypes = {
   header: PropTypes.string,
 
   /** Icon Item */
-  icon: customPropTypes.fontAwesome,
+  icon: PropTypes.oneOfType([
+    customPropTypes.fontAwesome,
+    PropTypes.node
+  ]),
 
   /** Text alignment */
   textAlign: PropTypes.string
@@ -81,6 +84,6 @@ EmptyContent.defaultProps = {
   textAlign : 'center'
 };
 
-EmptyContent.create = createShorthandFactory(EmptyContent, props => props);
+EmptyContent.create = createShorthandFactory(EmptyContent, content => ({ content }));
 
 export default EmptyContent;

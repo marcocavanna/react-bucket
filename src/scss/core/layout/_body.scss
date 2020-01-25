@@ -1,14 +1,14 @@
 body {
   font-family: $body-font;
-  font-size: 1rem;
+  font-size: $body-font-size;
   font-weight: $body-font-weight;
   line-height: $body-line-height-desktop;
   color: $text;
 
   background-color: $body-bg;
 
-  height: 100%;
   overflow-x: $body-overflow-x;
-  overflow-y: $body-overflow-y;
+
+  height: $body-height;
 
 }

@@ -25,7 +25,10 @@ export interface StrictItemGroupProps {
   divided?: boolean
 
   /** Items Shorthand */
-  items?: ReactBucketShorthandCollection<ItemProps>
+  items?: ReactBucketShorthandCollection<ItemProps>,
+
+  /** Section Shorthand */
+  section?: React.ReactNode
 }
 
 declare const ItemGroup: React.FunctionComponent<ItemGroupProps>

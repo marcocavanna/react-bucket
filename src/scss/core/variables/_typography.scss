@@ -1,65 +1,40 @@
+/*
+ * ReactBucket Framwork
+ *
+ * Typography @ _typography.scss in 'Variables'
+ *
+ * Defined at 2020-01-07
+ * Copyright Marco Cavanna • 2020
+ */
+
+
+/******
+    Font Definition
+******/
+
 $font-sans-serif:   $default-web-font          !default;
 $font-monospace:    $default-monospace-font    !default;
 
-$google-fonts-weight-map: (
-  // Sans Serif Font
-  'Dosis'           : (200, 400, 600, 800),
-  'Lato'            : (300, 400, 700, 900),
-  'Montserrat'      : (300, 400, 600, 700),
-  'Nunito'          : (300, 400, 700, 800),
-  'Open Sans'       : (300, 400, 600, 700),
-  'Poppins'         : (300, 400, 600, 700),
-  'Quicksand'       : (300, 400, 600, 700),
-  'Roboto'          : (300, 400, 500, 700),
-  'Source Sans Pro' : (300, 400, 600, 700),
-  'Ubuntu'          : (300, 400, 500, 700),
+$font-size:     $default-font-size             !default;
 
-  // Monospace Font
-  'Roboto Mono'     : 400,
-  'Source Code Pro' : 400,
-  'Ubuntu Mono'     : 400
-);
+$line-height:   $default-line-height           !default;
 
-/**
-  Check Font Exists
-*/
+
+/// Check WebFont Exists in Mapping
 @if map-has-key($map: $google-fonts-weight-map, $key: $font-sans-serif) == false {
   @error 'Invalid Default Web Font #{$font-sans-serif}';
 }
 
+/// Check Monospace Font Exists in Mapping
 @if map-has-key($map: $google-fonts-weight-map, $key: $font-monospace) == false {
   @error 'Invalid Monospace Font #{$font-sans-serif}';
 }
 
-/*
-  Build Fonts Weight using Default Font
-*/
-
+/// Build Font Weight Variables based on Map
 $light:             nth(map-get($google-fonts-weight-map, $font-sans-serif), 1)             !default;
 $regular:           nth(map-get($google-fonts-weight-map, $font-sans-serif), 2)             !default;
 $semi-bold:         nth(map-get($google-fonts-weight-map, $font-sans-serif), 3)             !default;
 $bold:              nth(map-get($google-fonts-weight-map, $font-sans-serif), 4)             !default;
-
-/*
-  Import Fonts
-*/
-$__sans_serif_url: str-replace($font-sans-serif, ' ', '+');
-$__monospace_url: str-replace($font-monospace, ' ', '+');
-@import url('https://fonts.googleapis.com/css?family=#{unquote($__sans_serif_url)}:#{$light},#{$regular},#{$semi-bold},#{$bold}|#{unquote($__monospace_url)}:#{map-get($google-fonts-weight-map, $font-monospace)}&display=swap');
-
-$font-family-sans-serif:  $font-sans-serif, -apple-system, "Helvetica", "Arial", sans-serif !default;
-$font-family-monospace:   $font-monospace, monospace !default;
-$font-render-mode:        optimizeLegibility !default;
-
-$text-align-list:   center, right, left, justify;
-$text-style-list:   capitalize, lowercase, uppercase;
-
-$icon-class-selector: 'icon', 'fab', 'far', 'fal', 'fas', 'fa';
-
-$text-property-map: (
-  align     : $text-align-list,
-  transform : $text-style-list
-);
 
 $font-weight-map: (
   ligth     : $light,
@@ -68,9 +43,14 @@ $font-weight-map: (
   bold      : $bold
 );
 
-$font-size:     $default-font-size;
+/// Import the Font
+$__sans_serif_url: str-replace($font-sans-serif, ' ', '+');
+$__monospace_url: str-replace($font-monospace, ' ', '+');
+@import url('https://fonts.googleapis.com/css?family=#{unquote($__sans_serif_url)}:#{$light},#{$regular},#{$semi-bold},#{$bold}|#{unquote($__monospace_url)}:#{map-get($google-fonts-weight-map, $font-monospace)}&display=swap');
 
-$line-height:   $default-line-height;
+$font-family-sans-serif:  $font-sans-serif, -apple-system, "Helvetica", "Arial", sans-serif !default;
+$font-family-monospace:   $font-monospace, monospace !default;
+$font-render-mode:        optimizeLegibility !default;
 
 $font-size-map: (
   small  : .75em,

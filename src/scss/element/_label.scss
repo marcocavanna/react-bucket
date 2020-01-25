@@ -1,23 +1,27 @@
+.label-wrapper {
+  display: inline-block;
+}
+
 .label {
   display: inline-block;
   line-height: 1;
   vertical-align: baseline;
-  margin: 0 pixel-to-em(6px);
-  background-color: $grey-lightest;
+  background-color: $white-shade-2;
   font-size: pixel-to-em($font-size - 2px);
   padding: pixel-to-em(6px) pixel-to-em(10px);
   border-radius: pixel-to-em($border-radius);
-  color: $text-tint;
+  color: $text-light;
   font-weight: $bold;
-
-  &:first-child {
-    margin-left: 0;
-  }
-
-  &:last-child {
-    margin-right: 0;
-  }
+  box-shadow: inset 0 0 2px 0 rgba(0, 0, 0, .2);
 
   @include background-variation($brand: true, $ui: true, $social: true)
 
+}
+
+.labels {
+  margin: pixel-to-em(3px) * -1;
+}
+
+.labels > .label-wrapper {
+  padding: pixel-to-em(3px);
 }

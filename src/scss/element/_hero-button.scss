@@ -10,6 +10,31 @@ $settings-icon-color: (
   8: #3f51b5
 );
 
+@mixin __hero-button-active-style {
+  background-color: #444;
+  color: #fff;
+
+  @each $index, $color in $settings-icon-color {
+    &.hero-variation-#{$index} {
+      background-color: $color !important;
+    }
+  }
+}
+
+@mixin __hero-button-active-discreet-style {
+  color: #444;
+
+  @each $index, $color in $settings-icon-color {
+    &.hero-variation-#{$index} {
+      color: $color !important;
+
+      .icon {
+        color: $color !important;
+      }
+    }
+  }
+}
+
 .hero-button {
   background-color: #fff;
   padding: 1.5em 2em;
@@ -56,35 +81,30 @@ $settings-icon-color: (
     }
   }
 
+
   &:not(.is-disabled) {
 
     &:not(.is-discreet) {
       @include without-touch-hover {
-        background-color: #444;
-        color: #fff;
-        @include dpShadow(4);
-
-        @each $index, $color in $settings-icon-color {
-          &.hero-variation-#{$index} {
-            background-color: $color !important;
-          }
+        & {
+          @include __hero-button-active-style;
+          @include dpShadow(4);
         }
+      }
+
+      &.is-active {
+        @include __hero-button-active-style;
+        opacity: .5;
       }
     }
 
     &.is-discreet {
       @include without-touch-hover($persist-on-touch: true) {
-        color: #444;
+        @include __hero-button-active-discreet-style;
+      }
 
-        @each $index, $color in $settings-icon-color {
-          &.hero-variation-#{$index} {
-            color: $color !important;
-
-            .icon {
-              color: $color !important;
-            }
-          }
-        }
+      &.is-active {
+        @include __hero-button-active-discreet-style;
       }
     }
 
@@ -94,4 +114,10 @@ $settings-icon-color: (
     cursor: not-allowed !important;
     opacity: $disabled-opacity !important;
   }
+
+  &.is-selectable:not(.is-active) {
+    opacity: .75;
+  }
+
+  @include size-variation();
 }

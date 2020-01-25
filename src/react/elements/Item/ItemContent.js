@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 
 import ItemHeader from './ItemHeader';
+import ItemMeta from './ItemMeta';
 
 import {
   childrenUtils,
@@ -19,6 +20,7 @@ function ItemContent(props) {
     className,
     content,
     header,
+    meta,
     notTruncated
   } = props;
 
@@ -35,7 +37,8 @@ function ItemContent(props) {
     return (
       <ElementType {...rest} className={classes}>
         {header && ItemHeader.create(header, { autoGenerateKey: false })}
-        <div className='item-text'>{content}</div>
+        {content && <div className='item-text'>{content}</div>}
+        {meta && <div className='item-meta'>{ItemMeta.create(meta, { autoGenerateKey: false })}</div>}
       </ElementType>
     );
   }
@@ -63,6 +66,9 @@ ItemContent.propTypes = {
 
   /** Header Shorthand */
   header: PropTypes.node,
+
+  /** Meta Shorthand */
+  meta: PropTypes.node,
 
   /** Truncated Content */
   notTruncated: PropTypes.bool

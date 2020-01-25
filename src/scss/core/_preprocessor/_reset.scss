@@ -1,12 +1,21 @@
-/* Base file is CSS Reset */
+/*
+ * ReactBucket Framwork
+ *
+ * Reset @ _reset.scss in '_preprocessor'
+ *
+ * Defined at 2020-01-07
+ * Copyright Marco Cavanna • 2020
+ *
+ * Style Resetter Cross Browser
+ * by Eric | v2.0-modified | License: none (public domain)
+ * http://meyerweb.com/eric/tools/css/reset/
+ *
+ */
+
+
+
 
 @if $import-reset == true {
-
-
-  /* http://meyerweb.com/eric/tools/css/reset/
-     v2.0-modified | 20110126
-     License: none (public domain)
-  */
 
   html, body, div, span, applet, object, iframe,
   h1, h2, h3, h4, h5, h6, p, blockquote, pre,

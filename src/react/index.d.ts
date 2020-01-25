@@ -1,4 +1,9 @@
 /**
+ * Export Generic Types
+ */
+export * from './generic';
+
+/**
  * Addons Export
  */
 export { default as Portal, PortalProps, StrictPortalProps } from './addons/Portal';
@@ -36,6 +41,8 @@ export { default as Checkbox, CheckboxProps, StrictCheckboxProps } from './eleme
 export { default as Container, ContainerProps, StrictContainerProps } from './elements/Container';
 
 export { default as Divider, DividerProps, StrictDividerProps } from './elements/Divider';
+
+export { default as Editor, EditorProps, StrictEditorProps } from './elements/Editor';
 
 export { default as EmptyContent, EmptyContentProps, StrictEmptyContentProps } from './elements/EmptyContent';
 
@@ -85,5 +92,7 @@ export {
   IRxTableDataColumn,
   IRxTableDataOptions
 } from './modules/RxTable';
+
+export { default as Scrollable, ScrollableProps, StrictScrollableProps } from './modules/Scrollable';
 
 export as namespace IReactBucket;

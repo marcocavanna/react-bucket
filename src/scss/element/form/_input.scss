@@ -15,7 +15,8 @@
  input[type=email],
  input[type=password],
  input[type=search],
- input[type=text] {
+ input[type=text],
+ textarea {
    appearance: none;
  }
 
@@ -45,7 +46,8 @@
 
     Style the Input Field
   ---*/
-  > input {
+  > input,
+  > textarea {
     font-family: inherit;
     color: inherit;
     text-align: left;
@@ -57,7 +59,7 @@
 
     margin: 0;
     padding: pixel-to-em($input-vertical-padding + 1) $input-horizontal-padding;
-    line-height: strip-unit(pixel-to-em($input-line-height));
+    line-height: $input-line-height;
 
     background-color: $white;
     border: none;
@@ -82,7 +84,8 @@
 
     Apply border to input element
   ---*/
-  &.is-bordered > input {
+  &.is-bordered > input,
+  &.is-bordered > textarea {
     box-shadow: inset 0px 0px 0px 1px $border-color;
     border-radius: pixel-to-em($border-radius);
   }
@@ -93,19 +96,32 @@
     Input addone are style to live
     all together
   ---*/
-  > .label,
+  > .label-wrapper > .label,
   > .button {
     margin: 0;
-    line-height: $input-height - 1px;
+    line-height: $input-height;
     padding-top: 0;
     padding-bottom: 0;
     font-size: 1em;
+  }
+
+  > .label-wrapper > .label {
+    flex: 0 0 $input-height;
+    text-align: center;
+    color: $grey;
+    margin: 0;
+    line-height: $input-height;
+    height: 100%;
+    box-shadow: none;
+    background-color: $border-color;
+    min-width: 38px;
   }
 
   &.with-action.action-on-right,
   &.with-label.label-on-right,
   &.with-icon.icon-on-right {
     > input,
+    > textarea,
     > .select > .bucket__control {
       border-top-right-radius: 0;
       border-bottom-right-radius: 0;
@@ -116,6 +132,7 @@
   &.with-label.label-on-left,
   &.with-icon.icon-on-left {
     > input,
+    > textarea,
     > .select > .bucket__control {
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
@@ -135,7 +152,7 @@
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
 
-        + .label,
+        + .label-wrapper .label,
         + .icon {
           border-top-left-radius: 0 !important;
           border-bottom-left-radius: 0 !important;
@@ -154,7 +171,7 @@
   /* Input Label */
   &.with-label {
     &.label-on-left {
-      > .label {
+      > .label-wrapper > .label {
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
 
@@ -165,7 +182,7 @@
       }
 
       &.with-action.action-on-left {
-        > .label {
+        > .label-wrapper > .label {
           border-top-left-radius: 0;
           border-bottom-left-radius: 0;
         }
@@ -173,13 +190,13 @@
     }
 
     &.label-on-right {
-      > .label {
+      > .label-wrapper > .label {
         border-bottom-left-radius: 0;
         border-top-left-radius: 0;
       }
 
       &.with-action.action-on-right {
-        > .label {
+        > .label-wrapper > .label {
           border-top-right-radius: 0;
           border-bottom-right-radius: 0;
         }
@@ -190,11 +207,11 @@
   /* Input Icon */
   &.with-icon {
     > .icon {
-      flex: 0 0 $input-height - 1px;
+      flex: 0 0 $input-height;
       text-align: center;
       color: $grey;
       margin: 0;
-      line-height: $input-height - 1px;
+      line-height: $input-height;
     }
 
     &.is-bordered {

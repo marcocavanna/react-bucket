@@ -5,6 +5,7 @@ import cx from 'classnames';
 import {
   childrenUtils,
   classByKey,
+  classByPattern,
   createShorthandFactory,
   getElementType,
   getUnhandledProps
@@ -17,12 +18,20 @@ function PanelSection(props) {
     children,
     content,
     divided,
-    label
+    label,
+    noMargin,
+    textAlign,
+    fontWeight,
+    master
   } = props;
 
   const classes = cx(
     'panel-section',
     classByKey(divided, 'is-divided'),
+    classByKey(noMargin, 'mb-0'),
+    classByKey(master, 'is-master'),
+    classByPattern(textAlign, 'has-text-%value%'),
+    classByPattern(fontWeight, 'has-font-%value%'),
     className
   );
 
@@ -48,13 +57,25 @@ PanelSection.propTypes = {
   className: PropTypes.string,
 
   /** Content Shorthand */
-  content: PropTypes.element,
+  content: PropTypes.node,
 
   /** Draw a divider line above the section */
   divided: PropTypes.bool,
 
+  /** Set the font weight */
+  fontWeight: PropTypes.oneOf(['light', 'regular', 'semi-bold', 'bold']),
+
   /** Label Shorthand */
-  label: PropTypes.node
+  label: PropTypes.node,
+
+  /** Set Master Section */
+  master: PropTypes.bool,
+
+  /** Remove Section Bottom Margin */
+  noMargin: PropTypes.bool,
+
+  /** Section Text Align */
+  textAlign: PropTypes.string
 };
 
 PanelSection.defaultProps = {

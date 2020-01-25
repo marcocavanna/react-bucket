@@ -18,6 +18,9 @@ export interface StrictHeroToolsProps {
   /** User defined class */
   className?: string
 
+  /** Hide or Show the Page Hero Tools */
+  includeHeroPageTools?: boolean
+
   /** Tools Array */
   tools?: ReactBucketShorthandCollection<ButtonProps>
 }

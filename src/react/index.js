@@ -37,6 +37,8 @@ export { default as Container } from './elements/Container';
 
 export { default as Divider } from './elements/Divider';
 
+export { default as Editor } from './elements/Editor';
+
 export { default as EmptyContent } from './elements/EmptyContent';
 
 export { default as Field } from './elements/Field';
@@ -80,3 +82,5 @@ export { default as Modal } from './modules/Modal';
 export { default as Popup } from './modules/Popup';
 
 export { RxTable, RxTableData } from './modules/RxTable';
+
+export { default as Scrollable } from './modules/Scrollable';

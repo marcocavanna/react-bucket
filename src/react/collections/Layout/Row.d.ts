@@ -1,6 +1,15 @@
 import * as React from 'react';
 
-import { ReactBucketALIGN, ReactBucketCOLOR, ReactBucketFLEXHORIZONTALALIGN, ReactBucketFLEXVERTICALALIGN, ReactBucketBREAKPOINT } from '../../generic';
+import {
+  ReactBucketALIGN,
+  ReactBucketCOLOR,
+  ReactBucketFLEXHORIZONTALALIGN,
+  ReactBucketFLEXVERTICALALIGN,
+  ReactBucketBREAKPOINT,
+  ReactBucketShorthandCollection
+} from '../../generic';
+
+import { ColumnProps } from './Column';
 
 export interface RowProps extends StrictRowProps {
   [key: string]: any
@@ -19,8 +28,14 @@ export interface StrictRowProps {
   /** Custom Font Color */
   color?: ReactBucketCOLOR
 
+  /** Columns Collection Shorthand */
+  columns?: ReactBucketShorthandCollection<ColumnProps>
+
   /** Fluid property */
   columnsAlign?: ReactBucketFLEXHORIZONTALALIGN
+
+  /** Content Shorthand */
+  content?: React.ReactNode
 
   /** Text Alignment */
   textAlign?: ReactBucketALIGN

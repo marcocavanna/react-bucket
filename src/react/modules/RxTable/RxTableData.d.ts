@@ -3,7 +3,7 @@ import { FuseOptions } from 'fuse.js';
 
 import { StrictTableHeaderCellProps } from '../../collections/Table/TableHeaderCell';
 
-export interface IRxTableDataColumn extends StrictTableHeaderCellProps {
+export interface IRxTableDataColumn<T> extends StrictTableHeaderCellProps {
 
   /**
    * Set the Cell Content for this column
@@ -11,7 +11,7 @@ export interface IRxTableDataColumn extends StrictTableHeaderCellProps {
    * will be executed passing item, column props
    * and entire table data as params
    */
-  cellContent?: (item: {}, props: IRxTableDataColumn, data: {}[]) => React.ReactNode
+  cellContent?: (item: T, props: IRxTableDataColumn, data: T[]) => React.ReactNode
 
   /**
    * Setting a column ID is usefull
@@ -19,7 +19,7 @@ export interface IRxTableDataColumn extends StrictTableHeaderCellProps {
    * will be used to set the initial
    * sort column.
    */
-  id?: string
+  id?: string | keyof T
 
   /**
    * If a column che be sorted, set this
@@ -29,11 +29,11 @@ export interface IRxTableDataColumn extends StrictTableHeaderCellProps {
    * If you want to define multiple sort, then
    * set this property to an Array of string
    */
-  sort?: string | string[]
+  sort?: keyof T | (keyof T)[]
 
 }
 
-export interface IRxTableDataSortingOptions {
+export interface IRxTableDataSortingOptions<T> {
 
   /**
    * Set if Table is Sortable
@@ -54,11 +54,11 @@ export interface IRxTableDataSortingOptions {
    * `initialSort: 'name'` will sort by name ASC
    * `initialSort: '-name'` will sort by name DESC
    */
-  initial: string
+  initial: keyof T
 
 }
 
-export interface IRxTableDataFilteringOptions {
+export interface IRxTableDataFilteringOptions<T> {
 
   /**
    * Set if Filtering is case sensitive/insensitive
@@ -77,7 +77,7 @@ export interface IRxTableDataFilteringOptions {
    *
    * Default `[]`
    */
-  fields: string | string[] | Function
+  fields: (keyof T)[] // string | string[] | Function
 
   /**
    * Set if filtering behaviour
@@ -101,22 +101,16 @@ export interface IRxTableDataFilteringOptions {
 
 }
 
-export interface IRxTableDataOptions {
+export interface IRxTableDataOptions<T> {
 
   /** Set Table Columns */
-  columns: IRxTableDataColumn[]
+  columns: IRxTableDataColumn<T>[]
 
   /**
    * Set the Preferences for
    * filtering data
    */
-  filtering?: IRxTableDataFilteringOptions
-
-  /** Group Data */
-  group?: {
-    /** Set grouping Fields */
-    fields?: string[]
-  }
+  filtering?: IRxTableDataFilteringOptions<T>
 
   /**
    * Set the name of the Field
@@ -148,7 +142,7 @@ export interface IRxTableDataOptions {
   }
 
   /** Set Preferences for Table Sorting */
-  sorting?: IRxTableDataSortingOptions
+  sorting?: IRxTableDataSortingOptions<T>
 }
 
 export interface IRxTableDataSorting {
@@ -206,14 +200,34 @@ declare class RxTableData<T> {
    * using an Array of Data that will
    * be used to return data
    */
-  constructor(data: T[], options: IRxTableDataOptions)
+  constructor(data: T[], options: IRxTableDataOptions<T>)
 
   /**
    * Build a new RxTable Object
    * using a function to retreive
    * data that will be used
    */
-  constructor(data: () => T[], options: IRxTableDataOptions)
+  constructor(data: () => T[], options: IRxTableDataOptions<T>)
+
+  /**
+   * Build a new RxTable Object
+   * using a function that
+   * return a Promise to retreive
+   * data that will be used
+   */
+  constructor(data: () => Promise<T[]>, options: IRxTableDataOptions<T>)
+
+
+  /**
+   * Change the string that will
+   * be used to filter data
+   */
+  filter(str: string): this
+
+
+  /** Check if a certain row has tools to show */
+  hasTools(...args): boolean
+
 
   /**
    * Create a Listener that will fire
@@ -223,6 +237,7 @@ declare class RxTableData<T> {
    */
   onDataLoaded(callback: (err: any | Error, data: T[]) => void, context: any): () => void
 
+
   /**
    * Create a new Listener that will
    * fire every once the Data will be
@@ -231,6 +246,17 @@ declare class RxTableData<T> {
    * data are passed as async function.
    */
   onDataLoading(callback: () => void, context: any): () => void
+
+
+  /**
+   * Reload Table Data
+   * Setting the silent to true to avoid
+   * onDataLoading event fire if data load
+   * is an async function.
+   * Default to true
+   */
+  reload(options: { silent: boolean }): void
+
 
   /**
    * Change the Actual Sort for data
@@ -245,24 +271,20 @@ declare class RxTableData<T> {
   sort(column: string): this
 
 
-  /**
-   * Change the string that will
-   * be used to filter data
-   */
-  filter(str: string): this
-
-
-  /** Check if a certain row has tools to show */
-  hasTools(...args): boolean
-
   /** Get Tools */
   tools(...args): boolean
 
-  /**
-   * Get the actual sorting options
-   * for this set of data
-   */
-  sorting: IRxTableDataSorting
+  /** Get Columns Array */
+  columns: IRxTableDataColumn<T>[]
+
+  /** Return counter for data */
+  count: { all: number, filtered: number }
+
+  /** Array data filtered and sorted */
+  data: T[]
+
+  /** Return the Hash for the current data */
+  dataHash: string
 
   /**
    * Get actual filtering options
@@ -270,11 +292,15 @@ declare class RxTableData<T> {
    */
   filtering: IRxTableDataFiltering
 
-  /** Get Columns Array */
-  columns: IRxTableDataColumn<T>[]
+  /**
+   * Check if current data has length = 0
+   * to get this value it will be checked
+   * filtered data length and not the all data length
+   */
+  isEmpty: boolean
 
-  /** Array data filtered and sorted */
-  data: T[]
+  /** Get the Key Field */
+  keyField: string
 
   /** Boolean that indicate if data has been loaded */
   loaded: boolean
@@ -282,26 +308,26 @@ declare class RxTableData<T> {
   /** Boolean that indicate if data is currently loading */
   loading: boolean
 
-  /** Return counter for data */
-  count: { all: number, filtered: number }
-
-  /** Get the Key Field */
-  keyField: string
-
   /** Fire the onRowClick functions */
   onRowClick(): void
 
+  /** Return the Hash for the current options */
+  optionsHash: string
+
+  /** Get the reloading state */
+  reloading: boolean
+
   /**
-   * Reload Table Data
-   * Setting the silent to true to avoid
-   * onDataLoading event fire if data load
-   * is an async function.
-   * Default to true
+   * Get the actual sorting options
+   * for this set of data
    */
-  reload(options: { silent: boolean }): void
+  sorting: IRxTableDataSorting
 
   /** Check if table has tools column */
   tableHasTools: boolean
+
+  /** Get Tools */
+  tools: () => React.ReactNode[]
 
 }
 

@@ -59,22 +59,20 @@ const FormikRadio = (props) => {
         form
         radio
         content={(
-          <Layout fluid>
-            <Layout.Row>
-              {options.map(({ value, label }) => (
-                <Layout.Column key={value} onTabletIs={width}>
-                  <FormikCheckbox
-                    {...rest}
-                    radio
-                    label={label}
-                    name={value}
-                    checked={!!values[value]}
-                    onChecked={handleRadioChecked}
-                  />
-                </Layout.Column>
-              ))}
-            </Layout.Row>
-          </Layout>
+          <Layout.Row>
+            {options.map(({ value, label }) => (
+              <Layout.Column key={value} onTabletIs={width}>
+                <FormikCheckbox
+                  {...rest}
+                  radio
+                  label={label}
+                  name={value}
+                  checked={!!values[value]}
+                  onChecked={handleRadioChecked}
+                />
+              </Layout.Column>
+            ))}
+          </Layout.Row>
         )}
       />
     );
@@ -99,22 +97,20 @@ const FormikRadio = (props) => {
           {...fieldProps}
           {...getFormFieldStateProps(state, meta, rawRest)}
           content={(
-            <Layout fluid>
-              <Layout.Row>
-                {options.map(({ value, label }) => (
-                  <Layout.Column key={value} onTabletIs={width}>
-                    <Checkbox
-                      {...rest}
-                      radio
-                      value={value}
-                      label={label}
-                      checked={fieldValue === value}
-                      onChecked={onChange}
-                    />
-                  </Layout.Column>
-                ))}
-              </Layout.Row>
-            </Layout>
+            <Layout.Row>
+              {options.map(({ value, label }) => (
+                <Layout.Column key={value} onTabletIs={width}>
+                  <Checkbox
+                    {...rest}
+                    radio
+                    value={value}
+                    label={label}
+                    checked={fieldValue === value}
+                    onChecked={onChange}
+                  />
+                </Layout.Column>
+              ))}
+            </Layout.Row>
           )}
         />
       );

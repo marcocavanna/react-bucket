@@ -31,7 +31,8 @@ function Header(props) {
     icon,
     image,
     subheader,
-    textAlign
+    textAlign,
+    size
   } = props;
 
   const classes = cx(
@@ -42,6 +43,7 @@ function Header(props) {
     classByKey(image === true, 'image'),
     classByKey(disabled, 'is-disabled'),
     classByKey(dividing, 'is-dividing'),
+    classByPattern(size, 'is-%value%'),
     className
   );
 
@@ -108,6 +110,9 @@ Header.propTypes = {
 
   /** Add an image by src or pass Image object */
   image: PropTypes.any,
+
+  /** Change Header Size */
+  size: customPropTypes.size,
 
   /** Shortheand property for Header.Subheader */
   subheader: PropTypes.any,

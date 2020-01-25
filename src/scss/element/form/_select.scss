@@ -25,11 +25,21 @@
   > .select > .bucket__control {
     border-color: $border-color;
     background-color: $white;
+    min-height: $input-height;
 
     /* Adjust the focused color */
     &.bucket__control--is-focused {
       border-color: $primary;
       box-shadow: none;
+    }
+
+    .bucket__indicators > .bucket__indicator {
+      padding: 5px;
+    }
+
+    .bucket__indicator-separator {
+      margin-top: 6px;
+      margin-bottom: 6px;
     }
   }
 
@@ -47,5 +57,12 @@
     .bucket__option--is-selected {
       background-color: $primary;
     }
+  }
+
+  /* Adjust Panel as Group Section */
+  > .select > .bucket__menu .panel-section,
+  > .select > .bucket__menu .panel-section > label {
+    font-size: 1em;
+    margin-bottom: 0;
   }
 }

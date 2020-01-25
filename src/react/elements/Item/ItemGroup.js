@@ -12,6 +12,7 @@ import {
 } from '../../lib';
 
 import Item from './Item';
+import ItemSection from './ItemSection';
 
 function ItemGroup(props) {
 
@@ -20,7 +21,8 @@ function ItemGroup(props) {
     className,
     clickableItems,
     divided,
-    items
+    items,
+    section
   } = props;
 
   const classes = cx(
@@ -35,8 +37,9 @@ function ItemGroup(props) {
 
   return (
     <ElementType {...rest} className={classes}>
+      {section && ItemSection.create(section, { autoGenerateKey: true })}
       {childrenUtils.isNil(children)
-        ? (_.isArray(items) && items.map(Item.create))
+        ? (_.isArray(items) && items.map(item => Item.create(item, { autoGenerateKey: true })))
         : children}
     </ElementType>
   );
@@ -60,7 +63,10 @@ ItemGroup.propTypes = {
   divided: PropTypes.bool,
 
   /** Items shorthand */
-  items: PropTypes.array
+  items: PropTypes.array,
+
+  /** Item Section Shorthand */
+  section: PropTypes.node
 
 };
 

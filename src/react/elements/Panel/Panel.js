@@ -56,7 +56,8 @@ function Panel(props) {
     <ElementType {...rest} className={classes}>
       {panelHeaderElement}
       {childrenUtils.isNil(children) ? panelBodyElement : children}
-      {typeof fab !== 'boolean' && fab && <PanelFab icon={fab} onClick={onFabClick} />}
+      {typeof fab === 'string' && <Panel.Fab icon={fab} onClick={onFabClick} />}
+      {typeof fab !== 'string' && typeof fab !== 'boolean' && fab && <Panel.Fab>{fab}</Panel.Fab>}
     </ElementType>
   );
 }

@@ -191,7 +191,7 @@
       "error"
     ],
     "react/require-optimization": [
-      "error"
+      "off"
     ],
     "react/require-render-return": [
       "error"

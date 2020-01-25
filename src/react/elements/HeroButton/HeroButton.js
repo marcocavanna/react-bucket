@@ -17,20 +17,25 @@ import {
 function HeroButton(props) {
 
   const {
+    active,
     className,
     content,
     disabled,
     discreet,
     header,
     icon,
+    size,
     variation
   } = props;
 
   const classes = cx(
     'hero-button',
+    classByKey(active, 'is-active'),
     classByKey(disabled, 'is-disabled'),
     classByKey(discreet, 'is-discreet'),
+    classByKey(typeof active !== 'undefined', 'is-selectable'),
     classByPattern(variation, 'hero-variation-%value%'),
+    classByPattern(size, 'is-%value%'),
     className
   );
 
@@ -59,6 +64,9 @@ function HeroButton(props) {
 }
 
 HeroButton.propTypes = {
+  /** Render button as Active */
+  active: PropTypes.bool,
+
   /** An element used to render the component */
   as: PropTypes.elementType,
 
@@ -86,6 +94,9 @@ HeroButton.propTypes = {
    * @param {object} data - All props.
    */
   onClick: PropTypes.func,
+
+  /** Size Variation */
+  size: customPropTypes.size,
 
   /** Color Variation */
   variation: PropTypes.oneOfType([

@@ -32,7 +32,7 @@ function ItemTools(props) {
   return (
     <ElementType {...rest} className={classes}>
       {childrenUtils.isNil(children)
-        ? _.isArray(tools) && tools.map(ItemTool.create)
+        ? _.isArray(tools) && tools.map(tool => ItemTool.create(tool, { autoGenerateKey: true }))
         : children}
     </ElementType>
   );

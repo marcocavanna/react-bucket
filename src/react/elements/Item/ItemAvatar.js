@@ -102,7 +102,7 @@ ItemAvatar.propTypes = {
   color: PropTypes.string,
 
   /** Set Avatar Placeholder */
-  content: PropTypes.string,
+  content: PropTypes.node,
 
   /** Set Danger Style */
   danger: PropTypes.bool,

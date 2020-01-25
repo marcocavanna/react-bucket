@@ -3,7 +3,7 @@ import * as React from 'react';
 import Subheader, { HeaderSubheaderProps } from './HeaderSubheader'
 import Content from './HeaderContent'
 
-import { ReactBucketCOLOR, ReactBucketALIGN, ReactBucketICON, ReactBucketShorthandItem } from '../../generic'
+import { ReactBucketCOLOR, ReactBucketALIGN, ReactBucketICON, ReactBucketShorthandItem, ReactBucketSIZE } from '../../generic'
 
 import { ImageProps } from '../Image';
 
@@ -41,6 +41,9 @@ export interface StrictHeaderProps {
 
   /** Subheader shorthand */
   subheader?: ReactBucketShorthandItem<HeaderSubheaderProps>
+
+  /** Change Header Size */
+  size?: ReactBucketSIZE
 
   /** Text Alignment */
   textAlign?: ReactBucketALIGN

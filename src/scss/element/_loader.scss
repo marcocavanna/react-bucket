@@ -1,59 +1,90 @@
+/*
+ * ReactBucket Framwork
+ *
+ * Loader @ _loader.scss in 'Element'
+ *
+ * Defined at 2019-12-07
+ * Copyright Marco Cavanna • 2019
+ */
 
 
+/******
+    Base Shared Loader Style
+******/
 .loader {
   display: none;
-  position: absolute;
-  top: 50%;
-  left: 50%;
+  position: relative;
+  top: 0;
+  left: 0;
   margin: 0;
-  text-align: center;
-  z-index: 1000;
-  transform: translate(-50%, -50%);
   box-sizing: inherit;
+  vertical-align: middle;
 
   font-size: 1em;
 
+  font-style: normal;
+  font-weight: $semi-bold;
+
+  /*---
+    Loader with text must
+    set width and height as
+    auto to let the container
+    adjust is size using content
+  ---*/
   &.has-text {
     width: auto !important;
     height: auto !important;
-    font-style: normal;
-    text-align: center;
-    font-weight: $semi-bold;
   }
 
-  &.is-active {
+  /*---
+    Active Loader must be visible
+  ---*/
+  &.is-active:not(.is-inline) {
     display: block;
-
-    &.is-inline {
-      display: inline-block !important;
-      position: relative;
-      vertical-align: middle;
-      margin: 0;
-      left: 0;
-      top: 0;
-      transform: none;
-
-      &.is-centered {
-        display: block !important;
-        margin-left: auto;
-        margin-right: auto;
-      }
-    }
   }
 
-  &.is-inverted {
-    color: $white-shade;
-
-    &:before {
-      border-color: rgba(255, 255, 255, .15);
-    }
-
-    &:after {
-      border-top-color: #fff;
-    }
+  &.is-active.is-inline:not(.is-centered) {
+    display: inline-block;
   }
 
+  /*---
+    Centered Loader
+    must have auto margin
+  ---*/
+  &.is-centered {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
+  /*---
+    An Overlay Loader
+    must be in absolute position
+    and centered using
+    it's relative parent
+  ---*/
+  &.is-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+  }
+}
+
+
+/******
+    Circular Loader
+    is a simply rounding container
+    with a spinning section
+******/
+.loader.is-circular {
+
+  /*---
+    Use After and Before
+    to build the loader
+  ---*/
+  &:after,
   &:before {
     position: absolute;
     content: '';
@@ -67,19 +98,11 @@
     border: .2em solid rgba(0, 0, 0, 0.1);
   }
 
+  /*---
+    Set the After Pseudo Content
+    to sping around it's container
+  ---*/
   &:after {
-    position: absolute;
-    content: '';
-    top: 0%;
-    left: 50%;
-    width: 100%;
-    height: 100%;
-    box-sizing: inherit;
-
-    border-radius: 500rem;
-
-    border-width: .2em;
-    border-style: solid;
     border-color: #767676 transparent transparent;
 
     box-shadow: 0 0 0 1px transparent;
@@ -89,40 +112,150 @@
   }
 }
 
-$__loader-size-map: (
-  extra-small:  1rem,
-  small:        1.75rem,
-  normal:       2.5rem,
-  large:        3.5rem,
-  big:          5rem,
-  huge:         7rem
-);
 
-$__loader-font-size-map: (
-  extra-small:  .5em,
-  small:        .75em,
-  normal:       1em,
-  large:        1.35em,
-  big:          2em,
-  huge:         2.5em
-);
+/******
+    Dots Loader
+    it's content is composed
+    by 3 flashing dots
+******/
+.loader.is-dots {
+  /*---
+    Build the Dots Container
+  ---*/
+  > .dots {
+    display: flex;
+    color: $grey-light;
+    transition-duration: $transition-duration;
+    transition-timing-function: initial;
+    transition-delay: initial;
+    transition-property: color;
+    align-self: center;
+    font-size: inherit;
+    text-align: center;
+    vertical-align: middle;
 
-@each $label, $size in $__loader-size-map {
-  .loader.is-#{$label} {
-    width: $size;
-    height: $size;
-    font-size: map-get($map: $__loader-font-size-map, $key: $label);
+    > .dot {
+      background-color: currentColor;
+      border-radius: 500rem;
+      height: 1em;
+      width: 1em;
+      vertical-align: top;
+      margin-right: .5em;
+
+      animation-duration: $loader-dots-animation-duration;
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: infinite;
+      animation-direction: initial;
+      animation-fill-mode: initial;
+      animation-play-state: initial;
+      animation-name: flash;
+
+      /*---
+        Set Child Animation
+      ---*/
+      &:nth-child(1) {
+        animation-delay: $loader-dots-animation-delay * 0;
+      }
+
+      &:nth-child(2) {
+        animation-delay: $loader-dots-animation-delay * 1;
+      }
+
+      &:nth-child(3) {
+        animation-delay: $loader-dots-animation-delay * 2;
+        margin-right: 0;
+      }
+    }
   }
 
-  .loader.is-#{$label}.has-text {
-    min-width: $size;
-    padding-top: $size + .75rem;
+  /*---
+    Centered Loader
+    must change the flex to inline-flex
+  ---*/
+  &.is-centered > .dots {
+    justify-content: center;
   }
 
-  .loader.is-#{$label}:before,
-  .loader.is-#{$label}:after {
-    width: $size;
-    height: $size;
-    margin: 0 0 0 $size / 2 * -1
+  /*---
+    Loader with text
+    must increase margin
+  ---*/
+  &.has-text > .dots {
+    margin-bottom: .75em;
+  }
+}
+
+
+/******
+    Loader Color Variation
+******/
+.loader.is-inverted {
+
+  /*---
+    Circlar Loader must
+    invert is rounding box
+    and the spinning content
+  ---*/
+  &.is-circular {
+    color: $white-shade;
+
+    &:before {
+      border-color: rgba(255, 255, 255, .15);
+    }
+
+    &:after {
+      border-top-color: #fff;
+    }
+  }
+
+}
+
+
+/******
+    Loader Sizing
+    Use an Iterator to build
+    each possibile size for the loader
+******/
+.loader {
+  @each $label, $size in $loader-size-map {
+    &.is-#{$label} {
+      /*---
+        Apply Shared Style
+        to all Loaders Type
+      ---*/
+      font-size: map-get($map: $loader-font-size-map, $key: $label);
+
+      /*---
+        Adjust Content width
+        and top padding
+      ---*/
+      &.has-text {
+        min-width: $size;
+      }
+
+      /*---
+        Circlar Loader Dimension
+      ---*/
+      &.is-circular {
+        width: $size;
+        height: $size;
+
+        /*---
+          Circular Loader
+          must set the Loader
+          Spacing as padding top
+        ---*/
+        &.has-text {
+          padding-top: $size + .75rem;
+        }
+
+        &:after,
+        &:before {
+          width: $size;
+          height: $size;
+          margin: 0 0 0 $size / 2 * -1
+        }
+      }
+    }
   }
 }

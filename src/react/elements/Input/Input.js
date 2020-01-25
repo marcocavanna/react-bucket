@@ -1,7 +1,9 @@
 import React, { PureComponent, createRef } from 'react';
 import PropTypes from 'prop-types';
 
+import CurrencyInput from 'react-currency-input';
 import InputMask from 'react-input-mask';
+import TextareaAutosize from 'react-textarea-autosize';
 
 import { isValidString } from '@appbuckets/rabbit';
 import _ from 'lodash';
@@ -24,6 +26,9 @@ class Input extends PureComponent {
     /** Show Mask on Maskered Input */
     alwaysShowMask: PropTypes.bool,
 
+    /** Currency Input */
+    currency: PropTypes.bool,
+
     /** Disabled style */
     disabled: PropTypes.bool,
 
@@ -33,6 +38,20 @@ class Input extends PureComponent {
     /** Char to use while Masking */
     maskChar: PropTypes.string,
 
+    /** Max Rows for TextArea input */
+    maxRows: PropTypes.number,
+
+    /** Min Rows for TextArea input */
+    minRows: PropTypes.number,
+
+    /**
+     * Called on Input Blur
+     *
+     * @param {ChangeEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props and a proposed value.
+     */
+    onBlur: PropTypes.func,
+
     /**
      * Called on change.
      *
@@ -41,11 +60,17 @@ class Input extends PureComponent {
      */
     onChange: PropTypes.func,
 
+    /** Currency Input precision */
+    precision: PropTypes.number,
+
     /** Set the Field as Required */
     required: PropTypes.bool,
 
     /** Tab Index for Input Element */
     tabIndex: PropTypes.number,
+
+    /** Render input as Text Area */
+    textarea: PropTypes.bool,
 
     /** The input type to use */
     type: PropTypes.string
@@ -53,7 +78,10 @@ class Input extends PureComponent {
 
   /** Set Default Property */
   static defaultProps = {
-    type: 'text'
+    maxRows   : 8,
+    minRows   : 2,
+    precision : 2,
+    type      : 'text'
   }
 
   /** Create Input Ref */
@@ -74,15 +102,51 @@ class Input extends PureComponent {
     return null;
   }
 
+  computeCurrencyValue = (rawValue) => {
+    /** Assert value exists */
+    const value = rawValue || 0;
+
+    if (typeof value === 'number') {
+      return value;
+    }
+
+    const regExp = new RegExp('[^0-9-,]', 'g');
+    const unformatted = parseFloat(
+      (`${value}`)
+        .replace(regExp, '')  // Strip any invalid char
+        .replace(',', '.')    // Convert to conventional dot for decimals
+    );
+
+    return !Number.isNaN(unformatted) ? unformatted : 0;
+  }
+
   /**
    * Build an Handle Change for Element
    *
    * @param {React.SyntheticEvent} e
    */
   handleChange = (e) => {
+    const { currency } = this.props;
+
+    const value = currency
+      ? this.computeCurrencyValue(_.get(e, 'target.value'))
+      : _.get(e, 'target.value');
+
+    _.invoke(this.props, 'onChange', e, {
+      ...this.props,
+      value
+    });
+  }
+
+  handleBlur = (e) => {
+    const { currency } = this.props;
+
     const value = _.get(e, 'target.value');
 
-    _.invoke(this.props, 'onChange', e, { ...this.props, value });
+    _.invoke(this.props, 'onBlur', e, {
+      ...this.props,
+      value: currency ? this.computeCurrencyValue(value) : value
+    });
   }
 
   /**
@@ -107,6 +171,7 @@ class Input extends PureComponent {
         tabIndex,
         required,
         onChange : this.handleChange,
+        onBlur   : this.handleBlur,
         ref      : this.inputRef
       },
       fieldProps,
@@ -117,7 +182,7 @@ class Input extends PureComponent {
   /** Render Input Component */
   renderInput(rest, htmlInputProps) {
     /** Check if Input is Maskered */
-    const { mask, maskChar, alwaysShowMask, type } = this.props;
+    const { mask, maskChar, alwaysShowMask, textarea, type, currency, precision } = this.props;
 
     if (isValidString(mask)) {
       return (
@@ -132,7 +197,38 @@ class Input extends PureComponent {
       );
     }
 
-    return <input {...rest} type={type || 'text'} {...htmlInputProps} />;
+    if (textarea) {
+      /** Get min and Max Rows Props */
+      const { maxRows, minRows } = this.props;
+
+      return (
+        <TextareaAutosize
+          {...rest}
+          {...htmlInputProps}
+          maxRows={maxRows}
+          minRows={minRows}
+        />
+      );
+    }
+
+    if (currency) {
+      /** Strip the onChange Function */
+      const { onChange, ...restHtmlInputProps } = htmlInputProps;
+
+      return (
+        <CurrencyInput
+          {...rest}
+          {...restHtmlInputProps}
+          selectAllOnFocus
+          decimalSeparator=','
+          thousandSeparator='.'
+          precision={precision}
+          onChangeEvent={onChange}
+        />
+      );
+    }
+
+    return <input autoComplete='off' {...rest} type={type || 'text'} {...htmlInputProps} />;
   }
 
   /** Render Component Function */

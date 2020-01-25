@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import {
+  childrenUtils,
   classByPattern,
   classByValue,
   isValue,
@@ -18,6 +19,7 @@ function Column(props) {
     children,
     className,
     color,
+    content,
     is,
     onTabletIs,
     onDesktopIs,
@@ -52,7 +54,7 @@ function Column(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {children}
+      {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   );
 
@@ -70,6 +72,9 @@ Column.propTypes = {
 
   /** Custom Font Color */
   color: PropTypes.string,
+
+  /** Content Shorthand */
+  content: PropTypes.node,
 
   /** Base Column Width */
   is: customPropTypes.columnsWidth,
@@ -92,6 +97,6 @@ Column.propTypes = {
   verticalAlign: customPropTypes.flexVerticalAlign
 };
 
-Column.create = createShorthandFactory(Column, children => ({ children }));
+Column.create = createShorthandFactory(Column, content => ({ content }));
 
 export default Column;

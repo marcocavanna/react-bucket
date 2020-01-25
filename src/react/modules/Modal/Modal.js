@@ -52,7 +52,10 @@ class Modal extends Component {
     centered: PropTypes.bool,
 
     /** Primary content. */
-    children: PropTypes.node,
+    children: PropTypes.oneOfType([
+      PropTypes.node,
+      PropTypes.func
+    ]),
 
     /** Additional user defined classes */
     className: PropTypes.string,
@@ -309,7 +312,7 @@ class Modal extends Component {
 
     const classes = cx(
       'modal with-transition is-active',
-      classByPattern(size, 'is-%value'),
+      classByPattern(size, 'is-%value%'),
       classByKey(basic, 'is-basic'),
       classByKey(this.legacy, 'is-legacy'),
       classByKey(scrolling, 'is-scrolling'),
@@ -358,7 +361,7 @@ class Modal extends Component {
   }
 
   render() {
-    const { open } = this.state;
+    const { open, scrolling } = this.state;
     const {
       centered,
       closeOnDocumentClick,
@@ -392,6 +395,7 @@ class Modal extends Component {
     const dimmerClasses = cx(
       'page modals dimmer with-transition is-active',
       classByKey(dimmer === 'inverted', 'is-inverted'),
+      classByKey(scrolling, 'is-scrolling'),
       classByKey(!centered, 'is-top-aligned')
     );
 

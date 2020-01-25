@@ -117,7 +117,6 @@
   width: 100%;
   max-width: 100%;
   display: table;
-  table-layout: fixed;
 
 
   /*---
@@ -143,7 +142,7 @@
         }
 
         &:last-child {
-          padding-right: $table-cell-v-padding;
+          padding-right: $table-cell-h-padding;
         }
       }
     }
@@ -156,8 +155,8 @@
   ---*/
   .row,
   .cell,
-  .cell-title,
-  .cell-description {
+  .cell-header,
+  .cell-content {
     background-color: transparent;
     opacity: 1;
     will-change: background-color, color, opacity;
@@ -218,22 +217,24 @@
       text-overflow: ellipsis;
       white-space: nowrap;
 
-      .cell-title,
-      .cell-description {
+      .cell-header,
+      .cell-content,
+      .cell-metadata {
         display: block;
         line-height: 1.25;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
         width: 100%;
+        margin: 0;
       }
 
-      .cell-title,
-      .cell-title > a {
+      .cell-header,
+      .cell-header > a {
         font-weight: $semi-bold;
       }
 
-      .cell-description {
+      .cell-content {
         color: $text-lightest;
       }
     }
@@ -273,13 +274,28 @@
     }
   }
 
+  /*---
+    Actions Cell must decrease
+    width at minimum
+  ---*/
+  .is-action.cell {
+    width: 1%;
+    white-space: nowrap;
+    text-align: right;
+
+    // Avoid button margin
+    > button.is-flat {
+      margin: 0;
+    }
+  }
+
 }
 
 
 /******
     Sortable Table Behaviour
 ******/
-.table.is-sortable {
+.sortable.table {
   > .head .cell:not(.is-unsortable) {
     cursor: pointer;
 
@@ -354,6 +370,83 @@
           color: $text-lightest;
         }
       }
+    }
+  }
+}
+
+
+/******
+    And Extended table will remove
+    the left and right padding
+    on boundary cells to let the content
+    be on the same measure of other elements
+******/
+.extended.table {
+  .head,
+  .body,
+  .foot {
+    > .row {
+      > .cell {
+        &:first-child {
+          padding-left: 0;
+        }
+
+        &:last-child {
+          padding-right: 0;
+        }
+      }
+    }
+  }
+}
+
+
+/******
+    Table could have a special
+    style called metadata table.
+    This type of style add a new special
+    field for Cell, to add local title e special
+    formatting.
+******/
+.metadata.table {
+
+  /*---
+    Metadata Table Cell must have the
+    vertical aligned setted to top, exept
+    for actions columns
+  ---*/
+  > .body > .row > .cell:not(.is-action) {
+    vertical-align: top;
+
+    /*---
+      Metadata Cell Content Style
+    ---*/
+    > .cell-metadata {
+      font-size: .75em;
+      color: $text-lightest;
+      font-weight: $semi-bold;
+      text-transform: uppercase;
+
+      /*---
+        Adiacent Content Must
+        increase margin
+      ---*/
+      + .cell-header,
+      + .cell-content {
+        margin-top: get-em-spacer(2);
+      }
+    }
+
+    /*---
+      Cell without metadata
+      Content must increase top margin
+      to align text
+    ---*/
+    &:not(.has-metadata) > *:first-child {
+      // Padding top is cell-metadata font-size
+      // increased by standard line-height 1.2
+      // 0.75 * 1.2 = 0.9
+      padding-top: .9em;
+      margin-top: get-em-spacer(2);
     }
   }
 }
