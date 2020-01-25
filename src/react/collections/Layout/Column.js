@@ -12,6 +12,8 @@ import {
   customPropTypes,
   createShorthandFactory
 } from '../../lib';
+import getColumnWidthProps from './lib/getColumnWidthProps';
+import getColumnOffsetProps from './lib/getColumnOffsetProps';
 
 function Column(props) {
 
@@ -20,17 +22,23 @@ function Column(props) {
     className,
     color,
     content,
-    is,
-    onTabletIs,
-    onDesktopIs,
-    onLargeDesktopIs,
-    offsettedBy,
-    onTabletOffsettedBy,
-    onDesktopOffsettedBy,
-    onLargeDesktopOffsettedBy,
     textAlign,
     verticalAlign
   } = props;
+
+  const {
+    is,
+    onTabletIs,
+    onDesktopIs,
+    onLargeDesktopIs
+  } = getColumnWidthProps(props);
+
+  const {
+    offsettedBy,
+    onTabletOffsettedBy,
+    onDesktopOffsettedBy,
+    onLargeDesktopOffsettedBy
+  } = getColumnOffsetProps(props);
 
   const classes = cx(
     'column',
@@ -77,7 +85,10 @@ Column.propTypes = {
   content: PropTypes.node,
 
   /** Base Column Width */
-  is: customPropTypes.columnsWidth,
+  is: PropTypes.oneOfType([
+    customPropTypes.columnsWidth,
+    PropTypes.object
+  ]),
 
   /** Base Offset */
   offsettedBy: customPropTypes.columnsOffset,
