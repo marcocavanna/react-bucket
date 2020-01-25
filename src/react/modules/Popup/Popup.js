@@ -108,7 +108,7 @@ class Popup extends PureComponent {
     inverted : true,
     offset   : 0,
     on       : 'hover',
-    position : 'top left'
+    position : 'top center'
   }
 
   static Content = PopupContent;
