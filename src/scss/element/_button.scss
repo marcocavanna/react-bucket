@@ -70,7 +70,16 @@ $__button_background_map: ();
       $active-color: $text,
       $focus-color: $text-light,
       $property-variation: color
-    )
+    );
+
+    &.with-icon {
+      padding-right: pixel-to-em($button-icon-container-size) !important;
+      padding-left: pixel-to-em($button-icon-container-size) !important;
+
+      @include icon-style {
+        background-color: transparent;
+      }
+    }
   }
 
   /** Include all Size Variation */
