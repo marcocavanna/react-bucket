@@ -39,6 +39,9 @@ export interface StrictColumnProps {
   /** Base Column Width */
   is?: ReactBucketCOLUMNWIDTH | IColumnWidthProp
 
+  /** Set Column as a Minimum Width Column */
+  minimumWidth?: boolean
+
   /** Responsive Columns Width */
   onTabletIs?       : ReactBucketCOLUMNWIDTH,
   onDesktopIs?      : ReactBucketCOLUMNWIDTH,
