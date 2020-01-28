@@ -266,10 +266,6 @@
     margin: 0;
     padding: 0;
     @include truncate-text();
-
-    + .item-text {
-      margin-top: get-em-spacer();
-    }
   }
 
   .item-text {
