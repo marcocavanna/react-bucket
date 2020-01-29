@@ -255,7 +255,7 @@ class Button extends PureComponent {
       </ElementType>
     );
 
-    return tooltip
+    return tooltip && !disabled
       ? (
         <Popup
           trigger={buttonElement}
