@@ -71,6 +71,9 @@ export interface StrictDropzoneProps {
 
   /** Every Time a file change, onFileChanged will be invoked */
   onFileChange?: (nothing: null, props: DropzoneEventProps) => void
+
+  /** Hide the Component, without Unmount */
+  visible?: boolean
 }
 
 interface DropzoneComponent extends React.StatelessComponent<DropzoneProps> { }

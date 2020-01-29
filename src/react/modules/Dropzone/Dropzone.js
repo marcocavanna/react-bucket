@@ -51,13 +51,17 @@ export default class Dropzone extends React.Component {
     onDropEnd: PropTypes.func,
 
     /** On File Change handler */
-    onFileChange: PropTypes.func
+    onFileChange: PropTypes.func,
+
+    /** Hide the Component without Unmount */
+    visible: PropTypes.bool
   }
 
   static defaultProps = {
     multiple : true,
     noClick  : false,
-    noDrag   : false
+    noDrag   : false,
+    visible  : true
   }
 
 
@@ -70,7 +74,7 @@ export default class Dropzone extends React.Component {
     </div>
   )
 
-  static Hint = ({ isDragActive }) => (
+  static Hint = ({ isDragActive, disabled }) => (
     <div className='dropzone-hint'>
       <Icon
         className='dropzone-icon'
@@ -83,9 +87,11 @@ export default class Dropzone extends React.Component {
 
       <div className='dropzone-message'>
         {
-          isDragActive
-            ? 'Rilascia i file qui'
-            : 'Trascina o Clicca per selezionare un File'
+          disabled
+            ? 'Upload Disabilitato'
+            : isDragActive
+              ? 'Rilascia i file qui'
+              : 'Trascina o Clicca per selezionare un File'
         }
       </div>
     </div>
@@ -153,6 +159,20 @@ export default class Dropzone extends React.Component {
   state = {
     fileLoadError : false,
     files         : []
+  }
+
+
+  /* --------
+   * Controller Function
+   * -------- */
+  clear = () => {
+    this.setState({ files: [] }, () => {
+      const { onFileChange } = this.props;
+
+      if (typeof onFileChange === 'function') {
+        onFileChange(null, { ...this.props, files: [], value: [] });
+      }
+    });
   }
 
 
@@ -347,7 +367,7 @@ export default class Dropzone extends React.Component {
             <React.Fragment>
 
               {(!files.length && (
-                <Dropzone.Hint isDragActive={isDragActive} />
+                <Dropzone.Hint isDragActive={isDragActive} disabled={disabled} />
               )) || (
                 <Dropzone.FilesList
                   files={files}
@@ -379,8 +399,13 @@ export default class Dropzone extends React.Component {
       disabled,
       multiple,
       noClick,
-      noDrag
+      noDrag,
+      visible
     } = this.props;
+
+    if (!visible) {
+      return null;
+    }
 
     /** Render the Wrapper */
     return (
