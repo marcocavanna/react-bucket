@@ -79,6 +79,8 @@ export { default as Toast } from './elements/Toast';
  */
 export { default as Dimmer } from './modules/Dimmer';
 
+export { default as Dropzone } from './modules/Dropzone';
+
 export { default as Modal } from './modules/Modal';
 
 export { default as Popup } from './modules/Popup';

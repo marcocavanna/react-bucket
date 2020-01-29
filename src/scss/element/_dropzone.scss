@@ -1,0 +1,218 @@
+/*
+ * Dropzone Framwork
+ *
+ * Dropzone @ _dropzone.scss in 'Element'
+ *
+ * Defined at 2020-01-29
+ * Copyright Marco Cavanna • 2020
+ */
+
+
+/******
+    Dropzone Block Main Style
+******/
+.dropzone {
+  display: block;
+  padding: 3em;
+  border: dashed 4px $border-color;
+  text-align: center;
+
+  &.has-files {
+    padding-top: 1em;
+    padding-bottom: 1em;
+  }
+}
+
+
+/******
+    Dropzone State
+******/
+.dropzone.is-disabled {
+  pointer-events: none;
+  @include unselectable();
+  opacity: $disabled-opacity;
+}
+
+
+/******
+    Dropzone Content Styling
+******/
+.dropzone > .dropzone-content > .dropzone-hint {
+  color: $grey-light;
+
+  @include icon-style {
+    margin: 0 auto;
+    display: block;
+    font-size: 4em;
+  }
+
+  .dropzone-title {
+    font-size: 2em;
+    font-weight: $bold;
+    margin: .5em 0 .25em;
+  }
+
+  .dropzone-message {
+    font-size: 1.5em;
+    font-weight: $semi-bold;
+  }
+
+}
+
+
+/******
+    Append Proper Transition
+    properties to dropzone element
+******/
+.dropzone.is-draggable:not(.is-disabled),
+.dropzone.is-clickable:not(.is-disabled) {
+  cursor: pointer;
+  transition: border-color $transition-duration $transition-ease;
+
+  > .dropzone-content > .dropzone-hint {
+    transition: color $transition-duration $transition-ease;
+  }
+}
+
+
+/******
+    Clickable Dropzone
+    will change border color
+    and pointer on Hover
+******/
+.dropzone.is-clickable:not(.is-disabled) {
+  cursor: pointer;
+
+  @include without-touch-hover {
+    border-color: $primary;
+
+    > .dropzone-content > .dropzone-hint {
+      color: $primary;
+    }
+  }
+}
+
+
+/******
+    Dragging Elements on Dropzone
+    will change border color
+******/
+.dropzone.is-draggable.is-dragging:not(.is-disabled) {
+  transition: none;
+  border-color: $primary;
+
+  > .dropzone-content > .dropzone-hint {
+    transition: none;
+    color: $primary;
+  }
+}
+
+
+/******
+    Dropzone File Preview Container
+******/
+.dropzone > .dropzone-content > .dropzone-files {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  /*---
+    Preview Container dimension and Spacing
+  ---*/
+  > .file-preview-wrapper {
+    position: relative;
+    flex: 0 0 96px;
+    width: 96px;
+    margin: get-em-spacer(4) get-em-spacer(3) 0;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  /*---
+    File Delete Icon
+  ---*/
+  > .file-preview-wrapper > .file-delete {
+    position: absolute;
+    height: 24px;
+    width: 24px;
+    border-radius: 50%;
+    background-color: $grey-darkest;
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);
+    text-align: center;
+    opacity: .75;
+    z-index: 2;
+
+    .icon {
+      color: $white-shade-2;
+      margin: 0;
+      line-height: 24px;
+    }
+  }
+
+  /*---
+    Preview Container Image / Icon
+  ---*/
+  > .file-preview-wrapper {
+    > .file-preview {
+      position: relative;
+      width: 96px;
+      height: 96px;
+      border-radius: $border-radius;
+      background-color: $grey-lightest;
+      overflow: hidden;
+
+      > img,
+      > .icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      > .icon {
+        font-size: 3.5em;
+        color: $text-lightest;
+      }
+    }
+
+    &.is-image.is-horizontal img {
+      width: 100%;
+    }
+
+    &.is-image.is-vertical img {
+      height: 100%;
+    }
+  }
+
+  /*---
+    Preview Meta Information
+  ---*/
+  > .file-preview-wrapper {
+    > .file-meta {
+      margin-top: get-em-spacer(2);
+
+      > span {
+        color: $text-lightest;
+        display: block;
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-weight: $semi-bold;
+
+        &.file-size {
+          opacity: .5;
+        }
+      }
+    }
+  }
+}

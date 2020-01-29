@@ -32,6 +32,8 @@ export { default as AutoControlledComponent } from './AutoControlledComponent';
 
 export * from './refUtils';
 
+export { default as mimetypeToFontawesome } from './mimetypeToFontawesome';
+
 export {
   customPropTypes,
   childrenUtils,
