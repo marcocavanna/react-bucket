@@ -211,6 +211,17 @@ class Popup extends PureComponent {
     _.invoke(this.props, 'onUnmount', e, this.props);
   };
 
+  handlePopupClick = (e) => {
+    const {
+      basic,
+      inverted
+    } = this.props;
+
+    if (!basic && !inverted) {
+      e.stopPropagation();
+    }
+  }
+
   handleUpdate = () => this.positionUpdate && this.positionUpdate();
 
   renderContent = ({
@@ -257,7 +268,12 @@ class Popup extends PureComponent {
 
     return (
       <Ref innerRef={popperRef}>
-        <ElementType {...contentRestProps} className={classes} style={styles}>
+        <ElementType
+          {...contentRestProps}
+          className={classes}
+          style={styles}
+          onClick={this.handlePopupClick}
+        >
           <div className='popup-content'>
             {childrenUtils.isNil(children)
               ? (

@@ -21,6 +21,11 @@
   &.has-files {
     padding-top: 1em;
     padding-bottom: 1em;
+
+    &.files-list-preview {
+      padding-left: 1em;
+      padding-right: 1em;
+    }
   }
 }
 
@@ -28,10 +33,18 @@
 /******
     Dropzone State
 ******/
-.dropzone.is-disabled {
+.dropzone.is-disabled:not(.is-uploading) {
   pointer-events: none;
   @include unselectable();
   opacity: $disabled-opacity;
+}
+
+.dropzone.is-uploading {
+  @include flashingPrimaryBorder();
+}
+
+.dropzone.has-upload-error {
+  border-color: $danger !important;
 }
 
 
@@ -137,29 +150,6 @@
   }
 
   /*---
-    File Delete Icon
-  ---*/
-  > .file-preview-wrapper > .file-delete {
-    position: absolute;
-    height: 24px;
-    width: 24px;
-    border-radius: 50%;
-    background-color: $grey-darkest;
-    top: 0;
-    right: 0;
-    transform: translate(50%, -50%);
-    text-align: center;
-    opacity: .75;
-    z-index: 2;
-
-    .icon {
-      color: $white-shade-2;
-      margin: 0;
-      line-height: 24px;
-    }
-  }
-
-  /*---
     Preview Container Image / Icon
   ---*/
   > .file-preview-wrapper {
@@ -215,5 +205,136 @@
         }
       }
     }
+  }
+}
+
+
+/******
+    Dropzone with Files showed as List
+******/
+.dropzone.files-list-preview > .dropzone-content > .dropzone-files {
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  width: 100%;
+
+  > .file-preview-wrapper {
+    display: flex;
+    height: 48px;
+    width: 100%;
+    flex-basis: 100%;
+    align-items: center;
+    margin-left: 0;
+    margin-top: 0;
+
+    > .file-preview {
+      height: 48px;
+      width: 48px;
+      margin-right: 12px;
+      flex: 0 0 48px;
+
+      > .icon {
+        font-size: 2em;
+      }
+    }
+
+    > .file-meta {
+      flex: 1 1 auto;
+      overflow: hidden;
+    }
+
+    > .file-tools {
+      margin-left: 12px;
+    }
+
+    + .file-preview-wrapper {
+      padding-top: 12px;
+      margin-top: 12px;
+      border-top: $border;
+    }
+  }
+}
+
+
+/******
+    Display File Tools
+******/
+.dropzone.files-icon-preview .file-preview-wrapper > .file-tools {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  z-index: 2;
+
+  > .file-tool {
+    display: inline-block;
+    height: 24px;
+    width: 24px;
+    border-radius: 50%;
+    background-color: $grey-darkest;
+    text-align: center;
+    opacity: .75;
+
+    .icon {
+      color: $white-shade-2;
+      margin: 0;
+      line-height: 24px;
+    }
+
+    + .file-tool {
+      margin-left: 4px;
+    }
+  }
+}
+
+.dropzone.files-list-preview .file-preview-wrapper > .file-tools {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  > .file-tool {
+    font-size: 1.25em;
+    color: $grey-light;
+
+    .icon {
+      margin: 0;
+    }
+
+    + .file-tool {
+      margin-top: 4px;
+    }
+  }
+}
+
+
+/******
+    File State Display
+******/
+.dropzone .file-preview > .file-state-wrapper {
+  display: block;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  border-radius: $border-radius;
+  background-color: transparentize($primary, .25);
+  transition: background-color $transition-duration $transition-ease;
+
+  > .file-state-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    .icon {
+      margin: 0;
+      color: $white-shade-2;
+    }
+  }
+
+  &.is-success {
+    background-color: transparentize($color: $success, $amount: .25);
+  }
+
+  &.is-error {
+    background-color: transparentize($color: $danger, $amount: .25);
   }
 }

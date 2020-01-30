@@ -18,17 +18,38 @@
   }
 }
 
+@keyframes :global(flashingPrimaryBorder) {
+  0% {
+    border-color: $primary;
+  }
+
+  50% {
+    border-color: color-tint($primary, 5);
+  }
+
+  100% {
+    border-color: $primary;
+  }
+}
+
 @mixin animate($animation-name, $timing-function: $swift-ease-in, $duration: 300ms, $iteration-count: 1) {
   animation-name: $animation-name;
   animation-timing-function: $timing-function;
   animation-duration: $duration;
-  animation-iteration-count: 1;
+  animation-iteration-count: $iteration-count;
 }
 
 @mixin fadeIn($duration: 300ms, $timing-function: $swift-ease-out) {
-@include animate(fadeIn, $timing-function, $duration);
+  @include animate(fadeIn, $timing-function, $duration);
 }
 
 @mixin fadeInDown($duration: 300ms, $timing-function: $swift-ease-out) {
   @include animate(fadeInDown, $timing-function, $duration);
+}
+
+@mixin flashingPrimaryBorder($duration: 1500ms) {
+  animation-name: flashingPrimaryBorder;
+  animation-timing-function: $swift-ease-in-out;
+  animation-duration: $duration;
+  animation-iteration-count: infinite;
 }

@@ -72,6 +72,15 @@ export interface StrictDropzoneProps {
   /** Every Time a file change, onFileChanged will be invoked */
   onFileChange?: (nothing: null, props: DropzoneEventProps) => void
 
+  /** Show Upload interface and add an Handler to Upload file */
+  onUpload?: (files: IDroppedFiles[], controller: any) => Promise<void>
+
+  /** Called once upload is finish */
+  onUploadEnd?: (files: IDroppedFiles[]) => void
+
+  /** Change the Choosen File View */
+  showFilesAs?: 'icon' | 'list'
+
   /** Hide the Component, without Unmount */
   visible?: boolean
 }

@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
-import { will, isValidString, getRandomToken } from '@appbuckets/rabbit';
+import _ from 'lodash';
+
+import { will, isValidString, getRandomToken, isObject } from '@appbuckets/rabbit';
 
 import DropzoneWrapper from 'react-dropzone';
 
@@ -16,8 +18,15 @@ import {
   mimetypeToFontawesome
 } from '../../lib';
 
+import Divider from '../../elements/Divider';
 import Icon from '../../elements/Icon';
+import Input from '../../elements/Input';
+import Loader from '../../elements/Loader';
+
+import Layout from '../../collections/Layout';
+
 import Popup from '../Popup';
+import Button from '../../elements/Button';
 
 export default class Dropzone extends React.Component {
 
@@ -53,15 +62,25 @@ export default class Dropzone extends React.Component {
     /** On File Change handler */
     onFileChange: PropTypes.func,
 
+    /** On Upload Handler */
+    onUpload: PropTypes.func,
+
+    /** Handler called when upload is finish */
+    onUploadEnd: PropTypes.func,
+
+    /** Change the show File UI */
+    showFilesAs: PropTypes.oneOf(['icon', 'list']),
+
     /** Hide the Component without Unmount */
     visible: PropTypes.bool
   }
 
   static defaultProps = {
-    multiple : true,
-    noClick  : false,
-    noDrag   : false,
-    visible  : true
+    multiple    : true,
+    noClick     : false,
+    noDrag      : false,
+    showFilesAs : 'icon',
+    visible     : true
   }
 
 
@@ -103,20 +122,38 @@ export default class Dropzone extends React.Component {
     </div>
   )
 
-  static FilesList = ({ files, onDelete: handleDelete }) => (
+  static FilesList = ({
+    onDelete: handleDelete,
+    onEdit: handleEdit,
+    files,
+    asList,
+    ...rest
+  }) => (
     <div className='dropzone-files'>
       {files.map(({ id, ...file }) => (
         <Dropzone.File
           key={id}
+          {...rest}
           file={file}
+          asList={asList}
+          onEdit={(e, newName) => handleEdit(e, id, newName)}
           onDelete={e => handleDelete(e, id)}
         />
       ))}
     </div>
   )
 
-  static File = ({ file, onDelete: handleDelete }) => {
+  static File = ({
+    onDelete: handleDelete,
+    onEdit: handleEdit,
+    file,
+    asList,
+    uploading,
+    disabled,
+    uploadError
+  }) => {
 
+    /** Bild File Class List */
     const classes = file.isImage
       ? cx(
         'file-preview-wrapper',
@@ -127,29 +164,123 @@ export default class Dropzone extends React.Component {
       )
       : 'file-preview-wrapper';
 
-    return (
-      <Popup
-        position='bottom center'
-        content={file.name}
-        trigger={(
-          <div className={classes}>
-            <div className='file-delete' onClick={handleDelete}>
+    const [isPortalOpen, setPortalOpen] = useState(false);
+
+    const [overwrittenFileName, setFileName] = useState(file.name);
+
+    const handleInputChange = (e, { value }) => {
+      setFileName(value);
+    };
+
+    const handleEditButtonClick = (e) => {
+      handleEdit(e, overwrittenFileName);
+      setPortalOpen(false);
+    };
+
+    const handleTriggerClick = (e) => {
+      e.stopPropagation();
+      setPortalOpen(true);
+    };
+
+    const handleOutsideClick = () => setPortalOpen(false);
+
+    const hideTool = disabled || uploading || file.state.success;
+
+    /** Build the Preview Element */
+    const previewElement = (
+      <div className={classes}>
+
+        <div className='file-preview'>
+          {file.preview
+            ? <img src={file.preview} alt={file.name} />
+            : <Icon name={file.icon} />}
+
+          <Dropzone.FileState
+            {...file.state}
+            uploadError={uploadError}
+          />
+        </div>
+
+        <div className='file-meta'>
+          <span className='file-name'>{file.name}</span>
+          <span className='file-size'>{humanize.fileSize(file.size)}</span>
+        </div>
+
+        {!hideTool && (
+          <div className='file-tools'>
+            <Popup
+              open={isPortalOpen}
+              basic={false}
+              inverted={false}
+              content={(
+                <Input
+                  key={1}
+                  className='mb-0'
+                  label='Nome File'
+                  defaultValue={file.name}
+                  action={{
+                    primary : true,
+                    icon    : 'save',
+                    onClick : handleEditButtonClick
+                  }}
+                  actionPosition='right'
+                  onChange={handleInputChange}
+                />
+              )}
+              trigger={(
+                <div className='file-tool file-edit' onClick={handleTriggerClick}>
+                  <Icon name='edit' />
+                </div>
+              )}
+              onOutsideClick={handleOutsideClick}
+            />
+            <div className='file-tool file-delete' onClick={handleDelete}>
               <Icon name='times' />
-            </div>
-            <div className='file-preview'>
-              {file.preview
-                ? <img src={file.preview} alt={file.name} />
-                : <Icon name={file.icon} />}
-            </div>
-            <div className='file-meta'>
-              <span className='file-name'>{file.name}</span>
-              <span className='file-size'>{humanize.fileSize(file.size)}</span>
             </div>
           </div>
         )}
-      />
+
+      </div>
     );
 
+    /** Return the Component, based on asList prop */
+    return asList
+      ? previewElement
+      : (
+        <Popup
+          position='bottom center'
+          content={file.name}
+          trigger={previewElement}
+        />
+      );
+
+  }
+
+  static FileState = ({ uploading, success, error, uploadError }) => {
+
+    if (!uploading && !success && !error && !uploadError) {
+      return null;
+    }
+
+    const classes = uploading ? 'file-state-wrapper' : cx(
+      'file-state-wrapper',
+      classByKey(success, 'is-success'),
+      classByKey(error || uploadError, 'is-error')
+    );
+
+    return (
+      <div className={classes}>
+        <div className='file-state-container'>
+          {
+            (error || uploadError)
+              ? <Icon size='big' name='times' />
+              : uploading
+                ? <Loader inverted active centered type='dots' size='small' />
+                : <Icon size='big' name='check' />
+          }
+        </div>
+      </div>
+    );
   }
 
 
@@ -158,28 +289,29 @@ export default class Dropzone extends React.Component {
    * -------- */
   state = {
     fileLoadError : false,
-    files         : []
+    files         : [],
+    isUploading   : false,
+    uploadError   : null
   }
 
 
   /* --------
    * Controller Function
    * -------- */
-  clear = () => {
-    this.setState({ files: [] }, () => {
-      const { onFileChange } = this.props;
-
-      if (typeof onFileChange === 'function') {
-        onFileChange(null, { ...this.props, files: [], value: [] });
-      }
-    });
-  }
+  clear = () => this.handleFileClear()
 
 
   /* --------
    * Custom Handler
    * -------- */
   handleFileDrop = async (blobs) => {
+
+    /** While uploading, files could not be changed */
+    const { isUploading } = this.state;
+
+    if (isUploading) {
+      return;
+    }
 
     /** Build an Array to contain all reading promises */
     const readingPromises = [];
@@ -190,16 +322,22 @@ export default class Dropzone extends React.Component {
         /** Init the File Field */
         const file = {
           blob,
-          name    : blob.name,
-          size    : blob.size,
-          type    : isValidString(blob.type) ? blob.type : 'unknow',
-          error   : false,
-          preview : null,
-          icon    : '',
-          id      : getRandomToken(14),
-          isImage : false,
-          height  : 0,
-          width   : 0
+          name         : blob.name,
+          originalName : blob.name,
+          size         : blob.size,
+          type         : isValidString(blob.type) ? blob.type : 'unknow',
+          error        : false,
+          preview      : null,
+          icon         : '',
+          id           : getRandomToken(14),
+          isImage      : false,
+          height       : 0,
+          width        : 0,
+          state        : {
+            uploading : false,
+            success   : false,
+            error     : false
+          }
         };
 
         /** Assign the Icon */
@@ -255,8 +393,7 @@ export default class Dropzone extends React.Component {
     /** If an onDrop function exists, pass the Files */
     const {
       onDrop,
-      onDropEnd,
-      onFileChange
+      onDropEnd
     } = this.props;
 
     if (typeof onDrop === 'function') {
@@ -274,26 +411,150 @@ export default class Dropzone extends React.Component {
         onDropEnd(err, files);
       }
 
-      if (typeof onFileChange === 'function') {
-        onFileChange(null, { ...this.props, files, value: files });
-      }
+      this.handleFilesChanged();
     });
+  }
+
+  handleFilesChanged = () => {
+    const { files, isUploading } = this.state;
+
+    /** While uploading, files could not be changed */
+    if (isUploading) {
+      return;
+    }
+
+    _.invoke(this.props, 'onFileChange', null, {
+      ...this.props,
+      files,
+      value: files
+    });
+  }
+
+  handleFileClear = (e) => {
+    /** Calling the 'clear' function has no event, must use lodash to stop propagation */
+    _.invoke(e, 'stopPropagation');
+
+    /** While uploading, files could not be changed */
+    const { isUploading } = this.state;
+
+    if (isUploading) {
+      return;
+    }
+
+    /** Purge Files List */
+    this.setState({ files: [] }, this.handleFilesChanged);
+  }
+
+  handleFileEdit = (e, fileId, newName) => {
+    /** Avoid the Event Propagation */
+    e.stopPropagation();
+
+    if (!isValidString(newName)) {
+      return;
+    }
+
+    /** While uploading, files could not be changed */
+    const { isUploading } = this.state;
+
+    if (isUploading) {
+      return;
+    }
+
+    this.setState(({ files }) => ({
+      files: files.map((file) => {
+        if (file.id === fileId) {
+          file.name = newName;
+        }
+
+        return file;
+      })
+    }), this.handleFilesChanged);
   }
 
   handleFileDelete = (e, fileId) => {
     /** Avoid the Event Propagation */
     e.stopPropagation();
 
+    /** While uploading, files could not be changed */
+    const { isUploading } = this.state;
+
+    if (isUploading) {
+      return;
+    }
+
     this.setState(({ files }) => ({
       files: files.filter(({ id }) => id !== fileId)
-    }), () => {
-      const { onFileChange } = this.state;
-      const { files } = this.state;
+    }), this.handleFilesChanged);
+  }
 
-      if (typeof onFileChange === 'function') {
-        onFileChange(null, { ...this.props, files, value: files });
-      }
+  handleFilesUpload = async (e) => {
+    /** Avoid the Event Propagation */
+    e.stopPropagation();
+
+    /** Set the Uploading State */
+    this.setState({
+      isUploading : true,
+      uploadError : false
     });
+
+    /** Get the Upload Function */
+    const { onUpload } = this.props;
+
+    /** Get the Files List */
+    const { files } = this.state;
+
+    /** Await the onUpload function */
+    const [err] = await will(onUpload(
+      files.filter(({ state: { success } }) => !success),
+      { setFileState: this.setFileState }
+    ));
+
+    /** Return to default state */
+    this.setState({
+      isUploading : false,
+      uploadError : err !== null
+    }, () => {
+      const { files: newFiles } = this.state;
+
+      _.invoke(this.props, 'onUploadEnd', newFiles.filter(({ state: { success } }) => success));
+    });
+  }
+
+  setFileState = (__files, state) => {
+    const _files = !Array.isArray(__files) ? [__files] : __files;
+
+    /** Transform the files array */
+    const filesState = _files.reduce((states, file) => {
+      const fileId = isObject(file)
+        ? file.id
+        : isValidString(file)
+          ? file
+          : null;
+
+      if (!fileId) {
+        return states;
+      }
+
+      states[fileId] = state;
+
+      return states;
+    }, {});
+
+    /** Set the new State */
+    this.setState(({ files }) => ({
+      files: files.map((file) => {
+
+        if (isObject(filesState[file.id])) {
+          file.state = {
+            ...file.state,
+            ...filesState[file.id]
+          };
+        }
+
+        return file;
+      })
+    }));
+
   }
 
 
@@ -320,16 +581,22 @@ export default class Dropzone extends React.Component {
       disabled,
       multiple,
       noClick,
-      noDrag
+      noDrag,
+      onUpload,
+      showFilesAs
     } = this.props;
 
 
     /** Get States */
     const {
       fileLoadError,
-      files
+      files,
+      isUploading,
+      uploadError
     } = this.state;
 
+    /** Check how many uploadable files there are */
+    const notUploadedFiles = files.filter(({ state: { success } }) => !success).length;
 
     /** Build Classlist */
     const classes = cx(
@@ -339,12 +606,16 @@ export default class Dropzone extends React.Component {
       classByKey(isDragActive, 'is-dragging'),
       classByKey(isDragAccept, 'is-accepted'),
       classByKey(isDragReject, 'is-rejected'),
-      classByKey(disabled, 'is-disabled'),
+      classByKey(disabled || isUploading, 'is-disabled'),
       classByKey(!noClick, 'is-clickable'),
       classByKey(!noDrag, 'is-draggable'),
       classByKey(multiple, 'is-multiple'),
       classByKey(fileLoadError, 'is-error'),
       classByKey(files.length, 'has-files'),
+      classByKey(showFilesAs === 'icon', 'files-icon-preview', 'files-list-preview'),
+      classByKey(typeof onUpload === 'function', 'is-uploadable'),
+      classByKey(isUploading, 'is-uploading'),
+      classByKey(uploadError, 'has-upload-error'),
       className
     );
 
@@ -371,8 +642,46 @@ export default class Dropzone extends React.Component {
               )) || (
                 <Dropzone.FilesList
                   files={files}
+                  disabled={disabled}
+                  uploading={isUploading}
+                  uploadError={uploadError}
+                  asList={showFilesAs === 'list'}
+                  onEdit={this.handleFileEdit}
                   onDelete={this.handleFileDelete}
                 />
+              )}
+
+              {!!files.length && typeof onUpload === 'function' && (
+                <React.Fragment>
+
+                  <Divider />
+
+                  <Layout.Row>
+                    <Layout.Column
+                      textAlign='center'
+                      content={(
+                        <React.Fragment>
+                          <Button
+                            primary
+                            disabled={disabled || isUploading || notUploadedFiles === 0}
+                            loading={isUploading}
+                            icon='file upload'
+                            content='Invia'
+                            onClick={this.handleFilesUpload}
+                          />
+                          <Button
+                            flat
+                            disabled={disabled || isUploading}
+                            icon='times'
+                            content='Pulisci'
+                            onClick={this.handleFileClear}
+                          />
+                        </React.Fragment>
+                      )}
+                    />
+                  </Layout.Row>
+
+                </React.Fragment>
               )}
 
             </React.Fragment>
@@ -407,10 +716,14 @@ export default class Dropzone extends React.Component {
       return null;
     }
 
+    const {
+      isUploading
+    } = this.state;
+
     /** Render the Wrapper */
     return (
       <DropzoneWrapper
-        disabled={disabled}
+        disabled={disabled || isUploading}
         multiple={multiple}
         noClick={noClick}
         noDrag={noDrag}
