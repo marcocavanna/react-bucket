@@ -28,6 +28,18 @@ export interface IDroppedFiles {
   /** The file size */
   size: number
 
+  /** File State */
+  state: {
+    /** File upload generate an Error */
+    error: boolean
+
+    /** File upload was success */
+    success: boolean
+
+    /** File is Currently Uploading */
+    uploading: boolean
+  }
+
   /** File mimetype */
   type: string
 

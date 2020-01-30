@@ -1,1 +1,1 @@
-export { default, DropzoneProps, StrictDropzoneProps } from './Dropzone';
+export { default, DropzoneProps, StrictDropzoneProps, IDroppedFiles } from './Dropzone';

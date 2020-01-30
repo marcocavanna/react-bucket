@@ -322,18 +322,19 @@ export default class Dropzone extends React.Component {
         /** Init the File Field */
         const file = {
           blob,
-          name         : blob.name,
-          originalName : blob.name,
-          size         : blob.size,
-          type         : isValidString(blob.type) ? blob.type : 'unknow',
-          error        : false,
-          preview      : null,
-          icon         : '',
-          id           : getRandomToken(14),
-          isImage      : false,
-          height       : 0,
-          width        : 0,
-          state        : {
+          _isDroppedFile : true,
+          name           : blob.name,
+          originalName   : blob.name,
+          size           : blob.size,
+          type           : isValidString(blob.type) ? blob.type : 'unknow',
+          error          : false,
+          preview        : null,
+          icon           : '',
+          id             : getRandomToken(14),
+          isImage        : false,
+          height         : 0,
+          width          : 0,
+          state          : {
             uploading : false,
             success   : false,
             error     : false
