@@ -85,6 +85,12 @@ export default class Dropzone extends React.Component {
 
 
   /* --------
+   * Useful Exported Function
+   * -------- */
+  static iconByFile = (file = {}) => mimetypeToFontawesome(file.mimetype)
+
+
+  /* --------
    * Internal Component
    * -------- */
   static HiddenInput = props => (
@@ -507,7 +513,7 @@ export default class Dropzone extends React.Component {
     /** Await the onUpload function */
     const [err] = await will(onUpload(
       files.filter(({ state: { success } }) => !success),
-      { setFileState: this.setFileState }
+      { setFileState: this.setFileState, removeFile: this.removeFile }
     ));
 
     /** Return to default state */
@@ -556,6 +562,25 @@ export default class Dropzone extends React.Component {
       })
     }));
 
+  }
+
+  removeFile = (__files) => {
+    const _files = (!Array.isArray(__files) ? [__files] : __files)
+      .map((file) => {
+        const fileId = isObject(file)
+          ? file.id
+          : isValidString(file)
+            ? file
+            : null;
+
+        return fileId;
+      })
+      .filter(isValidString);
+
+    /** Set the new States, removing Files from Array */
+    this.setState(({ files }) => ({
+      files: files.filter(({ id }) => !_files.includes(id))
+    }));
   }
 
 

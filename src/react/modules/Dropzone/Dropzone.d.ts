@@ -97,7 +97,9 @@ export interface StrictDropzoneProps {
   visible?: boolean
 }
 
-interface DropzoneComponent extends React.StatelessComponent<DropzoneProps> { }
+interface DropzoneComponent extends React.StatelessComponent<DropzoneProps> {
+  static iconByFile(file: { mimetype: string, [key: string]: any }): string
+}
 
 declare const Dropzone: DropzoneComponent
 
