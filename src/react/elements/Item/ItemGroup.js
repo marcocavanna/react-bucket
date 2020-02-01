@@ -22,11 +22,13 @@ function ItemGroup(props) {
     clickableItems,
     divided,
     items,
+    relaxed,
     section
   } = props;
 
   const classes = cx(
     classByKey(divided, 'are-divided'),
+    classByKey(relaxed, 'are-relaxed'),
     classByKey(clickableItems, 'items-are-clickable'),
     className,
     'items'
@@ -64,6 +66,9 @@ ItemGroup.propTypes = {
 
   /** Items shorthand */
   items: PropTypes.array,
+
+  /** Expand Spacing */
+  relaxed: PropTypes.bool,
 
   /** Item Section Shorthand */
   section: PropTypes.node
