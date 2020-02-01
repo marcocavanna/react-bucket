@@ -12,7 +12,6 @@ import {
   classByPattern
 } from '../../lib';
 
-import Image from '../Image';
 import Icon from '../Icon';
 
 function ItemAvatar(props) {
@@ -31,6 +30,7 @@ function ItemAvatar(props) {
     primary,
     secondary,
     size,
+    square,
     success,
     warning
   } = props;
@@ -50,6 +50,7 @@ function ItemAvatar(props) {
     classByKey(secondary, 'is-secondary'),
     classByPattern(size, 'is-%value%'),
     classByKey(success, 'is-success'),
+    classByKey(square, 'is-square'),
     classByKey(warning, 'is-warning'),
     classByKey(hasCustomBackground, 'has-generated-background'),
     className
@@ -72,7 +73,7 @@ function ItemAvatar(props) {
     }
 
     if (image) {
-      return <Image src={image} />;
+      return <div style={{ backgroundImage: `url(${image})` }}></div>;
     }
 
     return content;
@@ -133,6 +134,9 @@ ItemAvatar.propTypes = {
 
   /** Change Avatar Size */
   size: customPropTypes.size,
+
+  /** Set Square Avatar */
+  square: PropTypes.bool,
 
   /** Set Success Style */
   success: PropTypes.bool,
