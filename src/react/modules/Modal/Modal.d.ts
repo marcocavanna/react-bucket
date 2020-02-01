@@ -59,6 +59,9 @@ export interface StrictModalProps {
   /** Modal header shorthand */
   header?: React.ReactNode
 
+  /** Show modal as a Light Box */
+  lightbox?: boolean
+
   /** Node where to mount Modal */
   mountNode?: any
 

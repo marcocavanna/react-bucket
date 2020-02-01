@@ -89,6 +89,9 @@ class Modal extends Component {
     /** Modal header shorthand */
     header: PropTypes.node,
 
+    /** Show Modal as Light Box */
+    lightbox: PropTypes.bool,
+
     /** Node where to mount Modal */
     mountNode: PropTypes.any,
 
@@ -299,6 +302,7 @@ class Modal extends Component {
       closeIcon,
       content,
       header,
+      lightbox,
       mountNode,
       size,
       style
@@ -317,6 +321,7 @@ class Modal extends Component {
       classByKey(this.legacy, 'is-legacy'),
       classByKey(scrolling, 'is-scrolling'),
       classByKey(autosized, 'is-autosized'),
+      classByKey(lightbox, 'is-lightbox'),
       className
     );
 
