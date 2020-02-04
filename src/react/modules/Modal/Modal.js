@@ -17,7 +17,8 @@ import {
   getElementType,
   getUnhandledProps,
   classByKey,
-  classByPattern
+  classByPattern,
+  splitComponentProps
 } from '../../lib';
 
 import Ref from '../../addons/Ref';
@@ -133,6 +134,8 @@ class Modal extends Component {
   }
 
   static autoControlledProps = ['open']
+
+  static splitProps = props => splitComponentProps(Modal, props);
 
   static Header = ModalHeader
 

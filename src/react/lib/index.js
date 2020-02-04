@@ -2,7 +2,7 @@ import * as customPropTypes from './customPropTypes';
 import * as childrenUtils from './childrenUtils';
 import * as RBUI from './RBUI';
 
-export { getUnhandledProps } from './getUnhandledProps';
+export { getUnhandledProps, splitComponentProps } from './getUnhandledProps';
 
 export { getElementType } from './getElementType';
 

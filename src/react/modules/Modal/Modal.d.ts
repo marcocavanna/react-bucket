@@ -98,6 +98,8 @@ interface ModalComponent extends React.ComponentClass<ModalProps> {
   Actions: typeof ModalActions
   Content: typeof ModalContent
   Header: typeof ModalHeader
+
+  static splitProps(props: any): [StrictModalProps, any]
 }
 
 declare const Modal: ModalComponent
