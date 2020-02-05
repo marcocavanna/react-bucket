@@ -73,7 +73,7 @@ export const getAutoControlledStateValue = (propName, props, state, includeDefau
   return undefined;
 };
 
-// eslint-disable-next-line react/require-optimization
+// eslint-disable-next-line react/require-optimization, react/no-unsafe
 export default class AutoControlledComponent extends Component {
   constructor(...args) {
     super(...args);
@@ -171,7 +171,7 @@ export default class AutoControlledComponent extends Component {
     this.state = { ...state, ...initialAutoControlledState };
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     const { autoControlledProps } = this.constructor;
 
     // Solve the next state for autoControlledProps

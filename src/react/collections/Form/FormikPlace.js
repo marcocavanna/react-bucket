@@ -1,10 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { isObject } from '@appbuckets/rabbit';
-
-import _ from 'lodash';
-
 import getFormFieldStateProps from './lib/get-form-field-state-props';
 import withFormikField from './lib/with-formik-field';
 

@@ -1,5 +1,3 @@
-import { isValidString } from '@appbuckets/rabbit';
-
 /** Build a Cache to avoid multiple regexp match */
 const cache = {};
 
