@@ -271,10 +271,6 @@ class DayPicker extends Component {
       return;
     }
 
-    this.setState({
-      selectedDays: modifiers.selected ? undefined : value
-    });
-
     /** Eval Day Change */
     this.evalDayChange(value);
   }
