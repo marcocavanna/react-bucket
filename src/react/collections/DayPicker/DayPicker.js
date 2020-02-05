@@ -260,12 +260,21 @@ class DayPicker extends Component {
     this.evalDayChange(value, true);
   }
 
-  handleDayClick = (value) => {
+  handleDayClick = (value, modifiers = {}) => {
     /** Check if component is disabled */
     const { disabled } = this.props;
     if (disabled) {
       return;
     }
+
+    if (modifiers.disabled) {
+      return;
+    }
+
+    this.setState({
+      selectedDays: modifiers.selected ? undefined : value
+    });
+
     /** Eval Day Change */
     this.evalDayChange(value);
   }

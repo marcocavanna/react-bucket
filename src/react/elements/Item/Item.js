@@ -103,7 +103,10 @@ Item.propTypes = {
   header: PropTypes.any,
 
   /** Meta Shorthand */
-  meta: PropTypes.node,
+  meta: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.bool
+  ]),
 
   /**
    * Called after user's click.
