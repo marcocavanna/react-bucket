@@ -18,3 +18,7 @@
   background-color: $white !important;
   @include dpShadow(2);
 }
+
+label {
+  cursor: inherit;
+}

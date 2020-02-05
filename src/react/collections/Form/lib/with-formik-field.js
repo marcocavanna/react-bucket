@@ -17,6 +17,7 @@ const withFormikField = ({
     name,
     validate,
     onChange: localOnFieldChange,
+    onBlur: localOnFieldBlur,
     ...rest
   } = props;
 
@@ -46,7 +47,7 @@ const withFormikField = ({
    * -------- */
   const {
     name: fieldName,
-    onBlur: handleBlur,
+    onBlur: originalOnBlur,
     onChange: originalOnChange,
     value,
     ...fieldRest
@@ -55,7 +56,7 @@ const withFormikField = ({
   /** Get meta props */
   const meta = formik.getFieldMeta(name);
 
-  /** Extend the origianl change props to append an isChanged meta */
+  /** Extend the original change props to append an isChanged meta */
   const handleChange = (...args) => {
     /** Set Touched, if must */
     if (touchOnChange) {
@@ -78,6 +79,15 @@ const withFormikField = ({
     if (typeof localOnFieldChange === 'function') {
       localOnFieldChange(...args);
     }
+  };
+
+  /** Extend the original blur props to execute the localOnFieldBlur */
+  const handleBlur = (...args) => {
+    if (typeof localOnFieldBlur === 'function') {
+      localOnFieldBlur(...args);
+    }
+
+    originalOnBlur(...args);
   };
 
   /** Get Properties from meta */

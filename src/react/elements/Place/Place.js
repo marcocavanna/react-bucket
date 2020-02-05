@@ -238,8 +238,7 @@ class GooglePlacesAutocomplete extends Component {
         countryCode : addressComponent('country', 'short_name')
       },
       position: {
-        lat : location.lat(),
-        lng : location.lng()
+        coordinates: [location.lng(), location.lat()]
       }
     };
 

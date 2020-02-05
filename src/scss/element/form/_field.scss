@@ -131,6 +131,11 @@
     and disable all user pointer events
 ******/
 .field {
+  &.is-inline {
+    display: inline-block;
+    margin: 0;
+  }
+
   /* Style for entire disable field */
   &.is-disabled {
     opacity: $disabled-opacity !important;

@@ -38,6 +38,7 @@ function Field(props) {
     hintColor,
     icon,
     iconPosition,
+    inline,
     inlineLabel,
     inlineLabelPosition,
     input,
@@ -62,6 +63,7 @@ function Field(props) {
     classByKey(focus, 'is-focused'),
     classByPattern(size, 'is-%value%'),
     classByKey(required, 'is-required'),
+    classByKey(inline, 'is-inline'),
     className
   );
 
@@ -188,6 +190,9 @@ Field.propTypes = {
 
   /** Icon Position */
   iconPosition: PropTypes.oneOf(['left', 'right']),
+
+  /** Display field as inline */
+  inline: PropTypes.bool,
 
   /** Show an Inline Label */
   inlineLabel: PropTypes.string,
