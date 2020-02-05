@@ -108,6 +108,10 @@
       margin-bottom: 1em;
       border-bottom: solid 2px $grey-lightest;
     }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 }
 

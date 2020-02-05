@@ -13,6 +13,23 @@ $__base_column_width: percentage(1 / $columns);
   min-width: $__base_column_width;
   flex-basis: 0;
 
+  /** Minimum Column Width */
+  &.is-minimum-width {
+    flex-grow: 0;
+    min-width: 0;
+    flex-basis: auto;
+    padding-left: 0;
+    padding-right: 0;
+
+    &:first-child {
+      padding-left: $columns-gap;
+    }
+
+    &:last-child {
+      padding-right: $columns-gap;
+    }
+  }
+
 }
 
   /** Column Master Class */

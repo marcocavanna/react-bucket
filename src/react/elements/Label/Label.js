@@ -39,18 +39,33 @@ class Label extends React.PureComponent {
     /** Content ShortHand */
     content: PropTypes.node,
 
+    /** Set danger color */
+    danger: PropTypes.bool,
+
     /** Detail Shorthand */
     detail: PropTypes.any,
 
     /** Icon Shorthand */
     icon: customPropTypes.fontAwesome,
 
+    /** Set info color */
+    info: PropTypes.bool,
+
     /**
      * Called after user's click.
      * @param {SyntheticEvent} event - React's original SyntheticEvent.
      * @param {object} data - All props.
      */
-    onClick: PropTypes.func
+    onClick: PropTypes.func,
+
+    /** Set primary color */
+    primary: PropTypes.bool,
+
+    /** Set success color */
+    success: PropTypes.bool,
+
+    /** Set warning color */
+    warning: PropTypes.bool
   }
 
   /**
@@ -71,13 +86,23 @@ class Label extends React.PureComponent {
       className,
       color,
       content,
+      danger,
       detail,
-      icon
+      icon,
+      info,
+      primary,
+      success,
+      warning
     } = this.props;
 
     const classes = cx(
       'label',
       classByKey(icon, 'has-icon'),
+      classByKey(danger, 'is-danger'),
+      classByKey(info, 'is-info'),
+      classByKey(primary, 'is-primary'),
+      classByKey(success, 'is-success'),
+      classByKey(warning, 'is-warning'),
       classByPattern(color, 'is-%value%'),
       className
     );

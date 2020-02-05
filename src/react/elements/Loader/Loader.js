@@ -100,7 +100,7 @@ Loader.propTypes = {
   size: customPropTypes.size,
 
   /** Loader type */
-  type: PropTypes.oneOf(['circular', 'dots', 'indeterminate bar'])
+  type: PropTypes.oneOf(['circular', 'dots', 'indeterminated bar'])
 };
 
 Loader.defaultProps = {

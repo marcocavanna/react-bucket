@@ -25,11 +25,17 @@ export interface StrictLabelProps {
   /** Content Shorthand */
   content?: React.ReactNode
 
+  /** Set Danger Color */
+  danger?: boolean
+
   /** Detail Short hand */
   detail?: ReactBucketShorthandItem<LabelDetailProps>
 
   /** Icon Shorthand */
   icon?: ReactBucketICON
+
+  /** Set info Color */
+  info?: boolean
 
   /**
    * Called after user's click.
@@ -37,9 +43,19 @@ export interface StrictLabelProps {
    * @param {object} data - All props.
    */
   onClick?: (event: React.MouseEvent<HTMLDivElement>, props: LabelProps) => void
+
+  /** Set primary Color */
+  primary?: boolean
+
+  /** Set success Color */
+  success?: boolean
+
+  /** Set warning Color */
+  warning?: boolean
+
 }
 
-declare interface LabelComponent extends React.FunctionComponent<LabelProps, {}> {
+interface LabelComponent extends React.FunctionComponent<LabelProps> {
   Detail: typeof LabelDetail
   Group: typeof LabelGroup
 }

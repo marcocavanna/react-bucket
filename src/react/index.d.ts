@@ -84,6 +84,13 @@ export { default as Toast, ToastProps, StrictToastProps } from './elements/Toast
  */
 export { default as Dimmer, DimmerProps, StrictDimmerProps } from './modules/Dimmer';
 
+export {
+  default as Dropzone,
+  DropzoneProps,
+  StrictDropzoneProps,
+  IDroppedFiles
+} from './modules/Dropzone';
+
 export { default as Modal, ModalProps, StrictModalProps } from './modules/Modal';
 
 export { default as Popup, PopupProps, StrictPopupProps } from './modules/Popup';

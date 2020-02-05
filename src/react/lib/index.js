@@ -2,7 +2,7 @@ import * as customPropTypes from './customPropTypes';
 import * as childrenUtils from './childrenUtils';
 import * as RBUI from './RBUI';
 
-export { getUnhandledProps } from './getUnhandledProps';
+export { getUnhandledProps, splitComponentProps } from './getUnhandledProps';
 
 export { getElementType } from './getElementType';
 
@@ -31,6 +31,8 @@ export { default as getRandomGradient } from './getRandomGradient';
 export { default as AutoControlledComponent } from './AutoControlledComponent';
 
 export * from './refUtils';
+
+export { default as mimetypeToFontawesome } from './mimetypeToFontawesome';
 
 export {
   customPropTypes,

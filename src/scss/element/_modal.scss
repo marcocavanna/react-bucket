@@ -263,6 +263,15 @@
 
 
 /******
+    Modal as Lightbox
+******/
+.modal.is-lightbox {
+  width: auto !important;
+  max-width: 90% !important;
+}
+
+
+/******
     Modal Transition
 ******/
 

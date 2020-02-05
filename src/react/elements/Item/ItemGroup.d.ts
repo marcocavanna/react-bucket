@@ -27,6 +27,9 @@ export interface StrictItemGroupProps {
   /** Items Shorthand */
   items?: ReactBucketShorthandCollection<ItemProps>,
 
+  /** Expand Spacing */
+  relaxed?: boolean
+
   /** Section Shorthand */
   section?: React.ReactNode
 }

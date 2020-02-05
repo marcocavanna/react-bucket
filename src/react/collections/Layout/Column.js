@@ -10,8 +10,11 @@ import {
   getUnhandledProps,
   getElementType,
   customPropTypes,
-  createShorthandFactory
+  createShorthandFactory,
+  classByKey
 } from '../../lib';
+import getColumnWidthProps from './lib/getColumnWidthProps';
+import getColumnOffsetProps from './lib/getColumnOffsetProps';
 
 function Column(props) {
 
@@ -20,22 +23,30 @@ function Column(props) {
     className,
     color,
     content,
-    is,
-    onTabletIs,
-    onDesktopIs,
-    onLargeDesktopIs,
-    offsettedBy,
-    onTabletOffsettedBy,
-    onDesktopOffsettedBy,
-    onLargeDesktopOffsettedBy,
+    minimumWidth,
     textAlign,
     verticalAlign
   } = props;
+
+  const {
+    is,
+    onTabletIs,
+    onDesktopIs,
+    onLargeDesktopIs
+  } = getColumnWidthProps(props);
+
+  const {
+    offsettedBy,
+    onTabletOffsettedBy,
+    onDesktopOffsettedBy,
+    onLargeDesktopOffsettedBy
+  } = getColumnOffsetProps(props);
 
   const classes = cx(
     'column',
     classByPattern(color, 'has-text-%value%'),
     isValue(is),
+    classByKey(minimumWidth, 'is-minimum-width'),
     classByPattern(onTabletIs, 'on-tablet-is-%value%'),
     classByPattern(onDesktopIs, 'on-desktop-is-%value%'),
     classByPattern(onLargeDesktopIs, 'on-large-desktop-is-%value%'),
@@ -77,7 +88,13 @@ Column.propTypes = {
   content: PropTypes.node,
 
   /** Base Column Width */
-  is: customPropTypes.columnsWidth,
+  is: PropTypes.oneOfType([
+    customPropTypes.columnsWidth,
+    PropTypes.object
+  ]),
+
+  /** Set minimum width column */
+  minimumWidth: PropTypes.bool,
 
   /** Base Offset */
   offsettedBy: customPropTypes.columnsOffset,

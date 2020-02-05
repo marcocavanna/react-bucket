@@ -52,6 +52,9 @@ export interface StrictItemAvatarProps {
   /** Change Avatar Size */
   size?: ReactBucketSIZE
 
+  /** Set square Avatar */
+  square?: boolean
+
   /** Set Success Style */
   success?: boolean
 

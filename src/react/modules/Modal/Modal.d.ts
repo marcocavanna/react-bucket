@@ -59,6 +59,9 @@ export interface StrictModalProps {
   /** Modal header shorthand */
   header?: React.ReactNode
 
+  /** Show modal as a Light Box */
+  lightbox?: boolean
+
   /** Node where to mount Modal */
   mountNode?: any
 
@@ -95,6 +98,8 @@ interface ModalComponent extends React.ComponentClass<ModalProps> {
   Actions: typeof ModalActions
   Content: typeof ModalContent
   Header: typeof ModalHeader
+
+  static splitProps(props: any): [StrictModalProps, any]
 }
 
 declare const Modal: ModalComponent
