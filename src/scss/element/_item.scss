@@ -236,6 +236,13 @@
     }
   }
 
+  &.is-flexible {
+    min-width: $item-avatar-base-size;
+    width: auto;
+    flex: initial;
+    padding: 0 .5em;
+  }
+
   > .content {
     text-align: inherit;
     font-weight: $bold;

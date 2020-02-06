@@ -23,6 +23,7 @@ function ItemAvatar(props) {
     content,
     danger,
     disabled,
+    flexible,
     generateBackground,
     icon,
     image,
@@ -40,6 +41,7 @@ function ItemAvatar(props) {
 
   const classes = cx(
     'item-avatar',
+    classByKey(flexible, 'is-flexible'),
     classByKey(centered, 'is-centered'),
     classByPattern(color, 'is-%value%'),
     classByKey(danger, 'is-danger'),
@@ -50,7 +52,7 @@ function ItemAvatar(props) {
     classByKey(secondary, 'is-secondary'),
     classByPattern(size, 'is-%value%'),
     classByKey(success, 'is-success'),
-    classByKey(square, 'is-square'),
+    classByKey(square || flexible, 'is-square'),
     classByKey(warning, 'is-warning'),
     classByKey(hasCustomBackground, 'has-generated-background'),
     className
@@ -110,6 +112,9 @@ ItemAvatar.propTypes = {
 
   /** Disabled State */
   disabled: PropTypes.bool,
+
+  /** Set flexible Width */
+  flexible: PropTypes.bool,
 
   /** Set the Random Background color generator */
   generateBackground: PropTypes.oneOfType([

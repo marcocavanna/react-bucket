@@ -10,12 +10,42 @@ import withFormikField from './lib/with-formik-field';
 
 import Select from '../../elements/Select';
 
+
 /** @deprecated */
-const computeElementValue = value => (
+const __deprecatedComputeOptionValue = value => (
   isObject(value)
     ? value._id || value.value
     : value
 );
+
+
+const computeOptionProp = (option, getterFn, fallbackField) => {
+  /** If option is already a string, return as is */
+  if (typeof option === 'string') {
+    return option;
+  }
+
+  /** Check if Select has a custom getterFn function and use it */
+  if (typeof getterFn === 'function') {
+    return getterFn(option);
+  }
+
+  /**
+   * Else, check if option is a valid Object and
+   * try to return its value key.
+   * Alternately, return the entire option
+   */
+  return option?.[fallbackField] ?? option;
+};
+
+const computeOptionValue = (option, props) => (
+  computeOptionProp(option, props.getOptionValue, 'value')
+);
+
+const computeOptionLabel = (option, props) => (
+  computeOptionProp(option, props.getOptionLabel, 'label')
+);
+
 
 const FormikSelectComponent = ({ state, meta, rest }) => (
   <Select
@@ -49,9 +79,7 @@ const FormikSelect = withFormikField({
       }
 
       /** Try to Get the Select Value */
-      const value = typeof props.getOptionValue === 'function'
-        ? props.getOptionValue(selected)
-        : selected?.value ?? selected;
+      const value = computeOptionValue(selected, props);
 
       /** Set the Formik Field Value */
       formik.setFieldValue(props.name, _.isNil(value) ? null : value);
@@ -64,45 +92,79 @@ const FormikSelect = withFormikField({
   },
 
   /** Compute Value function will get the selected items */
-  computeValue: (value, { options, ...props }) => {
+  computeValue: (option, { options, ...props }) => {
 
     /**
      * On single selector, the selected
      * props is a plain object
      */
     if (!props.isMulti) {
-      /** Try to get the Value */
-      const selectedValue = isObject(value)
-        ? typeof props.getOptionValue === 'function'
-          ? props.getOptionValue(value)
-          : value.value
-        : value;
 
-      /** If no value, or options is not an array, return null */
+      /** Try to get the Value */
+      const value = computeOptionValue(option, props);
+
+      /**
+       * To avoid error while searching the correct
+       * selector options, check we have the selected value
+       * and the options array to filter
+       */
       if (!value || !Array.isArray(options)) {
         return null;
       }
 
-      /** Find correct option */
-      return options.find((option) => {
+      /**
+       * Remap the options using the function to compute
+       * value for each possibility and find the selected
+       * one. Otherwhise return undefined
+       */
+      const foundedOption = options.find((choice) => {
         /** Compute Option Value */
-        const optionValue = typeof props.getOptionValue === 'function'
-          ? props.getOptionValue(option)
-          : isObject(option)
-            ? option.value
-            : option;
-
+        const choiceValue = computeOptionValue(choice, props);
         /** Compare with Selected */
-        return optionValue === selectedValue;
+        return choiceValue === value;
       });
 
+      /** If a valid option has been found, return it */
+      if (foundedOption) {
+        return foundedOption;
+      }
+
+      /**
+       * Else if the selector is in creatable mode,
+       * build a new option to push into options array
+       */
+      if (props.creatable) {
+        const newOption = {
+          __isNew__ : true,
+          label     : computeOptionLabel(option, props),
+          value
+        };
+
+        /** Place the new option on first position */
+        options.unshift(newOption);
+
+        return newOption;
+      }
+
+      /** Else, fallback to null */
+      return undefined;
     }
 
-    const selectedValues = Array.isArray(value) ? value.map(computeElementValue) : [];
+    /** To continue with isMulti props, must assert values is an Array */
+    if (!Array.isArray(option)) {
+      return null;
+    }
+
+    /**
+     * If the selector is a Multiple Choice selector
+     * and the selected values is an array, remap each
+     * selected values computing choice value
+     */
+    const selectedValues = option.map(__deprecatedComputeOptionValue);
 
     /** On Multiselector must build an array of value? */
-    const selected = Array.isArray(value) && Array.isArray(options)
-      ? options.filter(option => selectedValues.includes(option.value))
+    const selected = Array.isArray(options)
+      ? options.filter(choice => selectedValues.includes(choice.value))
       : [];
 
     return selected;
