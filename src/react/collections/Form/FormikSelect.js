@@ -146,13 +146,16 @@ const FormikSelect = withFormikField({
         return newOption;
       }
 
-      /** Else, fallback to null */
+      /**
+       * Returning undefined will not erase the value
+       * and it will be checked on next round
+       */
       return undefined;
     }
 
     /** To continue with isMulti props, must assert values is an Array */
     if (!Array.isArray(option)) {
-      return null;
+      return [];
     }
 
     /**
