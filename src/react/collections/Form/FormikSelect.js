@@ -25,6 +25,11 @@ const computeOptionProp = (option, getterFn, fallbackField) => {
     return option;
   }
 
+  /** If option is not an object, return */
+  if (!isObject(option)) {
+    return undefined;
+  }
+
   /** Check if Select has a custom getterFn function and use it */
   if (typeof getterFn === 'function') {
     return getterFn(option);
@@ -49,6 +54,7 @@ const computeOptionLabel = (option, props) => (
 
 const FormikSelectComponent = ({ state, meta, rest }) => (
   <Select
+    defaultValue={rest.initialValue}
     {...rest}
     {...getFormFieldStateProps(state, meta, rest)}
   />
@@ -62,6 +68,8 @@ FormikSelectComponent.propTypes = {
 
 const FormikSelect = withFormikField({
   Component: FormikSelectComponent,
+
+  computeInitialValue: true,
 
   /** Handle Change function will set Formik Props */
   handleChange: (formik, props, selected) => {
@@ -144,6 +152,18 @@ const FormikSelect = withFormikField({
         options.unshift(newOption);
 
         return newOption;
+      }
+
+      /**
+       * Else, if the selector as an async
+       * selector and option is an object
+       * push the option in the array
+       * and set the value
+       */
+      if (props.isAsync && isObject(option)) {
+        /** Place the new Option */
+        options.unshift(option);
+        return value;
       }
 
       /** Else, fallback to null */

@@ -1,6 +1,8 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect } from 'react';
 
+import _ from 'lodash';
+
 import { isObject } from '@appbuckets/rabbit';
 
 import { useFormikContext } from 'formik';
@@ -9,7 +11,8 @@ const withFormikField = ({
   Component,
   computeValue = null,
   handleChange  : handleChangeOverwritten,
-  touchOnChange = true
+  touchOnChange = true,
+  computeInitialValue = false
 }) => (props) => {
 
   /** Get Field Props */
@@ -53,9 +56,6 @@ const withFormikField = ({
     ...fieldRest
   } = formik.getFieldProps({ name, ...rest });
 
-  /** Get meta props */
-  const meta = formik.getFieldMeta(name);
-
   /** Extend the original change props to append an isChanged meta */
   const handleChange = (...args) => {
     /** Set Touched, if must */
@@ -89,6 +89,29 @@ const withFormikField = ({
 
     originalOnBlur(...args);
   };
+
+  /** Get meta props */
+  const meta = formik.getFieldMeta(name);
+
+  /**
+   * If field has not been touched and has an
+   * initial value and this value is different
+   * from 'value', set the initial value
+   */
+  if (!meta.touched
+    && !_.isNil(meta.initialValue)
+    && typeof computeValue === 'function'
+    && computeInitialValue) {
+
+    const initialValue = computeValue(
+      meta.initialValue,
+      { ...fieldRest, ...rest, name: fieldName, value: meta.initialValue }
+    );
+
+    /** Set initial value for this field */
+    formik.setFieldTouched(fieldName, true, false);
+    formik.setFieldValue(fieldName, initialValue);
+  }
 
   /** Get Properties from meta */
   const {
