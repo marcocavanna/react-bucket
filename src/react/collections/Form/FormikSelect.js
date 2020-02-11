@@ -155,6 +155,7 @@ const FormikSelect = withFormikField({
       }
 
       /**
+<<<<<<< HEAD
        * Else, if the selector as an async
        * selector and option is an object
        * push the option in the array
@@ -166,13 +167,16 @@ const FormikSelect = withFormikField({
         return value;
       }
 
-      /** Else, fallback to null */
+      /**
+       * Returning undefined will not erase the value
+       * and it will be checked on next round
+       */
       return undefined;
     }
 
     /** To continue with isMulti props, must assert values is an Array */
     if (!Array.isArray(option)) {
-      return null;
+      return [];
     }
 
     /**
