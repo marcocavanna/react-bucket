@@ -52,13 +52,15 @@ const computeOptionLabel = (option, props) => (
 );
 
 
-const FormikSelectComponent = ({ state, meta, rest }) => (
-  <Select
-    defaultValue={rest.initialValue}
-    {...rest}
-    {...getFormFieldStateProps(state, meta, rest)}
-  />
-);
+const FormikSelectComponent = ({ state, meta, rest }) => {
+  return (
+    <Select
+      defaultValue={meta.initialValue}
+      {...rest}
+      {...getFormFieldStateProps(state, meta, rest)}
+    />
+  );
+};
 
 FormikSelectComponent.propTypes = {
   meta  : PropTypes.object,
@@ -101,6 +103,16 @@ const FormikSelect = withFormikField({
 
   /** Compute Value function will get the selected items */
   computeValue: (option, { options, ...props }) => {
+
+    /**
+     * An API Load Data Selector could have the isInitiallyLoaded
+     * props: if this props is valorized to boolean and is false
+     * then must return the original option to let the compute
+     * work at the next render
+     */
+    if (typeof props.isInitiallyLoaded === 'boolean' && !props.isInitiallyLoaded) {
+      return option;
+    }
 
     /**
      * On single selector, the selected
@@ -155,7 +167,6 @@ const FormikSelect = withFormikField({
       }
 
       /**
-<<<<<<< HEAD
        * Else, if the selector as an async
        * selector and option is an object
        * push the option in the array
@@ -175,7 +186,7 @@ const FormikSelect = withFormikField({
     }
 
     /** To continue with isMulti props, must assert values is an Array */
-    if (!Array.isArray(option)) {
+    if (!Array.isArray(option) || !Array.isArray(options) || !options.length) {
       return [];
     }
 
@@ -184,13 +195,19 @@ const FormikSelect = withFormikField({
      * and the selected values is an array, remap each
      * selected values computing choice value
      */
-    const selectedValues = option.map(__deprecatedComputeOptionValue);
+    const selectedValues = option.map(singleSelectedValue => (
+      computeOptionValue(singleSelectedValue, props)
+    ));
 
-    /** On Multiselector must build an array of value? */
-    const selected = Array.isArray(options)
-      ? options.filter(choice => selectedValues.includes(choice.value))
-      : [];
+    /**
+     * Filter the selectable options
+     * keeping only selected one
+     */
+    const selected = options.filter(choice => (
+      selectedValues.includes(computeOptionValue(choice, props))
+    ));
 
+    /** Return the filtered selected options */
     return selected;
   }
 });

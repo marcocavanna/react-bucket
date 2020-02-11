@@ -23,6 +23,9 @@ export interface StrictSelectProps extends StrictFieldProps, ReactSelectProps {
   /** Set the Select as Async Type */
   isAsync?: boolean
 
+  /** Optional Props to help Formik Selector compute correctly value */
+  isInitiallyLoaded?: boolean
+
   /** Set if must show loader */
   loading?: boolean
 
