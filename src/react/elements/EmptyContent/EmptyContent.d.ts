@@ -1,14 +1,19 @@
 import * as React from 'react'
 
-import { ReactBucketALIGN, ReactBucketCOLOR, ReactBucketICON } from '../../generic';
+import { ReactBucketALIGN, ReactBucketCOLOR, ReactBucketICON, ReactBucketShorthandItem } from '../../generic';
 
 import { StrictContainerProps } from '../Container';
+
+import { ButtonProps } from '../Button';
 
 export interface EmptyContentProps extends StrictEmptyContentProps {
   [key: string]: any
 }
 
 export interface StrictEmptyContentProps extends StrictContainerProps {
+  /** Button shorthand */
+  button?: ReactBucketShorthandItem<ButtonProps>
+
   /** Children Node */
   children?: React.ReactNode
 
