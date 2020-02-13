@@ -36,6 +36,9 @@ export interface StrictColumnProps {
   /** Content Shorthand */
   content?: React.ReactNode
 
+  /** Vertical Divide Column */
+  divided?: { phoneUp: boolean, tabletUp: boolean, desktopUp: boolean, largeDesktopUp: boolean }
+
   /** Base Column Width */
   is?: ReactBucketCOLUMNWIDTH | IColumnWidthProp
 

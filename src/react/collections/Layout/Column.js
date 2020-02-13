@@ -23,6 +23,7 @@ function Column(props) {
     className,
     color,
     content,
+    divided = {},
     minimumWidth,
     textAlign,
     verticalAlign
@@ -55,6 +56,10 @@ function Column(props) {
     classByPattern(onDesktopOffsettedBy, 'on-desktop-offsetted-by-%value%'),
     classByPattern(onLargeDesktopOffsettedBy, 'on-large-desktop-offsetted-by-%value%'),
     classByPattern(textAlign, 'has-text-%value%'),
+    classByKey(divided.phoneUp, 'on-phone-is-divided'),
+    classByKey(divided.tabletUp, 'on-tablet-is-divided'),
+    classByKey(divided.desktopUp, 'on-desktop-is-divided'),
+    classByKey(divided.largeDesktopUp, 'on-large-desktop-is-divided'),
     classByValue(verticalAlign),
     className
   );
@@ -87,6 +92,9 @@ Column.propTypes = {
   /** Content Shorthand */
   content: PropTypes.node,
 
+  /** Vertical Divide Column */
+  divided: PropTypes.object,
+
   /** Base Column Width */
   is: PropTypes.oneOfType([
     customPropTypes.columnsWidth,
@@ -97,7 +105,10 @@ Column.propTypes = {
   minimumWidth: PropTypes.bool,
 
   /** Base Offset */
-  offsettedBy: customPropTypes.columnsOffset,
+  offsettedBy: PropTypes.oneOfType([
+    customPropTypes.columnsOffset,
+    PropTypes.object
+  ]),
 
   /** Responsive Column Width */
   onDesktopIs               : customPropTypes.columnsWidth,

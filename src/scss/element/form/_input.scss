@@ -170,6 +170,11 @@
 
   /* Input Label */
   &.with-label {
+
+    .label {
+      white-space: nowrap;
+    }
+
     &.label-on-left {
       > .label-wrapper > .label {
         border-top-right-radius: 0;

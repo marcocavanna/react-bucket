@@ -290,8 +290,7 @@ export default class Checkbox extends Component {
       classByKey(readOnly, 'is-readonly'),
       classByKey(slider, 'is-slider'),
       classByKey(toggle, 'is-toggle'),
-      classByKey(!slider && !toggle, 'is-simple'),
-      className
+      classByKey(!slider && !toggle, 'is-simple')
     );
 
     const unhandled = getUnhandledProps(Checkbox, this.props);
@@ -309,6 +308,7 @@ export default class Checkbox extends Component {
         {...rest}
         form
         checkbox
+        className={className}
         as={ElementType}
         bordered={false}
         contentClassName={classes}

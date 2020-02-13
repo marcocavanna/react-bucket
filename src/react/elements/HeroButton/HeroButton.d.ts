@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { ReactBucketICON, ReactBucketSIZE } from '../../generic';
+import { ReactBucketICON, ReactBucketSIZE, ReactBucketALIGN } from '../../generic';
 
 export interface HeroButtonProps extends StrictHeroButtonProps {
   [key: string]: any
@@ -39,10 +39,13 @@ export interface StrictHeroButtonProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} props - All props.
    */
-  onClick: (event: React.MouseEvent<HTMLDivElement>, props: HeroButtonProps) => void,
+  onClick?: (event: React.MouseEvent<HTMLDivElement>, props: HeroButtonProps) => void,
 
   /** Size Variation */
-  size: ReactBucketSIZE
+  size?: ReactBucketSIZE
+
+  /** Set the Text Alignment */
+  textAlign?: ReactBucketALIGN
 
   /** Color Variation */
   variation?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8'

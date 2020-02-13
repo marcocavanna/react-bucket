@@ -173,12 +173,15 @@
   }
 
   &.is-clickable {
-    cursor: pointer;
     padding: .75em;
     border-radius: pixel-to-em($border-radius);
 
-    @include without-touch-hover {
-      background-color: rgba(0, 0, 0, .05);
+    &:not(.is-disabled) {
+      cursor: pointer;
+
+      @include without-touch-hover {
+        background-color: rgba(0, 0, 0, .05);
+      }
     }
 
     &.is-active,
