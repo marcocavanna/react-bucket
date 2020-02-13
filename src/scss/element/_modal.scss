@@ -245,7 +245,15 @@
 
     /* On Tablet Up a Modal can have the small class */
     @include min-screen('tablet') {
-      width: 520px;
+      max-width: 520px;
+
+      &.is-big {
+        max-width: 640px;
+      }
+
+      &.is-extra-big {
+        max-width: 780px;
+      }
 
       &.is-small {
         width: 390px;
@@ -255,7 +263,11 @@
     /* On Desktop Up, modal can have big class too */
     @include min-screen('desktop') {
       &.is-big {
-        width: 720px;
+        max-width: 720px;
+      }
+
+      &.is-extra-big {
+        max-width: 980px;
       }
     }
   }
