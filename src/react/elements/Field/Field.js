@@ -31,6 +31,7 @@ function Field(props) {
     editor,
     error,
     disabled,
+    flat,
     focus,
     form,
     full,
@@ -49,7 +50,8 @@ function Field(props) {
     size,
     success,
     text,
-    warning
+    warning,
+    textAlign
   } = props;
 
   const classes = cx(
@@ -64,6 +66,7 @@ function Field(props) {
     classByPattern(size, 'is-%value%'),
     classByKey(required, 'is-required'),
     classByKey(inline, 'is-inline'),
+    classByPattern(textAlign, 'has-text-%value%'),
     className
   );
 
@@ -73,8 +76,9 @@ function Field(props) {
     classByKey(editor, 'editor'),
     classByKey(input, 'input'),
     classByKey(radio, 'radio'),
+    classByKey(flat, 'is-flat'),
     classByKey(full, 'is-full'),
-    classByKey(bordered, 'is-bordered'),
+    classByKey(bordered && !flat, 'is-bordered'),
     classByKey(action, 'with-action'),
     classByPattern(action && actionPosition, 'action-on-%value%'),
     classByKey(icon, 'with-icon'),
@@ -170,6 +174,9 @@ Field.propTypes = {
   /** Error style for field */
   error: PropTypes.bool,
 
+  /** Draw flat and Borderless */
+  flat: PropTypes.bool,
+
   /** Field as Focused */
   focus: PropTypes.bool,
 
@@ -223,6 +230,9 @@ Field.propTypes = {
 
   /** Set a Field as Text Container */
   text: PropTypes.bool,
+
+  /** Set the Text Alignment */
+  textAlign: customPropTypes.textAlign,
 
   /** Warning Style */
   warning: PropTypes.bool
