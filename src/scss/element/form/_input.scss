@@ -91,6 +91,36 @@
   }
 
   /*---
+    FLAT
+
+    Remove all Styles
+  ---*/
+  &.is-flat {
+    > input,
+    > textarea {
+      box-shadow: none !important;
+      border-radius: pixel-to-em($border-radius) !important;
+    }
+
+    &.with-label {
+      align-items: center;
+
+      &.label-on-left {
+        margin-right: .25em;
+      }
+
+      &.label-on-right {
+        margin-left: .25em;
+      }
+
+      > .label-wrapper > .label {
+        line-height: 2em;
+        border-radius: pixel-to-em($border-radius) !important;
+      }
+    }
+  }
+
+  /*---
     ADDON
 
     Input addone are style to live
@@ -237,4 +267,16 @@
     }
   }
 
+}
+
+/******
+    Text Input Alignment
+******/
+@each $align in $text-align-list {
+  .field.has-text-#{$align} > .input {
+    > input,
+    > textarea {
+      text-align: $align;
+    }
+  }
 }

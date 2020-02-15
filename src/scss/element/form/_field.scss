@@ -170,17 +170,17 @@
     setting special color on box shadow
 ******/
 .field {
-  &.is-focused > .content:not(.is-bordered) > input,
-  > .content:not(.is-bordered) > input:focus,
-  &.is-focused > .content:not(.is-bordered) > textarea,
-  > .content:not(.is-bordered) > textarea:focus {
+  &.is-focused > .content:not(.is-bordered) > input:not(:read-only),
+  > .content:not(.is-bordered) > input:focus:not(:read-only),
+  &.is-focused > .content:not(.is-bordered) > textarea:not(:read-only),
+  > .content:not(.is-bordered) > textarea:focus:not(:read-only) {
     box-shadow: inset 0px -5px 0px -3px $primary;
   }
 
-  &.is-focused > .content.is-bordered > input,
-  > .content.is-bordered > input:focus,
-  &.is-focused > .content.is-bordered > textarea,
-  > .content.is-bordered > textarea:focus {
+  &.is-focused > .content.is-bordered > input:not(:read-only),
+  > .content.is-bordered > input:focus:not(:read-only),
+  &.is-focused > .content.is-bordered > textarea:not(:read-only),
+  > .content.is-bordered > textarea:focus:not(:read-only) {
     box-shadow: inset 0px 0px 0px 1px $primary;
   }
 }
