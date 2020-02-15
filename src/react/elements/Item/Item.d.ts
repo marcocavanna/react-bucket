@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { ReactBucketShorthandItem, ReactBucketShorthandCollection } from '../../generic';
+import { ReactBucketShorthandItem, ReactBucketShorthandCollection, ReactBucketSIZE } from '../../generic';
 
 import ItemAvatar, { ItemAvatarProps } from './ItemAvatar';
 import ItemHeader from './ItemHeader';
@@ -49,6 +49,9 @@ export interface StrictItemProps {
    * @param {object} data - All props.
    */
   onClick?: (event: React.MouseEvent<HTMLDivElement>, props: ItemProps) => void,
+
+  /** Change Item Display Size */
+  size?: ReactBucketSIZE
 
   /** Set the Item as Sortable */
   sortable?: boolean
