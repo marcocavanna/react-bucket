@@ -31,6 +31,9 @@ export interface StrictItemAvatarProps {
   /** Disabled State */
   disabled?: boolean
 
+  /** Set flexible Avatar Width */
+  flexible?: boolean
+
   /** Set the Random Background color generator */
   generateBackground?: boolean | string
 
