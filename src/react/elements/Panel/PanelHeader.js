@@ -73,7 +73,7 @@ PanelHeader.propTypes = {
   color: PropTypes.string,
 
   /** Header Shorthand Method */
-  header: PropTypes.string,
+  header: PropTypes.any,
 
   /** Icon ShortHand */
   icon: customPropTypes.fontAwesome,
