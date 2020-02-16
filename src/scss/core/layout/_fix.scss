@@ -25,6 +25,7 @@
     z-index: 9999;
 
     > * {
+      @include unselectable();
       @include slidingGrowUp();
     }
   }

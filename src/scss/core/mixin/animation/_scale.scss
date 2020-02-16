@@ -1,15 +1,15 @@
 @keyframes :global(growUp) {
   from {
-    transform: scale3d(1, 1, 1);
+    transform: scale(1);
     box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, .15);
   }
   to {
-    transform: scale3d(1.06, 1.06, 1);
+    transform: scale(1.05);
     box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, .15);
   }
 }
 
-@mixin slidingGrowUp($duration: 300ms, $timing-function: $swift-ease-in-out) {
+@mixin slidingGrowUp($duration: 200ms, $timing-function: $swift-ease-in-out) {
   @include animate(growUp, $timing-function, $duration);
   animation-fill-mode: forwards;
 }
