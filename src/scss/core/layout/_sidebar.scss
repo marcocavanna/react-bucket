@@ -32,7 +32,8 @@
   -webkit-overflow-scrolling: touch;
 
   // Transition to Open the Sidebar
-  transition: width $transition-duration $swift-ease-in-out;
+  transition: width $transition-duration $swift-ease-in-out, box-shadow $transition-duration $transition-ease;
+  will-change: width, box-shadow;
 
   /*---
       Set Sidebar Element size
@@ -124,8 +125,11 @@
 ******/
 @include on-screen('tablet') {
   #sidebar {
+    @include dpShadow(0);
+
     @include without-touch-hover {
       width: 200px;
+      @include dpShadow(8);
 
       > .sidebar-element.menu-section .menu-button {
         width: 184px;

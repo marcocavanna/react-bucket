@@ -63,3 +63,9 @@
   @include size-variation()
 
 }
+
+.has-text-center {
+  .header {
+    text-align: center !important;
+  }
+}

@@ -19,6 +19,33 @@
   @include dpShadow(2);
 }
 
+.will-sort {
+
+  &.is-sorting {
+    z-index: 9999;
+
+    > * {
+      @include slidingGrowUp();
+    }
+  }
+
+  &.panel-without-fab {
+    margin-bottom: $panel-margin-bottom;
+
+    > .panel {
+      margin-bottom: 0;
+    }
+  }
+
+  &.panel-with-fab {
+    margin-bottom: $panel-margin-bottom + 1.5em;
+
+    > .panel {
+      margin-bottom: 0;
+    }
+  }
+}
+
 label {
   cursor: inherit;
 }
