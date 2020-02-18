@@ -10,11 +10,11 @@ import withFormikField from './lib/with-formik-field';
 const FormikInputComponent = ({ state, meta, rest }) => (
   <>
     <Input
-      {...rest}
       error={meta.touched && state.error}
       success={meta.touched && state.success}
       warning={meta.touched && state.warning}
       messages={state.hasMessages && meta.touched ? [state.message] : null}
+      {...rest}
       disabled={state.isSubmitting || rest.disabled}
     />
   </>
