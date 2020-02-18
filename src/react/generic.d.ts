@@ -24,6 +24,13 @@ export type ReactBucketCOLUMNWIDTH = '1' | '2' | '3' | '4' | '5' | '6' | '7' | '
 export type ReactBucketCOLUMNOFFSET = '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11'
 
 /**
+ * Responsive Property Shorthand
+ */
+export type ReactBucketResponsiveProp<TPropType> =
+  | TPropType
+  | { phone: TPropType, phoneUp: TPropType, tablet: TPropType, tabletUp: TPropType, tabletDown: TPropType, dekstop: TPropType, desktopUp: TPropType, desktopDown: TPropType, largeDesktop: TPropType, largeDesktopDown: TPropType }
+
+/**
  * Content Short Hand
  */
 export type ReactBucketShorthandItemFunc<TProps> = (

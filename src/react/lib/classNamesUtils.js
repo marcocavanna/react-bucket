@@ -1,3 +1,7 @@
+import { isObject } from '@appbuckets/rabbit';
+
+import _ from 'lodash';
+
 /**
  * ReactBucket UI will use some of key property
  * to retreive class names.
@@ -78,3 +82,36 @@ export const responsiveClass = (value, baseClass) => (
       ? `${value.toLowerCase().replace(/\s/g, '-')}-${baseClass}`
       : false
 );
+
+
+/**
+ * Generate responsive classname using an object and a compute function
+ * @param {String|Object} value Prop Value
+ * @param {*} baseClass The base classname to use
+ * @param {*} computeFn The compute function to generate class
+ *
+ * @example
+ * multiResponsiveKey(textAlign, 'has-text-%value%', classByPatter)
+ *
+ * <Panel.Section textAlign='center' />
+ * <div class="panel-section has-text-center"></div>
+ *
+ * <Panel.Section textAlign={{ phone: 'right', tabletUp: 'left', largeDesktop: 'center' }} />
+ * <div class="panel-section on-phone-has-text-right on-tablet-up-has-text-left on-large-desktop-has-text-center"></div>
+ */
+export const multiResponsiveKey = (value, baseClass, computeFn = classByKey) => {
+
+  /** If value is not an object, use the Compute FN to generate class */
+  if (!isObject(value)) {
+    return computeFn(value, baseClass);
+  }
+
+  /** Else if Value is an Object, compute each different key */
+  const classes = [];
+
+  Object.getOwnPropertyNames(value).forEach((breakpoint) => {
+    classes.push(`on-${_.kebabCase(breakpoint)}-${computeFn(value[breakpoint], baseClass)}`);
+  });
+
+  return classes.join(' ');
+};
