@@ -82,7 +82,7 @@
 
     &.field-hint {
       padding: get-em-spacer();
-      margin: get-em-spacer() get-em-spacer() * -1 0;
+      margin: get-em-spacer() 0 0;
       border-radius: $border-radius-small;
       background-color: $white-shade;
       color: $text-light;
