@@ -4,7 +4,7 @@
   padding: 0;
   line-height: 1.25;
   font-size: $h3;
-  text-align: center;
+  text-align: inherit;
 
   &:first-child {
     margin-top: 0;
@@ -35,7 +35,7 @@
   }
 
   &:not(.icon) {
-    text-align: left;
+    text-align: inherit;
 
     > .icon {
       display: table-cell;
@@ -62,16 +62,4 @@
 
   @include size-variation()
 
-}
-
-.has-text-center {
-  .header {
-    text-align: center !important;
-  }
-}
-
-.has-text-right {
-  .header {
-    text-align: right !important;
-  }
 }
