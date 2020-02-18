@@ -110,7 +110,7 @@ const withFormikField = ({
 
     /** Set initial value for this field */
     formik.setFieldTouched(fieldName, true, false);
-    formik.setFieldValue(fieldName, initialValue);
+    formik.setFieldValue(fieldName, initialValue, false);
   }
 
   /** Get Properties from meta */
