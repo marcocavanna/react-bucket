@@ -38,10 +38,11 @@
 .field {
   > label {
     display: block;
-    font-weight: $regular;
+    font-weight: $semi-bold;
     font-size: .9em;
-    color: $text-light;
+    opacity: .5;
     margin-bottom: get-em-spacer();
+    padding-left: get-em-spacer();
   }
 
   &.is-required > label:after {
