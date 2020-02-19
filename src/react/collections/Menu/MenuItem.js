@@ -11,7 +11,6 @@ import {
   classByPattern,
   childrenUtils,
   getElementType,
-  getUnhandledProps,
   classByKey,
   createShorthandFactory
 } from '../../lib';
@@ -26,6 +25,7 @@ class MenuItem extends React.PureComponent {
     ]),
 
     /** An element used to render */
+    // eslint-disable-next-line react/no-unused-prop-types
     as: PropTypes.elementType,
 
     /** Primary content. */
@@ -100,18 +100,17 @@ class MenuItem extends React.PureComponent {
     );
 
     const ElementType = getElementType(MenuItem, this.props, () => (onClick ? 'a' : undefined));
-    const rest = getUnhandledProps(MenuItem, this.props);
 
     if (!childrenUtils.isNil(children)) {
       return (
-        <ElementType {...rest} className={classes} onClick={this.handleClick}>
+        <ElementType className={classes} onClick={this.handleClick}>
           {children}
         </ElementType>
       );
     }
 
     return (
-      <ElementType {...rest} className={classes} onClick={this.handleClick}>
+      <ElementType className={classes} onClick={this.handleClick}>
         {Icon.create(icon, { autoGenerateKey: false })}
         {childrenUtils.isNil(content) ? _.startCase(name) : content}
       </ElementType>

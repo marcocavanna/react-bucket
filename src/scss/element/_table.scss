@@ -7,6 +7,10 @@
  * Copyright Marco Cavanna • 2019
  */
 
+ /******
+     Local Variable
+ ******/
+ $__table-head-color: $grey-light;
 
 /******
     Usefull extensible classes
@@ -144,6 +148,10 @@
         &:last-child {
           padding-right: $table-cell-h-padding;
         }
+
+        > .field:first-child:last-child {
+          margin: 0 !important;
+        }
       }
     }
   }
@@ -182,12 +190,16 @@
     // Header Cell Style
     > .row > .cell {
       font-weight: $semi-bold;
-      color: $text-lightest;
+      color: $__table-head-color;
       text-transform: uppercase;
       -webkit-touch-callout: none;
       @include unselectable;
       white-space: nowrap;
       overflow: hidden;
+
+      > .cell-content {
+        margin: 0;
+      }
 
       > .table-header-content {
         display: inline-block;
@@ -235,7 +247,7 @@
       }
 
       .cell-content {
-        color: $text-lightest;
+        color: $__table-head-color;
       }
     }
   }
@@ -307,7 +319,7 @@
       &:before {
         @include fontAwesomeFamilySolid();
         position: absolute;
-        color: $text-lightest;
+        color: $__table-head-color;
         transition: color $transition-ease $transition-duration;
         left: .5em;
         transform: translateX(-50%);
@@ -353,7 +365,7 @@
 
       &.sorted-desc {
         .table-header-content:after {
-          color: $text-lightest;
+          color: $__table-head-color;
         }
 
         .table-header-content:before {
@@ -367,7 +379,7 @@
         }
 
         .table-header-content:before {
-          color: $text-lightest;
+          color: $__table-head-color;
         }
       }
     }
@@ -388,11 +400,11 @@
     > .row {
       > .cell {
         &:first-child {
-          padding-left: 0;
+          padding-left: 0 !important;
         }
 
         &:last-child {
-          padding-right: 0;
+          padding-right: 0 !important;
         }
       }
     }
@@ -422,7 +434,7 @@
     ---*/
     > .cell-metadata {
       font-size: .75em;
-      color: $text-lightest;
+      color: $__table-head-color;
       font-weight: $semi-bold;
       text-transform: uppercase;
 
@@ -452,6 +464,51 @@
 }
 
 
+/******
+    Compress Table, decrease cell padding
+******/
+.table.compressed {
+  .head,
+  .body,
+  .foot {
+    > .row {
+      > .cell {
+        padding: ($table-cell-v-padding * .5) (($table-cell-h-padding * .5) / 2);
+
+        &:first-child {
+          padding-left: ($table-cell-h-padding * .5);
+        }
+
+        &:last-child {
+          padding-right: ($table-cell-h-padding * .5);
+        }
+      }
+    }
+  }
+
+  .head > .row > .cell {
+    font-weight: $bold;
+    font-size: .85em;
+    padding-top: 0 !important;
+    padding-bottom: .75em !important;
+  }
+}
+
+
+/******
+    Remove row Border
+******/
+.table.without-border {
+  .head,
+  .body,
+  .foot {
+    > .row {
+      border: none !important;
+    }
+  }
+}
+
+
 /*---
   Fix Cell with Tools width
 ---*/
@@ -476,7 +533,7 @@
   .rx-table-empty-data,
   .rx-table-empty-filtered {
     text-transform: uppercase !important;
-    color: $text-lightest !important;
+    color: $__table-head-color !important;
     font-weight: $semi-bold !important;
     text-align: center !important;
     padding-top: $table-cell-v-padding * 2 !important;

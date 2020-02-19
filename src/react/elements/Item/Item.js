@@ -10,7 +10,9 @@ import {
   getUnhandledProps,
   createShorthandFactory,
   classByKey,
-  classByPattern
+  classByPattern,
+  isValue,
+  customPropTypes
 } from '../../lib';
 
 import ItemAvatar from './ItemAvatar';
@@ -34,7 +36,8 @@ function Item(props) {
     header,
     onClick,
     sortable,
-    tools
+    tools,
+    size
   } = props;
 
   const classes = cx(
@@ -44,6 +47,7 @@ function Item(props) {
     classByKey(onClick, 'is-clickable'),
     classByKey(sortable, 'is-sortable'),
     classByKey(meta, 'has-meta'),
+    isValue(size),
     className,
     'item'
   );
@@ -114,6 +118,9 @@ Item.propTypes = {
    * @param {object} data - All props.
    */
   onClick: PropTypes.func,
+
+  /** Change display size */
+  size: customPropTypes.size,
 
   /** Set the item as sortable */
   sortable: PropTypes.bool,

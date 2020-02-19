@@ -30,6 +30,9 @@ class Select extends PureComponent {
     /** Set if Select is Async type */
     isAsync: PropTypes.bool,
 
+    /** Optional Props, this is used on FormikSelector to help value computing */
+    isInitiallyLoaded: PropTypes.bool,
+
     /** Set if must show loader */
     loading: PropTypes.bool,
 

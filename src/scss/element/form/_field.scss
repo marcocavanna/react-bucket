@@ -38,10 +38,11 @@
 .field {
   > label {
     display: block;
-    font-weight: $regular;
+    font-weight: $semi-bold;
     font-size: .9em;
-    color: $text-light;
+    opacity: .5;
     margin-bottom: get-em-spacer();
+    padding-left: get-em-spacer();
   }
 
   &.is-required > label:after {
@@ -82,7 +83,7 @@
 
     &.field-hint {
       padding: get-em-spacer();
-      margin: get-em-spacer() get-em-spacer() * -1 0;
+      margin: get-em-spacer() 0 0;
       border-radius: $border-radius-small;
       background-color: $white-shade;
       color: $text-light;
@@ -170,17 +171,17 @@
     setting special color on box shadow
 ******/
 .field {
-  &.is-focused > .content:not(.is-bordered) > input,
-  > .content:not(.is-bordered) > input:focus,
-  &.is-focused > .content:not(.is-bordered) > textarea,
-  > .content:not(.is-bordered) > textarea:focus {
+  &.is-focused > .content:not(.is-bordered) > input:not(:read-only),
+  > .content:not(.is-bordered) > input:focus:not(:read-only),
+  &.is-focused > .content:not(.is-bordered) > textarea:not(:read-only),
+  > .content:not(.is-bordered) > textarea:focus:not(:read-only) {
     box-shadow: inset 0px -5px 0px -3px $primary;
   }
 
-  &.is-focused > .content.is-bordered > input,
-  > .content.is-bordered > input:focus,
-  &.is-focused > .content.is-bordered > textarea,
-  > .content.is-bordered > textarea:focus {
+  &.is-focused > .content.is-bordered > input:not(:read-only),
+  > .content.is-bordered > input:focus:not(:read-only),
+  &.is-focused > .content.is-bordered > textarea:not(:read-only),
+  > .content.is-bordered > textarea:focus:not(:read-only) {
     box-shadow: inset 0px 0px 0px 1px $primary;
   }
 }

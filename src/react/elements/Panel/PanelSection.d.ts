@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { ReactBucketALIGN, ReactBucketFONTWEIGHT } from '../../generic';
+import { ReactBucketALIGN, ReactBucketFONTWEIGHT, ReactBucketResponsiveProp } from '../../generic';
 
 export interface PanelSectionProps extends StrictPanelSectionProps {
   [key: string]: any
@@ -35,7 +35,7 @@ export interface StrictPanelSectionProps {
   noMargin?: boolean
 
   /** Panel Section text Alignment */
-  textAlign?: ReactBucketALIGN
+  textAlign?: ReactBucketResponsiveProp<ReactBucketALIGN>
 }
 
 declare const PanelSection: React.FunctionComponent<PanelSectionProps>

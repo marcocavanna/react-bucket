@@ -173,12 +173,15 @@
   }
 
   &.is-clickable {
-    cursor: pointer;
     padding: .75em;
     border-radius: pixel-to-em($border-radius);
 
-    @include without-touch-hover {
-      background-color: rgba(0, 0, 0, .05);
+    &:not(.is-disabled) {
+      cursor: pointer;
+
+      @include without-touch-hover {
+        background-color: rgba(0, 0, 0, .05);
+      }
     }
 
     &.is-active,
@@ -203,6 +206,8 @@
     }
 
   }
+
+  @include size-variation();
 
 }
 
@@ -234,6 +239,13 @@
     > .content .icon {
       font-size: 1.25em;
     }
+  }
+
+  &.is-flexible {
+    min-width: $item-avatar-base-size;
+    width: auto;
+    flex: initial;
+    padding: 0 .5em;
   }
 
   > .content {

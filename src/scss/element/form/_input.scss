@@ -54,6 +54,7 @@
     outline: 0;
 
     flex: 1 1 auto;
+    width: inherit;
     max-width: 100%;
     min-width: 0px;
 
@@ -88,6 +89,36 @@
   &.is-bordered > textarea {
     box-shadow: inset 0px 0px 0px 1px $border-color;
     border-radius: pixel-to-em($border-radius);
+  }
+
+  /*---
+    FLAT
+
+    Remove all Styles
+  ---*/
+  &.is-flat {
+    > input,
+    > textarea {
+      box-shadow: none !important;
+      border-radius: pixel-to-em($border-radius) !important;
+    }
+
+    &.with-label {
+      align-items: center;
+
+      &.label-on-left {
+        margin-right: .25em;
+      }
+
+      &.label-on-right {
+        margin-left: .25em;
+      }
+
+      > .label-wrapper > .label {
+        line-height: 2em;
+        border-radius: pixel-to-em($border-radius) !important;
+      }
+    }
   }
 
   /*---
@@ -170,6 +201,11 @@
 
   /* Input Label */
   &.with-label {
+
+    .label {
+      white-space: nowrap;
+    }
+
     &.label-on-left {
       > .label-wrapper > .label {
         border-top-right-radius: 0;
@@ -232,4 +268,16 @@
     }
   }
 
+}
+
+/******
+    Text Input Alignment
+******/
+@each $align in $text-align-list {
+  .field.has-text-#{$align} > .input {
+    > input,
+    > textarea {
+      text-align: $align;
+    }
+  }
 }

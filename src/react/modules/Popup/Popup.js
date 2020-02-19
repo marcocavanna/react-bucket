@@ -106,7 +106,7 @@ class Popup extends PureComponent {
     basic    : true,
     disabled : false,
     inverted : true,
-    offset   : 0,
+    offset   : '0, 5',
     on       : 'hover',
     position : 'top center'
   }
@@ -311,7 +311,7 @@ class Popup extends PureComponent {
     const modifiers = _.merge(
       {
         arrow        : { enabled: false },
-        keepTogether : { enabled: !!offset },
+        keepTogether : { enabled: true /* !!offset */ },
         offset       : { enabled: !!offset, offset }
       },
       popperModifiers

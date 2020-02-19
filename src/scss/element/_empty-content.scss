@@ -6,7 +6,7 @@
 }
 
 .empty-content {
-  padding: 1em 0;
+  padding: 1em 0 1.5em;
   opacity: .75;
 
   > .empty-content-icon {
@@ -32,6 +32,10 @@
     font-size: 1.25em;
     color: inherit;
     opacity: .87;
+  }
+
+  > .empty-content-button {
+    padding-top: 1em;
   }
 }
 

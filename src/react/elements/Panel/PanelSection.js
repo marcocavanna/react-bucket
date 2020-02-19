@@ -8,7 +8,8 @@ import {
   classByPattern,
   createShorthandFactory,
   getElementType,
-  getUnhandledProps
+  getUnhandledProps,
+  multiResponsiveKey
 } from '../../lib';
 
 function PanelSection(props) {
@@ -30,7 +31,7 @@ function PanelSection(props) {
     classByKey(divided, 'is-divided'),
     classByKey(noMargin, 'mb-0'),
     classByKey(master, 'is-master'),
-    classByPattern(textAlign, 'has-text-%value%'),
+    multiResponsiveKey(textAlign, 'has-text-%value%', classByPattern),
     classByPattern(fontWeight, 'has-font-%value%'),
     className
   );
@@ -75,7 +76,10 @@ PanelSection.propTypes = {
   noMargin: PropTypes.bool,
 
   /** Section Text Align */
-  textAlign: PropTypes.string
+  textAlign: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object
+  ])
 };
 
 PanelSection.defaultProps = {

@@ -4,7 +4,8 @@ import {
   ReactBucketCOLOR,
   ReactBucketSIZE,
   ReactBucketICON,
-  ReactBucketShorthandItem
+  ReactBucketShorthandItem,
+  ReactBucketALIGN
 } from '../../generic';
 
 import { ButtonProps } from '../Button';
@@ -49,6 +50,9 @@ export interface StrictFieldProps {
 
   /** Error Style */
   error?: boolean
+
+  /** Draw Flat and Borderless */
+  flat?: boolean
 
   /** Focused Field */
   focus?: boolean
@@ -100,6 +104,9 @@ export interface StrictFieldProps {
 
   /** Set the field as simple text container */
   text?: boolean
+
+  /** Set the Text Alignment */
+  textAlign?: ReactBucketALIGN
 
   /** Set the Warning Style */
   warning?: boolean

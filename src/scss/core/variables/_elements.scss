@@ -156,7 +156,7 @@ $input-line-height-base: 24px                         !default;
 $input-vertical-padding: 6px                          !default;
 $input-horizontal-padding: .75em                      !default;
 $input-line-height: strip-unit(pixel-to-em($input-line-height-base));
-$input-height: pixel-to-em($input-line-height-base + ($input-vertical-padding * 2));
+$input-height: pixel-to-em($input-line-height-base + ($input-vertical-padding * 2) + 2px);
 
 
 /*---

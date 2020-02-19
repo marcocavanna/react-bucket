@@ -179,3 +179,38 @@
     }
   }
 }
+
+
+.panel .panel {
+  background-color: rgba(0, 0, 0, .03);
+  border: solid 1px rgba(0, 0, 0, .06);
+
+  > .panel-header {
+    padding: ($panel-padding-vertical * .75) ($panel-padding-horizontal * .75) $panel-padding-vertical / 3;
+  }
+
+  > .panel-body {
+    padding: ($panel-padding-vertical * .75) ($panel-padding-horizontal * .75);
+  }
+
+  > .panel-fab {
+    font-size: .75rem;
+  }
+
+  &.with-fab {
+    @include without-touch {
+      > .panel-fab {
+        opacity: 0;
+        transition: opacity $transition-duration $transition-ease;
+      }
+
+      &:hover > .panel-fab {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.panel .will-sort.panel-with-fab {
+  margin-bottom: 2em;
+}

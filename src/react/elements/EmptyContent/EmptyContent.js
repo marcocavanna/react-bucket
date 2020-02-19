@@ -12,11 +12,13 @@ import {
 
 import Container from '../Container';
 
+import Button from '../Button';
 import Icon from '../Icon';
 
 function EmptyContent(props) {
 
   const {
+    button,
     children,
     className,
     content,
@@ -49,11 +51,28 @@ function EmptyContent(props) {
           {!childrenUtils.isNil(children) ? children : content}
         </div>
       )}
+      {button && (
+        <div className='empty-content-button'>
+          {Button.create(button, {
+            autoGenerateKey : false,
+            defaultProps    : {
+              rounded: true
+            }
+          })}
+        </div>
+      )}
     </Container>
   );
 }
 
 EmptyContent.propTypes = {
+  /** Button shorthand props */
+  button: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.node,
+    PropTypes.object
+  ]),
+
   /** Primary content. */
   children: PropTypes.node,
 

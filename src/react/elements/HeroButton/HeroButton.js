@@ -25,6 +25,7 @@ function HeroButton(props) {
     header,
     icon,
     size,
+    textAlign,
     variation
   } = props;
 
@@ -36,6 +37,7 @@ function HeroButton(props) {
     classByKey(typeof active !== 'undefined', 'is-selectable'),
     classByPattern(variation, 'hero-variation-%value%'),
     classByPattern(size, 'is-%value%'),
+    classByPattern(textAlign, 'has-text-%value%'),
     className
   );
 
@@ -97,6 +99,9 @@ HeroButton.propTypes = {
 
   /** Size Variation */
   size: customPropTypes.size,
+
+  /** Set the Text Alignment */
+  textAlign: customPropTypes.textAlign,
 
   /** Color Variation */
   variation: PropTypes.oneOfType([

@@ -23,6 +23,7 @@ function Table(props) {
   const {
     children,
     className,
+    compressed,
     extended,
     footerRow,
     footerRows,
@@ -31,32 +32,22 @@ function Table(props) {
     metadataTable,
     renderBodyRow,
     sortable,
-    tableData
+    tableData,
+    withoutBorder
   } = props;
 
   const classes = cx(
     className,
     classByKey(extended, 'extended'),
+    classByKey(compressed, 'compressed'),
     classByKey(metadataTable, 'metadata'),
     classByKey(sortable, 'sortable'),
+    classByKey(withoutBorder, 'without-border'),
     'table'
   );
 
   const rest = getUnhandledProps(Table, props);
   const ElementType = getElementType(Table, props);
-
-
-  /**
-   * If Children are defined and valid
-   * render the Table using the children node
-   */
-  if (!childrenUtils.isNil(children)) {
-    return (
-      <ElementType {...rest} className={classes}>
-        {children}
-      </ElementType>
-    );
-  }
 
 
   /** Compute the Table Headers */
@@ -80,6 +71,21 @@ function Table(props) {
           .create(footerRowData, { autoGenerateKey: true }))}
     </TableFooter>
   );
+
+
+  /**
+   * If Children are defined and valid
+   * render the Table using the children node
+   */
+  if (!childrenUtils.isNil(children)) {
+    return (
+      <ElementType {...rest} className={classes}>
+        {headerElement}
+        {children}
+        {footerElement}
+      </ElementType>
+    );
+  }
 
   return (
     <ElementType {...rest} className={classes}>
@@ -105,6 +111,9 @@ Table.propTypes = {
 
   /** User defined Classname */
   className: PropTypes.string,
+
+  /** Compress Cell Padding */
+  compressed: PropTypes.bool,
 
   /** An extended table will remove left and right padding on boundary cells */
   extended: PropTypes.bool,
@@ -134,7 +143,10 @@ Table.propTypes = {
   tableData: PropTypes.oneOfType([
     PropTypes.array,
     PropTypes.object
-  ])
+  ]),
+
+  /** Remove Row Border */
+  withoutBorder: PropTypes.bool
 };
 
 Table.defaultProps = {
