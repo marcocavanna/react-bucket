@@ -44,6 +44,7 @@ export function createShorthand(Component, mapValueToProps, val, options = {}) {
           ' Use null|undefined|boolean for none',
           ` Received ${typeof val}.`
         ].join(''),
+        val
       );
     }
     return null;
