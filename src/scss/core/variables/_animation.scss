@@ -8,8 +8,8 @@
  */
 
 
-$transition-ease: ease-in-out;
-$transition-duration: .2s;
+$transition-ease: ease-in-out !default;
+$transition-duration: .2s     !default;
 
 $ease-in-sine     : cubic-bezier(0.47, 0, 0.745, 0.715);
 $ease-out-sine    : cubic-bezier(0.39, 0.575, 0.565, 1);

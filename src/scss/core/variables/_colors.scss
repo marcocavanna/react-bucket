@@ -100,24 +100,24 @@ $telegram:      hsl(200, 100%, 40%) !default;
     UI Colors
 ******/
 
-$primary         : $blue;
-$primary-shade   : color-shade($primary);
-$primary-tint    : color-tint($primary);
-$secondary       : $grey-darkest;
-$secondary-shade : color-shade($secondary);
-$secondary-tint  : color-tint($secondary);
-$warning         : $orange;
-$warning-shade   : color-shade($warning);
-$warning-tint    : color-tint($warning);
-$info            : $teal;
-$info-shade      : color-shade($info);
-$info-tint       : color-tint($info);
-$danger          : $red;
-$danger-shade    : color-shade($danger);
-$danger-tint     : color-tint($danger);
-$success         : $green;
-$success-shade   : color-shade($success);
-$success-tint    : color-tint($success);
+$primary         : $blue                    !default;
+$primary-shade   : color-shade($primary)    !default;
+$primary-tint    : color-tint($primary)     !default;
+$secondary       : $grey-darkest            !default;
+$secondary-shade : color-shade($secondary)  !default;
+$secondary-tint  : color-tint($secondary)   !default;
+$warning         : $orange                  !default;
+$warning-shade   : color-shade($warning)    !default;
+$warning-tint    : color-tint($warning)     !default;
+$info            : $teal                    !default;
+$info-shade      : color-shade($info)       !default;
+$info-tint       : color-tint($info)        !default;
+$danger          : $red                     !default;
+$danger-shade    : color-shade($danger)     !default;
+$danger-tint     : color-tint($danger)      !default;
+$success         : $green                   !default;
+$success-shade   : color-shade($success)    !default;
+$success-tint    : color-tint($success)     !default;
 
 
 /******

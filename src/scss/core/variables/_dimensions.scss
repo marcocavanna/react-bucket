@@ -12,10 +12,10 @@
     Spacers
 ******/
 
-$spacer-relative: 1em;
-$spacer-absolute: 1rem;
+$spacer-relative: 1em   !default;
+$spacer-absolute: 1rem  !default;
 
-$spacer: $spacer-absolute;
+$spacer: $spacer-absolute !default;
 
 
 /******
