@@ -1,7 +1,7 @@
 @mixin without-touch {
   @if $without-touch-class != false {
     @at-root {
-      :global html.#{$without-touch-class} & {
+      html.#{$without-touch-class} & {
         @content;
       }
     }
@@ -17,13 +17,13 @@
 @mixin without-touch-hover($persist-on-touch: false) {
   @if $without-touch-class != false {
     @at-root {
-      :global html.#{$without-touch-class} &:hover {
+      html.#{$without-touch-class} &:hover {
         @content;
       }
     }
 
     @if $persist-on-touch == true {
-      :global html:not(.#{$without-touch-class}) & {
+      html:not(.#{$without-touch-class}) & {
         @content;
       }
     }

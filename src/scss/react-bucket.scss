@@ -3,22 +3,18 @@
 /* Import FontAwesome */
 @import '../fontawesome/fontawesome';
 
-:global {
+/** Import Configuration File */
+@import '_config/shared';
+@import '_config/full';
 
-  /** Import Configuration File */
-  @import '_config/shared';
-  @import '_config/full';
+/** Import Core */
+@import 'core/all';
 
-  /** Import Core */
-  @import 'core/all';
+/** Create Helper */
+@import 'helper/all';
 
-  /** Create Helper */
-  @import 'helper/all';
+/** Create Grid */
+@import 'grid/all';
 
-  /** Create Grid */
-  @import 'grid/all';
-
-  /** Import Styled Element */
-  @import 'element/all';
-
-}
+/** Import Styled Element */
+@import 'element/all';
