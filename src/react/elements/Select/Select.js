@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import ReactSelect from 'react-select';
 import CreatableSelect from 'react-select/creatable';
+import AsyncSelect from 'react-select/async';
 
 import _ from 'lodash';
 

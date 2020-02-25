@@ -53,6 +53,8 @@ module.exports = function babelConfig(api) {
          */
       '@babel/plugin-proposal-optional-chaining',
 
+      '@babel/plugin-proposal-nullish-coalescing-operator',
+
       /**
          * Plugins for Development Environment only
          */

@@ -23,7 +23,7 @@ function Column(props) {
     className,
     color,
     content,
-    divided = {},
+    verticallyDivided = {},
     minimumWidth,
     textAlign,
     verticalAlign
@@ -56,10 +56,10 @@ function Column(props) {
     classByPattern(onDesktopOffsettedBy, 'on-desktop-offsetted-by-%value%'),
     classByPattern(onLargeDesktopOffsettedBy, 'on-large-desktop-offsetted-by-%value%'),
     classByPattern(textAlign, 'has-text-%value%'),
-    classByKey(divided.phoneUp, 'on-phone-is-divided'),
-    classByKey(divided.tabletUp, 'on-tablet-is-divided'),
-    classByKey(divided.desktopUp, 'on-desktop-is-divided'),
-    classByKey(divided.largeDesktopUp, 'on-large-desktop-is-divided'),
+    classByKey(verticallyDivided.phoneUp, 'on-phone-is-divided'),
+    classByKey(verticallyDivided.tabletUp, 'on-tablet-is-divided'),
+    classByKey(verticallyDivided.desktopUp, 'on-desktop-is-divided'),
+    classByKey(verticallyDivided.largeDesktopUp, 'on-large-desktop-is-divided'),
     classByValue(verticalAlign),
     className
   );
@@ -92,9 +92,6 @@ Column.propTypes = {
   /** Content Shorthand */
   content: PropTypes.node,
 
-  /** Vertical Divide Column */
-  divided: PropTypes.object,
-
   /** Base Column Width */
   is: PropTypes.oneOfType([
     customPropTypes.columnsWidth,
@@ -122,7 +119,10 @@ Column.propTypes = {
   textAlign: customPropTypes.textAlign,
 
   /** Columns Vertical Align */
-  verticalAlign: customPropTypes.flexVerticalAlign
+  verticalAlign: customPropTypes.flexVerticalAlign,
+
+  /** Vertical Divide Column */
+  verticallyDivided: PropTypes.object
 };
 
 Column.create = createShorthandFactory(Column, content => ({ content }));

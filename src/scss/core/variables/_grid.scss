@@ -12,7 +12,7 @@
     Container Props
 ******/
 
-$container-spacer: $spacer;
+$container-spacer: $spacer !default;
 
 
 /******
@@ -20,5 +20,5 @@ $container-spacer: $spacer;
 ******/
 
 $column-class: 'column';
-$columns: 12;
+$columns: 12  !default;
 $columns-gap: $spacer;

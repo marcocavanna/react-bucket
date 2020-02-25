@@ -11,14 +11,6 @@ import withFormikField from './lib/with-formik-field';
 import Select from '../../elements/Select';
 
 
-/** @deprecated */
-const __deprecatedComputeOptionValue = value => (
-  isObject(value)
-    ? value._id || value.value
-    : value
-);
-
-
 const computeOptionProp = (option, getterFn, fallbackField) => {
   /** If option is already a string, return as is */
   if (typeof option === 'string') {
@@ -52,15 +44,13 @@ const computeOptionLabel = (option, props) => (
 );
 
 
-const FormikSelectComponent = ({ state, meta, rest }) => {
-  return (
-    <Select
-      defaultValue={meta.initialValue}
-      {...rest}
-      {...getFormFieldStateProps(state, meta, rest)}
-    />
-  );
-};
+const FormikSelectComponent = ({ state, meta, rest }) => (
+  <Select
+    defaultValue={meta.initialValue}
+    {...rest}
+    {...getFormFieldStateProps(state, meta, rest)}
+  />
+);
 
 FormikSelectComponent.propTypes = {
   meta  : PropTypes.object,
