@@ -62,13 +62,13 @@ $__button_background_map: ();
     background-color: transparent;
 
     @include interactive-element-background-variation(
-      $base-color: $button-base-font-color,
+      $base-color: $button-flat-base-font-color,
       $brand: $button-background-brand,
       $ui: $button-background-ui,
       $social: $button-background-socials,
       $hover-will-drop-shadow: $button-hover-will-drop-shadow,
-      $active-color: $button-active-font-color,
-      $focus-color: $button-focus-font-color,
+      $active-color: $button-flat-active-font-color,
+      $focus-color: $button-flat-focus-font-color,
       $property-variation: color
     );
 
