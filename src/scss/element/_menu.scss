@@ -14,7 +14,7 @@
   display: flex;
   flex-direction: row;
   margin: get-em-spacer(4) 0;
-  font-weight: $semi-bold;
+  font-weight: $menu-content-font-weight;
   font: inherit;
   min-height: $menu-min-height;
 
@@ -60,7 +60,7 @@
 ******/
 .menu-item {
   display: block;
-  padding: pixel-to-em(14) pixel-to-em(8);
+  padding: pixel-to-em($menu-content-padding-vertical) pixel-to-em($menu-content-padding-horizontal);
 }
 
 
@@ -79,7 +79,7 @@
     background-color $transition-duration $transition-ease,
     color $transition-duration $transition-ease;
   cursor: pointer;
-  color: $text-light;
+  color: $menu-item-font-color;
 
   @include unselectable;
 
@@ -163,15 +163,15 @@
 
     &:not(.is-active) {
       @include without-touch-hover {
-        background-color: $white-shade-2;
-        color: $text;
+        background-color: $menu-item-hover-background;
+        color: $menu-item-hover-color;
       }
     }
   }
 
   &.borderless > .menu-item:not(.is-active) {
     @include without-touch-hover {
-      background-color: $grey-lightest;
+      background-color: $menu-item-hover-background;
     }
   }
 }

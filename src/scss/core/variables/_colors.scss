@@ -12,7 +12,6 @@
 /******
     Text and Typography Color
 ******/
-
 $text:          rgba(61, 66, 81, .95) !default;
 $text-shade:    rgb(55, 62, 77)       !default;
 $text-tint:     rgba(61, 66, 81, .8)  !default;
@@ -24,14 +23,14 @@ $text-lightest: rgba(61, 66, 81, .52)  !default;
 /******
     BackDrops
 ******/
-
-$backdrop:      transparentize(#3b414f, .15) !default;
+$backdrop-color: #3b414f      !default;
+$backdrop-tooltip-opacity: .85  !default;
+$backdrop-modal-opacity: .8     !default;
 
 
 /******
     Blacks
 ******/
-
 $black:         hsl(0, 0%, 4%)      !default;
 $black-tint:    hsl(0, 0%, 8%)      !default;
 
@@ -39,7 +38,6 @@ $black-tint:    hsl(0, 0%, 8%)      !default;
 /******
     Whites
 ******/
-
 $white:         hsl(0, 0%, 100%)    !default;
 $white-shade:   hsl(212, 10%, 96%)  !default;
 $white-shade-2: hsl(212, 10%, 93%)  !default;
@@ -48,7 +46,6 @@ $white-shade-2: hsl(212, 10%, 93%)  !default;
 /******
     Greys
 ******/
-
 $grey-lightest: hsl(212, 10%, 88%)  !default;
 $grey-light:    hsl(212, 10%, 73%)  !default;
 $grey:          hsl(212, 10%, 57%)  !default;
@@ -59,7 +56,6 @@ $grey-darkest:  hsl(212, 10%, 25%)  !default;
 /******
     Base Colors
 ******/
-
 $blue:          hsl(226, 48%, 54%)  !default;
 $teal:          hsl(170, 66%, 58%)  !default;
 $green:         hsl(121, 44%, 54%)  !default;
@@ -73,7 +69,6 @@ $purple:        hsl(260, 52%, 62%)  !default;
 /******
     Social Media Colors
 ******/
-
 $facebook:      hsl(214, 89%, 52%)  !default;
 $twitter:       hsl(203, 89%, 53%)  !default;
 $youtube:       hsl(0, 100%, 50%)   !default;
@@ -99,7 +94,6 @@ $telegram:      hsl(200, 100%, 40%) !default;
 /******
     UI Colors
 ******/
-
 $primary         : $blue                    !default;
 $primary-shade   : color-shade($primary)    !default;
 $primary-tint    : color-tint($primary)     !default;
@@ -123,7 +117,6 @@ $success-tint    : color-tint($success)     !default;
 /******
     Color Mapping
 ******/
-
 $react-bucket-ui-colors-map: (
   text          : $text,
   text-tint     : $text-tint,

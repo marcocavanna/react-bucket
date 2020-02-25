@@ -15,9 +15,9 @@
 .hero {
   position: relative;
   padding: get-rem-spacer(5) $view-padding * 2;
-  background-color: $white;
+  background-color: $hero-background-color;
   display: block;
-  color: $text;
+  color: $hero-font-color;
 }
 
 
@@ -30,16 +30,16 @@
     Header
   ---*/
   > .hero-header {
-    font-weight: $bold;
-    font-size: 1.75em;
+    font-weight: $hero-header-font-weight;
+    font-size: $hero-header-font-size;
   }
 
   /*---
     Content
   ---*/
   > .hero-content {
-    font-weight: $semi-bold;
-    font-size: 1.25em;
+    font-weight: $hero-content-font-weight;
+    font-size: $hero-content-font-size;
     opacity: .75;
   }
 
@@ -49,15 +49,15 @@
   > .hero-icon {
     margin: 0;
     position: absolute;
-    color: $text-lightest;
-    opacity: .15;
+    color: $hero-icon-font-color;
+    opacity: $hero-icon-opacity;
     top: 0;
     bottom: 0;
     right: 0;
     overflow: hidden;
 
     > .icon {
-      font-size: 7.5em;
+      font-size: $hero-icon-font-size;
       margin: 0;
       transform: translateX(20%);
     }
@@ -79,7 +79,7 @@
   > .hero-tools {
     position: absolute;
     bottom: 0;
-    right: $view-padding * 2;
+    right: $hero-tools-padding-right;
     transform: translateY(50%);
   }
 
@@ -87,7 +87,7 @@
     Button must be little bigger
   ---*/
   > .hero-tools > button {
-    font-size: 1.5em;
+    font-size: $hero-tools-button-size;
     @include dpShadow(2);
   }
 
@@ -115,8 +115,8 @@
 .page-hero-tools {
   z-index: 990;
   position: fixed;
-  bottom: $view-padding;
-  right: $view-padding * 2;
+  bottom: $hero-page-tools-bottom-position;
+  right: $hero-tools-padding-right;
   transform: translateY(150%);
   transition: transform $transition-duration $swift-ease-in-out;
 

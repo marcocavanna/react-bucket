@@ -56,7 +56,7 @@
 }
 
 .popup.is-inverted {
-  background-color: $backdrop;
+  background-color: transparentize($backdrop-color, 1 - $backdrop-tooltip-opacity);
   color: $white-shade;
 }
 

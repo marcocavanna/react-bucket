@@ -6,22 +6,22 @@
   display: inline-block;
   line-height: 1;
   vertical-align: baseline;
-  background-color: $white-shade-2;
-  font-size: pixel-to-em($font-size - 2px);
-  padding: pixel-to-em(6px) pixel-to-em(10px);
+  background-color: $label-default-background;
+  font-size: pixel-to-em($label-font-size);
+  padding: pixel-to-em($label-padding-vertical) pixel-to-em($label-padding-horizontal);
   border-radius: pixel-to-em($border-radius);
-  color: $text-light;
-  font-weight: $bold;
-  box-shadow: inset 0 0 2px 0 rgba(0, 0, 0, .2);
+  color: $label-default-color;
+  font-weight: $label-default-font-weight;
+  box-shadow: $label-inner-shadow;
 
   @include background-variation($brand: true, $ui: true, $social: true)
 
 }
 
 .labels {
-  margin: pixel-to-em(3px) * -1;
+  margin: pixel-to-em($labels-margin) * -1;
 }
 
 .labels > .label-wrapper {
-  padding: pixel-to-em(3px);
+  padding: pixel-to-em($labels-margin);
 }

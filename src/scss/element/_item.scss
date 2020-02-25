@@ -120,11 +120,11 @@
   ---*/
   > .section {
     display: block;
-    font-weight: $bold;
-    color: $grey-light;
-    text-transform: uppercase;
-    margin-bottom: .5em;
-    font-size: .85em;
+    font-weight: $panel-section-label-font-weight;
+    color: $panel-section-label-color;
+    text-transform: $panel-section-label-text-transform;
+    margin-bottom: $panel-section-label-margin-bottom;
+    font-size: $panel-section-label-font-size;
   }
 
   /*---
@@ -154,7 +154,7 @@
   display: flex;
   align-items: center;
   width: 100%;
-  background-color: transparent;
+  background-color: $item-base-background;
 
   &.is-sortable {
     @include unselectable();
@@ -180,7 +180,7 @@
       cursor: pointer;
 
       @include without-touch-hover {
-        background-color: rgba(0, 0, 0, .05);
+        background-color: $item-clickable-hover-background;
       }
     }
 
@@ -221,10 +221,10 @@
   height: $item-avatar-base-size;
   width: $item-avatar-base-size;
   line-height: $item-avatar-base-size;
-  border-radius: 500rem;
+  border-radius: $item-avatar-border-radius;
   text-align: center;
-  box-shadow: inset 0 0 2px 0px rgba(0, 0, 0, .2);
-  background-color: $white-shade-2;
+  box-shadow: $item-avatar-inner-shadow;
+  background-color: $item-avatar-background-color;
   overflow: hidden;
   will-change: background-color;
   transition: background-color $transition-ease $transition-duration;
@@ -303,7 +303,7 @@
 
   .header {
     font-size: 1em;
-    font-weight: $semi-bold;
+    font-weight: $item-header-header-font-weight;
     color: inherit;
     margin: 0;
     padding: 0;
@@ -312,8 +312,8 @@
 
   .item-text {
     color: inherit;
-    opacity: .7;
-    font-size: .9em;
+    opacity: $item-text-content-opacity;
+    font-size: $item-text-content-font-size;
     @include truncate-text();
   }
 

@@ -2,8 +2,8 @@ i {
   @include icon-style($restrict-child: false, $append-to-selector: true) {
     display: inline-block;
     opacity: 1;
-    margin: 0 pixel-to-em(4px) 0 0;
-    width: pixel-to-em(22px);
+    margin: 0 pixel-to-em($icon-base-margin) 0 0;
+    width: pixel-to-em($icon-base-width);
     text-decoration: inherit;
     text-align: center;
     speak: none;

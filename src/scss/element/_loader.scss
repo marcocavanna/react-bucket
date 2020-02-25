@@ -95,7 +95,7 @@
     box-sizing: inherit;
 
     border-radius: 500rem;
-    border: .2em solid rgba(0, 0, 0, 0.1);
+    border: $loader-circular-size solid $loader-circular-background;
   }
 
   /*---
@@ -103,7 +103,7 @@
     to sping around it's container
   ---*/
   &:after {
-    border-color: #767676 transparent transparent;
+    border-color: $loader-circular-active-color transparent transparent;
 
     box-shadow: 0 0 0 1px transparent;
 
@@ -197,19 +197,19 @@
     and the spinning content
   ---*/
   &.is-circular {
-    color: $white-shade;
+    color: $loader-circular-inverted-content-color;
 
     &:before {
-      border-color: rgba(255, 255, 255, .15);
+      border-color: $loader-circular-inverted-active-color;
     }
 
     &:after {
-      border-top-color: #fff;
+      border-top-color: $loader-circular-inverted-color;
     }
   }
 
   &.is-dots > .dots {
-    color: $white-shade-2;
+    color: $loader-dots-inverted-color;
   }
 
 }

@@ -1,20 +1,8 @@
-$settings-icon-color: (
-  0: #607d8b,
-  1: #673ab7,
-  2: #0288d1,
-  3: #388e3c,
-  4: #ff5722,
-  5: #e91e63,
-  6: #d32f2f,
-  7: #009688,
-  8: #3f51b5
-);
-
 @mixin __hero-button-active-style {
   background-color: #444;
   color: #fff;
 
-  @each $index, $color in $settings-icon-color {
+  @each $index, $color in $hero-button-variarion-color {
     &.hero-variation-#{$index} {
       background-color: $color !important;
     }
@@ -24,7 +12,7 @@ $settings-icon-color: (
 @mixin __hero-button-active-discreet-style {
   color: #444;
 
-  @each $index, $color in $settings-icon-color {
+  @each $index, $color in $hero-button-variarion-color {
     &.hero-variation-#{$index} {
       color: $color !important;
 

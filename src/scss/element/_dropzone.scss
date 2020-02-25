@@ -14,7 +14,7 @@
 .dropzone {
   display: block;
   padding: 3em;
-  border: dashed 4px $border-color;
+  border: $dropzone-border-style $dropzone-border-width $dropzone-border-waiting-color;
   text-align: center;
   margin-bottom: 1.25em;
 
@@ -44,7 +44,7 @@
 }
 
 .dropzone.has-upload-error {
-  border-color: $danger !important;
+  border-color: $dropzone-border-error-color !important;
 }
 
 
@@ -52,23 +52,23 @@
     Dropzone Content Styling
 ******/
 .dropzone > .dropzone-content > .dropzone-hint {
-  color: $grey-light;
+  color: $dropzone-hint-color;
 
   @include icon-style {
     margin: 0 auto;
     display: block;
-    font-size: 4em;
+    font-size: $dropzone-hint-icon-size;
   }
 
   .dropzone-title {
-    font-size: 2em;
-    font-weight: $bold;
+    font-size: $dropzone-hint-title-size;
+    font-weight: $dropzone-hint-title-weight;
     margin: .5em 0 .25em;
   }
 
   .dropzone-message {
-    font-size: 1.5em;
-    font-weight: $semi-bold;
+    font-size: $dropzone-hint-message-size;
+    font-weight: $dropzone-hint-message-weight;
   }
 
 }
@@ -98,10 +98,10 @@
   cursor: pointer;
 
   @include without-touch-hover {
-    border-color: $primary;
+    border-color: $dropzone-active-color;
 
     > .dropzone-content > .dropzone-hint {
-      color: $primary;
+      color: $dropzone-active-color;
     }
   }
 }
@@ -113,11 +113,11 @@
 ******/
 .dropzone.is-draggable.is-dragging:not(.is-disabled) {
   transition: none;
-  border-color: $primary;
+  border-color: $dropzone-active-color;
 
   > .dropzone-content > .dropzone-hint {
     transition: none;
-    color: $primary;
+    color: $dropzone-active-color;
   }
 }
 
@@ -136,8 +136,8 @@
   ---*/
   > .file-preview-wrapper {
     position: relative;
-    flex: 0 0 96px;
-    width: 96px;
+    flex: 0 0 $dropzone-preview-wrapper-size;
+    width: $dropzone-preview-wrapper-size;
     margin: get-em-spacer(4) get-em-spacer(3) 0;
 
     &:first-child {
@@ -155,8 +155,8 @@
   > .file-preview-wrapper {
     > .file-preview {
       position: relative;
-      width: 96px;
-      height: 96px;
+      width: $dropzone-preview-wrapper-size;
+      height: $dropzone-preview-wrapper-size;
       border-radius: $border-radius;
       background-color: $grey-lightest;
       overflow: hidden;
@@ -315,7 +315,7 @@
   height: 100%;
   width: 100%;
   border-radius: $border-radius;
-  background-color: transparentize($primary, .25);
+  background-color: transparentize($dropzone-file-state-active-color, .25);
   transition: background-color $transition-duration $transition-ease;
 
   > .file-state-container {
@@ -331,10 +331,10 @@
   }
 
   &.is-success {
-    background-color: transparentize($color: $success, $amount: .25);
+    background-color: transparentize($color: $dropzone-file-state-success-color, $amount: .25);
   }
 
   &.is-error {
-    background-color: transparentize($color: $danger, $amount: .25);
+    background-color: transparentize($color: $dropzone-file-state-danger-color, $amount: .25);
   }
 }
