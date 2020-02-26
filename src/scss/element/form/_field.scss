@@ -50,6 +50,17 @@
     color: $danger;
     font-weight: $semi-bold;
   }
+
+  &.has-text-center,
+  &.has-text-right {
+    > label {
+      padding-left: 0;
+    }
+  }
+
+  &.has-text-right > label {
+    padding-right: get-em-spacer();
+  }
 }
 
 
