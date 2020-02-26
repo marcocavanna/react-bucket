@@ -38,7 +38,7 @@ export interface StrictItemProps {
   disabled?: boolean
 
   /** Header Shorthand */
-  header?: string
+  header?: React.ReactNode
 
   /** Meta Shorthand */
   meta?: ReactBucketShorthandItem<ItemMetaProps>

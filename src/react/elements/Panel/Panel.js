@@ -85,7 +85,7 @@ Panel.propTypes = {
   ]),
 
   /** Header Shorthand Method */
-  header: PropTypes.string,
+  header: PropTypes.any,
 
   /** Icon Method ShortHand */
   icon: customPropTypes.fontAwesome,
