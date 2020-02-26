@@ -13,7 +13,7 @@ import Select from '../../elements/Select';
 
 const computeOptionProp = (option, getterFn, fallbackField) => {
   /** If option is already a string, return as is */
-  if (typeof option === 'string') {
+  if (typeof option === 'string' || typeof option === 'number') {
     return option;
   }
 
@@ -35,9 +35,15 @@ const computeOptionProp = (option, getterFn, fallbackField) => {
   return option?.[fallbackField] ?? option;
 };
 
-const computeOptionValue = (option, props) => (
-  computeOptionProp(option, props.getOptionValue, 'value')
-);
+const computeOptionValue = (option, props) => {
+  const value = computeOptionProp(option, props.getOptionValue, 'value');
+
+  if (typeof value === 'number') {
+    return value.toString();
+  }
+
+  return value;
+};
 
 const computeOptionLabel = (option, props) => (
   computeOptionProp(option, props.getOptionLabel, 'label')
