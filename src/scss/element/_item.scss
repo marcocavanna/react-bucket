@@ -214,6 +214,41 @@
 /*==========
     Item Avatar
 ==========*/
+.item-avatar-wrapper {
+
+  // Increase spacing from content
+  + .item-content {
+    margin-left: get-em-spacer(3);
+  }
+
+  // Generate notifications badge
+  &.has-notification-badge {
+    position: relative;
+
+    .notification-badge {
+      color: $white;
+      font-weight: $bold;
+      position: absolute;
+      padding: pixel-to-em($item-notification-badge-min-size / 2);
+      border-radius: pixel-to-em($item-notification-badge-min-size);
+      background-color: $danger;
+      top: 0;
+      right: 0;
+    }
+
+    &.badge-has-content {
+      .notification-badge {
+        line-height: 1.5;
+        height: 1.4em;
+        padding-top: 0;
+        padding-bottom: 0;
+        border-radius: .7em;
+        transform: translate(25%, -25%);
+      }
+    }
+  }
+}
+
 .item-avatar {
   display: block;
   flex: 0 0 $item-avatar-base-size;
@@ -280,18 +315,6 @@
     }
   }
 
-  &.has-notification-badge {
-    position: relative;
-
-    .notification-badge {
-      position: absolute;
-      padding: pixel-to-em($item-notification-badge-min-size / 2);
-      background-color: $danger;
-      top: 0;
-      right: 0;
-    }
-  }
-
   @include size-variation;
 
   @include background-variation(
@@ -299,10 +322,6 @@
     $ui: true,
     $social: true
   );
-
-  + .item-content {
-    margin-left: get-em-spacer(3);
-  }
 }
 
 /*==========

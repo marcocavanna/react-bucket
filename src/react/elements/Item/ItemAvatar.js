@@ -61,7 +61,8 @@ function ItemAvatar(props) {
 
   const wrapperClasses = cx(
     'item-avatar-wrapper',
-    classByKey(notifications, 'has-notification-badge')
+    classByKey(notifications, 'has-notification-badge'),
+    classByKey(typeof notifications !== 'boolean', 'badge-has-content')
   );
 
   if (!icon && !image && !content) {
