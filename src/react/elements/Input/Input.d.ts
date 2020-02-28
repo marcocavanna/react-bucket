@@ -4,6 +4,8 @@ import { ReactBucketSIZE } from '../../generic'
 
 import { StrictFieldProps } from '../Field';
 
+import InputGroup from './InputGroup';
+
 export interface InputProps extends StrictInputProps {
   [key: string]: any
 }
@@ -62,6 +64,8 @@ export interface InputOnChangeData extends InputProps {
   value: string
 }
 
-declare class Input extends React.PureComponent<InputProps, {}> { }
+declare class Input extends React.PureComponent<InputProps, {}> {
+  static Group: typeof InputGroup
+}
 
 export default Input

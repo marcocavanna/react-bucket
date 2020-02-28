@@ -51,7 +51,7 @@
     font-family: inherit;
     font-weight: inherit;
     color: inherit;
-    text-align: left;
+    text-align: inherit;
     outline: 0;
 
     flex: 1 1 auto;
@@ -69,6 +69,15 @@
     box-shadow: inset 0px -4px 0px -3px $border-color;
     will-change: transition, box-shadow;
     transition: border .1s ease, box-shadow .1s ease;
+
+    @include input-placeholder {
+      font-weight: $regular;
+    }
+
+    &[readonly],
+    &:read-only {
+      cursor: default;
+    }
   }
 
   /*---
@@ -104,15 +113,18 @@
       border-radius: pixel-to-em($border-radius) !important;
     }
 
+  }
+
+  &:not(.is-bordered) {
     &.with-label {
       align-items: center;
 
-      &.label-on-left {
-        margin-right: .25em;
+      &.label-on-left > .label-wrapper {
+        margin-right: .5em;
       }
 
-      &.label-on-right {
-        margin-left: .25em;
+      &.label-on-right > .label-wrapper {
+        margin-left: .5em;
       }
 
       > .label-wrapper > .label {
@@ -279,6 +291,29 @@
     > input,
     > textarea {
       text-align: $align;
+    }
+  }
+}
+
+
+/******
+    Input Group
+******/
+.input-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: get-em-spacer(5);
+
+  > .field {
+    margin-bottom: 0 !important;
+  }
+
+  > * {
+    display: block;
+
+    + * {
+      margin: 0 0 0 .5em !important;
     }
   }
 }

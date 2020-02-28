@@ -18,7 +18,11 @@ import {
 
 import Field from '../Field';
 
+import InputGroup from './InputGroup';
+
 class Input extends PureComponent {
+
+  static Group = InputGroup
 
   /** Define Component PropTypes */
   static propTypes = {
