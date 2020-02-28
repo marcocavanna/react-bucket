@@ -280,6 +280,18 @@
     }
   }
 
+  &.has-notification-badge {
+    position: relative;
+
+    .notification-badge {
+      position: absolute;
+      padding: pixel-to-em($item-notification-badge-min-size / 2);
+      background-color: $danger;
+      top: 0;
+      right: 0;
+    }
+  }
+
   @include size-variation;
 
   @include background-variation(
