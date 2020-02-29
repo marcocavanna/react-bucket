@@ -19,7 +19,7 @@
 .field {
   font-size: 1em;
   position: relative;
-  font-weight: $regular;
+  font-weight: inherit;
   font-style: normal;
   margin-bottom: get-em-spacer(5);
 

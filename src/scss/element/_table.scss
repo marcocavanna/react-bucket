@@ -121,6 +121,7 @@
   width: 100%;
   max-width: 100%;
   display: table;
+  table-layout: fixed;
 
 
   /*---
@@ -513,7 +514,7 @@
   Fix Cell with Tools width
 ---*/
 .table .row .cell.tools-cell {
-  width: pixel-to-rem(40) + ($table-cell-h-padding * 1.5);
+  width: pixel-to-rem(40) + ($table-cell-h-padding * 2.5);
   text-align: center;
 }
 

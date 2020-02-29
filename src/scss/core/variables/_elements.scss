@@ -83,7 +83,7 @@ $button-fixed-height: 34px                            !default;
 $button-line-height: $line-height                     !default;
 $button-text-transform: uppercase                     !default;
 $button-font-weight: $semi-bold                       !default;
-$button-font-size: $font-size                         !default;
+$button-font-size: 1rem                               !default;
 
 $button-background-brand: true                        !default;
 $button-background-socials: true                      !default;
@@ -211,6 +211,8 @@ $item-avatar-background-color: $white-shade-2       !default;
 $item-header-header-font-weight: $semi-bold         !default;
 $item-text-content-opacity: .7                      !default;
 $item-text-content-font-size: .9em                  !default;
+
+$item-notification-badge-min-size: 12px             !default;
 
 
 /*---

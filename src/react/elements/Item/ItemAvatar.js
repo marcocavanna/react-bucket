@@ -28,6 +28,7 @@ function ItemAvatar(props) {
     icon,
     image,
     inline,
+    notifications,
     primary,
     secondary,
     size,
@@ -58,6 +59,12 @@ function ItemAvatar(props) {
     className
   );
 
+  const wrapperClasses = cx(
+    'item-avatar-wrapper',
+    classByKey(notifications, 'has-notification-badge'),
+    classByKey(typeof notifications !== 'boolean', 'badge-has-content')
+  );
+
   if (!icon && !image && !content) {
     return null;
   }
@@ -82,10 +89,15 @@ function ItemAvatar(props) {
   })();
 
   return (
-    <ElementType {...rest} className={classes} style={containerStyle}>
-      <div className='content'>
-        {avatarContent}
+    <ElementType className={wrapperClasses}>
+      <div {...rest} className={classes} style={containerStyle}>
+        <div className='content'>
+          {avatarContent}
+        </div>
       </div>
+      {notifications && (
+        <div className='notification-badge'>{typeof notifications !== 'boolean' && notifications}</div>
+      )}
     </ElementType>
   );
 
@@ -130,6 +142,12 @@ ItemAvatar.propTypes = {
 
   /** Display as Inline */
   inline: PropTypes.bool,
+
+  /** Show Notification Badge */
+  notifications: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.node
+  ]),
 
   /** Set Primary Style */
   primary: PropTypes.bool,

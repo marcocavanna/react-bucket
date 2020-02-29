@@ -46,6 +46,9 @@ export interface StrictItemAvatarProps {
   /** Inline Style */
   inline?: boolean
 
+  /** Show Notification Badge */
+  notifications?: boolean | React.ReactNode
+
   /** Set Primary Style */
   primary?: boolean
 
