@@ -273,6 +273,12 @@
   }
 }
 
+.checkbox.is-toggle > label {
+  &:after {
+    left: 2px;
+  }
+}
+
 /*---
   Adkust Sizing and Style
   for Toggle
@@ -281,7 +287,7 @@
   /* Rail */
   &:before {
     height: $toggle-bullet-size;
-    width: calc(#{$slider-travel-distance} + 4px);
+    width: calc(#{$slider-travel-distance} + 5px);
     left: -1px;
     border-radius: calc(#{$toggle-bullet-size / 2} + 2px);
     border: solid 1px $grey-lightest;
@@ -289,7 +295,7 @@
 
   /* Bulleet */
   &:after {
-    height: $toggle-bullet-size;
+    // height: $toggle-bullet-size;
     width: $toggle-bullet-size;
     border-radius: $toggle-bullet-size;
     box-shadow: none !important;
