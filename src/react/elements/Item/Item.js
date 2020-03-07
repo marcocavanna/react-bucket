@@ -37,7 +37,8 @@ function Item(props) {
     onClick,
     sortable,
     tools,
-    size
+    size,
+    unresizedContent
   } = props;
 
   const classes = cx(
@@ -46,6 +47,7 @@ function Item(props) {
     classByKey(disabled, 'is-disabled'),
     classByKey(onClick, 'is-clickable'),
     classByKey(sortable, 'is-sortable'),
+    classByKey(unresizedContent, 'has-unresized-content'),
     classByKey(meta, 'has-meta'),
     isValue(size),
     className,
@@ -126,7 +128,10 @@ Item.propTypes = {
   sortable: PropTypes.bool,
 
   /** Tools shorthand Factory */
-  tools: PropTypes.array
+  tools: PropTypes.array,
+
+  /** Disable font resize on Content */
+  unresizedContent: PropTypes.bool
 };
 
 Item.Avatar = ItemAvatar;
