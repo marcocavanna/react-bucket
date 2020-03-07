@@ -1,8 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect } from 'react';
 
-import _ from 'lodash';
-
 import { isObject } from '@appbuckets/rabbit';
 
 import { useFormikContext } from 'formik';
@@ -11,8 +9,7 @@ const withFormikField = ({
   Component,
   computeValue = null,
   handleChange  : handleChangeOverwritten,
-  touchOnChange = true,
-  computeInitialValue = false
+  touchOnChange = true
 }) => (props) => {
 
   /** Get Field Props */
@@ -92,26 +89,6 @@ const withFormikField = ({
 
   /** Get meta props */
   const meta = formik.getFieldMeta(name);
-
-  /**
-   * If field has not been touched and has an
-   * initial value and this value is different
-   * from 'value', set the initial value
-   */
-  if (!meta.touched
-    && !_.isNil(meta.initialValue)
-    && typeof computeValue === 'function'
-    && computeInitialValue) {
-
-    const initialValue = computeValue(
-      meta.initialValue,
-      { ...fieldRest, ...rest, name: fieldName, value: meta.initialValue }
-    );
-
-    /** Set initial value for this field */
-    formik.setFieldTouched(fieldName, true, false);
-    formik.setFieldValue(fieldName, initialValue, false);
-  }
 
   /** Get Properties from meta */
   const {
