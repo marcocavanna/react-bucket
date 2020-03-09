@@ -208,8 +208,9 @@
 
     /* Disabled Date */
     &.DayPicker-Day--disabled {
-      opacity: $disabled-opacity;
-      cursor: default;
+      opacity: $disabled-opacity !important;
+      cursor: default !important;
+      background-color: transparent !important;
     }
 
     /* Selected Days */

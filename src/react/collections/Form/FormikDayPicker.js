@@ -15,12 +15,20 @@ const FormikDayPickerComponent = ({ state, meta, rest: rawRest }) => {
     ...rest
   } = rawRest;
 
+  const handleDayChange = (...args) => {
+    onChange(...args);
+
+    if (typeof rest.onDayChange === 'function') {
+      rest.onDayChange(...args);
+    }
+  };
+
   return (
     <DayPicker
       {...rest}
       {...getFormFieldStateProps(state, meta, rest)}
       date={value}
-      onDayChange={onChange}
+      onDayChange={handleDayChange}
     />
   );
 };

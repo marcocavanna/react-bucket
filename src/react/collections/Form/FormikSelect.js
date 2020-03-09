@@ -67,8 +67,6 @@ FormikSelectComponent.propTypes = {
 const FormikSelect = withFormikField({
   Component: FormikSelectComponent,
 
-  computeInitialValue: true,
-
   /** Handle Change function will set Formik Props */
   handleChange: (formik, props, selected) => {
 

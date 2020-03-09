@@ -14,7 +14,7 @@
   padding: 1em;
   background-color: transparentize($backdrop-color, 1 - $backdrop-modal-opacity);
   opacity: 0;
-  line-height: 1;
+  line-height: inherit;
   animation-fill-mode: both;
   animation-duration: .5s;
   transition: opacity .5s linear;

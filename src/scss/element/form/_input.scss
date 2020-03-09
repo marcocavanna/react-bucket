@@ -16,6 +16,7 @@
  input[type=password],
  input[type=search],
  input[type=text],
+ input[type=time],
  textarea {
    appearance: none;
  }
@@ -61,6 +62,7 @@
 
     margin: 0;
     padding: pixel-to-em($input-vertical-padding + 1) $input-horizontal-padding;
+    height: $input-line-height * 1em;
     line-height: $input-line-height;
 
     background-color: $white;

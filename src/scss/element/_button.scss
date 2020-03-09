@@ -107,7 +107,7 @@ $__button_background_map: ();
     @extend .as-icon;
 
     position: relative;
-    padding-left: pixel-to-em($button-icon-container-size) + pixel-to-em($button-horizontal-padding) !important;
+    padding-left: pixel-to-em($button-icon-container-size + ($button-horizontal-padding / 2)) !important;
     padding-right: pixel-to-em($button-horizontal-padding) !important;
 
     @include icon-style($restrict-child: true) {

@@ -37,6 +37,7 @@
   border: $border;
   background-color: $white-shade;
   padding: pixel-to-em(3);
+  @include dpShadow(2);
 
   > .popup-content {
     background-color: $white;

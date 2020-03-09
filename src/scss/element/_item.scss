@@ -359,6 +359,16 @@
   }
 }
 
+.item.has-unresized-content .item-content {
+  .header + .item-text {
+    margin-top: .25em;
+  }
+
+  .item-text {
+    font-size: 1em;
+  }
+}
+
 /******
     Item Meta Content
 ******/

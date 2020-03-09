@@ -59,6 +59,9 @@ export interface StrictItemProps {
   /** Tools shorthand */
   tools?: ReactBucketShorthandCollection<ItemToolProps>
 
+  /** Disable font resize on content */
+  unresizedContent?: boolean
+
 }
 
 interface ItemComponent extends React.FunctionComponent<ItemProps> {

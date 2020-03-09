@@ -126,7 +126,7 @@ class Modal extends Component {
   }
 
   static defaultProps = {
-    centered             : true,
+    centered             : false,
     closeOnDimmerClick   : true,
     closeOnDocumentClick : false,
     dimmer               : true,
@@ -203,9 +203,9 @@ class Modal extends Component {
   }
 
   handlePortalMount = (e) => {
-    const { eventPool } = this.props;
+    const { eventPool, centered } = this.props;
 
-    this.setState({ scrolling: false });
+    this.setState({ scrolling: !centered });
     this.setPositionAndClassNames();
 
     EventStack.sub('mousedown', this.handleDocumentMouseDown, {
@@ -262,7 +262,7 @@ class Modal extends Component {
       const rect = this.ref.current.getBoundingClientRect();
       const isFitted = canFit(rect);
 
-      scrolling = !isFitted;
+      scrolling = !isFitted || !centered;
 
       const legacyStyles = this.legacy ? getLegacyStyles(isFitted, centered, rect) : {};
 
@@ -270,7 +270,7 @@ class Modal extends Component {
         newState.legacyStyles = legacyStyles;
       }
 
-      if (oldScrolling !== scrolling) {
+      if (oldScrolling !== scrolling && centered) {
         newState.scrolling = scrolling;
       }
     }
