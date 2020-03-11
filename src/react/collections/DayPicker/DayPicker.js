@@ -5,6 +5,7 @@ import DayPickerComponent from 'react-day-picker/DayPicker';
 
 import dayJS from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
+import relativeTime from 'dayjs/plugin/relativeTime';
 import 'dayjs/locale/it';
 
 import _ from 'lodash';
@@ -21,6 +22,7 @@ import Input from '../../elements/Input';
 
 dayJS.locale('it');
 dayJS.extend(customParseFormat);
+dayJS.extend(relativeTime);
 
 // eslint-disable-next-line react/require-optimization
 class DayPicker extends Component {
