@@ -1,9 +1,9 @@
 import React, { PureComponent, createRef } from 'react';
 import PropTypes from 'prop-types';
+import { isObject } from '@appbuckets/rabbit';
 
-import ReactSelect from 'react-select';
+import ReactSelect, { components } from 'react-select';
 import CreatableSelect from 'react-select/creatable';
-import AsyncSelect from 'react-select/async';
 
 import _ from 'lodash';
 
@@ -18,6 +18,9 @@ class Select extends PureComponent {
 
   /** Define Component PropTypes */
   static propTypes = {
+
+    /** Set a Custom Option Component */
+    CustomOptionComponent: PropTypes.node,
 
     /** Set if the Value is Clearable */
     clearable: PropTypes.bool,
@@ -72,6 +75,30 @@ class Select extends PureComponent {
     options       : []
   }
 
+
+  /* --------
+   * Option Component Builder
+   * -------- */
+  static Option = (props) => {
+    /** If no CustomOptionComponent exists, return default */
+    if (!props.selectProps.CustomOptionComponent) {
+      return <components.Option {...props} />;
+    }
+
+    /** Strip unuseful props */
+    const {
+      children,
+      ...rest
+    } = props;
+
+    /** Return the Custom Component */
+    return (
+      <components.Option {...rest}>
+        <props.selectProps.CustomOptionComponent {...rest} />
+      </components.Option>
+    );
+  }
+
   selectorRef = createRef()
 
   /**
@@ -110,7 +137,8 @@ class Select extends PureComponent {
       disabled,
       loading,
       options,
-      menuPlacement
+      menuPlacement,
+      CustomOptionComponent
     } = this.props;
 
     const tabIndex = this.getTabIndex();
@@ -119,6 +147,14 @@ class Select extends PureComponent {
     const ElementType = getElementType(Select, this.props);
 
     const SelectElement = creatable ? CreatableSelect : ReactSelect;
+
+    /** If a custom option component, exists, append to Rest */
+    if (CustomOptionComponent) {
+      if (!isObject(rest.components)) {
+        rest.components = {};
+      }
+      rest.components.Option = Select.Option;
+    }
 
     return (
       <Field form input as={ElementType} {...fieldProps}>

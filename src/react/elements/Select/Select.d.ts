@@ -11,6 +11,9 @@ export interface SelectProps extends StrictSelectProps {
 
 export interface StrictSelectProps extends StrictFieldProps, ReactSelectProps {
 
+  /** Set the Custom Option Component */
+  CustomOptionComponent?: React.ComponentType<ReactSelect.OptionProps<StrictSelectProps>>
+
   /** Set if selected option is clearable */
   clearable?: boolean
 
