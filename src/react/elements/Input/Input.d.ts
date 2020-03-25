@@ -26,7 +26,7 @@ export interface StrictInputProps extends StrictFieldProps, React.InputHTMLAttri
    * Any character can be escaped with backslash, which usually will appear as double backslash in JS strings.
    * For example, German phone mask with unremoveable prefix +49 will look like `mask="+4\\9 99 999 99"` or `mask={"+4\\\\9 99 999 99"}`
    */
-  mask: string;
+  mask?: string;
 
   /**
    * Character to cover unfilled editable parts of mask. Default character is "_". If set to null, unfilled parts will be empty, like in ordinary input.

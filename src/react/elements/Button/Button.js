@@ -107,6 +107,9 @@ class Button extends PureComponent {
     /** Tooltip text */
     tooltip: PropTypes.string,
 
+    /** Set button type */
+    type: PropTypes.string,
+
     /** Warning Color */
     warning: PropTypes.bool
   }
@@ -115,7 +118,8 @@ class Button extends PureComponent {
    * Set Button Default Props
    */
   static defaultProps = {
-    as: 'button'
+    as   : 'button',
+    type : 'button'
   }
 
   /**
@@ -206,6 +210,7 @@ class Button extends PureComponent {
       size,
       success,
       tooltip,
+      type,
       warning
     } = this.props;
 
@@ -245,6 +250,7 @@ class Button extends PureComponent {
         className={classes}
         disabled={(disabled && ElementType === 'button') || undefined}
         role={role}
+        type={type}
         tabIndex={tabIndex}
         onClick={this.handleClick}
       >

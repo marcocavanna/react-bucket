@@ -1,0 +1,89 @@
+/*
+ * ReactBucket Framwork
+ *
+ * Comment @ _comment.scss in 'Element'
+ *
+ * Defined at 2020-03-11
+ * Copyright Marco Cavanna • 2020
+ */
+
+
+.comment {
+  display: flex;
+  margin-bottom: get-em-spacer(4);
+  font: inherit;
+  color: inherit;
+  font-size: 1rem;
+}
+
+.comment > .avatar {
+  margin-right: get-em-spacer(3);
+  align-self: flex-end;
+  padding-bottom: 18px;
+
+  .item-avatar {
+    flex: 0 0 22px;
+    width: 22px;
+    height: 22px;
+    line-height: 22px;
+    font-size: 10px;
+  }
+}
+
+.comment > .content {
+
+  .wrapper {
+    max-width: 80%;
+    background-color: $white-shade;
+    border-radius: $border-radius-max * 1.5;
+    padding: $border-radius-max $border-radius-max * 1.5;
+
+    > .sender {
+      font-weight: $semi-bold;
+      margin-bottom: .25em;
+    }
+
+    > .text {
+      white-space: pre-line;
+    }
+  }
+
+  .tools {
+    font-weight: $semi-bold;
+    font-size: 10px;
+    height: 18px;
+    line-height: 18px;
+    padding-left: $border-radius-max * 1.5;
+
+    > span {
+      display: inline-block;
+
+      &.tool {
+        color: $primary;
+        cursor: pointer;
+      }
+
+      &.datetime {
+        opacity: .5;
+      }
+
+      + span {
+        margin-left: get-em-spacer(2);
+
+        &:before {
+          content: '•';
+          margin-right: get-em-spacer(2);
+        }
+      }
+    }
+  }
+
+}
+
+
+.comment.is-mine > .content {
+  .wrapper {
+    background-color: transparentize($primary, .15);
+    color: $white;
+  }
+}

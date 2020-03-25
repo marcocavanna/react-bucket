@@ -421,7 +421,7 @@ class Modal extends Component {
         onUnmount={this.handlePortalUnmount}
       >
         <div ref={this.dimmerRef} className={dimmerClasses}>
-          {this.renderContent(rest)}
+          {open && this.renderContent(rest)}
         </div>
       </Portal>
     );

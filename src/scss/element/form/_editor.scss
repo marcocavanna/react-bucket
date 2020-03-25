@@ -32,6 +32,10 @@
     padding-left: 2.5em;
   }
 
+  ol {
+    list-style: decimal !important;
+  }
+
   div[data-block="true"]:not(:first-child) {
     margin-top: get-em-spacer(4);
   }

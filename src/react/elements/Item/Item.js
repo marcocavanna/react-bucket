@@ -35,6 +35,7 @@ function Item(props) {
     disabled,
     header,
     onClick,
+    notTruncated,
     sortable,
     tools,
     size,
@@ -71,7 +72,12 @@ function Item(props) {
         !childrenUtils.isNil(children)
           ? children
           : (header || content || meta) && (
-            <ItemContent content={content} header={header} meta={meta} />
+            <ItemContent
+              content={content}
+              header={header}
+              meta={meta}
+              notTruncated={notTruncated}
+            />
           )
       }
       {tools && ItemTools.create(tools, { autoGenerateKey: false })}
@@ -113,6 +119,9 @@ Item.propTypes = {
     PropTypes.node,
     PropTypes.bool
   ]),
+
+  /** Disable Content Trucante */
+  notTruncated: PropTypes.bool,
 
   /**
    * Called after user's click.
