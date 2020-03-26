@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect } from 'react';
 
-import { isObject } from '@appbuckets/rabbit';
+import { isObject, isValidString } from '@appbuckets/rabbit';
 
 import { useFormikContext } from 'formik';
 
@@ -91,12 +91,18 @@ const withFormikField = ({
   const meta = formik.getFieldMeta(name);
 
   /** Get Properties from meta */
+  const errorDefinition = isObject(meta.error)
+    ? meta.error
+    : isValidString(meta.error)
+      ? { error: true, message: meta.error }
+      : {};
+
   const {
     error,
     message,
     success,
     warning
-  } = isObject(meta.error) ? meta.error : {};
+  } = errorDefinition;
 
   /** Get the Form State */
   const { isSubmitting } = formik;
