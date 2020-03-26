@@ -1,6 +1,6 @@
 {
   "name": "@appbuckets/react-bucket",
-  "version": "0.2.25",
+  "version": "0.2.252",
   "description": "React UI Framework",
   "main": "dist/react/index.js",
   "scripts": {
@@ -34,7 +34,8 @@
     "lint": "eslint src",
     "try": "cross-env BABEL_CONFIG=api babel-node",
     "fa:icon:generator": "node ./src/fontawesome/icon-module/generator.js && cross-env NODE_ENV=production babel src/fontawesome -d dist/fontawesome --ignore src/fontawesome/icon-module/generator.js && cpy \"src/fontawesome/icon-module/fa-icon.d.ts\" \"dist/fontawesome/icon-module\"",
-    "dtsbuild": "cpy \"**/*.d.ts\" \"../../dist/react\" --cwd=src/react --parents"
+    "dtsbuild": "cpy \"**/*.d.ts\" \"../../dist/react\" --cwd=src/react --parents",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -177,8 +178,8 @@
     "tinycolor2": "^1.4.1"
   },
   "peerDependencies": {
-    "react": "16.12.0",
-    "react-dom": "16.12.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
     "react-router-dom": "^5.1.2"
   },
   "homepage": "https://bitbucket.org/marcocavanna/react-bucket#readme",
