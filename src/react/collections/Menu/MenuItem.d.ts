@@ -41,7 +41,7 @@ export interface StrictMenuHeaderProps {
   onClick?: Function
 
   /** On Right Position */
-  right: boolean
+  right?: boolean
 
 }
 
