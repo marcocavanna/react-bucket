@@ -84,7 +84,10 @@ Hero.propTypes = {
   heroIcon: customPropTypes.fontAwesome,
 
   /** Add Hero Tools */
-  tools: PropTypes.arrayOf(PropTypes.object)
+  tools: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.object),
+    PropTypes.bool
+  ])
 };
 
 Hero.Content = HeroContent;
