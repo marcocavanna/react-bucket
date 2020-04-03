@@ -130,8 +130,14 @@
       }
 
       > .label-wrapper > .label {
-        line-height: 2em;
         border-radius: pixel-to-em($border-radius) !important;
+      }
+    }
+
+    &.is-flat.with-label {
+      > .label-wrapper > .label {
+        line-height: 2em;
+        height: 2em;
       }
     }
   }
@@ -146,6 +152,7 @@
   > .button {
     margin: 0;
     line-height: $input-height;
+    height: $input-height;
     padding-top: 0;
     padding-bottom: 0;
     font-size: 1em;
@@ -157,7 +164,7 @@
     color: $grey;
     margin: 0;
     line-height: $input-height;
-    height: 100%;
+    height: $input-height;
     box-shadow: none;
     background-color: $border-color;
     min-width: 38px;
@@ -191,6 +198,10 @@
       font-size: 1em;
       padding-left: pixel-to-em(6px);
       padding-right: pixel-to-em(6px);
+    }
+
+    > .button {
+      min-width: auto;
     }
 
     &.action-on-left {

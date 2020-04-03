@@ -43,6 +43,9 @@ export interface StrictItemProps {
   /** Meta Shorthand */
   meta?: ReactBucketShorthandItem<ItemMetaProps>
 
+  /** Disable Content Trucate */
+  notTruncated?: boolean
+
   /**
    * Called after user's click.
    * @param {SyntheticEvent} event - React's original SyntheticEvent.

@@ -18,10 +18,10 @@ $__button_background_map: ();
   cursor: pointer;
   display: inline-block;
   min-height: 1em;
+  min-width: 10em;
   outline: 0;
   border: none;
   vertical-align: baseline;
-  // text-transform: none;
   text-shadow: none;
   font-size: $button-font-size;
   background-image: none;
@@ -88,6 +88,7 @@ $__button_background_map: ();
   /** Set Button Icon Style */
   &.as-icon {
     padding: pixel-to-em($button-vertical-padding);
+    min-width: auto;
 
     @include icon-style($restrict-child: true) {
       margin: 0 !important;
@@ -227,6 +228,7 @@ $__button_background_map: ();
     border-radius: 500rem;
     height: pixel-to-em($button-icon-container-size);
     width: pixel-to-em($button-icon-container-size);
+    min-width: auto;
     padding: 0;
     position: relative;
 

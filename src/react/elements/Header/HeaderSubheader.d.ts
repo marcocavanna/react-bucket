@@ -20,7 +20,7 @@ export interface StrictHeaderSubheaderProps {
   color?: ReactBucketCOLOR
 
   /** Content Property */
-  content: React.ReactNode
+  content?: React.ReactNode
 }
 
 declare const HeaderSubheader: React.FunctionComponent<HeaderSubheaderProps>

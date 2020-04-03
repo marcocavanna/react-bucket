@@ -106,8 +106,8 @@ $slider-bullet-size: 1em              !default;
 $toggle-bullet-size: 1.25em           !default;
 $slider-travel-distance: 2.5em        !default;
 
-$checkbox-label-distance: $checkbox-box-size + .75em;
-$slider-label-distance: $slider-travel-distance + .75em;
+$checkbox-label-distance: $checkbox-box-size + 1em;
+$slider-label-distance: $slider-travel-distance + 1em;
 
 
 /*---

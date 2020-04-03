@@ -114,7 +114,7 @@ export interface StrictContainerProps {
   textTransform?: 'capitalize' | 'lowercase' | 'uppercase'
 
   /** Set container as Visible */
-  visible: boolean | ReactBucketBREAKPOINT
+  visible?: boolean | ReactBucketBREAKPOINT
 
 }
 

@@ -61,7 +61,7 @@ export interface StrictPopupProps extends StrictPortalProps {
   onOpen?: Function
 
   /** Handler on Outside Portal Click */
-  onOutsideClick: Function
+  onOutsideClick?: Function
 
   /** Position for the popover. */
   position?:

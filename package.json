@@ -1,6 +1,6 @@
 {
   "name": "@appbuckets/react-bucket",
-  "version": "0.2.2",
+  "version": "0.2.26",
   "description": "React UI Framework",
   "main": "dist/react/index.js",
   "scripts": {
@@ -34,7 +34,8 @@
     "lint": "eslint src",
     "try": "cross-env BABEL_CONFIG=api babel-node",
     "fa:icon:generator": "node ./src/fontawesome/icon-module/generator.js && cross-env NODE_ENV=production babel src/fontawesome -d dist/fontawesome --ignore src/fontawesome/icon-module/generator.js && cpy \"src/fontawesome/icon-module/fa-icon.d.ts\" \"dist/fontawesome/icon-module\"",
-    "dtsbuild": "cpy \"**/*.d.ts\" \"../../dist/react\" --cwd=src/react --parents"
+    "dtsbuild": "cpy \"**/*.d.ts\" \"../../dist/react\" --cwd=src/react --parents",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -163,21 +164,23 @@
     "lodash": "^4.17.15",
     "object-hash": "^2.0.0",
     "prop-types": "^15.7.2",
-    "react": "16.12.0",
     "react-currency-input": "^1.3.6",
     "react-day-picker": "^7.4.0",
-    "react-dom": "16.12.0",
     "react-dropzone": "^10.2.1",
     "react-input-mask": "^2.0.4",
     "react-is": "^16.9.0",
     "react-popper": "^1.3.3",
-    "react-router-dom": "^5.1.2",
     "react-router-hash-link": "^1.2.2",
     "react-select": "^3.0.8",
     "react-textarea-autosize": "^7.1.2",
     "shallowequal": "^1.1.0",
     "smart-table-search": "^2.0.8",
     "tinycolor2": "^1.4.1"
+  },
+  "peerDependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-router-dom": "^5.1.2"
   },
   "homepage": "https://bitbucket.org/marcocavanna/react-bucket#readme",
   "directories": {
