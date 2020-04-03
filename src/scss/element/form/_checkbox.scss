@@ -63,7 +63,7 @@
 .checkbox > label {
   cursor: pointer;
   position: relative;
-  display: block;
+  display: inline-block;
   padding-left: $checkbox-label-distance;
   outline: none;
 

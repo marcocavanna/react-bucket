@@ -22,6 +22,7 @@ function Progress(props) {
     content,
     direction,
     discrete,
+    error,
     formatLimits,
     indicator,
     inverted,
@@ -29,7 +30,9 @@ function Progress(props) {
     max,
     min,
     size,
-    value
+    success,
+    value,
+    warning
   } = props;
 
   /** Save progress values fixed to 2 decimals */
@@ -69,7 +72,10 @@ function Progress(props) {
     classByKey(circular, 'is-circular'),
     classByKey(content || children, 'has-content'),
     classByPattern(size, 'is-%value%'),
-    colorStep,
+    classByKey(!error && !success && !warning && !discrete, colorStep),
+    classByKey(error, classByKey(inverted, 'high', 'low')),
+    classByKey(success, classByKey(inverted, 'low', 'high')),
+    classByKey(warning, 'mid'),
     className
   );
 
@@ -126,8 +132,8 @@ function Progress(props) {
       break;
 
     case 'small':
-      circularProgressSize.circle /= 2;
-      circularProgressSize.stroke /= 1.75;
+      circularProgressSize.circle /= 1.75;
+      circularProgressSize.stroke /= 1.5;
       break;
 
     case 'large':
@@ -215,6 +221,9 @@ Progress.propTypes = {
   /** Remove Colors */
   discrete: PropTypes.bool,
 
+  /** Error state */
+  error: PropTypes.bool,
+
   /** Format Limits */
   formatLimits: PropTypes.func,
 
@@ -240,8 +249,14 @@ Progress.propTypes = {
   /** Size Variation */
   size: customPropTypes.size,
 
+  /** Success state */
+  success: PropTypes.bool,
+
   /** Bar Value */
-  value: PropTypes.number
+  value: PropTypes.number,
+
+  /** Warning state */
+  warning: PropTypes.bool
 };
 
 Progress.defaultProps = {

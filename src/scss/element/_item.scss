@@ -207,6 +207,15 @@
 
   }
 
+  > .progress.is-circular {
+    width: auto;
+    margin: 0;
+
+    + .item-content {
+      margin-left: get-em-spacer(3);
+    }
+  }
+
   @include size-variation();
 
 }

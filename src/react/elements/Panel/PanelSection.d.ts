@@ -23,7 +23,7 @@ export interface StrictPanelSectionProps {
   divided?: boolean
 
   /** Set the Font Weight */
-  fontWeight: ReactBucketFONTWEIGHT
+  fontWeight?: ReactBucketFONTWEIGHT
 
   /** Label Shorthand */
   label?: React.ReactNode,

@@ -200,6 +200,10 @@
       padding-right: pixel-to-em(6px);
     }
 
+    > .button {
+      min-width: auto;
+    }
+
     &.action-on-left {
       > .button {
         border-top-right-radius: 0;

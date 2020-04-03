@@ -19,11 +19,15 @@ import MessageHeader from './MessageHeader';
 import MessageItem from './MessageItem';
 import MessageList from './MessageList';
 
+import Button from '../../elements/Button';
 import Icon from '../../elements/Icon';
 
 export default class Message extends PureComponent {
 
   static propTypes = {
+    /** Action Button */
+    action: PropTypes.any,
+
     /** An element type to render as (string or function). */
     as: PropTypes.elementType,
 
@@ -89,6 +93,7 @@ export default class Message extends PureComponent {
   render() {
 
     const {
+      action,
       children,
       className,
       content,
@@ -108,6 +113,7 @@ export default class Message extends PureComponent {
     const classes = cx(
       'message',
       classByPattern(size, 'is-%value%'),
+      classByKey(action, 'has-action'),
       classByKey(icon, 'has-icon'),
       classByKey(error, 'is-danger'),
       classByKey(info, 'is-info'),
@@ -142,6 +148,11 @@ export default class Message extends PureComponent {
             {content && createHTMLParagraph(content, { autoGenerateKey: false })}
             {list && MessageList.create(list, { autoGenerateKey: false })}
           </MessageContent>
+        )}
+        {action && (
+          <div className='message-action has-text-right mt-2 mb-1'>
+            {Button.create(action, { autoGenerateKey: false })}
+          </div>
         )}
       </ElementType>
     );
