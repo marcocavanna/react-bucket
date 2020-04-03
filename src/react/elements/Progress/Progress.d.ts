@@ -2,13 +2,11 @@ import * as React from 'react'
 
 import { ReactBucketSIZE } from '../../generic';
 
-import { FieldProps } from '../Field';
-
 export interface ProgressProps extends StrictProgressProps {
   [key: string]: any
 }
 
-export interface StrictProgressProps extends FieldProps {
+export interface StrictProgressProps {
   /** Show an Active White Shadow */
   active?: boolean
 

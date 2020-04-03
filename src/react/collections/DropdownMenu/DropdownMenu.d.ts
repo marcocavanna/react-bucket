@@ -21,7 +21,7 @@ export interface StrictDropdownMenuProps {
   eventStack?: string
 
   /** Items Shorthand */
-  items?: React.ReactElement[]
+  items?: ReactBucketShorthandCollection<ButtonProps>
 
   /** On Menu Close Handler */
   onClose?: (e: React.SyntheticEvent, props: StrictDropdownMenuProps) => void
@@ -30,7 +30,7 @@ export interface StrictDropdownMenuProps {
   onOpen?: (e: React.SyntheticEvent, props: StrictDropdownMenuProps) => void
 
   /** Trigger Element */
-  trigger: React.ReactElement
+  trigger?: React.ReactElement
 
 }
 
