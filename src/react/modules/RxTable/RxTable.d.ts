@@ -34,13 +34,13 @@ export interface StrictRxTableProps {
   paginate?: boolean | number
 
   /** RxTableData Instance */
-  rxTableData: RxTableData<object[]>
+  rxTableData: RxTableData<any>
 
   /** Tools Column Position */
   toolsColumnPosition?: 'left' | 'right'
 
   /** Use React Virtualized to show Data [Currenty not Supported] */
-  virtualizeTable: boolean
+  virtualizeTable?: boolean
 }
 
 interface RxTableComponent extends React.ComponentClass<RxTableProps> {

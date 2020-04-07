@@ -255,7 +255,7 @@ declare class RxTableData<T> {
    * is an async function.
    * Default to true
    */
-  reload(options: { silent: boolean }): void
+  reload(options?: { silent: boolean }): void
 
 
   /**
