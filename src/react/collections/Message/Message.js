@@ -10,8 +10,7 @@ import {
   classByKey,
   classByPattern,
   getElementType,
-  getUnhandledProps,
-  createHTMLParagraph
+  getUnhandledProps
 } from '../../lib';
 
 import MessageContent from './MessageContent';
@@ -142,13 +141,11 @@ export default class Message extends PureComponent {
       <ElementType {...rest} className={classes}>
         {dismissIcon}
         {icon && Icon.create(icon, { autoGenerateKey: false })}
-        {(!_.isNil(header) || !_.isNil(content) || !_.isNil(list)) && (
-          <MessageContent>
-            {header && MessageHeader.create(header, { autoGenerateKey: false })}
-            {content && createHTMLParagraph(content, { autoGenerateKey: false })}
-            {list && MessageList.create(list, { autoGenerateKey: false })}
-          </MessageContent>
-        )}
+        <MessageContent
+          header={header}
+          content={content}
+          list={list}
+        />
         {action && (
           <div className='message-action has-text-right mt-2 mb-1'>
             {Button.create(action, { autoGenerateKey: false })}

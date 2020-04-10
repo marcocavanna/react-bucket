@@ -1,6 +1,6 @@
 {
   "name": "@appbuckets/react-bucket",
-  "version": "0.2.26",
+  "version": "0.2.262",
   "description": "React UI Framework",
   "main": "dist/react/index.js",
   "scripts": {

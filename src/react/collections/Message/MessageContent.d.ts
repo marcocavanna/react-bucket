@@ -1,4 +1,7 @@
 import * as React from 'react'
+import { ReactBucketShorthandItem } from '../../generic'
+import { MessageHeaderProps } from './MessageHeader'
+import { MessageListProps } from './MessageList'
 
 export interface MessageContentProps extends StrictMessageContentProps {
   [key: string]: any
@@ -15,7 +18,13 @@ export interface StrictMessageContentProps {
   className?: string
 
   /** Shorthand for primary content. */
-  content?: React.ReactNode
+  content?: React.ReactNode,
+
+  /** Header Shorthand Props */
+  header?: ReactBucketShorthandItem<MessageHeaderProps>
+
+  /** List Shorthand Props */
+  list?: ReactBucketShorthandItem<MessageListProps>
 }
 
 declare const MessageContent: React.StatelessComponent<MessageContentProps>
