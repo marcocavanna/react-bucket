@@ -94,12 +94,13 @@
   cursor: pointer;
   position: absolute;
   z-index: 1;
-  font-size: 1.5em;
+  font-size: 2em;
   color: $white;
-  opacity: .75;
+  opacity: .85;
   margin: 0;
   top: 1rem;
   right: $modal-horizontal-padding;
+  transition: opacity $transition-duration $transition-ease;
 
   @include without-touch-hover {
     opacity: 1;
