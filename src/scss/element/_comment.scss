@@ -31,8 +31,11 @@
 }
 
 .comment > .content {
+  flex-grow: 1;
+  flex-shrink: 0;
 
   .wrapper {
+    display: inline-block;
     max-width: 80%;
     background-color: $white-shade;
     border-radius: $border-radius-max * 1.5;
@@ -49,6 +52,7 @@
   }
 
   .tools {
+    display: block;
     font-weight: $semi-bold;
     font-size: 10px;
     height: 18px;
