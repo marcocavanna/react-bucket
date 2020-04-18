@@ -89,8 +89,8 @@ function ItemAvatar(props) {
   })();
 
   return (
-    <ElementType className={wrapperClasses}>
-      <div {...rest} className={classes} style={containerStyle}>
+    <ElementType className={wrapperClasses} style={{ ...rest.style }}>
+      <div {...rest} className={classes} style={{ ...containerStyle }}>
         <div className='content'>
           {avatarContent}
         </div>

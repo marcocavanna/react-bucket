@@ -69,6 +69,9 @@ class Input extends PureComponent {
     /** Currency Input precision */
     precision: PropTypes.number,
 
+    /** Set the Input as ReadOnly */
+    readOnly: PropTypes.bool,
+
     /** Set the Field as Required */
     required: PropTypes.bool,
 
@@ -101,10 +104,10 @@ class Input extends PureComponent {
    * have tabIndex = -1
    */
   getTabIndex = () => {
-    const { disabled, tabIndex } = this.props;
+    const { disabled, tabIndex, readOnly } = this.props;
 
     if (!_.isNil(tabIndex)) return tabIndex;
-    if (disabled) return -1;
+    if (disabled || readOnly) return -1;
     return null;
   }
 
@@ -181,7 +184,7 @@ class Input extends PureComponent {
    * append to container
    */
   partitionProps = () => {
-    const { disabled, type, required } = this.props;
+    const { disabled, type, required, readOnly } = this.props;
 
     const tabIndex = this.getTabIndex();
     const unhandled = getUnhandledProps(Input, this.props);
@@ -195,6 +198,7 @@ class Input extends PureComponent {
         type,
         tabIndex,
         required,
+        readOnly,
         onClick  : this.handleClick,
         onChange : this.handleChange,
         onBlur   : this.handleBlur,

@@ -39,6 +39,9 @@ export interface StrictPanelProps {
   /** Loading Style for Panel */
   loading?: boolean
 
+  /** Explicit a nested Panel */
+  nested?: boolean
+
   /** Fab Click handler Function */
   onFabClick?: (e: React.MouseEvent<HTMLButtonElement>, props: PanelFabProps) => void
 

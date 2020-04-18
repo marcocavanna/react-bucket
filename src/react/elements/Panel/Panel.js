@@ -27,6 +27,7 @@ function Panel(props) {
     header,
     icon,
     loading,
+    nested,
     onFabClick,
     subheader,
     table,
@@ -38,6 +39,7 @@ function Panel(props) {
     classByKey(fab, 'with-fab'),
     classByKey(loading, 'is-loading'),
     classByKey(table, 'has-table'),
+    classByKey(nested, 'is-nested'),
     classByPattern(textAlign, 'has-text-%value%'),
     classByPattern(color, 'has-text-%value%'),
     className
@@ -92,6 +94,9 @@ Panel.propTypes = {
 
   /** Loading Style for Panel */
   loading: PropTypes.bool,
+
+  /** Explicit a Nested Panel */
+  nested: PropTypes.bool,
 
   /**
    * Called after user's click.
