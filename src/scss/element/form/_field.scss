@@ -128,7 +128,8 @@
     Field color change, using a dedicated mixin
   ---*/
   @each $label, $color in $react-bucket-brand-colors-map {
-    &.is-transparent > .content > input {
+    &.is-transparent > .content > input,
+    &.is-transparent > .content > textarea {
       background-color: transparent;
     }
 
