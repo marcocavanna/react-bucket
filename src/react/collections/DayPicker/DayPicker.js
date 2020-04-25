@@ -27,6 +27,8 @@ dayJS.extend(relativeTime);
 // eslint-disable-next-line react/require-optimization
 class DayPicker extends Component {
 
+  static fallback = null;
+
   static propTypes = {
 
     /** Close Picker once a day has been selected */
@@ -148,15 +150,15 @@ class DayPicker extends Component {
       ? dayJS(defaultDate)
       : typeof date === 'number'
         ? dayJS(date)
-        : null;
+        : DayPicker.fallback;
 
     /** Set the State */
     // eslint-disable-next-line react/state-in-constructor
     this.state = {
-      date         : startingDate ? startingDate.valueOf() : null,
+      date         : startingDate ? startingDate.valueOf() : DayPicker.fallback,
       inputValue   : startingDate ? startingDate.format(props.dateFormat) : '',
       open         : false,
-      selectedDays : startingDate ? startingDate.toDate() : null
+      selectedDays : startingDate ? startingDate.toDate() : DayPicker.fallback
     };
 
   }
@@ -218,8 +220,8 @@ class DayPicker extends Component {
     /** Build the DayJS Object */
     const date = isInputTrigger ? dayJS(value, 'DD/MM/YYYY') : dayJS(value);
     /** Get the Date Timestamp */
-    const dateTimestamp = date.isValid() ? date.valueOf() : null;
-    const dateObject = date.isValid() ? date.toDate() : null;
+    const dateTimestamp = date.isValid() ? date.valueOf() : DayPicker.fallback;
+    const dateObject = date.isValid() ? date.toDate() : DayPicker.fallback;
     /** Trigger the DayChange Handler */
     if (lastDateValue !== dateTimestamp) {
       _.invoke(this.props, 'onDayChange', null, {

@@ -92,7 +92,7 @@
     font-weight: $bold;
     color: $grey-light;
     text-transform: uppercase;
-    margin-bottom: .5em;
+    margin-bottom: $panel-section-label-margin-bottom;
     font-size: .85em;
   }
 
@@ -103,11 +103,12 @@
 
   &.is-master {
     > label {
+      padding: get-em-spacer(2) get-em-spacer(4);
+      border-radius: $border-radius;
+      background-color: $grey-lightest;
+      color: $text-shade;
+      margin-bottom: get-em-spacer(4);
       font-size: 1em;
-      color: $grey-dark;
-      padding-bottom: .5em;
-      margin-bottom: 1em;
-      border-bottom: solid 2px $grey-lightest;
     }
 
     &:last-child {

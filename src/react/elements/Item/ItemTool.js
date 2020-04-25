@@ -17,7 +17,14 @@ function ItemTool(props) {
   } = props;
 
   /** Build the Button */
-  const tool = Button.create(rest, { autoGenerateKey: false, overrideProps: { className: 'item-tool', flat: true } });
+  const tool = Button.create(rest, {
+    autoGenerateKey : false,
+    overrideProps   : {
+      className : 'item-tool',
+      flat      : true,
+      ...rest
+    }
+  });
 
   /** If tooltip exists, return as a Popup Item */
   if (tooltip) {

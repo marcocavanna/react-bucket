@@ -21,4 +21,4 @@ $container-spacer: $spacer !default;
 
 $column-class: 'column';
 $columns: 12  !default;
-$columns-gap: $spacer;
+$columns-gap: $spacer * .5 !default;

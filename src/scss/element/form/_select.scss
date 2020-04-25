@@ -41,6 +41,10 @@
       margin-top: 6px;
       margin-bottom: 6px;
     }
+
+    .bucket__menu {
+      color: $text;
+    }
   }
 
   /* Adjust the color of the placeholder */
@@ -64,5 +68,26 @@
   > .select > .bucket__menu .panel-section > label {
     font-size: 1em;
     margin-bottom: 0;
+  }
+}
+
+@each $label, $color in $react-bucket-brand-colors-map {
+  .field.is-#{$label} > .input {
+    > .select > .bucket__control {
+      border-color: $color;
+      background-color: transparentize($color, .85);
+
+      .bucket__placeholder {
+        color: transparentize($color, .35);
+      }
+
+      .bucket__indicator-separator {
+        background-color: $color;
+      }
+
+      .bucket__dropdown-indicator {
+        color: $color;
+      }
+    }
   }
 }

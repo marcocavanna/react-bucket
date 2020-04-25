@@ -185,6 +185,7 @@
     // Header Row Style
     > .row {
       border-bottom: $border;
+      border-bottom-color: $primary;
       border-bottom-width: 2px;
     }
 
@@ -223,8 +224,10 @@
         border-bottom: none;
       }
     }
+  }
 
-    // Table Cell Style
+  .body,
+  .foot {
     > .row > .cell {
       overflow: hidden;
       text-overflow: ellipsis;
@@ -248,7 +251,8 @@
       }
 
       .cell-content {
-        color: $__table-head-color;
+        color: inherit;
+        opacity: .75;
       }
     }
   }
@@ -259,6 +263,11 @@
   ---*/
   .foot {
     display: table-footer-group;
+
+    > .row:first-child {
+      border-top: $border;
+      border-top-width: 2px;
+    }
   }
 
 

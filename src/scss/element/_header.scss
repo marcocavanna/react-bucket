@@ -20,7 +20,8 @@
     vertical-align: top;
 
     .subheader {
-      color: $text-light;
+      color: inherit;
+      opacity: .75;
       font-size: .75em;
       font-weight: $semi-bold;
     }

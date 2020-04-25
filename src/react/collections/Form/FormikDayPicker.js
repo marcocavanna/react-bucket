@@ -42,7 +42,7 @@ FormikDayPickerComponent.propTypes = {
 const FormikDayPicker = withFormikField({
   Component    : FormikDayPickerComponent,
   handleChange : (formik, { name }, nothing, { value }) => {
-    formik.setFieldValue(name, value);
+    formik.setFieldValue(name, value, true);
   }
 });
 

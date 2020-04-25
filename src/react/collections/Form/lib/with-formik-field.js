@@ -1,6 +1,8 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect } from 'react';
 
+import _ from 'lodash';
+
 import { isObject, isValidString } from '@appbuckets/rabbit';
 
 import { useFormikContext } from 'formik';
@@ -74,7 +76,21 @@ const withFormikField = ({
     }
     /** Fire the Local on Field Change, if Exists */
     if (typeof localOnFieldChange === 'function') {
-      localOnFieldChange(...args);
+      try {
+        /** Split props from args */
+        const [e, compProps] = args;
+        /** Create the props args */
+        const propsArgs = { ...compProps, values: formik.values };
+        /** Update the field on values */
+        _.set(propsArgs.values, fieldName, compProps.type === 'number'
+          ? parseInt(propsArgs.value, 10)
+          : propsArgs.value);
+        /** Invoke the localOnfield Change handler */
+        localOnFieldChange(e, propsArgs);
+      }
+      catch {
+        localOnFieldChange(...args);
+      }
     }
   };
 
