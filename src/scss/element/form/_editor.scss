@@ -30,6 +30,14 @@
   ul, ol {
     list-style: unset;
     padding-left: 2.5em;
+
+    &:not(:last-child) {
+      margin-bottom: get-em-spacer(4);
+    }
+
+    &:not(:first-child) {
+      margin-top: get-em-spacer(2);
+    }
   }
 
   ol {
