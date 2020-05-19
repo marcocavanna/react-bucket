@@ -220,8 +220,8 @@ class DayPicker extends Component {
     /** Build the DayJS Object */
     const date = isInputTrigger ? dayJS(value, 'DD/MM/YYYY') : dayJS(value);
     /** Get the Date Timestamp */
-    const dateTimestamp = date.isValid() ? date.valueOf() : DayPicker.fallback;
-    const dateObject = date.isValid() ? date.toDate() : DayPicker.fallback;
+    const dateTimestamp = date.isValid() ? date.startOf('date').valueOf() : DayPicker.fallback;
+    const dateObject = date.isValid() ? date.startOf('date').toDate() : DayPicker.fallback;
     /** Trigger the DayChange Handler */
     if (lastDateValue !== dateTimestamp) {
       _.invoke(this.props, 'onDayChange', null, {
