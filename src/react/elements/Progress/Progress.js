@@ -123,7 +123,7 @@ function Progress(props) {
 
   const circularProgressSize = {
     circle   : contentElement ? 14 : 40,
-    stroke   : contentElement ? 5 : 7,
+    stroke   : contentElement ? 5 : 9,
     progress : progressWidth > 0 ? progressWidth : 0
   };
 

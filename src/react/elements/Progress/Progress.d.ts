@@ -31,6 +31,9 @@ export interface StrictProgressProps {
   /** A discrete Progress is uncolored */
   discrete?: boolean
 
+  /** Manually Set the Error Color */
+  error?: boolean
+
   /** Format Limits */
   formatLimits: (limit: number) => React.ReactNode
 
@@ -52,8 +55,14 @@ export interface StrictProgressProps {
   /** Size Variation */
   size?: ReactBucketSIZE
 
+  /** Set Success Style */
+  success?: boolean
+
   /** Set the Progress value */
   value?: number
+
+  /** Manually Set Warning Color */
+  warning?: number
 }
 
 declare const Progress: React.FunctionComponent<ProgressProps>

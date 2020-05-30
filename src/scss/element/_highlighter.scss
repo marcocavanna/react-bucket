@@ -1,0 +1,23 @@
+.highlighter {
+  position: relative;
+
+  > .match,
+  > .unmatch {
+    display: inline-block;
+    padding-top: .15em;
+    padding-bottom: .15em;
+  }
+
+  > .match {
+    padding-left: .35em;
+    padding-right: .35em;
+    background-color: $primary-tint;
+    color: $white;
+    border-radius: .25em;
+  }
+
+  > .match + .unmatch,
+  > .unmatch + .match {
+    margin-left: .05em;
+  }
+}

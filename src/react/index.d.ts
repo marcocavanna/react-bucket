@@ -54,6 +54,8 @@ export { default as Hero, HeroProps, StrictHeroProps } from './elements/Hero';
 
 export { default as HeroButton, HeroButtonProps, StrictHeroButtonProps } from './elements/HeroButton';
 
+export { default as Highlighter, HighlighterProps, StrictHighlighterProps } from './elements/Highlighter';
+
 export { default as Icon, IconProps, StrictIconProps } from './elements/Icon';
 
 export { default as Image, ImageProps, StrictImageProps } from './elements/Image';

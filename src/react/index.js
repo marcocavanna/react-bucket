@@ -49,6 +49,8 @@ export { default as Hero } from './elements/Hero';
 
 export { default as HeroButton } from './elements/HeroButton';
 
+export { default as Highlighter } from './elements/Highlighter';
+
 export { default as Icon } from './elements/Icon';
 
 export { default as Image } from './elements/Image';
