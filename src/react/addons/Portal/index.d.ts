@@ -1,1 +1,0 @@
-export { default, StrictPortalProps, PortalProps } from './Portal';

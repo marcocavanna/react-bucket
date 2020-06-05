@@ -1,6 +1,0 @@
-@mixin animate($animation-name, $timing-function: $swift-ease-in, $duration: 300ms, $iteration-count: 1) {
-  animation-name: $animation-name;
-  animation-timing-function: $timing-function;
-  animation-duration: $duration;
-  animation-iteration-count: $iteration-count;
-}

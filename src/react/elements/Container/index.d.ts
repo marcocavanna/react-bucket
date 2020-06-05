@@ -1,1 +1,0 @@
-export { default, StrictContainerProps, ContainerProps } from './Container'

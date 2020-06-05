@@ -1,0 +1,25 @@
+/**
+ * Project ReactBucket
+ *
+ * _Config @ src/styles/_config.scss
+ *
+ * Defined at 05 giu 2020
+ * Copyright Marco Cavanna • 2020
+ *
+ * ---
+ * Main configuration Style File for React Bucket Project
+ *
+ */
+
+
+/******
+    Reset and Normalizer
+    Import some preprocessing files
+    to reset CSS and normalize style across browsers
+******/
+
+// Import the normalize.scss file
+$import-normalize: true;
+
+// Import the reset.scss file
+$import-reset: true;
