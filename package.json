@@ -34,18 +34,19 @@
   "license": "MIT",
   "scripts": {
     "prepublishOnly": "npm run build",
-    "prebuild": "rimraf dist && npm run lint",
-    "prebuild:dev": "rimraf dist",
-    "build": "cross-env TS_NODE_PROJECT=\"tsconfig.webpack.json\" NODE_ENV=production webpack --config webpack.config.ts --progress",
-    "build:dev": "cross-env TS_NODE_PROJECT=\"tsconfig.webpack.json\" NODE_ENV=development webpack --config webpack.config.ts --progress",
+    "prebuild:webpack": "rimraf dist && npm run lint",
+    "build": "cross-env NODE_ENV=production npm run build:webpack",
+    "build:dev": "cross-env NODE_ENV=development npm run build:webpack",
+    "build:webpack": "cross-env TS_NODE_PROJECT=\"tsconfig.webpack.json\" webpack --config webpack.config.ts --progress",
+    "postbuild:webpack": "npm run build:declaration && npm run prettier",
     "build:declaration": "tsc -p tsconfig.declaration.json",
     "build:storybook": "build-storybook",
-    "postbuild": "npm run build:declaration",
     "start:storybook": "start-storybook",
     "start:docs": "cross-env DOCS=1 start-storybook --docs",
     "test": "jest",
     "test:watch": "jest --watch",
-    "lint": "tslint --project tsconfig.json -t codeFrame 'src/**/*.ts'"
+    "lint": "tslint --project tsconfig.json -t codeFrame 'src/**/*.ts'",
+    "prettier": "prettier --config .prettierrc --write \"dist/**/*{.js,.ts,.css}\""
   },
   "peerDependencies": {
     "react": "^16.13.1",
@@ -87,6 +88,7 @@
     "postcss-loader": "^3.0.0",
     "postcss-reporter": "^6.0.1",
     "postcss-single-line": "^1.0.0",
+    "prettier": "^2.0.5",
     "react": "^16.13.1",
     "react-docgen-typescript-loader": "^3.7.2",
     "react-dom": "^16.13.1",
@@ -108,7 +110,7 @@
     "webpack-cli": "^3.3.11"
   },
   "dependencies": {
-    "@appbuckets/react-ui-core": "^0.0.1-beta.1",
+    "@appbuckets/react-ui-core": "^0.0.1-beta.5",
     "clsx": "^1.1.1"
   }
 }

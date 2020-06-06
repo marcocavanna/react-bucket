@@ -1,0 +1,122 @@
+@mixin each-breakpoint() {
+  @each $breakpoint in map-keys($map: $breakpoints-map) {
+    @include on-screen($breakpoint) {
+      @content;
+    }
+  }
+}
+
+@mixin property-for-each-breakpoint($append-list: '', $attach-to-selector: true, $property-without-breakpoint: false, $property-with-breakpoint: true, $compound-min-max-screen: false) {
+
+  $selector: [];
+
+  @if $property-without-breakpoint == true {
+    @each $append in $append-list {
+      $__sel: '';
+
+      @if $attach-to-selector == true {
+        $__sel: unquote('&.#{$append}');
+      } @else {
+        $__sel: unquote('.#{$append}');
+      }
+
+      @if length($selector) > 0 {
+        $selector: join($selector, $__sel, 'comma');
+      } @else {
+        $selector: append($selector, $__sel);
+      }
+    }
+  }
+
+  @if $property-with-breakpoint == true {
+    @each $breakpoint in map-keys($breakpoints-map) {
+
+      $__breakpoint_selector: [];
+
+      $__breakpoint_up_selector: [];
+      $__breakpoint_down_selector: [];
+
+      $__next_breakpoint_name: next-breakpoint-name($breakpoint);
+      $__prev_breakpoint_name: previous-breakpoint-name($breakpoint);
+
+      @each $append in $append-list {
+        $__sel: '';
+        $__up_sel: '';
+        $__down_sel: '';
+
+        @if $attach-to-selector == true {
+          $__sel: unquote('&.on-#{$breakpoint}-#{$append}');
+        } @else {
+          $__sel: unquote('.on-#{$breakpoint}-#{$append}');
+        }
+
+        @if length($__breakpoint_selector) > 0 {
+          $__breakpoint_selector: join($__breakpoint_selector, $__sel, 'comma');
+        } @else {
+          $__breakpoint_selector: append($__breakpoint_selector, $__sel);
+        }
+
+        @if $compound-min-max-screen == true {
+
+          @if $__prev_breakpoint_name != null {
+            @if $attach-to-selector == true {
+              $__down_sel: unquote('&.on-#{$breakpoint}-down-#{$append}');
+            } @else {
+              $__down_sel: unquote('.on-#{$breakpoint}-down-#{$append}');
+            }
+
+            @if length($__breakpoint_down_selector) > 0 {
+              $__breakpoint_down_selector: join($__breakpoint_down_selector, $__down_sel, 'comma');
+            } @else {
+              $__breakpoint_down_selector: append($__breakpoint_down_selector, $__down_sel);
+            }
+          }
+
+          @if $__next_breakpoint_name != null {
+            @if $attach-to-selector == true {
+              $__up_sel: unquote('&.on-#{$breakpoint}-up-#{$append}');
+            } @else {
+              $__up_sel: unquote('.on-#{$breakpoint}-up-#{$append}');
+            }
+
+            @if length($__breakpoint_up_selector) > 0 {
+              $__breakpoint_up_selector: join($__breakpoint_up_selector, $__up_sel, 'comma');
+            } @else {
+              $__breakpoint_up_selector: append($__breakpoint_up_selector, $__up_sel);
+            }
+          }
+        }
+      }
+
+      @include on-screen($breakpoint) {
+        #{$__breakpoint_selector} {
+          @content;
+        }
+      }
+
+      @if $compound-min-max-screen == true {
+        @if length($__breakpoint_up_selector) > 0 {
+          @include min-screen($breakpoint) {
+            #{$__breakpoint_up_selector} {
+              @content;
+            }
+          }
+        }
+
+        @if length($__breakpoint_down_selector) > 0 {
+          @include max-screen($breakpoint) {
+            #{$__breakpoint_down_selector} {
+              @content;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @if length($list: $selector) > 0 {
+    #{$selector} {
+      @content;
+    }
+  }
+}

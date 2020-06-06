@@ -18,8 +18,102 @@
     to reset CSS and normalize style across browsers
 ******/
 
-// Import the normalize.scss file
-$import-normalize: true;
+/// Import the normalize.scss file
+$import-normalize: true !default;
 
-// Import the reset.scss file
-$import-reset: true;
+/// Import the reset.scss file
+$import-reset: true !default;
+
+
+
+/******
+    Core Variables
+******/
+
+/// Set the base spacer and absolute spacer
+$absolute-spacer: 1rem !default;
+$spacer: 1em !default;
+
+/// Choose if must generate text size class helpers
+$generate-text-size-helpers-class: true !default;
+$generate-text-size-responsive-helpers-class: false !default;
+
+/// Choose if must generate font weight class helpers
+$generate-font-weight-helpers-class: true !default;
+$generate-font-weight-responsive-helpers-class: false !default;
+
+/// Choose if must generate text align class helpers
+$generate-text-align-helpers-class: true !default;
+$generate-text-align-responsive-helpers-class: false !default;
+
+/// Choose if must generate text color class helpers
+$generate-text-color-helpers-class: true !default;
+$generate-text-color-responsive-helpers-class: false !default;
+
+/// Choose if must generate background color variation helpers
+$generate-background-color-helpers-class: true !default;
+$generate-background-color-responsive-helpers-class: false !default;
+
+
+/******
+    Responsive Variables
+    Set the responsive screen size
+******/
+
+/// Draw UI considering a mobile-first idea
+$draw-ui-mobile-first: true !default;
+
+/// Set screen size
+$max-size-for-phone: 576px !default;
+$max-size-for-tablet: 960px !default;
+$max-size-for-desktop: 1440px !default;
+$max-size-for-large-desktop: 1920px !default;
+
+/// Set fixed container width
+$container-width-on-phone: 520px !default;
+$container-width-on-tablet: 864px !default;
+$container-width-on-desktop: 1200px !default;
+$container-width-on-large-desktop: 1720px !default;
+
+
+
+/******
+    Typography Variables
+******/
+
+/// Set the base font size
+$base-font-size: 14px !default;
+
+/// Set the default fonts
+/// Choose from 'Roboto', 'Open Sans', 'Lato', 'Montserrat', 'Source Sans Pro', 'Poppins', 'Ubuntu', 'Dosis', 'Quicksand'
+$default-web-font: 'Nunito' !default;
+
+/// Set Default Monospace Font
+/// Choose from 'Roboto Mono', 'Source Code Pro', 'Ubuntu Mono'
+$default-monospace-font: 'Roboto Mono' !default;
+
+/// Set Default Line Height
+$default-line-height: 1.25 !default;
+
+
+
+/******
+    Grid Configuration
+    Set grid configurations like columns count
+    gutter and column class name
+******/
+
+/// Set the row class name
+$row-class-name: 'with-columns' !default;
+
+/// Set the column class name
+$column-class-name: 'column' !default;
+
+/// Set the maximum columns count on each row
+$columns-count: 24 !default;
+
+/// Set the gutter space between column
+$columns-gutter: $absolute-spacer * .5 !default;
+
+/// Set if must generate a dedicated style for row without column gutter
+$generate-row-without-gutter: true !default;

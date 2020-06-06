@@ -1,0 +1,103 @@
+/**
+ * Project ReactBucket
+ *
+ * _Helpers @ src/styles/_core/_helpers.scss
+ *
+ * Defined at 05 giu 2020
+ * Copyright Marco Cavanna • 2020
+ *
+ * ---
+ * Helpers class generation
+ *
+ */
+
+/******
+    Typography Helpers
+******/
+
+/// Generate Text Size Helpers
+@if $generate-font-weight-helpers-class == true {
+  @each $label, $weight in $font-weight-map {
+    @include property-for-each-breakpoint(
+      'has-font-#{$label}',
+      $property-without-breakpoint: true,
+      $attach-to-selector: false,
+      $property-with-breakpoint: $generate-font-weight-responsive-helpers-class,
+      $compound-min-max-screen: true
+    ) {
+      font-weight: $weight !important;
+    }
+  }
+}
+
+/// Generate Alignment Class
+@if $generate-text-align-helpers-class == true {
+  @each $align in (center, right, left, justify) {
+    @include property-for-each-breakpoint(
+      'has-text-#{$align}',
+      $property-without-breakpoint: true,
+      $attach-to-selector: false,
+      $property-with-breakpoint: $generate-text-align-responsive-helpers-class,
+      $compound-min-max-screen: true
+    ) {
+      text-align: $align !important;
+    }
+  }
+}
+
+
+/******
+    Size Helpers
+******/
+/// Generate Text Size Helpers
+@if $generate-text-size-helpers-class == true {
+  @each $label, $size in (extra-small: .5em, small: .75em, normal: 1em, large: 1.5em, big: 2.5em, huge: 3.5em) {
+    @include property-for-each-breakpoint(
+        'is-#{$label}',
+      $property-without-breakpoint: true,
+      $attach-to-selector: false,
+      $property-with-breakpoint: $generate-text-size-responsive-helpers-class,
+      $compound-min-max-screen: true
+    ) {
+      font-size: $size !important;
+    }
+  }
+}
+
+
+/******
+    Colors Helpers
+******/
+
+/// Generate Text Color Helpers Class
+@if $generate-text-color-helpers-class == true {
+  @each $label, $color in $react-bucket-color-map {
+    @include property-for-each-breakpoint(
+      'has-text-#{$label}',
+      $property-without-breakpoint: true,
+      $attach-to-selector: false,
+      $property-with-breakpoint: $generate-text-color-responsive-helpers-class,
+      $compound-min-max-screen: true
+    ) {
+      color: $color;
+    }
+  }
+}
+
+/// Generate Background Color Helpers Class
+@if $generate-background-color-helpers-class == true {
+  @each $label, $color in $react-bucket-color-map {
+    @include property-for-each-breakpoint(
+      'has-background-#{$label}',
+      $property-without-breakpoint: true,
+      $attach-to-selector: false,
+      $property-with-breakpoint: $generate-background-color-responsive-helpers-class,
+      $compound-min-max-screen: true
+    ) {
+      @include variation-style(
+        $property-name: background-color,
+        $color: $color
+      )
+    }
+  }
+}

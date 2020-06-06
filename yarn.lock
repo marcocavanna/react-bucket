@@ -9,10 +9,10 @@
   dependencies:
     tiny-invariant "^1.1.0"
 
-"@appbuckets/react-ui-core@^0.0.1-beta.1":
-  version "0.0.1-beta.1"
-  resolved "https://registry.yarnpkg.com/@appbuckets/react-ui-core/-/react-ui-core-0.0.1-beta.1.tgz#76a5f9bd77ffddd9dd70407eb1309a7cf4f3cc3a"
-  integrity sha512-G/FPgYzuIEukcJ+6hYoE8H9sFQuzZQd1x0sD2EJ9mr6IfBu0f04pdYH8+FpUiRD0GUB1BBNPezV112brep2UAw==
+"@appbuckets/react-ui-core@^0.0.1-beta.5":
+  version "0.0.1-beta.5"
+  resolved "https://registry.yarnpkg.com/@appbuckets/react-ui-core/-/react-ui-core-0.0.1-beta.5.tgz#efc697f96dc6758b3b4386d32ba93bbd6a064e53"
+  integrity sha512-7Oui3qD/11R2JikdRZeTp/bqstH+9DHDigYbcPudHxspRrNQSDzuCI8y0iMyd3OvEqL0W3DTaQ/4nyvjZSpyqw==
   dependencies:
     "@appbuckets/react-autocontrolled-component" "^0.0.3"
     "@semantic-ui-react/event-stack" "^3.1.1"
@@ -9921,6 +9921,11 @@ prettier@^1.16.4:
   version "1.19.1"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.19.1.tgz#f7d7f5ff8a9cd872a7be4ca142095956a60797cb"
   integrity sha512-s7PoyDv/II1ObgQunCbB9PdLmUcBZcnWOcxDh7O0N/UwDEsHyqkW+Qh28jW+mVuCdx7gLB0BotYI1Y6uI9iyew==
+
+prettier@^2.0.5:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.0.5.tgz#d6d56282455243f2f92cc1716692c08aa31522d4"
+  integrity sha512-7PtVymN48hGcO4fGjybyBSIWDsLU4H4XlvOHfq91pz9kkGlonzwTfYkaIEwiRg/dAJF9YlbsduBAgtYLi+8cFg==
 
 pretty-error@^2.1.1:
   version "2.1.1"
