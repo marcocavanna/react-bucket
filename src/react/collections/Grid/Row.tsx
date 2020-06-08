@@ -48,4 +48,6 @@ function Row(props: RowProps) {
 
 }
 
+Row.displayName = 'Row';
+
 export default Row;

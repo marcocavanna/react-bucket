@@ -37,6 +37,8 @@ function Column(props: ColumnProps) {
 
 }
 
+Column.displayName = 'Column';
+
 Column.create = createShorthandFactory<ColumnProps>(Column, content => ({ content }));
 
 export default Column;
