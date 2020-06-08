@@ -168,3 +168,13 @@ export const horizontalDisposition = () => {
   );
 
 };
+
+export const usingColumnsShorthand = () => (
+  <Row
+    columns={[
+      { width: 4, content: <Box /> },
+      { width: 16, content: <Box /> },
+      { width: 4, content: <Box /> }
+    ]}
+  />
+);
