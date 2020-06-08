@@ -11,7 +11,7 @@ import { ColumnProps } from './Column.types';
 import { getSharedClassNames } from '../../lib';
 
 
-function Column(props: ColumnProps) {
+function Column(props: ColumnProps): React.ReactElement<ColumnProps> {
 
   const {
     className,

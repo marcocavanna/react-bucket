@@ -11,7 +11,7 @@ import { getSharedClassNames } from '../../lib';
 import Column from './Column';
 
 
-function Row(props: RowProps) {
+function Row(props: RowProps): React.ReactElement<RowProps> {
 
   const {
     className,
