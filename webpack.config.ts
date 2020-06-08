@@ -3,6 +3,8 @@ import { resolve } from 'path';
 import { Configuration } from 'webpack';
 import MiniCSSExtractPlugin from 'mini-css-extract-plugin';
 
+import pkg from './package.json';
+
 
 /* --------
  * Project Paths
@@ -14,6 +16,17 @@ export const sourceDir = (...args: string[]) => projectDir('src', ...args);
 export const destDir = (...args: string[]) => projectDir('dist', ...args);
 
 export const nodeModules = (...args: string[]) => projectDir('node_modules', ...args);
+
+
+const externals: (string | RegExp)[] = [];
+
+Object
+  .keys(pkg.peerDependencies)
+  .concat(Object.keys(pkg.dependencies))
+  .map(dep => ([ dep, new RegExp(`^${dep}\/.+$`) ]))
+  .forEach(([ str, regexp ]) => {
+    externals.push(str, regexp);
+  });
 
 
 /* --------
@@ -64,6 +77,8 @@ export default {
     alias     : {
       react      : nodeModules('react'),
       'react-dom': nodeModules('react-dom'),
+      lodash     : nodeModules('lodash'),
+      clsx       : nodeModules('clsx'),
       assets     : destDir('assets')
     }
   },
@@ -78,20 +93,7 @@ export default {
   },
 
   // Don't include react into bundle
-  externals: {
-    react      : {
-      commonjs : 'react',
-      commonjs2: 'react',
-      amd      : 'React',
-      root     : 'React'
-    },
-    'react-dom': {
-      commonjs : 'react-dom',
-      commonjs2: 'react-dom',
-      amd      : 'ReactDOM',
-      root     : 'ReactDOM'
-    }
-  },
+  externals,
 
   // Configure Rules
   module: {
