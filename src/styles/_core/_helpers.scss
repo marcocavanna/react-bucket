@@ -85,7 +85,11 @@
     // Divide margin and padding
     @each $property, $prefix in (margin: 'm', padding: 'p') {
       // Generate Master Class
-
+      @each $selector, $spacers in (#{$prefix}: #{$_spacer}em, #{$prefix}x: 0 #{$_spacer}em, #{$prefix}y: #{$_spacer}em 0) {
+        .#{$selector}-#{$sp} {
+          #{$property}: $spacers !important;
+        }
+      }
 
       // Generate direction helpers (like pt-4)
       @each $direction, $label in (top: 't', bottom: 'b', left: 'l', right: 'r') {
