@@ -7,26 +7,31 @@ export interface ComponentRenderOptions<P = {}> {
   /** A must have className */
   hasClassName?: string[];
 
+  /** Check if Children are rendered */
+  injectChildren?: boolean;
+
   /** An object with required props to render the component */
   requiredProps?: P;
 }
 
 export default function componentCorrectlyRender(
-  Component: React.ComponentType<{ 'data-testid': string, [key: string]: any }>,
+  Component: any,
   options?: ComponentRenderOptions
 ) {
 
   const {
     hasClassName,
+    injectChildren = true,
     requiredProps
   } = options ?? {};
 
-  const renderComponent = () => {
+  const renderComponent = (props?: any) => {
     const {
       getByTestId
     } = render(
       <Component
         {...requiredProps}
+        {...props}
         data-testid={'my-component'}
       />
     );
@@ -40,6 +45,13 @@ export default function componentCorrectlyRender(
       const component = renderComponent();
       expect(component).toBeInTheDocument();
     });
+
+    if (injectChildren) {
+      it('should render children', () => {
+        const component = renderComponent({ children: <span className={'children'}>The Children</span> });
+        expect(component.getElementsByClassName('children').length).toBeTruthy();
+      });
+    }
 
     if (hasClassName) {
       it(`should have '${hasClassName.join(', ')}' className by default`, () => {

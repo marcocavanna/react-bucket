@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import { resolve } from 'path';
 import { DeclaredInterface, getInterfaces, getNodes, requireTs } from './tsHelpers';
 
@@ -10,7 +8,7 @@ export interface ComponentDeclarationTestOptions {
 }
 
 export default function assertComponentDeclaration(
-  Component: React.ComponentType,
+  Component: any,
   options: ComponentDeclarationTestOptions
 ) {
 
