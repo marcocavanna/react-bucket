@@ -127,11 +127,13 @@
         // Set Hover Style
         @if $with-hover == true {
           @include hover {
-            @if $hover-will-drop-shadow == true {
-              #{$property-name}: color-tint($color, .5);
-              box-shadow: 0 1px 10px transparentize(color-shade($color), .4);
-            } @else {
-              #{$property-name}: $active-color;
+            &:hover {
+              @if $hover-will-drop-shadow == true {
+                #{$property-name}: color-tint($color, .5);
+                box-shadow: 0 1px 10px transparentize(color-shade($color), .4);
+              } @else {
+                #{$property-name}: $active-color;
+              }
             }
           }
         }

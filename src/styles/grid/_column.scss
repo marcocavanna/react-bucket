@@ -28,10 +28,7 @@ $base-column-width: percentage(1 / $columns-count);
 
   /// Set Column Vertical Disposition
   @each $label, $align in (on-top: flex-start, center: center, on-bottom: flex-end, stretched: stretch) {
-    @include property-for-each-breakpoint(
-        $label,
-      $property-without-breakpoint: true
-    ) {
+    @include selectors-for-each-breakpoint($label) {
       align-self: $align;
     }
   }
@@ -45,12 +42,7 @@ $base-column-width: percentage(1 / $columns-count);
   $width: $col * $base-column-width;
 
   /// Generate Column Width Class
-  @include property-for-each-breakpoint(
-    'is-#{$col}',
-    $attach-to-selector: false,
-    $property-without-breakpoint: true,
-    $property-with-breakpoint: true
-  ) {
+  @include selectors-for-each-breakpoint('is-#{$col}') {
     // If is last column, set max width and remove flex
     @if $col == $columns-count {
       flex: 0 0 100%;
@@ -63,12 +55,7 @@ $base-column-width: percentage(1 / $columns-count);
 
   /// Generate Column Offset
   @if $col != $columns-count {
-    @include property-for-each-breakpoint(
-      'offset-by-#{$col}',
-      $attach-to-selector: false,
-      $property-without-breakpoint: true,
-      $property-with-breakpoint: true
-    ) {
+    @include selectors-for-each-breakpoint('offset-by-#{$col}') {
       margin-left: $width;
     }
   }

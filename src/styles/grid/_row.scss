@@ -25,10 +25,7 @@
 
   /// Generate row class to avoid column gutter
   @if $generate-row-without-gutter == true {
-    @include property-for-each-breakpoint(
-        'without-gap',
-        $property-without-breakpoint: true
-    ) {
+    @include selectors-for-each-breakpoint('without-gap') {
       margin-left: 0 !important;
       margin-right: 0 !important;
 
@@ -41,20 +38,14 @@
 
   /// Generate Column Horizontal Disposition
   @each $label, $align in (on-start: flex-start, centered: center, on-end: flex-end, spaced-between: space-between, spaced-around: space-around) {
-    @include property-for-each-breakpoint(
-        $label,
-        $property-without-breakpoint: true
-    ) {
+    @include selectors-for-each-breakpoint($label) {
       justify-content: $align;
     }
   }
 
   /// Generate Column Vertical Disposition
   @each $label, $align in (on-top: flex-start, center: center, on-bottom: flex-end, stretched: stretch) {
-    @include property-for-each-breakpoint(
-        $label,
-        $property-without-breakpoint: true
-    ) {
+    @include selectors-for-each-breakpoint($label) {
       align-items: $align;
     }
   }

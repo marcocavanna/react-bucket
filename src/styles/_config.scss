@@ -25,7 +25,6 @@ $import-normalize: true !default;
 $import-reset: true !default;
 
 
-
 /******
     Core Variables
 ******/
@@ -33,6 +32,12 @@ $import-reset: true !default;
 /// Set the base spacer and absolute spacer
 $absolute-spacer: 1rem !default;
 $spacer: 1em !default;
+
+/// Set the base border radius
+$border-radius-small: .15em !default;
+$border-radius-normal: .35em !default;
+$border-radius-big: .5em !default;
+$border-radius: $border-radius-normal !default;
 
 /// Choose if must generate text size class helpers
 $generate-text-size-helpers-class: true !default;
@@ -53,6 +58,11 @@ $generate-text-color-responsive-helpers-class: false !default;
 /// Choose if must generate background color variation helpers
 $generate-background-color-helpers-class: true !default;
 $generate-background-color-responsive-helpers-class: false !default;
+
+/// Choose if must generate margin and padding utilities
+$margin-padding-helpers-count: 8 !default;
+$generate-margin-padding-helpers-class: true !default;
+$generate-margin-padding-responsive-helpers-class: true !default;
 
 
 /******
@@ -76,7 +86,6 @@ $container-width-on-desktop: 1200px !default;
 $container-width-on-large-desktop: 1720px !default;
 
 
-
 /******
     Typography Variables
 ******/
@@ -94,7 +103,6 @@ $default-monospace-font: 'Roboto Mono' !default;
 
 /// Set Default Line Height
 $default-line-height: 1.25 !default;
-
 
 
 /******

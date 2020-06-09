@@ -18,13 +18,7 @@
 /// Generate Text Size Helpers
 @if $generate-font-weight-helpers-class == true {
   @each $label, $weight in $font-weight-map {
-    @include property-for-each-breakpoint(
-      'has-font-#{$label}',
-      $property-without-breakpoint: true,
-      $attach-to-selector: false,
-      $property-with-breakpoint: $generate-font-weight-responsive-helpers-class,
-      $compound-min-max-screen: true
-    ) {
+    @include selectors-for-each-breakpoint('has-font-#{$label}', $selectors-with-breakpoint: $generate-font-weight-responsive-helpers-class) {
       font-weight: $weight !important;
     }
   }
@@ -33,13 +27,7 @@
 /// Generate Alignment Class
 @if $generate-text-align-helpers-class == true {
   @each $align in (center, right, left, justify) {
-    @include property-for-each-breakpoint(
-      'has-text-#{$align}',
-      $property-without-breakpoint: true,
-      $attach-to-selector: false,
-      $property-with-breakpoint: $generate-text-align-responsive-helpers-class,
-      $compound-min-max-screen: true
-    ) {
+    @include selectors-for-each-breakpoint('has-text-#{$align}', $selectors-with-breakpoint: $generate-text-align-responsive-helpers-class) {
       text-align: $align !important;
     }
   }
@@ -49,16 +37,11 @@
 /******
     Size Helpers
 ******/
+
 /// Generate Text Size Helpers
 @if $generate-text-size-helpers-class == true {
-  @each $label, $size in (extra-small: .5em, small: .75em, normal: 1em, large: 1.5em, big: 2.5em, huge: 3.5em) {
-    @include property-for-each-breakpoint(
-        'is-#{$label}',
-      $property-without-breakpoint: true,
-      $attach-to-selector: false,
-      $property-with-breakpoint: $generate-text-size-responsive-helpers-class,
-      $compound-min-max-screen: true
-    ) {
+  @each $label, $size in (extra-small: .5em, small: .75em, normal: 1em, large: 1.5em, big: 2.5em, huge: 4em) {
+    @include selectors-for-each-breakpoint('is-#{$label}', $selectors-with-breakpoint: $generate-text-size-responsive-helpers-class) {
       font-size: $size !important;
     }
   }
@@ -72,13 +55,7 @@
 /// Generate Text Color Helpers Class
 @if $generate-text-color-helpers-class == true {
   @each $label, $color in $react-bucket-color-map {
-    @include property-for-each-breakpoint(
-      'has-text-#{$label}',
-      $property-without-breakpoint: true,
-      $attach-to-selector: false,
-      $property-with-breakpoint: $generate-text-color-responsive-helpers-class,
-      $compound-min-max-screen: true
-    ) {
+    @include selectors-for-each-breakpoint('has-text-#{$label}', $selectors-with-breakpoint: $generate-text-color-responsive-helpers-class) {
       color: $color;
     }
   }
@@ -87,17 +64,35 @@
 /// Generate Background Color Helpers Class
 @if $generate-background-color-helpers-class == true {
   @each $label, $color in $react-bucket-color-map {
-    @include property-for-each-breakpoint(
-      'has-background-#{$label}',
-      $property-without-breakpoint: true,
-      $attach-to-selector: false,
-      $property-with-breakpoint: $generate-background-color-responsive-helpers-class,
-      $compound-min-max-screen: true
-    ) {
+    @include selectors-for-each-breakpoint('has-background-#{$label}', $selectors-with-breakpoint: $generate-background-color-responsive-helpers-class) {
       @include variation-style(
         $property-name: background-color,
         $color: $color
       )
+    }
+  }
+}
+
+
+/******
+    Spacer Helpers
+******/
+@if $generate-margin-padding-helpers-class == true and $margin-padding-helpers-count != 0 {
+  @for $sp from 0 through $margin-padding-helpers-count {
+    // Get Spacer
+    $_spacer: get-spacer($sp);
+
+    // Divide margin and padding
+    @each $property, $prefix in (margin: 'm', padding: 'p') {
+      // Generate Master Class
+
+
+      // Generate direction helpers (like pt-4)
+      @each $direction, $label in (top: 't', bottom: 'b', left: 'l', right: 'r') {
+        @include selectors-for-each-breakpoint('#{$prefix}#{$label}-#{$sp}', $selectors-with-breakpoint: $generate-margin-padding-responsive-helpers-class) {
+          #{$property}-#{$direction}: #{$_spacer}em !important;
+        }
+      }
     }
   }
 }

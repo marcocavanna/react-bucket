@@ -17,10 +17,7 @@
           @content;
         }
       } @else {
-        $__previous_breakpoint_res: min-breakpoint-size($screen-name);
-        @media all and (min-width: $__previous_breakpoint_res) {
-          @content;
-        }
+        @content;
       }
     }
   } @else {
@@ -38,10 +35,7 @@
         }
       }
     } @else {
-      $__screen_size: max-breakpoint-size($screen-name);
-      @media all and (max-width: $__screen_size) {
-        @content;
-      }
+      @content;
     }
   }
 }
@@ -86,11 +80,10 @@
 }
 
 @mixin on-retina() {
-  @media
-  (-webkit-min-device-pixel-ratio:1.5),
-  (min--moz-device-pixel-ratio:1.5),
-  (-o-min-device-pixel-ratio:3/2),
-  (min-resolution:1.5dppx) {
+  @media(-webkit-min-device-pixel-ratio: 1.5),
+  (min--moz-device-pixel-ratio: 1.5),
+  (-o-min-device-pixel-ratio: 3/2),
+  (min-resolution: 1.5dppx) {
     @content;
   }
 }
@@ -100,7 +93,7 @@
     @error 'Invalid Screen name #{$screen-name}';
   }
 
-  @return map-get($breakpoints-map, $screen-name );
+  @return map-get($breakpoints-map, $screen-name);
 }
 
 @function min-breakpoint-size($screen-name) {

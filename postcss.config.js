@@ -3,10 +3,13 @@ module.exports = {
   plugins: {
     'postcss-import'            : {},
     autoprefixer                : {},
-    'css-mqpacker'              : {},
+    'postcss-sort-media-queries': { sort: 'mobile-first' },
     'css-declaration-sorter'    : { order: 'alphabetical' },
     'postcss-discard-duplicates': {},
     'postcss-import-url'        : {},
+    'postcss-single-charset'    : {},
+    'postcss-momentum-scrolling': {},
+    'postcss-merge-rules'       : {},
 
     ...(process.env.NODE_ENV === 'production'
 

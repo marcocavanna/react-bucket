@@ -6,117 +6,71 @@
   }
 }
 
-@mixin property-for-each-breakpoint($append-list: '', $attach-to-selector: true, $property-without-breakpoint: false, $property-with-breakpoint: true, $compound-min-max-screen: false) {
+@mixin selectors-for-each-breakpoint(// Selectors to create,
+  // could be single or a list of selector eg. margin | 'margin'
+  // with round brackets eg. (margin, padding) | ('margin', 'padding')
+  $selectors-list,
+  // Choose if selectors must be attached to parent (if exists)
+  // If parents doesn't exists this param will be skipped
+  $attach-to-selector: false,
+  // Choose if create selectors without any breakpoints
+  $selectors-without-breakpoint: true,
+  // Choose if create selectors for each breakpoints
+  $selectors-with-breakpoint: true
+) {
 
-  $selector: [];
+  // Init variables
+  $selectors: ();
+  $parent: null;
 
-  @if $property-without-breakpoint == true {
-    @each $append in $append-list {
-      $__sel: '';
+  // Check if parent exists
+  @if & {
+    $parent: '&';
+  } @else {
+    $parent: '';
+  }
 
-      @if $attach-to-selector == true {
-        $__sel: unquote('&.#{$append}');
-      } @else {
-        $__sel: unquote('.#{$append}');
-      }
+  // Refactor $parent if must attach the selector
+  @if $attach-to-selector == false {
+    $parent: '#{$parent} ';
+  }
 
-      @if length($selector) > 0 {
-        $selector: join($selector, $__sel, 'comma');
-      } @else {
-        $selector: append($selector, $__sel);
+  // If must create the selectors without any breakpoint
+  // Append each selector to selectors list
+  @if $selectors-without-breakpoint {
+    // Loop each selectors
+    @each $selector in $selectors-list {
+      $selectors: append($selectors, '#{$parent}.#{$selector}', $separator: comma);
+    }
+
+    // Check if selectors has length
+    // and create the rules
+    @if length($selectors) > 0 {
+      #{$selectors} {
+        @content;
       }
     }
   }
 
-  @if $property-with-breakpoint == true {
+  // Check if must create the selectors for each breakpoints
+  @if $selectors-with-breakpoint {
+    // Loop each breakpoints
     @each $breakpoint in map-keys($breakpoints-map) {
 
-      $__breakpoint_selector: [];
+      // Build breakpoints selector list
+      $breakpoint-selectors: ();
 
-      $__breakpoint_up_selector: [];
-      $__breakpoint_down_selector: [];
-
-      $__next_breakpoint_name: next-breakpoint-name($breakpoint);
-      $__prev_breakpoint_name: previous-breakpoint-name($breakpoint);
-
-      @each $append in $append-list {
-        $__sel: '';
-        $__up_sel: '';
-        $__down_sel: '';
-
-        @if $attach-to-selector == true {
-          $__sel: unquote('&.on-#{$breakpoint}-#{$append}');
-        } @else {
-          $__sel: unquote('.on-#{$breakpoint}-#{$append}');
-        }
-
-        @if length($__breakpoint_selector) > 0 {
-          $__breakpoint_selector: join($__breakpoint_selector, $__sel, 'comma');
-        } @else {
-          $__breakpoint_selector: append($__breakpoint_selector, $__sel);
-        }
-
-        @if $compound-min-max-screen == true {
-
-          @if $__prev_breakpoint_name != null {
-            @if $attach-to-selector == true {
-              $__down_sel: unquote('&.on-#{$breakpoint}-down-#{$append}');
-            } @else {
-              $__down_sel: unquote('.on-#{$breakpoint}-down-#{$append}');
-            }
-
-            @if length($__breakpoint_down_selector) > 0 {
-              $__breakpoint_down_selector: join($__breakpoint_down_selector, $__down_sel, 'comma');
-            } @else {
-              $__breakpoint_down_selector: append($__breakpoint_down_selector, $__down_sel);
-            }
-          }
-
-          @if $__next_breakpoint_name != null {
-            @if $attach-to-selector == true {
-              $__up_sel: unquote('&.on-#{$breakpoint}-up-#{$append}');
-            } @else {
-              $__up_sel: unquote('.on-#{$breakpoint}-up-#{$append}');
-            }
-
-            @if length($__breakpoint_up_selector) > 0 {
-              $__breakpoint_up_selector: join($__breakpoint_up_selector, $__up_sel, 'comma');
-            } @else {
-              $__breakpoint_up_selector: append($__breakpoint_up_selector, $__up_sel);
-            }
-          }
-        }
+      // Append each selector to breakpoints selectors
+      @each $selector in $selectors-list {
+        $breakpoint-selectors: append($breakpoint-selectors, '#{$parent}.on-#{$breakpoint}-#{$selector}', $separator: comma);
       }
 
+      // Create the Media Query
       @include on-screen($breakpoint) {
-        #{$__breakpoint_selector} {
+        #{$breakpoint-selectors} {
           @content;
         }
       }
-
-      @if $compound-min-max-screen == true {
-        @if length($__breakpoint_up_selector) > 0 {
-          @include min-screen($breakpoint) {
-            #{$__breakpoint_up_selector} {
-              @content;
-            }
-          }
-        }
-
-        @if length($__breakpoint_down_selector) > 0 {
-          @include max-screen($breakpoint) {
-            #{$__breakpoint_down_selector} {
-              @content;
-            }
-          }
-        }
-      }
-    }
-  }
-
-  @if length($list: $selector) > 0 {
-    #{$selector} {
-      @content;
     }
   }
 }
