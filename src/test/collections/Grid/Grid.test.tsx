@@ -9,6 +9,10 @@ describe('testing rows', () => {
 
   common.componentCorrectlyRender(Grid.Row, { hasClassName: [ 'with-columns' ] });
 
+  common.itWillHaveSharedClassName(Grid.Row);
+
+  common.itWillSetContainerResponsiveClassName(Grid.Row);
+
 });
 
 
@@ -16,8 +20,12 @@ describe('testing columns', () => {
 
   common.assertComponentDeclaration(Grid.Column, { filePath: [ 'collections', 'Grid' ] });
 
+  common.componentCorrectlyRender(Grid.Column, { hasClassName: [ 'column' ] });
+
   common.implementsCreateMethod(Grid.Column);
 
-  common.componentCorrectlyRender(Grid.Column, { hasClassName: [ 'column' ] });
+  common.itWillHaveSharedClassName(Grid.Column);
+
+  common.itWillSetContentResponsiveClassName(Grid.Column);
 
 });
