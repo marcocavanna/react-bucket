@@ -8,14 +8,14 @@ import {
 } from '@appbuckets/react-ui-core';
 
 import {
-  SharedRBProps,
+  SharedReactBucketProps,
   SharedFlexboxContainerProps,
   SharedFlexboxContentProps,
   ResponsiveProps
 } from '../generic';
 
 
-export type SharedProps = SharedRBProps & SharedFlexboxContentProps & SharedFlexboxContainerProps;
+export type SharedProps = SharedReactBucketProps & SharedFlexboxContentProps & SharedFlexboxContainerProps;
 
 export type SharedClassNamesAndProps<P> = {
   /** Computed Class Names */
@@ -32,23 +32,33 @@ export type SharedClassNamesAndProps<P> = {
  * @param prop Prop to Compute
  * @param pattern Pattern to Use to build className
  */
-function computeResponsiveClassName(prop: ResponsiveProps<any>, pattern: string): string | undefined {
+function computeResponsiveClassName(
+  prop: ResponsiveProps<any>,
+  pattern: string
+): string | undefined {
   // Assert prop is a valid computable prop
-  if (prop == null || typeof prop === 'boolean') {
+  if (prop == null || prop === false) {
     return undefined;
   }
 
   // If prop is not an object, return as master class
   if (typeof prop !== 'object') {
-    return classByPattern(prop, pattern);
+    return classByPattern(fallBackTrueValue(prop), pattern);
   }
 
   return clsx(
-    classByPattern(prop.phoneUp, `on-phone-${pattern}`),
-    classByPattern(prop.tabletUp, `on-tablet-${pattern}`),
-    classByPattern(prop.desktopUp, `on-desktop-${pattern}`),
-    classByPattern(prop.largeDesktopUp, `on-large-desktop-${pattern}`)
+    classByPattern(fallBackTrueValue(prop.phoneUp), `on-phone-${pattern}`),
+    classByPattern(fallBackTrueValue(prop.tabletUp), `on-tablet-${pattern}`),
+    classByPattern(fallBackTrueValue(prop.desktopUp), `on-desktop-${pattern}`),
+    classByPattern(fallBackTrueValue(prop.largeDesktopUp), `on-large-desktop-${pattern}`)
   );
+
+  function fallBackTrueValue(original: any): string | undefined {
+    if (original === true) {
+      return 'true';
+    }
+    return original;
+  }
 }
 
 export default function getSharedClassNames<P>(props: P): SharedClassNamesAndProps<P> {
