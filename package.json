@@ -45,7 +45,8 @@
     "start:storybook": "start-storybook",
     "start:docs": "cross-env DOCS=1 start-storybook --docs",
     "test": "cross-env NODE_ENV=test jest",
-    "test:watch": "jest --watch",
+    "test:watch": "cross-env NODE_ENV=test jest --watch",
+    "test:coverage": "cross-env NODE_ENV=test jest --coverage",
     "lint": "tslint --project tsconfig.json -t codeFrame 'src/**/*.ts'",
     "prettier": "prettier --config .prettierrc --write \"dist/**/*{.js,.ts,.css}\""
   },
