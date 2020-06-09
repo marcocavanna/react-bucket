@@ -40,6 +40,7 @@ $black-tint: hsl(0, 0%, 8%) !default;
 /******
     Whites
 ******/
+$transparent: transparent !default;
 $white: hsl(0, 0%, 100%) !default;
 $white-shade: hsl(212, 10%, 96%) !default;
 $white-shade-2: hsl(212, 10%, 93%) !default;
@@ -120,6 +121,7 @@ $success-tint: color-tint($success) !default;
     Color Mapping
 ******/
 $react-bucket-ui-colors-map: (
+  transparent: $transparent,
   text : $text,
   text-tint : $text-tint,
   text-shade : $text-shade,

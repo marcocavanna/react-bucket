@@ -15,7 +15,11 @@ import {
 } from '../generic';
 
 
-export type SharedProps = SharedReactBucketProps & SharedFlexboxContentProps & SharedFlexboxContainerProps;
+export type SharedProps =
+  SharedReactBucketProps
+  & SharedFlexboxContentProps
+  & SharedFlexboxContainerProps
+  & { as?: any };
 
 export type SharedClassNamesAndProps<P> = {
   /** Computed Class Names */
@@ -64,6 +68,7 @@ function computeResponsiveClassName(
 export default function getSharedClassNames<P>(props: P): SharedClassNamesAndProps<P> {
 
   const {
+    as,
     backgroundColor,
     className,
     columnsAlign,

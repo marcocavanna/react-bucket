@@ -1,13 +1,13 @@
 import * as React from 'react';
 
-import { select, withKnobs } from '@storybook/addon-knobs';
+import { select } from '@storybook/addon-knobs';
 
 import * as Grid from './index';
 import { RowProps } from './index';
 import { FlexContentHorizontalAlign, FlexContentVerticalAlign, FlexContentWidth } from '../../generic';
 
 
-export default { title: 'Collections/Grid', decorators: [ withKnobs ] };
+export default { title: 'Collections/Grid' };
 
 
 /* --------

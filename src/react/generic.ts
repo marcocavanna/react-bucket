@@ -239,7 +239,8 @@ export type UIColor =
   | 'grey light'
   | 'grey'
   | 'grey dark'
-  | 'grey darkest';
+  | 'grey darkest'
+  | 'transparent';
 
 export type SocialColor =
   'facebook'

@@ -1,11 +1,13 @@
 import * as React from 'react';
 
-import { text, withKnobs } from '@storybook/addon-knobs';
+import { text, boolean } from '@storybook/addon-knobs';
 
 import { Header } from './index';
 
+import { getBackgroundColor, getElementSize, getTextAlign, getTextColor } from '../../stories';
 
-export default { title: 'Elements/Header', decorators: [ withKnobs() ] };
+
+export default { title: 'Elements/Header' };
 
 
 /* --------
@@ -16,12 +18,21 @@ export const simpleHeader = () => {
   const content = text('Content', 'I am the Header Content');
   const subheader = text('Subheader', 'And i am a Subheader');
 
+  const backgroundColor = getBackgroundColor();
+  const textColor = getTextColor();
+  const textAlign = getTextAlign();
+  const size = getElementSize();
+
   return (
     <Header
       content={content}
       subheader={subheader}
-      textColor={'primary'}
-      textAlign={'center'}
+      textColor={textColor}
+      textAlign={textAlign}
+      backgroundColor={backgroundColor}
+      size={size}
+      disabled={boolean('Disabled', false)}
+      divided={boolean('Divided', false)}
     />
   );
 

@@ -39,6 +39,9 @@ $border-radius-normal: .35em !default;
 $border-radius-big: .5em !default;
 $border-radius: $border-radius-normal !default;
 
+/// Each disabled elements have a lower opacity
+$disabled-element-opacity: .5 !default;
+
 /// Choose if must generate text size class helpers
 $generate-text-size-helpers-class: true !default;
 $generate-text-size-responsive-helpers-class: false !default;
