@@ -125,6 +125,14 @@
 
 
   /*---
+    Define a Style to remove Table Layout
+  ---*/
+  &.initial-table-layout {
+    table-layout: unset;
+  }
+
+
+  /*---
       Set Table Cell style
       for all cell inside
       all table section
