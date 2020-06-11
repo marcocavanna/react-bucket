@@ -67,6 +67,14 @@ $margin-padding-helpers-count: 8 !default;
 $generate-margin-padding-helpers-class: true !default;
 $generate-margin-padding-responsive-helpers-class: true !default;
 
+/// Choose if must generate box shadow height
+$height-box-shadow-count: 12 !default;
+$generate-height-box-shadow-helpers-class: true !default;
+
+/// Choose if must generate display helpers class
+$generate-display-helpers-class: true !default;
+$generate-display-responsive-helpers-class: true !default;
+
 
 /******
     Responsive Variables

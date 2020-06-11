@@ -2,10 +2,12 @@ import * as React from 'react';
 
 import { render } from '@testing-library/react';
 
+import { SharedFlexboxContainerProps, SharedReactBucketProps } from '../../react/generic';
+
 
 export function itWillSetContainerResponsiveClassName(Component: any) {
 
-  const renderComponent = (props?: any) => {
+  const renderComponent = (props?: SharedReactBucketProps & SharedFlexboxContainerProps) => {
     const {
       getByTestId
     } = render(
@@ -36,6 +38,29 @@ export function itWillSetContainerResponsiveClassName(Component: any) {
       });
       expect(component)
         .toHaveClass('on-phone-on-start', 'on-tablet-centered', 'on-desktop-on-end', 'on-large-desktop-spaced-between');
+    });
+
+    it('will use display plain property', () => {
+      const component = renderComponent({ display: 'flex' });
+      expect(component).toHaveClass('is-flex');
+    });
+
+    it('will use display object property', () => {
+      const component = renderComponent({
+        display: {
+          phoneUp       : 'inline block',
+          tabletUp      : 'flex',
+          desktopUp     : 'grid',
+          largeDesktopUp: 'table'
+        }
+      });
+      expect(component)
+        .toHaveClass(
+          'on-phone-is-inline-block',
+          'on-tablet-is-flex',
+          'on-desktop-is-grid',
+          'on-large-desktop-is-table'
+        );
     });
 
     it('will use vertical align plain property', () => {

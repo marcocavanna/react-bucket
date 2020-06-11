@@ -72,6 +72,7 @@ export default function getSharedClassNames<P>(props: P): SharedClassNamesAndPro
     backgroundColor,
     className,
     columnsAlign,
+    display,
     fontWeight,
     width,
     offsetBy,
@@ -97,6 +98,7 @@ export default function getSharedClassNames<P>(props: P): SharedClassNamesAndPro
     classByPattern(textAlign, 'has-text-%value%'),
     // Responsive Props
     computeResponsiveClassName(columnsAlign, '%value%'),
+    computeResponsiveClassName(display, 'is-%value%'),
     computeResponsiveClassName(width, 'is-%value%'),
     computeResponsiveClassName(offsetBy, 'offset-by-%value%'),
     computeResponsiveClassName(verticalAlign, '%value%'),

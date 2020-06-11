@@ -76,6 +76,9 @@ export interface SharedReactBucketProps {
   /** User Defined Class Names */
   className?: string;
 
+  /** Set element display */
+  display?: ResponsiveProps<ElementDisplay>;
+
   /** Define the main Font Weight */
   fontWeight?: FontWeight;
 
@@ -133,7 +136,51 @@ export type VerticalAlign = 'on top' | 'on bottom' | 'center';
 /* --------
  * Size Types
  * -------- */
+export type ElementDisplay =
+  'block'
+  | 'grid'
+  | 'inline block'
+  | 'inline flex'
+  | 'inline'
+  | 'flex'
+  | 'table'
+  | 'table column group'
+  | 'table header group'
+  | 'table footer group'
+  | 'table row group'
+  | 'table cell'
+  | 'table column'
+  | 'table row'
+  | 'none';
 export type ElementSize = 'extra small' | 'small' | 'normal' | 'large' | 'big' | 'huge';
+export type Spacer = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8';
+export type ShadowElevation =
+  0
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | '0'
+  | '1'
+  | '2'
+  | '3'
+  | '4'
+  | '5'
+  | '6'
+  | '7'
+  | '8'
+  | '9'
+  | '10'
+  | '11'
+  | '12';
 
 
 /* --------
