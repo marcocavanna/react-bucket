@@ -88,7 +88,7 @@
     @each $property, $prefix in (margin: 'm', padding: 'p') {
       // Generate Master Class
       @each $selector, $spacers in (#{$prefix}: #{$_spacer}em, #{$prefix}x: 0 #{$_spacer}em, #{$prefix}y: #{$_spacer}em 0) {
-        @include selectors-for-each-breakpoint('#{$selector}-#{$sp}', $selector-with-breakpoint: $generate-margin-padding-responsive-helpers-class) {
+        @include selectors-for-each-breakpoint('#{$selector}-#{$sp}', $selectors-with-breakpoint: $generate-margin-padding-responsive-helpers-class) {
           #{$property}: $spacers !important;
         }
       }
