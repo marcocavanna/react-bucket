@@ -1,8 +1,49 @@
+import * as React from 'react';
+
 import { select } from '@storybook/addon-knobs';
 
 import { ReactBucketColor, FontWeight, ElementSize, ContentAlign } from './generic';
 
 
+/* --------
+ * Build a Box Component that could be used in Stories
+ * -------- */
+export interface BoxProps {
+  /** User defined className */
+  className?: string;
+
+  /** Content Shorthand */
+  content?: React.ReactNode;
+
+  /** Set Box Height */
+  height?: number;
+
+  /** Set custom style */
+  style?: React.CSSProperties;
+}
+
+export const Box: React.FC<BoxProps> = (props) => (
+  <div
+    className={`has-background-primary ${props.className}`}
+    style={{
+      minHeight     : props.height ?? 100,
+      borderRadius  : 15,
+      display       : 'flex',
+      justifyContent: 'center',
+      alignItems    : 'center',
+      margin        : '2em 0'
+    }}
+  >
+    <div className={'is-large has-font-bold'}>
+      {props.content ?? 'BOX'}
+    </div>
+  </div>
+);
+
+
+/* --------
+ * Build a Set of Default Knobs
+ * -------- */
 const colors = {
   brand : [ 'primary', 'secondary', 'danger', 'warning', 'success', 'info' ],
   ui    : [

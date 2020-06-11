@@ -4,7 +4,16 @@ import { select } from '@storybook/addon-knobs';
 
 import * as Grid from './index';
 import { RowProps } from './index';
-import { FlexContentHorizontalAlign, FlexContentVerticalAlign, FlexContentWidth } from '../../generic';
+
+import {
+  FlexContentHorizontalAlign,
+  FlexContentVerticalAlign,
+  FlexContentWidth
+} from '../../generic';
+
+import {
+  Box
+} from '../../stories';
 
 
 export default { title: 'Collections/Grid' };
@@ -16,24 +25,6 @@ export default { title: 'Collections/Grid' };
 const Row = (props: RowProps) => (
   <div style={{ width: '90%', margin: '0 auto' }}>
     <Grid.Row {...props} />
-  </div>
-);
-
-const Box = (props: { content?: string, height?: number, className?: string }) => (
-  <div
-    className={`has-background-primary ${props.className}`}
-    style={{
-      minHeight     : props.height ?? 100,
-      borderRadius  : 15,
-      display       : 'flex',
-      justifyContent: 'center',
-      alignItems    : 'center',
-      margin        : '2em 0'
-    }}
-  >
-    <div className={'is-large has-font-bold'}>
-      {props.content ?? 'COL'}
-    </div>
   </div>
 );
 
