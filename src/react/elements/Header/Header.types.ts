@@ -5,6 +5,10 @@ import { HeaderContentProps } from './HeaderContent.types';
 
 
 export interface HeaderProps extends ReactBucketComponentProps<StrictHeaderProps> {
+
+}
+
+export interface StrictHeaderProps {
   /** Avoid Children on Header Component */
   children?: never;
 
@@ -19,8 +23,4 @@ export interface HeaderProps extends ReactBucketComponentProps<StrictHeaderProps
 
   /** Create Subheader Shorthand */
   subheader?: ShorthandItem<HeaderSubheaderProps>;
-}
-
-export interface StrictHeaderProps {
-
 }
