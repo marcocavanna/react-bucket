@@ -106,51 +106,51 @@ const allColors = {
   ...toObject(colors.social)
 };
 
-export function getBackgroundColor() {
+export function getBackgroundColor(defaultValue?: ReactBucketColor) {
   return select(
     'Background Color',
     allColors,
-    'default'
+    defaultValue ?? 'default'
   ) as ReactBucketColor;
 }
 
-export function getFontWeight() {
+export function getFontWeight(defaultValue?: FontWeight) {
   return select(
     'Font Weight',
     {
       default: null,
       ...toObject([ 'light', 'regular', 'semi bold', 'bold' ])
     },
-    null
+    defaultValue ?? 'default'
   ) as unknown as FontWeight;
 }
 
-export function getTextColor() {
+export function getTextColor(defaultValue?: ReactBucketColor) {
   return select(
     'Text Color',
     allColors,
-    'default'
+    defaultValue ?? 'default'
   ) as ReactBucketColor;
 }
 
-export function getElementSize() {
+export function getElementSize(defaultValue?: ElementSize) {
   return select(
     'Size',
     {
       default: null,
       ...toObject([ 'extra small', 'small', 'normal', 'large', 'big', 'huge' ])
     },
-    'default'
+    defaultValue ?? 'default'
   ) as unknown as ElementSize;
 }
 
-export function getTextAlign() {
+export function getTextAlign(defaultValue?: ContentAlign) {
   return select(
     'Text Align',
     {
       default: null,
       ...toObject([ 'left', 'center', 'right', 'justify' ])
     },
-    'default'
+    defaultValue ?? 'default'
   ) as unknown as ContentAlign;
 }
