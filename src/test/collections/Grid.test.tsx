@@ -1,6 +1,6 @@
-import * as Grid from '../../../react/collections/Grid';
+import * as Grid from '../../react/collections/Grid';
 
-import * as common from '../../common';
+import * as common from '../common';
 
 
 describe('testing rows', () => {

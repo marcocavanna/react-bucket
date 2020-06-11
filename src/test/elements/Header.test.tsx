@@ -1,6 +1,6 @@
-import { Header } from '../../../react/elements/Header';
+import { Header } from '../../react/elements/Header';
 
-import * as common from '../../common';
+import * as common from '../common';
 
 
 describe('testing header', () => {
