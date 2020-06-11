@@ -54,6 +54,10 @@ export default function assertComponentDeclaration(
       it('is exported', () => {
         expect(propsInterfaceObject?.exported).toBe(true);
       });
+
+      it('has no members', () => {
+        expect(propsInterfaceObject?.members.length).toBe(0);
+      });
     });
 
     describe(`interface ${strictInterfaceName}`, () => {

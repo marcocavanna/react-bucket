@@ -6,7 +6,7 @@ import { readFileSync, existsSync } from 'fs';
 /* --------
  * TS Helpers Interfaces and Types
  * -------- */
-export type DeclaredInterface = { exported: boolean, name: ts.__String };
+export type DeclaredInterface = { exported: boolean, name: ts.__String, members: ts.NodeArray<any> };
 
 
 export const requireTs = (tsPath: string): string | undefined => {
@@ -48,8 +48,9 @@ export const getInterfaces = (nodes: ts.Node[]): DeclaredInterface[] => {
   const interfaces = nodes.filter((node) => node.kind === ts.SyntaxKind.InterfaceDeclaration) as ts.InterfaceDeclaration[];
 
   // Return props for interfaces
-  return interfaces.map(({ modifiers, name }) => ({
+  return interfaces.map(({ modifiers, name, members }) => ({
     exported: !!(modifiers?.find(modifier => modifier.kind === ts.SyntaxKind.ExportKeyword)),
-    name    : name.escapedText
+    name    : name.escapedText,
+    members
   }));
 };
