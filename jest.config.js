@@ -12,6 +12,15 @@ module.exports = {
   // Ignore module dependencies
   testPathIgnorePatterns: [ 'node_modules/' ],
 
+  // Collect coverage from react package only
+  collectCoverageFrom: [
+    './src/react/**/*.{ts,tsx}',
+    '!./src/react/**/index.ts',
+    '!./src/react/stories.tsx',
+    '!./src/react/**/*.stories.{ts,tsx}',
+    '!**/node_modules/**'
+  ],
+
   // Transform typescript file
   transform: {
     '^.+\\.tsx?$': 'ts-jest'
