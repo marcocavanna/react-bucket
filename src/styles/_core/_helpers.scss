@@ -66,7 +66,7 @@
   @each $label, $color in $react-bucket-color-map {
     @include selectors-for-each-breakpoint('has-background-#{$label}', $selectors-with-breakpoint: $generate-background-color-responsive-helpers-class) {
       @include variation-style(
-        $property-name: background-color,
+        $properties-list: background-color,
         $color: $color
       )
     }

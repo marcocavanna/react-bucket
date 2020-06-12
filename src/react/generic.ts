@@ -96,6 +96,34 @@ export interface SharedReactBucketProps {
 
 
 /**
+ * Define an interface with the state
+ * element color
+ */
+export interface SharedComponentStateProps {
+  /** Manually set the Element appearance by Color Pool */
+  appearance?: ReactBucketColor;
+
+  /** Set the Danger State */
+  danger?: boolean;
+
+  /** Set the Info State */
+  info?: boolean;
+
+  /** Set the Primary State */
+  primary?: boolean;
+
+  /** Set the Secondary State */
+  secondary?: boolean;
+
+  /** Set the Success State */
+  success?: boolean;
+
+  /** Set the Warning State */
+  warning?: boolean;
+}
+
+
+/**
  * Generate a Type to extends Component Props
  * with useful Flexbox container props
  */

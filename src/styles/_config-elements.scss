@@ -33,3 +33,11 @@ $button-hover-will-drop-shadow: true !default;
 $generate-button-brands-variation: true !default;
 $generate-button-ui-variation: true !default;
 $generate-button-social-variation: true !default;
+
+
+/******
+    Icon Configuration
+******/
+$icon-spacer: $spacer * .25 !default;
+$icon-width: 1.5em !default;
+$icon-opacity: 1 !default;

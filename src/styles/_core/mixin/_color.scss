@@ -1,6 +1,6 @@
 @mixin color-property-variation(
   $base-color: transparent,
-  $property-name: background-color,
+  $properties-list: background-color,
   $use-brands: true,
   $use-ui: false,
   $use-social: false,
@@ -10,7 +10,8 @@
   $with-focus: false,
   $focus-color: null,
   $with-active: false,
-  $active-color: null
+  $active-color: null,
+  $variation-prefix: 'is-'
 ) {
 
   // Generate the Colors List to use
@@ -35,7 +36,7 @@
   @if $base-color != null and $base-color != false {
     // Set the property
     @include variation-style(
-      $property-name: $property-name,
+      $properties-list: $properties-list,
       $color: $base-color,
       $is-interactive: $is-interactive,
       $with-hover: $with-hover,
@@ -49,9 +50,9 @@
 
   // Loop for each colors to generate variations
   @each $label, $color in $colors-variations {
-    &.is-#{$label} {
+    &.#{$variation-prefix}#{$label} {
       @include variation-style(
-        $property-name: $property-name,
+        $properties-list: $properties-list,
         $color: $color,
         $is-interactive: $is-interactive,
         $is-child: true,
@@ -69,7 +70,7 @@
 
 
 @mixin variation-style(
-  $property-name,
+  $properties-list,
   $color,
   $is-interactive: false,
   $is-child: false,
@@ -85,10 +86,13 @@
   $contrast-color: choose-contrast-color($color, $white-shade, $text);
 
   // Set the Color
-  #{$property-name}: $color;
+  @each $prop in $properties-list {
+    #{$prop}: $color;
+  }
 
-  // If variation is on background-color, set the contrast color
-  @if $property-name == background-color {
+  // If any Prop is background-color
+  // then add the color property too
+  @if index($properties-list, background-color) != null {
     color: $contrast-color;
   }
 
@@ -141,8 +145,10 @@
             transition: all linear .1s;
             will-change: box-shadow;
           } @else {
-            transition: $property-name linear .1s;
-            will-change: $property-name;
+            transition-duration: .1s;
+            transition-timing-function: linear;
+            transition-property: $properties-list;
+            will-change: $properties-list;
           }
         }
 
@@ -151,10 +157,14 @@
           @include hover {
             &:hover {
               @if $hover-will-drop-shadow == true {
-                #{$property-name}: $hover-color;
+                @each $prop in $properties-list {
+                  #{$prop}: $hover-color;
+                }
                 box-shadow: 0 1px 10px transparentize(color-shade($color), .6);
               } @else {
-                #{$property-name}: $hover-color;
+                @each $prop in $properties-list {
+                  #{$prop}: $hover-color;
+                }
               }
             }
           }
@@ -164,7 +174,9 @@
         @if $with-active == true {
           &:active,
           &.is-active {
-            #{$property-name}: $active-color;
+            @each $prop in $properties-list {
+              #{$prop}: $active-color;
+            }
           }
         }
 
@@ -173,7 +185,9 @@
           &:focus,
           &.is-focused {
             box-shadow: 0 0 1px 2px color-shade($color, 1.5) inset;
-            #{$property-name}: $focus-color;
+            @each $prop in $properties-list {
+              #{$prop}: $focus-color;
+            }
           }
         }
       }

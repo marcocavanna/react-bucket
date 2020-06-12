@@ -1,9 +1,7 @@
 import clsx from 'clsx';
 
 import {
-  // classByKey,
   classByPattern,
-  // classByValue,
   isValue
 } from '@appbuckets/react-ui-core';
 

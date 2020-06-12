@@ -38,14 +38,14 @@
 
   /// Generate Column Horizontal Disposition
   @each $label, $align in (on-start: flex-start, centered: center, on-end: flex-end, spaced-between: space-between, spaced-around: space-around) {
-    @include selectors-for-each-breakpoint($label) {
+    @include selectors-for-each-breakpoint($label, $attach-to-selector: true) {
       justify-content: $align;
     }
   }
 
   /// Generate Column Vertical Disposition
   @each $label, $align in (on-top: flex-start, center: center, on-bottom: flex-end, stretched: stretch) {
-    @include selectors-for-each-breakpoint($label) {
+    @include selectors-for-each-breakpoint($label, $attach-to-selector: true) {
       align-items: $align;
     }
   }

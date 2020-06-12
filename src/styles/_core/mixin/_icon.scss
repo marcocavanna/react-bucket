@@ -1,0 +1,35 @@
+@mixin icon-style(
+  $restrict-to-direct-child: false,
+  $attach-to-selector: false
+) {
+
+  // Init selectors variable
+  $selectors: ();
+  $parent: null;
+
+  // Check if parent exists
+  @if & {
+    $parent: '&';
+  } @else {
+    $parent: '';
+  }
+
+  // Refactor parent if must attach selector
+  @if $parent != '' {
+    @if $restrict-to-direct-child == true {
+      $parent: '#{$parent} >';
+    } @else if $attach-to-selector == false {
+      $parent: '#{$parent} ';
+    }
+  }
+
+  // Loop each fontawesome class
+  @each $prefix in (fa, fas, far, fab) {
+    $selectors: append($selectors, '#{$parent}.#{$prefix}', $separator: comma);
+  }
+
+  // Set content
+  #{$selectors} {
+    @content;
+  }
+}

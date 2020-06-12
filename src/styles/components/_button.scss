@@ -1,0 +1,92 @@
+/**
+ * Project ReactBucket
+ *
+ * _Button @ src/styles/components/_button.scss
+ *
+ * Defined at 11 giu 2020
+ * Copyright Marco Cavanna • 2020
+ *
+ * ---
+ * Button Styles
+ *
+ */
+
+/******
+    Define the Base Button Style
+******/
+.button {
+  // ----
+  //  Reset Default Properties
+  // ----
+  cursor: pointer;
+  display: inline-block;
+  outline: 0;
+  border: none;
+  vertical-align: baseline;
+  text-shadow: none;
+  background-image: none;
+
+  // ----
+  //  Set Button Sizing
+  //  And Box Modeling
+  // ----
+  min-height: $button-min-height;
+  min-width: $button-min-width;
+  border-radius: $button-border-radius;
+  padding: $button-vertical-padding $button-horizontal-padding;
+  margin: 0 $button-spacer 0 0;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+
+  // ----
+  //  Set Button Typography
+  // ----
+  font-style: normal;
+  font-size: $button-font-size;
+  font-weight: $button-font-weight;
+  line-height: $button-line-height;
+  text-align: center;
+  text-decoration: none;
+  text-transform: $button-text-transform;
+  white-space: nowrap;
+
+  // ----
+  //  Set Button Colors and Variations
+  //  If Button is not flat, the variations are applied to Background Color
+  //  otherwise variations are applied to color
+  // ----
+  &:not(.is-flat) {
+    @include color-property-variation(
+      $base-color: $grey-lightest,
+      $properties-list: background-color,
+      $use-brands: $generate-button-brands-variation,
+      $use-ui: $generate-button-ui-variation,
+      $use-social: $generate-button-social-variation,
+      $is-interactive: true,
+      $hover-will-drop-shadow: $button-hover-will-drop-shadow,
+      $with-hover: true,
+      $with-focus: true,
+      $with-active: true
+    )
+  }
+
+  &.is-flat {
+    /// Override background color
+    background-color: transparent;
+
+    @include color-property-variation(
+      $base-color: $text,
+      $properties-list: color,
+      $use-brands: $generate-button-brands-variation,
+      $use-ui: $generate-button-ui-variation,
+      $use-social: $generate-button-social-variation,
+      $is-interactive: true,
+      $with-hover: true,
+      $with-focus: true,
+      $with-active: true
+    )
+  }
+}
