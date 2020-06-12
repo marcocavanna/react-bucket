@@ -6,4 +6,6 @@ export { default as implementsCreateMethod } from './implementsCreateMethod';
 
 export { default as itWillHaveSharedClassName } from './itWillHaveSharedClassName';
 
+export { default as itWillHaveStateClassName } from './itWillHaveStateClassName';
+
 export * from './itWillSetResponsiveClassName';

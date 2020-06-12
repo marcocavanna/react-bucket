@@ -16,7 +16,9 @@ module.exports = {
   collectCoverageFrom: [
     './src/react/**/*.{ts,tsx}',
     '!./src/react/**/index.ts',
+    '!./src/react/grid.ts',
     '!./src/react/stories.tsx',
+    '!./src/react/fontawesome.d.ts',
     '!./src/react/**/*.stories.{ts,tsx}',
     '!**/node_modules/**'
   ],
