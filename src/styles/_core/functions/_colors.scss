@@ -60,7 +60,7 @@ $shade-step: 100% / 13;
 
 @function color-luminance($color) {
 
-  $color-rgb: ('red': red($color),'green': green($color),'blue': blue($color));
+  $color-rgb: ('red': red($color), 'green': green($color), 'blue': blue($color));
 
   @each $name, $value in $color-rgb {
     $adjusted: 0;
@@ -80,6 +80,9 @@ $shade-step: 100% / 13;
 }
 
 @function choose-contrast-color($analyze-color, $if-dark, $if-light) {
+  @if $analyze-color == transparent {
+    @return $if-light;
+  }
   @if (color-luminance($analyze-color) > 0.55) {
     @return $if-light;
   }

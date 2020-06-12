@@ -1,0 +1,35 @@
+/**
+ * Project ReactBucket
+ *
+ * _ConfigElements @ src/styles/grid/_config-elements.scss
+ *
+ * Defined at 11 giu 2020
+ * Copyright Marco Cavanna • 2020
+ *
+ * ---
+ * Style Configuration for all Elements
+ *
+ */
+
+/******
+    Button Configuration
+******/
+$button-min-height: 1em !default;
+$button-min-width: 10em !default;
+$button-font-size: 1rem !default;
+$button-font-weight: $semi-bold !default;
+$button-text-transform: uppercase !default;
+$button-line-height: $default-line-height !default;
+$button-spacer: $spacer * .5 !default;
+$button-border-radius: $border-radius !default;
+$button-vertical-padding: .75em !default;
+$button-horizontal-padding: 1.25em !default;
+$button-background-color: $grey-lightest !default;
+
+/// Set if button hover will drop shadow
+$button-hover-will-drop-shadow: true !default;
+
+/// Generate Button Variation using Colors
+$generate-button-brands-variation: true !default;
+$generate-button-ui-variation: true !default;
+$generate-button-social-variation: true !default;

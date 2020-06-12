@@ -49,8 +49,10 @@ export default {
 
   // Set main project entry points
   entry: {
-    // React Components
-    lib: 'index.ts'
+    // All React Bucket Components
+    all : 'index.ts',
+    // Only React Bucket Grid System
+    grid: 'grid.ts'
   },
 
   // Set main project output configuration
@@ -163,7 +165,7 @@ export default {
   // Append Plugins
   plugins: [
     new MiniCSSExtractPlugin({
-      filename: 'style.css'
+      filename: '[name].css'
     })
   ]
 

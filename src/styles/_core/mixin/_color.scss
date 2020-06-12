@@ -54,6 +54,7 @@
         $property-name: $property-name,
         $color: $color,
         $is-interactive: $is-interactive,
+        $is-child: true,
         $with-hover: $with-hover,
         $hover-will-drop-shadow: $hover-will-drop-shadow,
         $with-active: $with-active,
@@ -71,6 +72,7 @@
   $property-name,
   $color,
   $is-interactive: false,
+  $is-child: false,
   $with-hover: false,
   $hover-will-drop-shadow: false,
   $with-active: false,
@@ -91,37 +93,57 @@
   }
 
   @if $is-interactive == true {
-    // Change Cursor
-    cursor: pointer;
 
     // Set disabled style
-    &[disabled],
-    &:disabled,
-    &.is-disabled {
-      cursor: not-allowed !important;
-      opacity: .5 !important;
+    @if $is-child != true {
+      // Change Cursor
+      cursor: pointer;
+
+      &[disabled],
+      &:disabled,
+      &.is-disabled {
+        cursor: not-allowed !important;
+        opacity: .5 !important;
+      }
+    }
+
+    // Set the Hover Color
+    $hover-color: color-tint($color, .6);
+
+    @if $color == transparent {
+      $hover-color: $white-shade;
     }
 
     // Fallback active color to shade
     @if $active-color == null {
-      $active-color: color-shade($color, .75);
+      @if $color != transparent {
+        $active-color: color-shade($color, .75);
+      } @else {
+        $active-color: $grey-lightest;
+      }
     }
 
     // Fallback focus color to tint
     @if $focus-color == null {
-      $focus-color: color-tint($color, .75);
+      @if $color != transparent {
+        $focus-color: color-tint($color, .75);
+      } @else {
+        $focus-color: $white-shade-2;
+      }
     }
 
     @if $with-hover == true or $with-active == true or $with-focus == true {
       &:not([disabled]):not(:disabled):not(.is-disabled) {
         // Set transition start props
-        @if $hover-will-drop-shadow == true {
-          box-shadow: none;
-          transition: all linear .1s;
-          will-change: box-shadow;
-        } @else {
-          transition: $property-name linear .1s;
-          will-change: $property-name;
+        @if $is-child != true {
+          @if $hover-will-drop-shadow == true {
+            box-shadow: none;
+            transition: all linear .1s;
+            will-change: box-shadow;
+          } @else {
+            transition: $property-name linear .1s;
+            will-change: $property-name;
+          }
         }
 
         // Set Hover Style
@@ -129,10 +151,10 @@
           @include hover {
             &:hover {
               @if $hover-will-drop-shadow == true {
-                #{$property-name}: color-tint($color, .5);
-                box-shadow: 0 1px 10px transparentize(color-shade($color), .4);
+                #{$property-name}: $hover-color;
+                box-shadow: 0 1px 10px transparentize(color-shade($color), .6);
               } @else {
-                #{$property-name}: $active-color;
+                #{$property-name}: $hover-color;
               }
             }
           }

@@ -1,8 +1,23 @@
+/// Import FontAwesome Icon
+$fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/brands';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+
+//@import '../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome';
+//@import '../../node_modules/@fortawesome/fontawesome-free/scss/brands';
+//@import '../../node_modules/@fortawesome/fontawesome-free/scss/regular';
+//@import '../../node_modules/@fortawesome/fontawesome-free/scss/solid';
+
 /// Import Configuration Variables
-@import 'config';
+@import 'config-core';
 
 /// Import React Bucket Core
 @import '_core/all';
+
+/// Import Elements Config
+@import 'config-elements';
 
 /// Import Layout Style
 @import 'base';
