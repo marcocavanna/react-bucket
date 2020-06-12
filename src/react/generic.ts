@@ -1,5 +1,7 @@
 import { ReactNode, PropsWithoutRef, ElementType, ReactElement } from 'react';
 
+/** Re export ReactBucket Icon */
+export { FontAwesomeIcon, FontAwesomeIconStyle } from './fontawesome';
 
 /* --------
  * Shorthand Props

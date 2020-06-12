@@ -34,7 +34,7 @@
   "homepage": "https://github.com:marcocavanna/react-bucket#readme",
   "license": "MIT",
   "scripts": {
-    "prepublishOnly": "npm run build",
+    "prepublishOnly": "npm run build:fontawesome && npm run build",
     "prebuild:webpack": "rimraf dist && npm run lint && npm run test",
     "build": "cross-env NODE_ENV=production npm run build:webpack",
     "build:dev": "cross-env NODE_ENV=development npm run build:webpack",
@@ -42,6 +42,7 @@
     "postbuild:webpack": "npm run build:declaration",
     "postbuild:dev": "npm run prettier",
     "build:declaration": "tsc -p tsconfig.declaration.json",
+    "build:fontawesome": "node build.fontawesome.js",
     "build:style": "node build.styles.js",
     "build:storybook": "build-storybook",
     "start:storybook": "start-storybook",
@@ -59,6 +60,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",
+    "@fortawesome/fontawesome-free": "^5.13.0",
     "@storybook/addon-actions": "^5.3.19",
     "@storybook/addon-docs": "^5.3.19",
     "@storybook/addon-info": "^5.3.19",
@@ -120,7 +122,8 @@
     "typescript": "^3.9.2",
     "url-loader": "^4.1.0",
     "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.11"
+    "webpack-cli": "^3.3.11",
+    "yaml": "^1.10.0"
   },
   "dependencies": {
     "@appbuckets/react-ui-core": "^0.0.1-beta.7",

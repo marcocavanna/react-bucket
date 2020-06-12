@@ -40,7 +40,18 @@ module.exports = {
         use : [
           { loader: require.resolve('ts-loader') },
 
-          { loader: require.resolve('react-docgen-typescript-loader') }
+          {
+            loader : require.resolve('react-docgen-typescript-loader'),
+            options: {
+              /** Remove Props of React Core Component */
+              propFilter                        : (prop) => {
+                return !/^(DOMAttributes|AriaAttributes|HTMLAttributes|Attributes)$/.test(prop.parent.name);
+
+              },
+              /** Extract Literal Value from Type */
+              shouldExtractLiteralValuesFromEnum: true
+            }
+          }
         ]
       },
 
@@ -100,8 +111,6 @@ module.exports = {
         ]
       }
     );
-
-    console.log(config.module.rules);
 
     config.resolve.extensions.push('.ts', '.tsx');
 

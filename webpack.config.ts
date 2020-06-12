@@ -140,23 +140,32 @@ export default {
 
       // Assets Loader
       {
-        test: /\.(png|svg|jpg|gif)$/,
-        use : [
+        test   : /\.(png|svg|jpg|gif)$/,
+        exclude: [ /@fortawesome/ ],
+        use    : [
           {
             loader : 'url-loader',
             options: {
               fallback  : 'file-loader',
               name      : '[name][md5:hash].[ext]',
-              outputPath: 'assets/',
-              publicPath: '/assets/'
+              outputPath: './assets/',
+              publicPath: './assets/'
             }
           }
         ]
       },
 
       {
-        test: /\.(eot|ttf|woff|woff2)$/,
-        use : 'file-loader'
+        test   : /\.(eot|ttf|woff|woff2|svg)$/,
+        include: [ /@fortawesome/ ],
+        use    : {
+          loader : 'file-loader',
+          options: {
+            name      : '[name].[ext]',
+            outputPath: './assets/fontawesome',
+            publicPath: './assets/fontawesome'
+          }
+        }
       }
 
     ]
