@@ -83,6 +83,8 @@ export default function Icon(props: IconProps): React.ReactElement<IconProps> {
   );
 }
 
+Icon.displayName = 'Icon';
+
 /** Set icon default props */
 Icon.defaultProps = {
   as: 'i' as React.ElementType
