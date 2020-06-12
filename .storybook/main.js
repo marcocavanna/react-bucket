@@ -3,14 +3,14 @@ const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
 
-  stories: [`../src/react/**/*.stories.${process.env.DOCS === '1' ? 'mdx' : 'tsx'}`],
+  stories: [ `../src/react/**/*.stories.${process.env.DOCS === '1' ? 'mdx' : 'tsx'}` ],
 
   addons: [
     '@storybook/addon-knobs/register',
     '@storybook/addon-actions/register',
-    ...(process.env.DOCS === '1' ? ['@storybook/addon-docs'] : []),
+    ...(process.env.DOCS === '1' ? [ '@storybook/addon-docs' ] : []),
     {
-      name: '@storybook/addon-storysource',
+      name   : '@storybook/addon-storysource',
       options: {
         loaderOptions: {
           parser: 'typescript'
@@ -20,6 +20,20 @@ module.exports = {
   ],
 
   webpackFinal: async (config) => {
+
+    /** Exclude FontAwesome from Fonts Url */
+    config.module.rules = config.module.rules.map((rule) => {
+      if (/(eot|ttf|woff|woff2|svg)/.test(rule.test)) {
+        if (!Array.isArray(rule.exclude)) {
+          rule.exclude = [];
+        }
+
+        rule.exclude.push(/@fortawesome/);
+      }
+
+      return rule;
+    });
+
     config.module.rules.push(
       {
         test: /\.tsx?$/,
@@ -32,14 +46,27 @@ module.exports = {
 
       // Parse source typescript files
       {
-        test: /\.stories\.tsx?$/,
+        test   : /\.stories\.tsx?$/,
         loaders: [
           {
-            loader: require.resolve('@storybook/source-loader'),
+            loader : require.resolve('@storybook/source-loader'),
             options: { parser: 'typescript' }
           }
         ],
         enforce: 'pre'
+      },
+
+      {
+        test   : /\.(eot|ttf|woff|woff2|svg)$/,
+        include: [ /@fortawesome/ ],
+        use    : {
+          loader : 'file-loader',
+          options: {
+            name      : '[name].[ext]',
+            outputPath: './assets/fontawesome',
+            publicPath: './assets/fontawesome'
+          }
+        }
       },
 
       // Use Extract Text Plugin to get and compile Style
@@ -71,13 +98,16 @@ module.exports = {
             }
           }
         ]
-      });
+      }
+    );
+
+    console.log(config.module.rules);
 
     config.resolve.extensions.push('.ts', '.tsx');
 
     config.plugins.push(new MiniCSSExtractPlugin({
       filename: 'style.css'
-    }))
+    }));
 
     return config;
   }
