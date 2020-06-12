@@ -130,8 +130,7 @@ function buildCSSFile(filenameSrc, filenameDest) {
  * Compile Files
  * -------- */
 const entries = {
-  index: 'all',
-  grid : 'grid'
+  grid: 'grid'
 };
 
 async function build() {
