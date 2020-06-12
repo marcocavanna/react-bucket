@@ -58,3 +58,6 @@ jspm_packages/
 .DS_Store
 dist/
 compiled_example/
+
+# Storbook Static Files
+storybook-static/
