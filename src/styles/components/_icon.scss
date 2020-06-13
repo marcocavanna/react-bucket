@@ -55,14 +55,14 @@
   // ----
   &.is-bordered {
     position: relative;
-    min-width: 1.65em;
+    min-width: $icon-bordered-box-size;
 
     &:after {
       content: '';
       position: absolute;
-      height: 1.65em;
-      width: 1.65em;
-      border-width: pixel-to-em(1px);
+      height: $icon-bordered-box-size;
+      width: $icon-bordered-box-size;
+      border-width: $icon-bordered-border-width;
       border-style: solid;
       top: 50%;
       left: 50%;

@@ -7,12 +7,16 @@ import {
   classByKey
 } from '@appbuckets/react-ui-core';
 
-import { ButtonProps } from './Button.types';
 import {
   useElementType,
   useSharedClassName,
   useSplitStateClassName
 } from '../../lib';
+
+import { ButtonProps } from './Button.types';
+import ButtonGroup from './ButtonGroup';
+
+import { Icon } from '../Icon';
 
 
 export default function Button(props: ButtonProps): React.ReactElement<ButtonProps> {
@@ -22,11 +26,20 @@ export default function Button(props: ButtonProps): React.ReactElement<ButtonPro
     rest: {
       children,
       content,
+      active,
       disabled,
+      fab,
       flat,
+      full,
+      icon,
+      iconPosition,
+      inverted,
+      loading,
       onClick,
       role,
+      rounded,
       tabIndex: userDefinedTabIndex,
+      toggle,
       type,
       ...rawRest
     }
@@ -95,16 +108,46 @@ export default function Button(props: ButtonProps): React.ReactElement<ButtonPro
 
   /** Build the element class list */
   const classes = clsx(
-    'button',
+    classByKey(fab && !content && !content, 'fab'),
+    classByKey(disabled, 'disabled'),
+    classByKey(flat, 'flat'),
+    classByKey(inverted, 'inverted'),
+    classByKey(loading, 'loading'),
+    classByKey(rounded, 'rounded'),
+    classByKey(full, 'full'),
+    classByKey(active, 'active'),
+    classByKey(toggle, 'toggle'),
     stateClasses,
-    classByKey(flat, 'is-flat'),
+    classByKey(icon && (children || content), 'with-icon'),
+    classByKey(icon && !children && !content, 'as-icon'),
+    'button',
     className
   );
 
-  /** Check if component has Children */
-  const hasChildren = !childrenUtils.isNil(children);
+  /** Build the Button Element Props */
+  const buttonProps = {
+    ...rest,
+    type,
+    tabIndex,
+    className: classes,
+    disabled : (disabled && ElementType === 'button') || undefined,
+    role     : ariaRole,
+    onClick  : handleClick
+  } as ButtonProps;
 
-  /** Return the Element */
+  /** If there are children render them */
+  if (!childrenUtils.isNil(children)) {
+    return (
+      <ElementType {...buttonProps}>
+        {children}
+      </ElementType>
+    );
+  }
+
+  /** Build the icon if Exists */
+  const iconElement = icon && Icon.create(icon, { autoGenerateKey: false });
+
+  /** Else, build the button using shortHand */
   return (
     <ElementType
       {...rest}
@@ -115,8 +158,9 @@ export default function Button(props: ButtonProps): React.ReactElement<ButtonPro
       tabIndex={tabIndex}
       onClick={handleClick}
     >
-      {hasChildren && children}
-      {!hasChildren && content}
+      {iconPosition === 'left' && iconElement}
+      {content}
+      {iconPosition === 'right' && iconElement}
     </ElementType>
   );
 }
@@ -126,8 +170,9 @@ Button.Group = ButtonGroup;
 
 /** Set button Default Props */
 Button.defaultProps = {
-  as  : 'button' as React.ElementType,
-  type: 'button' as 'button'
+  as          : 'button' as React.ElementType,
+  iconPosition: 'left' as 'left',
+  type        : 'button' as 'button'
 };
 
 /** Properly set Display Name */

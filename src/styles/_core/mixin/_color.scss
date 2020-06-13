@@ -140,13 +140,14 @@
       &:not([disabled]):not(:disabled):not(.is-disabled) {
         // Set transition start props
         @if $is-child != true {
+          transition-duration: $transition-duration;
+          transition-timing-function: $transition-ease;
+
           @if $hover-will-drop-shadow == true {
             box-shadow: none;
-            transition: all linear .1s;
-            will-change: box-shadow;
+            transition-property: #{$properties-list}, box-shadow;
+            will-change: #{$properties-list}, box-shadow;
           } @else {
-            transition-duration: .1s;
-            transition-timing-function: linear;
             transition-property: $properties-list;
             will-change: $properties-list;
           }

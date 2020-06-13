@@ -14,7 +14,7 @@
 /******
     Button Configuration
 ******/
-$button-min-height: 1em !default;
+$button-height: 2.75em !default;
 $button-min-width: 10em !default;
 $button-font-size: 1rem !default;
 $button-font-weight: $semi-bold !default;
@@ -22,9 +22,11 @@ $button-text-transform: uppercase !default;
 $button-line-height: $default-line-height !default;
 $button-spacer: $spacer * .5 !default;
 $button-border-radius: $border-radius !default;
-$button-vertical-padding: .75em !default;
 $button-horizontal-padding: 1.25em !default;
 $button-background-color: $grey-lightest !default;
+$button-inverted-border-width: pixel-to-em(2px) !default;
+$button-icon-opacity: .8 !default;
+$button-fab-spacer: .5em !default;
 
 /// Set if button hover will drop shadow
 $button-hover-will-drop-shadow: true !default;
@@ -41,3 +43,14 @@ $generate-button-social-variation: true !default;
 $icon-spacer: $spacer * .25 !default;
 $icon-width: 1.5em !default;
 $icon-opacity: 1 !default;
+$icon-bordered-box-size: 1.65em !default;
+$icon-bordered-border-width: pixel-to-em(1px) !default;
+
+
+/******
+    Loader
+******/
+$loader-size: pixel-to-em(20px) !default;
+$loader-stroke-size: .2em !default;
+$loader-background-color: rgba(0, 0, 0, 0.15) !default;
+$loader-spinner-color: rgba(255, 255, 255, 0.85) !default;
