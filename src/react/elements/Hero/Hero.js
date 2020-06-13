@@ -49,14 +49,14 @@ function Hero(props) {
   return (
     <ElementType {...rest} className={classes}>
 
+      {IconElement}
+
       {childrenUtils.isNil(children) ? (
         <React.Fragment>
           {HeaderElement}
           {ContentElement}
         </React.Fragment>
       ) : children}
-
-      {IconElement}
 
       {ToolsElement}
 
