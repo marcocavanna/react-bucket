@@ -121,11 +121,17 @@ export default function Button(props: ButtonProps): React.ReactElement<ButtonPro
   );
 }
 
+/** Add the Group */
+Button.Group = ButtonGroup;
+
+/** Set button Default Props */
 Button.defaultProps = {
   as  : 'button' as React.ElementType,
   type: 'button' as 'button'
 };
 
+/** Properly set Display Name */
 Button.displayName = 'Button';
 
+/** Create the Shorthand Factory Method */
 Button.create = createShorthandFactory<ButtonProps>(Button, (content) => ({ content }));

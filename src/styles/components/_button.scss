@@ -90,3 +90,110 @@
     )
   }
 }
+
+
+/******
+    Buttons Group Style
+******/
+%buttons {
+  box-shadow: none;
+  display: inline-flex;
+  vertical-align: baseline;
+  margin: 0 $button-spacer 0 0;
+  flex-basis: auto;
+  width: auto;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  // ----
+  //  Remove Border Radius and Margin on all inner buttons
+  // ----
+  > .button {
+    flex: 1 0;
+    border-radius: 0;
+    margin: 0;
+  }
+
+  // ----
+  //  Full width Buttons Group
+  // ----
+  &.full {
+    width: 100%;
+    flex-basis: 100%;
+  }
+}
+
+// ----
+//  Default button group is horizontal
+// ----
+.buttons:not(.vertical) {
+  @extend %buttons;
+  flex-direction: row;
+
+  > .button {
+    /// Set first button style
+    &:first-child {
+      border-left: none;
+      border-top-left-radius: $button-border-radius;
+      border-bottom-left-radius: $button-border-radius;
+
+      /// Set max border on rounded button
+      &.rounded {
+        border-top-left-radius: 500rem;
+        border-bottom-left-radius: 500rem;
+      }
+    }
+
+    /// Set last button style
+    &:last-child {
+      border-right: none;
+      border-top-right-radius: $button-border-radius;
+      border-bottom-right-radius: $button-border-radius;
+
+      /// Set max border on rounded button
+      &.rounded {
+        border-top-right-radius: 500rem;
+        border-bottom-right-radius: 500rem;
+      }
+    }
+  }
+
+}
+
+// ----
+//  Vertical Button must be showed using column flex
+// ----
+.vertical.buttons {
+  @extend %buttons;
+  flex-direction: column;
+
+  > .button {
+    /// Set first button style
+    &:first-child {
+      border-top: none;
+      border-top-left-radius: $button-border-radius;
+      border-top-right-radius: $button-border-radius;
+
+      /// Set max border on rounded button
+      &.rounded {
+        border-top-left-radius: 500rem;
+        border-top-right-radius: 500rem;
+      }
+    }
+
+    /// Set last button style
+    &:last-child {
+      border-bottom: none;
+      border-bottom-left-radius: $button-border-radius;
+      border-bottom-right-radius: $button-border-radius;
+
+      /// Set max border on rounded button
+      &.rounded {
+        border-bottom-left-radius: 500rem;
+        border-bottom-right-radius: 500rem;
+      }
+    }
+  }
+}
