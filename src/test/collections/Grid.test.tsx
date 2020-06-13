@@ -13,6 +13,8 @@ describe('testing rows', () => {
 
   common.itWillSetContainerResponsiveClassName(Grid.Row);
 
+  common.itWillCreateShorthandChildren(Grid.Row, 'columns', [ { content: 'ciao' } ]);
+
 });
 
 
@@ -27,5 +29,7 @@ describe('testing columns', () => {
   common.itWillHaveSharedClassName(Grid.Column);
 
   common.itWillSetContentResponsiveClassName(Grid.Column);
+
+  common.itWillCreateShorthandChildren(Grid.Column, 'content', 'Column Content');
 
 });

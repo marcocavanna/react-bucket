@@ -8,7 +8,7 @@ import {
 
 import {
   childrenUtils,
-  classByKey
+  classByKey, createShorthandFactory
 } from '@appbuckets/react-ui-core';
 
 import { ButtonGroupProps } from './ButtonGroup.types';
@@ -65,3 +65,6 @@ export default function ButtonGroup(props: ButtonGroupProps): React.ReactElement
 
 /** Properly Set displayName */
 ButtonGroup.displayName = 'ButtonGroup';
+
+/** Implements the Create Factory Method */
+ButtonGroup.create = createShorthandFactory(ButtonGroup, (buttons) => ({ buttons }));

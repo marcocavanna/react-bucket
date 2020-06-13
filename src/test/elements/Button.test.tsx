@@ -13,4 +13,26 @@ describe('testing button', () => {
 
   common.itWillHaveStateClassName(Button);
 
+  common.implementsCreateMethod(Button);
+
+  common.itWillCreateShorthandChildren(Button, 'content', 'Click Me!');
+
+});
+
+
+describe('testing button group', () => {
+
+  common.assertComponentDeclaration(Button.Group, { filePath: [ 'elements', 'Button' ] });
+
+  common.componentCorrectlyRender(Button.Group, { hasClassName: [ 'buttons' ] });
+
+  common.itWillHaveSharedClassName(Button.Group);
+
+  common.implementsCreateMethod(Button.Group);
+
+  common.itWillCreateShorthandChildren(Button.Group, 'buttons', [
+    { content: 'Click 1' },
+    { content: 'Click 2' }
+  ]);
+
 });
