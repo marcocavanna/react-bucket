@@ -1,6 +1,6 @@
 {
   "name": "@appbuckets/react-bucket",
-  "version": "0.3.0-alpha.1",
+  "version": "0.3.0-alpha.5",
   "description": "React UI Framework",
   "keywords": [
     "react",
@@ -8,7 +8,7 @@
     "style",
     "components"
   ],
-  "main": "dist/lib.js",
+  "main": "dist/all.js",
   "types": "dist/types/index.d.ts",
   "files": [
     "src/styles",
@@ -34,7 +34,7 @@
   "homepage": "https://github.com:marcocavanna/react-bucket#readme",
   "license": "MIT",
   "scripts": {
-    "prepublishOnly": "npm run build:fontawesome && npm run build",
+    "prepublishOnly": "npm run build:fontawesome && npm run build:dev",
     "prebuild:webpack": "rimraf dist && npm run lint && npm run test",
     "build": "cross-env NODE_ENV=production npm run build:webpack",
     "build:dev": "cross-env NODE_ENV=development npm run build:webpack",
