@@ -558,3 +558,27 @@
     padding-bottom: $table-cell-v-padding * 2 !important;
   }
 }
+
+
+/*---
+  Create some cell width
+  usefull className
+---*/
+.table {
+  .head,
+  .body,
+  .foot {
+    > .row > .cell {
+      @for $width from 1 through 20 {
+        @include property-for-each-breakpoint('w-#{$width}', $attach-to-selector: true) {
+          width: percentage($width / 100);
+        }
+      }
+
+      &.w-auto {
+        width: 1%;
+        white-space: nowrap;
+      }
+    }
+  }
+}

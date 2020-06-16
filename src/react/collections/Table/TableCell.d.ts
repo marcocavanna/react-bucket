@@ -55,6 +55,9 @@ export interface StrictTableCellProps {
 
   /** Set Cell as Warning */
   warning?: boolean
+
+  /** Set Cell Width */
+  width?: number | 'auto';
 }
 
 interface TableCellComponent extends React.StatelessComponent<TableCellProps> { }

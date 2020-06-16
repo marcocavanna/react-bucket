@@ -33,7 +33,8 @@ function TableCell(props) {
     success,
     textAlign,
     verticalAlign,
-    warning
+    warning,
+    width
   } = props;
 
   const classes = cx(
@@ -47,6 +48,7 @@ function TableCell(props) {
     classByPattern(textAlign, 'has-text-%value%'),
     classByValue(verticalAlign),
     classByKey(warning, 'is-warning'),
+    classByPattern(width, 'w-%value%'),
     className,
     'cell'
   );
@@ -145,7 +147,13 @@ TableCell.propTypes = {
   verticalAlign: PropTypes.string,
 
   /** Set Cell as Warning */
-  warning: PropTypes.bool
+  warning: PropTypes.bool,
+
+  /** Set cell width */
+  width: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ])
 };
 
 TableCell.defaultProps = {
