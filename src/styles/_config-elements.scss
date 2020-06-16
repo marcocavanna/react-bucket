@@ -12,6 +12,12 @@
  */
 
 /******
+    Z-Index
+******/
+$overlay-loader-z-index: 1000 !default;
+
+
+/******
     Button Configuration
 ******/
 $button-height: 2.75em !default;
@@ -50,7 +56,40 @@ $icon-bordered-border-width: pixel-to-em(1px) !default;
 /******
     Loader
 ******/
-$loader-size: pixel-to-em(20px) !default;
+$loader-in-component-size: pixel-to-em(20px) !default;
+$loader-in-component-stroke-size: .2em !default;
+$loader-in-component-background-color: rgba(0, 0, 0, 0.15) !default;
+$loader-in-component-spinner-color: rgba(255, 255, 255, 0.85) !default;
+
 $loader-stroke-size: .2em !default;
-$loader-background-color: rgba(0, 0, 0, 0.15) !default;
-$loader-spinner-color: rgba(255, 255, 255, 0.85) !default;
+$loader-background-color: transparentize($text, .85) !default;
+$loader-spinner-color: transparentize($text, .5) !default;
+
+$loader-dots-animation-duration: 1600ms !default;
+$loader-dots-animation-delay: 250ms !default;
+$loader-dots-timing-function: ease-in-out !default;
+
+$loader-circular-dots-dot-size: .75em !default;
+$loader-circular-dots-dot-starting-opacity: .3 !default;
+$loader-circular-dots-rotate-animation-duration: 1600ms !default;
+$loader-circular-dots-rotate-timing-function: linear !default;
+$loader-circular-dots-dot-animation-duration: 1000ms !default;
+$loader-circular-dots-dot-animation-delay: 400ms !default;
+$loader-circular-dots-dot-timing-function: linear !default;
+
+$loader-sizing: (
+  extra-small: 1rem,
+  small: 1.75rem,
+  normal: 2.5rem,
+  large: 3.5rem,
+  big: 5rem,
+  huge: 7rem
+) !default;
+$loader-font-size: (
+  extra-small: .5em,
+  small: .75em,
+  normal: 1em,
+  large: 1.35em,
+  big: 1.65em,
+  huge: 2em
+) !default;

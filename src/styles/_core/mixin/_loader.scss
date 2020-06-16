@@ -3,7 +3,7 @@
   $container-opacity: 1,
   $cursor: default,
   $container-position: relative,
-  $loader-size: $loader-size
+  $loader-size: $loader-in-component-size
 ) {
   /// Set the container property
   position: $container-position;
@@ -28,13 +28,13 @@
   }
 
   &:before {
-    border: $loader-stroke-size solid $loader-background-color;
+    border: $loader-in-component-stroke-size solid $loader-in-component-background-color;
   }
 
   &:after {
-    border-color: $loader-spinner-color transparent transparent;
+    border-color: $loader-in-component-spinner-color transparent transparent;
     border-style: solid;
-    border-width: $loader-stroke-size;
+    border-width: $loader-in-component-stroke-size;
     @include loaderRotation();
   }
 }

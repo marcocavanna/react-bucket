@@ -17,3 +17,5 @@ export * from './elements/Button';
 export * from './elements/Header';
 
 export * from './elements/Icon';
+
+export * from './elements/Loader';
