@@ -37,7 +37,7 @@
 
     /// Set a little margin between loader and Content
     > .content {
-      padding-top: .25em;
+      padding-top: .5em;
     }
   }
 
@@ -108,6 +108,7 @@
 ******/
 .loader.indeterminate-bar {
   color: $text;
+  min-width: $loader-indeterminate-min-width;
 
   > .progress-container {
     position: relative;
@@ -260,6 +261,13 @@
       }
     }
   }
+
+  // ----
+  //  Increase Content Padding
+  // ----
+  &.with-content > .content {
+    padding-top: 1em;
+  }
 }
 
 @keyframes circularDotSpin {
@@ -285,7 +293,7 @@
 
         /// After Pseudo Content is the spinning one
         &:after {
-          border-color: transparentize($color, .5) transparent transparent;
+          border-color: transparentize($color, .25) transparent transparent;
         }
       }
 
@@ -318,7 +326,7 @@
     &.is-#{$label} {
 
       /// Set the Base font Size for Loader
-      font-size: map-get($map: $loader-font-size, $key: $label);
+      font-size: map-get($map: $loader-font-size, $key: $label) !important;
 
       /// Adjust the minimum width on loader with content
       &.with-content {
