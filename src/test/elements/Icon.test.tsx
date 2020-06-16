@@ -19,6 +19,8 @@ describe('testing icon', () => {
 
   common.itWillHaveStateClassName(Icon);
 
+  common.itWillHandleMouseEvents(Icon, 'onClick');
+
   it('will add fontawesome class', () => {
     const { getComponentElement } = renderTools;
     const component = getComponentElement({ name: 'plus' });
