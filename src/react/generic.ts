@@ -33,10 +33,18 @@ export type ReactBucketComponentProps<P, E extends keyof JSX.IntrinsicElements =
  * Props, extended with children and all Element Attribute
  */
 export type StrictReactBucketComponentProps<P, E extends keyof JSX.IntrinsicElements = 'div'> =
+  MinimalReactBucketComponentProps<P, E>
+  & SharedReactBucketProps;
+
+/**
+ * Generate a minimal ReactBucket Component
+ * including only structural props
+ */
+export type MinimalReactBucketComponentProps<P, E extends keyof JSX.IntrinsicElements = 'div'> =
   P
   & StructuralReactBucketProps
-  & SharedReactBucketProps
-  & PropsWithoutRef<JSX.IntrinsicElements[E]>;
+  & PropsWithoutRef<JSX.IntrinsicElements[E]>
+  & { [key: string]: any };
 
 /**
  * Generate a Type Dedicated to Flexbox Container

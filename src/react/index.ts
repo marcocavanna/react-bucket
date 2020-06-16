@@ -19,3 +19,9 @@ export * from './elements/Header';
 export * from './elements/Icon';
 
 export * from './elements/Loader';
+
+
+/* --------
+ * Modules Component
+ * -------- */
+export * from './modules/Backdrop';
