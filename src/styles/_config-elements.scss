@@ -15,6 +15,7 @@
     Z-Index
 ******/
 $overlay-loader-z-index: 1000 !default;
+$backdrop-z-index: 1010 !default;
 
 
 /******
@@ -44,6 +45,18 @@ $generate-button-social-variation: true !default;
 
 
 /******
+    Backdrop Configuration
+******/
+$backdrop-content-color: $white-shade !default;
+$backdrop-color: #3b414f !default;
+$backdrop-opacity: .8 !default;
+$backdrop-padding: 1em !default;
+$backdrop-animation-duration: 500ms !default;
+$backdrop-transition-duration: $backdrop-animation-duration !default;
+$backdrop-transition-timing-function: $transition-ease !default;
+
+
+/******
     Icon Configuration
 ******/
 $icon-spacer: $spacer * .25 !default;
@@ -61,15 +74,17 @@ $loader-in-component-stroke-size: .2em !default;
 $loader-in-component-background-color: rgba(0, 0, 0, 0.15) !default;
 $loader-in-component-spinner-color: rgba(255, 255, 255, 0.85) !default;
 
-$loader-stroke-size: .2em !default;
+$loader-stroke-size: .3em !default;
 $loader-background-color: transparentize($text, .85) !default;
 $loader-spinner-color: transparentize($text, .5) !default;
+
+$loader-indeterminate-min-width: 10rem !default;
 
 $loader-dots-animation-duration: 1600ms !default;
 $loader-dots-animation-delay: 250ms !default;
 $loader-dots-timing-function: ease-in-out !default;
 
-$loader-circular-dots-dot-size: .75em !default;
+$loader-circular-dots-dot-size: 1.25em !default;
 $loader-circular-dots-dot-starting-opacity: .3 !default;
 $loader-circular-dots-rotate-animation-duration: 1600ms !default;
 $loader-circular-dots-rotate-timing-function: linear !default;
@@ -89,7 +104,7 @@ $loader-font-size: (
   extra-small: .5em,
   small: .75em,
   normal: 1em,
-  large: 1.35em,
-  big: 1.65em,
+  large: 1.25em,
+  big: 1.5em,
   huge: 2em
 ) !default;
