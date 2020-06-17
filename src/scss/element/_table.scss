@@ -570,8 +570,8 @@
   .foot {
     > .row > .cell {
       @for $width from 1 through 20 {
-        @include property-for-each-breakpoint('w-#{$width}', $attach-to-selector: true) {
-          width: percentage($width / 100);
+        @include property-for-each-breakpoint('w-#{$width * 5}', $attach-to-selector: true) {
+          width: percentage($width * 5 / 100);
         }
       }
 
