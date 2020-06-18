@@ -25,3 +25,9 @@ export * from './elements/Loader';
  * Modules Component
  * -------- */
 export * from './modules/Backdrop';
+
+
+/* --------
+ * Export Widgets
+ * -------- */
+export * as Widget from './widget';
