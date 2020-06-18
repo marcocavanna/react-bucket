@@ -4,4 +4,6 @@ export { default as getFontawesomeIconClassName } from './getFontawesomeIconClas
 
 export { default as getSharedClassNames } from './getSharedClassNames';
 
+export { default as simpleFetch } from './simpleFetch';
+
 export { default as splitStateClassName } from './splitStateClassName';
