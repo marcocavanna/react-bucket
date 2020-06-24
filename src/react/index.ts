@@ -20,6 +20,8 @@ export * from './elements/Icon';
 
 export * from './elements/Loader';
 
+export * from './elements/Panel';
+
 
 /* --------
  * Modules Component

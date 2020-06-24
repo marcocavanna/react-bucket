@@ -108,3 +108,16 @@ $loader-font-size: (
   big: 1.5em,
   huge: 2em
 ) !default;
+
+
+/******
+    Panels
+******/
+$panel-background-color: $white !default;
+$panel-border-radius: $border-radius-big * 2 !default;
+$panel-bottom-spacer: $spacer !default;
+$panel-vertical-padding: 1.25em !default;
+$panel-horizontal-padding: 1.5em !default;
+$panel-fab-size: 1.15em !default;
+$panel-appearance-border-width: 0.2rem !default;
+$panel-appearance-border-consistence: .5rem !default;
