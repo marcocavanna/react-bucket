@@ -127,7 +127,7 @@
     "yaml": "^1.10.0"
   },
   "dependencies": {
-    "@appbuckets/react-ui-core": "^0.0.1-beta.8",
+    "@appbuckets/react-ui-core": "^0.0.2",
     "@fortawesome/fontawesome-free": "5.13.0",
     "clsx": "^1.1.1",
     "lodash": "^4.17.15"

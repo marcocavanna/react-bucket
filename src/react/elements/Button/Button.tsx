@@ -179,4 +179,4 @@ Button.defaultProps = {
 Button.displayName = 'Button';
 
 /** Create the Shorthand Factory Method */
-Button.create = createShorthandFactory<ButtonProps>(Button, (content) => ({ content }));
+Button.create = createShorthandFactory(Button, (content) => ({ content }));

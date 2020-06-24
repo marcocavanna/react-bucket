@@ -14,6 +14,7 @@ import {
 } from '@appbuckets/react-ui-core';
 
 import { IconProps } from './Icon.types';
+import { FontAwesomeIcon } from '../../generic';
 
 
 export default function Icon(props: IconProps): React.ReactElement<IconProps> {
@@ -91,4 +92,4 @@ Icon.defaultProps = {
 };
 
 /** Icon could be created using a Shorthand */
-Icon.create = createShorthandFactory(Icon, (name) => ({ name }));
+Icon.create = createShorthandFactory(Icon, (name) => ({ name: name as FontAwesomeIcon }));

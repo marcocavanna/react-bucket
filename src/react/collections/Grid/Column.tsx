@@ -39,6 +39,6 @@ function Column(props: ColumnProps): React.ReactElement<ColumnProps> {
 
 Column.displayName = 'Column';
 
-Column.create = createShorthandFactory<ColumnProps>(Column, content => ({ content }));
+Column.create = createShorthandFactory(Column, content => ({ content }));
 
 export default Column;

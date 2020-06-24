@@ -76,4 +76,4 @@ Header.Subheader = HeaderSubheader;
 
 Header.displayName = 'Header';
 
-Header.create = createShorthandFactory<HeaderProps>(Header, content => ({ content }));
+Header.create = createShorthandFactory(Header, content => ({ content }));
