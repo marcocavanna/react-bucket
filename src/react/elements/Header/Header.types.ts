@@ -3,6 +3,8 @@ import { FontAwesomeIcon, ReactBucketComponentProps, ShorthandItem } from '../..
 import { HeaderSubheaderProps } from './HeaderSubheader.types';
 import { HeaderContentProps } from './HeaderContent.types';
 
+import { IconProps } from '../Icon';
+
 
 export interface HeaderProps extends ReactBucketComponentProps<StrictHeaderProps> {
 
@@ -22,7 +24,7 @@ export interface StrictHeaderProps {
   divided?: boolean;
 
   /** Display Header Icon */
-  icon?: FontAwesomeIcon;
+  icon?: FontAwesomeIcon | ShorthandItem<IconProps>;
 
   /** Create Subheader Shorthand */
   subheader?: ShorthandItem<HeaderSubheaderProps>;
