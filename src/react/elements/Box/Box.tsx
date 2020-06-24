@@ -7,7 +7,7 @@ import {
 } from '@appbuckets/react-ui-core';
 
 import {
-  getSharedClassNames
+  useSharedClassName
 } from '../../lib';
 
 import { BoxProps } from './Box.types';
@@ -45,7 +45,7 @@ export default function Box(props: BoxProps): React.ReactElement<BoxProps> {
       py,
       ...rest
     }
-  } = getSharedClassNames(props);
+  } = useSharedClassName(props);
 
   const ElementType = getElementType(Box, props);
 
