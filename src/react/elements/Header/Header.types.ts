@@ -1,4 +1,4 @@
-import { ReactBucketComponentProps, ShorthandItem } from '../../generic';
+import { FontAwesomeIcon, ReactBucketComponentProps, ShorthandItem } from '../../generic';
 
 import { HeaderSubheaderProps } from './HeaderSubheader.types';
 import { HeaderContentProps } from './HeaderContent.types';
@@ -20,6 +20,9 @@ export interface StrictHeaderProps {
 
   /** Set if the header will divide content */
   divided?: boolean;
+
+  /** Display Header Icon */
+  icon?: FontAwesomeIcon;
 
   /** Create Subheader Shorthand */
   subheader?: ShorthandItem<HeaderSubheaderProps>;

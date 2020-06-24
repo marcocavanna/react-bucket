@@ -34,6 +34,13 @@
   }
 
   // ----
+  //  Remove Margin from content
+  // ----
+  .content, .subheader {
+    margin: 0;
+  }
+
+  // ----
   //  Set the Subheader font size and Colors
   // ----
   .subheader {
@@ -53,7 +60,7 @@
 /******
     Set Disabled Header Opacity
 ******/
-.header.is-disabled {
+.header.disabled {
   opacity: $disabled-element-opacity !important;
 }
 
@@ -61,7 +68,45 @@
 /******
     Set the Divider Element
 ******/
-.header.is-divided {
+.header.divided {
   border-bottom: solid 1px $hr-color-dark;
   padding-bottom: 1rem;
+}
+
+
+/******
+    Header Icons
+******/
+.header.with-icon {
+  display: flex;
+  width: 100%;
+  flex: 1 0 100%;
+  align-items: center;
+
+  // ----
+  //  Set the Icon Style
+  // ----
+  .header-icon {
+    font-size: 1.25em;
+
+    @include icon-style() {
+      margin-right: 0;
+    }
+  }
+
+  // ----
+  //  Set Flex Direction Based on Text Align
+  // ----
+  &.has-text-right {
+    flex-direction: row-reverse;
+  }
+
+  &.has-text-center {
+    flex-direction: column;
+
+    /// Increase Icon Size on Centered Header
+    .header-icon {
+      font-size: 1.5em;
+    }
+  }
 }

@@ -25,6 +25,7 @@ export const simpleHeader = () => {
 
   return (
     <Header
+      icon={'500px'}
       content={content}
       subheader={subheader}
       textColor={textColor}

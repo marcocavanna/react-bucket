@@ -13,6 +13,8 @@ import { getSharedClassNames } from '../../lib';
 import HeaderContent from './HeaderContent';
 import HeaderSubheader from './HeaderSubheader';
 
+import { Icon } from '../Icon';
+
 
 export default function Header(props: HeaderProps): React.ReactElement<HeaderProps> {
 
@@ -24,6 +26,7 @@ export default function Header(props: HeaderProps): React.ReactElement<HeaderPro
       disabled,
       divided,
       subheader,
+      icon,
       ...rest
     }
   } = getSharedClassNames(props);
@@ -31,9 +34,10 @@ export default function Header(props: HeaderProps): React.ReactElement<HeaderPro
   const ElementType = getElementType(Header, props);
 
   const classes = clsx(
+    classByKey(disabled, 'disabled'),
+    classByKey(divided, 'divided'),
     'header',
-    classByKey(disabled, 'is-disabled'),
-    classByKey(divided, 'is-divided'),
+    classByKey(icon, 'with-icon'),
     className
   );
 
@@ -47,8 +51,18 @@ export default function Header(props: HeaderProps): React.ReactElement<HeaderPro
     [ subheader ]
   );
 
+  const iconElement = React.useMemo(
+    () => Icon.create(icon, { autoGenerateKey: false }),
+    [ icon ]
+  );
+
   return (
     <ElementType {...rest} className={classes}>
+      {iconElement && (
+        <div className={'header-icon'}>
+          {iconElement}
+        </div>
+      )}
       <div className={'header-content'}>
         {contentElement}
         {subheaderElement}
