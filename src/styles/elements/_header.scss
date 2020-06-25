@@ -21,7 +21,6 @@
 .header {
   display: block;
   position: relative;
-  font-size: $h3-font-size;
   margin: 2rem 0 1rem;
   padding: 0;
   text-align: inherit;
@@ -29,8 +28,12 @@
   // ----
   //  Reset heading elements font size
   // ----
-  h1, h2, h3, h4, h5, h6 {
-    font-size: 1em;
+  .header-content {
+    font-size: $h3-font-size;
+
+    .content {
+      font-size: 1em;
+    }
   }
 
   // ----
