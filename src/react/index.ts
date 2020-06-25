@@ -28,6 +28,8 @@ export * from './elements/Panel';
  * -------- */
 export * from './modules/Backdrop';
 
+export * from './modules/Popup';
+
 
 /* --------
  * Export Widgets

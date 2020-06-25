@@ -14,8 +14,9 @@
 /******
     Z-Index
 ******/
-$overlay-loader-z-index: 1000 !default;
 $backdrop-z-index: 1010 !default;
+$overlay-loader-z-index: 1000 !default;
+$popup-z-index: 1900 !default;
 
 
 /******
@@ -121,3 +122,33 @@ $panel-horizontal-padding: 1.5em !default;
 $panel-fab-size: 1.15em !default;
 $panel-appearance-border-width: 0.2rem !default;
 $panel-appearance-border-consistence: .5rem !default;
+
+
+/******
+    PopUp
+******/
+$popup-background: $white-shade !default;
+$popup-content-background: $white !default;
+$popup-color: $text !default;
+
+$popup-inverted-background: $backdrop-color !default;
+$popup-inverted-background-opacity: $backdrop-opacity !default;
+$popup-inverted-color: $white-shade !default;
+
+$popup-border-radius: $border-radius !default;
+$popup-min-width: 18rem !default;
+$popup-max-width: 25rem !default;
+$popup-border: none !default;
+$popup-content-padding: 0.4em !default;
+
+$popup-elevation: 2 !default;
+
+$popup-basic-font-size: .85em !default;
+$popup-basic-min-width: min-content !default;
+$popup-basic-max-width: 20rem !default;
+$popup-basic-line-height: 1.25 !default;
+
+$popup-basic-content-padding: $popup-content-padding !default;
+
+$popup-basic-border: none !default;
+$popup-basic-elevation: 2 !default;
