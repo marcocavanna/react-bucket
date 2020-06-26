@@ -22,6 +22,8 @@ export * from './elements/Loader';
 
 export * from './elements/Panel';
 
+export * from './elements/Progress';
+
 
 /* --------
  * Modules Component

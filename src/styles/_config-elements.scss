@@ -152,3 +152,25 @@ $popup-basic-content-padding: $popup-content-padding !default;
 
 $popup-basic-border: none !default;
 $popup-basic-elevation: 2 !default;
+
+
+/******
+    Progress
+******/
+$progress-bar-background: $grey-lightest !default;
+$progress-value-background: $grey-light !default;
+
+$progress-indicator-size: .9em !default;
+$progress-indicator-font-weight: $bold !default;
+
+$linear-progress-indicator-color: rgba(255, 255, 255, .75) !default;
+$linear-progress-height: 1.25em !default;
+
+$linear-progress-limits-color: $text-light !default;
+$linear-progress-limits-font-weight: $semi-bold !default;
+$linear-progress-limits-spacer: .25em !default;
+
+$circular-progress-linecap: round !default;
+$circular-progress-linejoin: round !default;
+
+$circular-progress-indicator-color: $text-light !default;
