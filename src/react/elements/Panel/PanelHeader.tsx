@@ -65,4 +65,6 @@ export default function PanelHeader(props: PanelHeaderProps): React.ReactElement
 
 }
 
+PanelHeader.displayName = 'PanelHeader';
+
 PanelHeader.create = createShorthandFactory(PanelHeader, (content) => ({ content }));

@@ -111,6 +111,8 @@ export default function LinearProgress(
   );
 }
 
+LinearProgress.displayName = 'LinearProgress';
+
 LinearProgress.defaultProps = {
   max: 100,
   min: 0

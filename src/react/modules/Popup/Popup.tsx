@@ -262,6 +262,7 @@ export default function Popup(props: PopupProps): React.ReactElement<PopupProps>
   );
 }
 
+Popup.displayName = 'Popup';
 
 Popup.defaultProps = {
   basic            : true,

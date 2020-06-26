@@ -265,7 +265,7 @@ export default function Weather(props: WeatherProps): React.ReactElement<Weather
 
 
 /** Properly Set Display Name */
-Weather.displayName = 'Weather';
+Weather.displayName = 'WeatherWidget';
 
 /** Set default props */
 Weather.defaultProps = {

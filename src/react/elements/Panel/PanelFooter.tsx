@@ -40,4 +40,6 @@ export default function PanelFooter(props: PanelFooterProps): React.ReactElement
 
 }
 
+PanelFooter.displayName = 'PanelFooter';
+
 PanelFooter.create = createShorthandFactory(PanelFooter, (content) => ({ content }));

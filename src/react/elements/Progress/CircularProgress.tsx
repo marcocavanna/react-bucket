@@ -122,6 +122,8 @@ export default function CircularProgress(
 
 }
 
+CircularProgress.displayName = 'CircularProgress';
+
 CircularProgress.defaultProps = {
   max        : 100,
   min        : 0,

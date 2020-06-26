@@ -60,4 +60,6 @@ export default function PanelBody(props: PanelBodyProps): React.ReactElement<Pan
 
 }
 
+PanelBody.displayName = 'PanelBody';
+
 PanelBody.create = createShorthandFactory(PanelBody, (content) => ({ content }));
