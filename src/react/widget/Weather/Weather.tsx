@@ -1,8 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
 
-import { classByKey } from '@appbuckets/react-ui-core';
-
 import {
   simpleFetch,
   useElementType,
@@ -161,7 +159,7 @@ export default function Weather(props: WeatherProps): React.ReactElement<Weather
 
   /** Build Component Classes */
   const classes = clsx(
-    classByKey(state.loading, 'loading'),
+    { 'loading': state.loading },
     'weather',
     'widget',
     className

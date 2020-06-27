@@ -3,7 +3,6 @@ import clsx from 'clsx';
 
 import {
   childrenUtils,
-  classByKey,
   createShorthandFactory
 } from '@appbuckets/react-ui-core';
 
@@ -33,7 +32,7 @@ export default function PanelBody(props: PanelBodyProps): React.ReactElement<Pan
 
   const classes = clsx(
     'body',
-    classByKey(Array.isArray(fab) && fab.length, 'with-fab'),
+    Array.isArray(fab) && !!fab.length && 'with-fab',
     className
   );
 

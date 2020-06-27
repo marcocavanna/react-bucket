@@ -7,7 +7,6 @@ import { usePopper } from 'react-popper';
 
 import {
   childrenUtils,
-  classByKey,
   Portal,
   PortalProps
 } from '@appbuckets/react-ui-core';
@@ -207,9 +206,7 @@ export default function Popup(props: PopupProps): React.ReactElement<PopupProps>
 
   const classes = clsx(
     'visible',
-    classByKey(inverted, 'inverted'),
-    classByKey(basic, 'basic'),
-    classByKey(hoverable, 'hoverable'),
+    { inverted, basic, hoverable },
     position,
     'popup',
     className

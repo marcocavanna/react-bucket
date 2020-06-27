@@ -9,7 +9,7 @@ import {
 } from '../../lib';
 
 import {
-  classByKey, classByPattern,
+  classByPattern,
   createShorthandFactory
 } from '@appbuckets/react-ui-core';
 
@@ -30,6 +30,7 @@ export default function Icon(props: IconProps): React.ReactElement<IconProps> {
       name,
       onClick,
       rotate,
+      solid,
       spin,
       unspaced,
       ...rawRest
@@ -64,14 +65,17 @@ export default function Icon(props: IconProps): React.ReactElement<IconProps> {
     stateClasses,
     className,
     iconClassName,
-    classByKey(bordered, 'is-bordered'),
-    classByKey(disabled, 'is-disabled'),
-    classByKey(fitted, 'is-fitted'),
-    classByKey(unspaced, 'is-unspaced'),
-    classByKey(onClick, 'is-clickable'),
+    solid,
+    {
+      bordered,
+      disabled,
+      fitted,
+      unspaced,
+      'clickable': onClick,
+      'fa-spin'  : spin
+    },
     classByPattern(flip, 'fa-flip-%value%'),
-    classByPattern(rotate, 'fa-rotate-%value%'),
-    classByKey(spin, 'fa-spin')
+    classByPattern(rotate, 'fa-rotate-%value%')
   );
 
   /** Draw the element */

@@ -8,7 +8,7 @@ import {
 
 import {
   childrenUtils,
-  classByKey, createShorthandFactory
+  createShorthandFactory
 } from '@appbuckets/react-ui-core';
 
 import { ButtonGroupProps } from './ButtonGroup.types';
@@ -36,8 +36,7 @@ export default function ButtonGroup(props: ButtonGroupProps): React.ReactElement
 
   /** Build Component Classes */
   const classes = clsx(
-    classByKey(full, 'full'),
-    classByKey(vertical, 'vertical'),
+    { full, vertical },
     'buttons',
     className
   );

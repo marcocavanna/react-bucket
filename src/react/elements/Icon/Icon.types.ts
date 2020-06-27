@@ -36,6 +36,9 @@ export interface StrictIconProps {
   /** Apply a rotation to icon */
   rotate?: 90 | 180 | 270 | '90' | '180' | '270';
 
+  /** Draw the Icon in Solid Mode, adding a background */
+  solid?: 'circle' | 'rounded' | 'colored circle' | 'colored rounded' | 'inverted circle' | 'inverted rounded';
+
   /** Apply `spin` animation to icon */
   spin?: boolean;
 

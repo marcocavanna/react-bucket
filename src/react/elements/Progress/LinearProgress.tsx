@@ -3,7 +3,6 @@ import clsx from 'clsx';
 
 import {
   childrenUtils,
-  classByKey,
   createShorthandFactory
 } from '@appbuckets/react-ui-core';
 
@@ -86,10 +85,12 @@ export default function LinearProgress(
 
   const classes = clsx(
     className,
-    'linear',
-    classByKey(reverse, 'reverse'),
-    classByKey(limitsElement, 'with-limits'),
-    classByKey(indicatorElement, 'with-indicator')
+    {
+      reverse,
+      'with-limits'   : limitsElement,
+      'with-indicator': indicatorElement
+    },
+    'linear'
   );
 
   const contentElement = childrenUtils.isNil(children) ? content : children;

@@ -54,6 +54,11 @@ export const iconVariation = () => {
   const bordered = boolean('Bordered', false);
   const disabled = boolean('Disabled', false);
   const spin = boolean('Spin', false);
+  const solid = select(
+    'Solid',
+    [ 'none', 'circle', 'rounded', 'colored circle', 'colored rounded', 'inverted circle', 'inverted rounded' ],
+    'none'
+  ) as 'circle' | 'rounded' | 'colored circle' | 'colored rounded' | 'inverted circle' | 'inverted rounded';
   const rotate = select(
     'Rotate',
     [ '0', '90', '180', '270' ],
@@ -79,6 +84,7 @@ export const iconVariation = () => {
             bordered={bordered}
             disabled={disabled}
             size={size}
+            solid={solid}
             spin={spin}
             rotate={rotate}
             flip={flip}

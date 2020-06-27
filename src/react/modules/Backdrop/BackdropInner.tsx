@@ -4,7 +4,6 @@ import clsx from 'clsx';
 import {
   childrenUtils,
   doesNodeContainClick,
-  classByKey,
   classByPattern,
   Ref
 } from '@appbuckets/react-ui-core';
@@ -79,8 +78,7 @@ export default function BackdropInner(props: BackdropInnerProps): React.ReactEle
 
   /** Get the Element Classes */
   const classes = clsx(
-    classByKey(visible, 'visible'),
-    classByKey(page, 'page'),
+    { visible, page },
     classByPattern(verticalAlign, 'content-%value%'),
     'backdrop',
     className

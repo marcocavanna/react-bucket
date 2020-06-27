@@ -3,7 +3,6 @@ import clsx from 'clsx';
 
 import {
   childrenUtils,
-  classByKey,
   classByValue,
   createShorthandFactory
 } from '@appbuckets/react-ui-core';
@@ -45,15 +44,17 @@ export default function Loader(props: LoaderProps): React.ReactElement<LoaderPro
 
   /** Build Loader classes */
   const classes = clsx(
-    classByKey(centered, 'centered'),
-    classByKey(inverted, 'inverted'),
-    classByKey(inline, 'inline'),
     classByValue(type),
-    classByKey(overlay, 'overlay'),
-    classByKey(active, 'active'),
+    {
+      centered,
+      inverted,
+      inline,
+      overlay,
+      active,
+      'with-content': hasChildren || content,
+      'is-normal'   : !props.size
+    },
     'loader',
-    classByKey(hasChildren || content, 'with-content'),
-    classByKey(!props.size, 'is-normal'),
     stateClassName,
     className
   );

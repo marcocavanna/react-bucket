@@ -2,7 +2,7 @@ import * as React from 'react';
 import clsx from 'clsx';
 
 import {
-  childrenUtils, classByKey,
+  childrenUtils,
   createShorthandFactory
 } from '@appbuckets/react-ui-core';
 
@@ -43,9 +43,11 @@ export default function Panel(props: PanelProps): React.ReactElement<PanelProps>
   const [ stateClasses, rest ] = useSplitStateClassName(rawRest);
 
   const classes = clsx(
-    classByKey(solid, 'solid'),
-    classByKey(disabled || loading, 'disabled'),
-    classByKey(loading, 'loading'),
+    {
+      solid,
+      disabled: disabled || loading,
+      loading
+    },
     'panel',
     className,
     stateClasses

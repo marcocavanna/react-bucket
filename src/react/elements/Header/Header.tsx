@@ -3,8 +3,7 @@ import clsx from 'clsx';
 
 import {
   createShorthandFactory,
-  getElementType,
-  classByKey
+  getElementType
 } from '@appbuckets/react-ui-core';
 
 import { HeaderProps } from './Header.types';
@@ -34,10 +33,12 @@ export default function Header(props: HeaderProps): React.ReactElement<HeaderPro
   const ElementType = getElementType(Header, props);
 
   const classes = clsx(
-    classByKey(disabled, 'disabled'),
-    classByKey(divided, 'divided'),
+    {
+      disabled,
+      divided,
+      'with-icon': icon
+    },
     'header',
-    classByKey(icon, 'with-icon'),
     className
   );
 
