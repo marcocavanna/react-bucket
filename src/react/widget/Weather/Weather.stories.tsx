@@ -9,7 +9,7 @@ export const weatherWidget = () => (
   <Weather
     textAlign={'center'}
     showTemperature
-    openWeatherMapAPI={'66969c294b2ab48f12b407bdd6a4280c'}
+    openWeatherMapAPI={'YOUR-TOKEN'}
     language={'it'}
   />
 );
