@@ -90,7 +90,7 @@
   //  Set the Icon Style
   // ----
   .header-icon {
-    font-size: 1.25em;
+    font-size: $h3-font-size;
   }
 
   // ----
@@ -112,7 +112,7 @@
 
     /// Increase Icon Size on Centered Header
     .header-icon {
-      font-size: 1.5em;
+      font-size: $h2-font-size;
 
       @include icon-style() {
         margin-right: 0;
