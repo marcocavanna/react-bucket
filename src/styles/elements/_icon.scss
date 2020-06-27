@@ -30,6 +30,7 @@
     line-height: inherit;
     font-size: inherit;
     color: inherit;
+    position: relative;
 
     &:after {
       border-color: inherit;
@@ -39,23 +40,29 @@
   // ----
   //  Remove the fixed icon width
   // ----
-  &.is-fitted {
+  &.fitted {
     width: auto;
   }
 
   // ----
   //  Remove right spacing
   // ----
-  &.is-unspaced {
+  &.unspaced {
     margin-right: 0;
   }
 
   // ----
-  //  Add a Border to Icon
+  //  Set Solid / Bordered Style
   // ----
-  &.is-bordered {
-    position: relative;
+  &.bordered,
+  &.rounded,
+  &.circle {
     min-width: $icon-bordered-box-size;
+
+    &:before {
+      position: relative;
+      z-index: 2;
+    }
 
     &:after {
       content: '';
@@ -66,26 +73,71 @@
       border-style: solid;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%);
+      transform: translate(-51%, -50%);
       border-radius: $border-radius;
+      z-index: 1;
+    }
+  }
+
+  &.rounded,
+  &.circle {
+    &:not(.bordered) {
+      border-color: transparent !important;
+    }
+
+    &:after {
+      background-color: rgba(0, 0, 0, .075);
+    }
+  }
+
+  &.circle {
+    &:before {
+      font-size: .85em;
+    }
+
+    &:after {
+      border-radius: 500rem;
+    }
+  }
+
+  @each $label, $color in $react-bucket-color-map {
+    &.colored.is-#{$label}:after {
+      background-color: color-tint($color, 4);
+    }
+
+    &.inverted.is-#{$label} {
+      color: choose-contrast-color($color, $white-shade, $text);
+
+      &:after {
+        background-color: $color;
+      }
+
+      &.bordered:after {
+        border-color: color-tint($color, 2);
+      }
     }
   }
 
   // ----
   //  Clickable Icon must change pointer
   // ----
-  &.is-clickable {
+  &.clickable {
     cursor: pointer;
+    text-shadow: none;
+    transition-duration: $transition-duration;
+    transition-timing-function: $transition-ease;
+    transition-property: text-shadow, color, border-color;
+    will-change: text-shadow, color, border-color;
   }
 
   // ----
   //  Disabled icon as lower opacity
   // ----
-  &.is-disabled {
+  &.disabled {
     opacity: $disabled-element-opacity !important;
 
     /// Clickable Item must show the not allowed cursor
-    &.is-clickable {
+    &.clickable {
       cursor: not-allowed;
     }
   }
@@ -98,6 +150,15 @@
     $properties-list: (color, border-color),
     $use-brands: true,
     $use-ui: true,
-    $use-social: true
+    $use-social: true,
+    $is-interactive: true,
+    $interactive-class: 'clickable',
+    $hover-will-drop-shadow: $button-hover-will-drop-shadow,
+    $apply-shadow-to: text,
+    $with-hover: true,
+    $with-focus: true,
+    $with-active: true,
+    $shadow-strength: 4px,
+    $shadow-transparency: .7
   );
 }
