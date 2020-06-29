@@ -228,7 +228,6 @@ export default function Weather(props: WeatherProps): React.ReactElement<Weather
   return (
     <ElementType {...rest} className={classes}>
       <Header
-        size={'large'}
         content={(
           <div className={'widget-content'}>
             {iconElement && (
