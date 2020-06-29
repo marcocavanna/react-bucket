@@ -6,6 +6,10 @@ import '../styles/index.scss';
  * -------- */
 export * as Grid from './collections/Grid';
 
+export * from './collections/RxTable';
+
+export * from './collections/Table';
+
 
 /* --------
  * Elements

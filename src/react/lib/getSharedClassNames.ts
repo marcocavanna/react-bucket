@@ -17,7 +17,7 @@ export type SharedProps =
   SharedReactBucketProps
   & SharedFlexboxContentProps
   & SharedFlexboxContainerProps
-  & { as?: any };
+  & { as?: any, className?: string };
 
 export type SharedClassNamesAndProps<P> = {
   /** Computed Class Names */

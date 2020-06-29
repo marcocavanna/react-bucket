@@ -71,6 +71,9 @@ export interface StructuralReactBucketProps {
   /** Main Component Content */
   children?: ReactNode;
 
+  /** User Defined Class Names */
+  className?: string;
+
   /** Content Shorthand */
   content?: ShorthandContent;
 }
@@ -82,9 +85,6 @@ export interface StructuralReactBucketProps {
 export interface SharedReactBucketProps {
   /** Choose Main background Color */
   backgroundColor?: ReactBucketColor;
-
-  /** User Defined Class Names */
-  className?: string;
 
   /** Set element display */
   display?: ResponsiveProps<ElementDisplay>;

@@ -21,6 +21,9 @@ $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 @import 'grid/row';
 @import 'grid/column';
 
+/// Import Collections
+@import 'collections/all';
+
 /// Import Components
 @import 'elements/all';
 

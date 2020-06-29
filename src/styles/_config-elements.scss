@@ -174,3 +174,32 @@ $circular-progress-linecap: round !default;
 $circular-progress-linejoin: round !default;
 
 $circular-progress-indicator-color: $text-light !default;
+
+
+/******
+    Table Layout
+******/
+$table-columns-gutter: $columns-gutter * 1.5 !default;
+$table-row-gutter: $columns-gutter * 1.5 !default;
+
+$table-header-font-weight: $semi-bold !default;
+$table-header-color: $text-light !default;
+$table-header-text-transform: uppercase !default;
+
+$table-header-border-style: solid !default;
+$table-header-border-color: $grey-lightest !default;
+$table-header-border-width: 2px !default;
+
+$table-body-border-style: solid !default;
+$table-body-border-color: $grey-lightest !default;
+$table-body-border-width: 1px !default;
+$table-body-border-after-last-row: false !default;
+
+$table-footer-border-style: solid !default;
+$table-footer-border-color: $grey-lightest !default;
+$table-footer-border-width: 2px !default;
+
+$table-cell-header-font-weight: $semi-bold !default;
+$table-cell-content-opacity: .75 !default;
+
+$table-color-variation-transparency: .9 !default;

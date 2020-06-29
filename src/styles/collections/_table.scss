@@ -1,0 +1,211 @@
+/**
+ * Project ReactBucket
+ *
+ * _Table @ src/styles/collections/_table.scss
+ *
+ * Defined at 29 giu 2020
+ * Copyright Marco Cavanna • 2020
+ *
+ * ---
+ * Tables Style
+ *
+ */
+
+table,
+.table {
+  color: $text;
+  width: 100%;
+  max-width: 100%;
+  display: table;
+
+  // ----
+  //  Set base Style for Cell
+  // ----
+  .head,
+  .body,
+  .foot {
+    > .row {
+      > .cell {
+        display: table-cell;
+        position: relative;
+        vertical-align: middle;
+        border: none;
+        border-collapse: collapse;
+        text-align: left;
+        outline: none;
+        padding: ($table-row-gutter / 2) ($table-columns-gutter / 2);
+
+        &:first-child {
+          padding-left: $table-columns-gutter;
+        }
+
+        &:last-child {
+          padding-right: $table-columns-gutter;
+        }
+      }
+    }
+  }
+
+  // ----
+  //  Set Default Colors and Transition Properties
+  // ----
+  .row,
+  .cell,
+  .cell > .content,
+  .cell > .title,
+  .cell > .meta {
+    background-color: transparent;
+    opacity: 1;
+    transition-timing-function: $transition-ease;
+    transition-duration: $transition-duration;
+    transition-property: background-color, color, opacity;
+    will-change: background-color, color, opacity;
+  }
+}
+
+
+/******
+    Table Header
+******/
+table > .head,
+.table > .head {
+  display: table-header-group;
+
+  // ----
+  //  Header Row Style
+  // ----
+  > .row {
+    display: table-row;
+    border-bottom-style: $table-header-border-style;
+    border-bottom-width: $table-header-border-width;
+    border-bottom-color: $table-header-border-color;
+  }
+
+  // ----
+  //  Header Cell Style
+  // ----
+  > .row > .cell {
+    display: table-cell;
+    font-weight: $table-header-font-weight;
+    color: $table-header-color;
+    text-transform: $table-header-text-transform;
+    -webkit-touch-callout: none;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}
+
+
+/******
+    Table Body
+******/
+.table > .body {
+  display: table-row-group;
+
+  // ----
+  //  Table Row Style
+  // ----
+  > .row {
+    display: table-row;
+    border-bottom-style: $table-body-border-style;
+    border-bottom-width: $table-body-border-width;
+    border-bottom-color: $table-body-border-color;
+
+    @if $table-body-border-after-last-row != true {
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+
+}
+
+
+/******
+    Table Footer Style
+******/
+.table > .foot {
+  display: table-footer-group;
+
+  > .row {
+    display: table-row;
+
+    &:first-child {
+      border-top-style: $table-footer-border-style;
+      border-top-color: $table-footer-border-color;
+      border-top-width: $table-footer-border-width;
+    }
+  }
+
+}
+
+
+/******
+    Table Cell Style
+******/
+.table > .body,
+.table > .foot {
+  > .row > .cell {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    > .meta,
+    > .title,
+    > .content {
+      color: inherit;
+      display: block;
+      line-height: 1.25;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 100%;
+      margin: 0;
+    }
+
+    > .title {
+      font-weight: $table-cell-header-font-weight;
+    }
+
+    > .content {
+      opacity: $table-cell-content-opacity;
+    }
+  }
+}
+
+
+/******
+    Color Variation
+******/
+.table .row > .cell {
+  @each $label, $color in $react-bucket-color-map {
+    &.is-#{$label} {
+      background-color: transparentize($color, $table-color-variation-transparency);
+      color: $color;
+    }
+  }
+}
+
+
+/******
+    Compressed Table Has half cell / row gutter
+******/
+.compressed.table {
+  .head,
+  .body,
+  .foot {
+    > .row {
+      > .cell {
+        padding: (($table-row-gutter / 4) / 2) (($table-columns-gutter / 4) / 2);
+
+        &:first-child {
+          padding-left: $table-columns-gutter / 2;
+        }
+
+        &:last-child {
+          padding-right: $table-columns-gutter / 2;
+        }
+      }
+    }
+  }
+}
