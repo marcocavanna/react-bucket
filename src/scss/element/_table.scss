@@ -582,3 +582,13 @@
     }
   }
 }
+
+
+.table .body > .row {
+  @each $label, $color in $react-bucket-brand-colors-map {
+    &.#{$label}-background {
+      background-color: transparentize($color: $color, $amount: .8);
+      border-bottom-color: transparentize($color: $color, $amount: .65);
+    }
+  }
+}
