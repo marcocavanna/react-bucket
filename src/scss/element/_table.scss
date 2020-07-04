@@ -228,6 +228,10 @@
     > .row {
       border-bottom: $border;
 
+      &.no-divided {
+        border-bottom: none;
+      }
+
       &:last-child {
         border-bottom: none;
       }
@@ -301,6 +305,7 @@
 
     &.has-text-right .item {
       text-align: left;
+      flex-direction: row-reverse;
     }
   }
 

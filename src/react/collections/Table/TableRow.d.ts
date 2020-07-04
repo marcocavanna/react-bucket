@@ -29,6 +29,9 @@ export interface StrictTableRowProps {
   /** Set Row as Error */
   error?: boolean
 
+  /** Remove Dividing Border */
+  noDivided?: boolean
+
   /** Set a Row as Selectable */
   selectable?: boolean
 

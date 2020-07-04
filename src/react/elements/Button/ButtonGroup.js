@@ -11,12 +11,14 @@ import {
 function ButtonGroup(props) {
 
   const {
+    className,
     children,
     full,
     vertical
   } = props;
 
   const classes = cx(
+    className,
     vertical ? 'with-vertical-buttons' : 'with-buttons',
     classByKey(full, 'is-full')
   );
@@ -38,6 +40,9 @@ ButtonGroup.propTypes = {
 
   /** Primary content. */
   children: PropTypes.node,
+
+  /** User Defined Classes */
+  className: PropTypes.string,
 
   /** Button Group Full Width */
   full: PropTypes.bool,

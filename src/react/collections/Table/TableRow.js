@@ -24,6 +24,7 @@ function TableRow(props) {
     className,
     disabled,
     error,
+    noDivided,
     selectable,
     success,
     warning
@@ -37,7 +38,8 @@ function TableRow(props) {
     classByKey(error, 'is-error'),
     classByKey(selectable, 'is-selectable'),
     classByKey(success, 'is-success'),
-    classByKey(warning, 'is-warning')
+    classByKey(warning, 'is-warning'),
+    classByKey(noDivided, 'no-divided')
   );
 
   const rest = getUnhandledProps(TableRow, props);
@@ -85,6 +87,9 @@ TableRow.propTypes = {
 
   /** Set Row as Error */
   error: PropTypes.bool,
+
+  /** Hide dividing border */
+  noDivided: PropTypes.bool,
 
   /** Set a Row as Selectable */
   selectable: PropTypes.bool,
