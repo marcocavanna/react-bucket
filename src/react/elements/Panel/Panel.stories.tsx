@@ -15,9 +15,6 @@ export const panel = () => {
 
   return (
     <Panel
-      loading
-      primary
-      solid
       header={{
         content  : 'Panel Header',
         subheader: 'Panel Subheader',
