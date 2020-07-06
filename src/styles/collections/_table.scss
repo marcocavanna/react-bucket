@@ -76,9 +76,12 @@ table > .head,
   // ----
   > .row {
     display: table-row;
-    border-bottom-style: $table-header-border-style;
-    border-bottom-width: $table-header-border-width;
-    border-bottom-color: $table-header-border-color;
+
+    &:last-child {
+      border-bottom-style: $table-header-border-style;
+      border-bottom-width: $table-header-border-width;
+      border-bottom-color: $table-header-border-color;
+    }
   }
 
   // ----
