@@ -1,0 +1,44 @@
+/**
+ * Project ReactBucket
+ *
+ * _Dropdown @ src/styles/collections/_dropdown.scss
+ *
+ * Defined at 06 lug 2020
+ * Copyright Marco Cavanna • 2020
+ *
+ * ---
+ * Dropdown Menu Style
+ *
+ */
+
+.dropdown > .menu-item {
+  padding: $dropdown-menu-item-padding $dropdown-menu-item-padding * .75;
+  text-transform: uppercase;
+  border-bottom: solid 1px $grey-lightest;
+  font-weight: $semi-bold;
+
+  @include hover {
+    cursor: pointer;
+    opacity: .8;
+    will-change: opacity;
+    transition: opacity $transition-duration $transition-ease;
+
+    &:not(.disabled):hover {
+      opacity: 1;
+    }
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  @each $label, $color in $react-bucket-color-map {
+    &.is-#{$label} {
+      color: $color;
+    }
+  }
+
+  &.disabled {
+    opacity: $disabled-element-opacity !important;
+  }
+}
