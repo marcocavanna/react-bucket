@@ -32,6 +32,7 @@ export default function Table<Data = any>(props: TableProps<Data>): React.ReactE
     className,
     compressed,
     content,
+    responsive,
     rows,
     sortable,
     tableData,
@@ -72,13 +73,17 @@ export default function Table<Data = any>(props: TableProps<Data>): React.ReactE
 
 
   if (!childrenUtils.isNil(children)) {
-    return (
+    const tableElementWithChildren = (
       <ElementType {...rest} className={classes}>
         {!!headerRows && <TableHeader content={headerRows} />}
         {children}
         {!!footerRows && <TableFooter content={footerRows} />}
       </ElementType>
     );
+
+    return responsive
+      ? <div className={'responsive-table'}>{tableElementWithChildren}</div>
+      : tableElementWithChildren;
   }
 
 
@@ -100,14 +105,17 @@ export default function Table<Data = any>(props: TableProps<Data>): React.ReactE
       ))
   );
 
-
-  return (
+  const tableElement = (
     <ElementType {...rest} className={classes}>
       {!!headerRows && <TableHeader content={headerRows} />}
       {!!bodyRows && <TableBody content={bodyRows} />}
       {!!footerRows && <TableFooter content={footerRows} />}
     </ElementType>
   );
+
+  return responsive
+    ? <div className={'responsive-table'}>{tableElement}</div>
+    : tableElement;
 
 }
 

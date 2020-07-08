@@ -212,3 +212,11 @@ table > .head,
     }
   }
 }
+
+
+/******
+    A Responsive Table container is horizontally scrollable
+******/
+.responsive-table {
+  overflow-x: auto;
+}

@@ -15,6 +15,9 @@ export interface StrictTableProps<Data> {
   /** Compress Spacing between cells and rows */
   compressed?: boolean;
 
+  /** Wrap the Table in a scrollable container */
+  responsive?: boolean;
+
   /** Rows Render Shorthand */
   rows?: TableRenderRows<Data>;
 
