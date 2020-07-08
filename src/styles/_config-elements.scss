@@ -192,6 +192,20 @@ $circular-progress-indicator-color: $text-light !default;
 
 
 /******
+    Section
+******/
+$section-spacer: 1.25em !default;
+$section-label-font-weight: $bold !default;
+$section-label-text-transform: uppercase !default;
+$section-label-color: $grey-light !default;
+$section-label-font-size: .85em !default;
+$section-label-spacer: .25em !default;
+$section-divided-border-style: solid !default;
+$section-divided-border-width: 1px !default;
+$section-divided-border-color: $grey-lightest !default;
+
+
+/******
     Table Layout
 ******/
 $table-columns-gutter: $columns-gutter * 1.5 !default;

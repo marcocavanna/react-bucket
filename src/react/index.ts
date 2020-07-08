@@ -32,6 +32,8 @@ export * from './elements/Panel';
 
 export * from './elements/Progress';
 
+export * from './elements/Section';
+
 
 /* --------
  * Modules Component
