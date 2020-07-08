@@ -54,6 +54,13 @@
   white-space: nowrap;
 
   // ----
+  //  Fitted Buttons has no min width
+  // ----
+  &.fitted {
+    min-width: auto;
+  }
+
+  // ----
   //  Set Button Colors and Variations
   //  If Button is not flat, the variations are applied to Background Color
   //  otherwise variations are applied to color
@@ -140,6 +147,16 @@
       @include icon-style($restrict-to-direct-child: true) {
         opacity: 1;
       }
+    }
+  }
+
+  // ----
+  //  Button with Icon on Right must invert icon spacer
+  // ----
+  &.with-icon.icon-on-right {
+    @include icon-style($restrict-to-direct-child: true) {
+      margin-right: 0;
+      margin-left: $icon-spacer;
     }
   }
 

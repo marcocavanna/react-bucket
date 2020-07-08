@@ -3,7 +3,8 @@ import clsx from 'clsx';
 
 import {
   createShorthandFactory,
-  childrenUtils
+  childrenUtils,
+  classByPattern
 } from '@appbuckets/react-ui-core';
 
 import {
@@ -28,6 +29,7 @@ export default function Button(props: ButtonProps): React.ReactElement<ButtonPro
       active,
       disabled,
       fab,
+      fitted,
       flat,
       full,
       icon,
@@ -110,6 +112,7 @@ export default function Button(props: ButtonProps): React.ReactElement<ButtonPro
     {
       fab        : fab && !content && !children,
       disabled,
+      fitted,
       flat,
       inverted,
       loading,
@@ -120,6 +123,7 @@ export default function Button(props: ButtonProps): React.ReactElement<ButtonPro
       'with-icon': icon && (children || content),
       'as-icon'  : icon && !children && !content
     },
+    classByPattern(icon && (children || content) && iconPosition, 'icon-on-%value%'),
     stateClasses,
     'button',
     className

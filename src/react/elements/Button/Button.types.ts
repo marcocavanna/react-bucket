@@ -23,6 +23,9 @@ export interface StrictButtonProps {
   /** Draw button as a FAB, it work only without content */
   fab?: boolean;
 
+  /** Fit a Button to its content, removing the min width declaration */
+  fitted?: boolean;
+
   /** Set the Flat Style, inverting Appearance Color */
   flat?: boolean;
 
