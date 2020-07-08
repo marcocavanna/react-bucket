@@ -64,6 +64,15 @@ $dropdown-menu-item-padding: .75em !default;
 
 
 /******
+    Empty Content
+******/
+$empty-content-vertical-spacer: 3em !default;
+$empty-content-button-spacer: $empty-content-vertical-spacer * .5 !default;
+$empty-content-header-opacity: .4 !default;
+$empty-content-icon-size: 4.5em !default;
+
+
+/******
     Icon Configuration
 ******/
 $icon-spacer: $spacer * .25 !default;
