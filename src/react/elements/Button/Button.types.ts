@@ -55,4 +55,7 @@ export interface StrictButtonProps {
 
   /** Set the button as a Toggle */
   toggle?: boolean;
+
+  /** Add a Tooltip Text, showed using basic popup */
+  tooltip?: React.ReactNode;
 }

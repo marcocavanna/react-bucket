@@ -41,6 +41,7 @@ export const button = () => {
       rounded={rounded}
       full={full}
       icon={withIcon ? 'plus' : undefined}
+      tooltip={'Click Tooltip'}
     />
   );
 

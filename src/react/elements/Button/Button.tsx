@@ -17,6 +17,7 @@ import { ButtonProps } from './Button.types';
 import ButtonGroup from './ButtonGroup';
 
 import { Icon } from '../Icon';
+import { Popup } from '../../modules/Popup';
 
 
 export default function Button(props: ButtonProps): React.ReactElement<ButtonProps> {
@@ -41,6 +42,7 @@ export default function Button(props: ButtonProps): React.ReactElement<ButtonPro
       rounded,
       tabIndex: userDefinedTabIndex,
       toggle,
+      tooltip,
       type,
       ...rawRest
     }
@@ -142,18 +144,22 @@ export default function Button(props: ButtonProps): React.ReactElement<ButtonPro
 
   /** If there are children render them */
   if (!childrenUtils.isNil(children)) {
-    return (
+    const buttonElementWithChildren = (
       <ElementType {...buttonProps}>
         {children}
       </ElementType>
     );
+
+    return tooltip
+      ? <Popup content={tooltip} trigger={buttonElementWithChildren} />
+      : buttonElementWithChildren;
   }
 
   /** Build the icon if Exists */
   const iconElement = icon && Icon.create(icon, { autoGenerateKey: false });
 
   /** Else, build the button using shortHand */
-  return (
+  const buttonElement = (
     <ElementType
       {...rest}
       className={classes}
@@ -168,6 +174,10 @@ export default function Button(props: ButtonProps): React.ReactElement<ButtonPro
       {iconPosition === 'right' && iconElement}
     </ElementType>
   );
+
+  return tooltip
+    ? <Popup content={tooltip} trigger={buttonElement} />
+    : buttonElement;
 }
 
 /** Add the Group */
