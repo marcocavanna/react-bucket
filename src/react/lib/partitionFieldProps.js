@@ -12,6 +12,7 @@ export const allFieldProps = [
   'as',
   'size',
   'className',
+  'contentClassName',
 
   /** Form Props */
   'focus',
