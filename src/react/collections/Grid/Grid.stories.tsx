@@ -57,6 +57,12 @@ const buildColumns = (divider: number) => (
   ))
 );
 
+export const container = () => (
+  <Grid.Container fluid>
+    {buildRow(6, 12, 6)}
+  </Grid.Container>
+);
+
 export const baseGrid = () => (
   [ 1, 2, 3, 4, 6, 8, 12, 24 ].reverse().map(divider => (
     <Row key={divider}>

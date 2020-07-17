@@ -77,27 +77,6 @@ $generate-display-responsive-helpers-class: true !default;
 
 
 /******
-    Responsive Variables
-    Set the responsive screen size
-******/
-
-/// Draw UI considering a mobile-first idea
-$draw-ui-mobile-first: true !default;
-
-/// Set screen size
-$max-size-for-phone: 576px !default;
-$max-size-for-tablet: 960px !default;
-$max-size-for-desktop: 1440px !default;
-$max-size-for-large-desktop: 1920px !default;
-
-/// Set fixed container width
-$container-width-on-phone: 520px !default;
-$container-width-on-tablet: 864px !default;
-$container-width-on-desktop: 1200px !default;
-$container-width-on-large-desktop: 1720px !default;
-
-
-/******
     Typography Variables
 ******/
 
@@ -114,6 +93,36 @@ $default-monospace-font: 'Roboto Mono' !default;
 
 /// Set Default Line Height
 $default-line-height: 1.25 !default;
+
+
+/******
+    Responsive Variables
+    Set the responsive screen size
+******/
+
+/// Draw UI considering a mobile-first idea
+$draw-ui-mobile-first: true !default;
+
+/// Set screen size
+$max-size-for-phone: 576px !default;
+$max-size-for-tablet: 960px !default;
+$max-size-for-desktop: 1440px !default;
+$max-size-for-large-desktop: 1920px !default;
+
+/// Set fixed container width
+$container-width-on-phone: $max-size-for-phone - ($base-font-size * 6) !default;
+$container-width-on-tablet: $max-size-for-tablet - ($base-font-size * 12) !default;
+$container-width-on-desktop: $max-size-for-desktop - ($base-font-size * 18) !default;
+$container-width-on-large-desktop: $max-size-for-large-desktop - ($base-font-size * 24) !default;
+
+/// Set base container padding
+$container-padding: 1em !default;
+
+/// Set fluid container padding
+$fluid-container-padding-on-phone: $container-padding !default;
+$fluid-container-padding-on-tablet: $container-padding * 1.5 !default;
+$fluid-container-padding-on-desktop: $container-padding * 3 !default;
+$fluid-container-padding-on-large-desktop: $container-padding * 6 !default;
 
 
 /******

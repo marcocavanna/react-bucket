@@ -18,8 +18,9 @@ $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 @import 'base';
 
 /// Import Grid
-@import 'grid/row';
 @import 'grid/column';
+@import 'grid/container';
+@import 'grid/row';
 
 /// Import Collections
 @import 'collections/all';
