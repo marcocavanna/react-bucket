@@ -97,7 +97,10 @@ export const responsiveClass = (value, baseClass) => (
  * <div class="panel-section has-text-center"></div>
  *
  * <Panel.Section textAlign={{ phone: 'right', tabletUp: 'left', largeDesktop: 'center' }} />
- * <div class="panel-section on-phone-has-text-right on-tablet-up-has-text-left on-large-desktop-has-text-center"></div>
+ * <div
+ *  class="panel-section on-phone-has-text-right
+ *         on-tablet-up-has-text-left on-large-desktop-has-text-center"
+ * ></div>
  */
 export const multiResponsiveKey = (value, baseClass, computeFn = classByKey) => {
 
