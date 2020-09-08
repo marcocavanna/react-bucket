@@ -191,7 +191,7 @@
     display: table-header-group;
 
     // Header Row Style
-    > .row {
+    > .row:last-child {
       border-bottom: $border;
       border-bottom-color: $primary;
       border-bottom-width: 2px;
