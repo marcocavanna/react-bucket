@@ -155,6 +155,7 @@
   align-items: center;
   width: 100%;
   background-color: $item-base-background;
+  color: $text;
 
   &.is-sortable {
     @include unselectable();
@@ -172,7 +173,8 @@
     opacity: $disabled-opacity;
   }
 
-  &.is-clickable {
+  &.is-clickable,
+  a > & {
     padding: .75em;
     border-radius: pixel-to-em($border-radius);
 
