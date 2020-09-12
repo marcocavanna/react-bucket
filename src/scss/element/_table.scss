@@ -597,3 +597,7 @@
     }
   }
 }
+
+.table.discreet-border > .head > .row:last-child {
+  border-bottom-color: $grey-lightest;
+}
