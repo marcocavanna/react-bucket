@@ -1,3 +1,75 @@
+/* --------
+ * Default React Bucket Types Explained
+ * All default React Bucket Component Interface
+ * will accept any other props passed to component.
+ * This Types must be used to declared the StrictComponentInterface
+ *
+ *  - MinimalReactBucketComponentProps<P, E>
+ *      Has all props of element E and in addition
+ *      contains the basic props for a React Bucket Component:
+ *        • `as` : The Element Type
+ *        • `children` : List of Children
+ *        • `className` : User defined classes
+ *        • `content` : Shorthand Content
+ *
+ *  - ReactBucketComponentProps<P, E>
+ *      Has all props of MinimalReactBucketComponentProps and
+ *      in addition contains a set of style props
+ *        • `backgroundColor` : ReactBucketColor;
+ *        • `display` : ResponsiveProps<ElementDisplay>;
+ *        • `fontWeight` : FontWeight;
+ *        • `size` : ElementSize;
+ *        • `textAlign` : ContentAlign;
+ *        • `textColor` : ReactBucketColor;
+ *
+ *  Usage:
+ *   // In Types File
+ *   export interface ComponentProps extends ReactBucketComponentProps<StrictComponentProps> { }
+ *
+ *   // In Component
+ *   const { className, rest: { __anyStrictProps__, ...rest } } = useSharedClassName;
+ *
+ *
+ * --
+ * Extra React Bucket Type Component
+ * To declare a Flex component (container or content)
+ * must use the FlexboxContainer<P, E> or FlexboxContent<P, E> types
+ *
+ *
+ * --
+ * React Bucket Component State Type
+ * The SharedComponentStateProps interface could be used to
+ * append state props to a component.
+ * Only className will be appended to component, all style
+ * related to state classNames must be written in SCSS
+ * State props are:
+ *    • `appearance` : Any React Bucket interface Color;
+ *    • `danger` : Boolean prop;
+ *    • `info` : Boolean prop;
+ *    • `primary` : Boolean prop;
+ *    • `secondary` : Boolean prop;
+ *    • `success` : Boolean prop;
+ *    • `warning` : Boolean prop;
+ *
+ *  Usage:
+ *   // In Types File
+ *   export interface StrictComponentProps extends SharedComponentStateProps { }
+ *
+ *   // In Component
+ *   const { className, rest: { __anyStrictProps__, ...rawRest } } = useSharedClassName;
+ *   const [ stateClassName, rest ] = useSplitStateClassName(rawRest);
+ *
+ *   // In SCSS
+ *   > .class {
+ *     @each $label, $color in $react-bucket-color-map {
+ *       &.is-#{$label} {
+ *         // Style
+ *       }
+ *     }
+ *   }
+ * -------- */
+
+
 import { ReactNode, PropsWithoutRef, ElementType, ReactElement } from 'react';
 
 /** Re export ReactBucket Icon */
@@ -25,16 +97,9 @@ export type ShorthandCollection<P> = ShorthandItem<P>[];
  * Props, that could be extended with any key
  */
 export type ReactBucketComponentProps<P, E extends keyof JSX.IntrinsicElements = 'div'> =
-  StrictReactBucketComponentProps<P, E>
-  & { [key: string]: any };
-
-/**
- * Generate a Strict ReactBucket Component
- * Props, extended with children and all Element Attribute
- */
-export type StrictReactBucketComponentProps<P, E extends keyof JSX.IntrinsicElements = 'div'> =
   MinimalReactBucketComponentProps<P, E>
-  & SharedReactBucketProps;
+  & SharedReactBucketProps
+  & { [key: string]: any };
 
 /**
  * Generate a minimal ReactBucket Component
