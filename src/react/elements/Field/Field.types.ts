@@ -22,6 +22,9 @@ export interface StrictFieldProps {
   /** User defined className used for content element */
   contentClassName?: string;
 
+  /** Set the field as Disabled */
+  disabled?: boolean;
+
   /** An hint, appended after field content */
   hint?: React.ReactNode;
 
@@ -34,6 +37,18 @@ export interface StrictFieldProps {
   /** Set the icon position, default to left */
   iconPosition?: 'left' | 'right';
 
+  /** Set field as Dirty */
+  isDirty?: boolean;
+
+  /** Set field as Focused */
+  isFocused?: boolean;
+
+  /** Set field as Touched */
+  isTouched?: boolean;
+
   /** Field Label */
   label?: React.ReactNode;
+
+  /** Set the field as Required */
+  required?: boolean;
 }

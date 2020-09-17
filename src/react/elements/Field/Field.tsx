@@ -26,11 +26,16 @@ export default function Field(props: FieldProps): React.ReactElement<FieldProps>
       children,
       content,
       contentClassName,
+      disabled,
       hint,
       hintClassName,
       icon,
       iconPosition,
+      isFocused,
+      isDirty,
+      isTouched,
       label,
+      required,
       ...rest
     }
   } = useSharedClassName(props);
@@ -46,24 +51,45 @@ export default function Field(props: FieldProps): React.ReactElement<FieldProps>
    * Define Classes to Use
    * -------- */
   const classes = clsx(
+    {
+      required,
+      disabled,
+      dirty  : isDirty,
+      focused: isFocused,
+      touched: isTouched
+    },
     'field',
     className
+  );
+
+  const containerClasses = React.useMemo(
+    () => clsx(
+      {
+        'action-on-left' : !!action && actionPosition === 'left',
+        'action-on-right': !!action && actionPosition === 'right'
+      },
+      'container'
+    ),
+    [
+      action,
+      actionPosition
+    ]
   );
 
   const contentClasses = React.useMemo(
     () => clsx(
       'content',
+      {
+        'icon-on-left' : !!icon && iconPosition === 'left',
+        'icon-on-right': !!icon && iconPosition === 'right'
+      },
       contentClassName
     ),
-    [ contentClassName ]
-  );
-
-  const hintClasses = React.useMemo(
-    () => clsx(
-      'hint',
-      hintClassName
-    ),
-    [ hintClassName ]
+    [
+      contentClassName,
+      icon,
+      iconPosition
+    ]
   );
 
 
@@ -71,11 +97,10 @@ export default function Field(props: FieldProps): React.ReactElement<FieldProps>
    * Compute Field Addon
    * -------- */
   const leftFieldContent = React.useMemo(
-    () => (
-      <React.Fragment>
+    () => ((action && actionPosition === 'left')) && (
+      <div className={'addon left'}>
         {action && actionPosition === 'left' && Button.create(action, { autoGenerateKey: false })}
-        {icon && iconPosition === 'left' && Icon.create(icon, { autoGenerateKey: false })}
-      </React.Fragment>
+      </div>
     ),
     [
       action,
@@ -86,11 +111,10 @@ export default function Field(props: FieldProps): React.ReactElement<FieldProps>
   );
 
   const rightFieldContent = React.useMemo(
-    () => (
-      <React.Fragment>
-        {icon && iconPosition === 'right' && Icon.create(icon, { autoGenerateKey: false })}
+    () => ((action && actionPosition === 'right')) && (
+      <div className={'addon right'}>
         {action && actionPosition === 'right' && Button.create(action, { autoGenerateKey: false })}
-      </React.Fragment>
+      </div>
     ),
     [
       action,
@@ -98,6 +122,20 @@ export default function Field(props: FieldProps): React.ReactElement<FieldProps>
       icon,
       iconPosition
     ]
+  );
+
+  const iconContent = React.useMemo(
+    () => icon && Icon.create(icon, { autoGenerateKey: false }),
+    [ icon ]
+  );
+
+  const hintClasses = React.useMemo(
+    () => clsx(
+      'addon down',
+      'hint',
+      hintClassName
+    ),
+    [ hintClassName ]
   );
 
   const hintContent = React.useMemo(
@@ -117,9 +155,13 @@ export default function Field(props: FieldProps): React.ReactElement<FieldProps>
     <ElementType {...rest} className={classes}>
       {label && <label>{label}</label>}
 
-      <div className={contentClasses}>
+      <div className={containerClasses}>
         {leftFieldContent}
-        {childrenUtils.isNil(children) ? content : children}
+        <div className={contentClasses}>
+          {iconPosition === 'left' && iconContent}
+          {childrenUtils.isNil(children) ? content : children}
+          {iconPosition === 'right' && iconContent}
+        </div>
         {rightFieldContent}
       </div>
 

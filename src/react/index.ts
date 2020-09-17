@@ -28,6 +28,8 @@ export * from './elements/Header';
 
 export * from './elements/Icon';
 
+export * from './elements/Input';
+
 export * from './elements/Loader';
 
 export * from './elements/Panel';

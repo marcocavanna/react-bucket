@@ -70,7 +70,7 @@
  * -------- */
 
 
-import { ReactNode, PropsWithoutRef, ElementType, ReactElement } from 'react';
+import { ReactNode, ElementType, ReactElement, ComponentClass, FunctionComponent } from 'react';
 
 /** Re export ReactBucket Icon */
 export { FontAwesomeIcon, FontAwesomeIconStyle } from './fontawesome';
@@ -108,7 +108,7 @@ export type ReactBucketComponentProps<P, E extends keyof JSX.IntrinsicElements =
 export type MinimalReactBucketComponentProps<P, E extends keyof JSX.IntrinsicElements = 'div'> =
   P
   & StructuralReactBucketProps
-  & PropsWithoutRef<JSX.IntrinsicElements[E]>
+  & JSX.IntrinsicElements[E]
   & { [key: string]: any };
 
 /**
@@ -131,7 +131,7 @@ export type FlexboxContent<P, E extends keyof JSX.IntrinsicElements = 'div'> =
  */
 export interface StructuralReactBucketProps {
   /** An Element used to Render the Component */
-  as?: ElementType;
+  as?: string | ComponentClass | FunctionComponent;
 
   /** Main Component Content */
   children?: ReactNode;
