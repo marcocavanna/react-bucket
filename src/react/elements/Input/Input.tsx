@@ -52,13 +52,15 @@ export default function Input(props: InputProps): React.ReactElement<InputProps>
    * Internal Component Ref
    * -------- */
   const fieldRef = React.useRef<ControlledStateField & HTMLDivElement>(null!);
+  const inputRef = React.useRef<HTMLInputElement>(null);
 
   /* --------
    * Component Classes
    * -------- */
   const classes = clsx(
-    'input',
     { required, disabled },
+    'text',
+    'input',
     stateClassName,
     className
   );
@@ -67,8 +69,18 @@ export default function Input(props: InputProps): React.ReactElement<InputProps>
    * Input Handlers
    * -------- */
   const handleInputBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    /** Abort if Disabled or Readonly */
+    if (disabled || readOnly) {
+      return;
+    }
+
     /** Remove focus from field */
     fieldRef.current.setIsFocused(false);
+
+    /** Remove Input Class */
+    if (inputRef.current) {
+      inputRef.current.classList.remove('focused');
+    }
 
     /** Call user defined handler */
     if (userDefinedOnBlur) {
@@ -95,7 +107,8 @@ export default function Input(props: InputProps): React.ReactElement<InputProps>
   };
 
   const handleInputClick = (e: React.MouseEvent<HTMLInputElement>) => {
-    if (disabled) {
+    /** Abort if Disabled or Readonly */
+    if (disabled || readOnly) {
       return;
     }
 
@@ -110,8 +123,18 @@ export default function Input(props: InputProps): React.ReactElement<InputProps>
   };
 
   const handleInputFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    /** Abort if Disabled or Readonly */
+    if (disabled || readOnly) {
+      return;
+    }
+
     /** Set field as Focused */
     fieldRef.current.setIsFocused(true);
+
+    /** Set the Input Class */
+    if (inputRef.current) {
+      inputRef.current.classList.add('focused');
+    }
 
     /** Call user defined handler */
     if (userDefinedOnFocus) {
@@ -159,6 +182,7 @@ export default function Input(props: InputProps): React.ReactElement<InputProps>
     return (
       <input
         {...rest}
+        ref={inputRef}
         disabled={disabled}
         required={required}
         tabIndex={tabIndex}

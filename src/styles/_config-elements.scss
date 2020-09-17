@@ -83,6 +83,27 @@ $icon-bordered-border-width: pixel-to-em(1px) !default;
 
 
 /******
+    Input Configuration
+******/
+$input-line-height: 18px !default;
+$input-vertical-padding: 10px !default;
+$input-horizontal-padding: 1em !default;
+$input-placeholder-vertical-position-fix: 2px !default;
+
+$input-background-color: rgba(0, 0, 0, .05) !default;
+
+$input-border-radius: $border-radius !default;
+$input-border-color: transparent !default;
+$input-border-width: 2px !default;
+
+$input-focus-background-color: transparent !default;
+$input-focus-border-color: $primary !default;
+
+$computed-input-line-height: strip-unit(pixel-to-em($input-line-height));
+$computed-input-height: pixel-to-em($input-line-height + ($input-vertical-padding * 2));
+
+
+/******
     Loader
 ******/
 $loader-in-component-size: pixel-to-em(20px) !default;

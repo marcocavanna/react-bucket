@@ -11,6 +11,7 @@ export const defaultInput = () => {
   return (
     <Input
       danger
+      placeholder={'Il tuo Nome'}
       label={'Nome'}
       action={{
         icon: 'check'

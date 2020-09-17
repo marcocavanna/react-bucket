@@ -1,0 +1,78 @@
+/**
+ * Project ReactBucket 3
+ *
+ * _Input @ src/styles/elements/_input.scss
+ *
+ * Defined at 17 set 2020
+ * Copyright Marco Cavanna • 2020
+ *
+ * ---
+ * Input Styles
+ *
+ */
+
+/******
+    Restore Input Style
+******/
+input[type='email'],
+input[type='password'],
+input[type='search'],
+input[type='text'],
+input[type='time'],
+textarea {
+  appearance: none;
+}
+
+/******
+    Set the Base Input Style
+******/
+.text.input {
+  font-family: inherit;
+  font-weight: inherit;
+  color: inherit;
+  text-align: inherit;
+  outline: 0;
+
+  flex: 1 1 auto;
+  width: inherit;
+  max-width: 100%;
+  min-width: 0;
+
+  margin: 0;
+  padding: pixel-to-em($input-vertical-padding) $input-horizontal-padding;
+  height: $computed-input-line-height * 1em;
+  line-height: $computed-input-line-height;
+
+  background-color: $input-background-color;
+  border: none;
+  border-radius: $input-border-radius;
+  box-shadow: inset 0 0 0 $input-border-width $input-border-color;
+
+  will-change: background-color, box-shadow;
+  transition: background-color $transition-speed-fast $transition-ease,
+  box-shadow $transition-speed-fast $transition-ease;
+
+  // ----
+  //  Placeholder Style
+  // ----
+  @include input-placeholder {
+    font-weight: $regular;
+    line-height: $computed-input-line-height + strip-unit(pixel-to-em($input-placeholder-vertical-position-fix));
+  }
+
+  // ----
+  //  Focused Style
+  // ----
+  &.focused {
+    background-color: $input-focus-background-color;
+    box-shadow: inset 0 0 0 $input-border-width $input-focus-border-color;
+  }
+
+  // ----
+  //  Readonly State
+  // ----
+  &[readonly],
+  &:read-only {
+    cursor: default;
+  }
+}
