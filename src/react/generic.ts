@@ -70,7 +70,19 @@
  * -------- */
 
 
-import { ReactNode, ElementType, ReactElement, ComponentClass, FunctionComponent } from 'react';
+import {
+  ReactNode,
+  ElementType,
+  ReactElement,
+  ComponentClass,
+  FunctionComponent,
+  ForwardRefExoticComponent,
+  RefAttributes,
+  ComponentType,
+  Key
+} from 'react';
+
+import { ShorthandOptions, ExtendProps } from '@appbuckets/react-ui-core';
 
 /** Re export ReactBucket Icon */
 export { FontAwesomeIcon, FontAwesomeIconStyle } from './fontawesome';
@@ -86,7 +98,7 @@ type ShorthandItemFunction<P> = (
 
 export type ShorthandContent = ReactNode;
 export type ShorthandItem<P> = ReactNode | P | ShorthandItemFunction<P>;
-export type ShorthandCollection<P> = ShorthandItem<P>[];
+export type ShorthandCollection<P> = ShorthandItem<P & { key: Key }>[];
 
 
 /* --------
@@ -125,6 +137,17 @@ export type FlexboxContent<P, E extends keyof JSX.IntrinsicElements = 'div'> =
   ReactBucketComponentProps<P, E>
   & SharedFlexboxContentProps;
 
+/**
+ * Generate a Type dedicated to forwardRef function
+ */
+export type ReactBucketForwardedRefComponent<P = {}, T = HTMLDivElement> =
+  ForwardRefExoticComponent<P & RefAttributes<T>>
+  & {
+  create?: (
+    value: ReactElement | ComponentType | ReactNode | P | string,
+    options: ShorthandOptions<P & ExtendProps<P>>
+  ) => ReactElement | null
+};
 
 /**
  * An interface with Structural ReactBucket Props
