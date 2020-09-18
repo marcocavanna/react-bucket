@@ -45,7 +45,7 @@
     "build:fontawesome": "node build.fontawesome.js",
     "build:style": "node build.styles.js",
     "build:storybook": "build-storybook",
-    "start:storybook": "start-storybook",
+    "start:storybook": "start-storybook -p 57000",
     "start:styleguide": "styleguidist server",
     "start:docs": "cross-env DOCS=1 start-storybook --docs",
     "test": "cross-env NODE_ENV=test jest",
