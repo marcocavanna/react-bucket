@@ -7,22 +7,25 @@ import {
 } from '@appbuckets/react-ui-core';
 
 import {
-  useElementType,
-  useSharedClassName
+  useSharedClassName,
+  useSplitStateClassName
 } from '../../lib';
 
 import { FieldProps } from './Field.types';
 import { Icon } from '../Icon';
-import { Button } from '../Button';
+import { ButtonGroup } from '../Button';
+import { ReactBucketForwardedRefComponent } from '../../generic';
 
 
-export default function Field(props: FieldProps): React.ReactElement<FieldProps> {
-
+const Field: ReactBucketForwardedRefComponent<FieldProps> = React.forwardRef<HTMLDivElement>((
+  props: FieldProps,
+  ref
+) => {
   const {
     className,
     rest: {
-      action,
-      actionPosition,
+      actions,
+      actionsPosition,
       children,
       content,
       contentClassName,
@@ -36,15 +39,13 @@ export default function Field(props: FieldProps): React.ReactElement<FieldProps>
       isTouched,
       label,
       required,
-      ...rest
+      readOnly,
+      contentType,
+      ...rawRest
     }
   } = useSharedClassName(props);
 
-
-  /* --------
-   * Get Correct Element Type
-   * -------- */
-  const ElementType = useElementType(Field, props);
+  const [ stateClassName, rest ] = useSplitStateClassName(rawRest);
 
 
   /* --------
@@ -54,25 +55,28 @@ export default function Field(props: FieldProps): React.ReactElement<FieldProps>
     {
       required,
       disabled,
-      dirty  : isDirty,
-      focused: isFocused,
-      touched: isTouched
+      dirty   : isDirty,
+      focused : isFocused,
+      touched : isTouched,
+      readonly: readOnly
     },
+    contentType,
     'field',
+    stateClassName,
     className
   );
 
   const containerClasses = React.useMemo(
     () => clsx(
       {
-        'action-on-left' : !!action && actionPosition === 'left',
-        'action-on-right': !!action && actionPosition === 'right'
+        'action-on-left' : actions?.length && actionsPosition === 'left',
+        'action-on-right': actions?.length && actionsPosition === 'right'
       },
-      'container'
+      'wrapper'
     ),
     [
-      action,
-      actionPosition
+      actions,
+      actionsPosition
     ]
   );
 
@@ -96,29 +100,40 @@ export default function Field(props: FieldProps): React.ReactElement<FieldProps>
   /* --------
    * Compute Field Addon
    * -------- */
+  const actionsElement = React.useMemo(
+    () => {
+      if (actions?.length) {
+        return ButtonGroup.create(actions, { autoGenerateKey: true });
+      }
+
+      return null;
+    },
+    [ actions ]
+  );
+
   const leftFieldContent = React.useMemo(
-    () => ((action && actionPosition === 'left')) && (
+    () => ((actionsElement && actionsPosition === 'left')) && (
       <div className={'addon left'}>
-        {action && actionPosition === 'left' && Button.create(action, { autoGenerateKey: false })}
+        {actionsPosition === 'left' && actionsElement}
       </div>
     ),
     [
-      action,
-      actionPosition,
+      actionsElement,
+      actionsPosition,
       icon,
       iconPosition
     ]
   );
 
   const rightFieldContent = React.useMemo(
-    () => ((action && actionPosition === 'right')) && (
+    () => ((actionsElement && actionsPosition === 'right')) && (
       <div className={'addon right'}>
-        {action && actionPosition === 'right' && Button.create(action, { autoGenerateKey: false })}
+        {actionsPosition === 'right' && actionsElement}
       </div>
     ),
     [
-      action,
-      actionPosition,
+      actionsElement,
+      actionsPosition,
       icon,
       iconPosition
     ]
@@ -152,7 +167,7 @@ export default function Field(props: FieldProps): React.ReactElement<FieldProps>
    * Render Component
    * -------- */
   return (
-    <ElementType {...rest} className={classes}>
+    <div {...rest} ref={ref} className={classes}>
       {label && <label>{label}</label>}
 
       <div className={containerClasses}>
@@ -166,14 +181,15 @@ export default function Field(props: FieldProps): React.ReactElement<FieldProps>
       </div>
 
       {hintContent}
-    </ElementType>
+    </div>
   );
-
-}
+});
 
 Field.defaultProps = {
-  actionPosition: 'right',
-  iconPosition  : 'left'
-} as Partial<FieldProps>;
+  actionsPosition: 'right',
+  iconPosition   : 'left'
+} as Partial<Pick<FieldProps, React.ReactText> & React.RefAttributes<HTMLDivElement>>;
 
 Field.create = createShorthandFactory(Field, content => ({ content }));
+
+export default Field;

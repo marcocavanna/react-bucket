@@ -2,6 +2,8 @@ import * as React from 'react';
 
 import {
   ReactBucketComponentProps,
+  SharedComponentStateProps,
+  ShorthandCollection,
   ShorthandItem
 } from '../../generic';
 
@@ -9,18 +11,21 @@ import { ButtonProps } from '../Button';
 import { IconProps } from '../Icon';
 
 
-export interface FieldProps extends ReactBucketComponentProps<StrictFieldProps> {
+export interface FieldProps extends React.PropsWithoutRef<ReactBucketComponentProps<StrictFieldProps>> {
 }
 
-export interface StrictFieldProps {
+export interface StrictFieldProps extends SharedComponentStateProps {
   /** A Button to Show */
-  action?: ShorthandItem<ButtonProps>;
+  actions?: ShorthandCollection<ButtonProps>;
 
   /** Set action button position, default to right */
-  actionPosition?: 'left' | 'right';
+  actionsPosition?: 'left' | 'right';
 
   /** User defined className used for content element */
   contentClassName?: string;
+
+  /** Set field content type */
+  contentType?: 'input';
 
   /** Set the field as Disabled */
   disabled?: boolean;
@@ -48,6 +53,9 @@ export interface StrictFieldProps {
 
   /** Field Label */
   label?: React.ReactNode;
+
+  /** Set field as read only */
+  readOnly?: boolean;
 
   /** Set the field as Required */
   required?: boolean;
