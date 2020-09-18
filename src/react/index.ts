@@ -22,8 +22,6 @@ export * from './elements/Button';
 
 export * from './elements/EmptyContent';
 
-export * from './elements/Field';
-
 export * from './elements/Header';
 
 export * from './elements/Icon';
