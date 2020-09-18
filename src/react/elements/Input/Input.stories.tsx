@@ -10,13 +10,23 @@ export const defaultInput = () => {
 
   return (
     <Input
-      danger
       placeholder={'Il tuo Nome'}
       label={'Nome'}
-      action={{
-        icon: 'check'
+      actions={[
+        {
+          key    : 1,
+          icon   : 'check',
+          tooltip: 'Conferma'
+        },
+        {
+          key    : 2,
+          icon   : 'times',
+          tooltip: 'Conferma'
+        }
+      ]}
+      icon={{
+        name: 'user'
       }}
-      icon={'user'}
     />
   );
 };

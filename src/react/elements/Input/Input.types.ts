@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { ReactBucketComponentProps, SharedComponentStateProps } from '../../generic';
+import { ReactBucketComponentProps } from '../../generic';
 
 import { StrictFieldProps } from '../Field';
 
@@ -8,7 +8,7 @@ import { StrictFieldProps } from '../Field';
 export interface InputProps extends ReactBucketComponentProps<StrictInputProps, 'input'> {
 }
 
-export interface StrictInputProps extends SharedComponentStateProps, StrictFieldProps {
+export interface StrictInputProps extends StrictFieldProps {
   /** Set the Input as Currency Input */
   currency?: boolean;
 

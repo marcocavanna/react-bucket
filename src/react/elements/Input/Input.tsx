@@ -3,7 +3,7 @@ import clsx from 'clsx';
 
 import { useElementType, useSharedClassName, useSplitStateClassName } from '../../lib';
 
-import ControlledStateField from '../Field/ControlledStateField';
+import Field from '../Field/Field';
 
 import { InputProps } from './Input.types';
 
@@ -18,7 +18,6 @@ export default function Input(props: InputProps): React.ReactElement<InputProps>
       textarea,
       type,
       tabIndex: userDefinedTabIndex,
-      readOnly,
 
       /** Overridden Input Handlers */
       onClick: userDefinedOnClick,
@@ -29,10 +28,11 @@ export default function Input(props: InputProps): React.ReactElement<InputProps>
       /** Shared Input/Field Props */
       disabled,
       required,
+      readOnly,
 
       /** Strict Field Props */
-      action,
-      actionPosition,
+      actions,
+      actionsPosition,
       contentClassName,
       hint,
       hintClassName,
@@ -51,7 +51,7 @@ export default function Input(props: InputProps): React.ReactElement<InputProps>
   /* --------
    * Internal Component Ref
    * -------- */
-  const fieldRef = React.useRef<ControlledStateField & HTMLDivElement>(null!);
+  const fieldRef = React.useRef<HTMLDivElement>(null!);
   const inputRef = React.useRef<HTMLInputElement>(null);
 
   /* --------
@@ -60,7 +60,6 @@ export default function Input(props: InputProps): React.ReactElement<InputProps>
   const classes = clsx(
     { required, disabled },
     'text',
-    'input',
     stateClassName,
     className
   );
@@ -75,7 +74,7 @@ export default function Input(props: InputProps): React.ReactElement<InputProps>
     }
 
     /** Remove focus from field */
-    fieldRef.current.setIsFocused(false);
+    fieldRef.current.classList.remove('focused');
 
     /** Remove Input Class */
     if (inputRef.current) {
@@ -93,8 +92,11 @@ export default function Input(props: InputProps): React.ReactElement<InputProps>
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     /** Set field as Dirty */
-    if (!fieldRef.current.state.isDirty) {
-      fieldRef.current.setIsDirty(true);
+    fieldRef.current.classList.add('dirty');
+
+    /** Set dirty class on input too */
+    if (inputRef.current) {
+      inputRef.current.classList.add('dirty');
     }
 
     /** Call user defined handler */
@@ -129,11 +131,13 @@ export default function Input(props: InputProps): React.ReactElement<InputProps>
     }
 
     /** Set field as Focused */
-    fieldRef.current.setIsFocused(true);
+    fieldRef.current.classList.add('focused');
+    fieldRef.current.classList.add('touched');
 
     /** Set the Input Class */
     if (inputRef.current) {
       inputRef.current.classList.add('focused');
+      inputRef.current.classList.add('touched');
     }
 
     /** Call user defined handler */
@@ -203,21 +207,30 @@ export default function Input(props: InputProps): React.ReactElement<InputProps>
    * Component Render
    * -------- */
   return (
-    <ControlledStateField
+    <Field
       as={ElementType}
       ref={fieldRef}
       disabled={disabled}
       required={required}
-      action={action}
-      actionPosition={actionPosition}
+      actions={actions}
+      actionsPosition={actionsPosition}
       contentClassName={contentClassName}
       hint={hint}
       hintClassName={hintClassName}
       icon={icon}
       iconPosition={iconPosition}
       label={label}
+      readOnly={readOnly}
+      appearance={rawRest.appearance}
+      danger={rawRest.danger}
+      info={rawRest.info}
+      primary={rawRest.primary}
+      secondary={rawRest.secondary}
+      success={rawRest.success}
+      warning={rawRest.warning}
+      contentType={'input'}
     >
       {inputElement}
-    </ControlledStateField>
+    </Field>
   );
 }
