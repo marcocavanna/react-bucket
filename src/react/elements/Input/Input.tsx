@@ -18,6 +18,7 @@ export default function Input(props: InputProps): React.ReactElement<InputProps>
       textarea,
       type,
       tabIndex: userDefinedTabIndex,
+      selectAllOnClick,
 
       /** Overridden Input Handlers */
       onClick: userDefinedOnClick,
@@ -112,6 +113,10 @@ export default function Input(props: InputProps): React.ReactElement<InputProps>
     /** Abort if Disabled or Readonly */
     if (disabled || readOnly) {
       return;
+    }
+
+    if (inputRef.current && selectAllOnClick) {
+      inputRef.current.setSelectionRange(0, inputRef.current.value.length);
     }
 
     e.stopPropagation();

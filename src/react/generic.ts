@@ -120,7 +120,7 @@ export type ReactBucketComponentProps<P, E extends keyof JSX.IntrinsicElements =
 export type MinimalReactBucketComponentProps<P, E extends keyof JSX.IntrinsicElements = 'div'> =
   P
   & StructuralReactBucketProps
-  & JSX.IntrinsicElements[E]
+  & Omit<JSX.IntrinsicElements[E], keyof P>
   & { [key: string]: any };
 
 /**

@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { Input } from './';
+import { useInputValue } from '../../hooks/useInputValue';
 
 
 export default { title: 'Elements/Input', component: Input };
@@ -8,8 +9,13 @@ export default { title: 'Elements/Input', component: Input };
 
 export const defaultInput = () => {
 
+  const [ value, handleInputChange ] = useInputValue();
+
   return (
     <Input
+      value={value}
+      type={'number'}
+      onChange={handleInputChange}
       placeholder={'Il tuo Nome'}
       label={'Nome'}
       actions={[

@@ -5,24 +5,33 @@ import { ReactBucketComponentProps } from '../../generic';
 import { StrictFieldProps } from '../Field';
 
 
+export type OnInputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>, props: InputProps) => void;
+
+export type OnInputFocusChangeHandler = (e: React.FocusEvent<HTMLInputElement>, props: InputProps) => void;
+
+export type OnInputClickHandler = (e: React.MouseEvent<HTMLInputElement>, props: InputProps) => void;
+
 export interface InputProps extends ReactBucketComponentProps<StrictInputProps, 'input'> {
 }
 
-export interface StrictInputProps extends StrictFieldProps {
+export interface StrictInputProps extends Omit<StrictFieldProps, 'onChange'> {
   /** Set the Input as Currency Input */
   currency?: boolean;
 
   /** On Blur Event */
-  onBlur?: (e: React.FocusEvent<HTMLInputElement>, props: InputProps) => void;
+  onBlur?: OnInputFocusChangeHandler;
 
   /** On Change Event */
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>, props: InputProps) => void;
+  onChange?: OnInputChangeHandler;
 
   /** On Click Event */
-  onClick?: (e: React.MouseEvent<HTMLInputElement>, props: InputProps) => void;
+  onClick?: OnInputClickHandler;
 
   /** On Focus Event */
-  onFocus?: (e: React.FocusEvent<HTMLInputElement>, props: InputProps) => void;
+  onFocus?: OnInputFocusChangeHandler;
+
+  /** Auto Select all content on click */
+  selectAllOnClick?: boolean;
 
   /** Render the input as a Text Area */
   textarea?: boolean;
