@@ -73,6 +73,22 @@ $empty-content-icon-size: 4.5em !default;
 
 
 /******
+    Field Elements
+******/
+$field-label-font-weight: $semi-bold !default;
+$field-label-font-size: .85em !default;
+$field-label-text-transform: uppercase !default;
+$field-label-spacer: $spacer * .5 !default;
+$field-label-color: $text-lightest !default;
+
+$field-icon-base-color: rgba(0, 0, 0, .35) !default;
+
+$field-focus-main-color: $primary !default;
+$field-focus-label-color: $field-focus-main-color !default;
+$field-focus-icon-color: $field-focus-main-color !default;
+
+
+/******
     Icon Configuration
 ******/
 $icon-spacer: $spacer * .25 !default;
@@ -97,7 +113,7 @@ $input-border-color: transparent !default;
 $input-border-width: 2px !default;
 
 $input-focus-background-color: transparent !default;
-$input-focus-border-color: $primary !default;
+$input-focus-border-color: $field-focus-main-color !default;
 
 $computed-input-line-height: strip-unit(pixel-to-em($input-line-height));
 $computed-input-height: pixel-to-em($input-line-height + ($input-vertical-padding * 2));

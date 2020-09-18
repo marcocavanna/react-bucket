@@ -21,18 +21,17 @@ input[type='text'],
 input[type='time'],
 textarea {
   appearance: none;
+  font-family: inherit;
+  color: inherit;
+  text-align: inherit;
+  outline: 0;
+  font-weight: $semi-bold;
 }
 
 /******
     Set the Base Input Style
 ******/
-.text.input {
-  font-family: inherit;
-  font-weight: inherit;
-  color: inherit;
-  text-align: inherit;
-  outline: 0;
-
+input.text {
   flex: 1 1 auto;
   width: inherit;
   max-width: 100%;
@@ -43,8 +42,8 @@ textarea {
   height: $computed-input-line-height * 1em;
   line-height: $computed-input-line-height;
 
-  background-color: $input-background-color;
   border: none;
+  background-color: $input-background-color;
   border-radius: $input-border-radius;
   box-shadow: inset 0 0 0 $input-border-width $input-border-color;
 
@@ -69,10 +68,113 @@ textarea {
   }
 
   // ----
+  //  Colored Styles
+  // ----
+  @each $label, $color in $react-bucket-color-map {
+    &.is-#{$label} {
+      @if $label == 'danger' or $label == 'info' or $label == 'primary' or $label == 'secondary' or $label == 'success' or $label == 'warning' {
+        box-shadow: inset 0 0 0 $input-border-width $color;
+      } @else {
+        &.focused {
+          box-shadow: inset 0 0 0 $input-border-width $color;
+        }
+      }
+    }
+  }
+
+  // ----
   //  Readonly State
   // ----
   &[readonly],
   &:read-only {
     cursor: default;
+  }
+}
+
+
+/******
+    Input Icon
+******/
+.input.field {
+  .content {
+    // Icon has absolute position
+    > .icon {
+      width: auto;
+      margin: 0;
+      position: absolute;
+      padding-top: $input-vertical-padding;
+      line-height: $computed-input-line-height;
+      color: $field-icon-base-color;
+      transition: color $transition-speed-fast $transition-ease;
+      will-change: color;
+
+      &:after {
+        left: calc(50% + #{$input-horizontal-padding / 2});
+        top: calc(50% + #{$input-vertical-padding / 2});
+      }
+    }
+
+    &.icon-on-left {
+      > .icon {
+        padding-left: $input-horizontal-padding * 1.125;
+      }
+
+      > input {
+        padding-left: $input-horizontal-padding * 1.25 + $icon-width;
+      }
+    }
+
+    &.icon-on-right {
+      > .icon {
+        padding-right: $input-horizontal-padding * 1.125;
+        right: 0;
+      }
+
+      > input {
+        padding-right: $input-horizontal-padding * 1.25 + $icon-width;
+      }
+    }
+  }
+}
+
+
+/******
+    Input Action
+******/
+.input.field {
+  > .wrapper {
+    > .addon > .buttons {
+      > .button {
+        height: $computed-input-height;
+      }
+    }
+
+    &.action-on-left {
+      input {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+
+      > .addon.left {
+        > .buttons > .button:last-child {
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+      }
+    }
+
+    &.action-on-right {
+      input {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+
+      > .addon.right {
+        > .buttons > .button:first-child {
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+        }
+      }
+    }
   }
 }
