@@ -1,15 +1,7 @@
-import * as React from 'react';
-
-import { ReactBucketComponentProps } from '../../generic';
+import { ChangeHandler, ClickHandler, FocusHandler, ReactBucketComponentProps } from '../../generic';
 
 import { StrictFieldProps } from '../Field';
 
-
-export type OnInputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>, props: InputProps) => void;
-
-export type OnInputFocusChangeHandler = (e: React.FocusEvent<HTMLInputElement>, props: InputProps) => void;
-
-export type OnInputClickHandler = (e: React.MouseEvent<HTMLInputElement>, props: InputProps) => void;
 
 export interface InputProps extends ReactBucketComponentProps<StrictInputProps, 'input'> {
 }
@@ -19,16 +11,16 @@ export interface StrictInputProps extends Omit<StrictFieldProps, 'onChange'> {
   currency?: boolean;
 
   /** On Blur Event */
-  onBlur?: OnInputFocusChangeHandler;
+  onBlur?: FocusHandler<HTMLInputElement, InputProps>;
 
   /** On Change Event */
-  onChange?: OnInputChangeHandler;
+  onChange?: ChangeHandler<HTMLInputElement, InputProps>;
 
   /** On Click Event */
-  onClick?: OnInputClickHandler;
+  onClick?: ClickHandler<HTMLInputElement, InputProps>;
 
   /** On Focus Event */
-  onFocus?: OnInputFocusChangeHandler;
+  onFocus?: FocusHandler<HTMLInputElement, InputProps>;
 
   /** Auto Select all content on click */
   selectAllOnClick?: boolean;
