@@ -11,6 +11,21 @@
  *
  */
 
+
+/******
+    Shared Variables
+******/
+$form-control-color: $text !default;
+$form-control-font-weight: $semi-bold !default;
+$form-control-background-color: rgba(0, 0, 0, 0.05) !default;
+$form-control-border-width: 2px !default;
+$form-control-border-color: transparent !default;
+$form-control-active-main-color: $primary !default;
+$form-control-active-inverse-color: $white !default;
+$form-control-focus-background-color: transparent !default;
+$form-control-focus-border-color: $primary !default;
+
+
 /******
     Z-Index
 ******/
@@ -55,6 +70,29 @@ $backdrop-padding: 1em !default;
 $backdrop-animation-duration: 500ms !default;
 $backdrop-transition-duration: $backdrop-animation-duration !default;
 $backdrop-transition-timing-function: $transition-ease !default;
+
+
+/******
+    Checkbox Style
+******/
+$checkbox-size: 1.75em !default;
+$checkbox-label-padding: .75em !default;
+$checkbox-border-radius: $border-radius-normal !default;
+$checkbox-background-color: $form-control-background-color !default;
+$checkbox-border-width: $form-control-border-width !default;
+$checkbox-border-color: $form-control-border-color !default;
+
+$checkbox-checked-background-color: $form-control-active-main-color !default;
+$checkbox-checked-checkmark-color: $form-control-active-inverse-color !default;
+
+$checkbox-label-font-weight: $form-control-font-weight !default;
+
+$slider-bullet-size: 1em !default;
+$toggle-bullet-size: 1.25em !default;
+$slider-travel-distance: 2.5em !default;
+
+$checkbox-label-distance: $checkbox-size + $checkbox-label-padding;
+$slider-label-distance: $slider-travel-distance + $checkbox-label-padding;
 
 
 /******
@@ -106,14 +144,16 @@ $input-vertical-padding: 10px !default;
 $input-horizontal-padding: 1em !default;
 $input-placeholder-vertical-position-fix: 2px !default;
 
-$input-background-color: rgba(0, 0, 0, .05) !default;
+$input-font-weight: $form-control-font-weight !default;
+
+$input-background-color: $form-control-background-color !default;
 
 $input-border-radius: $border-radius !default;
-$input-border-color: transparent !default;
-$input-border-width: 2px !default;
+$input-border-color: $form-control-border-color !default;
+$input-border-width: $form-control-border-width !default;
 
-$input-focus-background-color: transparent !default;
-$input-focus-border-color: $field-focus-main-color !default;
+$input-focus-background-color: $form-control-focus-background-color !default;
+$input-focus-border-color: $form-control-focus-border-color !default;
 
 $computed-input-line-height: strip-unit(pixel-to-em($input-line-height));
 $computed-input-height: pixel-to-em($input-line-height + ($input-vertical-padding * 2));
