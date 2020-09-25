@@ -54,4 +54,6 @@ export * as Widget from './widget';
 /* --------
  * Export Custom Hooks
  * -------- */
+export * from './hooks/useAutoControlledValue';
+
 export * from './hooks/useInputValue';
