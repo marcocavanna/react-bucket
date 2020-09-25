@@ -3,6 +3,8 @@ import clsx from 'clsx';
 
 import { useElementType, useSharedClassName, useSplitStateClassName } from '../../lib';
 
+import { useTabIndex } from '../../hooks/useTabIndex';
+
 import Field from '../Field/Field';
 
 import { InputProps } from './Input.types';
@@ -157,24 +159,11 @@ export default function Input(props: InputProps): React.ReactElement<InputProps>
   /* --------
    * Input Computed Properties
    * -------- */
-  const tabIndex = React.useMemo(
-    () => {
-      if (userDefinedTabIndex) {
-        return userDefinedTabIndex;
-      }
-
-      if (disabled || readOnly) {
-        return -1;
-      }
-
-      return null;
-    },
-    [
-      userDefinedTabIndex,
-      disabled,
-      readOnly
-    ]
-  );
+  const tabIndex = useTabIndex({
+    disabled,
+    readOnly,
+    prop: userDefinedTabIndex
+  });
 
   /* --------
    * Input Render
