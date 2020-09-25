@@ -1,13 +1,15 @@
 import { useState } from 'react';
 
-import { OnInputChangeHandler } from '../elements/Input';
+import { ChangeHandler } from '../generic';
+
+import { InputProps } from '../elements/Input';
 
 
-export function useInputValue<T = string>(): [ T, OnInputChangeHandler, string ] {
+export function useInputValue<T = string>(): [ T, ChangeHandler<HTMLInputElement, InputProps>, string ] {
 
   const [ inputValue, setInputValue ] = useState<{ raw: string, casted: T | null }>({ raw: '', casted: null });
 
-  const handleInputChange: OnInputChangeHandler = (e, props) => {
+  const handleInputChange: ChangeHandler<HTMLInputElement, InputProps> = (e, props) => {
     const { value, type } = props;
 
     const raw: string = value?.toString() ?? '';

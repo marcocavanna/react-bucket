@@ -79,7 +79,10 @@ import {
   ForwardRefExoticComponent,
   RefAttributes,
   ComponentType,
-  Key
+  Key,
+  ChangeEvent,
+  FocusEvent,
+  MouseEvent
 } from 'react';
 
 import { ShorthandOptions, ExtendProps } from '@appbuckets/react-ui-core';
@@ -249,6 +252,16 @@ export interface SharedFlexboxContentProps {
   /** Set the Content Vertical disposition */
   verticalAlign?: ResponsiveProps<FlexContentVerticalAlign>;
 }
+
+
+/* --------
+ * Handlers Type
+ * -------- */
+export type ChangeHandler<H, P> = (e: ChangeEvent<H>, props: P) => void;
+
+export type FocusHandler<H, P> = (e: FocusEvent<H>, props: P) => void;
+
+export type ClickHandler<H, P> = (e: MouseEvent<H>, props: P) => void;
 
 
 /* --------
