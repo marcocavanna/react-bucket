@@ -17,7 +17,9 @@ export function useAutoControlledValue<State>(initialState: State, config?: UseA
 ] {
 
   const { prop, defaultProp } = config ?? {};
-  const [ state, setState ] = React.useState(defaultProp === undefined ? initialState : defaultProp);
+  const [ state, setState ] = React.useState(defaultProp === undefined
+    ? (prop === undefined ? initialState : prop)
+    : defaultProp);
 
   // Counterpart to the `static getDerivedStateFromProps` method, but for one key only.
   // When `prop` has changed since last render, update `state` with the `prop`'s value.
