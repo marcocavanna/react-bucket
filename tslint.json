@@ -8,6 +8,11 @@
   "jsRules": {
     "no-unused-expression": true
   },
+  "linterOptions": {
+    "exclude": [
+      "./templates/**/*"
+    ]
+  },
   "rules": {
     "quotemark": [
       true,
