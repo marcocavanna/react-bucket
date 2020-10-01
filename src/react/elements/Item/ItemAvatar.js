@@ -13,6 +13,7 @@ import {
 } from '../../lib';
 
 import Icon from '../Icon';
+import Popup from '../../modules/Popup';
 
 function ItemAvatar(props) {
 
@@ -34,6 +35,7 @@ function ItemAvatar(props) {
     size,
     square,
     success,
+    tooltip,
     warning
   } = props;
 
@@ -88,7 +90,7 @@ function ItemAvatar(props) {
     return content;
   })();
 
-  return (
+  const avatarElement = (
     <ElementType className={wrapperClasses} style={{ ...rest.style }}>
       <div {...rest} className={classes} style={{ ...containerStyle }}>
         <div className='content'>
@@ -100,6 +102,16 @@ function ItemAvatar(props) {
       )}
     </ElementType>
   );
+
+  return tooltip && !disabled
+    ? (
+      <Popup
+        trigger={avatarElement}
+        content={tooltip}
+        position='top center'
+      />
+    )
+    : avatarElement;
 
 }
 
@@ -163,6 +175,9 @@ ItemAvatar.propTypes = {
 
   /** Set Success Style */
   success: PropTypes.bool,
+
+  /** Tooltip text */
+  tooltip: PropTypes.string,
 
   /** Set Warning Style */
   warning: PropTypes.bool

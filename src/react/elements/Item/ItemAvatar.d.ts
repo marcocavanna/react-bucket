@@ -64,6 +64,9 @@ export interface StrictItemAvatarProps {
   /** Set Success Style */
   success?: boolean
 
+  /** A tooltip string to show */
+  tooltip?: string
+
   /** Set Warning Style */
   warning?: boolean
 
