@@ -63,8 +63,6 @@ export default function Checkbox(props: CheckboxProps) {
    * Internal Component Ref
    * -------- */
   const fieldRef = React.useRef<HTMLDivElement>(null!);
-  const inputRef = React.useRef<HTMLInputElement>(null!);
-  const labelRef = React.useRef<HTMLLabelElement>(null!);
 
 
   /* --------
@@ -118,17 +116,18 @@ export default function Checkbox(props: CheckboxProps) {
    * -------- */
   const handleLabelClick = React.useCallback(
     (e: React.MouseEvent<HTMLLabelElement>) => {
+      /** If checkbox could not toggle, return */
       if (!canToggle) {
         return;
       }
 
+      /** Build the Handler Params to be reused */
       const changeHandlerParams: [ React.MouseEvent<HTMLLabelElement>, CheckboxProps ] = [
-        e, {
-          ...props,
-          checked: !checked
-        }
+        e,
+        { ...props, checked: !checked }
       ];
 
+      /** Call user defined Handlers */
       if (handleClick) {
         handleClick(...changeHandlerParams);
       }
@@ -140,17 +139,35 @@ export default function Checkbox(props: CheckboxProps) {
         handleUnchecked(...changeHandlerParams);
       }
 
+      /** Try to set the internal auto controlled state */
       trySetChecked(!checked);
     },
-    [ checked ]
+    [
+      canToggle,
+      checked,
+      handleClick,
+      handleChecked,
+      handleUnchecked
+    ]
   );
 
-  // const handleChange = React.useCallback(
-  //   () => {
-  //
-  //   },
-  //   []
-  // );
+
+  /* --------
+   * Memoized Component Element
+   * -------- */
+  const labelElement = React.useMemo(
+    () => (
+      <label
+        htmlFor={rest.id}
+        onClick={handleLabelClick}
+      >{label}</label>
+    ),
+    [
+      rest.id,
+      handleLabelClick,
+      label
+    ]
+  );
 
 
   /* --------
@@ -180,14 +197,13 @@ export default function Checkbox(props: CheckboxProps) {
       <input
         {...rest}
         readOnly
-        ref={inputRef}
         className={classes}
         disabled={disabled}
         checked={checked}
         tabIndex={tabIndex}
         type={radio ? 'radio' : 'checkbox'}
       />
-      <label htmlFor={rest.id} ref={labelRef} onClick={handleLabelClick}>{label}</label>
+      {labelElement}
     </Field>
   );
 }
