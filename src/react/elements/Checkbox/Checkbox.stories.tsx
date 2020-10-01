@@ -9,7 +9,8 @@ export const baseCheckbox = () => {
 
   return (
     <Checkbox
-      label={'Prova Checkbox'}
+      success
+      label={'I Accept TOS and Privacy Policy'}
     />
   );
 
