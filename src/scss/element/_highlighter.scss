@@ -1,23 +1,26 @@
 .highlighter {
   position: relative;
 
-  > .match,
-  > .unmatch {
-    display: inline-block;
-    padding-top: .15em;
-    padding-bottom: .15em;
-  }
-
   > .match {
-    padding-left: .35em;
-    padding-right: .35em;
-    background-color: $primary-tint;
+    position: relative;
     color: $white;
-    border-radius: .25em;
+    z-index: 2;
+
+    &:before {
+      z-index: -1;
+      position: absolute;
+      content: '';
+      top: -.25em;
+      bottom: -.25em;
+      left: -.25em;
+      right: -.25em;
+      background-color: $primary-tint;
+      border-radius: .25em;
+    }
   }
 
   > .match + .unmatch,
   > .unmatch + .match {
-    margin-left: .05em;
+    margin-left: .35em;
   }
 }

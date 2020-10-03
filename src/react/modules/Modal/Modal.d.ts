@@ -56,6 +56,9 @@ export interface StrictModalProps {
   /** Event Pool namespace */
   eventPool?: string
 
+  /** Set flat style */
+  flat?: boolean;
+
   /** Modal header shorthand */
   header?: React.ReactNode
 

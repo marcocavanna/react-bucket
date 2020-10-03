@@ -223,7 +223,7 @@ Field.propTypes = {
   required: PropTypes.bool,
 
   /** Field Size */
-  size: PropTypes.bool,
+  size: PropTypes.string,
 
   /** Success Style */
   success: PropTypes.bool,

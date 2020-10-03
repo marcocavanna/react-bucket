@@ -39,6 +39,10 @@
     @include dpShadow($modal-box-shadow);
   }
 
+  &.is-flat {
+    box-shadow: none !important;
+  }
+
   /*---
     Set Content Border Radius
     only for non mobile modals

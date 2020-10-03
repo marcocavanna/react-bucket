@@ -87,6 +87,9 @@ class Modal extends Component {
     /** Event Pool namespace */
     eventPool: PropTypes.string,
 
+    /** Set flat style */
+    flat: PropTypes.bool,
+
     /** Modal header shorthand */
     header: PropTypes.node,
 
@@ -304,6 +307,7 @@ class Modal extends Component {
       className,
       closeIcon,
       content,
+      flat,
       header,
       lightbox,
       mountNode,
@@ -325,6 +329,7 @@ class Modal extends Component {
       classByKey(scrolling, 'is-scrolling'),
       classByKey(autosized, 'is-autosized'),
       classByKey(lightbox, 'is-lightbox'),
+      classByKey(flat, 'is-flat'),
       className
     );
 
