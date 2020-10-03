@@ -204,6 +204,21 @@ $loader-font-size: (
 
 
 /******
+    Message Element
+******/
+$message-background-color: $white-shade-2 !default;
+$message-padding: 1em 1.5em !default;
+$message-font-color: $text-tint !default;
+$message-border-radius: $border-radius !default;
+$message-border-width: 1px !default;
+$message-border-color: $grey-lightest !default;
+$message-spacer: 1em !default;
+$message-content-opacity: .85 !default;
+$message-header-font-size: 1.25em !default;
+$message-dismiss-font-size: 1.25em !default;
+
+
+/******
     Panels
 ******/
 $panel-background-color: $white !default;
