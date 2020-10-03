@@ -42,6 +42,7 @@ export default function Toast(props: ToastProps): React.ReactElement<ToastProps>
   /** Build classname */
   const classes = clsx(
     'toast',
+    typeof onClick === 'function' && 'clickable',
     stateClassName,
     className
   );
@@ -86,8 +87,8 @@ export default function Toast(props: ToastProps): React.ReactElement<ToastProps>
    * -------- */
   const toastContent = React.useMemo(
     () => Header.create({
-      header,
-      content,
+      content  : header,
+      subheader: content,
       icon
     }, { autoGenerateKey: false }),
     [ header, content, icon ]
@@ -95,9 +96,17 @@ export default function Toast(props: ToastProps): React.ReactElement<ToastProps>
 
   const dismissIcon = React.useMemo(
     () => dismissible && (typeof dismissible === 'boolean'
-      ? Icon.create({ name: 'times', onClick: handleDismiss }, { autoGenerateKey: false })
+      ? Icon.create({ name: 'times', onClick: handleDismiss }, {
+        autoGenerateKey: false,
+        defaultProps   : {
+          className: 'dismiss'
+        }
+      })
       : Icon.create(dismissible, {
         autoGenerateKey: false,
+        defaultProps   : {
+          className: 'dismiss'
+        },
         overrideProps  : {
           onClick: handleDismiss
         }

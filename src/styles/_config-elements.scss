@@ -309,3 +309,19 @@ $table-cell-header-font-weight: $semi-bold !default;
 $table-cell-content-opacity: .75 !default;
 
 $table-color-variation-transparency: .9 !default;
+
+
+/******
+    Toast Element
+******/
+$toast-border-radius: $border-radius !default;
+$toast-content-padding: get-em-spacer(3) !default;
+$toast-background-color: rgba(0, 0, 0, .8) !default;
+$toast-font-color: $white !default;
+$toast-font-weight: $semi-bold !default;
+$toast-shadow-elevation: 6 !default;
+$toast-icon-size: 1.25em !default;
+$toast-content-opacity: .75 !default;
+$toast-width-on-tablet-up: 480px !default;
+$toast-dismiss-icon-opacity: .75 !default;
+$toast-clickable-hover-opacity: .85 !default;

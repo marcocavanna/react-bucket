@@ -3,6 +3,7 @@ import * as React from 'react';
 import {
   ReactBucketComponentProps,
   ReactBucketIcon,
+  SharedComponentStateProps,
   ShorthandItem
 } from '../../generic';
 
@@ -10,7 +11,7 @@ import { HeaderContentProps, HeaderSubheaderProps } from '../Header';
 import { IconProps } from '../Icon';
 
 
-export interface ToastProps extends StrictToastProps {
+export interface ToastProps extends StrictToastProps, SharedComponentStateProps {
 }
 
 export interface StrictToastProps extends Omit<ReactBucketComponentProps<{}>, 'children' | 'content'> {
