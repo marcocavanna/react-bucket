@@ -1,6 +1,9 @@
 import * as React from 'react';
 
-import { FontAwesomeIcon, ReactBucketComponentProps, ShorthandItem } from '../../generic';
+import {
+  ReactBucketComponentProps,
+  ReactBucketIcon
+} from '../../generic';
 
 import { IconProps } from '../Icon';
 
@@ -18,7 +21,7 @@ export interface StrictSectionProps {
   divided?: boolean;
 
   /** Add an Icon to the Label */
-  icon?: FontAwesomeIcon | ShorthandItem<IconProps>;
+  icon?: ReactBucketIcon<IconProps>;
 
   /** Set the Section Label */
   label?: React.ReactNode;

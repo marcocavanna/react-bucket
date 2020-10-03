@@ -1,6 +1,10 @@
 import * as React from 'react';
 
-import { FontAwesomeIcon, ReactBucketComponentProps, ShorthandItem } from '../../generic';
+import {
+  ReactBucketComponentProps,
+  ReactBucketIcon,
+  ShorthandItem
+} from '../../generic';
 
 import { ButtonProps } from '../Button';
 import { IconProps } from '../Icon';
@@ -18,5 +22,5 @@ export interface StrictEmptyContentProps {
   header?: React.ReactNode;
 
   /** Set the Empty Content Icon */
-  icon?: FontAwesomeIcon | ShorthandItem<IconProps>;
+  icon?: ReactBucketIcon<IconProps>;
 }

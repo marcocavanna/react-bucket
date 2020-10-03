@@ -1,9 +1,8 @@
 import * as React from 'react';
 
 import {
-  ReactBucketComponentProps,
-  FontAwesomeIcon,
-  ShorthandItem
+  ReactBucketIcon,
+  ReactBucketComponentProps
 } from '../../generic';
 
 import { IconProps } from '../../elements/Icon';
@@ -21,7 +20,7 @@ export interface StrictMenuItemProps {
   disabled?: boolean;
 
   /** Draw Item Icon */
-  icon?: FontAwesomeIcon | ShorthandItem<IconProps>;
+  icon?: ReactBucketIcon<IconProps>;
 
   /** On Click Element Handler */
   onClick?: (e: React.MouseEvent<HTMLElement>, props: MenuItemProps) => void;

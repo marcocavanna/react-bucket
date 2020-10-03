@@ -2,9 +2,9 @@ import * as React from 'react';
 
 import {
   ReactBucketComponentProps,
+  ReactBucketIcon,
   SharedComponentStateProps,
-  ShorthandCollection,
-  ShorthandItem
+  ShorthandCollection
 } from '../../generic';
 
 import { ButtonProps } from '../Button';
@@ -37,7 +37,7 @@ export interface StrictFieldProps extends SharedComponentStateProps {
   hintClassName?: string;
 
   /** An Icon to Show */
-  icon?: ShorthandItem<IconProps>;
+  icon?: ReactBucketIcon<IconProps>;
 
   /** Set the icon position, default to left */
   iconPosition?: 'left' | 'right';

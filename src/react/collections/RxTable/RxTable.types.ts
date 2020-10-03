@@ -4,8 +4,8 @@ import { TableProps as RcTableProps } from 'rc-table/lib/Table';
 import { ColumnType as RcColumnType, GetRowKey } from 'rc-table/lib/interface';
 
 import {
-  FontAwesomeIcon,
-  ShorthandItem
+  ShorthandItem,
+  ReactBucketIcon
 } from '../../generic';
 
 import { TableCellProps, TableHeaderCellProps, TableProps } from '../Table';
@@ -111,7 +111,7 @@ export interface RxTableColumn<Data> extends Omit<RcColumnType<Data>, 'render' |
   filteredValue?: React.Key[] | null;
 
   /** Set the filter icon to show */
-  filterIcon?: FontAwesomeIcon | ShorthandItem<IconProps> | ((filtered: boolean) => FontAwesomeIcon | ShorthandItem<IconProps>);
+  filterIcon?: ReactBucketIcon<IconProps> | ((filtered: boolean) => ReactBucketIcon<IconProps>);
 
   /** Set Columns Available Filters */
   filters?: ColumnFilterItem[];

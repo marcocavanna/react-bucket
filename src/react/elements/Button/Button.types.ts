@@ -1,10 +1,9 @@
 import * as React from 'react';
 
 import {
-  FontAwesomeIcon,
   ReactBucketComponentProps,
-  SharedComponentStateProps,
-  ShorthandItem
+  ReactBucketIcon,
+  SharedComponentStateProps
 } from '../../generic';
 
 import { IconProps } from '../Icon';
@@ -33,7 +32,7 @@ export interface StrictButtonProps {
   full?: boolean;
 
   /** Insert an Icon into the Button */
-  icon?: FontAwesomeIcon | ShorthandItem<IconProps>;
+  icon?: ReactBucketIcon<IconProps>;
 
   /** Set the Icon position, this prop is ignored without icon */
   iconPosition?: 'left' | 'right';

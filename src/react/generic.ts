@@ -86,6 +86,7 @@ import {
 } from 'react';
 
 import { ShorthandOptions, ExtendProps } from '@appbuckets/react-ui-core';
+import { FontAwesomeIcon } from './fontawesome';
 
 /** Re export ReactBucket Icon */
 export { FontAwesomeIcon, FontAwesomeIconStyle } from './fontawesome';
@@ -102,6 +103,8 @@ type ShorthandItemFunction<P> = (
 export type ShorthandContent = ReactNode;
 export type ShorthandItem<P> = ReactNode | P | ShorthandItemFunction<P>;
 export type ShorthandCollection<P> = ShorthandItem<P & { key: Key }>[];
+
+export type ReactBucketIcon<T> = FontAwesomeIcon | ShorthandItem<T>;
 
 
 /* --------
