@@ -11,10 +11,10 @@ import { HeaderContentProps, HeaderSubheaderProps } from '../Header';
 import { IconProps } from '../Icon';
 
 
-export interface ToastProps extends StrictToastProps, SharedComponentStateProps {
+export interface ToastProps extends ReactBucketComponentProps<StrictToastProps>, SharedComponentStateProps {
 }
 
-export interface StrictToastProps extends Omit<ReactBucketComponentProps<{}>, 'children' | 'content'> {
+export interface StrictToastProps {
   /** Children component */
   children?: React.ReactNode | React.ComponentType<{ dismiss?: (e: React.MouseEvent<HTMLElement>) => void }>;
 

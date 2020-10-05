@@ -11,10 +11,10 @@ import { HeaderContentProps, HeaderSubheaderProps } from '../../elements/Header'
 import { IconProps } from '../../elements/Icon';
 
 
-export interface MessageProps extends StrictMessageProps, SharedComponentStateProps {
+export interface MessageProps extends ReactBucketComponentProps<StrictMessageProps>, SharedComponentStateProps {
 }
 
-export interface StrictMessageProps extends Omit<ReactBucketComponentProps<{}>, 'content'> {
+export interface StrictMessageProps {
   /** Message Content */
   content?: ShorthandItem<HeaderSubheaderProps>;
 
