@@ -7,14 +7,14 @@ export interface BackdropInnerProps extends MinimalReactBucketComponentProps<Str
 }
 
 export interface StrictBackdropInnerProps {
+  /** Set the backdrop as animated */
+  animated?: boolean;
+
   /** Handle Click Event */
-  onClick?: (event: React.MouseEvent, props: BackdropInnerProps) => void;
+  onClick?: (event: React.MouseEvent<HTMLElement>, props: BackdropInnerProps) => void;
 
   /** Handle Click Event occurred outside Backdrop Content, but in Backdrop Area */
-  onClickOutside?: (event: React.MouseEvent, props: BackdropInnerProps) => void;
-
-  /** Set the backdrop as full page */
-  page?: boolean;
+  onClickOutside?: (event: React.MouseEvent<HTMLElement>, props: BackdropInnerProps) => void;
 
   /** Set the content vertical align */
   verticalAlign?: FlexContentVerticalAlign;

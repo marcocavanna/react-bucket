@@ -54,13 +54,6 @@
   @include unselectable;
 
   // ----
-  //  Set Content Color
-  // ----
-  > .content {
-    color: $backdrop-content-color;
-  }
-
-  // ----
   //  Visible Backdrop has Flex Display
   // ----
   &.visible {
@@ -69,23 +62,34 @@
   }
 
   // ----
+  //  A transitionable backdrop has declared display
+  //  It will be mounted and unmounted controlled by component
+  // ----
+  &.animated {
+    display: flex;
+  }
+
+  // ----
   //  Content could be aligned on top or on bottom
   //  or could be stretched taking all space
+  //  only if Backdrop is not in loading state
   // ----
-  &.content-on-top {
-    justify-content: flex-start;
-  }
+  &:not(.loading) {
+    &.content-on-top {
+      justify-content: flex-start;
+    }
 
-  &.content-on-bottom {
-    justify-content: flex-end;
-  }
+    &.content-on-bottom {
+      justify-content: flex-end;
+    }
 
-  &.content-center {
-    justify-content: center;
-  }
+    &.content-center {
+      justify-content: center;
+    }
 
-  &.content-stretched {
-    justify-content: stretch;
+    &.content-stretched {
+      justify-content: stretch;
+    }
   }
 
   // ----
@@ -96,6 +100,29 @@
     transform-style: initial;
     perspective: 2000px;
     transform-origin: center center;
+  }
+}
+
+
+/******
+    Style the Backdrop Content
+******/
+.backdrop > .content {
+  color: $backdrop-content-color;
+
+  // ----
+  //  Animated Content will have a little down transition
+  // ----
+  &.animated {
+    transform: translateY($backdrop-content-animated-transition-offset);
+    will-change: transform;
+    transition-property: transform;
+    transition-duration: $backdrop-content-animated-transition-duration;
+    transition-timing-function: $backdrop-content-animated-transition-timing-function;
+
+    &.visible {
+      transform: translateY(0);
+    }
   }
 }
 

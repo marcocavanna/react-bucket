@@ -18,84 +18,104 @@ import { BackdropInnerProps } from './BackdropInner.types';
 export default function BackdropInner(props: BackdropInnerProps): React.ReactElement<BackdropInnerProps> {
 
   const {
+    animated,
     content,
     children,
     className,
     onClick,
     onClickOutside,
-    page,
     verticalAlign,
     visible,
     ...rest
   } = props;
 
-  /** Create Refs */
+
+  // ----
+  // Define internal Ref to Switch classes and Style
+  // ----
   const containerRef = React.useRef<HTMLElement>(null);
   const contentRef = React.useRef<HTMLDivElement>(null);
-
-  /** Toggle container styles when visible change */
-  React.useEffect(
-    () => {
-      /** Get the container ref */
-      const container = containerRef.current;
-
-      /** If no ref, return */
-      if (!container || !container.style) {
-        return;
-      }
-
-      /** Set container style */
-      if (visible) {
-        container.style.setProperty('display', 'flex', 'important');
-      }
-      else {
-        container.style.removeProperty('display');
-      }
-    },
-    [ visible, containerRef ]
-  );
-
-  /** Build a function to handle clicks */
-  const handleClick = (e: React.MouseEvent<HTMLElement>) => {
-    /** Check click handler exists */
-    if (typeof onClick === 'function') {
-      onClick(e, props);
-    }
-
-    /** Check if click is inside the content */
-    if (contentRef.current && (contentRef.current !== e.target && doesNodeContainClick(contentRef.current, e))) {
-      return;
-    }
-
-    /** Handle outside click too */
-    if (typeof onClickOutside === 'function') {
-      onClickOutside(e, props);
-    }
-  };
 
   /** Get the render element type */
   const ElementType = useElementType(BackdropInner, props);
 
-  /** Get the Element Classes */
+
+  // ----
+  // Build Component Handlers
+  // ----
+  const handleClick = React.useCallback(
+    (e: React.MouseEvent<HTMLElement>) => {
+      /** Call onClick Handler */
+      if (onClick) {
+        onClick(e, props);
+      }
+      /** Check if click is inside the content, if is it, return */
+      if (contentRef.current && (contentRef.current !== e.target && doesNodeContainClick(contentRef.current, e))) {
+        return;
+      }
+      /** Call onClickOutside Prop */
+      if (onClickOutside) {
+        onClickOutside(e, props);
+      }
+    },
+    [ onClick, onClickOutside, contentRef.current ]
+  );
+
+
+  // ----
+  // Animate the Backdrop Enter, if is necessary
+  // ----
+  React.useEffect(
+    () => {
+      /** Exit if no need to animate container visibility */
+      if (!animated) {
+        return;
+      }
+
+      /** Add/Remove the visible classes */
+      setTimeout(() => {
+        if (containerRef.current && visible) {
+          containerRef.current.classList.add('visible');
+        }
+
+        if (contentRef.current && visible) {
+          contentRef.current.classList.add('visible');
+        }
+      });
+    },
+    [ animated, visible, containerRef.current, contentRef.current ]
+  );
+
+  // ----
+  // Build Element Classes
+  // ----
   const classes = clsx(
-    { visible, page },
+    { visible: !animated && visible, animated },
     classByPattern(verticalAlign, 'content-%value%'),
     'backdrop',
     className
   );
 
-  /** Get the inner content */
-  const innerContent = React.useMemo(
-    () => childrenUtils.isNil(children) ? content : children,
-    [ content, children ]
+  const contentClasses = clsx(
+    { visible: !animated && visible, animated },
+    'content'
   );
 
-  /** Render the Component */
+
+  // ----
+  // Compute the Inner Content
+  // ----
+  const innerContent = childrenUtils.isNil(children) ? content : children;
+
+
+  // ----
+  // Render the Content
+  // ----
   return (
     <Ref innerRef={containerRef}>
       <ElementType {...rest} className={classes} onClick={handleClick}>
         {innerContent && (
-          <div ref={contentRef} className={'content'}>
+          <div ref={contentRef} className={contentClasses}>
             {innerContent}
           </div>
         )}
