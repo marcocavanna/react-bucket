@@ -1,9 +1,11 @@
 import {
-  ReactBucketComponentProps
+  ReactBucketComponentProps{{#if hasStateClasses}},
+  SharedComponentStateProps
+  {{/if}}
 } from '../../generic';
 
 
-export interface {{ pascalCase componentName }}Props extends ReactBucketComponentProps<Strict{{ pascalCase componentName }}Props> {
+export interface {{ pascalCase componentName }}Props extends ReactBucketComponentProps<Strict{{ pascalCase componentName }}Props> {{#if hasStateClasses}}, SharedComponentStateProps{{/if}} {
 }
 
 export interface Strict{{ pascalCase componentName }}Props {

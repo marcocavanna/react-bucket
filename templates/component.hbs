@@ -1,11 +1,76 @@
 import * as React from 'react';
 import clsx from 'clsx';
 
+{{#if couldHaveChildren}}
+import {
+  childrenUtils
+} from '@appbuckets/react-ui-core';
+{{/if}}
+
+import {
+  {{#if couldChangeElementType}}
+  useElementType,
+  {{/if}}
+  useSharedClassName{{#if hasStateClasses}},
+  useSplitStateClassName
+  {{/if}}
+} from '../../lib';
+
 import { {{ pascalCase componentName }}Props } from './{{ pascalCase componentName }}.types';
 
 
 export default function {{ pascalCase componentName }}(props: {{ pascalCase componentName }}Props): React.ReactElement<{{ pascalCase componentName }}Props> {
 
+  const {
+    className,
+    rest: {
+      {{#if couldHaveChildren}}
+      children,
+      {{/if}}
+      content,
+      {{#if hasStateClasses}}
+      ...rawRest
+      {{else}}
+      ...rest
+      {{/if}}
+    }
+  } = useSharedClassName(props);
+
+  {{#if couldChangeElementType}}
+  /** Get the component element type */
+  const ElementType = useElementType({{ pascalCase componentName }}, props);
+  {{/if}}
+  {{#if hasStateClasses}}
+
+  /** Split state className from rest props */
+  const [ stateClasses, rest ] = useSplitStateClassName(rawRest);
+  {{/if}}
+
+  /** Build the element class list */
+  const classes = clsx(
+    '{{ kebabCase componentName }}',
+    {{#if hasStateClasses}}
+    stateClasses,
+    {{/if}}
+    className
+  );
+
+  {{#if couldHaveChildren}}
+  /** If children are declared, render them */
+  if (!childrenUtils.isNil(children)) {
+    return (
+      <ElementType {...rest} className={classes}>
+        {children}
+      </ElementType>
+    );
+  }
+  {{/if}}
+
+  return (
+    <ElementType {...rest} className={classes}>
+      {content}
+    </ElementType>
+  );
 }
 
 {{ pascalCase componentName }}.displayName = '{{ pascalCase componentName }}';
