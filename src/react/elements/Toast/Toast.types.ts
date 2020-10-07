@@ -4,6 +4,7 @@ import {
   ReactBucketComponentProps,
   ReactBucketIcon,
   SharedComponentStateProps,
+  ShorthandContent,
   ShorthandItem
 } from '../../generic';
 
@@ -16,7 +17,7 @@ export interface ToastProps extends ReactBucketComponentProps<StrictToastProps>,
 
 export interface StrictToastProps {
   /** Children component */
-  children?: React.ReactNode | React.ComponentType<{ dismiss?: (e: React.MouseEvent<HTMLElement>) => void }>;
+  children?: ShorthandContent | React.ComponentType<{ dismiss?: (e: React.MouseEvent<HTMLElement>) => void }>;
 
   /** Toast Content */
   content?: ShorthandItem<HeaderSubheaderProps>;

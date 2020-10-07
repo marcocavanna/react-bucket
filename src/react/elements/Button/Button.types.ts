@@ -3,7 +3,8 @@ import * as React from 'react';
 import {
   ReactBucketComponentProps,
   ReactBucketIcon,
-  SharedComponentStateProps
+  SharedComponentStateProps,
+  ShorthandContent
 } from '../../generic';
 
 import { IconProps } from '../Icon';
@@ -56,5 +57,5 @@ export interface StrictButtonProps {
   toggle?: boolean;
 
   /** Add a Tooltip Text, showed using basic popup */
-  tooltip?: React.ReactNode;
+  tooltip?: ShorthandContent;
 }

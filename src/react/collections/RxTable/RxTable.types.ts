@@ -5,7 +5,8 @@ import { ColumnType as RcColumnType, GetRowKey } from 'rc-table/lib/interface';
 
 import {
   ShorthandItem,
-  ReactBucketIcon
+  ReactBucketIcon,
+  ShorthandContent
 } from '../../generic';
 
 import { TableCellProps, TableHeaderCellProps, TableProps } from '../Table';
@@ -99,7 +100,7 @@ export interface RxTableColumn<Data> extends Omit<RcColumnType<Data>, 'render' |
   defaultSortOrder?: SortOrder;
 
   /** The Filter DropDown Menu */
-  filterDropdown?: React.ReactNode | ((props: FilterDropdownProps) => React.ReactNode);
+  filterDropdown?: ShorthandContent | ((props: FilterDropdownProps) => ShorthandContent);
 
   /** Set if DropDown Filter menu is Visible */
   filterDropdownVisible?: boolean;
@@ -129,7 +130,7 @@ export interface RxTableColumn<Data> extends Omit<RcColumnType<Data>, 'render' |
   onFilterDropdownVisibleChange?: (visible: boolean) => void;
 
   /** Custom Render Function */
-  render?: (value: any, item: Data, index: number) => React.ReactNode | { props: ShorthandItem<TableCellProps> };
+  render?: (value: any, item: Data, index: number) => ShorthandContent | { props: ShorthandItem<TableCellProps> };
 
   /** Define Column Sorter */
   sorter?: boolean | CompareFn<Data>;
@@ -155,7 +156,7 @@ export type SorterResult<Data> = {
   columnKey?: React.Key;
 };
 
-export type ColumnFilterItem = { text: React.ReactNode; value: string | number | boolean; children?: ColumnFilterItem[] };
+export type ColumnFilterItem = { text: ShorthandContent; value: string | number | boolean; children?: ColumnFilterItem[] };
 
 export type FilterDropdownProps = {
   setSelectedKeys: (selectedKes: React.Key[]) => void;
@@ -171,7 +172,7 @@ export type RxTableColumnTitleProps<Data> = {
   filters?: Record<string, string[]>;
 };
 
-export type RxTableColumnTitle<Data> = React.ReactNode | ((props: RxTableColumnTitleProps<Data>) => React.ReactNode);
+export type RxTableColumnTitle<Data> = ShorthandContent | ((props: RxTableColumnTitleProps<Data>) => ShorthandContent);
 
 export type RxTableColumns<Data> = RxTableColumn<Data>[];
 
@@ -188,7 +189,7 @@ export interface RxTableRowSelection<Data> {
   columnWidth?: string | number;
 
   /** Set the Column Title */
-  columnTitle?: React.ReactNode;
+  columnTitle?: ShorthandContent;
 
   /** Fix Column */
   fixed?: boolean;
@@ -206,7 +207,7 @@ export interface RxTableRowSelection<Data> {
   preserveSelectedRowKeys?: boolean;
 
   /** Custom render Function */
-  render?: (selected: boolean, item: Data, index: number, original: React.ReactNode) => React.ReactNode;
+  render?: (selected: boolean, item: Data, index: number, original: React.ReactNode) => ShorthandContent;
 
   /** Set the Selected Row Keys */
   selectedRowKeys?: React.Key[];

@@ -4,7 +4,8 @@ import {
   ReactBucketComponentProps,
   ReactBucketIcon,
   SharedComponentStateProps,
-  ShorthandCollection
+  ShorthandCollection,
+  ShorthandContent
 } from '../../generic';
 
 import { ButtonProps } from '../Button';
@@ -31,7 +32,7 @@ export interface StrictFieldProps extends SharedComponentStateProps {
   disabled?: boolean;
 
   /** An hint, appended after field content */
-  hint?: React.ReactNode;
+  hint?: ShorthandContent;
 
   /** User defined className used for hint element */
   hintClassName?: string;
@@ -52,7 +53,7 @@ export interface StrictFieldProps extends SharedComponentStateProps {
   isTouched?: boolean;
 
   /** Field Label */
-  label?: React.ReactNode;
+  label?: ShorthandContent;
 
   /** Set field as read only */
   readOnly?: boolean;

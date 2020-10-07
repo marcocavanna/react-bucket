@@ -5,7 +5,7 @@ import { PortalProps } from '@appbuckets/react-ui-core';
 import { Placement, Rect } from '@popperjs/core';
 import { Modifier, StrictModifierNames } from 'react-popper';
 
-import { ReactBucketComponentProps, ShorthandItem } from '../../generic';
+import { ReactBucketComponentProps, ShorthandContent, ShorthandItem } from '../../generic';
 
 import { HeaderProps } from '../../elements/Header';
 
@@ -83,5 +83,5 @@ export interface StrictPopupProps {
   updateDependencies?: any[];
 
   /** The trigger element */
-  trigger?: React.ReactNode;
+  trigger?: ShorthandContent;
 }

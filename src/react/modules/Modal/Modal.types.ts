@@ -5,7 +5,8 @@ import {
   ShorthandCollection,
   ReactBucketIcon,
   ElementSize,
-  ShorthandItem
+  ShorthandItem,
+  ShorthandContent
 } from '../../generic';
 
 import { ButtonProps } from '../../elements/Button';
@@ -28,7 +29,7 @@ export interface StrictModalProps extends Omit<StrictBackdropProps, 'page' | 'vi
   basic?: boolean;
 
   /** Children could be component, that receive close modal function */
-  children?: React.ReactNode | React.ComponentType<{ closeModal: () => void }>;
+  children?: ShorthandContent | React.ComponentType<{ closeModal: () => void }>;
 
   /** Set close icon */
   closeIcon?: ReactBucketIcon<IconProps>;

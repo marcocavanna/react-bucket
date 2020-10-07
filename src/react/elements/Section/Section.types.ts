@@ -1,8 +1,7 @@
-import * as React from 'react';
-
 import {
   ReactBucketComponentProps,
-  ReactBucketIcon
+  ReactBucketIcon,
+  ShorthandContent
 } from '../../generic';
 
 import { IconProps } from '../Icon';
@@ -24,7 +23,7 @@ export interface StrictSectionProps {
   icon?: ReactBucketIcon<IconProps>;
 
   /** Set the Section Label */
-  label?: React.ReactNode;
+  label?: ShorthandContent;
 
   /** Reverse the Order of Label and Content */
   reverse?: boolean;

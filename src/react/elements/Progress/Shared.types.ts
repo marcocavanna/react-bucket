@@ -1,5 +1,4 @@
-import { ElementSize, ReactBucketColor } from '../../generic';
-import * as React from 'react';
+import { ElementSize, ReactBucketColor, ShorthandContent } from '../../generic';
 
 
 export type ProgressColorSteps = {
@@ -9,7 +8,7 @@ export type ProgressColorSteps = {
   high?: number;
 };
 
-export type ProgressIndicator = boolean | 'percent' | ((value: number) => React.ReactNode);
+export type ProgressIndicator = boolean | 'percent' | ((value: number) => ShorthandContent);
 
 
 export interface StrictSharedProgressProps {

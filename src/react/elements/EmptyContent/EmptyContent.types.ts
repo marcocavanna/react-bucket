@@ -1,8 +1,7 @@
-import * as React from 'react';
-
 import {
   ReactBucketComponentProps,
   ReactBucketIcon,
+  ShorthandContent,
   ShorthandItem
 } from '../../generic';
 
@@ -19,7 +18,7 @@ export interface StrictEmptyContentProps {
   button?: ShorthandItem<ButtonProps>;
 
   /** Set the Empty Content Header */
-  header?: React.ReactNode;
+  header?: ShorthandContent;
 
   /** Set the Empty Content Icon */
   icon?: ReactBucketIcon<IconProps>;

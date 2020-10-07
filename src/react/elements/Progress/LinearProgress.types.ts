@@ -1,6 +1,4 @@
-import * as React from 'react';
-
-import { MinimalReactBucketComponentProps } from '../../generic';
+import { MinimalReactBucketComponentProps, ShorthandContent } from '../../generic';
 
 import { ProgressIndicator, StrictSharedProgressProps } from './Shared.types';
 
@@ -14,7 +12,7 @@ export interface StrictLinearProgressProps extends StrictSharedProgressProps {
   indicator?: ProgressIndicator;
 
   /** Show Progress Limits */
-  limits?: boolean | ((value: number) => React.ReactNode);
+  limits?: boolean | ((value: number) => ShorthandContent);
 
   /** Reverse Linear Logic, value will start from right */
   reverse?: boolean;
