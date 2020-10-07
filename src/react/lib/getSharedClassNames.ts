@@ -23,7 +23,7 @@ export type SharedClassNamesAndProps<P> = {
   /** Computed Class Names */
   className: string;
   /** Other Component Props */
-  rest: Omit<P, keyof SharedProps>
+  rest: Pick<P, Exclude<keyof P, keyof SharedProps>>
 };
 
 
@@ -63,7 +63,7 @@ function computeResponsiveClassName(
   }
 }
 
-export default function getSharedClassNames<P>(props: P): SharedClassNamesAndProps<P> {
+export default function getSharedClassNames<P extends SharedProps>(props: P): SharedClassNamesAndProps<P> {
 
   const {
     as,
@@ -80,7 +80,7 @@ export default function getSharedClassNames<P>(props: P): SharedClassNamesAndPro
     verticalAlign,
     withoutGap,
     ...rest
-  } = props as P & SharedProps;
+  } = props;
 
   // Build Classes
   const classes = clsx(
