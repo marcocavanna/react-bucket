@@ -76,13 +76,33 @@
 /******
     Modal Header Component
 ******/
-.modal > .modal-header > .header {
-  > .header-icon {
-    font-size: $modal-header-icon-size;
+.modal > .modal-header {
+  display: flex;
+
+  > .header {
+    margin: 0;
+    flex-grow: 1;
+
+    > .header-icon {
+      font-size: $modal-header-icon-size;
+    }
+
+    > .header-content {
+      font-size: $modal-header-font-size;
+    }
   }
 
-  > .header-content {
-    font-size: $modal-header-font-size;
+  > .modal-meta {
+    font-weight: $semi-bold;
+    color: $text-lightest;
+  }
+}
+
+.modal.has-text-center > .modal-header {
+  flex-direction: column-reverse;
+
+  > .modal-meta {
+    margin-bottom: 1em;
   }
 }
 

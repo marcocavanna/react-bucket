@@ -22,7 +22,8 @@ export const baseModal = () => {
       }}
       header={{
         content  : 'Product Designer',
-        subheader: 'Cracow, Poland'
+        subheader: 'Cracow, Poland',
+        meta     : '3 days ago'
       }}
       content={'Lorem ipsum dolor sit amen Lorem ipsum dolor sit amen Lorem ipsum dolor sit amen Lorem ipsum dolor sit amen Lorem ipsum dolor sit amen Lorem ipsum dolor sit amen Lorem ipsum dolor sit amen'}
       actions={[
@@ -37,6 +38,7 @@ export const baseModal = () => {
         }
       ]}
       textAlign={'center'}
+      size={'small'}
     />
   );
 };

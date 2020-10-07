@@ -24,6 +24,7 @@ export default function ModalHeader(props: ModalHeaderProps): React.ReactElement
       children,
       content,
       icon,
+      meta,
       subheader,
       ...rest
     }
@@ -61,9 +62,19 @@ export default function ModalHeader(props: ModalHeaderProps): React.ReactElement
     ]
   );
 
+  const metaElement = React.useMemo(
+    () => meta && (
+      <div className={'modal-meta'}>
+        {meta}
+      </div>
+    ),
+    [ meta ]
+  );
+
   return (
     <ElementType {...rest} className={classes}>
       {headerElement}
+      {metaElement}
     </ElementType>
   );
 }
