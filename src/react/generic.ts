@@ -85,7 +85,7 @@ import {
   MouseEvent
 } from 'react';
 
-import { ShorthandOptions, ExtendProps } from '@appbuckets/react-ui-core';
+import { CreateShorthandOptions, ShorthandProps } from '@appbuckets/react-ui-core';
 import { FontAwesomeIcon } from './fontawesome';
 
 /** Re export ReactBucket Icon */
@@ -151,7 +151,7 @@ export type ReactBucketForwardedRefComponent<P = {}, T = HTMLDivElement> =
   & {
   create?: (
     value: ReactElement | ComponentType | ReactNode | P | string,
-    options: ShorthandOptions<P & ExtendProps<P>>
+    options: CreateShorthandOptions<P & ShorthandProps<P>>
   ) => ReactElement | null
 };
 
