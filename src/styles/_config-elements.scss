@@ -37,15 +37,15 @@ $popup-z-index: 1900 !default;
 /******
     Button Configuration
 ******/
-$button-height: 2.75em !default;
-$button-min-width: 10em !default;
+$button-height: 2.5em !default;
+$button-min-width: 8em !default;
 $button-font-size: 1rem !default;
 $button-font-weight: $semi-bold !default;
-$button-text-transform: uppercase !default;
+$button-text-transform: none !default;
 $button-line-height: $default-line-height !default;
 $button-spacer: $spacer * .5 !default;
 $button-border-radius: $border-radius !default;
-$button-horizontal-padding: 1.25em !default;
+$button-horizontal-padding: 1em !default;
 $button-background-color: $grey-lightest !default;
 $button-inverted-border-width: pixel-to-em(2px) !default;
 $button-icon-opacity: .8 !default;
