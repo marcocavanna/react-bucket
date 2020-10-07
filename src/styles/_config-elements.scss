@@ -223,6 +223,32 @@ $message-dismiss-font-size: 1.25em !default;
 
 
 /******
+    Modal
+******/
+$modal-background-color: $white !default;
+$modal-color: $text !default;
+$modal-border-radius: $border-radius-big * 2 !default;
+$modal-top-offset: 75px !default;
+$modal-vertical-padding: 2em !default;
+$modal-horizontal-padding: 2em !default;
+$modal-elevation: 2 !default;
+
+$modal-icon-size: 3em !default;
+
+$modal-close-button-size: 2em !default;
+
+$modal-header-font-size: 1.5em !default;
+$modal-header-icon-size: 2.5em !default;
+
+$modal-actions-divider-border-color: $grey-lightest !default;
+
+$modal-size-small: 380px !default;
+$modal-size-default: 560px !default;
+$modal-size-large: 720px !default;
+$modal-size-big: 920px !default;
+
+
+/******
     Panels
 ******/
 $panel-background-color: $white !default;

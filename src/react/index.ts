@@ -46,6 +46,8 @@ export * from './elements/Toast';
  * -------- */
 export * from './modules/Backdrop';
 
+export * from './modules/Modal';
+
 export * from './modules/Popup';
 
 
