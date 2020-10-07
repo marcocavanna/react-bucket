@@ -102,18 +102,18 @@
 
   @each $label, $color in $react-bucket-color-map {
     &.colored.is-#{$label}:after {
-      background-color: color-tint($color, 4);
+      background-color: color-tint($color, 4) !important;
     }
 
     &.inverted.is-#{$label} {
-      color: choose-contrast-color($color, $white-shade, $text);
+      color: choose-contrast-color($color, $white-shade, $text) !important;
 
       &:after {
-        background-color: $color;
+        background-color: $color !important;
       }
 
       &.bordered:after {
-        border-color: color-tint($color, 2);
+        border-color: color-tint($color, 2) !important;
       }
     }
   }
