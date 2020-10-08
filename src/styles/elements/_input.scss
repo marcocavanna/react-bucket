@@ -151,7 +151,7 @@ input.text {
     }
 
     &.action-on-left {
-      input {
+      .content > input {
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
       }
@@ -165,7 +165,7 @@ input.text {
     }
 
     &.action-on-right {
-      input {
+      .content > input {
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
       }
