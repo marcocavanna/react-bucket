@@ -5,7 +5,7 @@ import { useElementType, useSharedClassName, useSplitStateClassName } from '../.
 
 import { useTabIndex } from '../../hooks/useTabIndex';
 
-import Field from '../Field/Field';
+import { Field } from '../Field';
 
 import { InputProps } from './Input.types';
 
@@ -54,7 +54,7 @@ export default function Input(props: InputProps): React.ReactElement<InputProps>
   /* --------
    * Internal Component Ref
    * -------- */
-  const fieldRef = React.useRef<HTMLDivElement>(null!);
+  const fieldRef = React.useRef<HTMLDivElement>(null);
   const inputRef = React.useRef<HTMLInputElement>(null);
 
   /* --------
@@ -77,7 +77,9 @@ export default function Input(props: InputProps): React.ReactElement<InputProps>
     }
 
     /** Remove focus from field */
-    fieldRef.current.classList.remove('focused');
+    if (fieldRef.current) {
+      fieldRef.current.classList.remove('focused');
+    }
 
     /** Remove Input Class */
     if (inputRef.current) {
@@ -95,7 +97,9 @@ export default function Input(props: InputProps): React.ReactElement<InputProps>
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     /** Set field as Dirty */
-    fieldRef.current.classList.add('dirty');
+    if (fieldRef.current) {
+      fieldRef.current.classList.add('dirty');
+    }
 
     /** Set dirty class on input too */
     if (inputRef.current) {
@@ -138,8 +142,10 @@ export default function Input(props: InputProps): React.ReactElement<InputProps>
     }
 
     /** Set field as Focused */
-    fieldRef.current.classList.add('focused');
-    fieldRef.current.classList.add('touched');
+    if (fieldRef.current) {
+      fieldRef.current.classList.add('touched');
+      fieldRef.current.classList.add('focused');
+    }
 
     /** Set the Input Class */
     if (inputRef.current) {
