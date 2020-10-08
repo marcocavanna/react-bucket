@@ -328,6 +328,16 @@ $section-divided-border-color: $grey-lightest !default;
 
 
 /******
+    Select
+******/
+$select-multi-value-spacer: .5em !default;
+$select-multi-value-color: $white !default;
+$select-multi-value-background: $primary !default;
+$select-multi-value-border-radius: $border-radius !default;
+$select-multi-value-label-padding: .75em !default;
+
+
+/******
     Table Layout
 ******/
 $table-columns-gutter: $columns-gutter * 1.5 !default;

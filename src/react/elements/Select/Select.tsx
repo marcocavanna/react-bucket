@@ -16,26 +16,43 @@ import {
 
 import { useTabIndex } from '../../hooks/useTabIndex';
 
+import { Field } from '../Field';
+
 import { SelectProps } from './Select.types';
 
 
-export default function Select<OptionType extends OptionTypeBase = { label: string, value: string }>(
-  props: SelectProps<OptionType>
-): React.ReactElement<SelectProps<OptionType>> {
+export default function Select<IsMulti extends boolean = false, OptionType extends OptionTypeBase = { label: string, value: string }>(
+  props: SelectProps<IsMulti, OptionType>
+): React.ReactElement<SelectProps<IsMulti, OptionType>> {
 
   const {
     className,
     rest: {
+      /** Strict Select Props */
       content,
       creatable,
-      disabled,
       loading,
-      readOnly,
       tabIndex: userDefinedTabIndex,
 
-      /** Event Handler */
-      onBlur,
-      onChange,
+      /** Select Event Handler */
+      onBlur: userDefinedOnBlur,
+      onChange: userDefinedOnChange,
+      onFocus: userDefinedOnFocus,
+
+      /** Shared Input/Field Props */
+      disabled,
+      required,
+      readOnly,
+
+      /** Strict Field Props */
+      actions,
+      actionsPosition,
+      contentClassName,
+      hint,
+      hintClassName,
+      icon,
+      iconPosition,
+      label,
 
       /** Strip creatable Select Props */
       allowCreateWhileLoading,
@@ -53,6 +70,7 @@ export default function Select<OptionType extends OptionTypeBase = { label: stri
   // ----
   // Define Internal State and Variables
   // ----
+  const fieldRef = React.useRef<HTMLDivElement>(null);
   const selectRef = React.useRef<ReactSelect | CreatableSelect<OptionType> | null>(null);
 
   /** Get Element Type */
@@ -77,7 +95,8 @@ export default function Select<OptionType extends OptionTypeBase = { label: stri
 
   /** Build the element class list */
   const classes = clsx(
-    'select',
+    { required, disabled },
+    'react-select',
     stateClasses,
     className
   );
@@ -86,39 +105,110 @@ export default function Select<OptionType extends OptionTypeBase = { label: stri
   // ----
   // Define Handlers
   // ----
-  const handleChange = React.useCallback(
-    (value: ValueType<OptionType>, action: ActionMeta<OptionType>) => {
-      if (onChange) {
-        onChange(null, { ...props, value, action });
-      }
-    },
-    [ onChange ]
-  );
+  const handleSelectBlur = (e: React.FocusEvent<HTMLElement>) => {
+    /** Abort if Disabled or Readonly */
+    if (disabled || readOnly) {
+      return;
+    }
 
-  const handleBlur = React.useCallback(
-    (e: React.FocusEvent<HTMLElement>) => {
-      if (onBlur) {
-        onBlur(e, props);
-      }
-    },
-    [ onBlur ]
-  );
+    /** Remove focus from field */
+    if (fieldRef.current) {
+      fieldRef.current.classList.remove('focused');
+    }
+
+    /** Get Selected Value */
+    const value = (selectRef.current?.state as any).value;
+
+    if (userDefinedOnBlur) {
+      userDefinedOnBlur(e, {
+        ...props,
+        value,
+        action: null
+      });
+    }
+  };
+
+  const handleSelectChange = (value: ValueType<OptionType>, action: ActionMeta<OptionType>) => {
+    /** Set field as Dirty */
+    if (fieldRef.current) {
+      fieldRef.current.classList.add('dirty');
+    }
+
+    /** Call user defined handler */
+    if (userDefinedOnChange) {
+      userDefinedOnChange(null, {
+        ...props,
+        value,
+        action
+      });
+    }
+  };
+
+  const handleSelectFocus = (e: React.FocusEvent<HTMLElement>) => {
+    /** Abort if Disabled or Readonly */
+    if (disabled || readOnly) {
+      return;
+    }
+
+    /** Set field as Focused */
+    if (fieldRef.current) {
+      fieldRef.current.classList.add('touched');
+      fieldRef.current.classList.add('focused');
+    }
+
+    /** Get Selected Value */
+    const value = (selectRef.current?.state as any).value;
+
+    /** Call user defined handled */
+    if (userDefinedOnFocus) {
+      userDefinedOnFocus(e, {
+        ...props,
+        value,
+        action: null
+      });
+    }
+  };
+
 
   // ----
   // Render the Component
   // ----
   return (
-    <ElementType
-      {...rest}
-      ref={selectRef as any}
-      className={classes}
-      classNamePrefix={'bucket'}
-      isDisabled={disabled}
-      isLoading={loading}
-      tabIndex={tabIndex}
-      onBlur={handleBlur}
-      onChange={handleChange}
-    />
+    <Field
+      ref={fieldRef}
+      disabled={disabled}
+      required={required}
+      actions={actions}
+      actionsPosition={actionsPosition}
+      contentClassName={contentClassName}
+      hint={hint}
+      hintClassName={hintClassName}
+      icon={icon}
+      iconPosition={iconPosition}
+      label={label}
+      readOnly={readOnly}
+      appearance={rawRest.appearance}
+      danger={rawRest.danger}
+      info={rawRest.info}
+      primary={rawRest.primary}
+      secondary={rawRest.secondary}
+      success={rawRest.success}
+      warning={rawRest.warning}
+      contentType={'select input'}
+    >
+      <ElementType
+        {...rest}
+        ref={selectRef as any}
+        className={classes}
+        classNamePrefix={' '}
+        isDisabled={disabled}
+        isLoading={loading}
+        tabIndex={tabIndex}
+        onBlur={handleSelectBlur}
+        onChange={handleSelectChange}
+        onFocus={handleSelectFocus}
+      />
+    </Field>
   );
 }
 
@@ -129,4 +219,4 @@ Select.defaultProps = {
   isClearable  : true,
   menuPlacement: 'auto',
   options      : []
-} as Partial<SelectProps>;
+} as Partial<SelectProps<any, any>>;

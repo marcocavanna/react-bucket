@@ -3,7 +3,6 @@ import * as React from 'react';
 import {
   OptionTypeBase,
   Props as ReactSelectProps,
-  ValueType,
   ActionMeta
 } from 'react-select';
 
@@ -14,35 +13,52 @@ import {
   ReactBucketComponentProps,
   SharedComponentStateProps
 } from '../../generic';
+import { StrictFieldProps } from '../Field';
 
 
-export interface SelectProps<OptionType extends OptionTypeBase = { label: string, value: string }>
-  extends ReactBucketComponentProps<StrictSelectProps<OptionType>>,
+export interface SelectProps<IsMulti extends boolean, OptionType extends OptionTypeBase = { label: string, value: string }>
+  extends ReactBucketComponentProps<StrictSelectProps<IsMulti, OptionType>>,
     SharedComponentStateProps {
 }
 
-type ExcludeSelf<P> = Omit<P, keyof StrictSelectProps>;
+type ExcludeSelf<P> = Omit<P, keyof StrictSelectProps<any>>;
 
-export interface StrictSelectProps<OptionType extends OptionTypeBase = { label: string, value: string }>
-  extends ExcludeSelf<ReactSelectProps<OptionType>>,
-    ExcludeSelf<CreatableProps<OptionType>> {
+type ReactSelectPropsExtended<OptionType> =
+  ExcludeSelf<ReactSelectProps<OptionType>>
+  & ExcludeSelf<CreatableProps<OptionType>>;
+
+type SelectedOption<IsMulti, OptionType> = IsMulti extends true ? ReadonlyArray<OptionType> : OptionType;
+
+export type EventSelectProps<IsMulti extends boolean, OptionType extends OptionTypeBase = { label: string, value: string }> =
+  SelectProps<IsMulti, OptionType>
+  & { value: SelectedOption<IsMulti, OptionType> | null | undefined }
+  & { action: null | ActionMeta<OptionType> };
+
+export interface StrictSelectProps<IsMulti extends boolean, OptionType extends OptionTypeBase = { label: string, value: string }>
+  extends ReactSelectPropsExtended<OptionType>, Omit<StrictFieldProps, 'onChange'> {
   /** Render the Select as a Creatable Select */
   creatable?: boolean;
 
   /** Disable the Select */
   disabled?: boolean;
 
+  /** Set Select as Multiple Choice */
+  isMulti?: IsMulti;
+
   /** Set the Loading State */
   loading?: boolean;
 
   /** On Blur Event */
-  onBlur?: (e: React.FocusEvent<HTMLElement>, props: SelectProps) => void;
+  onBlur?: (e: React.FocusEvent<HTMLElement>, props: EventSelectProps<IsMulti, OptionType>) => void;
 
   /** On select change event */
   onChange?: (
     nothing: null,
-    props: SelectProps & { action: ActionMeta<OptionType>, value: ValueType<OptionType> }
+    props: EventSelectProps<IsMulti, OptionType>
   ) => void;
+
+  /** On Focus Handler */
+  onFocus?: (e: React.FocusEvent<HTMLElement>, props: EventSelectProps<IsMulti, OptionType>) => void;
 
   /** Select Options */
   options: OptionType[];
