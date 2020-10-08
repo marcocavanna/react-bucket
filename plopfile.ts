@@ -58,7 +58,7 @@ export default function buildGenerators(plop: NodePlopAPI) {
       },
       {
         type        : 'add',
-        path        : 'src/react/{{ type }}/{{ pascalCase pascalCase componentName }}/index.ts',
+        path        : 'src/react/{{ type }}/{{ pascalCase componentName }}/index.ts',
         templateFile: 'templates/component.index.hbs'
       }
     ]
