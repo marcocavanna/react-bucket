@@ -21,6 +21,7 @@ export default function Input(props: InputProps): React.ReactElement<InputProps>
       type,
       tabIndex: userDefinedTabIndex,
       selectAllOnClick,
+      value,
 
       /** Overridden Input Handlers */
       onClick: userDefinedOnClick,
@@ -174,7 +175,7 @@ export default function Input(props: InputProps): React.ReactElement<InputProps>
   /* --------
    * Input Render
    * -------- */
-  const inputElement = (() => {
+  const renderInputElement = () => {
     if (currency) {
       return null;
     }
@@ -187,6 +188,7 @@ export default function Input(props: InputProps): React.ReactElement<InputProps>
       <input
         {...rest}
         ref={inputRef}
+        value={value}
         disabled={disabled}
         required={required}
         tabIndex={tabIndex}
@@ -200,7 +202,7 @@ export default function Input(props: InputProps): React.ReactElement<InputProps>
         onFocus={handleInputFocus}
       />
     );
-  })();
+  };
 
 
   /* --------
@@ -230,7 +232,7 @@ export default function Input(props: InputProps): React.ReactElement<InputProps>
       warning={rawRest.warning}
       contentType={'input'}
     >
-      {inputElement}
+      {renderInputElement()}
     </Field>
   );
 }
