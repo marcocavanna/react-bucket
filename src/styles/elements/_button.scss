@@ -67,7 +67,7 @@
   // ----
   &:not(.flat) {
     @include color-property-variation(
-      $base-color: $grey-lightest,
+      $base-color: $button-base-background-color,
       $properties-list: background-color,
       $use-brands: $generate-button-brands-variation,
       $use-ui: $generate-button-ui-variation,
@@ -145,7 +145,12 @@
 
     @include hover {
       @include icon-style($restrict-to-direct-child: true) {
-        opacity: 1;
+        transition: opacity $transition-ease $transition-speed-fast;
+        will-change: opacity;
+
+        &:not([disabled]):not(:disabled):not(.is-disabled):hover {
+          opacity: 1;
+        }
       }
     }
   }
