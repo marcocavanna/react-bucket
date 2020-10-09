@@ -5,9 +5,14 @@ import { ChangeHandler } from '../generic';
 import { InputProps } from '../elements/Input';
 
 
-export function useInputValue<T = string>(): [ T, ChangeHandler<HTMLInputElement, InputProps>, string ] {
+type InputValue<T> = { raw: string, casted: T | null };
 
-  const [ inputValue, setInputValue ] = useState<{ raw: string, casted: T | null }>({ raw: '', casted: null });
+export function useInputValue<T = string>(initialValue?: T): [ T, ChangeHandler<HTMLInputElement, InputProps>, string ] {
+
+  const [ inputValue, setInputValue ] = useState<InputValue<T>>({
+    raw   : initialValue ? String(initialValue) : '',
+    casted: initialValue ?? null
+  });
 
   const handleInputChange: ChangeHandler<HTMLInputElement, InputProps> = (e, props) => {
     const { value, type } = props;
