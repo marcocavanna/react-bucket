@@ -21,9 +21,10 @@ import { Field } from '../Field';
 import { SelectProps } from './Select.types';
 
 
-export default function Select<IsMulti extends boolean = false, OptionType extends OptionTypeBase = { label: string, value: string }>(
-  props: SelectProps<IsMulti, OptionType>
-): React.ReactElement<SelectProps<IsMulti, OptionType>> {
+export default function Select<OptionType extends OptionTypeBase,
+  IsMulti extends boolean>(
+  props: SelectProps<OptionType>
+): React.ReactElement<SelectProps<OptionType>> {
 
   const {
     className,
@@ -219,4 +220,4 @@ Select.defaultProps = {
   isClearable  : true,
   menuPlacement: 'auto',
   options      : []
-} as Partial<SelectProps<any, any>>;
+} as Partial<SelectProps<any>>;
