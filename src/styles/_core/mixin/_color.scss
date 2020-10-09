@@ -123,13 +123,16 @@
     // Set disabled style
     @if $is-child != true {
       // Change Cursor
-      cursor: pointer;
+      #{$interactive-selector} {
+        cursor: pointer;
 
-      #{$interactive-selector}[disabled],
-      #{$interactive-selector}:disabled,
-      #{$interactive-selector}.is-disabled {
-        cursor: not-allowed !important;
-        opacity: .5 !important;
+        // Set disabled state
+        &[disabled],
+        &:disabled,
+        &.is-disabled {
+          cursor: not-allowed !important;
+          opacity: .5 !important;
+        }
       }
     }
 
