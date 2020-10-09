@@ -39,6 +39,8 @@ export default function Select<OptionType extends OptionTypeBase,
       onBlur: userDefinedOnBlur,
       onChange: userDefinedOnChange,
       onFocus: userDefinedOnFocus,
+      onMenuClose: userDefinedOnMenuClose,
+      onMenuOpen: userDefinedOnMenuOpen,
 
       /** Shared Input/Field Props */
       disabled,
@@ -145,6 +147,32 @@ export default function Select<OptionType extends OptionTypeBase,
     }
   };
 
+  const handleMenuOpen = () => {
+    if (userDefinedOnMenuOpen) {
+      /** Get the Selected Value */
+      const value = (selectRef.current?.state as any).value;
+
+      userDefinedOnMenuOpen(null, {
+        ...props,
+        value,
+        action: null
+      });
+    }
+  };
+
+  const handleMenuClose = () => {
+    if (userDefinedOnMenuClose) {
+      /** Get the Selected Value */
+      const value = (selectRef.current?.state as any).value;
+
+      userDefinedOnMenuClose(null, {
+        ...props,
+        value,
+        action: null
+      });
+    }
+  };
+
   const handleSelectFocus = (e: React.FocusEvent<HTMLElement>) => {
     /** Abort if Disabled or Readonly */
     if (disabled || readOnly) {
@@ -208,6 +236,8 @@ export default function Select<OptionType extends OptionTypeBase,
         onBlur={handleSelectBlur}
         onChange={handleSelectChange}
         onFocus={handleSelectFocus}
+        onMenuClose={handleMenuClose}
+        onMenuOpen={handleMenuOpen}
       />
     </Field>
   );
