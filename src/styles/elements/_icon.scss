@@ -15,26 +15,24 @@
     Build Main Icon Style
 ******/
 .icon {
-  @include icon-style($attach-to-selector: true) {
-    display: inline-block;
-    opacity: $icon-opacity;
-    margin: 0 $icon-spacer 0 0;
-    width: $icon-width;
-    text-decoration: inherit;
-    text-align: center;
-    vertical-align: baseline;
-    speak: none;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    backface-visibility: hidden;
-    line-height: inherit;
-    font-size: inherit;
-    color: inherit;
-    position: relative;
+  display: inline-block;
+  opacity: $icon-opacity;
+  margin: 0 $icon-spacer 0 0;
+  width: $icon-width;
+  text-decoration: inherit;
+  text-align: center;
+  vertical-align: baseline;
+  speak: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  backface-visibility: hidden;
+  line-height: inherit;
+  font-size: inherit;
+  color: inherit;
+  position: relative;
 
-    &:after {
-      border-color: inherit;
-    }
+  &:after {
+    border-color: inherit;
   }
 
   // ----
