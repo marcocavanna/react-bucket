@@ -35,32 +35,6 @@ $popup-z-index: 1900 !default;
 
 
 /******
-    Button Configuration
-******/
-$button-height: 2.5em !default;
-$button-min-width: 8em !default;
-$button-font-size: 1rem !default;
-$button-font-weight: $semi-bold !default;
-$button-text-transform: none !default;
-$button-line-height: $default-line-height !default;
-$button-spacer: $spacer * .5 !default;
-$button-border-radius: $border-radius !default;
-$button-horizontal-padding: 1em !default;
-$button-background-color: $grey-lightest !default;
-$button-inverted-border-width: pixel-to-em(2px) !default;
-$button-icon-opacity: .8 !default;
-$button-fab-spacer: .5em !default;
-
-/// Set if button hover will drop shadow
-$button-hover-will-drop-shadow: true !default;
-
-/// Generate Button Variation using Colors
-$generate-button-brands-variation: true !default;
-$generate-button-ui-variation: true !default;
-$generate-button-social-variation: true !default;
-
-
-/******
     Backdrop Configuration
 ******/
 $backdrop-content-color: $white-shade !default;
@@ -74,6 +48,32 @@ $backdrop-transition-timing-function: $transition-ease !default;
 $backdrop-content-animated-transition-offset: -10% !default;
 $backdrop-content-animated-transition-duration: $backdrop-transition-duration !default;
 $backdrop-content-animated-transition-timing-function: $backdrop-transition-timing-function !default;
+
+
+/******
+    Button Configuration
+******/
+$button-base-background-color: $grey-lightest !default;
+$button-height: 2.5em !default;
+$button-min-width: 8em !default;
+$button-font-size: 1rem !default;
+$button-font-weight: $semi-bold !default;
+$button-text-transform: none !default;
+$button-line-height: $default-line-height !default;
+$button-spacer: $spacer * .5 !default;
+$button-border-radius: $border-radius !default;
+$button-horizontal-padding: 1em !default;
+$button-inverted-border-width: pixel-to-em(2px) !default;
+$button-icon-opacity: .8 !default;
+$button-fab-spacer: .5em !default;
+
+/// Set if button hover will drop shadow
+$button-hover-will-drop-shadow: true !default;
+
+/// Generate Button Variation using Colors
+$generate-button-brands-variation: true !default;
+$generate-button-ui-variation: true !default;
+$generate-button-social-variation: true !default;
 
 
 /******
@@ -161,6 +161,18 @@ $input-focus-border-color: $form-control-focus-border-color !default;
 
 $computed-input-line-height: strip-unit(pixel-to-em($input-line-height));
 $computed-input-height: pixel-to-em($input-line-height + ($input-vertical-padding * 2));
+
+
+/******
+    Labels
+******/
+$label-base-background-color: $button-base-background-color !default;
+$label-font-size: .9em !default;
+$label-font-weight: $button-font-weight !default;
+$label-border-radius: $border-radius-rounded !default;
+$label-padding-vertical: .35em !default;
+$label-padding-horizontal: .75em !default;
+$labels-spacer: .25em !default;
 
 
 /******
