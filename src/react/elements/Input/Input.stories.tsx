@@ -9,7 +9,7 @@ export default { title: 'Elements/Input', component: Input };
 
 export const defaultInput = () => {
 
-  const [ value, handleInputChange ] = useInputValue();
+  const [ value, handleInputChange ] = useInputValue('');
 
   return (
     <Input
