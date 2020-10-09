@@ -37,3 +37,27 @@ export const defaultInput = () => {
   );
 };
 
+
+export const defaultTextarea = () => {
+  return (
+    <Input
+      textarea
+      placeholder={'Scrivi un commento...'}
+      actions={[
+        {
+          key    : 1,
+          icon   : 'check',
+          tooltip: 'Conferma'
+        },
+        {
+          key    : 2,
+          icon   : 'times',
+          tooltip: 'Conferma'
+        }
+      ]}
+      icon={{
+        name: 'user'
+      }}
+    />
+  );
+};

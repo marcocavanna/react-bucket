@@ -1,3 +1,5 @@
+import { TextareaAutosizeProps } from 'react-textarea-autosize';
+
 import { ChangeHandler, ClickHandler, FocusHandler, ReactBucketComponentProps } from '../../generic';
 
 import { StrictFieldProps } from '../Field';
@@ -27,4 +29,7 @@ export interface StrictInputProps extends Omit<StrictFieldProps, 'onChange'> {
 
   /** Render the input as a Text Area */
   textarea?: boolean;
+
+  /** Set text area component props */
+  textareaProps?: Pick<TextareaAutosizeProps, 'useCacheForDOMMeasurements' | 'rows' | 'minRows' | 'maxRows'>;
 }

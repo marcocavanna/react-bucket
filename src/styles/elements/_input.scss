@@ -32,7 +32,8 @@ textarea {
 /******
     Set the Base Input Style
 ******/
-input.text {
+input.text,
+textarea.text {
   flex: 1 1 auto;
   width: inherit;
   max-width: 100%;
@@ -120,7 +121,8 @@ input.text {
         padding-left: $input-horizontal-padding * 1.125;
       }
 
-      > input {
+      > input,
+      > textarea {
         padding-left: $input-horizontal-padding * 1.25 + $icon-width;
       }
     }
@@ -131,7 +133,8 @@ input.text {
         right: 0;
       }
 
-      > input {
+      > input,
+      > textarea {
         padding-right: $input-horizontal-padding * 1.25 + $icon-width;
       }
     }
@@ -144,15 +147,23 @@ input.text {
 ******/
 .input.field {
   > .wrapper {
-    > .addon > .buttons {
-      > .button {
-        height: $computed-input-height;
+    > .addon {
+      align-self: flex-end;
+
+      > .buttons {
+        > .button {
+          height: $computed-input-height;
+        }
       }
     }
 
     &.action-on-left {
       .content > input {
         border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+
+      .content > text {
         border-bottom-left-radius: 0;
       }
 
@@ -167,6 +178,10 @@ input.text {
     &.action-on-right {
       .content > input {
         border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+
+      .content > textarea {
         border-bottom-right-radius: 0;
       }
 

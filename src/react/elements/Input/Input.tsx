@@ -1,6 +1,8 @@
 import * as React from 'react';
 import clsx from 'clsx';
 
+import TextareaAutosize from 'react-textarea-autosize';
+
 import { useElementType, useSharedClassName, useSplitStateClassName } from '../../lib';
 
 import { useTabIndex } from '../../hooks/useTabIndex';
@@ -22,6 +24,7 @@ export default function Input(props: InputProps): React.ReactElement<InputProps>
       tabIndex: userDefinedTabIndex,
       selectAllOnClick,
       value,
+      textareaProps,
 
       /** Overridden Input Handlers */
       onClick: userDefinedOnClick,
@@ -56,7 +59,7 @@ export default function Input(props: InputProps): React.ReactElement<InputProps>
    * Internal Component Ref
    * -------- */
   const fieldRef = React.useRef<HTMLDivElement>(null);
-  const inputRef = React.useRef<HTMLInputElement>(null);
+  const inputRef = React.useRef<HTMLInputElement | HTMLTextAreaElement>(null);
 
   /* --------
    * Component Classes
@@ -176,30 +179,41 @@ export default function Input(props: InputProps): React.ReactElement<InputProps>
    * Input Render
    * -------- */
   const renderInputElement = () => {
+    const baseProps: any = {
+      value,
+      disabled,
+      required,
+      tabIndex,
+      readOnly,
+      className   : classes,
+      autoComplete: 'off',
+      type        : type || 'text',
+      onBlur      : handleInputBlur,
+      onChange    : handleInputChange,
+      onClick     : handleInputClick,
+      onFocus     : handleInputFocus
+    };
+
     if (currency) {
       return null;
     }
 
     if (textarea) {
-      return null;
+      return (
+        <TextareaAutosize
+          {...rest}
+          inputRef={inputRef as React.RefObject<HTMLTextAreaElement>}
+          {...textareaProps}
+          {...baseProps}
+        />
+      );
     }
 
     return (
       <input
         {...rest}
-        ref={inputRef}
-        value={value}
-        disabled={disabled}
-        required={required}
-        tabIndex={tabIndex}
-        readOnly={readOnly}
-        className={classes}
-        autoComplete={'off'}
-        type={type || 'text'}
-        onBlur={handleInputBlur}
-        onChange={handleInputChange}
-        onClick={handleInputClick}
-        onFocus={handleInputFocus}
+        ref={inputRef as React.RefObject<HTMLInputElement>}
+        {...baseProps}
       />
     );
   };
@@ -236,3 +250,13 @@ export default function Input(props: InputProps): React.ReactElement<InputProps>
     </Field>
   );
 }
+
+Input.displayName = 'Input';
+
+Input.defaultProps = {
+  textareaProps: {
+    minRows: 2,
+    maxRows: 8
+  },
+  type         : 'text'
+} as Partial<InputProps>;
