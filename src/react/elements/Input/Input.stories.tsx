@@ -13,8 +13,8 @@ export const defaultInput = () => {
 
   return (
     <Input
+      clearable
       value={value}
-      type={'number'}
       onChange={handleInputChange}
       placeholder={'Il tuo Nome'}
       label={'Nome'}

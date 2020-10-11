@@ -5,7 +5,9 @@ import TextareaAutosize from 'react-textarea-autosize';
 
 import { useElementType, useSharedClassName, useSplitStateClassName } from '../../lib';
 
+import { useAutoControlledValue } from '../../hooks/useAutoControlledValue';
 import { useTabIndex } from '../../hooks/useTabIndex';
+import { Button } from '../Button';
 
 import { Field } from '../Field';
 
@@ -18,12 +20,14 @@ export default function Input(props: InputProps): React.ReactElement<InputProps>
     className,
     rest: {
       /** Strict Input Props */
+      clearable,
       currency,
       textarea,
       type,
-      tabIndex: userDefinedTabIndex,
+      tabIndex    : userDefinedTabIndex,
       selectAllOnClick,
-      value,
+      value       : userDefinedValue,
+      defaultValue: userDefinedDefaultValue,
       textareaProps,
 
       /** Overridden Input Handlers */
@@ -55,21 +59,67 @@ export default function Input(props: InputProps): React.ReactElement<InputProps>
   const [ stateClassName, rest ] = useSplitStateClassName(rawRest);
   const ElementType = useElementType(Input, props);
 
+
+  /* --------
+   * Auto Controlled Component Value
+   * -------- */
+  const [ value, trySetValue ] = useAutoControlledValue('', {
+    prop       : userDefinedValue,
+    defaultProp: userDefinedDefaultValue
+  });
+
+
   /* --------
    * Internal Component Ref
    * -------- */
   const fieldRef = React.useRef<HTMLDivElement>(null);
   const inputRef = React.useRef<HTMLInputElement | HTMLTextAreaElement>(null);
 
+
   /* --------
    * Component Classes
    * -------- */
   const classes = clsx(
-    { required, disabled },
+    { required, disabled, clearable },
     'text',
     stateClassName,
     className
   );
+
+
+  /* --------
+   * Class list Controller
+   * -------- */
+  const addClassesToRef = React.useCallback(
+    (...classesToAdd: string[]) => {
+      classesToAdd.forEach((cx) => {
+        if (fieldRef.current) {
+          fieldRef.current.classList.add(cx);
+        }
+
+        if (fieldRef.current) {
+          fieldRef.current.classList.add(cx);
+        }
+      });
+    },
+    [ fieldRef.current, inputRef.current ]
+  );
+
+  const removeClassesFromRef = React.useCallback(
+    (...classesToRemove: string[]) => {
+      classesToRemove.forEach((cx) => {
+        if (fieldRef.current) {
+          fieldRef.current.classList.remove(cx);
+        }
+
+        if (fieldRef.current) {
+          fieldRef.current.classList.remove(cx);
+        }
+      });
+    },
+    [ fieldRef.current, inputRef.current ]
+  );
+
 
   /* --------
    * Input Handlers
@@ -80,35 +130,19 @@ export default function Input(props: InputProps): React.ReactElement<InputProps>
       return;
     }
 
-    /** Remove focus from field */
-    if (fieldRef.current) {
-      fieldRef.current.classList.remove('focused');
-    }
-
-    /** Remove Input Class */
-    if (inputRef.current) {
-      inputRef.current.classList.remove('focused');
-    }
+    /** Remove classes from reference */
+    removeClassesFromRef('focused');
 
     /** Call user defined handler */
     if (userDefinedOnBlur) {
-      userDefinedOnBlur(e, {
-        ...props,
-        value: e.target.value
-      });
+      userDefinedOnBlur(e, { ...props, value });
     }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    /** Set field as Dirty */
-    if (fieldRef.current) {
-      fieldRef.current.classList.add('dirty');
-    }
+    /** Add class to reference */
+    addClassesToRef('dirty');
 
-    /** Set dirty class on input too */
-    if (inputRef.current) {
-      inputRef.current.classList.add('dirty');
-    }
 
     /** Call user defined handler */
     if (userDefinedOnChange) {
@@ -117,6 +151,9 @@ export default function Input(props: InputProps): React.ReactElement<InputProps>
         value: e.target.value
       });
     }
+
+    /** Try to change local input state value */
+    trySetValue(e.target.value);
   };
 
   const handleInputClick = (e: React.MouseEvent<HTMLInputElement>) => {
@@ -125,6 +162,9 @@ export default function Input(props: InputProps): React.ReactElement<InputProps>
       return;
     }
 
+    /** Add classes to reference */
+    addClassesToRef('touched');
+
     if (inputRef.current && selectAllOnClick) {
       inputRef.current.setSelectionRange(0, inputRef.current.value.length);
     }
@@ -132,10 +172,7 @@ export default function Input(props: InputProps): React.ReactElement<InputProps>
     e.stopPropagation();
 
     if (userDefinedOnClick) {
-      userDefinedOnClick(e, {
-        ...props,
-        value: e.currentTarget.value
-      });
+      userDefinedOnClick(e, { ...props, value });
     }
   };
 
@@ -145,26 +182,27 @@ export default function Input(props: InputProps): React.ReactElement<InputProps>
       return;
     }
 
-    /** Set field as Focused */
-    if (fieldRef.current) {
-      fieldRef.current.classList.add('touched');
-      fieldRef.current.classList.add('focused');
-    }
-
-    /** Set the Input Class */
-    if (inputRef.current) {
-      inputRef.current.classList.add('focused');
-      inputRef.current.classList.add('touched');
-    }
+    /** Add classes to reference */
+    addClassesToRef('touched', 'focused');
 
     /** Call user defined handler */
     if (userDefinedOnFocus) {
-      userDefinedOnFocus(e, {
-        ...props,
-        value: e.target.value
-      });
+      userDefinedOnFocus(e, { ...props, value });
     }
   };
+
+  const handleInputClear = React.useCallback(
+    () => {
+      /** Manually set the input value, and after trigger the change event */
+      if (inputRef.current) {
+        inputRef.current.value = '';
+        const event = new Event('input', { bubbles: true });
+        (event as any).simulated = true;
+        inputRef.current.dispatchEvent(event);
+      }
+    },
+    [ inputRef.current ]
+  );
 
   /* --------
    * Input Computed Properties
@@ -174,6 +212,23 @@ export default function Input(props: InputProps): React.ReactElement<InputProps>
     readOnly,
     prop: userDefinedTabIndex
   });
+
+
+  /* --------
+   * Input Actions
+   * -------- */
+  const clearButton = React.useMemo(
+    () => clearable && !disabled && !readOnly && Button.create({
+      icon   : 'times',
+      flat   : true,
+      onClick: handleInputClear
+    }, {
+      autoGenerateKey: true,
+      defaultProps   : { className: 'clear' }
+    }),
+    [ handleInputClear, clearable, disabled, readOnly ]
+  );
+
 
   /* --------
    * Input Render
@@ -247,6 +302,7 @@ export default function Input(props: InputProps): React.ReactElement<InputProps>
       contentType={'input'}
     >
       {renderInputElement()}
+      {clearButton}
     </Field>
   );
 }
