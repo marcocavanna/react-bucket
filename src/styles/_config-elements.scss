@@ -190,6 +190,30 @@ $computed-input-height: pixel-to-em($input-line-height + ($input-vertical-paddin
 
 
 /******
+    Items
+******/
+$item-content-spacer: .75em !default;
+$item-min-height: $avatar-base-size !default;
+$item-content-color: $text !default;
+$item-header-font-weight: $semi-bold !default;
+$item-header-font-size: 1em !default;
+$item-text-opacity: .85 !default;
+$item-text-font-weight: $regular !default;
+$item-text-font-size: 1em !default;
+$item-meta-divider-color: $grey-lightest !default;
+$item-meta-opacity: .7 !default;
+$item-meta-font-weight: $regular !default;
+$item-meta-font-size: .85em !default;
+$item-tools-opacity: .5 !default;
+
+$item-clickable-border-radius: $border-radius-big !default;
+$item-clickable-hover-color: rgba(0, 0, 0, .05) !default;
+
+$items-group-spacer: 1.25em !default;
+$items-divider-color: $grey-lightest !default;
+
+
+/******
     Labels
 ******/
 $label-base-background-color: $button-base-background-color !default;

@@ -2,6 +2,7 @@ import * as React from 'react';
 import clsx from 'clsx';
 
 import {
+  createShorthandFactory,
   childrenUtils
 } from '@appbuckets/react-ui-core';
 
@@ -15,6 +16,10 @@ import { Avatar } from '../Avatar';
 
 import { ItemProps } from './Item.types';
 
+import ItemContent from './ItemContent';
+import ItemGroup from './ItemGroup';
+import ItemTools from './ItemTools';
+
 
 export default function Item(props: ItemProps): React.ReactElement<ItemProps> {
 
@@ -26,7 +31,10 @@ export default function Item(props: ItemProps): React.ReactElement<ItemProps> {
       children,
       content,
       disabled,
+      header,
+      meta,
       onClick,
+      tools,
       ...rawRest
     }
   } = useSharedClassName(props);
@@ -72,19 +80,30 @@ export default function Item(props: ItemProps): React.ReactElement<ItemProps> {
   // Define Component Memoized Element
   // ----
   const avatarElement = React.useMemo(
-    () => {
-      if (hasChildren || !avatar) {
-        return null;
-      }
-
-      return Avatar.create(avatar, {
-        autoGenerateKey: false,
-        defaultProps   : { disabled }
-      });
-    },
+    () => !hasChildren && Avatar.create(avatar, {
+      autoGenerateKey: false,
+      defaultProps   : { disabled }
+    }),
     [ avatar, hasChildren, disabled ]
   );
 
+  const contentElement = React.useMemo(
+    () => !hasChildren && (header || content || meta) && ItemContent.create({
+      header,
+      content,
+      meta
+    }, {
+      autoGenerateKey: false
+    }),
+    [ hasChildren, header, content, meta ]
+  );
+
+  const toolsElement = React.useMemo(
+    () => !hasChildren && ItemTools.create(tools, {
+      autoGenerateKey: false
+    }),
+    [ hasChildren, tools ]
+  );
 
   // ----
   // Component render with declared children
@@ -103,9 +122,9 @@ export default function Item(props: ItemProps): React.ReactElement<ItemProps> {
   // ----
   return (
     <ElementType {...rest} onClick={handleClick} className={classes}>
-      <div className={'content'}>
-        {avatarElement}
-      </div>
+      {avatarElement}
+      {contentElement}
+      {toolsElement}
     </ElementType>
   );
 }
@@ -113,3 +132,8 @@ export default function Item(props: ItemProps): React.ReactElement<ItemProps> {
 Item.displayName = 'Item';
 
 Item.Avatar = Avatar;
+Item.Content = ItemContent;
+Item.Tools = ItemTools;
+Item.Group = ItemGroup;
+
+Item.create = createShorthandFactory(Item, (content) => ({ content }));
