@@ -33,7 +33,6 @@
   //  Content Disposition
   // ----
   text-align: center;
-  font-size: $avatar-content-font-size;
   font-weight: $avatar-font-weight;
   color: $avatar-color;
   border-radius: $avatar-square-border-radius;
@@ -59,10 +58,13 @@
   // ----
   //  Adjust Content
   // ----
-  > .icon {
-    margin: 0 !important;
-    font-size: $avatar-icon-font-size;
-    @include center-absolute;
+  > .content {
+    font-size: $avatar-content-font-size;
+
+    > .icon {
+      margin: 0 !important;
+      font-size: $avatar-icon-font-size;
+    }
   }
 
   // ----
@@ -87,30 +89,13 @@
 /******
     Avatar Badge
 ******/
-.badged.avatar {
-  .badge {
-    position: absolute;
-    display: inline-block;
-    padding: $avatar-badge-base-size / 2;
-    background-color: $avatar-badge-background-color;
-    border-radius: $border-radius-rounded;
-    left: 100%;
-    bottom: 100%;
+.badged.avatar .badge {
+  position: absolute;
+  left: 100%;
+  bottom: 100%;
+  transform: translate(-90%, 90%);
+
+  &.with-content {
     transform: translate(-60%, 50%);
-
-    &.with-content {
-      padding-top: $avatar-badge-base-size / 4;
-      padding-bottom: $avatar-badge-base-size / 4;
-
-      > .content {
-        font-size: $avatar-badge-font-size;
-        color: $avatar-badge-color;
-        line-height: 1.25;
-
-        > .icon {
-          margin-right: 0;
-        }
-      }
-    }
   }
 }

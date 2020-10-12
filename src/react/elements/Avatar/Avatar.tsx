@@ -12,6 +12,7 @@ import {
   useSplitStateClassName
 } from '../../lib';
 
+import { Badge } from '../Badge';
 import { Icon } from '../Icon';
 
 import { AvatarProps } from './Avatar.types';
@@ -86,13 +87,11 @@ export default function Avatar(props: AvatarProps): React.ReactElement<AvatarPro
   );
 
   const badgeElement = React.useMemo(
-    () => !!badge && (
-      <div className={`badge ${typeof badge !== 'boolean' ? 'with-content' : ''}`}>
-        <div className={'content'}>
-          {typeof badge === 'object' ? Icon.create(badge, { autoGenerateKey: false }) : badge}
-        </div>
-      </div>
-    ),
+    () => badge === true
+      ? <Badge />
+      : Badge.create(badge, {
+        autoGenerateKey: false
+      }),
     [ badge ]
   );
 
@@ -102,7 +101,9 @@ export default function Avatar(props: AvatarProps): React.ReactElement<AvatarPro
   // ----
   const avatarElement = (
     <ElementType {...rest} onClick={handleClick} className={classes}>
-      {hasChildren ? children : avatarContentElement}
+      <div className={'content'}>
+        {hasChildren ? children : avatarContentElement}
+      </div>
       {badgeElement}
     </ElementType>
   );

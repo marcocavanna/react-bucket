@@ -8,7 +8,7 @@ export default { title: 'Elements/Avatar', component: Avatar };
 export const baseAvatar = () => {
   return (
     <Avatar
-      badge={{ name: 'mail bulk' }}
+      badge={{ icon: 'mail bulk', primary: true }}
       icon={'briefcase'}
     />
   );

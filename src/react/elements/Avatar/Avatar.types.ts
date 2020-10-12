@@ -4,8 +4,11 @@ import {
   ReactBucketComponentProps,
   ReactBucketIcon,
   SharedComponentStateProps,
-  ShorthandContent
+  ShorthandContent,
+  ShorthandItem
 } from '../../generic';
+
+import { BadgeProps } from '../Badge';
 
 import { IconProps } from '../Icon';
 
@@ -15,7 +18,7 @@ export interface AvatarProps extends ReactBucketComponentProps<StrictAvatarProps
 
 export interface StrictAvatarProps {
   /** Draw the Notification Badge */
-  badge?: boolean | string | number | IconProps;
+  badge?: ShorthandItem<BadgeProps>;
 
   /** Set disabled state */
   disabled?: boolean;
