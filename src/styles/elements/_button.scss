@@ -144,13 +144,13 @@
     }
 
     @include hover {
-      @include icon-style($restrict-to-direct-child: true) {
+      > .icon {
         transition: opacity $transition-ease $transition-speed-fast;
         will-change: opacity;
+      }
 
-        &:not([disabled]):not(:disabled):not(.is-disabled):hover {
-          opacity: 1;
-        }
+      &:not([disabled]):not(:disabled):not(.is-disabled):hover > .icon {
+        opacity: 1;
       }
     }
   }
