@@ -2,6 +2,7 @@ import * as React from 'react';
 import clsx from 'clsx';
 
 import {
+  childrenUtils,
   createShorthandFactory,
   getElementType
 } from '@appbuckets/react-ui-core';
@@ -42,14 +43,16 @@ export default function Header(props: HeaderProps): React.ReactElement<HeaderPro
     className
   );
 
+  const hasChildren = !childrenUtils.isNil(children);
+
   const contentElement = React.useMemo(
-    () => HeaderContent.create(content, { autoGenerateKey: false }),
-    [ content ]
+    () => !hasChildren && HeaderContent.create(content, { autoGenerateKey: false }),
+    [ content, children ]
   );
 
   const subheaderElement = React.useMemo(
-    () => HeaderSubheader.create(subheader, { autoGenerateKey: false }),
-    [ subheader ]
+    () => !hasChildren && HeaderSubheader.create(subheader, { autoGenerateKey: false }),
+    [ subheader, children ]
   );
 
   const iconElement = React.useMemo(
@@ -65,8 +68,12 @@ export default function Header(props: HeaderProps): React.ReactElement<HeaderPro
         </div>
       )}
       <div className={'header-content'}>
-        {contentElement}
-        {subheaderElement}
+        {hasChildren ? children : (
+          <React.Fragment>
+            {contentElement}
+            {subheaderElement}
+          </React.Fragment>
+        )}
       </div>
     </ElementType>
   );

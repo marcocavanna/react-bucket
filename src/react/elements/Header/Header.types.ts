@@ -15,9 +15,6 @@ export interface HeaderProps extends ReactBucketComponentProps<StrictHeaderProps
 }
 
 export interface StrictHeaderProps {
-  /** Avoid Children on Header Component */
-  children?: never;
-
   /** Content Shorthand to create Header */
   content?: ShorthandItem<HeaderContentProps>;
 
