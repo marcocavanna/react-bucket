@@ -101,7 +101,7 @@ textarea.text {
   .content {
     // Icon has absolute position
     > .icon {
-      width: auto;
+      width: $icon-width + ($input-horizontal-padding / 2);
       margin: 0;
       position: absolute;
       padding-top: $input-vertical-padding;
@@ -137,6 +137,41 @@ textarea.text {
       > textarea {
         padding-right: $input-horizontal-padding * 1.25 + $icon-width;
       }
+    }
+  }
+}
+
+
+/******
+    Clearable Action is only another Icon
+******/
+.clearable.input.field .content {
+  > .clear.icon {
+    color: $field-clear-icon-base-color;
+
+    @include hover {
+      cursor: pointer;
+      transition: color $transition-ease $transition-speed-fast;
+
+      &:hover {
+        color: $field-clear-icon-hover-color;
+      }
+    }
+  }
+
+  > input,
+  > textarea {
+    padding-right: $input-horizontal-padding * 1.25 + $icon-width;
+  }
+
+  &.icon-on-right {
+    > .clear.icon {
+      right: $icon-width + ($input-horizontal-padding / 2);
+    }
+
+    > input,
+    > textarea {
+      padding-right: $input-horizontal-padding * 1.5 + ($icon-width * 2);
     }
   }
 }

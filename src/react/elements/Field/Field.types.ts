@@ -22,6 +22,9 @@ export interface StrictFieldProps extends SharedComponentStateProps {
   /** Set action button position, default to right */
   actionsPosition?: 'left' | 'right';
 
+  /** Set the Field as Clearable */
+  clearable?: boolean;
+
   /** User defined className used for content element */
   contentClassName?: string;
 
@@ -54,6 +57,9 @@ export interface StrictFieldProps extends SharedComponentStateProps {
 
   /** Field Label */
   label?: ShorthandContent;
+
+  /** On Clear Button click */
+  onClear?: (e: React.MouseEvent<HTMLElement>) => void;
 
   /** Set field as read only */
   readOnly?: boolean;

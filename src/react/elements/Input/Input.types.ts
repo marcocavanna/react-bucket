@@ -9,9 +9,6 @@ export interface InputProps extends ReactBucketComponentProps<StrictInputProps, 
 }
 
 export interface StrictInputProps extends Omit<StrictFieldProps, 'onChange'> {
-  /** Set the Input as clearable, adding clear icon */
-  clearable?: boolean;
-
   /** Set the Input as Currency Input */
   currency?: boolean;
 

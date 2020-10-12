@@ -29,6 +29,7 @@ const Field: ReactBucketForwardedRefComponent<FieldProps> = React.forwardRef<HTM
       children,
       content,
       contentClassName,
+      clearable,
       disabled,
       hint,
       hintClassName,
@@ -38,6 +39,7 @@ const Field: ReactBucketForwardedRefComponent<FieldProps> = React.forwardRef<HTM
       isDirty,
       isTouched,
       label,
+      onClear,
       required,
       readOnly,
       contentType,
@@ -58,7 +60,8 @@ const Field: ReactBucketForwardedRefComponent<FieldProps> = React.forwardRef<HTM
       dirty   : isDirty,
       focused : isFocused,
       touched : isTouched,
-      readonly: readOnly
+      readonly: readOnly,
+      clearable
     },
     contentType,
     'field',
@@ -164,6 +167,21 @@ const Field: ReactBucketForwardedRefComponent<FieldProps> = React.forwardRef<HTM
 
 
   /* --------
+   * Input Actions
+   * -------- */
+  const clearButton = React.useMemo(
+    () => clearable && !disabled && !readOnly && Icon.create({
+      name   : 'times',
+      onClick: onClear
+    }, {
+      autoGenerateKey: true,
+      defaultProps   : { className: 'clear' }
+    }),
+    [ onClear, clearable, disabled, readOnly ]
+  );
+
+
+  /* --------
    * Render Component
    * -------- */
   return (
@@ -175,6 +193,7 @@ const Field: ReactBucketForwardedRefComponent<FieldProps> = React.forwardRef<HTM
         <div className={contentClasses}>
           {iconPosition === 'left' && iconContent}
           {childrenUtils.isNil(children) ? content : children}
+          {clearButton}
           {iconPosition === 'right' && iconContent}
         </div>
         {rightFieldContent}

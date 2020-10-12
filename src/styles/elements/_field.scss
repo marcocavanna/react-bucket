@@ -79,7 +79,7 @@
 
     > .wrapper {
       > .content {
-        > .icon {
+        > .icon:not(.clear) {
           color: $field-focus-icon-color;
         }
       }

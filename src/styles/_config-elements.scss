@@ -143,6 +143,8 @@ $field-label-spacer: $spacer * .5 !default;
 $field-label-color: $text-lightest !default;
 
 $field-icon-base-color: rgba(0, 0, 0, .35) !default;
+$field-clear-icon-base-color: rgba(0, 0, 0, .25) !default;
+$field-clear-icon-hover-color: rgba(0, 0, 0, .55) !default;
 
 $field-focus-main-color: $primary !default;
 $field-focus-label-color: $field-focus-main-color !default;

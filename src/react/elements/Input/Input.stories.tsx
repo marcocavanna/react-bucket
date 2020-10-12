@@ -33,6 +33,7 @@ export const defaultInput = () => {
       icon={{
         name: 'user'
       }}
+      iconPosition={'right'}
     />
   );
 };

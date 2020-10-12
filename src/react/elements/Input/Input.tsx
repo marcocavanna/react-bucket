@@ -7,7 +7,6 @@ import { useElementType, useSharedClassName, useSplitStateClassName } from '../.
 
 import { useAutoControlledValue } from '../../hooks/useAutoControlledValue';
 import { useTabIndex } from '../../hooks/useTabIndex';
-import { Button } from '../Button';
 
 import { Field } from '../Field';
 
@@ -195,10 +194,28 @@ export default function Input(props: InputProps): React.ReactElement<InputProps>
     () => {
       /** Manually set the input value, and after trigger the change event */
       if (inputRef.current) {
-        inputRef.current.value = '';
+        /** Get the right value setter function from element */
+        const valueSetter = Object.getOwnPropertyDescriptor(inputRef.current, 'value')?.set;
+        const prototype = Object.getPrototypeOf(inputRef.current);
+        const prototypeValueSetter = Object.getOwnPropertyDescriptor(prototype, 'value')?.set;
+
+        /** Create the Event */
         const event = new Event('input', { bubbles: true });
         (event as any).simulated = true;
+
+        /** Call the Value Setter Function */
+        if (valueSetter !== prototypeValueSetter && prototypeValueSetter) {
+          prototypeValueSetter.call(inputRef.current, '');
+        }
+        else if (valueSetter) {
+          valueSetter.call(inputRef.current, '');
+        }
+
+        /** Dispatch the event */
         inputRef.current.dispatchEvent(event);
+
+        /** Focus the input element */
+        inputRef.current.focus();
       }
     },
     [ inputRef.current ]
@@ -212,22 +229,6 @@ export default function Input(props: InputProps): React.ReactElement<InputProps>
     readOnly,
     prop: userDefinedTabIndex
   });
-
-
-  /* --------
-   * Input Actions
-   * -------- */
-  const clearButton = React.useMemo(
-    () => clearable && !disabled && !readOnly && Button.create({
-      icon   : 'times',
-      flat   : true,
-      onClick: handleInputClear
-    }, {
-      autoGenerateKey: true,
-      defaultProps   : { className: 'clear' }
-    }),
-    [ handleInputClear, clearable, disabled, readOnly ]
-  );
 
 
   /* --------
@@ -292,6 +293,8 @@ export default function Input(props: InputProps): React.ReactElement<InputProps>
       iconPosition={iconPosition}
       label={label}
       readOnly={readOnly}
+      clearable={clearable}
+      onClear={handleInputClear}
       appearance={rawRest.appearance}
       danger={rawRest.danger}
       info={rawRest.info}
@@ -302,7 +305,6 @@ export default function Input(props: InputProps): React.ReactElement<InputProps>
       contentType={'input'}
     >
       {renderInputElement()}
-      {clearButton}
     </Field>
   );
 }
