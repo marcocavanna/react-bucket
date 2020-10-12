@@ -105,6 +105,8 @@ export default function Button(props: ButtonProps): React.ReactElement<ButtonPro
     }
     /** If the onClick function exists, invoke it */
     if (typeof onClick === 'function') {
+      /** Stop event Propagation */
+      e.stopPropagation();
       onClick(e, props);
     }
   };

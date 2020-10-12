@@ -60,7 +60,11 @@ export default function Avatar(props: AvatarProps): React.ReactElement<AvatarPro
 
   const handleClick = React.useCallback(
     (e: React.MouseEvent<HTMLElement>) => {
+      /** Call user defined handler */
       if (onClick && !disabled) {
+        /** Disable event propagation */
+        e.stopPropagation();
+
         onClick(e, props);
       }
     },
