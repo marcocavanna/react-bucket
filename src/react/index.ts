@@ -8,6 +8,8 @@ export * from './collections/DropdownMenu';
 
 export * as Grid from './collections/Grid';
 
+export * from './collections/Menu';
+
 export * from './collections/Message';
 
 export * from './collections/RxTable';

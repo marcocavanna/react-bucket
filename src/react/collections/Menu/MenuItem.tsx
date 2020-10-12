@@ -8,8 +8,7 @@ import {
 
 import {
   useElementType,
-  useSharedClassName,
-  useSplitStateClassName
+  useSharedClassName
 } from '../../lib';
 
 import { Icon } from '../../elements/Icon';
@@ -28,11 +27,9 @@ export default function MenuItem(props: MenuItemProps): React.ReactElement<MenuI
       disabled,
       icon,
       onClick,
-      ...rawRest
+      ...rest
     }
   } = useSharedClassName(props);
-
-  const [ stateClassName, rest ] = useSplitStateClassName(rawRest);
 
   const ElementType = useElementType(MenuItem, props);
 
@@ -60,7 +57,6 @@ export default function MenuItem(props: MenuItemProps): React.ReactElement<MenuI
       disabled
     },
     'menu-item',
-    stateClassName,
     className
   );
 

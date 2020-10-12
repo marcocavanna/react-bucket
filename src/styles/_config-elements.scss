@@ -270,6 +270,25 @@ $loader-font-size: (
 
 
 /******
+    Menu
+******/
+$menu-font-weight: $semi-bold !default;
+$menu-vertical-max-width: 15em !default;
+$menu-item-padding-horizontal: 1em !default;
+$menu-item-padding-vertical: .75em !default;
+$menu-item-border-radius: $border-radius !default;
+$menu-item-text-transform: none !default;
+$menu-item-base-background: $button-base-background-color !default;
+$menu-item-base-color: $text !default;
+$menu-item-spacer: .5em !default;
+$menu-item-active-background: $primary !default;
+$menu-item-active-color: $white !default;
+$menu-item-active-shadow: inset 0 0 3px 0 rgba(0, 0, 0, .2);
+$menu-item-active-text-shadow: 0 0 3px rgba(0, 0, 0, .2);
+$menu-item-icon-spacer: .75em !default;
+
+
+/******
     Message Element
 ******/
 $message-background-color: $white-shade-2 !default;
