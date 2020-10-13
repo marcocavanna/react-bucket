@@ -22,6 +22,9 @@ export interface StrictMenuItemProps {
   /** Draw Item Icon */
   icon?: ReactBucketIcon<IconProps>;
 
+  /** Menu item index position */
+  index?: number;
+
   /** On Click Element Handler */
   onClick?: (e: React.MouseEvent<HTMLElement>, props: MenuItemProps) => void;
 }
