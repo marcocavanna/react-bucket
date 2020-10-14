@@ -99,6 +99,18 @@ function TableHeader(props) {
     [sticky, handleReplaceStickyHeader]
   );
 
+  /** On Component Unmount. remove the sticky header if exists */
+  React.useEffect(
+    () => () => {
+      const clonedElement = document.getElementById(`cloned-header-${headerID}`);
+
+      if (clonedElement) {
+        clonedElement.remove();
+      }
+    },
+    []
+  );
+
   return (
     <ElementType ref={sourceRef} {...rest} id={headerID} className={classes}>
       {childrenUtils.isNil(children) ? content : children}
