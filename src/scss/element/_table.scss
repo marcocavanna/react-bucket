@@ -192,9 +192,11 @@
 
     // Header Row Style
     > .row:last-child {
-      border-bottom: $border;
-      border-bottom-color: $primary;
-      border-bottom-width: 2px;
+      > .cell {
+        border-bottom: $border;
+        border-bottom-color: $primary;
+        border-bottom-width: 2px;
+      }
     }
 
     // Header Cell Style
@@ -532,6 +534,20 @@
 }
 
 
+/******
+    Set Cell Border
+******/
+.table .row > .cell {
+  &.border-right {
+    border-right: solid 1px $grey-lightest;
+
+    &.heavy {
+      border-right-width: 2px;
+    }
+  }
+}
+
+
 /*---
   Fix Cell with Tools width
 ---*/
@@ -604,6 +620,38 @@
   }
 }
 
-.table.discreet-border > .head > .row:last-child {
+.table.discreet-border > .head > .row:last-child > .cell {
   border-bottom-color: $grey-lightest;
+}
+
+
+/*---
+  Sticky Header Table
+---*/
+.sticky.table > .head > .row:last-child > .cell {
+  position: sticky;
+  top: $navbar-height;
+  background-color: $white;
+  background: $white;
+}
+
+
+/*---
+  Cloned Table
+---*/
+.cloned.table {
+  background-color: $white;
+  @include dpShadow(2);
+
+  &.in-panel {
+    > .head  {
+      > .row > .cell:first-child {
+        padding-left: $panel-padding-horizontal;
+      }
+
+      > .row > .cell:last-child {
+        padding-right: $panel-padding-horizontal;
+      }
+    }
+  }
 }

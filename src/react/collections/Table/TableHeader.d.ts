@@ -17,6 +17,11 @@ export interface StrictTableHeaderProps {
   /** Content Shordhand */
   content?: React.ReactNode
 
+  sticky?: boolean
+
+  stickyClassName?: string;
+
+  topLimit?: number
 }
 
 interface TableHeaderComponent extends React.StatelessComponent<TableHeaderProps> { }
