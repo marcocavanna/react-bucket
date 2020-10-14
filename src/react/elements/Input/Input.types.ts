@@ -1,3 +1,4 @@
+import { Props as InputMaskProps } from 'react-input-mask';
 import { TextareaAutosizeProps } from 'react-textarea-autosize';
 
 import { ChangeHandler, ClickHandler, FocusHandler, ReactBucketComponentProps } from '../../generic';
@@ -8,9 +9,12 @@ import { StrictFieldProps } from '../Field';
 export interface InputProps extends ReactBucketComponentProps<StrictInputProps, 'input'> {
 }
 
-export interface StrictInputProps extends Omit<StrictFieldProps, 'onChange'> {
+export interface StrictInputProps extends StrictFieldProps {
   /** Set the Input as Currency Input */
   currency?: boolean;
+
+  /** Define input mask */
+  masked?: Pick<InputMaskProps, 'mask' | 'maskChar' | 'formatChars' | 'alwaysShowMask'>;
 
   /** On Blur Event */
   onBlur?: FocusHandler<HTMLInputElement, InputProps>;
@@ -32,4 +36,7 @@ export interface StrictInputProps extends Omit<StrictFieldProps, 'onChange'> {
 
   /** Set text area component props */
   textareaProps?: Pick<TextareaAutosizeProps, 'useCacheForDOMMeasurements' | 'rows' | 'minRows' | 'maxRows'>;
+
+  /** Limit value to string only */
+  value?: string;
 }

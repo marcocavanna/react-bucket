@@ -1,6 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 
+import ReactInputMask from 'react-input-mask';
 import TextareaAutosize from 'react-textarea-autosize';
 
 import { useElementType, useSharedClassName, useSplitStateClassName } from '../../lib';
@@ -21,6 +22,7 @@ export default function Input(props: InputProps): React.ReactElement<InputProps>
       /** Strict Input Props */
       clearable,
       currency,
+      masked,
       textarea,
       type,
       tabIndex    : userDefinedTabIndex,
@@ -96,8 +98,8 @@ export default function Input(props: InputProps): React.ReactElement<InputProps>
           fieldRef.current.classList.add(cx);
         }
 
-        if (fieldRef.current) {
-          fieldRef.current.classList.add(cx);
+        if (inputRef.current) {
+          inputRef.current.classList.add(cx);
         }
       });
     },
@@ -111,8 +113,8 @@ export default function Input(props: InputProps): React.ReactElement<InputProps>
           fieldRef.current.classList.remove(cx);
         }
 
-        if (fieldRef.current) {
-          fieldRef.current.classList.remove(cx);
+        if (inputRef.current) {
+          inputRef.current.classList.remove(cx);
         }
       });
     },
@@ -252,6 +254,24 @@ export default function Input(props: InputProps): React.ReactElement<InputProps>
 
     if (currency) {
       return null;
+    }
+
+    if (masked) {
+      return (
+        <ReactInputMask
+          {...baseProps}
+          {...masked}
+        >
+          {(inputProps: any) => (
+            <input
+              {...inputProps}
+              {...rest}
+              ref={inputRef as React.RefObject<HTMLInputElement>}
+              {...baseProps}
+            />
+          )}
+        </ReactInputMask>
+      );
     }
 
     if (textarea) {

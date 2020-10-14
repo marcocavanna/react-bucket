@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Input } from './';
+import { Input, InputProps } from './';
 import { useInputValue } from '../../hooks/useInputValue';
 
 
@@ -59,6 +59,27 @@ export const defaultTextarea = () => {
       icon={{
         name: 'user'
       }}
+    />
+  );
+};
+
+
+export const maskedInput = () => {
+
+  const [ value, setValue ] = React.useState('');
+
+  const handleInputChange = (e: React.FormEvent, props: InputProps) => {
+    setValue(props.value ?? '');
+  };
+
+  return (
+    <Input
+      masked={{
+        mask    : '99/99/9999',
+        maskChar: '-'
+      }}
+      value={value}
+      onChange={handleInputChange}
     />
   );
 };
