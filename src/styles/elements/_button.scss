@@ -139,19 +139,8 @@
 
     @include icon-style($restrict-to-direct-child: true) {
       margin: 0 !important;
-      opacity: $button-icon-opacity;
+      opacity: 1;
       vertical-align: middle;
-    }
-
-    @include hover {
-      > .icon {
-        transition: opacity $transition-ease $transition-speed-fast;
-        will-change: opacity;
-      }
-
-      &:not([disabled]):not(:disabled):not(.is-disabled):hover > .icon {
-        opacity: 1;
-      }
     }
   }
 
