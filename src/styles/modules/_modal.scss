@@ -166,3 +166,12 @@
     max-width: $modal-size-big;
   }
 }
+
+
+/******
+    Style Modal DatePicker
+******/
+.modal.day-picker {
+  width: auto !important;
+  max-width: fit-content !important;
+}

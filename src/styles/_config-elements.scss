@@ -124,6 +124,24 @@ $slider-label-distance: $slider-travel-distance + $checkbox-label-padding;
 
 
 /******
+    DayPicker
+******/
+$day-picker-header-font-size: 1.5em !default;
+$day-picker-header-font-weight: $semi-bold !default;
+$day-picker-day-size: 2.5em !default;
+$day-picker-day-hover-background-color: transparentize($primary, .9) !default;
+$day-picker-day-today-background-color: transparent !default;
+$day-picker-day-today-color: $primary !default;
+$day-picker-selected-day-hover-background-color: $primary-shade !default;
+$day-picker-selected-font-weight: $semi-bold !default;
+$day-picker-selected-color: $white !default;
+$day-picker-selected-background-color: $primary !default;
+$day-picker-outside-day-opacity: .5 !default;
+$day-picker-day-caption-color: $text-light !default;
+$day-picker-week-number-color: $orange !default;
+
+
+/******
     DropDown Menu
 ******/
 $dropdown-menu-item-padding: .75em !default;
