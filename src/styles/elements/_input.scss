@@ -148,6 +148,8 @@ textarea.text {
 .clearable.input.field .content {
   > .clear.icon {
     color: $field-clear-icon-base-color;
+    padding-right: $input-horizontal-padding * 1.125;
+    right: 0;
 
     @include hover {
       cursor: pointer;
