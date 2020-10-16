@@ -33,6 +33,7 @@ export default function Input(props: InputProps): React.ReactElement<InputProps>
 
       /** Overridden Input Handlers */
       onClick: userDefinedOnClick,
+      onClear: userDefinedOnClear,
       onChange: userDefinedOnChange,
       onBlur: userDefinedOnBlur,
       onFocus: userDefinedOnFocus,
@@ -193,7 +194,7 @@ export default function Input(props: InputProps): React.ReactElement<InputProps>
   };
 
   const handleInputClear = React.useCallback(
-    () => {
+    (e: React.MouseEvent<HTMLElement>) => {
       /** Manually set the input value, and after trigger the change event */
       if (inputRef.current) {
         /** Get the right value setter function from element */
@@ -215,6 +216,11 @@ export default function Input(props: InputProps): React.ReactElement<InputProps>
 
         /** Dispatch the event */
         inputRef.current.dispatchEvent(event);
+
+        /** Call user defined handler */
+        if (userDefinedOnClear) {
+          userDefinedOnClear(e);
+        }
 
         /** Focus the input element */
         inputRef.current.focus();
