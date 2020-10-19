@@ -134,8 +134,21 @@
       }
     }
 
+    &.with-action {
+      > .button {
+        border-radius: pixel-to-em($border-radius) !important;
+      }
+    }
+
     &.is-flat.with-label {
       > .label-wrapper > .label {
+        line-height: 2em;
+        height: 2em;
+      }
+    }
+
+    &.is-flat.with-action {
+      > .button {
         line-height: 2em;
         height: 2em;
       }
