@@ -46,6 +46,7 @@ function Field(props) {
     label,
     messages,
     radio,
+    readOnly,
     required,
     size,
     success,
@@ -85,6 +86,7 @@ function Field(props) {
     classByPattern(icon && iconPosition, 'icon-on-%value%'),
     classByKey(inlineLabel, 'with-label'),
     classByPattern(inlineLabel && inlineLabelPosition, 'label-on-%value%'),
+    classByKey(readOnly, 'is-readonly'),
     contentClassName
   );
 
@@ -218,6 +220,9 @@ Field.propTypes = {
 
   /** Set the field as radio container */
   radio: PropTypes.bool,
+
+  /** Set the field as readOnly */
+  readOnly: PropTypes.bool,
 
   /** Set field as required */
   required: PropTypes.bool,

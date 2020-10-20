@@ -264,7 +264,7 @@ class Input extends PureComponent {
   /** Render Component Function */
   render() {
 
-    const { disabled, required } = this.props;
+    const { disabled, required, readOnly } = this.props;
 
     const [
       htmlInputProps,
@@ -275,7 +275,8 @@ class Input extends PureComponent {
     const fieldProps = {
       ...rawFieldProps,
       disabled,
-      required
+      required,
+      readOnly
     };
 
     const ElementType = getElementType(Input, this.props);
