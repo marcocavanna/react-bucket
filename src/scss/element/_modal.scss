@@ -260,6 +260,10 @@
         max-width: 780px;
       }
 
+      &.is-ultra-big {
+        max-width: 980px;
+      }
+
       &.is-small {
         width: 390px;
       }
@@ -273,6 +277,10 @@
 
       &.is-extra-big {
         max-width: 980px;
+      }
+
+      &.is-ultra-big {
+        max-width: 1200px;
       }
     }
   }
