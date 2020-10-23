@@ -56,6 +56,12 @@ export * from './elements/Toast';
 
 
 /* --------
+ * HOC Component
+ * -------- */
+export * from './hoc/AutoSpacer';
+
+
+/* --------
  * Modules Component
  * -------- */
 export * from './modules/Backdrop';
