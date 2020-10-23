@@ -121,7 +121,8 @@ export default function DayPicker(props: DayPickerProps<ParsableDate>): React.Re
   const propsForEvent = React.useMemo<DayPickerProps>(
     () => ({
       ...props,
-      date: selectedDate.object?.toDate() ?? null
+      date     : selectedDate.object?.toDate() ?? null,
+      timestamp: selectedDate.object?.valueOf() ?? null
     }),
     [ selectedDate.object ]
   );
@@ -157,7 +158,11 @@ export default function DayPicker(props: DayPickerProps<ParsableDate>): React.Re
 
       /** Check if date is changed */
       if (currTimestamp !== newTimestamp && onDayChange) {
-        onDayChange(newDateObject, newTimestamp);
+        onDayChange(null, {
+          ...propsForEvent,
+          date     : newDate,
+          timestamp: newTimestamp
+        });
       }
 
       if (closeOnDayPicked) {

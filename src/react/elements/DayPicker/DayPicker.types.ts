@@ -48,7 +48,7 @@ export interface StrictDayPickerProps<DateType> extends ReactDayPickerProps, Fie
   onCalendarOpen?: (nothing: null, props: DayPickerProps) => void;
 
   /** On day change event handler */
-  onDayChange?: (date: Date | null, timestamp: number | null) => void;
+  onDayChange?: (nothing: null, props: DayPickerProps) => void;
 
   /** On input value change handler */
   onInputChange?: (e: React.FormEvent<HTMLInputElement>, props: InputProps) => void;
@@ -58,6 +58,9 @@ export interface StrictDayPickerProps<DateType> extends ReactDayPickerProps, Fie
 
   /** Show input mask */
   showInputMask?: boolean;
+
+  /** Timestamp of selected date */
+  readonly timestamp?: number | null;
 
   /** Set the trigger element for modal type DayPicker */
   trigger?: React.ReactNode;
