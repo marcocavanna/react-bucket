@@ -6,6 +6,8 @@ import '../styles/index.scss';
  * -------- */
 export * from './collections/DropdownMenu';
 
+export * from './collections/Form';
+
 export * as Grid from './collections/Grid';
 
 export * from './collections/Menu';
