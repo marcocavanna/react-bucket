@@ -70,6 +70,13 @@ textarea.text {
   }
 
   // ----
+  //  Disabled State
+  // ----
+  &.disabled {
+    opacity: $disabled-element-opacity;
+  }
+
+  // ----
   //  Colored Styles
   // ----
   @each $label, $color in $react-bucket-color-map {
