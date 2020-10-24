@@ -111,9 +111,23 @@
             }
           }
         }
+
+        .addon.hint {
+          color: $color;
+        }
       }
     }
   }
+}
+
+
+/******
+    Field Hint Message
+******/
+.field .addon.hint {
+  margin-top: $field-hint-spacer;
+  font-size: $field-hint-size;
+  padding-left: $field-hint-spacer;
 }
 
 

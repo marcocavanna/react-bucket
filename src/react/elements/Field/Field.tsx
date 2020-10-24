@@ -147,21 +147,24 @@ const Field: ReactBucketForwardedRefComponent<FieldProps> = React.forwardRef<HTM
     [ icon ]
   );
 
-  const hintClasses = React.useMemo(
-    () => clsx(
-      'addon down',
-      'hint',
-      hintClassName
-    ),
-    [ hintClassName ]
-  );
+  const hintElement = React.useMemo(
+    () => {
+      if (!hint) {
+        return null;
+      }
 
-  const hintContent = React.useMemo(
-    () => hint && (
-      <div className={hintClasses}>
-        {hint}
-      </div>
-    ),
+      const hintClasses = clsx(
+        'addon down',
+        'hint',
+        hintClassName
+      );
+
+      return (
+        <div className={hintClasses}>
+          {hint}
+        </div>
+      );
+    },
     [ hint, hintClassName ]
   );
 
@@ -199,7 +202,7 @@ const Field: ReactBucketForwardedRefComponent<FieldProps> = React.forwardRef<HTM
         {rightFieldContent}
       </div>
 
-      {hintContent}
+      {hintElement}
     </div>
   );
 });
