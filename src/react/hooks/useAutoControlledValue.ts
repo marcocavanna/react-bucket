@@ -36,10 +36,6 @@ export function useAutoControlledValue<State>(initialState: State, config?: UseA
   );
 
 
-  // Automatic change state value based on prop
-  React.useEffect(getDerivedStateFromProps, [ prop, setState ]);
-
-
   // Attempt to modify the `state` value internally.
   // When `prop` has already been provided, defer to it and don't update `state`.
   const trySetState: React.Dispatch<React.SetStateAction<State>> = React.useCallback(
@@ -54,7 +50,7 @@ export function useAutoControlledValue<State>(initialState: State, config?: UseA
   );
 
   return [
-    state,
+    prop === undefined ? state : prop,
     trySetState,
     setState,
     getDerivedStateFromProps
