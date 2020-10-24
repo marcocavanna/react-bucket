@@ -1,6 +1,11 @@
 import * as React from 'react';
 
-import { FieldMetaProps, FieldValidator, FormikContextType, useFormikContext } from 'formik';
+import {
+  FieldMetaProps,
+  FieldValidator,
+  FormikContextType,
+  useFormikContext
+} from 'formik';
 
 import { SharedComponentStateProps } from '../../../generic';
 
@@ -63,6 +68,15 @@ export type FormikWrappedOuterProps<P, Values extends AnyObject, K extends keyof
   /** Name is required to let formik work */
   name: K;
 
+  /** Override the default setTouched on Change prop */
+  setTouchedOnChange?: boolean;
+
+  /** Show error only once form has been submitted, default to true */
+  showErrorOnSubmitted?: boolean;
+
+  /** Show error hint only once component has been touched, default to false */
+  showErrorOnTouched?: boolean;
+
   /** Field Validator Function */
   validate?: FieldValidator;
 };
@@ -71,24 +85,33 @@ export type FormikWrappedOuterProps<P, Values extends AnyObject, K extends keyof
 /* --------
  * Formik Wrapper Configuration
  * -------- */
+export type FormikOnChangeHandler<P, ValueType> = (
+  formik: FormikContextType<any>,
+  event: React.FormEvent,
+  props: {
+    multiple?: boolean;
+    checked?: boolean;
+    name: string;
+    value?: ValueType;
+  } & P,
+  meta: FieldMetaProps<ValueType>
+) => void;
+
+export type FormikComputedValue<P, ValueType, ReturnValueType> = (value: ValueType, props: {
+  multiple?: boolean;
+  checked?: boolean;
+  name: string;
+} & P) => ReturnValueType;
+
 export interface WithFormikFieldConfiguration<P extends FormikWrappedInnerProps, ValueType> {
   /** The Form Component */
   Component: React.ComponentType<FormikWrappedComponentProps<P, ValueType>>;
 
   /** Manual override value computing */
-  computeValue?: (value: ValueType, props: {
-    multiple?: boolean;
-    checked?: boolean;
-    name: string;
-  } & P) => ValueType;
+  computeValue?: FormikComputedValue<P, ValueType, any>;
 
   /** Overwrite default formik field onChange handler */
-  onChange?: (formik: FormikContextType<any>, props: {
-    multiple?: boolean;
-    checked?: boolean;
-    name: string;
-    value: ValueType;
-  } & P) => void;
+  onChange?: FormikOnChangeHandler<P, any>;
 
   /** Set a field has touched on value change, default to true */
   setTouchedOnChange?: boolean;
@@ -118,8 +141,11 @@ export default function withFormikField<P extends FormikWrappedInnerProps, Value
     const {
       name,
       validate,
-      onChange: localOnChangeHandler,
-      onBlur  : localOnBlurHandler,
+      setTouchedOnChange: localSetTouchOnChange,
+      showErrorOnSubmitted = true,
+      showErrorOnTouched = false,
+      onChange          : localOnChangeHandler,
+      onBlur            : localOnBlurHandler,
       ...componentRestProps
     } = props;
 
@@ -165,23 +191,29 @@ export default function withFormikField<P extends FormikWrappedInnerProps, Value
 
 
     /* --------
+     * Meta Props Definition
+     * -------- */
+    const meta = formik.getFieldMeta<Values[K]>(formikFieldName);
+
+
+    /* --------
      * Field Handlers
      * -------- */
     const handleFieldChange = React.useCallback(
-      (event: React.FormEvent | React.ChangeEvent, componentPropsFromEvent: P, ...restArgs) => {
+      (event: React.FormEvent, componentPropsFromEvent: P, ...restArgs) => {
         /** Check if field must be set as touched on change */
-        if (setTouchedOnChange) {
+        if (setTouchedOnChange || localSetTouchOnChange && !meta.touched) {
           formik.setFieldTouched(formikFieldName, true, false);
         }
 
         /** Check which handler must be used */
         if (overwrittenChangeHandler) {
-          overwrittenChangeHandler(formik, {
+          overwrittenChangeHandler(formik, event, {
             ...formikFieldRest,
-            ...componentPropsFromEvent,
             name: formikFieldName,
-            value
-          });
+            value,
+            ...componentPropsFromEvent
+          }, meta);
         }
         /** Else, fire the original formik handler */
         else {
@@ -199,7 +231,8 @@ export default function withFormikField<P extends FormikWrappedInnerProps, Value
         value,
         overwrittenChangeHandler,
         formikChangeHandler,
-        localOnChangeHandler
+        localOnChangeHandler,
+        meta.touched
       ]
     );
 
@@ -208,6 +241,11 @@ export default function withFormikField<P extends FormikWrappedInnerProps, Value
         /** Fire Formik original blur handler */
         formikBlurHandler(event);
 
+        /** Set the field has touched */
+        if (!meta.touched) {
+          formik.setFieldTouched(formikFieldName, true, true);
+        }
+
         /** Fire the local blur handler */
         if (localOnBlurHandler) {
           localOnBlurHandler(event, componentPropsFromEven, ...restArgs);
@@ -215,15 +253,10 @@ export default function withFormikField<P extends FormikWrappedInnerProps, Value
       },
       [
         localOnBlurHandler,
-        formikBlurHandler
+        formikBlurHandler,
+        meta.touched
       ]
     );
-
-
-    /* --------
-     * Meta Props Definition
-     * -------- */
-    const meta = formik.getFieldMeta<Values[K]>(formikFieldName);
 
 
     /* --------
@@ -246,22 +279,25 @@ export default function withFormikField<P extends FormikWrappedInnerProps, Value
     );
 
 
+    /** Check i must show error */
+    const showError: boolean = (showErrorOnTouched && meta.touched) || (showErrorOnSubmitted && formik.submitCount > 0);
+
     /* --------
      * Render the Component
      * -------- */
     return (
       <Component
         state={{
-          danger             : !!(meta.error || props.danger),
+          danger             : !!((showError && meta.error) || props.danger),
           hasValidationStatus: !!(meta.error || props.error || props.success || props.warning),
           isSubmitting       : formik.isSubmitting,
-          message            : meta.error,
+          message            : showError ? meta.error : undefined,
           success            : props.success,
           warning            : props.warning
         }}
         meta={meta}
         rest={{
-          ...(props as unknown as P),
+          ...(componentRestProps as unknown as P),
           name,
           onBlur  : handleFieldBlur,
           onChange: handleFieldChange,

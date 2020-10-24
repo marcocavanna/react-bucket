@@ -147,6 +147,7 @@
     "react-popper": "2.2.3",
     "react-select": "3.1.0",
     "react-textarea-autosize": "8.2.0",
+    "rfdc": "^1.1.4",
     "tiny-invariant": "^1.1.0"
   }
 }
