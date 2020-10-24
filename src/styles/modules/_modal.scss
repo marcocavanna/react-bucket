@@ -70,13 +70,17 @@
   > .icon {
     font-size: $modal-close-button-size;
   }
+
+  &:focus {
+    box-shadow: none !important;
+  }
 }
 
 
 /******
     Modal Header Component
 ******/
-.modal > .modal-header {
+.modal .modal-header {
   display: flex;
 
   > .header {
@@ -92,16 +96,16 @@
     }
   }
 
-  > .modal-meta {
+  .modal-meta {
     font-weight: $semi-bold;
     color: $text-lightest;
   }
 }
 
-.modal.has-text-center > .modal-header {
+.modal.has-text-center .modal-header {
   flex-direction: column-reverse;
 
-  > .modal-meta {
+  .modal-meta {
     margin-bottom: 1em;
   }
 }
@@ -110,7 +114,7 @@
 /******
     Modal Content
 ******/
-.modal > .modal-content {
+.modal .modal-content {
   margin-top: $modal-vertical-padding;
 }
 
@@ -118,7 +122,7 @@
 /******
     Modal Actions
 ******/
-.modal > .modal-actions {
+.modal .modal-actions {
   margin-top: $modal-vertical-padding;
   text-align: right;
 
@@ -128,7 +132,7 @@
   }
 }
 
-.modal.has-text-center > .modal-actions {
+.modal.has-text-center .modal-actions {
   text-align: center;
 }
 
