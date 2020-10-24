@@ -253,6 +253,7 @@ export default function Modal(props: ModalProps): React.ReactElement<ModalProps>
       animated
       className={'modals'}
       visible={open}
+      closeOnBackdropClick={closeOnBackdropClick}
       closeOnDocumentClick={closeOnDocumentClick}
       closeOnEscape={closeOnEscape}
       openOnTriggerClick={openOnTriggerClick}
@@ -274,7 +275,9 @@ export default function Modal(props: ModalProps): React.ReactElement<ModalProps>
 Modal.displayName = 'Modal';
 
 Modal.defaultProps = {
-  closeIcon: 'times'
+  closeIcon           : 'times',
+  closeOnDocumentClick: false,
+  closeOnBackdropClick: true
 } as Partial<ModalProps>;
 
 Modal.Actions = ModalActions;

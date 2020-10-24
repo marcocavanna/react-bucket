@@ -20,6 +20,9 @@ export interface BackdropProps extends MinimalReactBucketComponentProps<StrictBa
 }
 
 export interface StrictBackdropProps extends Pick<PortalProps, BackdropPortalProps>, StrictBackdropInnerProps {
+  /** Close backdrop on Click */
+  closeOnBackdropClick?: boolean;
+
   /** Set a Loader as Backdrop Inner Content */
   loading?: boolean;
 

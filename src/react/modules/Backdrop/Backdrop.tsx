@@ -24,6 +24,7 @@ export default function Backdrop(props: BackdropProps): React.ReactElement<Backd
   const {
     /** Backdrop Props */
     className,
+    closeOnBackdropClick,
     children,
     content,
     loading,
@@ -109,11 +110,11 @@ export default function Backdrop(props: BackdropProps): React.ReactElement<Backd
 
   const handleOutsideContentClick = React.useCallback(
     (e: React.MouseEvent<HTMLElement>) => {
-      if (visible && closeOnDocumentClick) {
+      if (visible && closeOnBackdropClick) {
         handlePortalClose(e);
       }
     },
-    [ visible, closeOnDocumentClick, handlePortalClose ]
+    [ visible, closeOnBackdropClick, handlePortalClose ]
   );
 
 
