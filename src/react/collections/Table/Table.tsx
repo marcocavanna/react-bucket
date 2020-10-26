@@ -92,13 +92,11 @@ export default function Table<Data = any>(props: TableProps<Data>): React.ReactE
   // ----
   const bodyRows = rows?.body && Array.isArray(tableData) && (
     typeof rows.body === 'function'
-      ? tableData
-      // Generate Row Cells for Each Item
-      .map((data, index, array) => (
+      ? tableData.map((data, index, array) => (
         TableRow.create(
-          (rows.body as (
-              (data: Data, index: number, array: Data[]) => ShorthandCollection<TableCellProps>)
-          )(data, index, array), { autoGenerateKey: true, defaultProps: { cellAs: TableCell } })
+          (rows.body as ((data: Data, index: number, array: Data[]) => ShorthandCollection<TableCellProps>)
+          )(data, index, array), { autoGenerateKey: true, defaultProps: { cellAs: TableCell } }
+        )
       ))
       : rows.body.map((row) => (
         TableRow.create(row, { autoGenerateKey: true, defaultProps: { cellAs: TableCell } })

@@ -13,9 +13,6 @@ import { DayPicker } from '../../elements/DayPicker';
 import { Input } from '../../elements/Input';
 import { Select } from '../../elements/Select';
 
-import FormFormik from './FormFormik';
-import * as FormikFields from './FormikFields';
-
 
 export default function Form(props: FormProps): React.ReactElement<FormProps> {
 
@@ -83,13 +80,3 @@ Form.Checkbox = Checkbox;
 Form.DayPicker = DayPicker;
 Form.Input = Input;
 Form.Select = Select;
-
-
-/* --------
- * Formik Fields Element
- * -------- */
-Form.Formik = FormFormik;
-Form.FormikCheckbox = FormikFields.FormikCheckbox;
-Form.FormikDayPicker = FormikFields.FormikDayPicker;
-Form.FormikInput = FormikFields.FormikInput;
-Form.FormikTime = FormikFields.FormikTime;

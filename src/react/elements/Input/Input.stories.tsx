@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Input, InputProps } from './';
+import { Input, InputProps } from '.';
 import { useInputValue } from '../../hooks/useInputValue';
 
 

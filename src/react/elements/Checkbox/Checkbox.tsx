@@ -160,7 +160,9 @@ export default function Checkbox(props: CheckboxProps) {
       <label
         htmlFor={rest.id}
         onClick={handleLabelClick}
-      >{label}</label>
+      >
+        {label}
+      </label>
     ),
     [
       rest.id,

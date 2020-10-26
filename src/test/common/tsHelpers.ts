@@ -45,7 +45,9 @@ export const getNodes = (filePath: string, tsContent: string): ts.Node[] => {
 
 export const getInterfaces = (nodes: ts.Node[]): DeclaredInterface[] => {
   // Get all Interfaces
-  const interfaces = nodes.filter((node) => node.kind === ts.SyntaxKind.InterfaceDeclaration) as ts.InterfaceDeclaration[];
+  const interfaces = nodes.filter((node) => (
+    node.kind === ts.SyntaxKind.InterfaceDeclaration
+  )) as ts.InterfaceDeclaration[];
 
   // Return props for interfaces
   return interfaces.map(({ modifiers, name, members }) => ({

@@ -11,7 +11,8 @@ module.exports = {
     'postcss-single-charset'    : {},
     autoprefixer                : {},
 
-    ...(process.env.NODE_ENV === 'production'
+    ...(
+      process.env.NODE_ENV === 'production'
 
         /** Plugins for Production Mode Only */
         ? {

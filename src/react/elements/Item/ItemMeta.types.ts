@@ -1,8 +1,9 @@
 import {
-  ReactBucketComponentProps} from '../../generic';
+  ReactBucketComponentProps
+} from '../../generic';
 
 
-export interface ItemMetaProps extends ReactBucketComponentProps<StrictItemMetaProps>  {
+export interface ItemMetaProps extends ReactBucketComponentProps<StrictItemMetaProps> {
 }
 
 export interface StrictItemMetaProps {

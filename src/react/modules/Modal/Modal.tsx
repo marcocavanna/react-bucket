@@ -214,31 +214,33 @@ export default function Modal(props: ModalProps): React.ReactElement<ModalProps>
   const renderModalContent = () => (
     <ModalProvider value={{ closeModal: handleModalClose }}>
       <ModalConsumer>
-        {() => <ElementType {...rest} className={contentClasses}>
-          {/* Apply Class to Mount Node */}
-          <MountNode className={mountNodeClasses} node={userDefinedMountNode ?? document.body} />
+        {() => (
+          <ElementType {...rest} className={contentClasses}>
+            {/* Apply Class to Mount Node */}
+            <MountNode className={mountNodeClasses} node={userDefinedMountNode ?? document.body} />
 
-          {/* Render the Modal Icon if Exists */}
-          {modalIconElement}
+            {/* Render the Modal Icon if Exists */}
+            {modalIconElement}
 
-          {/* Render the Icon Close Element if Exists */}
-          {closeIconElement}
+            {/* Render the Icon Close Element if Exists */}
+            {closeIconElement}
 
-          {/* Render the Modal Header */}
-          {modalHeaderElement}
+            {/* Render the Modal Header */}
+            {modalHeaderElement}
 
-          {/* Render Modal Content */}
-          {!hasChildren ? (
-            <React.Fragment>
-              {ModalContent.create(content, { autoGenerateKey: false })}
-              {modalActionsElement}
-            </React.Fragment>
-          ) : (
-            typeof children === 'function'
-              ? children({ closeModal: handleModalClose })
-              : children
-          )}
-        </ElementType>}
+            {/* Render Modal Content */}
+            {!hasChildren ? (
+              <React.Fragment>
+                {ModalContent.create(content, { autoGenerateKey: false })}
+                {modalActionsElement}
+              </React.Fragment>
+            ) : (
+              typeof children === 'function'
+                ? children({ closeModal: handleModalClose })
+                : children
+            )}
+          </ElementType>
+        )}
       </ModalConsumer>
     </ModalProvider>
   );

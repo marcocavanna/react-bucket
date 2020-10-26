@@ -157,14 +157,16 @@ export function getTextAlign(defaultValue?: ContentAlign) {
 
 export const LoremIpsum = () => (
   <p>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ac est cursus, scelerisque magna eu
-    , blandit elit. Duis vitae nibh eu neque malesuada semper id sit amet massa. Duis iaculis nisl vitae tristique varius. Duis in faucibus nulla
-    . Etiam porttitor ipsum dapibus, posuere mauris at, scelerisque tellus. Praesent euismod tellus eu dui fermentum pretium
-    . Ut quis fermentum justo, a interdum purus. Duis arcu elit, porta quis eros quis, ullamcorper pretium nibh
-    . Praesent non tincidunt neque. Integer eget luctus nibh. Curabitur sodales, felis eu rutrum scelerisque
-    , justo urna placerat dolor, et rhoncus mauris nisl et orci. Nunc ornare nibh sed sapien consectetur
-    , ut aliquam arcu placerat. Pellentesque pulvinar tortor et placerat porttitor. Integer feugiat orci lorem
-    , vel iaculis mi bibendum id. Nulla a leo interdum, malesuada mauris at, ultricies dolor
-    . Suspendisse sed tortor eleifend tellus convallis tincidunt.
+    {`Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ac est cursus, scelerisque magna eu
+      , blandit elit. Duis vitae nibh eu neque malesuada semper id sit amet massa. Duis iaculis nisl vitae tristique
+      varius. Duis in faucibus nulla.
+      Etiam porttitor ipsum dapibus, posuere mauris at, scelerisque tellus.
+      Praesent euismod tellus eu dui fermentum pretium.
+      Ut quis fermentum justo, a interdum purus. Duis arcu elit, porta quis eros quis, ullamcorper pretium nibh
+      . Praesent non tincidunt neque. Integer eget luctus nibh. Curabitur sodales, felis eu rutrum scelerisque
+      , justo urna placerat dolor, et rhoncus mauris nisl et orci. Nunc ornare nibh sed sapien consectetur
+      , ut aliquam arcu placerat. Pellentesque pulvinar tortor et placerat porttitor. Integer feugiat orci lorem
+      , vel iaculis mi bibendum id. Nulla a leo interdum, malesuada mauris at, ultricies dolor
+      . Suspendisse sed tortor eleifend tellus convallis tincidunt.`}
   </p>
 );

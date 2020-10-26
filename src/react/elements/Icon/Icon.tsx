@@ -2,16 +2,16 @@ import * as React from 'react';
 import clsx from 'clsx';
 
 import {
+  classByPattern,
+  createShorthandFactory
+} from '@appbuckets/react-ui-core';
+
+import {
   useFontawesomeIcon,
   useElementType,
   useSharedClassName,
   useSplitStateClassName
 } from '../../lib';
-
-import {
-  classByPattern,
-  createShorthandFactory
-} from '@appbuckets/react-ui-core';
 
 import { IconProps } from './Icon.types';
 import { FontAwesomeIcon } from '../../generic';
@@ -71,8 +71,8 @@ export default function Icon(props: IconProps): React.ReactElement<IconProps> {
       disabled,
       fitted,
       unspaced,
-      'clickable': onClick,
-      'fa-spin'  : spin
+      clickable: onClick,
+      'fa-spin': spin
     },
     classByPattern(flip, 'fa-flip-%value%'),
     classByPattern(rotate, 'fa-rotate-%value%')

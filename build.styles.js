@@ -1,7 +1,7 @@
 /* --------
  * Import Node Utilities
  * -------- */
-const { resolve, relative } = require('path');
+const path = require('path');
 const { writeFileSync } = require('fs');
 
 
@@ -50,8 +50,8 @@ if (process.env.NODE_ENV === 'production') {
 /* --------
  * Set Path Helpers
  * -------- */
-const sourceDir = (...args) => resolve(__dirname, 'src', 'styles', ...args);
-const destDir = (...args) => resolve(__dirname, 'dist', ...args);
+const sourceDir = (...args) => path.resolve(__dirname, 'src', 'styles', ...args);
+const destDir = (...args) => path.resolve(__dirname, 'dist', ...args);
 
 
 /* --------
@@ -66,10 +66,14 @@ function buildCSSFile(filenameSrc, filenameDest) {
   /** Return a Promise with Compiler Result */
   return new Promise((resolve, reject) => {
     /** Start build */
-    global.console.log(`[${filenameSrc}] : Start building '${relative(__dirname, fileSrc)}' to '${relative(
-      __dirname,
-      fileDest
-    )}'`);
+    global.console.log(`[${filenameSrc}] : Start building '${
+      path.relative(__dirname, fileSrc)
+    }' to '${
+      path.relative(
+        __dirname,
+        fileDest
+      )
+    }'`);
     /** Render the SCSS File */
     sass.render({
       /** Set the source file */
@@ -92,7 +96,8 @@ function buildCSSFile(filenameSrc, filenameDest) {
       global.console.log(`[${filenameSrc}] : Compiled SCSS to CSS`);
 
       /** Pass the result to the PostCSS Processor */
-      return postcss(postCssPlugin).process(result.css, {
+      return postcss(postCssPlugin)
+        .process(result.css, {
           from: fileSrc,
           to  : fileDest,
           map : {
@@ -115,10 +120,10 @@ function buildCSSFile(filenameSrc, filenameDest) {
             });
           }
         })
-        .catch((error) => {
+        .catch((postCSSError) => {
           return reject({
             type: 'postcss-error',
-            error
+            postCSSError
           });
         });
     });

@@ -10,7 +10,11 @@ import { ReactBucketComponentProps, ShorthandContent, ShorthandItem } from '../.
 import { HeaderProps } from '../../elements/Header';
 
 
-export type PopperOffsetFunction = (data: { popper: Rect, reference: Rect, placement: Placement }) => [ number, number ];
+export type PopperOffsetFunction = (data: {
+  popper: Rect,
+  reference: Rect,
+  placement: Placement
+}) => [ number, number ];
 
 export type PopupOpenEvent = 'hover' | 'click' | 'focus';
 

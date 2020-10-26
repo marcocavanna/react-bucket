@@ -26,9 +26,7 @@ export default function itWillHandleMouseEvents<P, K extends keyof P>(
 
   const { getComponentElement } = getRenderTools(Component);
 
-  const triggerEvent = trigger
-    ? trigger
-    : (component: HTMLElement) => component.click();
+  const triggerEvent = trigger || ((component: HTMLElement) => component.click());
 
   it(`will invoke the ${mouseEventProp} event handler function`, () => {
     const mockCallback = jest.fn();

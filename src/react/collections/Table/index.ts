@@ -12,8 +12,6 @@ export * from './TableFooter.types';
 
 export * from './TableHeader.types';
 
-export * from './TableHeader.types';
-
 export * from './TableHeaderCell.types';
 
 export * from './TableRow.types';

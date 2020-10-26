@@ -25,14 +25,16 @@ export const baseTable = () => {
     { title: 'Name', dataIndex: 'name', key: 'name', width: 500, className: 'has-text-danger' },
     { title: 'Surname', dataIndex: 'surname', key: 'surname', width: 250 },
     {
-      title: 'Email', key: 'email', render: (_, user) => ({
+      title : 'Email',
+      key   : 'email',
+      render: (_, user) => ({
         props: {
           primary: true,
           header : user.email,
           content: 'Write!'
         }
       }),
-      width: 250
+      width : 250
     }
   ];
 

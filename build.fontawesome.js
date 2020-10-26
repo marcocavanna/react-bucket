@@ -116,8 +116,9 @@ async function parseYamlMetadata() {
     /** Write Declaration */
     fs.writeFileSync(
       destDir('fontawesome.ts'),
-      `export type FontAwesomeIconStyle = 'brands' | 'regular' | 'solid';\n\nexport type FontAwesomeIcon =\n  | ${faIconsName.join(
-        '\n  | ')};`,
+      `export type FontAwesomeIconStyle = 'brands' | 'regular' | 'solid';\n\nexport type FontAwesomeIcon =\n  | ${
+        faIconsName.join('\n  | ')
+      };`,
       { encoding: 'utf-8' }
     );
 

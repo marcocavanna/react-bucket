@@ -38,9 +38,9 @@ export default function PanelBody(props: PanelBodyProps): React.ReactElement<Pan
 
   /** Build Fab Buttons */
   const fabButtons = React.useMemo(
-    () => Array.isArray(fab)
+    () => (Array.isArray(fab)
       ? fab.map((buttonProps) => Button.create(buttonProps, { autoGenerateKey: true, overrideProps: { fab: true } }))
-      : [],
+      : []),
     [ fab ]
   );
 

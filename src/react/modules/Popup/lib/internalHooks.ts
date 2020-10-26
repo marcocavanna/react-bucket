@@ -55,7 +55,7 @@ export function usePopperPlacementMapping(position: PopupPosition): Placement {
   return React.useMemo(
     () => {
       return {
-        'auto': 'auto',
+        auto: 'auto',
 
         'top center': 'top',
         'top left'  : 'top-start',

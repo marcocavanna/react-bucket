@@ -78,7 +78,7 @@ export default function CircularProgress(
 
   const viewBox = [ 0, 0, size, size ].join(' ');
   const dashArray = circle.radius * Math.PI * 2;
-  const dashOffset = dashArray - (dashArray * progress.width / 100);
+  const dashOffset = dashArray - ((dashArray * progress.width) / 100);
 
 
   return (

@@ -14,6 +14,48 @@ interface AutoSpacerState {
 
 export default class AutoSpacer extends React.Component<AutoSpacerProps, AutoSpacerState> {
 
+
+  /* --------
+   * Define initial State
+   * -------- */
+  state: AutoSpacerState = {
+    height: this.computeHeight(this.props.defaultHeight ?? 0),
+    width : this.computeWidth(this.props.defaultWidth ?? 0)
+  };
+
+
+  /* --------
+   * Define the isMounted state to avoid unnecessary re render
+   * -------- */
+  isComponentMounted = false;
+
+
+  /* --------
+   * Initialize Ref Containers
+   * -------- */
+  containerRef = React.createRef<HTMLDivElement>();
+
+  parentNode: Node & ParentNode | undefined | null = undefined;
+
+
+  /* --------
+   * Component LifeCycle Handlers
+   * -------- */
+  public componentDidMount() {
+    this.isComponentMounted = true;
+    this.parentNode = this.containerRef.current?.parentNode;
+    window.addEventListener('resize', this.recomputeSizing.bind(this));
+    this.recomputeSizing();
+  }
+
+
+  public componentWillUnmount() {
+    this.isComponentMounted = false;
+    this.parentNode = undefined;
+    window.removeEventListener('resize', this.recomputeSizing.bind(this));
+  }
+
+
   /* --------
    * Get valid data
    * -------- */
@@ -60,29 +102,6 @@ export default class AutoSpacer extends React.Component<AutoSpacerProps, AutoSpa
 
 
   /* --------
-   * Define initial State
-   * -------- */
-  state: AutoSpacerState = {
-    height: this.computeHeight(this.props.defaultHeight ?? 0),
-    width : this.computeWidth(this.props.defaultWidth ?? 0)
-  };
-
-
-  /* --------
-   * Define the isMounted state to avoid unnecessary re render
-   * -------- */
-  isComponentMounted = false;
-
-
-  /* --------
-   * Initialize Ref Containers
-   * -------- */
-  containerRef = React.createRef<HTMLDivElement>();
-
-  parentNode: Node & ParentNode | undefined | null = undefined;
-
-
-  /* --------
    * Resize Callback Function
    * -------- */
   recomputeSizing() {
@@ -123,7 +142,9 @@ export default class AutoSpacer extends React.Component<AutoSpacerProps, AutoSpa
     const nextWidth = this.computeWidth(windowWidth - containerLeftPosition);
 
     /** Check if must update state */
-    if (this.isComponentMounted && ((nextHeight !== currHeight && !disableHeight) || (nextWidth !== currWidth && !disableWidth))) {
+    if (this.isComponentMounted
+      && ((nextHeight !== currHeight && !disableHeight)
+        || (nextWidth !== currWidth && !disableWidth))) {
       this.setState({
         height: nextHeight,
         width : nextWidth
@@ -133,24 +154,6 @@ export default class AutoSpacer extends React.Component<AutoSpacerProps, AutoSpa
         }
       });
     }
-  }
-
-
-  /* --------
-   * Component LifeCycle Handlers
-   * -------- */
-  public componentDidMount() {
-    this.isComponentMounted = true;
-    this.parentNode = this.containerRef.current?.parentNode;
-    window.addEventListener('resize', this.recomputeSizing.bind(this));
-    this.recomputeSizing();
-  }
-
-
-  public componentWillUnmount() {
-    this.isComponentMounted = false;
-    this.parentNode = undefined;
-    window.removeEventListener('resize', this.recomputeSizing.bind(this));
   }
 
 
@@ -168,7 +171,7 @@ export default class AutoSpacer extends React.Component<AutoSpacerProps, AutoSpa
       width
     } = this.state;
 
-    if (height === 0 || width === 0 && !renderIfInvisible) {
+    if ((height === 0 || width === 0) && !renderIfInvisible) {
       return null;
     }
 

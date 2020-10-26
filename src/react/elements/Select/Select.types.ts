@@ -19,12 +19,15 @@ import { StrictFieldProps } from '../Field';
 // ----
 // Define Select Props and Interfaces
 // ----
+type SelectComputedProps<OptionType> =
+  StrictSelectProps
+  & SharedComponentStateProps
+  & StrictFieldProps
+  & (StrictMultipleSelectProps<OptionType> | StrictNonMultipleSelectProps<OptionType>)
+  & (StrictCreatableSelectProps<OptionType> | StrictNonCreatableSelectProps);
+
 export type SelectProps<OptionType extends OptionTypeBase = DefaultOptionType> =
-  ReactBucketComponentProps<StrictSelectProps
-    & SharedComponentStateProps
-    & StrictFieldProps
-    & (StrictMultipleSelectProps<OptionType> | StrictNonMultipleSelectProps<OptionType>)
-    & (StrictCreatableSelectProps<OptionType> | StrictNonCreatableSelectProps)>;
+  ReactBucketComponentProps<SelectComputedProps<OptionType>>;
 
 
 // ----
@@ -37,12 +40,14 @@ export type DefaultOptionType = { label: string, value: string };
 // Define Augmented Props types for Select Event
 // ----
 /** The props passed to event handler in multiple option select */
-export type MultiSelectEventProps<OptionType extends OptionTypeBase = DefaultOptionType> = SelectProps<OptionType>
+export type MultiSelectEventProps<OptionType extends OptionTypeBase = DefaultOptionType> =
+  SelectProps<OptionType>
   & { value: ReadonlyArray<OptionType> | null | undefined }
   & { action: null | ActionMeta<OptionType> };
 
 /** The props passed to event handler in single option select */
-export type SelectEventProps<OptionType extends OptionTypeBase = DefaultOptionType> = SelectProps<OptionType>
+export type SelectEventProps<OptionType extends OptionTypeBase = DefaultOptionType> =
+  SelectProps<OptionType>
   & { value: OptionType | null | undefined };
 
 
@@ -117,7 +122,7 @@ interface StrictNonMultipleSelectProps<OptionType extends OptionTypeBase = Defau
   onMenuOpen?: SelectChangeHandler<OptionType>;
 }
 
-interface StrictCreatableSelectProps<OptionType extends OptionTypeBase = DefaultOptionType> extends CreatableProps<OptionType> {
+interface StrictCreatableSelectProps<OptionType> extends CreatableProps<OptionType> {
   /** Set the Select as Creatable */
   creatable: true;
 }
@@ -131,7 +136,7 @@ interface StrictNonCreatableSelectProps {
 // ----
 // Define shared component props
 // ----
-interface StrictSelectProps<OptionType extends OptionTypeBase = DefaultOptionType> {
+interface StrictSelectProps {
   /** Disable the Select */
   disabled?: boolean;
 

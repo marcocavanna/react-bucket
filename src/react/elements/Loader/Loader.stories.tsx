@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Loader } from './';
+import { Loader } from '.';
 
 
 export default { title: 'Elements/Loader', component: Loader };

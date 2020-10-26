@@ -146,14 +146,14 @@ export type FlexboxContent<P, E extends keyof JSX.IntrinsicElements = 'div'> =
 /**
  * Generate a Type dedicated to forwardRef function
  */
+type ComponentCreateFactory<P> = (
+  value: ReactElement | ComponentType | ReactNode | P | string,
+  options: CreateShorthandOptions<P & ShorthandProps<P>>
+) => ReactElement | null;
+
 export type ReactBucketForwardedRefComponent<P = {}, T = HTMLDivElement> =
   ForwardRefExoticComponent<P & RefAttributes<T>>
-  & {
-  create?: (
-    value: ReactElement | ComponentType | ReactNode | P | string,
-    options: CreateShorthandOptions<P & ShorthandProps<P>>
-  ) => ReactElement | null
-};
+  & { create?: ComponentCreateFactory<P> };
 
 /**
  * An interface with Structural ReactBucket Props

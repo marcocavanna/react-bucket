@@ -36,7 +36,7 @@ const buildRow = (...columns: FlexContentWidth[]) => (
   <Row>
     {columns.map((width, ix) => (
       <Grid.Column
-        key={ix}
+        key={`${width}-${ix}`}
         width={width}
         content={(
           <Box content={width.toString()} />

@@ -16,9 +16,9 @@ import { BoxProps } from './Box.types';
 const appendValueToClass = (
   prefix: string,
   prop: string | number | undefined
-): string | undefined => typeof prop === 'number' || typeof prop === 'string'
+): string | undefined => (typeof prop === 'number' || typeof prop === 'string'
   ? `${prefix}-${prop}`
-  : undefined;
+  : undefined);
 
 
 export default function Box(props: BoxProps): React.ReactElement<BoxProps> {

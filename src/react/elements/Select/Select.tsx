@@ -21,8 +21,7 @@ import { Field } from '../Field';
 import { SelectProps } from './Select.types';
 
 
-export default function Select<OptionType extends OptionTypeBase,
-  IsMulti extends boolean>(
+export default function Select<OptionType extends OptionTypeBase>(
   props: SelectProps<OptionType>
 ): React.ReactElement<SelectProps<OptionType>> {
 
@@ -120,7 +119,7 @@ export default function Select<OptionType extends OptionTypeBase,
     }
 
     /** Get Selected Value */
-    const value = (selectRef.current?.state as any).value;
+    const { value } = (selectRef.current?.state as any);
 
     if (userDefinedOnBlur) {
       userDefinedOnBlur(e, {
@@ -150,7 +149,7 @@ export default function Select<OptionType extends OptionTypeBase,
   const handleMenuOpen = () => {
     if (userDefinedOnMenuOpen) {
       /** Get the Selected Value */
-      const value = (selectRef.current?.state as any).value;
+      const { value } = (selectRef.current?.state as any);
 
       userDefinedOnMenuOpen(null, {
         ...props,
@@ -163,7 +162,7 @@ export default function Select<OptionType extends OptionTypeBase,
   const handleMenuClose = () => {
     if (userDefinedOnMenuClose) {
       /** Get the Selected Value */
-      const value = (selectRef.current?.state as any).value;
+      const { value } = (selectRef.current?.state as any);
 
       userDefinedOnMenuClose(null, {
         ...props,
@@ -186,7 +185,7 @@ export default function Select<OptionType extends OptionTypeBase,
     }
 
     /** Get Selected Value */
-    const value = (selectRef.current?.state as any).value;
+    const { value } = (selectRef.current?.state as any);
 
     /** Call user defined handled */
     if (userDefinedOnFocus) {

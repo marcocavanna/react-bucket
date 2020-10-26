@@ -1,8 +1,9 @@
 import {
-  ReactBucketComponentProps} from '../../generic';
+  ReactBucketComponentProps
+} from '../../generic';
 
 
-export interface ItemTextProps extends ReactBucketComponentProps<StrictItemTextProps>  {
+export interface ItemTextProps extends ReactBucketComponentProps<StrictItemTextProps> {
 }
 
 export interface StrictItemTextProps {

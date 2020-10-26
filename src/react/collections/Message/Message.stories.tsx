@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Message } from './';
+import { Message } from '.';
 
 
 export default { title: 'Collections/Message', component: Message };

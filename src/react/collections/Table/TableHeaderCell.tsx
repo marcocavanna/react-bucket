@@ -1,13 +1,14 @@
 import * as React from 'react';
 import clsx from 'clsx';
 
+import { classByValue, createShorthandFactory } from '@appbuckets/react-ui-core';
+
 import {
   useSharedClassName
 } from '../../lib';
 
 import { TableHeaderCellProps } from './TableHeaderCell.types';
 import TableCell from './TableCell';
-import { classByValue, createShorthandFactory } from '@appbuckets/react-ui-core';
 
 
 export default function TableHeaderCell(props: TableHeaderCellProps): React.ReactElement {

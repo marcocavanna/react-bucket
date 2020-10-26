@@ -2,9 +2,8 @@ import * as React from 'react';
 
 import { getElementType, PropsWithAs } from '@appbuckets/react-ui-core';
 
-import {
-  SharedClassNamesAndProps,
-  default as getSharedClassNames
+import getSharedClassNames, {
+  SharedClassNamesAndProps
 } from './getSharedClassNames';
 
 import splitStateClassName, { SplitStateClassName } from './splitStateClassName';

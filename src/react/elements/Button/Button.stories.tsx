@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { Button } from './index';
-
 import { text, boolean } from '@storybook/addon-knobs';
+
+import { Button } from './index';
 
 import { getBackgroundColor, getElementSize } from '../../stories';
 

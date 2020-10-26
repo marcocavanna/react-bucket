@@ -16,7 +16,9 @@ import { BackdropProps } from './Backdrop.types';
 import { BackdropInnerProps } from './BackdropInner.types';
 
 
-export default function Backdrop(props: BackdropProps): React.ReactElement<BackdropProps> | React.ReactElement<BackdropInnerProps> {
+export default function Backdrop(
+  props: BackdropProps
+): React.ReactElement<BackdropProps> | React.ReactElement<BackdropInnerProps> {
 
   // ----
   // Get Backdrop Props

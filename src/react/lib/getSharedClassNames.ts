@@ -27,6 +27,13 @@ export type SharedClassNamesAndProps<P> = {
 };
 
 
+function fallBackTrueValue(original: any): string | undefined {
+  if (original === true) {
+    return 'true';
+  }
+  return original;
+}
+
 /**
  * Some prop can be responsive, so can be computed
  * differently if they are primitive, or an object of value
@@ -54,13 +61,6 @@ function computeResponsiveClassName(
     classByPattern(fallBackTrueValue(prop.desktopUp), `on-desktop-${pattern}`),
     classByPattern(fallBackTrueValue(prop.largeDesktopUp), `on-large-desktop-${pattern}`)
   );
-
-  function fallBackTrueValue(original: any): string | undefined {
-    if (original === true) {
-      return 'true';
-    }
-    return original;
-  }
 }
 
 export default function getSharedClassNames<P extends SharedProps>(props: P): SharedClassNamesAndProps<P> {

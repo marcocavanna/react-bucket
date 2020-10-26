@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Toast } from './';
+import { Toast } from '.';
 
 
 export default { title: 'Elements/Toast', component: Toast };

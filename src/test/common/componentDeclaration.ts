@@ -43,8 +43,10 @@ export default function assertComponentDeclaration(
     // Get Interfaces
     const interfaces = getInterfaces(tsNodes);
 
-    const propsInterfaceObject: DeclaredInterface | undefined = interfaces.find(({ name }) => name === propsInterfaceName);
-    const strictInterfaceObject: DeclaredInterface | undefined = interfaces.find(({ name }) => name === strictInterfaceName);
+    const propsInterfaceObject: DeclaredInterface | undefined = interfaces
+      .find(({ name }) => name === propsInterfaceName);
+    const strictInterfaceObject: DeclaredInterface | undefined = interfaces
+      .find(({ name }) => name === strictInterfaceName);
 
     describe(`interface ${propsInterfaceName}`, () => {
       it('has interface', () => {

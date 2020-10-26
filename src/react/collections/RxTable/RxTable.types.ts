@@ -245,6 +245,6 @@ export interface RxTablePaginationConfig {
 /* --------
  * Event Info Interfaces
  * -------- */
-export interface ChangeEventInfo<Data> {
+export interface ChangeEventInfo {
   [key: string]: any;
 }

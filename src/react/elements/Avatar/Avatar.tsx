@@ -91,11 +91,11 @@ export default function Avatar(props: AvatarProps): React.ReactElement<AvatarPro
   );
 
   const badgeElement = React.useMemo(
-    () => badge === true
+    () => (badge === true
       ? <Badge />
       : Badge.create(badge, {
         autoGenerateKey: false
-      }),
+      })),
     [ badge ]
   );
 

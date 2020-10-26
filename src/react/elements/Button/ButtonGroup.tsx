@@ -2,14 +2,14 @@ import * as React from 'react';
 import clsx from 'clsx';
 
 import {
-  useSharedClassName,
-  useElementType
-} from '../../lib';
-
-import {
   childrenUtils,
   createShorthandFactory
 } from '@appbuckets/react-ui-core';
+
+import {
+  useSharedClassName,
+  useElementType
+} from '../../lib';
 
 import { ButtonGroupProps } from './ButtonGroup.types';
 import Button from './Button';

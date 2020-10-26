@@ -7,7 +7,9 @@ import { InputProps } from '../elements/Input';
 
 type InputValue<T> = { raw: string, casted: T | null };
 
-export function useInputValue<T = string>(initialValue?: T): [ T, ChangeHandler<HTMLInputElement, InputProps>, string ] {
+export function useInputValue<T = string>(
+  initialValue?: T
+): [ T, ChangeHandler<HTMLInputElement, InputProps>, string ] {
 
   const [ inputValue, setInputValue ] = useState<InputValue<T>>({
     raw   : initialValue ? String(initialValue) : '',

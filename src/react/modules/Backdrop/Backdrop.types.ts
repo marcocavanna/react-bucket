@@ -8,7 +8,8 @@ import { LoaderProps } from '../../elements/Loader';
 import { StrictBackdropInnerProps } from './BackdropInner.types';
 
 
-export type BackdropPortalProps = 'closeOnDocumentClick'
+export type BackdropPortalProps =
+  'closeOnDocumentClick'
   | 'closeOnEscape'
   | 'openOnTriggerClick'
   | 'openOnTriggerFocus'

@@ -202,7 +202,7 @@ export default function withFormikField<P extends FormikWrappedInnerProps, Value
     const handleFieldChange = React.useCallback(
       (event: React.FormEvent, componentPropsFromEvent: P, ...restArgs) => {
         /** Check if field must be set as touched on change */
-        if (setTouchedOnChange || localSetTouchOnChange && !meta.touched) {
+        if ((setTouchedOnChange || localSetTouchOnChange) && !meta.touched) {
           formik.setFieldTouched(formikFieldName, true, false);
         }
 

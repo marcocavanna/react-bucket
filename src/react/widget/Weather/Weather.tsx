@@ -103,7 +103,7 @@ export default function Weather(props: WeatherProps): React.ReactElement<Weather
     () => {
       /** If updated interval is 0, return */
       if (updateInterval === 0 || typeof updateInterval !== 'number') {
-        return;
+        return () => null;
       }
 
       /** Create a new Interval */
@@ -159,7 +159,7 @@ export default function Weather(props: WeatherProps): React.ReactElement<Weather
 
   /** Build Component Classes */
   const classes = clsx(
-    { 'loading': state.loading },
+    { loading: state.loading },
     'weather',
     'widget',
     className

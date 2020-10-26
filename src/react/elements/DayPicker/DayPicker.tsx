@@ -147,6 +147,26 @@ export default function DayPicker(props: DayPickerProps<ParsableDate>): React.Re
   /* --------
    * Component Handlers
    * -------- */
+  const handleCalendarOpen = React.useCallback(
+    () => {
+      if (onCalendarOpen) {
+        onCalendarOpen(null, propsForEvent);
+      }
+      trySetOpen(true);
+    },
+    [ open ]
+  );
+
+  const handleCalendarClose = React.useCallback(
+    () => {
+      if (onCalendarClose) {
+        onCalendarClose(null, propsForEvent);
+      }
+      trySetOpen(false);
+    },
+    [ open ]
+  );
+
   const evalDayChange = React.useCallback(
     (value: string | Date, triggeredByInput: boolean) => {
       /** Build new Date Object */
@@ -188,26 +208,6 @@ export default function DayPicker(props: DayPickerProps<ParsableDate>): React.Re
       evalDayChange(day, false);
     },
     [ selectedDate.formatted ]
-  );
-
-  const handleCalendarOpen = React.useCallback(
-    () => {
-      if (onCalendarOpen) {
-        onCalendarOpen(null, propsForEvent);
-      }
-      trySetOpen(true);
-    },
-    [ open ]
-  );
-
-  const handleCalendarClose = React.useCallback(
-    () => {
-      if (onCalendarClose) {
-        onCalendarClose(null, propsForEvent);
-      }
-      trySetOpen(false);
-    },
-    [ open ]
   );
 
   const handleInputChange = React.useCallback(

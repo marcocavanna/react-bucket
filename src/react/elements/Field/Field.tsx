@@ -189,7 +189,7 @@ const Field: ReactBucketForwardedRefComponent<FieldProps> = React.forwardRef<HTM
    * -------- */
   return (
     <div {...rest} ref={ref} className={classes}>
-      {label && <label>{label}</label>}
+      {label && <label htmlFor={props.id}>{label}</label>}
 
       <div className={containerClasses}>
         {leftFieldContent}

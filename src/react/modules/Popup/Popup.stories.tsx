@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Popup } from './';
+import { Popup } from '.';
 import { Box } from '../../stories';
 
 
