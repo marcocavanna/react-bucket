@@ -19,7 +19,12 @@
     // ES2016: Additional APIs available in ES2016
     //        - array.include, etc.
     // https://www.typescriptlang.org/v2/tsconfig#lib
-    "lib": ["dom", "ES5", "ES2015", "ES2016"],
+    "lib": [
+      "dom",
+      "ES5",
+      "ES2015",
+      "ES2016"
+    ],
 
     // The target setting changes which JS features are down leveled and which are left intact.
     // For example, an arrow function () => this will be turned into an equivalent function expression if target is ES5 or lower.
@@ -28,7 +33,7 @@
 
     // Sets the module system for the program.
     // https://www.typescriptlang.org/v2/en/tsconfig#module
-    "module": "CommonJS",
+    "module": "ES2015",
 
     // Controls how JSX constructs are emitted in JavaScript files
     // "react": Emit .js files with JSX changed to the equivalent React.createElement calls

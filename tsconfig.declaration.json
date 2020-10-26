@@ -3,7 +3,7 @@
   "compilerOptions": {
     "removeComments": false,
     "declaration": true,
-    "declarationDir": "dist/types",
+    "declarationDir": "build/types",
     "emitDeclarationOnly": true
   },
 

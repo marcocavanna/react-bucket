@@ -2,13 +2,14 @@
  * Import Node Utilities
  * -------- */
 const path = require('path');
-const { writeFileSync } = require('fs');
+const { writeFileSync, existsSync, mkdirSync } = require('fs');
 
 
 /* --------
  * Import Compiler Utilities
  * -------- */
 const sass = require('node-sass');
+const packageImporter = require('node-sass-package-importer');
 const postcss = require('postcss');
 
 
@@ -51,13 +52,18 @@ if (process.env.NODE_ENV === 'production') {
  * Set Path Helpers
  * -------- */
 const sourceDir = (...args) => path.resolve(__dirname, 'src', 'styles', ...args);
-const destDir = (...args) => path.resolve(__dirname, 'dist', ...args);
+const destDir = (...args) => path.resolve(__dirname, 'build', 'styles', ...args);
 
 
 /* --------
  * Declare the Function to Build SASS and to use PostCSS
  * -------- */
 function buildCSSFile(filenameSrc, filenameDest) {
+  /** Check Dir exists */
+  if (!existsSync(destDir())) {
+    mkdirSync(destDir(), { recursive: true });
+  }
+
   /** Set file Paths */
   const fileSrc = sourceDir(`${filenameSrc}.scss`);
   const fileDest = destDir(`${filenameDest}.css`);
@@ -78,6 +84,8 @@ function buildCSSFile(filenameSrc, filenameDest) {
     sass.render({
       /** Set the source file */
       file          : fileSrc,
+      /** Add the package importer to use ~ */
+      importer      : packageImporter(),
       /** Set the out file to use SourceMap */
       outFile       : fileDest,
       outputStyle   : 'expanded',
@@ -135,7 +143,8 @@ function buildCSSFile(filenameSrc, filenameDest) {
  * Compile Files
  * -------- */
 const entries = {
-  grid: 'grid'
+  index: 'build',
+  grid : 'grid'
 };
 
 async function build() {

@@ -1,6 +1,3 @@
-import '../styles/index.scss';
-
-
 /* --------
  * Collections
  * -------- */
