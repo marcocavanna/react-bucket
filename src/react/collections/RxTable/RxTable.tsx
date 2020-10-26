@@ -11,7 +11,7 @@ import { RxTableProps, GetRowKey, RxTableColumnTitleProps, RxTableColumns } from
 import Table from '../Table/Table';
 
 // import useLazyKVMap from './hooks/useLazyKVMap';
-import useTitleColumns from './hooks/useTitleColumns';
+import { useTitleColumns } from './hooks/useTitleColumns';
 
 
 interface RxTableDataState<Data> {

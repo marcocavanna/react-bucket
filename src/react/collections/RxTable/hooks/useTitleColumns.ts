@@ -25,7 +25,7 @@ function fillTitle<Data>(columns: RxTableColumns<Data>, columnTitleProps: RxTabl
 }
 
 
-export default function useTitleColumns<Data>(columnTitleProps: RxTableColumnTitleProps<Data>): [ TransformColumns<Data> ] {
+export function useTitleColumns<Data>(columnTitleProps: RxTableColumnTitleProps<Data>): [ TransformColumns<Data> ] {
   return [
     React.useCallback(
       (columns: RxTableColumns<Data>) => fillTitle(columns, columnTitleProps),
