@@ -19,7 +19,7 @@ import { StrictFieldProps } from '../Field';
 // ----
 // Define Select Props and Interfaces
 // ----
-type SelectComputedProps<OptionType> =
+export type SelectComputedProps<OptionType> =
   StrictSelectProps
   & SharedComponentStateProps
   & StrictFieldProps
@@ -80,7 +80,7 @@ export type SelectChangeHandler<OptionType extends OptionTypeBase = DefaultOptio
 // ----
 type DefaultSelectPropsWithoutEvents<Props> = Omit<Props, 'onBlur' | 'onChange' | 'onFocus' | 'onMenuClose' | 'onMenuOpen'>;
 
-interface StrictMultipleSelectProps<OptionType extends OptionTypeBase = DefaultOptionType>
+export interface StrictMultipleSelectProps<OptionType extends OptionTypeBase = DefaultOptionType>
   extends DefaultSelectPropsWithoutEvents<ReactSelectProps<OptionType>> {
   /** Define multiple choice select */
   isMulti: true;
@@ -101,7 +101,7 @@ interface StrictMultipleSelectProps<OptionType extends OptionTypeBase = DefaultO
   onMenuOpen?: MultiSelectChangeHandler<OptionType>;
 }
 
-interface StrictNonMultipleSelectProps<OptionType extends OptionTypeBase = DefaultOptionType>
+export interface StrictNonMultipleSelectProps<OptionType extends OptionTypeBase = DefaultOptionType>
   extends DefaultSelectPropsWithoutEvents<ReactSelectProps<OptionType>> {
   /** Define select as single choice */
   isMulti: false;
@@ -122,12 +122,12 @@ interface StrictNonMultipleSelectProps<OptionType extends OptionTypeBase = Defau
   onMenuOpen?: SelectChangeHandler<OptionType>;
 }
 
-interface StrictCreatableSelectProps<OptionType> extends CreatableProps<OptionType> {
+export interface StrictCreatableSelectProps<OptionType> extends CreatableProps<OptionType> {
   /** Set the Select as Creatable */
   creatable: true;
 }
 
-interface StrictNonCreatableSelectProps {
+export interface StrictNonCreatableSelectProps {
   /** Set the Select as Non Creatable */
   creatable: false;
 }
@@ -136,7 +136,7 @@ interface StrictNonCreatableSelectProps {
 // ----
 // Define shared component props
 // ----
-interface StrictSelectProps {
+export interface StrictSelectProps {
   /** Disable the Select */
   disabled?: boolean;
 

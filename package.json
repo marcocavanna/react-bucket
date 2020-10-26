@@ -35,7 +35,7 @@
   "license": "MIT",
   "scripts": {
     "prepublishOnly": "npm run build:fontawesome && npm run build",
-    "prebuild:webpack": "rimraf dist && npm run lint && npm run test:coverage",
+    "prebuild:webpack": "rimraf dist",
     "build": "cross-env NODE_ENV=production npm run build:webpack",
     "build:dev": "cross-env NODE_ENV=development npm run build:webpack",
     "build:webpack": "cross-env TS_NODE_PROJECT=\"tsconfig.webpack.json\" webpack --config webpack.config.ts --progress",
@@ -53,7 +53,8 @@
     "test:coverage": "cross-env NODE_ENV=test jest --coverage",
     "lint": "eslint .",
     "prettier": "prettier --config .prettierrc --write \"dist/**/*{.js,.ts,.css}\"",
-    "plop": "plop"
+    "plop": "plop",
+    "dep:prebuild:webpack": "rimraf dist && npm run lint && npm run test:coverage"
   },
   "peerDependencies": {
     "react": "^16.13.1",
