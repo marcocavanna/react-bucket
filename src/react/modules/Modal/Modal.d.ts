@@ -87,7 +87,7 @@ export interface StrictModalProps {
   open?: boolean
 
   /** Size Modal Props */
-  size?: 'small' | 'big' | 'extra-big'
+  size?: 'small' | 'big' | 'extra-big' | 'ultra-big'
 
   /** Custom Style */
   style?: React.CSSProperties

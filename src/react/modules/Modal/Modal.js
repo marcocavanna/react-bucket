@@ -118,7 +118,7 @@ class Modal extends Component {
     open: PropTypes.bool,
 
     /** Size Modal Props */
-    size: PropTypes.oneOf(['small', 'big', 'extra-big']),
+    size: PropTypes.oneOf(['small', 'big', 'extra-big', 'ultra-big']),
 
     /** Custom Style */
     style: PropTypes.object,
