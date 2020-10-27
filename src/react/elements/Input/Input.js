@@ -75,6 +75,9 @@ class Input extends PureComponent {
     /** Set the Field as Required */
     required: PropTypes.bool,
 
+    /** Select all on Input Focus */
+    selectAllOnFocus: PropTypes.bool,
+
     /** Tab Index for Input Element */
     tabIndex: PropTypes.number,
 
@@ -159,10 +162,19 @@ class Input extends PureComponent {
   }
 
   handleClick = (e) => {
-    const { disabled, currency } = this.props;
+    const { disabled, currency, selectAllOnFocus, type } = this.props;
 
     if (disabled) {
       return;
+    }
+
+    if (selectAllOnFocus && this.inputRef.current) {
+      if (type !== 'number') {
+        this.inputRef.current.setSelectionRange(0, this.inputRef.current.value.length);
+      }
+      else if (this.inputRef.current.select) {
+        this.inputRef.current.select();
+      }
     }
 
     e.stopPropagation();

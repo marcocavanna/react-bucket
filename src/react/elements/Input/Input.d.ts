@@ -50,6 +50,9 @@ export interface StrictInputProps extends StrictFieldProps, React.InputHTMLAttri
   /** Currency Precision */
   precision?: number,
 
+  /** Select all on Input Blur */
+  selectAllOnFocus?: boolean;
+
   /** Input Tab Index */
   tabIndex?: number
 
