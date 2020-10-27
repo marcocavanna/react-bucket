@@ -9,6 +9,7 @@
     "components"
   ],
   "main": "build/es/index.js",
+  "types": "build/types/index.d.ts",
   "files": [
     "src/styles",
     "build",
@@ -37,9 +38,11 @@
     "build": "cross-env NODE_ENV=production yarn compile:rollup",
     "build:dev": "cross-env NODE_ENV=development yarn compile:rollup",
     "build:storybook": "build-storybook",
+    "build:declaration": "tsc -p tsconfig.declaration.json",
+    "copy:declaration": "cpy '**/*.d.ts' '../../build/es' --cwd=src/react --parents",
     "precompile:rollup": "rimraf build",
     "compile:rollup": "rollup -c",
-    "postcompile:rollup": "node build.styles.js && cpy '**/*.d.ts' '../../build/es' --cwd=src/react --parents",
+    "postcompile:rollup": "node build.styles.js && yarn build:declaration",
     "start:storybook": "start-storybook -p 57000",
     "start:styleguide": "styleguidist server",
     "start:docs": "cross-env DOCS=1 start-storybook --docs",
@@ -47,7 +50,8 @@
     "test:watch": "cross-env NODE_ENV=test jest --watch",
     "test:coverage": "cross-env NODE_ENV=test jest --coverage",
     "lint": "eslint .",
-    "prettier": "prettier --config .prettierrc --write \"build/**/*{.js,.ts,.css}\""
+    "prettier": "prettier --config .prettierrc --write \"build/**/*{.js,.ts,.css}\"",
+    "make:local": "yarn build && rimraf local && mkdir local && cp -r build local && cp package.json local/package.json && cp README.md local/README.md && cp LICENSE ./local/LICENSE"
   },
   "peerDependencies": {
     "react": "^16.13.1",
