@@ -1,8 +1,54 @@
 import * as React from 'react';
 
 import { select } from '@storybook/addon-knobs';
+import { Column, Row } from './collections/Grid';
 
-import { ReactBucketColor, FontWeight, ElementSize, ContentAlign } from './generic';
+import { Header, HeaderProps } from './elements/Header';
+
+import {
+  ReactBucketColor,
+  FontWeight,
+  ElementSize,
+  ContentAlign,
+  ShorthandItem
+} from './generic';
+
+
+/* --------
+ * Build a Descriptor
+ * -------- */
+interface StoryDescriptorProps {
+  className?: string;
+
+  description?: React.ReactNode;
+
+  content?: React.ReactNode;
+
+  header?: ShorthandItem<HeaderProps>;
+
+  postDescription?: React.ReactNode;
+}
+
+export const StoryDescriptor: React.FunctionComponent<StoryDescriptorProps> = (props) => {
+  return (
+    <Row className={props.className}>
+      <Column>
+        {Header.create(props.header, { autoGenerateKey: false })}
+        {props.description && (
+          <div className={'mt-4 mb-4'}>
+            {props.description}
+          </div>
+        )}
+        {props.content ?? props.children}
+        {props.postDescription && (
+          <div className={'mt-4'}>
+            {props.postDescription}
+          </div>
+        )}
+      </Column>
+    </Row>
+  );
+};
 
 
 /* --------
