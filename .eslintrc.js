@@ -5,10 +5,12 @@ module.exports = {
     project: './tsconfig.eslint.json'
   },
   plugins      : [
-    '@typescript-eslint'
+    '@typescript-eslint',
+    'react-hooks'
   ],
   extends      : [
-    'airbnb-typescript'
+    'airbnb-typescript',
+    'plugin:react-hooks/recommended'
   ],
   rules        : {
     // Base Rules
