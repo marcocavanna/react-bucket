@@ -81,4 +81,6 @@ export * as Widget from './widget';
  * -------- */
 export * from './hooks/useAutoControlledValue';
 
+export * from './hooks/useCheckboxValue';
+
 export * from './hooks/useInputValue';
