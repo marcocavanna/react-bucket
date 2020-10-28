@@ -137,7 +137,7 @@ export default function RxTable<Data = any>(props: RxTableProps<Data>): React.Re
   // ----
   // Column Computing
   // ----
-  const [ transformColumnTitle ] = useTitleColumns<Data>(
+  const [ transformColumnTitle ] = useTitleColumns(
     columns.map(() => ({})) as RxTableColumnTitleProps<Data>
   );
 

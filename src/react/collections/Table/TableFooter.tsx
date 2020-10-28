@@ -6,6 +6,8 @@ import {
   createShorthandFactory
 } from '@appbuckets/react-ui-core';
 
+import { CreatableFunctionComponent } from '../../generic';
+
 import {
   useElementType,
   useSharedClassName
@@ -14,7 +16,16 @@ import {
 import { TableFooterProps } from './TableFooter.types';
 
 
-export default function TableFooter(props: TableFooterProps): React.ReactElement<TableFooterProps> {
+/* --------
+ * Component Declare
+ * -------- */
+type TableFooterComponent = CreatableFunctionComponent<TableFooterProps>;
+
+
+/* --------
+ * Component Render
+ * -------- */
+const TableFooter: TableFooterComponent = (props) => {
 
   const {
     className,
@@ -38,12 +49,14 @@ export default function TableFooter(props: TableFooterProps): React.ReactElement
     </ElementType>
   );
 
-}
+};
 
 TableFooter.displayName = 'TableFooter';
 
 TableFooter.defaultProps = {
   as: 'tfoot'
-} as Partial<TableFooterProps>;
+};
 
 TableFooter.create = createShorthandFactory(TableFooter, (content) => ({ content }));
+
+export default TableFooter;

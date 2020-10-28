@@ -27,7 +27,20 @@ import ModalContent from './ModalContent';
 import ModalHeader from './ModalHeader';
 
 
-export default function Modal(props: ModalProps): React.ReactElement<ModalProps> {
+/* --------
+ * Component Declare
+ * -------- */
+type ModalComponent = React.FunctionComponent<ModalProps> & {
+  Actions: typeof ModalActions;
+  Content: typeof ModalContent;
+  Header: typeof ModalHeader;
+};
+
+
+/* --------
+ * Component Render
+ * -------- */
+const Modal: ModalComponent = (props) => {
 
   // ----
   // Get Modal Props
@@ -92,29 +105,23 @@ export default function Modal(props: ModalProps): React.ReactElement<ModalProps>
   // ----
   // Define Modal Handlers
   // ----
-  const handleModalClose = React.useCallback(
-    (e: React.MouseEvent<HTMLElement>) => {
-      /** Call User Handler if Exists */
-      if (onClose) {
-        onClose(e, props);
-      }
-      /** Try to close the modal */
-      trySetOpen(false);
-    },
-    [ open, trySetOpen, onClose ]
-  );
+  const handleModalClose = (e: React.MouseEvent<HTMLElement>) => {
+    /** Call User Handler if Exists */
+    if (onClose) {
+      onClose(e, props);
+    }
+    /** Try to close the modal */
+    trySetOpen(false);
+  };
 
-  const handleModalOpen = React.useCallback(
-    (e: React.MouseEvent<HTMLElement>) => {
-      /** Call User Handler if Exists */
-      if (onOpen) {
-        onOpen(e, props);
-      }
-      /** Try to open the modal */
-      trySetOpen(true);
-    },
-    [ open, trySetOpen, onOpen ]
-  );
+  const handleModalOpen = (e: React.MouseEvent<HTMLElement>) => {
+    /** Call User Handler if Exists */
+    if (onOpen) {
+      onOpen(e, props);
+    }
+    /** Try to open the modal */
+    trySetOpen(true);
+  };
 
 
   // ----
@@ -147,27 +154,24 @@ export default function Modal(props: ModalProps): React.ReactElement<ModalProps>
     [ icon ]
   );
 
-  const closeIconElement = React.useMemo(
-    () => closeIcon && Button.create({
-      icon      : closeIcon,
-      flat      : true,
-      appearance: 'white shade'
-    }, {
-      autoGenerateKey: false,
-      defaultProps   : { className: 'close' },
-      overrideProps  : (predefinedProps) => ({
-        onClick: (e: React.MouseEvent<HTMLButtonElement>) => {
-          /** Call original user defined handler on icon */
-          if (predefinedProps.onClick) {
-            predefinedProps.onClick(e, predefinedProps);
-          }
-          /** Try to close the Modal */
-          handleModalClose(e);
+  const closeIconElement = closeIcon && Button.create({
+    icon      : closeIcon,
+    flat      : true,
+    appearance: 'white shade'
+  }, {
+    autoGenerateKey: false,
+    defaultProps   : { className: 'close' },
+    overrideProps  : (predefinedProps) => ({
+      onClick: (e: React.MouseEvent<HTMLButtonElement>) => {
+        /** Call original user defined handler on icon */
+        if (predefinedProps.onClick) {
+          predefinedProps.onClick(e, predefinedProps);
         }
-      })
-    }),
-    [ closeIcon, handleModalClose ]
-  );
+        /** Try to close the Modal */
+        handleModalClose(e);
+      }
+    })
+  });
 
   const modalHeaderElement = React.useMemo(
     () => {
@@ -272,7 +276,7 @@ export default function Modal(props: ModalProps): React.ReactElement<ModalProps>
       {renderModalContent()}
     </Backdrop>
   );
-}
+};
 
 Modal.displayName = 'Modal';
 
@@ -280,8 +284,10 @@ Modal.defaultProps = {
   closeIcon           : 'times',
   closeOnDocumentClick: false,
   closeOnBackdropClick: true
-} as Partial<ModalProps>;
+};
 
 Modal.Actions = ModalActions;
 Modal.Content = ModalContent;
 Modal.Header = ModalHeader;
+
+export default Modal;

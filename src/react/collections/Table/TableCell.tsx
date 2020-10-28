@@ -6,6 +6,8 @@ import {
   createShorthandFactory
 } from '@appbuckets/react-ui-core';
 
+import { CreatableFunctionComponent } from '../../generic';
+
 import {
   useElementType,
   useSharedClassName,
@@ -16,7 +18,18 @@ import { TableCellProps } from './TableCell.types';
 import TableCellContent from './TableCellContent';
 
 
-export default function TableCell(props: TableCellProps): React.ReactElement<TableCellProps> {
+/* --------
+ * Component Declare
+ * -------- */
+type TableCellComponent = CreatableFunctionComponent<TableCellProps> & {
+  Content: typeof TableCellContent
+};
+
+
+/* --------
+ * Component Render
+ * -------- */
+const TableCell: TableCellComponent = (props) => {
 
   const {
     className,
@@ -85,7 +98,7 @@ export default function TableCell(props: TableCellProps): React.ReactElement<Tab
     </ElementType>
   );
 
-}
+};
 
 TableCell.displayName = 'TableCell';
 
@@ -95,4 +108,9 @@ TableCell.defaultProps = {
 
 TableCell.Content = TableCellContent;
 
-TableCell.create = createShorthandFactory(TableCell, (content) => ({ content }));
+TableCell.create = createShorthandFactory(
+  TableCell,
+  (content) => ({ content })
+);
+
+export default TableCell;

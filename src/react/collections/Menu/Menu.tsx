@@ -5,16 +5,20 @@ import {
   createShorthandFactory,
   childrenUtils
 } from '@appbuckets/react-ui-core';
-import { ShorthandCollection } from '../../generic';
 
 import {
-  useAutoControlledValue
-} from '../../hooks/useAutoControlledValue';
+  CreatableFunctionComponent,
+  ShorthandCollection
+} from '../../generic';
 
 import {
   useElementType,
   useSharedClassName
 } from '../../lib';
+
+import {
+  useAutoControlledValue
+} from '../../hooks/useAutoControlledValue';
 
 import { MenuProps } from './Menu.types';
 
@@ -22,7 +26,18 @@ import MenuItem from './MenuItem';
 import { MenuItemProps } from './MenuItem.types';
 
 
-export default function Menu(props: MenuProps): React.ReactElement<MenuProps> {
+/* --------
+ * Component Declare
+ * -------- */
+type MenuComponent = CreatableFunctionComponent<MenuProps> & {
+  Item: typeof MenuItem
+};
+
+
+/* --------
+ * Component Declare
+ * -------- */
+const Menu: MenuComponent = (props) => {
 
   const {
     className,
@@ -99,7 +114,7 @@ export default function Menu(props: MenuProps): React.ReactElement<MenuProps> {
       )) : content}
     </ElementType>
   );
-}
+};
 
 Menu.displayName = 'Menu';
 
@@ -108,3 +123,5 @@ Menu.create = createShorthandFactory(Menu, (items) => ({
 }));
 
 Menu.Item = MenuItem;
+
+export default Menu;

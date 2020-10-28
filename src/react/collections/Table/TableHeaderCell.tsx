@@ -3,6 +3,8 @@ import clsx from 'clsx';
 
 import { classByValue, createShorthandFactory } from '@appbuckets/react-ui-core';
 
+import { CreatableFunctionComponent } from '../../generic';
+
 import {
   useSharedClassName
 } from '../../lib';
@@ -11,7 +13,16 @@ import { TableHeaderCellProps } from './TableHeaderCell.types';
 import TableCell from './TableCell';
 
 
-export default function TableHeaderCell(props: TableHeaderCellProps): React.ReactElement {
+/* --------
+ * Component Declare
+ * -------- */
+type TableHeaderCellComponent = CreatableFunctionComponent<TableHeaderCellProps>;
+
+
+/* --------
+ * Component Render
+ * -------- */
+const TableHeaderCell: TableHeaderCellComponent = (props) => {
 
   const {
     className,
@@ -37,12 +48,14 @@ export default function TableHeaderCell(props: TableHeaderCellProps): React.Reac
     />
   );
 
-}
+};
 
 TableHeaderCell.displayName = 'TableHeaderCell';
 
 TableHeaderCell.defaultProps = {
   as: 'th'
-} as Partial<TableHeaderCellProps>;
+};
 
 TableHeaderCell.create = createShorthandFactory(TableHeaderCell, (content) => ({ content }));
+
+export default TableHeaderCell;

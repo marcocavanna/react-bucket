@@ -16,7 +16,16 @@ import { Icon } from '../../elements/Icon';
 import { Header } from '../../elements/Header';
 
 
-export default function Message(props: MessageProps): React.ReactElement<MessageProps> {
+/* --------
+ * Component Declare
+ * -------- */
+type MessageComponent = React.FunctionComponent<MessageProps>;
+
+
+/* --------
+ * Component Render
+ * -------- */
+const Message: MessageComponent = (props) => {
 
   const {
     className,
@@ -48,25 +57,32 @@ export default function Message(props: MessageProps): React.ReactElement<Message
   /* --------
    * Component Handlers
    * -------- */
-  const handleDismiss = React.useCallback(
-    (e: React.MouseEvent<HTMLElement>) => {
-      if (typeof onDismiss === 'function') {
-        onDismiss(e, props);
-      }
-    },
-    [ onDismiss ]
-  );
+  const handleDismiss = (e: React.MouseEvent<HTMLElement>) => {
+    if (typeof onDismiss === 'function') {
+      onDismiss(e, props);
+    }
+  };
 
 
   /* --------
    * Internal Elements
    * -------- */
-  const dismissIcon = React.useMemo(
-    () => typeof onDismiss === 'function' && (
-      <Icon name={'times'} className={'dismiss'} onClick={handleDismiss} />
-    ),
-    [ handleDismiss ]
+  const dismissIcon = typeof onDismiss === 'function' && (
+    <Icon name={'times'} className={'dismiss'} onClick={handleDismiss} />
   );
+
+  /* --------
+   * Internal Content Generated
+   * -------- */
+  const messageContent = React.useMemo(
+    () => (header || content || icon) && Header.create({
+      content  : header,
+      subheader: content,
+      icon
+    }, { autoGenerateKey: false }),
+    [ header, content, icon ]
+  );
+
 
   /* --------
    * If element has children, render them
@@ -80,18 +96,6 @@ export default function Message(props: MessageProps): React.ReactElement<Message
     );
   }
 
-  /* --------
-   * Internal Content Generated
-   * -------- */
-  const messageContent = React.useMemo(
-    () => Header.create({
-      content  : header,
-      subheader: content,
-      icon
-    }, { autoGenerateKey: false }),
-    [ header, content, icon ]
-  );
-
 
   /* --------
    * Render the Component
@@ -102,6 +106,8 @@ export default function Message(props: MessageProps): React.ReactElement<Message
       {messageContent}
     </ElementType>
   );
-}
+};
 
 Message.displayName = 'Message';
+
+export default Message;

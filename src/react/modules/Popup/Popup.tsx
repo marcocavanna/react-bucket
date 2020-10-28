@@ -26,8 +26,16 @@ import {
 import { Header } from '../../elements/Header';
 
 
-export default function Popup(props: PopupProps): React.ReactElement<PopupProps> {
+/* --------
+ * Component Declare
+ * -------- */
+type PopupComponent = React.FunctionComponent<PopupProps>;
 
+
+/* --------
+ * Component Render
+ * -------- */
+const Popup: PopupComponent = (props) => {
 
   // ----
   // Destructuring Props
@@ -115,7 +123,7 @@ export default function Popup(props: PopupProps): React.ReactElement<PopupProps>
         scheduleUpdate();
       }
     },
-    updateDependencies ?? [ true ]
+    updateDependencies ? [ scheduleUpdate, ...updateDependencies ] : [ scheduleUpdate, true ]
   );
 
   React.useEffect(
@@ -125,7 +133,7 @@ export default function Popup(props: PopupProps): React.ReactElement<PopupProps>
         clearTimeout(closeTimeout as NodeJS.Timeout);
       }
     },
-    [ true ]
+    [ closeTimeout ]
   );
 
 
@@ -257,7 +265,7 @@ export default function Popup(props: PopupProps): React.ReactElement<PopupProps>
       {popupContent}
     </Portal>
   );
-}
+};
 
 Popup.displayName = 'Popup';
 
@@ -268,4 +276,6 @@ Popup.defaultProps = {
   offset           : [ 0, 5 ],
   openOn           : [ 'hover' ],
   position         : 'top center'
-} as Partial<PopupProps>;
+};
+
+export default Popup;

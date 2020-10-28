@@ -6,6 +6,8 @@ import {
   childrenUtils
 } from '@appbuckets/react-ui-core';
 
+import { CreatableFunctionComponent } from '../../generic';
+
 import {
   useElementType,
   useSharedClassName
@@ -16,7 +18,16 @@ import { Icon } from '../../elements/Icon';
 import { MenuItemProps } from './MenuItem.types';
 
 
-export default function MenuItem(props: MenuItemProps): React.ReactElement<MenuItemProps> {
+/* --------
+ * Component Declare
+ * -------- */
+type MenuItemComponent = CreatableFunctionComponent<MenuItemProps>;
+
+
+/* --------
+ * Component Render
+ * -------- */
+const MenuItem: MenuItemComponent = (props) => {
 
   const {
     className,
@@ -33,23 +44,17 @@ export default function MenuItem(props: MenuItemProps): React.ReactElement<MenuI
 
   const ElementType = useElementType(MenuItem, props);
 
-  const handleClick = React.useCallback(
-    (e: React.MouseEvent<HTMLElement>) => {
-      if (disabled) {
-        return;
-      }
+  const handleClick = (e: React.MouseEvent<HTMLElement>) => {
+    if (disabled) {
+      return;
+    }
 
-      e.stopPropagation();
+    e.stopPropagation();
 
-      if (typeof onClick === 'function') {
-        onClick(e, props);
-      }
-    },
-    [
-      disabled,
-      onClick
-    ]
-  );
+    if (typeof onClick === 'function') {
+      onClick(e, props);
+    }
+  };
 
   const classes = clsx(
     {
@@ -72,8 +77,13 @@ export default function MenuItem(props: MenuItemProps): React.ReactElement<MenuI
     </ElementType>
   );
 
-}
+};
 
 MenuItem.displayName = 'MenuItem';
 
-MenuItem.create = createShorthandFactory(MenuItem, (content) => ({ content }));
+MenuItem.create = createShorthandFactory(
+  MenuItem,
+  (content) => ({ content })
+);
+
+export default MenuItem;

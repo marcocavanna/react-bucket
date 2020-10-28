@@ -13,10 +13,19 @@ import {
 import { ModalActionsProps } from './ModalActions.types';
 
 import { Button, ButtonProps } from '../../elements/Button';
-import { ShorthandCollection } from '../../generic';
+import { CreatableFunctionComponent, ShorthandCollection } from '../../generic';
 
 
-export default function ModalActions(props: ModalActionsProps): React.ReactElement<ModalActionsProps> {
+/* --------
+ * Component Declare
+ * -------- */
+type ModalActionsComponent = CreatableFunctionComponent<ModalActionsProps>;
+
+
+/* --------
+ * Component Render
+ * -------- */
+const ModalActions: ModalActionsComponent = (props) => {
 
   const {
     className,
@@ -67,10 +76,12 @@ export default function ModalActions(props: ModalActionsProps): React.ReactEleme
       ))}
     </ElementType>
   );
-}
+};
 
 ModalActions.displayName = 'ModalActions';
 
 ModalActions.create = createShorthandFactory(ModalActions, (value) => ({
   actions: value as ShorthandCollection<ButtonProps>
 }));
+
+export default ModalActions;

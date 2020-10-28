@@ -6,6 +6,8 @@ import {
   createShorthandFactory
 } from '@appbuckets/react-ui-core';
 
+import { CreatableFunctionComponent } from '../../generic';
+
 import {
   useElementType,
   useSharedClassName
@@ -14,7 +16,16 @@ import {
 import { TableBodyProps } from './TableBody.types';
 
 
-export default function TableBody(props: TableBodyProps): React.ReactElement<TableBodyProps> {
+/* --------
+ * Component Declare
+ * -------- */
+type TableBodyComponent = CreatableFunctionComponent<TableBodyProps>;
+
+
+/* --------
+ * Component Render
+ * -------- */
+const TableBody: TableBodyComponent = (props) => {
 
   const {
     className,
@@ -38,12 +49,17 @@ export default function TableBody(props: TableBodyProps): React.ReactElement<Tab
     </ElementType>
   );
 
-}
+};
 
 TableBody.displayName = 'TableBody';
 
 TableBody.defaultProps = {
   as: 'tbody'
-} as Partial<TableBodyProps>;
+};
 
-TableBody.create = createShorthandFactory(TableBody, (content) => ({ content }));
+TableBody.create = createShorthandFactory(
+  TableBody,
+  (content) => ({ content })
+);
+
+export default TableBody;

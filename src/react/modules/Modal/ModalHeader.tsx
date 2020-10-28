@@ -5,6 +5,7 @@ import {
   childrenUtils,
   createShorthandFactory
 } from '@appbuckets/react-ui-core';
+import { CreatableFunctionComponent } from '../../generic';
 
 import {
   useElementType,
@@ -16,7 +17,16 @@ import { ModalHeaderProps } from './ModalHeader.types';
 import { Header } from '../../elements/Header';
 
 
-export default function ModalHeader(props: ModalHeaderProps): React.ReactElement<ModalHeaderProps> {
+/* --------
+ * Component Declare
+ * -------- */
+type ModalHeaderComponent = CreatableFunctionComponent<ModalHeaderProps>;
+
+
+/* --------
+ * Component Render
+ * -------- */
+const ModalHeader: ModalHeaderComponent = (props) => {
 
   const {
     className,
@@ -38,15 +48,6 @@ export default function ModalHeader(props: ModalHeaderProps): React.ReactElement
     'modal-header',
     className
   );
-
-  /** If children are declared, render them */
-  if (!childrenUtils.isNil(children)) {
-    return (
-      <ElementType {...rest} className={classes}>
-        {children}
-      </ElementType>
-    );
-  }
 
   /** Build a memoized Header */
   const headerElement = React.useMemo(
@@ -71,14 +72,25 @@ export default function ModalHeader(props: ModalHeaderProps): React.ReactElement
     [ meta ]
   );
 
+  /** If children are declared, render them */
+  if (!childrenUtils.isNil(children)) {
+    return (
+      <ElementType {...rest} className={classes}>
+        {children}
+      </ElementType>
+    );
+  }
+
   return (
     <ElementType {...rest} className={classes}>
       {headerElement}
       {metaElement}
     </ElementType>
   );
-}
+};
 
 ModalHeader.displayName = 'ModalHeader';
 
 ModalHeader.create = createShorthandFactory(ModalHeader, (content) => ({ content }));
+
+export default ModalHeader;

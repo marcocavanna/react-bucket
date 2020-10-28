@@ -65,7 +65,12 @@ interface WeatherState {
 /* --------
  * Component Declaration
  * -------- */
-export default function Weather(props: WeatherProps): React.ReactElement<WeatherProps> {
+type WeatherComponent = React.FunctionComponent<WeatherProps>;
+
+/* --------
+ * Component Render
+ * -------- */
+const Weather: WeatherComponent = (props) => {
 
   const {
     className,
@@ -116,7 +121,7 @@ export default function Weather(props: WeatherProps): React.ReactElement<Weather
         clearTimeout(reloadInterval);
       };
     },
-    [ reloadTime ]
+    [ reloadTime, updateInterval ]
   );
 
   /** Fetch Weather Condition each time reloadTime change */
@@ -154,7 +159,7 @@ export default function Weather(props: WeatherProps): React.ReactElement<Weather
         }
       })();
     },
-    [ reloadTime ]
+    [ language, openWeatherMapAPI, reloadTime, units ]
   );
 
   /** Build Component Classes */
@@ -258,7 +263,7 @@ export default function Weather(props: WeatherProps): React.ReactElement<Weather
     </ElementType>
   );
 
-}
+};
 
 
 /** Properly Set Display Name */
@@ -269,4 +274,6 @@ Weather.defaultProps = {
   language      : 'en',
   updateInterval: 600000,
   units         : 'metric'
-} as Partial<WeatherProps>;
+};
+
+export default Weather;

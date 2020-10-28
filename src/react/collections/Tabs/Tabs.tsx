@@ -5,7 +5,7 @@ import {
   createShorthandFactory
 } from '@appbuckets/react-ui-core';
 
-import { ShorthandCollection, ShorthandItem } from '../../generic';
+import { CreatableFunctionComponent, ShorthandCollection, ShorthandItem } from '../../generic';
 
 import {
   useAutoControlledValue
@@ -26,7 +26,18 @@ import { TabPanelProps } from './TabPanel.types';
 import { TabPanelsShorthand, TabsProps } from './Tabs.types';
 
 
-export default function Tabs(props: TabsProps): React.ReactElement<TabsProps> {
+/* --------
+ * Component Declare
+ * -------- */
+type TabsComponent = CreatableFunctionComponent<TabsProps> & {
+  Panel: typeof TabPanel;
+};
+
+
+/* --------
+ * Component Render
+ * -------- */
+const Tabs: TabsComponent = (props) => {
 
   const {
     className,
@@ -64,19 +75,16 @@ export default function Tabs(props: TabsProps): React.ReactElement<TabsProps> {
   // ----
   // Define Handlers
   // ----
-  const handleMenuItemClick = React.useCallback(
-    (e: React.MouseEvent<HTMLElement>, menuItemProps: MenuItemProps) => {
-      /** Get menu item index */
-      const { index } = menuItemProps;
-      /** Fire user defined callback */
-      if (onTabChange) {
-        onTabChange(e, { ...props, activeIndex: index });
-      }
-      /** Try to set the new index */
-      trySetActiveIndex(index ?? 0);
-    },
-    [ trySetActiveIndex, activeIndex ]
-  );
+  const handleMenuItemClick = (e: React.MouseEvent<HTMLElement>, menuItemProps: MenuItemProps) => {
+    /** Get menu item index */
+    const { index } = menuItemProps;
+    /** Fire user defined callback */
+    if (onTabChange) {
+      onTabChange(e, { ...props, activeIndex: index });
+    }
+    /** Try to set the new index */
+    trySetActiveIndex(index ?? 0);
+  };
 
 
   // ----
@@ -162,7 +170,7 @@ export default function Tabs(props: TabsProps): React.ReactElement<TabsProps> {
       {renderTabsElement()}
     </ElementType>
   );
-}
+};
 
 Tabs.displayName = 'Tabs';
 
@@ -174,6 +182,8 @@ Tabs.defaultProps = {
   layout          : { menuWidth: 4, panelWidth: 20, menuOn: 'left' },
   menu            : { tab: true },
   renderActiveOnly: true
-} as Partial<TabsProps>;
+};
 
 Tabs.Panel = TabPanel;
+
+export default Tabs;

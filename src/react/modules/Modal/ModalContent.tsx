@@ -5,6 +5,7 @@ import {
   childrenUtils,
   createShorthandFactory
 } from '@appbuckets/react-ui-core';
+import { CreatableFunctionComponent } from '../../generic';
 
 import {
   useElementType,
@@ -14,7 +15,16 @@ import {
 import { ModalContentProps } from './ModalContent.types';
 
 
-export default function ModalContent(props: ModalContentProps): React.ReactElement<ModalContentProps> {
+/* --------
+ * Component Declare
+ * -------- */
+type ModalContentComponent = CreatableFunctionComponent<ModalContentProps>;
+
+
+/* --------
+ * Component Render
+ * -------- */
+const ModalContent: ModalContentComponent = (props) => {
 
   const {
     className,
@@ -48,8 +58,10 @@ export default function ModalContent(props: ModalContentProps): React.ReactEleme
       {content}
     </ElementType>
   );
-}
+};
 
 ModalContent.displayName = 'ModalContent';
 
 ModalContent.create = createShorthandFactory(ModalContent, (content) => ({ content }));
+
+export default ModalContent;

@@ -13,7 +13,16 @@ import {
 import { ContainerProps } from './Container.types';
 
 
-export default function Container(props: ContainerProps): React.ReactElement<ContainerProps> {
+/* --------
+ * Component Declare
+ * -------- */
+type ContainerComponent = React.FunctionComponent<ContainerProps>;
+
+
+/* --------
+ * Component Render
+ * -------- */
+const Container: ContainerComponent = (props) => {
 
   const {
     className,
@@ -41,6 +50,8 @@ export default function Container(props: ContainerProps): React.ReactElement<Con
     </ElementType>
   );
 
-}
+};
 
 Container.displayName = 'Container';
+
+export default Container;

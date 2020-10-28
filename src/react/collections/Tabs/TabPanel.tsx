@@ -6,6 +6,8 @@ import {
   childrenUtils
 } from '@appbuckets/react-ui-core';
 
+import { CreatableFunctionComponent } from '../../generic';
+
 import {
   useElementType,
   useSharedClassName
@@ -14,7 +16,16 @@ import {
 import { TabPanelProps } from './TabPanel.types';
 
 
-export default function TabPanel(props: TabPanelProps): React.ReactElement<TabPanelProps> {
+/* --------
+ * Component Declare
+ * -------- */
+type TabPanelComponent = CreatableFunctionComponent<TabPanelProps>;
+
+
+/* --------
+ * Component Render
+ * -------- */
+const TabPanel: TabPanelComponent = (props) => {
 
   const {
     className,
@@ -50,8 +61,10 @@ export default function TabPanel(props: TabPanelProps): React.ReactElement<TabPa
       {content}
     </ElementType>
   );
-}
+};
 
 TabPanel.displayName = 'TabPanel';
 
 TabPanel.create = createShorthandFactory(TabPanel, (content) => ({ content }));
+
+export default TabPanel;

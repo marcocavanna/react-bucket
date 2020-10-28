@@ -7,6 +7,8 @@ import {
   createShorthandFactory
 } from '@appbuckets/react-ui-core';
 
+import { CreatableFunctionComponent } from '../../generic';
+
 import {
   useElementType,
   useSharedClassName
@@ -15,7 +17,16 @@ import {
 import { TableCellContentProps } from './TableCellContent.types';
 
 
-export default function TableCellContent(props: TableCellContentProps): React.ReactElement<TableCellContentProps> {
+/* --------
+ * Component Declare
+ * -------- */
+type TableCellContentComponent = CreatableFunctionComponent<TableCellContentProps>;
+
+
+/* --------
+ * Component Render
+ * -------- */
+const TableCellContent: TableCellContentComponent = (props) => {
   const {
     className,
     rest: {
@@ -40,13 +51,15 @@ export default function TableCellContent(props: TableCellContentProps): React.Re
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   );
-}
+};
 
 TableCellContent.displayName = 'CellContent';
 
 TableCellContent.defaultProps = {
   as  : 'p',
   type: 'content'
-} as Partial<TableCellContentProps>;
+};
 
 TableCellContent.create = createShorthandFactory(TableCellContent, (content) => ({ content }));
+
+export default TableCellContent;

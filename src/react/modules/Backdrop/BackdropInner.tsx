@@ -15,7 +15,15 @@ import {
 import { BackdropInnerProps } from './BackdropInner.types';
 
 
-export default function BackdropInner(props: BackdropInnerProps): React.ReactElement<BackdropInnerProps> {
+/* --------
+ * Component Declare
+ * -------- */
+type BackdropInnerComponent = React.FunctionComponent<BackdropInnerProps>;
+
+/* --------
+ * Component Render
+ * -------- */
+const BackdropInner: BackdropInnerComponent = (props) => {
 
   const {
     animated,
@@ -43,23 +51,20 @@ export default function BackdropInner(props: BackdropInnerProps): React.ReactEle
   // ----
   // Build Component Handlers
   // ----
-  const handleClick = React.useCallback(
-    (e: React.MouseEvent<HTMLElement>) => {
-      /** Call onClick Handler */
-      if (onClick) {
-        onClick(e, props);
-      }
-      /** Check if click is inside the content, if is it, return */
-      if (contentRef.current && (contentRef.current !== e.target && doesNodeContainClick(contentRef.current, e))) {
-        return;
-      }
-      /** Call onClickOutside Prop */
-      if (onClickOutside) {
-        onClickOutside(e, props);
-      }
-    },
-    [ onClick, onClickOutside, contentRef.current ]
-  );
+  const handleClick = (e: React.MouseEvent<HTMLElement>) => {
+    /** Call onClick Handler */
+    if (onClick) {
+      onClick(e, props);
+    }
+    /** Check if click is inside the content, if is it, return */
+    if (contentRef.current && (contentRef.current !== e.target && doesNodeContainClick(contentRef.current, e))) {
+      return;
+    }
+    /** Call onClickOutside Prop */
+    if (onClickOutside) {
+      onClickOutside(e, props);
+    }
+  };
 
 
   // ----
@@ -83,7 +88,7 @@ export default function BackdropInner(props: BackdropInnerProps): React.ReactEle
         }
       });
     },
-    [ animated, visible, containerRef.current, contentRef.current ]
+    [ animated, visible ]
   );
 
   // ----
@@ -122,7 +127,9 @@ export default function BackdropInner(props: BackdropInnerProps): React.ReactEle
       </ElementType>
     </Ref>
   );
-}
+};
 
 /** Properly set the Display Name */
 BackdropInner.displayName = 'BackdropInner';
+
+export default BackdropInner;

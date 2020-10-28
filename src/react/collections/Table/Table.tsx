@@ -24,7 +24,23 @@ import TableHeaderCell from './TableHeaderCell';
 import TableRow from './TableRow';
 
 
-export default function Table<Data = any>(props: TableProps<Data>): React.ReactElement<TableProps<Data>> {
+/* --------
+ * Component Declare
+ * -------- */
+type TableComponent = React.FunctionComponent<TableProps> & {
+  Body: typeof TableBody;
+  Cell: typeof TableCell;
+  Footer: typeof TableFooter;
+  Header: typeof TableHeader;
+  HeaderCell: typeof TableHeaderCell;
+  Row: typeof TableRow;
+};
+
+
+/* --------
+ * Component Render
+ * -------- */
+const Table: TableComponent = <Data extends any = any>(props: React.PropsWithChildren<TableProps<Data>>) => {
 
   const {
     as,
@@ -115,7 +131,7 @@ export default function Table<Data = any>(props: TableProps<Data>): React.ReactE
     ? <div className={'responsive-table'}>{tableElement}</div>
     : tableElement;
 
-}
+};
 
 Table.displayName = 'Table';
 
@@ -128,4 +144,6 @@ Table.Row = TableRow;
 
 Table.defaultProps = {
   as: 'table'
-} as Partial<TableProps>;
+};
+
+export default Table;

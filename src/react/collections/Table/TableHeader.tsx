@@ -6,6 +6,8 @@ import {
   createShorthandFactory
 } from '@appbuckets/react-ui-core';
 
+import { CreatableFunctionComponent } from '../../generic';
+
 import {
   useElementType,
   useSharedClassName
@@ -14,7 +16,16 @@ import {
 import { TableHeaderProps } from './TableHeader.types';
 
 
-export default function TableHeader(props: TableHeaderProps): React.ReactElement<TableHeaderProps> {
+/* --------
+ * Component Declare
+ * -------- */
+type TableHeaderComponent = CreatableFunctionComponent<TableHeaderProps>;
+
+
+/* --------
+ * Component Render
+ * -------- */
+const TableHeader: TableHeaderComponent = (props) => {
 
   const {
     className,
@@ -38,12 +49,14 @@ export default function TableHeader(props: TableHeaderProps): React.ReactElement
     </ElementType>
   );
 
-}
+};
 
 TableHeader.displayName = 'TableHeader';
 
 TableHeader.defaultProps = {
   as: 'thead'
-} as Partial<TableHeaderProps>;
+};
 
 TableHeader.create = createShorthandFactory(TableHeader, (content) => ({ content }));
+
+export default TableHeader;

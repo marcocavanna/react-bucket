@@ -2,16 +2,28 @@ import * as React from 'react';
 import clsx from 'clsx';
 
 import {
-  getElementType,
   childrenUtils
 } from '@appbuckets/react-ui-core';
 
+import {
+  useElementType,
+  useSharedClassName
+} from '../../lib';
+
 import { RowProps } from './Row.types';
-import { getSharedClassNames } from '../../lib';
+
 import Column from './Column';
 
+/* --------
+ * Component Declare
+ * -------- */
+type RowComponent = React.FunctionComponent<RowProps>;
 
-function Row(props: RowProps): React.ReactElement<RowProps> {
+
+/* --------
+ * Component Render
+ * -------- */
+const Row: RowComponent = (props) => {
 
   const {
     className,
@@ -21,9 +33,9 @@ function Row(props: RowProps): React.ReactElement<RowProps> {
       columns,
       ...rest
     }
-  } = getSharedClassNames(props);
+  } = useSharedClassName(props);
 
-  const ElementType = getElementType(Row, props);
+  const ElementType = useElementType(Row, props);
 
   const classes = clsx(
     'with-columns',
@@ -46,7 +58,7 @@ function Row(props: RowProps): React.ReactElement<RowProps> {
     </ElementType>
   );
 
-}
+};
 
 Row.displayName = 'Row';
 

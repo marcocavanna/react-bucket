@@ -9,16 +9,25 @@ import {
 } from '@appbuckets/react-ui-core';
 
 import { Loader } from '../../elements/Loader';
+import { CreatableFunctionComponent } from '../../generic';
 
 import BackdropInner from './BackdropInner';
 
 import { BackdropProps } from './Backdrop.types';
-import { BackdropInnerProps } from './BackdropInner.types';
 
 
-export default function Backdrop(
-  props: BackdropProps
-): React.ReactElement<BackdropProps> | React.ReactElement<BackdropInnerProps> {
+/* --------
+ * Component Declare
+ * -------- */
+type BackdropComponent = CreatableFunctionComponent<BackdropProps> & {
+  Inner: typeof BackdropInner
+};
+
+
+/* --------
+ * Component Render
+ * -------- */
+const Backdrop: BackdropComponent = (props) => {
 
   // ----
   // Get Backdrop Props
@@ -57,67 +66,52 @@ export default function Backdrop(
   /** Check if code is running on browser */
   const isBrowser = React.useMemo(
     () => checkIsBrowser(),
-    [ checkIsBrowser ]
+    []
   );
 
 
   // ----
   // Define Backdrop Handlers
   // ----
-  const handlePortalMount = React.useCallback(
-    () => {
-      if (isBrowser) {
-        document.body.classList.add('dimmable');
-        document.body.classList.add('dimmed');
-      }
+  const handlePortalMount = () => {
+    if (isBrowser) {
+      document.body.classList.add('dimmable');
+      document.body.classList.add('dimmed');
+    }
 
-      if (onMount) {
-        onMount(null, props);
-      }
-    },
-    [ isBrowser, onMount ]
-  );
+    if (onMount) {
+      onMount(null, props);
+    }
+  };
 
-  const handlePortalUnmount = React.useCallback(
-    () => {
-      if (isBrowser) {
-        document.body.classList.remove('dimmable');
-        document.body.classList.remove('dimmed');
-      }
+  const handlePortalUnmount = () => {
+    if (isBrowser) {
+      document.body.classList.remove('dimmable');
+      document.body.classList.remove('dimmed');
+    }
 
-      if (onUnmount) {
-        onUnmount(null, props);
-      }
-    },
-    [ isBrowser, onUnmount ]
-  );
+    if (onUnmount) {
+      onUnmount(null, props);
+    }
+  };
 
-  const handlePortalOpen = React.useCallback(
-    (e: React.MouseEvent<HTMLElement>) => {
-      if (onOpen) {
-        onOpen(e, props);
-      }
-    },
-    [ visible, onOpen ]
-  );
+  const handlePortalOpen = (e: React.MouseEvent<HTMLElement>) => {
+    if (onOpen) {
+      onOpen(e, props);
+    }
+  };
 
-  const handlePortalClose = React.useCallback(
-    (e: React.MouseEvent<HTMLElement>) => {
-      if (onClose) {
-        onClose(e, props);
-      }
-    },
-    [ onClose ]
-  );
+  const handlePortalClose = (e: React.MouseEvent<HTMLElement>) => {
+    if (onClose) {
+      onClose(e, props);
+    }
+  };
 
-  const handleOutsideContentClick = React.useCallback(
-    (e: React.MouseEvent<HTMLElement>) => {
-      if (visible && closeOnBackdropClick) {
-        handlePortalClose(e);
-      }
-    },
-    [ visible, closeOnBackdropClick, handlePortalClose ]
-  );
+  const handleOutsideContentClick = (e: React.MouseEvent<HTMLElement>) => {
+    if (visible && closeOnBackdropClick) {
+      handlePortalClose(e);
+    }
+  };
 
 
   // ----
@@ -132,23 +126,20 @@ export default function Backdrop(
   // ----
   // Memoized Elements
   // ----
-  const innerContent = React.useMemo<React.ReactElement<BackdropInnerProps>>(
-    () => (
-      <BackdropInner
-        {...rest}
-        className={innerClasses}
-        visible={visible}
-        onClickOutside={handleOutsideContentClick}
-      >
-        {loading
-          ? Loader.create(
-            { appearance: 'white', size: 'big', centered: true, ...loaderProps },
-            { autoGenerateKey: false }
-          )
-          : (childrenUtils.isNil(children) ? content : children)}
-      </BackdropInner>
-    ),
-    [ loading, children, content, visible, page ]
+  const innerContent = (
+    <BackdropInner
+      {...rest}
+      className={innerClasses}
+      visible={visible}
+      onClickOutside={handleOutsideContentClick}
+    >
+      {loading
+        ? Loader.create(
+          { appearance: 'white', size: 'big', centered: true, ...loaderProps },
+          { autoGenerateKey: false }
+        )
+        : (childrenUtils.isNil(children) ? content : children)}
+    </BackdropInner>
   );
 
   /** Return the Dimmer */
@@ -175,7 +166,7 @@ export default function Backdrop(
 
   /** Else, return the Backdrop Inner Content */
   return innerContent;
-}
+};
 
 /** Properly set the Display Name */
 Backdrop.displayName = 'Backdrop';
@@ -185,3 +176,5 @@ Backdrop.Inner = BackdropInner;
 
 /** Backdrop could be created using shorthand */
 Backdrop.create = createShorthandFactory(Backdrop, (content) => ({ content }));
+
+export default Backdrop;

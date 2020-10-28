@@ -7,6 +7,7 @@ import {
 } from '@appbuckets/react-ui-core';
 
 import {
+  CreatableFunctionComponent,
   ShorthandCollection
 } from '../../generic';
 
@@ -17,11 +18,21 @@ import {
 } from '../../lib';
 
 import { TableRowProps } from './TableRow.types';
+
 import TableCell from './TableCell';
 import { TableCellProps } from './TableCell.types';
 
 
-export default function TableRow(props: TableRowProps): React.ReactElement<TableRowProps> {
+/* --------
+ * Component Declare
+ * -------- */
+type TableRowComponent = CreatableFunctionComponent<TableRowProps>;
+
+
+/* --------
+ * Component Declare
+ * -------- */
+const TableRow: TableRowComponent = (props) => {
 
   const {
     className,
@@ -68,13 +79,15 @@ export default function TableRow(props: TableRowProps): React.ReactElement<Table
     </ElementType>
   );
 
-}
+};
 
 
 TableRow.displayName = 'TableRow';
 
 TableRow.defaultProps = {
   as: 'tr'
-} as Partial<TableRowProps>;
+};
 
 TableRow.create = createShorthandFactory(TableRow, cells => ({ cells: cells as ShorthandCollection<TableCellProps> }));
+
+export default TableRow;

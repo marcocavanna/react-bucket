@@ -85,7 +85,7 @@ import {
   MouseEvent
 } from 'react';
 
-import { CreateShorthandOptions, ShorthandProps } from '@appbuckets/react-ui-core';
+import { CreateShorthandOptions, ShorthandProps, ShorthandValue } from '@appbuckets/react-ui-core';
 import { FontAwesomeIcon } from './fontawesome';
 
 /** Re export ReactBucket Icon */
@@ -103,6 +103,15 @@ type ShorthandItemFunction<P> = (
 export type ShorthandContent = ReactNode;
 export type ShorthandItem<P> = ReactNode | P | ShorthandItemFunction<P>;
 export type ShorthandCollection<P> = ShorthandItem<P & { key: Key }>[];
+
+export type CreateComponentFactory<P> = {
+  create: (
+    value: ShorthandValue<P>,
+    options: CreateShorthandOptions<P>
+  ) => ReactElement<P> | null
+};
+
+export type CreatableFunctionComponent<P> = FunctionComponent<P> & CreateComponentFactory<P>;
 
 export type ReactBucketIcon<T> = FontAwesomeIcon | ShorthandItem<T>;
 

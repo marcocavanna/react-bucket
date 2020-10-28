@@ -2,16 +2,30 @@ import * as React from 'react';
 import clsx from 'clsx';
 
 import {
-  getElementType,
   childrenUtils,
   createShorthandFactory
 } from '@appbuckets/react-ui-core';
 
+import { CreatableFunctionComponent } from '../../generic';
+
+import {
+  useSharedClassName,
+  useElementType
+} from '../../lib';
+
 import { ColumnProps } from './Column.types';
-import { getSharedClassNames } from '../../lib';
 
 
-function Column(props: ColumnProps): React.ReactElement<ColumnProps> {
+/* --------
+ * Component Declare
+ * -------- */
+type ColumnComponent = CreatableFunctionComponent<ColumnProps>;
+
+
+/* --------
+ * Component Render
+ * -------- */
+const Column: ColumnComponent = (props) => {
 
   const {
     className,
@@ -20,9 +34,9 @@ function Column(props: ColumnProps): React.ReactElement<ColumnProps> {
       content,
       ...rest
     }
-  } = getSharedClassNames(props);
+  } = useSharedClassName(props);
 
-  const ElementType = getElementType(Column, props);
+  const ElementType = useElementType(Column, props);
 
   const classes = clsx(
     'column',
@@ -35,7 +49,7 @@ function Column(props: ColumnProps): React.ReactElement<ColumnProps> {
     </ElementType>
   );
 
-}
+};
 
 Column.displayName = 'Column';
 
