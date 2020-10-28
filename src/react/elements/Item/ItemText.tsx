@@ -6,6 +6,8 @@ import {
   childrenUtils
 } from '@appbuckets/react-ui-core';
 
+import { CreatableFunctionComponent } from '../../generic';
+
 import {
   useElementType,
   useSharedClassName
@@ -14,7 +16,15 @@ import {
 import { ItemTextProps } from './ItemText.types';
 
 
-export default function ItemText(props: ItemTextProps): React.ReactElement<ItemTextProps> {
+/* --------
+ * Component Declare
+ * -------- */
+type ItemTextComponent = CreatableFunctionComponent<ItemTextProps>;
+
+/* --------
+ * Component Render
+ * -------- */
+const ItemText: ItemTextComponent = (props) => {
 
   const {
     className,
@@ -48,8 +58,10 @@ export default function ItemText(props: ItemTextProps): React.ReactElement<ItemT
       {content}
     </ElementType>
   );
-}
+};
 
 ItemText.displayName = 'ItemText';
 
 ItemText.create = createShorthandFactory(ItemText, (content) => ({ content }));
+
+export default ItemText;

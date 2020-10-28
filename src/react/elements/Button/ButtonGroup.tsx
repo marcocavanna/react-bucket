@@ -11,13 +11,24 @@ import {
   useElementType
 } from '../../lib';
 
+import { CreatableFunctionComponent, ShorthandCollection } from '../../generic';
+
 import { ButtonGroupProps } from './ButtonGroup.types';
+
 import Button from './Button';
-import { ShorthandCollection } from '../../generic';
 import { ButtonProps } from './Button.types';
 
 
-export default function ButtonGroup(props: ButtonGroupProps): React.ReactElement<ButtonGroupProps> {
+/* --------
+ * Component Declare
+ * -------- */
+type ButtonGroupComponent = CreatableFunctionComponent<ButtonGroupProps>;
+
+
+/* --------
+ * Component Render
+ * -------- */
+const ButtonGroup: ButtonGroupComponent = (props) => {
 
   const {
     className,
@@ -62,7 +73,7 @@ export default function ButtonGroup(props: ButtonGroupProps): React.ReactElement
       {buttonsElement}
     </ElementType>
   );
-}
+};
 
 /** Properly Set displayName */
 ButtonGroup.displayName = 'ButtonGroup';
@@ -70,5 +81,9 @@ ButtonGroup.displayName = 'ButtonGroup';
 /** Implements the Create Factory Method */
 ButtonGroup.create = createShorthandFactory(
   ButtonGroup,
-  (buttons) => ({ buttons: buttons as ShorthandCollection<ButtonProps> })
+  (buttons) => ({
+    buttons: buttons as ShorthandCollection<ButtonProps>
+  })
 );
+
+export default ButtonGroup;

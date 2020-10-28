@@ -7,6 +7,8 @@ import {
   classByPattern
 } from '@appbuckets/react-ui-core';
 
+import { CreatableFunctionComponent } from '../../generic';
+
 import {
   useElementType,
   useSharedClassName,
@@ -20,7 +22,18 @@ import { Icon } from '../Icon';
 import { Popup } from '../../modules/Popup';
 
 
-export default function Button(props: ButtonProps): React.ReactElement<ButtonProps> {
+/* --------
+ * Component Declaration
+ * -------- */
+type ButtonComponent = CreatableFunctionComponent<ButtonProps> & {
+  Group: typeof ButtonGroup;
+};
+
+
+/* --------
+ * Component Render
+ * -------- */
+const Button: ButtonComponent = (props) => {
 
   const {
     className,
@@ -180,16 +193,16 @@ export default function Button(props: ButtonProps): React.ReactElement<ButtonPro
   return tooltip
     ? <Popup content={tooltip} trigger={buttonElement} />
     : buttonElement;
-}
+};
 
 /** Add the Group */
 Button.Group = ButtonGroup;
 
 /** Set button Default Props */
 Button.defaultProps = {
-  as          : 'button' as React.ElementType,
-  iconPosition: 'left' as 'left',
-  type        : 'button' as 'button'
+  as          : 'button',
+  iconPosition: 'left',
+  type        : 'button'
 };
 
 /** Properly set Display Name */
@@ -197,3 +210,5 @@ Button.displayName = 'Button';
 
 /** Create the Shorthand Factory Method */
 Button.create = createShorthandFactory(Button, (content) => ({ content }));
+
+export default Button;

@@ -6,6 +6,8 @@ import {
   childrenUtils
 } from '@appbuckets/react-ui-core';
 
+import { CreatableFunctionComponent } from '../../generic';
+
 import {
   useElementType,
   useSharedClassName,
@@ -21,7 +23,20 @@ import ItemGroup from './ItemGroup';
 import ItemTools from './ItemTools';
 
 
-export default function Item(props: ItemProps): React.ReactElement<ItemProps> {
+/* --------
+ * Component Declare
+ * -------- */
+type ItemComponent = CreatableFunctionComponent<ItemProps> & {
+  Avatar: typeof Avatar;
+  Content: typeof ItemContent;
+  Group: typeof ItemGroup;
+  Tools: typeof ItemTools;
+};
+
+/* --------
+ * Component Render
+ * -------- */
+const Item: ItemComponent = (props) => {
 
   const {
     className,
@@ -60,20 +75,17 @@ export default function Item(props: ItemProps): React.ReactElement<ItemProps> {
   const hasChildren = !childrenUtils.isNil(children);
 
   /** Define Click Handler */
-  const handleClick = React.useCallback(
-    (e: React.MouseEvent<HTMLElement>) => {
-      /** Avoid click when disabled */
-      if (disabled) {
-        return;
-      }
+  const handleClick = (e: React.MouseEvent<HTMLElement>) => {
+    /** Avoid click when disabled */
+    if (disabled) {
+      return;
+    }
 
-      /** Call user defined handler */
-      if (onClick) {
-        onClick(e, props);
-      }
-    },
-    [ disabled, onClick ]
-  );
+    /** Call user defined handler */
+    if (onClick) {
+      onClick(e, props);
+    }
+  };
 
 
   // ----
@@ -127,7 +139,7 @@ export default function Item(props: ItemProps): React.ReactElement<ItemProps> {
       {toolsElement}
     </ElementType>
   );
-}
+};
 
 Item.displayName = 'Item';
 
@@ -137,3 +149,5 @@ Item.Tools = ItemTools;
 Item.Group = ItemGroup;
 
 Item.create = createShorthandFactory(Item, (content) => ({ content }));
+
+export default Item;

@@ -6,6 +6,8 @@ import {
   createShorthandFactory
 } from '@appbuckets/react-ui-core';
 
+import { CreatableFunctionComponent, FontAwesomeIcon } from '../../generic';
+
 import {
   useFontawesomeIcon,
   useElementType,
@@ -14,10 +16,18 @@ import {
 } from '../../lib';
 
 import { IconProps } from './Icon.types';
-import { FontAwesomeIcon } from '../../generic';
 
 
-export default function Icon(props: IconProps): React.ReactElement<IconProps> {
+/* --------
+ * Component Declare
+ * -------- */
+type IconComponent = CreatableFunctionComponent<IconProps>;
+
+
+/* --------
+ * Component Render
+ * -------- */
+const Icon: IconComponent = (props) => {
 
   const {
     className,
@@ -86,7 +96,7 @@ export default function Icon(props: IconProps): React.ReactElement<IconProps> {
       onClick={handleClick}
     />
   );
-}
+};
 
 Icon.displayName = 'Icon';
 
@@ -97,3 +107,5 @@ Icon.defaultProps = {
 
 /** Icon could be created using a Shorthand */
 Icon.create = createShorthandFactory(Icon, (name) => ({ name: name as FontAwesomeIcon }));
+
+export default Icon;

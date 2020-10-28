@@ -2,7 +2,8 @@ import * as React from 'react';
 
 import {
   ReactBucketComponentProps,
-  SharedComponentStateProps, ShorthandCollection,
+  SharedComponentStateProps,
+  ShorthandCollection,
   ShorthandItem
 } from '../../generic';
 

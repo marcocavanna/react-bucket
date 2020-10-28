@@ -6,6 +6,8 @@ import {
   createShorthandFactory
 } from '@appbuckets/react-ui-core';
 
+import { CreatableFunctionComponent } from '../../generic';
+
 import {
   useElementType
 } from '../../lib';
@@ -16,9 +18,16 @@ import useProgressProps from './lib/useProgressProps';
 import useProgressIndicator from './lib/useProgressIndicator';
 
 
-export default function LinearProgress(
-  props: LinearProgressProps
-): React.ReactElement<LinearProgressProps> {
+/* --------
+ * Component Declare
+ * -------- */
+type LinearProgressComponent = CreatableFunctionComponent<LinearProgressProps>;
+
+
+/* --------
+ * Component Render
+ * -------- */
+const LinearProgress: LinearProgressComponent = (props) => {
 
   const {
     className,
@@ -80,7 +89,7 @@ export default function LinearProgress(
         </div>
       );
     },
-    [ downLimit, upLimit, overValueLimit ]
+    [ limits, progress.overvalued, progress.width, downLimit, upLimit, overValueLimit ]
   );
 
   const classes = clsx(
@@ -110,13 +119,15 @@ export default function LinearProgress(
       )}
     </ElementType>
   );
-}
+};
 
 LinearProgress.displayName = 'LinearProgress';
 
 LinearProgress.defaultProps = {
   max: 100,
   min: 0
-} as Partial<LinearProgressProps>;
+};
 
 LinearProgress.create = createShorthandFactory(LinearProgress, (value) => ({ value: value as number }));
+
+export default LinearProgress;

@@ -6,8 +6,6 @@ export interface PanelBodyProps extends ReactBucketComponentProps<StrictPanelBod
 }
 
 export interface StrictPanelBodyProps {
-
   /** Panel FAB Collections */
   fab?: ShorthandCollection<ButtonProps>;
-
 }

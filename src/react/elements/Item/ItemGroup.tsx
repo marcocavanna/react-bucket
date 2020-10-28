@@ -17,7 +17,15 @@ import { ItemProps } from './Item.types';
 import { ItemGroupProps } from './ItemGroup.types';
 
 
-export default function ItemGroup(props: ItemGroupProps): React.ReactElement<ItemGroupProps> {
+/* --------
+ * Component Declare
+ * -------- */
+type ItemGroupComponent = React.FunctionComponent<ItemGroupProps>;
+
+/* --------
+ * Component Render
+ * -------- */
+const ItemGroup: ItemGroupComponent = (props) => {
 
   const {
     className,
@@ -57,6 +65,8 @@ export default function ItemGroup(props: ItemGroupProps): React.ReactElement<Ite
       }))}
     </ElementType>
   );
-}
+};
 
 ItemGroup.displayName = 'ItemGroup';
+
+export default ItemGroup;

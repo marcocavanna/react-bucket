@@ -7,16 +7,31 @@ import {
   getElementType
 } from '@appbuckets/react-ui-core';
 
-import { HeaderProps } from './Header.types';
+import { CreatableFunctionComponent } from '../../generic';
+
 import { getSharedClassNames } from '../../lib';
+
+import { Icon } from '../Icon';
 
 import HeaderContent from './HeaderContent';
 import HeaderSubheader from './HeaderSubheader';
 
-import { Icon } from '../Icon';
+import { HeaderProps } from './Header.types';
 
 
-export default function Header(props: HeaderProps): React.ReactElement<HeaderProps> {
+/* --------
+ * Component Declare
+ * -------- */
+type HeaderComponent = CreatableFunctionComponent<HeaderProps> & {
+  Content: typeof HeaderContent;
+  Subheader: typeof HeaderSubheader;
+};
+
+
+/* --------
+ * Component Render
+ * -------- */
+const Header: HeaderComponent = (props) => {
 
   const {
     className,
@@ -47,12 +62,12 @@ export default function Header(props: HeaderProps): React.ReactElement<HeaderPro
 
   const contentElement = React.useMemo(
     () => !hasChildren && HeaderContent.create(content, { autoGenerateKey: false }),
-    [ content, children ]
+    [ hasChildren, content ]
   );
 
   const subheaderElement = React.useMemo(
     () => !hasChildren && HeaderSubheader.create(subheader, { autoGenerateKey: false }),
-    [ subheader, children ]
+    [ hasChildren, subheader ]
   );
 
   const iconElement = React.useMemo(
@@ -77,7 +92,7 @@ export default function Header(props: HeaderProps): React.ReactElement<HeaderPro
       </div>
     </ElementType>
   );
-}
+};
 
 Header.Content = HeaderContent;
 Header.Subheader = HeaderSubheader;
@@ -85,3 +100,5 @@ Header.Subheader = HeaderSubheader;
 Header.displayName = 'Header';
 
 Header.create = createShorthandFactory(Header, content => ({ content }));
+
+export default Header;

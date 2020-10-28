@@ -6,6 +6,8 @@ import {
   childrenUtils
 } from '@appbuckets/react-ui-core';
 
+import { CreatableFunctionComponent } from '../../generic';
+
 import {
   useElementType,
   useSharedClassName
@@ -18,7 +20,19 @@ import ItemMeta from './ItemMeta';
 import ItemText from './ItemText';
 
 
-export default function ItemContent(props: ItemContentProps): React.ReactElement<ItemContentProps> {
+/* --------
+ * Component Declare
+ * -------- */
+type ItemContentComponent = CreatableFunctionComponent<ItemContentProps> & {
+  Header: typeof ItemHeader;
+  Meta: typeof ItemMeta;
+  Text: typeof ItemText;
+};
+
+/* --------
+ * Component Render
+ * -------- */
+const ItemContent: ItemContentComponent = (props) => {
 
   const {
     className,
@@ -89,7 +103,7 @@ export default function ItemContent(props: ItemContentProps): React.ReactElement
       {metaElement}
     </ElementType>
   );
-}
+};
 
 ItemContent.displayName = 'ItemContent';
 
@@ -98,3 +112,5 @@ ItemContent.Text = ItemText;
 ItemContent.Meta = ItemMeta;
 
 ItemContent.create = createShorthandFactory(ItemContent, (content) => ({ content }));
+
+export default ItemContent;

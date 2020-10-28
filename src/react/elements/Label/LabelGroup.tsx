@@ -15,7 +15,15 @@ import Label from './Label';
 import { LabelGroupProps } from './LabelGroup.types';
 
 
-export default function LabelGroup(props: LabelGroupProps): React.ReactElement<LabelGroupProps> {
+/* --------
+ * Component Declare
+ * -------- */
+type LabelGroupComponent = React.FunctionComponent<LabelGroupProps>;
+
+/* --------
+ * Component Render
+ * -------- */
+const LabelGroup: LabelGroupComponent = (props) => {
 
   const {
     className,
@@ -53,6 +61,8 @@ export default function LabelGroup(props: LabelGroupProps): React.ReactElement<L
       ))}
     </ElementType>
   );
-}
+};
 
 LabelGroup.displayName = 'LabelGroup';
+
+export default LabelGroup;

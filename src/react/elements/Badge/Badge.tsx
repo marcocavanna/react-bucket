@@ -6,6 +6,8 @@ import {
   childrenUtils
 } from '@appbuckets/react-ui-core';
 
+import { CreatableFunctionComponent } from '../../generic';
+
 import {
   useElementType,
   useSharedClassName,
@@ -17,7 +19,16 @@ import { Icon } from '../Icon';
 import { BadgeProps } from './Badge.types';
 
 
-export default function Badge(props: BadgeProps): React.ReactElement<BadgeProps> {
+/* --------
+ * Component Declare
+ * -------- */
+type BadgeComponent = CreatableFunctionComponent<BadgeProps>;
+
+
+/* --------
+ * Component Render
+ * -------- */
+const Badge: BadgeComponent = (props) => {
 
   const {
     className,
@@ -73,8 +84,10 @@ export default function Badge(props: BadgeProps): React.ReactElement<BadgeProps>
       </div>
     </ElementType>
   );
-}
+};
 
 Badge.displayName = 'Badge';
 
 Badge.create = createShorthandFactory(Badge, (content) => ({ content }));
+
+export default Badge;

@@ -5,7 +5,7 @@ import {
   createShorthandFactory
 } from '@appbuckets/react-ui-core';
 
-import { ShorthandCollection, ShorthandItem } from '../../generic';
+import { CreatableFunctionComponent, ShorthandCollection, ShorthandItem } from '../../generic';
 
 import {
   useElementType,
@@ -17,7 +17,15 @@ import { Button, ButtonProps } from '../Button';
 import { ItemToolsProps } from './ItemTools.types';
 
 
-export default function ItemTools(props: ItemToolsProps): React.ReactElement<ItemToolsProps> {
+/* --------
+ * Component Declare
+ * -------- */
+type ItemToolsComponent = CreatableFunctionComponent<ItemToolsProps>;
+
+/* --------
+ * Component Render
+ * -------- */
+const ItemTools: ItemToolsComponent = (props) => {
 
   const {
     className,
@@ -51,8 +59,10 @@ export default function ItemTools(props: ItemToolsProps): React.ReactElement<Ite
       ))}
     </ElementType>
   );
-}
+};
 
 ItemTools.displayName = 'ItemTools';
 
 ItemTools.create = createShorthandFactory(ItemTools, (tools) => ({ tools: tools as ShorthandCollection<ButtonProps> }));
+
+export default ItemTools;

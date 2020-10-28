@@ -7,11 +7,22 @@ import {
   childrenUtils
 } from '@appbuckets/react-ui-core';
 
-import { HeaderContentProps } from './HeaderContent.types';
+import { CreatableFunctionComponent } from '../../generic';
+
 import { getSharedClassNames } from '../../lib';
 
+import { HeaderContentProps } from './HeaderContent.types';
 
-export default function HeaderContent(props: HeaderContentProps): React.ReactElement<HeaderContentProps> {
+
+/* --------
+ * Component Declare
+ * -------- */
+type HeaderContentComponent = CreatableFunctionComponent<HeaderContentProps>;
+
+/* --------
+ * Component Render
+ * -------- */
+const HeaderContent: HeaderContentComponent = (props) => {
 
   const {
     className,
@@ -35,7 +46,7 @@ export default function HeaderContent(props: HeaderContentProps): React.ReactEle
     </ElementType>
   );
 
-}
+};
 
 HeaderContent.displayName = 'HeaderContent';
 
@@ -44,3 +55,5 @@ HeaderContent.defaultProps = {
 };
 
 HeaderContent.create = createShorthandFactory(HeaderContent, content => ({ content }));
+
+export default HeaderContent;

@@ -6,6 +6,8 @@ import {
   childrenUtils
 } from '@appbuckets/react-ui-core';
 
+import { CreatableFunctionComponent } from '../../generic';
+
 import {
   useElementType,
   useSharedClassName
@@ -17,7 +19,16 @@ import { Header } from '../Header';
 import { EmptyContentProps } from './EmptyContent.types';
 
 
-export default function EmptyContent(props: EmptyContentProps): React.ReactElement<EmptyContentProps> {
+/* --------
+ * Component Declare
+ * -------- */
+type EmptyContentComponent = CreatableFunctionComponent<EmptyContentProps>;
+
+
+/* --------
+ * Component Render
+ * -------- */
+const EmptyContent: EmptyContentComponent = (props) => {
 
   const {
     className,
@@ -38,16 +49,8 @@ export default function EmptyContent(props: EmptyContentProps): React.ReactEleme
 
   const ElementType = useElementType(EmptyContent, props);
 
-  if (!childrenUtils.isNil(children)) {
-    return (
-      <ElementType {...rest} className={classes}>
-        {children}
-      </ElementType>
-    );
-  }
-
   const buttonElement = React.useMemo(
-    () => button && Button.create(button, { autoGenerateKey: false }),
+    () => Button.create(button, { autoGenerateKey: false }),
     [ button ]
   );
 
@@ -69,6 +72,14 @@ export default function EmptyContent(props: EmptyContentProps): React.ReactEleme
     ]
   );
 
+  if (!childrenUtils.isNil(children)) {
+    return (
+      <ElementType {...rest} className={classes}>
+        {children}
+      </ElementType>
+    );
+  }
+
   return (
     <ElementType {...rest} className={classes}>
       {headerElement}
@@ -76,8 +87,13 @@ export default function EmptyContent(props: EmptyContentProps): React.ReactEleme
     </ElementType>
   );
 
-}
+};
 
 EmptyContent.displayName = 'EmptyContent';
 
-EmptyContent.create = createShorthandFactory(EmptyContent, (header) => ({ header }));
+EmptyContent.create = createShorthandFactory(
+  EmptyContent,
+  (header) => ({ header })
+);
+
+export default EmptyContent;

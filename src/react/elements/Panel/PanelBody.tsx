@@ -6,6 +6,8 @@ import {
   createShorthandFactory
 } from '@appbuckets/react-ui-core';
 
+import { CreatableFunctionComponent } from '../../generic';
+
 import {
   useElementType,
   useSharedClassName
@@ -16,7 +18,16 @@ import { PanelBodyProps } from './PanelBody.types';
 import { Button } from '../Button';
 
 
-export default function PanelBody(props: PanelBodyProps): React.ReactElement<PanelBodyProps> {
+/* --------
+ * Component Declare
+ * -------- */
+type PanelBodyComponent = CreatableFunctionComponent<PanelBodyProps>;
+
+
+/* --------
+ * Component Render
+ * -------- */
+const PanelBody: PanelBodyComponent = (props) => {
 
   const {
     className,
@@ -57,8 +68,10 @@ export default function PanelBody(props: PanelBodyProps): React.ReactElement<Pan
     </ElementType>
   );
 
-}
+};
 
 PanelBody.displayName = 'PanelBody';
 
 PanelBody.create = createShorthandFactory(PanelBody, (content) => ({ content }));
+
+export default PanelBody;

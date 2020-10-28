@@ -6,6 +6,8 @@ import {
   createShorthandFactory
 } from '@appbuckets/react-ui-core';
 
+import { CreatableFunctionComponent } from '../../generic';
+
 import {
   useSharedClassName,
   useElementType
@@ -14,7 +16,16 @@ import {
 import { PanelFooterProps } from './PanelFooter.types';
 
 
-export default function PanelFooter(props: PanelFooterProps): React.ReactElement<PanelFooterProps> {
+/* --------
+ * Component Declare
+ * -------- */
+type PanelFooterComponent = CreatableFunctionComponent<PanelFooterProps>;
+
+
+/* --------
+ * Component Render
+ * -------- */
+const PanelFooter: PanelFooterComponent = (props) => {
 
   const {
     className,
@@ -38,8 +49,10 @@ export default function PanelFooter(props: PanelFooterProps): React.ReactElement
     </ElementType>
   );
 
-}
+};
 
 PanelFooter.displayName = 'PanelFooter';
 
 PanelFooter.create = createShorthandFactory(PanelFooter, (content) => ({ content }));
+
+export default PanelFooter;

@@ -6,6 +6,7 @@ import {
   classByValue,
   createShorthandFactory
 } from '@appbuckets/react-ui-core';
+import { CreatableFunctionComponent } from '../../generic';
 
 import {
   useSharedClassName,
@@ -16,7 +17,16 @@ import {
 import { LoaderProps } from './Loader.types';
 
 
-export default function Loader(props: LoaderProps): React.ReactElement<LoaderProps> {
+/* --------
+ * Component Declare
+ * -------- */
+type LoaderComponent = CreatableFunctionComponent<LoaderProps>;
+
+
+/* --------
+ * Component Render
+ * -------- */
+const Loader: LoaderComponent = (props) => {
 
   const {
     className,
@@ -100,16 +110,18 @@ export default function Loader(props: LoaderProps): React.ReactElement<LoaderPro
     </ElementType>
   );
 
-}
+};
 
 /** Set the default props */
 Loader.defaultProps = {
   active: true,
   type  : 'circular'
-} as Partial<LoaderProps>;
+};
 
 /** Set component displayName */
 Loader.displayName = 'Loader';
 
 /** Create the shorthand factory */
 Loader.create = createShorthandFactory(Loader, (content) => ({ content }));
+
+export default Loader;

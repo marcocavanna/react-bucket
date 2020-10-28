@@ -6,6 +6,8 @@ import {
   createShorthandFactory
 } from '@appbuckets/react-ui-core';
 
+import { CreatableFunctionComponent } from '../../generic';
+
 import {
   useElementType,
   useSharedClassName,
@@ -21,7 +23,19 @@ import PanelFooter from './PanelFooter';
 import { Loader } from '../Loader';
 
 
-export default function Panel(props: PanelProps): React.ReactElement<PanelProps> {
+/* --------
+ * Component Declare
+ * -------- */
+type PanelComponent = CreatableFunctionComponent<PanelProps> & {
+  Body: typeof PanelBody;
+  Footer: typeof PanelFooter;
+  Header: typeof PanelHeader;
+};
+
+/* --------
+ * Component Render
+ * -------- */
+const Panel: PanelComponent = (props) => {
 
   const {
     className,
@@ -53,15 +67,6 @@ export default function Panel(props: PanelProps): React.ReactElement<PanelProps>
     stateClasses
   );
 
-  /** If children exists, render them */
-  if (!childrenUtils.isNil(children)) {
-    return (
-      <ElementType {...rest} className={classes}>
-        {children}
-      </ElementType>
-    );
-  }
-
   /** Use shorthand to build panel elements */
   const loaderElement = React.useMemo(
     () => loading && Loader.create({ size: 'big' }, { autoGenerateKey: false }),
@@ -77,6 +82,15 @@ export default function Panel(props: PanelProps): React.ReactElement<PanelProps>
     () => PanelFooter.create(footer, { autoGenerateKey: false }),
     [ footer ]
   );
+
+  /** If children exists, render them */
+  if (!childrenUtils.isNil(children)) {
+    return (
+      <ElementType {...rest} className={classes}>
+        {children}
+      </ElementType>
+    );
+  }
 
   const bodyContent = childrenUtils.isNil(children) ? content : children;
 
@@ -94,7 +108,7 @@ export default function Panel(props: PanelProps): React.ReactElement<PanelProps>
     </ElementType>
   );
 
-}
+};
 
 Panel.displayName = 'Panel';
 
@@ -103,3 +117,5 @@ Panel.create = createShorthandFactory(Panel, (content) => ({ content }));
 Panel.Header = PanelHeader;
 Panel.Body = PanelBody;
 Panel.Footer = PanelFooter;
+
+export default Panel;

@@ -14,7 +14,16 @@ import { CheckboxProps } from './Checkbox.types';
 import { Field } from '../Field';
 
 
-export default function Checkbox(props: CheckboxProps) {
+/* --------
+ * Component Declare
+ * -------- */
+type CheckboxComponent = React.FunctionComponent<CheckboxProps>;
+
+
+/* --------
+ * Component Render
+ * -------- */
+const Checkbox: CheckboxComponent = (props) => {
 
   const {
     className,
@@ -114,42 +123,33 @@ export default function Checkbox(props: CheckboxProps) {
   /* --------
    * Component Handlers
    * -------- */
-  const handleLabelClick = React.useCallback(
-    (e: React.MouseEvent<HTMLLabelElement>) => {
-      /** If checkbox could not toggle, return */
-      if (!canToggle) {
-        return;
-      }
+  const handleLabelClick = (e: React.MouseEvent<HTMLLabelElement>) => {
+    /** If checkbox could not toggle, return */
+    if (!canToggle) {
+      return;
+    }
 
-      /** Build the Handler Params to be reused */
-      const changeHandlerParams: [ React.MouseEvent<HTMLLabelElement>, CheckboxProps ] = [
-        e,
-        { ...props, checked: !checked }
-      ];
+    /** Build the Handler Params to be reused */
+    const changeHandlerParams: [ React.MouseEvent<HTMLLabelElement>, CheckboxProps ] = [
+      e,
+      { ...props, checked: !checked }
+    ];
 
-      /** Call user defined Handlers */
-      if (handleClick) {
-        handleClick(...changeHandlerParams);
-      }
+    /** Call user defined Handlers */
+    if (handleClick) {
+      handleClick(...changeHandlerParams);
+    }
 
-      if (!checked && handleChecked) {
-        handleChecked(...changeHandlerParams);
-      }
-      else if (checked && handleUnchecked) {
-        handleUnchecked(...changeHandlerParams);
-      }
+    if (!checked && handleChecked) {
+      handleChecked(...changeHandlerParams);
+    }
+    else if (checked && handleUnchecked) {
+      handleUnchecked(...changeHandlerParams);
+    }
 
-      /** Try to set the internal auto controlled state */
-      trySetChecked(!checked);
-    },
-    [
-      canToggle,
-      checked,
-      handleClick,
-      handleChecked,
-      handleUnchecked
-    ]
-  );
+    /** Try to set the internal auto controlled state */
+    trySetChecked(!checked);
+  };
 
 
   /* --------
@@ -208,4 +208,6 @@ export default function Checkbox(props: CheckboxProps) {
       {labelElement}
     </Field>
   );
-}
+};
+
+export default Checkbox;

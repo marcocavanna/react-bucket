@@ -3,29 +3,40 @@ import clsx from 'clsx';
 
 import 'react-day-picker/src/style.css';
 import { DayModifiers } from 'react-day-picker';
-import DayPickerComponent from 'react-day-picker/DayPicker';
+import ReactDayPicker from 'react-day-picker/DayPicker';
 
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
-
-import { useAutoControlledValue } from '../../hooks/useAutoControlledValue';
-import { Modal } from '../../modules/Modal';
-import { Button } from '../Button';
-import { Input, InputProps } from '../Input';
 
 import {
   useSharedClassName,
   useSplitStateClassName
 } from '../../lib';
 
-import Popup from '../../modules/Popup/Popup';
+import { useAutoControlledValue } from '../../hooks/useAutoControlledValue';
+
+import { Button } from '../Button';
+import { Input, InputProps } from '../Input';
+
+import { Modal } from '../../modules/Modal';
+import { Popup } from '../../modules/Popup';
 
 import { DayPickerProps, ParsableDate } from './DayPicker.types';
 
 
 dayjs.extend(customParseFormat);
 
-export default function DayPicker(props: DayPickerProps<ParsableDate>): React.ReactElement<DayPickerProps> | null {
+
+/* --------
+ * Component Declare
+ * -------- */
+type DayPickerComponent = React.FunctionComponent<DayPickerProps<ParsableDate>>;
+
+
+/* --------
+ * Component Render
+ * -------- */
+const DayPicker: DayPickerComponent = (props) => {
 
   const {
     className,
@@ -118,14 +129,11 @@ export default function DayPicker(props: DayPickerProps<ParsableDate>): React.Re
   /* --------
    * Build Props Object used to pass to Event
    * -------- */
-  const propsForEvent = React.useMemo<DayPickerProps>(
-    () => ({
-      ...props,
-      date     : selectedDate.object?.toDate() ?? null,
-      timestamp: selectedDate.object?.valueOf() ?? null
-    }),
-    [ selectedDate.object ]
-  );
+  const propsForEvent: DayPickerProps = {
+    ...props,
+    date     : selectedDate.object?.toDate() ?? null,
+    timestamp: selectedDate.object?.valueOf() ?? null
+  };
 
 
   /* --------
@@ -154,7 +162,7 @@ export default function DayPicker(props: DayPickerProps<ParsableDate>): React.Re
       }
       trySetOpen(true);
     },
-    [ open ]
+    [ onCalendarOpen, propsForEvent, trySetOpen ]
   );
 
   const handleCalendarClose = React.useCallback(
@@ -164,7 +172,7 @@ export default function DayPicker(props: DayPickerProps<ParsableDate>): React.Re
       }
       trySetOpen(false);
     },
-    [ open ]
+    [ onCalendarClose, propsForEvent, trySetOpen ]
   );
 
   const evalDayChange = React.useCallback(
@@ -195,7 +203,15 @@ export default function DayPicker(props: DayPickerProps<ParsableDate>): React.Re
 
       trySetRawDate(newDateObject);
     },
-    [ inputValue, dateFormat, selectedDate.object, onDayChange, closeOnDayPicked ]
+    [
+      dateFormat,
+      selectedDate.object,
+      onDayChange,
+      closeOnDayPicked,
+      trySetRawDate,
+      propsForEvent,
+      handleCalendarClose
+    ]
   );
 
   const handleDayClick = React.useCallback(
@@ -207,7 +223,7 @@ export default function DayPicker(props: DayPickerProps<ParsableDate>): React.Re
       /** Eval Day Change */
       evalDayChange(day, false);
     },
-    [ selectedDate.formatted ]
+    [ disabled, evalDayChange ]
   );
 
   const handleInputChange = React.useCallback(
@@ -221,21 +237,21 @@ export default function DayPicker(props: DayPickerProps<ParsableDate>): React.Re
       /** Eval day Change */
       evalDayChange(inputProps.value!, true);
     },
-    [ inputValue ]
+    [ evalDayChange, onInputChange ]
   );
 
   const handleTodayButtonClick = React.useCallback(
     () => {
       evalDayChange(dayjs().toDate(), false);
     },
-    [ todayButton, selectedDate.object ]
+    [ evalDayChange ]
   );
 
   const handleClearDate = React.useCallback(
     () => {
       evalDayChange('', false);
     },
-    [ clearable, clearButton, selectedDate.object ]
+    [ evalDayChange ]
   );
 
 
@@ -269,7 +285,7 @@ export default function DayPicker(props: DayPickerProps<ParsableDate>): React.Re
         />
       );
     },
-    [ type, trigger, selectedDate.object, inputHint.placeholder ]
+    [ type, trigger, selectedDate.formatted, inputHint.placeholder, triggerProps, disabled, handleCalendarOpen ]
   );
 
   const calendarAddon = React.useMemo(
@@ -327,7 +343,7 @@ export default function DayPicker(props: DayPickerProps<ParsableDate>): React.Re
    * -------- */
   const dayPickerElement = (
     <React.Fragment>
-      <DayPickerComponent
+      <ReactDayPicker
         // Component Props
         {...rest}
         fixedWeeks={userDefinedFixedWeeks ?? type === 'modal'}
@@ -397,7 +413,7 @@ export default function DayPicker(props: DayPickerProps<ParsableDate>): React.Re
       onClose={handleCalendarClose}
     />
   );
-}
+};
 
 DayPicker.displayName = 'DayPicker';
 
@@ -408,4 +424,6 @@ DayPicker.defaultProps = {
   showOutsideDays : true,
   showWeekNumbers : true,
   type            : 'input'
-} as Partial<DayPickerProps>;
+};
+
+export default DayPicker;

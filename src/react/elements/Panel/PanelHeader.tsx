@@ -5,6 +5,7 @@ import {
   childrenUtils,
   createShorthandFactory
 } from '@appbuckets/react-ui-core';
+import { CreatableFunctionComponent } from '../../generic';
 
 import {
   useElementType,
@@ -16,7 +17,15 @@ import { Header } from '../Header';
 import { PanelHeaderProps } from './PanelHeader.types';
 
 
-export default function PanelHeader(props: PanelHeaderProps): React.ReactElement<PanelHeaderProps> {
+/* --------
+ * Component Declare
+ * -------- */
+type PanelHeaderComponent = CreatableFunctionComponent<PanelHeaderProps>;
+
+/* --------
+ * Component Render
+ * -------- */
+const PanelHeader: PanelHeaderComponent = (props) => {
 
   const {
     className,
@@ -38,14 +47,6 @@ export default function PanelHeader(props: PanelHeaderProps): React.ReactElement
     className
   );
 
-  if (!childrenUtils.isNil(children)) {
-    return (
-      <ElementType {...rest} className={classes}>
-        {children}
-      </ElementType>
-    );
-  }
-
   const headerElement = React.useMemo(
     () => Header.create({
       content,
@@ -54,8 +55,16 @@ export default function PanelHeader(props: PanelHeaderProps): React.ReactElement
       divided,
       disabled
     }, { autoGenerateKey: false }),
-    [ content, subheader, icon ]
+    [ content, subheader, icon, divided, disabled ]
   );
+
+  if (!childrenUtils.isNil(children)) {
+    return (
+      <ElementType {...rest} className={classes}>
+        {children}
+      </ElementType>
+    );
+  }
 
   return (
     <ElementType {...rest} className={classes}>
@@ -63,8 +72,10 @@ export default function PanelHeader(props: PanelHeaderProps): React.ReactElement
     </ElementType>
   );
 
-}
+};
 
 PanelHeader.displayName = 'PanelHeader';
 
 PanelHeader.create = createShorthandFactory(PanelHeader, (content) => ({ content }));
+
+export default PanelHeader;

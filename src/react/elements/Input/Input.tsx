@@ -13,8 +13,15 @@ import { Field } from '../Field';
 
 import { InputProps } from './Input.types';
 
+/* --------
+ * Component Declare
+ * -------- */
+type InputComponent = React.FunctionComponent<InputProps>;
 
-export default function Input(props: InputProps): React.ReactElement<InputProps> {
+/* --------
+ * Component Render
+ * -------- */
+const Input: InputComponent = (props) => {
 
   const {
     className,
@@ -104,7 +111,7 @@ export default function Input(props: InputProps): React.ReactElement<InputProps>
         }
       });
     },
-    [ fieldRef.current, inputRef.current ]
+    []
   );
 
   const removeClassesFromRef = React.useCallback(
@@ -119,7 +126,7 @@ export default function Input(props: InputProps): React.ReactElement<InputProps>
         }
       });
     },
-    [ fieldRef.current, inputRef.current ]
+    []
   );
 
 
@@ -226,7 +233,7 @@ export default function Input(props: InputProps): React.ReactElement<InputProps>
         inputRef.current.focus();
       }
     },
-    [ inputRef.current ]
+    [ userDefinedOnClear ]
   );
 
   /* --------
@@ -333,7 +340,7 @@ export default function Input(props: InputProps): React.ReactElement<InputProps>
       {renderInputElement()}
     </Field>
   );
-}
+};
 
 Input.displayName = 'Input';
 
@@ -343,4 +350,6 @@ Input.defaultProps = {
     maxRows: 8
   },
   type         : 'text'
-} as Partial<InputProps>;
+};
+
+export default Input;

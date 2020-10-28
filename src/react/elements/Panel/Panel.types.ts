@@ -10,7 +10,6 @@ export interface PanelProps extends ReactBucketComponentProps<StrictPanelProps>,
 }
 
 export interface StrictPanelProps extends Pick<PanelBodyProps, 'fab'> {
-
   /** Set disabled style */
   disabled?: boolean;
 

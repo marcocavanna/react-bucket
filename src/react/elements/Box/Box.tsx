@@ -21,7 +21,16 @@ const appendValueToClass = (
   : undefined);
 
 
-export default function Box(props: BoxProps): React.ReactElement<BoxProps> {
+/* --------
+ * Component Declare
+ * -------- */
+type BoxComponent = React.FunctionComponent<BoxProps>;
+
+
+/* --------
+ * Component Render
+ * -------- */
+const Box: BoxComponent = (props) => {
 
   const {
     className,
@@ -49,24 +58,27 @@ export default function Box(props: BoxProps): React.ReactElement<BoxProps> {
 
   const ElementType = getElementType(Box, props);
 
-  const classes = clsx(
-    'box',
-    appendValueToClass('elevation', elevation),
-    appendValueToClass('m', m),
-    appendValueToClass('mb', mb),
-    appendValueToClass('ml', ml),
-    appendValueToClass('mr', mr),
-    appendValueToClass('mt', mt),
-    appendValueToClass('mx', mx),
-    appendValueToClass('my', my),
-    appendValueToClass('p', p),
-    appendValueToClass('pb', pb),
-    appendValueToClass('pl', pl),
-    appendValueToClass('pr', pr),
-    appendValueToClass('pt', pt),
-    appendValueToClass('px', px),
-    appendValueToClass('py', py),
-    className
+  const classes = React.useMemo(
+    () => clsx(
+      'box',
+      appendValueToClass('elevation', elevation),
+      appendValueToClass('m', m),
+      appendValueToClass('mb', mb),
+      appendValueToClass('ml', ml),
+      appendValueToClass('mr', mr),
+      appendValueToClass('mt', mt),
+      appendValueToClass('mx', mx),
+      appendValueToClass('my', my),
+      appendValueToClass('p', p),
+      appendValueToClass('pb', pb),
+      appendValueToClass('pl', pl),
+      appendValueToClass('pr', pr),
+      appendValueToClass('pt', pt),
+      appendValueToClass('px', px),
+      appendValueToClass('py', py),
+      className
+    ),
+    [ className, elevation, m, mb, ml, mr, mt, mx, my, p, pb, pl, pr, pt, px, py ]
   );
 
   return (
@@ -75,6 +87,8 @@ export default function Box(props: BoxProps): React.ReactElement<BoxProps> {
     </ElementType>
   );
 
-}
+};
 
 Box.displayName = 'Box';
+
+export default Box;

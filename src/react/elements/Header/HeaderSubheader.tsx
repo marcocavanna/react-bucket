@@ -7,11 +7,21 @@ import {
   childrenUtils
 } from '@appbuckets/react-ui-core';
 
-import { HeaderSubheaderProps } from './HeaderSubheader.types';
+import { CreatableFunctionComponent } from '../../generic';
+
 import { getSharedClassNames } from '../../lib';
 
+import { HeaderSubheaderProps } from './HeaderSubheader.types';
 
-export default function HeaderSubheader(props: HeaderSubheaderProps): React.ReactElement<HeaderSubheaderProps> {
+/* --------
+ * Component Declare
+ * -------- */
+type HeaderSubheaderComponent = CreatableFunctionComponent<HeaderSubheaderProps>;
+
+/* --------
+ * Component Render
+ * -------- */
+const HeaderSubheader: HeaderSubheaderComponent = (props) => {
 
   const {
     className,
@@ -35,7 +45,7 @@ export default function HeaderSubheader(props: HeaderSubheaderProps): React.Reac
     </ElementType>
   );
 
-}
+};
 
 HeaderSubheader.displayName = 'HeaderSubheader';
 
@@ -44,3 +54,5 @@ HeaderSubheader.defaultProps = {
 };
 
 HeaderSubheader.create = createShorthandFactory(HeaderSubheader, content => ({ content }));
+
+export default HeaderSubheader;

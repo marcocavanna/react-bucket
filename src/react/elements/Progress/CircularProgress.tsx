@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import {
   createShorthandFactory
 } from '@appbuckets/react-ui-core';
+import { CreatableFunctionComponent } from '../../generic';
 
 import { useElementType } from '../../lib';
 
@@ -13,9 +14,15 @@ import useProgressProps from './lib/useProgressProps';
 import useProgressIndicator from './lib/useProgressIndicator';
 
 
-export default function CircularProgress(
-  props: CircularProgressProps
-): React.ReactElement<CircularProgressProps> {
+/* --------
+ * Component Declare
+ * -------- */
+type CircularProgressComponent = CreatableFunctionComponent<CircularProgressProps>;
+
+/* --------
+ * Component Render
+ * -------- */
+const CircularProgress: CircularProgressComponent = (props) => {
 
   const {
     className,
@@ -71,7 +78,7 @@ export default function CircularProgress(
           return { radius: startingRadius, stroke: startingStrokeWidth };
       }
     },
-    [ props.size, indicatorElement ]
+    [ indicatorElement, strokeWidth, radius, props.size ]
   );
 
   const size = Math.ceil((circle.radius * 2) + circle.stroke);
@@ -120,7 +127,7 @@ export default function CircularProgress(
     </ElementType>
   );
 
-}
+};
 
 CircularProgress.displayName = 'CircularProgress';
 
@@ -129,6 +136,8 @@ CircularProgress.defaultProps = {
   min        : 0,
   radius     : 16,
   strokeWidth: 10
-} as Partial<CircularProgressProps>;
+};
 
 CircularProgress.create = createShorthandFactory(CircularProgress, (value) => ({ value: value as number }));
+
+export default CircularProgress;

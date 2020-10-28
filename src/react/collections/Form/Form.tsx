@@ -14,7 +14,22 @@ import { Input } from '../../elements/Input';
 import { Select } from '../../elements/Select';
 
 
-export default function Form(props: FormProps): React.ReactElement<FormProps> {
+/* --------
+ * Declare Component
+ * -------- */
+type FormComponent = React.FunctionComponent<FormProps> & {
+  Button: typeof Button;
+  Checkbox: typeof Checkbox;
+  DayPicker: typeof DayPicker;
+  Input: typeof Input;
+  Select: typeof Select;
+};
+
+
+/* --------
+ * Component Render
+ * -------- */
+const Form: FormComponent = (props) => {
 
   const {
     className,
@@ -38,25 +53,22 @@ export default function Form(props: FormProps): React.ReactElement<FormProps> {
   /* --------
    * Form Submit Handler
    * -------- */
-  const handleFormSubmit = React.useCallback(
-    (e: React.FormEvent<HTMLFormElement>) => {
-      /** Prevent any default action, only if action props is not defined */
-      if (typeof props.action !== 'string') {
-        e.preventDefault();
-      }
+  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    /** Prevent any default action, only if action props is not defined */
+    if (typeof props.action !== 'string') {
+      e.preventDefault();
+    }
 
-      /** Disabled Form couldn't be submitted */
-      if (disabled) {
-        return;
-      }
+    /** Disabled Form couldn't be submitted */
+    if (disabled) {
+      return;
+    }
 
-      /** Call the user defined onSubmit handler */
-      if (typeof onSubmit === 'function') {
-        onSubmit(e, props);
-      }
-    },
-    [ onSubmit ]
-  );
+    /** Call the user defined onSubmit handler */
+    if (typeof onSubmit === 'function') {
+      onSubmit(e, props);
+    }
+  };
 
 
   /* --------
@@ -67,7 +79,7 @@ export default function Form(props: FormProps): React.ReactElement<FormProps> {
       {children}
     </form>
   );
-}
+};
 
 Form.displayName = 'Form';
 
@@ -80,3 +92,5 @@ Form.Checkbox = Checkbox;
 Form.DayPicker = DayPicker;
 Form.Input = Input;
 Form.Select = Select;
+
+export default Form;

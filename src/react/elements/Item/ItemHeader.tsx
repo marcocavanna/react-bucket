@@ -6,6 +6,8 @@ import {
   childrenUtils
 } from '@appbuckets/react-ui-core';
 
+import { CreatableFunctionComponent } from '../../generic';
+
 import {
   useElementType,
   useSharedClassName
@@ -14,7 +16,15 @@ import {
 import { ItemHeaderProps } from './ItemHeader.types';
 
 
-export default function ItemHeader(props: ItemHeaderProps): React.ReactElement<ItemHeaderProps> {
+/* --------
+ * Component Declare
+ * -------- */
+type ItemHeaderComponent = CreatableFunctionComponent<ItemHeaderProps>;
+
+/* --------
+ * Component Render
+ * -------- */
+const ItemHeader: ItemHeaderComponent = (props) => {
 
   const {
     className,
@@ -48,8 +58,10 @@ export default function ItemHeader(props: ItemHeaderProps): React.ReactElement<I
       {content}
     </ElementType>
   );
-}
+};
 
 ItemHeader.displayName = 'ItemHeader';
 
 ItemHeader.create = createShorthandFactory(ItemHeader, (content) => ({ content }));
+
+export default ItemHeader;

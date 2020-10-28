@@ -17,7 +17,16 @@ import { Icon } from '../Icon';
 import { ToastProps } from './Toast.types';
 
 
-export default function Toast(props: ToastProps): React.ReactElement<ToastProps> {
+/* --------
+ * Component Declare
+ * -------- */
+type ToastComponent = React.FunctionComponent<ToastProps>;
+
+
+/* --------
+ * Component Render
+ * -------- */
+const Toast: ToastComponent = (props) => {
 
   const {
     className,
@@ -48,14 +57,11 @@ export default function Toast(props: ToastProps): React.ReactElement<ToastProps>
   );
 
   /** Build Handlers */
-  const handleClick = React.useCallback(
-    (e: React.MouseEvent<HTMLElement>) => {
-      if (typeof onClick === 'function') {
-        onClick(e, props);
-      }
-    },
-    [ onClick ]
-  );
+  const handleClick = (e: React.MouseEvent<HTMLElement>) => {
+    if (typeof onClick === 'function') {
+      onClick(e, props);
+    }
+  };
 
   const handleDismiss = React.useCallback(
     (e: React.MouseEvent<HTMLElement>) => {
@@ -66,20 +72,8 @@ export default function Toast(props: ToastProps): React.ReactElement<ToastProps>
         dismiss();
       }
     },
-    [ dismissible, dismiss ]
+    [ dismiss ]
   );
-
-
-  /* --------
-   * If element has children, render them
-   * -------- */
-  if (!childrenUtils.isNil(children)) {
-    return (
-      <ElementType {...rest} className={classes} onClick={handleClick}>
-        {typeof children === 'function' ? children({ dismiss: handleDismiss }) : children}
-      </ElementType>
-    );
-  }
 
 
   /* --------
@@ -116,6 +110,18 @@ export default function Toast(props: ToastProps): React.ReactElement<ToastProps>
 
 
   /* --------
+   * If element has children, render them
+   * -------- */
+  if (!childrenUtils.isNil(children)) {
+    return (
+      <ElementType {...rest} className={classes} onClick={handleClick}>
+        {typeof children === 'function' ? children({ dismiss: handleDismiss }) : children}
+      </ElementType>
+    );
+  }
+
+
+  /* --------
    * Render the Component
    * -------- */
   return (
@@ -124,6 +130,8 @@ export default function Toast(props: ToastProps): React.ReactElement<ToastProps>
       {dismissIcon}
     </ElementType>
   );
-}
+};
 
 Toast.displayName = 'Toast';
+
+export default Toast;

@@ -1,9 +1,14 @@
 import * as React from 'react';
 
+import { ShorthandValue } from '@appbuckets/react-ui-core';
+
 import {
   MinimalReactBucketComponentProps,
   ShorthandCollection
 } from '../../generic';
+
+import { ButtonProps } from '../../elements/Button';
+import { PopupOpenEvent, PopupPosition } from '../../modules/Popup';
 
 import { MenuItemProps } from '../Menu/MenuItem.types';
 
@@ -12,6 +17,18 @@ export interface DropdownMenuProps extends MinimalReactBucketComponentProps<Stri
 }
 
 export interface StrictDropdownMenuProps {
+  /** Draw the popup using basic style */
+  basic?: boolean;
+
+  /** Close dropdown on Item clicked */
+  closeOnItemClicked?: boolean;
+
+  /** Set initial open value */
+  defaultOpen?: boolean;
+
+  /** Invert color of dropdown */
+  inverted?: boolean;
+
   /** Menu Items */
   items?: ShorthandCollection<MenuItemProps>;
 
@@ -24,6 +41,15 @@ export interface StrictDropdownMenuProps {
   /** Handler Menu Open */
   onOpen?: (e: React.MouseEvent<HTMLElement>, props: DropdownMenuProps) => void;
 
+  /** Control open state */
+  open?: boolean;
+
+  /** Set the openOn behaviour */
+  openOn?: PopupOpenEvent[];
+
+  /** Set the dropdown position, default to bottom right */
+  position?: PopupPosition;
+
   /** Trigger Element */
-  trigger?: React.ReactElement;
+  trigger?: ShorthandValue<ButtonProps>;
 }

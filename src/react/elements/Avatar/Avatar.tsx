@@ -6,6 +6,8 @@ import {
   createShorthandFactory
 } from '@appbuckets/react-ui-core';
 
+import { CreatableFunctionComponent } from '../../generic';
+
 import {
   useElementType,
   useSharedClassName,
@@ -19,7 +21,16 @@ import { AvatarProps } from './Avatar.types';
 import { Popup } from '../../modules/Popup';
 
 
-export default function Avatar(props: AvatarProps): React.ReactElement<AvatarProps> {
+/* --------
+ * Component Declare
+ * -------- */
+type AvatarComponent = CreatableFunctionComponent<AvatarProps>;
+
+
+/* --------
+ * Component Render
+ * -------- */
+const Avatar: AvatarComponent = (props) => {
 
   const {
     className,
@@ -58,18 +69,15 @@ export default function Avatar(props: AvatarProps): React.ReactElement<AvatarPro
   /** Check if Component has Children */
   const hasChildren = !childrenUtils.isNil(children);
 
-  const handleClick = React.useCallback(
-    (e: React.MouseEvent<HTMLElement>) => {
-      /** Call user defined handler */
-      if (onClick && !disabled) {
-        /** Disable event propagation */
-        e.stopPropagation();
+  const handleClick = (e: React.MouseEvent<HTMLElement>) => {
+    /** Call user defined handler */
+    if (onClick && !disabled) {
+      /** Disable event propagation */
+      e.stopPropagation();
 
-        onClick(e, props);
-      }
-    },
-    [ onClick, disabled ]
-  );
+      onClick(e, props);
+    }
+  };
 
 
   // ----
@@ -120,7 +128,7 @@ export default function Avatar(props: AvatarProps): React.ReactElement<AvatarPro
       />
     )
     : avatarElement;
-}
+};
 
 Avatar.displayName = 'Avatar';
 
@@ -129,3 +137,5 @@ Avatar.defaultProps = {
 } as Partial<AvatarProps>;
 
 Avatar.create = createShorthandFactory(Avatar, (content) => ({ content }));
+
+export default Avatar;

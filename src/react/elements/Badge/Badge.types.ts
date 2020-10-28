@@ -3,6 +3,7 @@ import {
   ReactBucketIcon,
   SharedComponentStateProps
 } from '../../generic';
+
 import { IconProps } from '../Icon';
 
 

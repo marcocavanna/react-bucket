@@ -6,6 +6,8 @@ import {
   createShorthandFactory
 } from '@appbuckets/react-ui-core';
 
+import { CreatableFunctionComponent } from '../../generic';
+
 import {
   useElementType,
   useSharedClassName,
@@ -20,7 +22,17 @@ import { LabelProps } from './Label.types';
 import LabelGroup from './LabelGroup';
 
 
-export default function Label(props: LabelProps): React.ReactElement<LabelProps> {
+/* --------
+ * Component Declare
+ * -------- */
+type LabelComponent = CreatableFunctionComponent<LabelProps> & {
+  Group: typeof LabelGroup
+};
+
+/* --------
+ * Component Render
+ * -------- */
+const Label: LabelComponent = (props) => {
 
   const {
     className,
@@ -52,23 +64,11 @@ export default function Label(props: LabelProps): React.ReactElement<LabelProps>
   );
 
   /** Use an Hook to define the click handler */
-  const handleClick = React.useCallback(
-    (e: React.MouseEvent<HTMLElement>) => {
-      if (onClick) {
-        onClick(e, props);
-      }
-    },
-    [ onClick ]
-  );
-
-  const handleLabelRemove = React.useCallback(
-    (e: React.MouseEvent<HTMLButtonElement>) => {
-      if (!disabled && onRemove) {
-        onRemove(e, props);
-      }
-    },
-    [ onRemove, disabled ]
-  );
+  const handleClick = (e: React.MouseEvent<HTMLElement>) => {
+    if (onClick) {
+      onClick(e, props);
+    }
+  };
 
   /** Compute the Icon Element */
   const iconElement = React.useMemo(
@@ -85,6 +85,12 @@ export default function Label(props: LabelProps): React.ReactElement<LabelProps>
         return null;
       }
 
+      const handleLabelRemove = (e: React.MouseEvent<HTMLButtonElement>) => {
+        if (!disabled && onRemove) {
+          onRemove(e, props);
+        }
+      };
+
       return Button.create(typeof removable === 'boolean'
         ? { icon: 'times' }
         : removable, {
@@ -97,7 +103,7 @@ export default function Label(props: LabelProps): React.ReactElement<LabelProps>
         }
       });
     },
-    [ removable, handleLabelRemove ]
+    [ removable, disabled, onRemove, props ]
   );
 
   /** Render the Component */
@@ -112,10 +118,12 @@ export default function Label(props: LabelProps): React.ReactElement<LabelProps>
       </span>
     </ElementType>
   );
-}
+};
 
 Label.displayName = 'Label';
 
 Label.Group = LabelGroup;
 
 Label.create = createShorthandFactory(Label, (content) => ({ content }));
+
+export default Label;

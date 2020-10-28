@@ -16,7 +16,16 @@ import { Icon } from '../Icon';
 import { SectionProps } from './Section.types';
 
 
-export default function Section(props: SectionProps): React.ReactElement<SectionProps> {
+/* --------
+ * Component Declare
+ * -------- */
+type SectionComponent = React.FunctionComponent<SectionProps>;
+
+
+/* --------
+ * Component Render
+ * -------- */
+const Section: SectionComponent = (props) => {
 
   const {
     className,
@@ -72,10 +81,12 @@ export default function Section(props: SectionProps): React.ReactElement<Section
       </div>
     </ElementType>
   );
-}
+};
 
 Section.displayName = 'Section';
 
 Section.defaultProps = {
   direction: 'vertical'
-} as Partial<SectionProps>;
+};
+
+export default Section;
