@@ -132,13 +132,25 @@
     OverValue must color also
     the bar container
   ---*/
-  &.is-overvalue.high {
-    > .bar {
-      background-color: lighten($success, 15%);
+  &.is-overvalue {
+    &.high {
+      > .bar {
+        background-color: lighten($success, 15%);
+      }
+
+      .progress-circle-background {
+        stroke: lighten($success, 15%);
+      }
     }
 
-    .progress-circle-background {
-      stroke: lighten($success, 15%);
+    &.low {
+      > .bar {
+        background-color: lighten($danger, 15%);
+      }
+
+      .progress-circle-background {
+        stroke: lighten($danger, 15%);
+      }
     }
   }
 }
