@@ -662,11 +662,18 @@
 ******/
 .ReactVirtualized__Table {
   color: $text;
-  background-color: $white;
   border-radius: $border-radius;
+
+  .ReactVirtualized__Grid {
+    border-bottom-left-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+  }
 
   .ReactVirtualized__Table__headerRow {
     display: flex;
+    background-color: $white;
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
 
     > .ReactVirtualized__Table__headerColumn {
       font-weight: $semi-bold;
@@ -711,6 +718,8 @@
 
     &:last-child {
       border-bottom: none;
+      border-bottom-left-radius: $border-radius;
+      border-bottom-right-radius: $border-radius;
     }
 
     .ReactVirtualized__Table__rowColumn {
@@ -745,7 +754,7 @@
 
   .ReactVirtualized__Table__row,
   .ReactVirtualized__Table__rowColumn {
-    background-color: transparent;
+    background-color: $white;
     opacity: 1;
     will-change: background-color, color, opacity;
     transition:
