@@ -33,9 +33,9 @@ export default function withFormikField<P extends WrappedComponentInnerProps, Va
   } = configuration;
 
   /** Define the Component */
-  const FormikField: FormikFieldComponent<P, any> = <K extends keyof Values,
+  const FormikField: FormikFieldComponent<P> = <K extends keyof Values,
     Values extends AnyObject = AnyObject>(
-    props: React.PropsWithChildren<FormikFieldComponentProps<P, K>>
+    props: React.PropsWithChildren<FormikFieldComponentProps<P>>
   ) => {
 
     /** Get component Props */

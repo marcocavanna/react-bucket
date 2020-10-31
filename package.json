@@ -42,7 +42,7 @@
     "copy:declaration": "cpy '**/*.d.ts' '../../build/es' --cwd=src/react --parents",
     "precompile:rollup": "rimraf build",
     "compile:rollup": "rollup -c",
-    "postcompile:rollup": "node build.styles.js && yarn build:declaration",
+    "postcompile:rollup": "node build.styles.js && yarn build:declaration && yarn prettier",
     "start:storybook": "start-storybook -p 57000",
     "start:styleguide": "styleguidist server",
     "start:docs": "cross-env DOCS=1 start-storybook --docs",
