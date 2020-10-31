@@ -6,18 +6,15 @@ import { Input, InputProps } from '../../elements/Input';
 
 import { SharedComponentStateProps } from '../../generic';
 
-import withFormikField, {
-  FormikComputedValue,
-  FormikOnChangeHandler,
-  FormikWrappedComponentProps
-} from './lib/withFormikField';
+import withFormikField from './lib/withFormikField';
+import { FormikFieldComponentRenderProps } from './lib/withFormikField.types';
 
 
 /* --------
  * Internal Hooks
  * -------- */
 function useFormikFieldState<P extends { [key: string]: any }>(
-  props: React.PropsWithChildren<FormikWrappedComponentProps<P, any>>
+  props: React.PropsWithChildren<FormikFieldComponentRenderProps<P, any>>
 ) {
   return React.useMemo<Partial<SharedComponentStateProps> & { disabled: boolean }>(
     () => ({
@@ -90,10 +87,7 @@ export const FormikDayPicker = withFormikField<DayPickerProps<ParsableDate>, num
           userDefinedDayChangeHandler(nothing, componentProps);
         }
       },
-      [
-        timestamp,
-        onChange
-      ]
+      [ onChange, userDefinedDayChangeHandler ]
     );
 
     return (
@@ -132,7 +126,7 @@ export const FormikInput = withFormikField<InputProps, string | number>({
 /* --------
  * Time Wrapped Input Component
  * -------- */
-export const FormikTime = withFormikField<InputProps, number | null>({
+export const FormikTime = withFormikField<InputProps, number | null, string>({
   Component: function FormikTimeInputComponent(props) {
     const stateProps = useFormikFieldState(props);
 
@@ -155,7 +149,7 @@ export const FormikTime = withFormikField<InputProps, number | null>({
     const [ hours, minutes ] = props.value.split(':');
 
     formik.setFieldValue(props.name, (+hours * 3600000) + (+minutes * 60000));
-  }) as FormikOnChangeHandler<InputProps, string | undefined>,
+  }),
 
   computeValue: ((value) => {
     if (typeof value !== 'number') {
@@ -166,5 +160,5 @@ export const FormikTime = withFormikField<InputProps, number | null>({
     const hours = Math.trunc((value - minutes) / 3600000);
 
     return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
-  }) as FormikComputedValue<InputProps, number | null, string>
+  })
 });

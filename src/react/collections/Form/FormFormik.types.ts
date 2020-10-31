@@ -73,8 +73,3 @@ export type FormFormikSubmitComplete<SubmitResult = any, Values = any> = (
   values: Values,
   helpers: FormikHelpers<Values>
 ) => void;
-
-export type FormFormikActionProps<Values> = ButtonProps & {
-  /** Actual form Values */
-  values: Values
-};

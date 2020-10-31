@@ -91,6 +91,9 @@ import { FontAwesomeIcon } from './fontawesome';
 /** Re export ReactBucket Icon */
 export { FontAwesomeIcon, FontAwesomeIconStyle } from './fontawesome';
 
+/** Generic Object */
+export type AnyObject = { [key: string]: any };
+
 /* --------
  * Shorthand Props
  * -------- */
@@ -126,7 +129,7 @@ export type ReactBucketIcon<T> = FontAwesomeIcon | ShorthandItem<T>;
 export type ReactBucketComponentProps<P, E extends keyof JSX.IntrinsicElements = 'div'> =
   MinimalReactBucketComponentProps<P, E>
   & SharedReactBucketProps
-  & { [key: string]: any };
+  & AnyObject;
 
 /**
  * Generate a minimal ReactBucket Component
@@ -136,7 +139,7 @@ export type MinimalReactBucketComponentProps<P, E extends keyof JSX.IntrinsicEle
   P
   & Omit<StructuralReactBucketProps, keyof P>
   & Omit<JSX.IntrinsicElements[E], keyof P>
-  & { [key: string]: any };
+  & AnyObject;
 
 /**
  * Generate a Type Dedicated to Flexbox Container

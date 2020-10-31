@@ -33,7 +33,10 @@ export const formikForm = () => {
   return (
     <Modal
       header={'Add new User'}
-      icon={'user plus'}
+      icon={{
+        name   : 'user plus',
+        primary: true
+      }}
       trigger={(
         <Button content={'Open Modal'} />
       )}
@@ -52,14 +55,14 @@ export const formikForm = () => {
       >
         <Row>
           <Column>
-            <FormikInput<Contact, 'name'>
+            <FormikInput
               name={'name'}
               label={'First Name'}
               icon={'user'}
             />
           </Column>
           <Column>
-            <FormikInput<Contact, 'surname'>
+            <FormikInput
               name={'surname'}
               label={'Last Name'}
             />
@@ -67,13 +70,14 @@ export const formikForm = () => {
         </Row>
         <Row>
           <Column>
-            <FormikDayPicker<Contact, 'date'>
+            <FormikDayPicker
+              clearable
               name={'date'}
               label={'Day'}
             />
           </Column>
           <Column>
-            <FormikTime<Contact, 'time'>
+            <FormikTime
               name={'time'}
               label={'Hour'}
             />

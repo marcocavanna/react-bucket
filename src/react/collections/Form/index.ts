@@ -9,7 +9,12 @@ export * from './Form.types';
 export * from './FormFormik.types';
 
 export {
-  default as withFormikField,
-  WithFormikFieldConfiguration,
-  FormikWrappedComponentProps
+  default as withFormikField
 } from './lib/withFormikField';
+
+export {
+  FormikFieldComponent,
+  FormikFieldComponentProps,
+  FormikFieldValueComputing,
+  FormikFieldChangeHandler
+} from './lib/withFormikField.types';
