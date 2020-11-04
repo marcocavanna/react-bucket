@@ -94,6 +94,9 @@ const Toast: ToastComponent = (props) => {
         autoGenerateKey: false,
         defaultProps   : {
           className: 'dismiss'
+        },
+        overrideProps  : {
+          onClick: handleDismiss
         }
       })
       : Icon.create(dismissible, {
