@@ -161,7 +161,7 @@
       > input,
       > textarea,
       > .label,
-      > .button,
+      > .button:disabled,
       > .icon {
         pointer-events: none;
       }
