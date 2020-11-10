@@ -51,9 +51,9 @@ table,
   // ----
   .row,
   .cell,
-  .cell > .content,
-  .cell > .title,
-  .cell > .meta {
+  .cell .content,
+  .cell .title,
+  .cell .meta {
     background-color: transparent;
     opacity: 1;
     transition-timing-function: $transition-ease;
@@ -153,9 +153,9 @@ table > .head,
     text-overflow: ellipsis;
     white-space: nowrap;
 
-    > .meta,
-    > .title,
-    > .content {
+    .meta,
+    .title,
+    .content {
       color: inherit;
       display: block;
       line-height: 1.25;
@@ -166,7 +166,7 @@ table > .head,
       margin: 0;
     }
 
-    > .title {
+    .title {
       font-weight: $table-cell-header-font-weight;
     }
 
@@ -219,4 +219,38 @@ table > .head,
 ******/
 .responsive-table {
   overflow-x: auto;
+}
+
+
+/******
+    On Virtualized Table, remove and reset display declaration
+******/
+.virtualized.table {
+  &,
+  & .head,
+  & .body,
+  & .cell {
+    display: block !important;
+  }
+
+  & .row {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: center;
+  }
+
+  > .body > .row {
+    border-bottom: none;
+
+    > .cell {
+      display: flex !important;
+      align-items: center;
+    }
+
+    &:not(.last) > .cell {
+      border-bottom-style: $table-body-border-style;
+      border-bottom-width: $table-body-border-width;
+      border-bottom-color: $table-body-border-color;
+    }
+  }
 }

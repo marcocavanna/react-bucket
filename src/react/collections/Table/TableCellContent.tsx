@@ -3,7 +3,6 @@ import clsx from 'clsx';
 
 import {
   childrenUtils,
-  classByValue,
   createShorthandFactory
 } from '@appbuckets/react-ui-core';
 
@@ -42,7 +41,7 @@ const TableCellContent: TableCellContentComponent = (props) => {
 
   const classes = clsx(
     truncate && 'truncated',
-    classByValue(type),
+    type,
     className
   );
 
