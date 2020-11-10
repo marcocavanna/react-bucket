@@ -34,7 +34,6 @@
   // ----
   text-align: center;
   font-weight: $avatar-font-weight;
-  color: $avatar-color;
   border-radius: $avatar-square-border-radius;
 
   // ----
@@ -59,6 +58,7 @@
   //  Adjust Content
   // ----
   > .content {
+    color: $avatar-color;
     font-size: $avatar-content-font-size;
 
     > .icon {

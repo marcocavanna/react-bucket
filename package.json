@@ -1,6 +1,6 @@
 {
   "name": "@appbuckets/react-bucket",
-  "version": "0.3.1-beta.1",
+  "version": "0.3.1-beta.3",
   "description": "React UI Framework",
   "keywords": [
     "react",
@@ -81,6 +81,7 @@
     "@types/react-input-mask": "^2.0.5",
     "@types/react-select": "^3.0.21",
     "@types/react-textarea-autosize": "^4.3.5",
+    "@types/react-window": "^1.8.2",
     "@types/typescript": "^2.0.0",
     "@typescript-eslint/eslint-plugin": "^4.5.0",
     "@typescript-eslint/parser": "^4.5.0",
@@ -147,6 +148,7 @@
     "react-popper": "2.2.3",
     "react-select": "3.1.0",
     "react-textarea-autosize": "8.2.0",
+    "react-window": "^1.8.6",
     "rfdc": "1.1.4",
     "tiny-invariant": "^1.1.0"
   }

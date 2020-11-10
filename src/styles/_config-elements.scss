@@ -38,12 +38,12 @@ $popup-z-index: 1900 !default;
     Avatar
 ******/
 $avatar-icon-font-size: 1em !default;
-$avatar-base-size: pixel-to-em(40) !default;
+$avatar-base-size: pixel-to-em(36) !default;
 $avatar-square-border-radius: $border-radius !default;
 $avatar-round-border-radius: $border-radius-rounded !default;
-$avatar-flex-horizontal-padding: .5em !default;
+$avatar-flex-horizontal-padding: .75em !default;
 $avatar-font-weight: $bold !default;
-$avatar-color: $text-light !default;
+$avatar-color: $text !default;
 $avatar-inner-shadow: inset 0 0 .15em 0px rgba(0, 0, 0, .2) !default;
 $avatar-base-background-color: $white-shade-2 !default;
 
