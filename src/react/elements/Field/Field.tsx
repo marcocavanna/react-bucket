@@ -11,13 +11,27 @@ import {
   useSplitStateClassName
 } from '../../lib';
 
+import {
+  CreatableFunctionComponent
+} from '../../generic';
+
 import { FieldProps } from './Field.types';
 import { Icon } from '../Icon';
 import { ButtonGroup } from '../Button';
-import { ReactBucketForwardedRefComponent } from '../../generic';
 
 
-const Field: ReactBucketForwardedRefComponent<FieldProps> = React.forwardRef<HTMLDivElement>((
+/* --------
+ * Component Declare
+ * -------- */
+type FieldRenderFunction = React.ForwardRefRenderFunction<HTMLDivElement, FieldProps>;
+
+type FieldComponent = CreatableFunctionComponent<FieldProps>;
+
+
+/* --------
+ * Component Render
+ * -------- */
+const FieldRender: FieldRenderFunction = (
   props: FieldProps,
   ref
 ) => {
@@ -122,9 +136,7 @@ const Field: ReactBucketForwardedRefComponent<FieldProps> = React.forwardRef<HTM
     ),
     [
       actionsElement,
-      actionsPosition,
-      icon,
-      iconPosition
+      actionsPosition
     ]
   );
 
@@ -136,9 +148,7 @@ const Field: ReactBucketForwardedRefComponent<FieldProps> = React.forwardRef<HTM
     ),
     [
       actionsElement,
-      actionsPosition,
-      icon,
-      iconPosition
+      actionsPosition
     ]
   );
 
@@ -205,7 +215,9 @@ const Field: ReactBucketForwardedRefComponent<FieldProps> = React.forwardRef<HTM
       {hintElement}
     </div>
   );
-});
+};
+
+const Field: FieldComponent = React.forwardRef(FieldRender) as unknown as FieldComponent;
 
 Field.defaultProps = {
   actionsPosition: 'right',
