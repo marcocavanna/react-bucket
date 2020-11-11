@@ -25,4 +25,7 @@ export interface StrictCheckboxProps extends Omit<StrictFieldProps, 'actions' | 
 
   /** Format the Checkbox as a Radio Button */
   radio?: boolean;
+
+  /** Format the Checkbox as a Switch */
+  switch?: boolean;
 }

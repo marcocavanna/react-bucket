@@ -115,12 +115,17 @@ $checkbox-checked-checkmark-color: $form-control-active-inverse-color !default;
 
 $checkbox-label-font-weight: $form-control-font-weight !default;
 
-$slider-bullet-size: 1em !default;
+$switch-bullet-background-color: $white !default;
+$switch-bullet-size: pixel-to-em(18) !default;
+$switch-rail-expand-size: pixel-to-em(2) !default;
+$switch-travel-distance: $switch-bullet-size * 2.1 !default;
+$switch-background-color: $checkbox-background-color !default;
+
 $toggle-bullet-size: 1.25em !default;
-$slider-travel-distance: 2.5em !default;
 
 $checkbox-label-distance: $checkbox-size + $checkbox-label-padding;
-$slider-label-distance: $slider-travel-distance + $checkbox-label-padding;
+$switch-label-distance: $switch-travel-distance + $checkbox-label-padding;
+$switch-computed-travel-distance: $switch-travel-distance - $switch-bullet-size - $switch-rail-expand-size;
 
 
 /******

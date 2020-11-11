@@ -8,10 +8,20 @@ export default { title: 'Elements/Checkbox', component: Checkbox };
 export const baseCheckbox = () => {
 
   return (
-    <Checkbox
-      success
-      label={'I Accept TOS and Privacy Policy'}
-    />
+    <React.Fragment>
+      <Checkbox
+        danger
+        label={'I Accept TOS and Privacy Policy'}
+      />
+
+      <Checkbox
+        switch
+        danger
+        disabled
+        checked
+        label={'A New Switch Checkbox'}
+      />
+    </React.Fragment>
   );
 
 };

@@ -37,6 +37,7 @@ const Checkbox: CheckboxComponent = (props) => {
       onChecked  : handleChecked,
       onClick    : handleClick,
       onUnchecked: handleUnchecked,
+      switch     : asSwitch,
 
       /** Overridden Checkbox Handlers */
 
@@ -97,9 +98,13 @@ const Checkbox: CheckboxComponent = (props) => {
   /* --------
    * Component Classes
    * -------- */
+  const checkBoxType = radio
+    ? 'radio'
+    : asSwitch ? 'switch' : 'checkbox';
+
   const classes = clsx(
     { required, disabled, checked },
-    radio ? 'radio' : 'checkbox',
+    checkBoxType,
     stateClassName,
     className
   );
@@ -155,20 +160,13 @@ const Checkbox: CheckboxComponent = (props) => {
   /* --------
    * Memoized Component Element
    * -------- */
-  const labelElement = React.useMemo(
-    () => (
-      <label
-        htmlFor={rest.id}
-        onClick={handleLabelClick}
-      >
-        {label}
-      </label>
-    ),
-    [
-      rest.id,
-      handleLabelClick,
-      label
-    ]
+  const labelElement = (
+    <label
+      htmlFor={rest.id}
+      onClick={handleLabelClick}
+    >
+      {label}
+    </label>
   );
 
 
@@ -194,7 +192,7 @@ const Checkbox: CheckboxComponent = (props) => {
       secondary={rawRest.secondary}
       success={rawRest.success}
       warning={rawRest.warning}
-      contentType={radio ? 'radio' : 'checkbox'}
+      contentType={checkBoxType}
     >
       <input
         {...rest}
