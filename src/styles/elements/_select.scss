@@ -98,7 +98,8 @@
       }
 
       .__multi-value__label {
-        padding: ($select-multi-value-label-padding / 2) $select-multi-value-label-padding;
+        padding: 0 $select-multi-value-label-padding;
+        line-height: 2;
       }
 
       .__multi-value__remove {

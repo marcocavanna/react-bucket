@@ -12,7 +12,7 @@ import { ButtonProps } from '../Button';
 import { IconProps } from '../Icon';
 
 
-export interface FieldProps extends React.PropsWithoutRef<ReactBucketComponentProps<StrictFieldProps>> {
+export interface FieldProps extends ReactBucketComponentProps<StrictFieldProps> {
 }
 
 export interface StrictFieldProps extends SharedComponentStateProps {
@@ -29,7 +29,7 @@ export interface StrictFieldProps extends SharedComponentStateProps {
   contentClassName?: string;
 
   /** Set field content type */
-  contentType?: 'input';
+  contentType?: 'input' | 'select input' | 'checkbox' | 'radio';
 
   /** Set the field as Disabled */
   disabled?: boolean;

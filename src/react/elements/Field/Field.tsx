@@ -222,7 +222,7 @@ const Field: FieldComponent = React.forwardRef(FieldRender) as unknown as FieldC
 Field.defaultProps = {
   actionsPosition: 'right',
   iconPosition   : 'left'
-} as Partial<Pick<FieldProps, React.ReactText> & React.RefAttributes<HTMLDivElement>>;
+};
 
 Field.create = createShorthandFactory(Field, content => ({ content }));
 
