@@ -23,6 +23,9 @@
   margin-bottom: $section-spacer;
 
   > .label {
+    padding: 0;
+    border-radius: 0;
+    background-color: unset;
     display: block;
     color: $section-label-color;
     font-weight: $section-label-font-weight;
