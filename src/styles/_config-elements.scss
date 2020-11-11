@@ -142,6 +142,16 @@ $day-picker-week-number-color: $orange !default;
 
 
 /******
+    Divider
+******/
+$divider-spacer: $spacer * 1.75 !default;
+$divider-base-color: $text !default;
+$divider-size: 1px !default;
+$divider-color: rgba(0, 0, 0, 0.1) !default;
+$divider-font-weight: $semi-bold !default;
+
+
+/******
     DropDown Menu
 ******/
 $dropdown-menu-item-padding: .75em !default;

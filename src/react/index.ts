@@ -29,6 +29,10 @@ export * from './elements/Button';
 
 export * from './elements/Checkbox';
 
+export * from './elements/DayPicker';
+
+export * from './elements/Divider';
+
 export * from './elements/EmptyContent';
 
 export * from './elements/Header';
