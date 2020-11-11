@@ -14,7 +14,7 @@
     "./build.styles.js",
     "./jest.config.js",
     "./jest.setup.ts",
-    "./plopfile.ts",
+    "./plopfile.js",
     "./postcss.config.js",
     "./rollup.config.js",
     "./styleguide.config.js",

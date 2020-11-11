@@ -19,7 +19,16 @@ import {
 import { {{ pascalCase componentName }}Props } from './{{ pascalCase componentName }}.types';
 
 
-export default function {{ pascalCase componentName }}(props: {{ pascalCase componentName }}Props): React.ReactElement<{{ pascalCase componentName }}Props> {
+/* --------
+ * Component Declare
+ * -------- */
+type {{ pascalCase componentName }}Component = React.FunctionComponent<{{ pascalCase componentName }}Props>;
+
+
+/* --------
+ * Component Render
+ * -------- */
+const {{ pascalCase componentName }}: {{ pascalCase componentName }}Component = (props) => {
 
   const {
     className,
@@ -71,6 +80,8 @@ export default function {{ pascalCase componentName }}(props: {{ pascalCase comp
       {content}
     </ElementType>
   );
-}
+};
 
 {{ pascalCase componentName }}.displayName = '{{ pascalCase componentName }}';
+
+export default {{ pascalCase componentName }};

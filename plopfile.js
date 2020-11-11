@@ -1,7 +1,4 @@
-import { NodePlopAPI } from 'plop';
-
-
-export default function buildGenerators(plop: NodePlopAPI) {
+module.exports = function buildGenerators(plop) {
 
   /** Set the Component Type */
   const componentTypePrompts = {
@@ -94,4 +91,4 @@ export default function buildGenerators(plop: NodePlopAPI) {
     ]
   });
 
-}
+};
