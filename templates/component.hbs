@@ -68,17 +68,17 @@ const {{ pascalCase componentName }}: {{ pascalCase componentName }}Component = 
   /** If children are declared, render them */
   if (!childrenUtils.isNil(children)) {
     return (
-      <ElementType {...rest} className={classes}>
+      <{{#if couldChangeElementType}}ElementType{{else}}div{{/if}} {...rest} className={classes}>
         {children}
-      </ElementType>
+      </{{#if couldChangeElementType}}ElementType{{else}}div{{/if}}>
     );
   }
   {{/if}}
 
   return (
-    <ElementType {...rest} className={classes}>
+    <{{#if couldChangeElementType}}ElementType{{else}}div{{/if}} {...rest} className={classes}>
       {content}
-    </ElementType>
+    </{{#if couldChangeElementType}}ElementType{{else}}div{{/if}}>
   );
 };
 
