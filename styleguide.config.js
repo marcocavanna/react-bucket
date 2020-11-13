@@ -15,8 +15,11 @@ module.exports = {
   components   : './src/react/**/*.tsx',
   /** Ignore some files */
   ignore       : [
+    './**/*.scss',
     './src/react/**/*.stories.tsx',
-    './src/react/stories.tsx'
+    './src/react/stories.tsx',
+    './src/react/collections/Form/FormikFields.tsx',
+    './src/react/widget/Weather/icons/*.tsx'
   ],
   /** Set a minimal webpack config */
   webpackConfig: {

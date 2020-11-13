@@ -1,6 +1,6 @@
 {
   "name": "@appbuckets/react-bucket",
-  "version": "0.3.1-beta.5",
+  "version": "0.3.2",
   "description": "React UI Framework",
   "keywords": [
     "react",
@@ -17,8 +17,7 @@
     "LICENSE"
   ],
   "publishConfig": {
-    "access": "public",
-    "tag": "next"
+    "access": "public"
   },
   "author": {
     "name": "Marco Cavanna",
