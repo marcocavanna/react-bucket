@@ -69,9 +69,13 @@ export * from './hoc/AutoSpacer';
  * -------- */
 export * from './modules/Backdrop';
 
+export * from './modules/Dropzone';
+
 export * from './modules/Modal';
 
 export * from './modules/Popup';
+
+export * from './modules/VirtualizedTable';
 
 
 /* --------

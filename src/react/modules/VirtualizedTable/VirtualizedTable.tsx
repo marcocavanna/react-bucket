@@ -27,6 +27,8 @@ import {
   VirtualizedTableProps
 } from './VirtualizedTable.types';
 
+import VirtualizedTableColumn from './VirtualizedTableColumn';
+
 
 /* --------
  * Useful internal types
@@ -456,8 +458,13 @@ const VirtualizedTableRender: VirtualizedTableRenderFunction = <Data extends Any
 VirtualizedTableRender.displayName = 'VirtualizedTable';
 
 
-type VirtualizedTableComponent = React.FunctionComponent<VirtualizedTableProps>;
+type VirtualizedTableComponent =
+  React.FunctionComponent<VirtualizedTableProps>
+  & { Column: typeof VirtualizedTableColumn };
 
-const VirtualizedTable: VirtualizedTableComponent = React.forwardRef(VirtualizedTableRender);
+// eslint-disable-next-line max-len
+const VirtualizedTable: VirtualizedTableComponent = React.forwardRef(VirtualizedTableRender) as unknown as VirtualizedTableComponent;
+
+VirtualizedTable.Column = VirtualizedTableColumn;
 
 export default VirtualizedTable;
