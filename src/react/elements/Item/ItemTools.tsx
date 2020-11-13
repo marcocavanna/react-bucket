@@ -32,6 +32,7 @@ const ItemTools: ItemToolsComponent = (props) => {
     rest: {
       children,
       content,
+      disabled,
       tools,
       ...rest
     }
@@ -52,7 +53,8 @@ const ItemTools: ItemToolsComponent = (props) => {
       {tools && tools.map((tool: ShorthandItem<ButtonProps>) => (
         Button.create(tool, {
           autoGenerateKey: false,
-          overrideProps  : {
+          defaultProps   : {
+            disabled,
             flat: true
           }
         })
