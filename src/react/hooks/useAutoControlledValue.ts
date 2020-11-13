@@ -46,7 +46,7 @@ export function useAutoControlledValue<State>(initialState: State, config?: UseA
 
       setState(newState);
     },
-    [ state, prop, setState ]
+    [ prop, setState ]
   );
 
   return [
