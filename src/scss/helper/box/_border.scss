@@ -1,8 +1,0 @@
-@if $generate-border-utility == true {
-  @each $direction in (left, right, top, bottom) {
-    @include property-for-each-breakpoint('bordered-#{$direction}', $attach-to-selector: false, $property-with-breakpoint: $generate-responsive-border-utility) {
-      border: none;
-      border-#{$direction}: $border;
-    }
-  }
-}

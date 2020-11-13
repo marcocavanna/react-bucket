@@ -1,9 +1,0 @@
-@mixin default-transition($props...) {
-
-  @for $prop from 1 through length($props) {
-    $__mapped: unquote(nth($props, $prop)) $transition-duration $transition-ease;
-    $props: set-nth($props, $prop, $__mapped);
-  }
-
-  transition: $props;
-}

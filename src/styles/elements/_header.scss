@@ -1,0 +1,123 @@
+/**
+ * Project ReactBucket
+ *
+ * _Header @ src/styles/elements/_header.scss
+ *
+ * Defined at 09 giu 2020
+ * Copyright Marco Cavanna • 2020
+ *
+ * ---
+ * Define Header Style
+ *
+ */
+
+/******
+    Reset Header Fonts Size
+    As the header will be used for any other
+    component, main font size will be declared
+    only on the master header container and not
+    for its child
+******/
+.header {
+  display: block;
+  position: relative;
+  margin: 2rem 0 1rem;
+  padding: 0;
+  text-align: inherit;
+
+  // ----
+  //  Reset heading elements font size
+  // ----
+  .header-content {
+    font-size: $h3-font-size;
+
+    .content {
+      font-size: 1em;
+    }
+  }
+
+  // ----
+  //  Remove Margin from content
+  // ----
+  .content, .subheader {
+    margin: 0;
+  }
+
+  // ----
+  //  Set the Subheader font size and Colors
+  // ----
+  .subheader {
+    font-size: .75em;
+    opacity: .6;
+  }
+
+  // ----
+  //  Remove Top Margin on First Element
+  // ----
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+
+/******
+    Set Disabled Header Opacity
+******/
+.header.disabled {
+  opacity: $disabled-element-opacity !important;
+}
+
+
+/******
+    Set the Divider Element
+******/
+.header.divided {
+  border-bottom: solid 1px $hr-color-dark;
+  padding-bottom: 1rem;
+}
+
+
+/******
+    Header Icons
+******/
+.header.with-icon {
+  display: flex;
+  width: 100%;
+  flex: 1 0 100%;
+  align-items: center;
+
+  // ----
+  //  Set the Icon Style
+  // ----
+  .header-icon {
+    font-size: $h3-font-size;
+  }
+
+  // ----
+  //  Set Flex Direction Based on Text Align
+  // ----
+  &.has-text-right {
+    flex-direction: row-reverse;
+
+    .header-icon {
+      @include icon-style() {
+        margin-right: 0;
+        margin-left: $icon-spacer;
+      }
+    }
+  }
+
+  &.has-text-center {
+    flex-direction: column;
+
+    /// Increase Icon Size on Centered Header
+    .header-icon {
+      font-size: $h2-font-size;
+
+      @include icon-style() {
+        margin-right: 0;
+        margin-bottom: $icon-spacer;
+      }
+    }
+  }
+}

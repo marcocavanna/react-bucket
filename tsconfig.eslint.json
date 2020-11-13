@@ -1,0 +1,23 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "allowJs": true
+  },
+  "include": [
+    "./src/**/*.js",
+    "./src/**/*.ts",
+    "./src/**/*.tsx",
+    "./scripts/**/*.ts",
+    "./scripts/**/*.js",
+    "./.eslintrc.js",
+    "./build.fontawesome.js",
+    "./build.styles.js",
+    "./jest.config.js",
+    "./jest.setup.ts",
+    "./plopfile.js",
+    "./postcss.config.js",
+    "./rollup.config.js",
+    "./styleguide.config.js",
+    "./webpack.config.ts"
+  ]
+}

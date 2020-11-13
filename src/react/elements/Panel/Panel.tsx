@@ -1,0 +1,121 @@
+import * as React from 'react';
+import clsx from 'clsx';
+
+import {
+  childrenUtils,
+  createShorthandFactory
+} from '@appbuckets/react-ui-core';
+
+import { CreatableFunctionComponent } from '../../generic';
+
+import {
+  useElementType,
+  useSharedClassName,
+  useSplitStateClassName
+} from '../../lib';
+
+import { PanelProps } from './Panel.types';
+
+import PanelHeader from './PanelHeader';
+import PanelBody from './PanelBody';
+import PanelFooter from './PanelFooter';
+
+import { Loader } from '../Loader';
+
+
+/* --------
+ * Component Declare
+ * -------- */
+type PanelComponent = CreatableFunctionComponent<PanelProps> & {
+  Body: typeof PanelBody;
+  Footer: typeof PanelFooter;
+  Header: typeof PanelHeader;
+};
+
+/* --------
+ * Component Render
+ * -------- */
+const Panel: PanelComponent = (props) => {
+
+  const {
+    className,
+    rest: {
+      children,
+      content,
+      fab,
+      footer,
+      disabled,
+      loading,
+      header,
+      solid,
+      ...rawRest
+    }
+  } = useSharedClassName(props);
+
+  const ElementType = useElementType(Panel, props);
+
+  const [ stateClasses, rest ] = useSplitStateClassName(rawRest);
+
+  const classes = clsx(
+    {
+      solid,
+      disabled: disabled || loading,
+      loading
+    },
+    'panel',
+    className,
+    stateClasses
+  );
+
+  /** Use shorthand to build panel elements */
+  const loaderElement = React.useMemo(
+    () => loading && Loader.create({ size: 'big' }, { autoGenerateKey: false }),
+    [ loading ]
+  );
+
+  const headerElement = React.useMemo(
+    () => PanelHeader.create(header, { autoGenerateKey: false }),
+    [ header ]
+  );
+
+  const footerElement = React.useMemo(
+    () => PanelFooter.create(footer, { autoGenerateKey: false }),
+    [ footer ]
+  );
+
+  /** If children exists, render them */
+  if (!childrenUtils.isNil(children)) {
+    return (
+      <ElementType {...rest} className={classes}>
+        {children}
+      </ElementType>
+    );
+  }
+
+  const bodyContent = childrenUtils.isNil(children) ? content : children;
+
+  /** Return the Panel */
+  return (
+    <ElementType {...rest} className={classes}>
+      {loaderElement}
+      {headerElement}
+      {bodyContent && (
+        <PanelBody fab={fab}>
+          {bodyContent}
+        </PanelBody>
+      )}
+      {footerElement}
+    </ElementType>
+  );
+
+};
+
+Panel.displayName = 'Panel';
+
+Panel.create = createShorthandFactory(Panel, (content) => ({ content }));
+
+Panel.Header = PanelHeader;
+Panel.Body = PanelBody;
+Panel.Footer = PanelFooter;
+
+export default Panel;

@@ -1,0 +1,87 @@
+import * as React from 'react';
+import clsx from 'clsx';
+
+{{#if couldHaveChildren}}
+import {
+  childrenUtils
+} from '@appbuckets/react-ui-core';
+{{/if}}
+
+import {
+  {{#if couldChangeElementType}}
+  useElementType,
+  {{/if}}
+  useSharedClassName{{#if hasStateClasses}},
+  useSplitStateClassName
+  {{/if}}
+} from '../../lib';
+
+import { {{ pascalCase componentName }}Props } from './{{ pascalCase componentName }}.types';
+
+
+/* --------
+ * Component Declare
+ * -------- */
+type {{ pascalCase componentName }}Component = React.FunctionComponent<{{ pascalCase componentName }}Props>;
+
+
+/* --------
+ * Component Render
+ * -------- */
+const {{ pascalCase componentName }}: {{ pascalCase componentName }}Component = (props) => {
+
+  const {
+    className,
+    rest: {
+      {{#if couldHaveChildren}}
+      children,
+      {{/if}}
+      content,
+      {{#if hasStateClasses}}
+      ...rawRest
+      {{else}}
+      ...rest
+      {{/if}}
+    }
+  } = useSharedClassName(props);
+
+  {{#if couldChangeElementType}}
+  /** Get the component element type */
+  const ElementType = useElementType({{ pascalCase componentName }}, props);
+  {{/if}}
+  {{#if hasStateClasses}}
+
+  /** Split state className from rest props */
+  const [ stateClasses, rest ] = useSplitStateClassName(rawRest);
+  {{/if}}
+
+  /** Build the element class list */
+  const classes = clsx(
+    '{{ kebabCase componentName }}',
+    {{#if hasStateClasses}}
+    stateClasses,
+    {{/if}}
+    className
+  );
+
+  {{#if couldHaveChildren}}
+  /** If children are declared, render them */
+  if (!childrenUtils.isNil(children)) {
+    return (
+      <{{#if couldChangeElementType}}ElementType{{else}}div{{/if}} {...rest} className={classes}>
+        {children}
+      </{{#if couldChangeElementType}}ElementType{{else}}div{{/if}}>
+    );
+  }
+  {{/if}}
+
+  return (
+    <{{#if couldChangeElementType}}ElementType{{else}}div{{/if}} {...rest} className={classes}>
+      {content}
+    </{{#if couldChangeElementType}}ElementType{{else}}div{{/if}}>
+  );
+};
+
+{{ pascalCase componentName }}.displayName = '{{ pascalCase componentName }}';
+
+export default {{ pascalCase componentName }};

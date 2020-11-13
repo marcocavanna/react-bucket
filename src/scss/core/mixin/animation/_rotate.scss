@@ -1,9 +1,0 @@
-@keyframes spin {
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@mixin rotate {
-  animation: spin 750ms linear infinite;
-}

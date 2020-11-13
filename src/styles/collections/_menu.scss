@@ -1,0 +1,86 @@
+/**
+ * Project ReactBucket 3
+ *
+ * _Menu @ src/styles/collections/_menu.scss
+ *
+ * Defined at 12 ott 2020
+ * Copyright Marco Cavanna • 2020
+ *
+ * ---
+ *
+ *
+ */
+
+/******
+    Base Menu Style
+******/
+.menu {
+  display: flex;
+  flex-direction: row;
+  font-size: 1em;
+  font-weight: $menu-font-weight;
+
+  // ----
+  //  Vertical Menu
+  // ----
+  &.vertical {
+    flex-direction: column;
+    margin-top: $menu-item-spacer * -1;
+    margin-bottom: $menu-item-spacer * -1;
+    max-width: $menu-vertical-max-width;
+
+    > .menu-item {
+      margin-top: $menu-item-spacer;
+      margin-bottom: $menu-item-spacer;
+    }
+  }
+
+  // ----
+  //  Horizontal menu must scroll on x axe
+  // ----
+  &:not(.vertical) {
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+    margin-left: $menu-item-spacer * -1;
+    margin-right: $menu-item-spacer * -1;
+
+    > .menu-item {
+      margin-left: $menu-item-spacer;
+      margin-right: $menu-item-spacer;
+
+      > .icon {
+        width: auto;
+      }
+    }
+  }
+
+  // ----
+  //  Menu Item Style
+  // ----
+  > .menu-item {
+    cursor: pointer;
+    position: relative;
+    line-height: 1;
+    vertical-align: middle;
+    text-decoration: none;
+    text-transform: $menu-item-text-transform;
+    padding: $menu-item-padding-vertical $menu-item-padding-horizontal;
+    border-radius: $menu-item-border-radius;
+    flex: 0 0 auto;
+    background-color: $menu-item-base-background;
+    color: $menu-item-base-color;
+    will-change: background-color, color;
+    transition: background-color $transition-ease $transition-speed-fast, color $transition-ease $transition-speed-fast;
+
+    > .icon {
+      margin-right: $menu-item-icon-spacer;
+    }
+
+    &.active {
+      background-color: $menu-item-active-background;
+      color: $menu-item-active-color;
+      box-shadow: $menu-item-active-shadow;
+      text-shadow: $menu-item-active-text-shadow;
+    }
+  }
+}

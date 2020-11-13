@@ -1,1 +1,0 @@
-export { default, StrictPanelProps, PanelProps } from './Panel';
