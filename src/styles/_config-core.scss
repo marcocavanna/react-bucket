@@ -26,6 +26,19 @@ $import-reset: true !default;
 
 
 /******
+    Hover Settings
+    As on touch devices the hover pseudo class
+    will produce unexpected behaviour, all hover
+    style are wrapped into hover mixin.
+    Hover mixin could apply hover style using media query
+    or using a root class that must be set on non touch device
+    to show the hover style
+******/
+$use-hover-mixin-with-media-query: true !default;
+$without-touch-html-hover-class: 'no-touch' !default;
+
+
+/******
     Core Variables
 ******/
 
