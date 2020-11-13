@@ -146,8 +146,8 @@ export default class AutoSpacer extends React.Component<AutoSpacerProps, AutoSpa
       && ((nextHeight !== currHeight && !disableHeight)
         || (nextWidth !== currWidth && !disableWidth))) {
       this.setState({
-        height: nextHeight,
-        width : nextWidth
+        height: disableHeight ? container.clientHeight : nextHeight,
+        width : disableWidth ? container.clientWidth : nextWidth
       }, () => {
         if (typeof onResize === 'function') {
           onResize({ height: nextHeight, width: nextWidth });
