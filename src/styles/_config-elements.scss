@@ -163,6 +163,22 @@ $dropdown-menu-item-padding: .75em !default;
 
 
 /******
+    Dropzone
+******/
+$dropzone-disabled-border-color: $grey-light !default;
+$dropzone-disabled-background-color: $grey-lightest !default;
+$dropzone-border-style: dashed !default;
+$dropzone-border-width: 2px !default;
+$dropzone-border-color: $grey-lightest !default;
+$dropzone-border-radius: $border-radius-big !default;
+$dropzone-hover-color: $primary !default;
+$dropzone-hover-border-color: $dropzone-hover-color !default;
+$dropzone-hover-background-color: transparentize($dropzone-hover-border-color, .95) !default;
+
+$dropzone-fulfilled-padding: 1em !default;
+
+
+/******
     Empty Content
 ******/
 $empty-content-vertical-spacer: 3em !default;
