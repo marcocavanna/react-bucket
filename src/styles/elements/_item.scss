@@ -17,6 +17,10 @@
 .item {
   display: flex;
   font-size: 1em;
+
+  &.centered {
+    align-items: center;
+  }
 }
 
 
@@ -59,6 +63,10 @@
     padding-top: $item-content-spacer / 1.5;
     border-top: solid 1px $item-meta-divider-color;
   }
+
+  > .item-header + .loader {
+    margin-top: $item-progress-spacer;
+  }
 }
 
 .item > .avatar + .content {
@@ -77,7 +85,7 @@
   white-space: nowrap;
   flex-wrap: nowrap;
 
-  > .button > .icon {
+  > .button.flat > .icon {
     opacity: $item-tools-opacity;
   }
 }
@@ -93,17 +101,28 @@
 .clickable.item {
   padding: $item-clickable-border-radius * 1.5;
   border-radius: $item-clickable-border-radius;
-  cursor: pointer;
 
-  @include hover {
-    background-color: transparent;
-    will-change: background-color;
-    transition: background-color $transition-speed-fast $transition-ease;
+  &:not(.disabled) {
+    cursor: pointer;
 
-    &:hover {
-      background-color: $item-clickable-hover-color;
+    @include hover {
+      background-color: transparent;
+      will-change: background-color;
+      transition: background-color $transition-speed-fast $transition-ease;
+
+      &:hover {
+        background-color: $item-clickable-hover-color;
+      }
     }
   }
+}
+
+
+/******
+    Disabled Items
+******/
+.disabled.item {
+  opacity: $disabled-element-opacity;
 }
 
 

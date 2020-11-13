@@ -13,6 +13,8 @@ import {
   useSharedClassName
 } from '../../lib';
 
+import { Loader } from '../Loader';
+
 import { ItemContentProps } from './ItemContent.types';
 
 import ItemHeader from './ItemHeader';
@@ -40,6 +42,7 @@ const ItemContent: ItemContentComponent = (props) => {
       children,
       content,
       header,
+      loading,
       meta,
       ...rest
     }
@@ -60,6 +63,23 @@ const ItemContent: ItemContentComponent = (props) => {
   // ----
   // Define Component Memoized Element
   // ----
+  const loaderElement = React.useMemo(
+    () => loading && Loader.create(typeof loading !== 'boolean'
+      ? loading
+      : { type: 'indeterminate bar' }, {
+      autoGenerateKey: false,
+      defaultProps   : {
+        primary: true,
+        size   : 'big',
+        type   : 'indeterminate bar'
+      },
+      overrideProps  : {
+        active: true
+      }
+    }),
+    [ loading ]
+  );
+
   const headerElement = React.useMemo(
     () => !hasChildren && ItemHeader.create(header, {
       autoGenerateKey: false
@@ -67,19 +87,30 @@ const ItemContent: ItemContentComponent = (props) => {
     [ hasChildren, header ]
   );
 
-  const textElement = React.useMemo(
-    () => !hasChildren && ItemText.create(content, {
-      autoGenerateKey: false
-    }),
-    [ hasChildren, content ]
+  const textOrLoaderElement = React.useMemo(
+    () => {
+      if (hasChildren) {
+        return null;
+      }
+
+      if (loading) {
+        return loaderElement;
+      }
+
+      return ItemText.create(content, {
+        autoGenerateKey: false
+      });
+    },
+    [ hasChildren, content, loading, loaderElement ]
   );
 
   const metaElement = React.useMemo(
-    () => !hasChildren && ItemMeta.create(meta, {
+    () => !hasChildren && !loading && ItemMeta.create(meta, {
       autoGenerateKey: false
     }),
-    [ hasChildren, meta ]
+    [ hasChildren, meta, loading ]
   );
+
 
   // ----
   // Component render with declared children
@@ -99,7 +130,7 @@ const ItemContent: ItemContentComponent = (props) => {
   return (
     <ElementType {...rest} className={classes}>
       {headerElement}
-      {textElement}
+      {textOrLoaderElement}
       {metaElement}
     </ElementType>
   );

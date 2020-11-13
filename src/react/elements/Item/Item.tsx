@@ -43,10 +43,12 @@ const Item: ItemComponent = (props) => {
     rest: {
       active,
       avatar,
+      centered,
       children,
       content,
       disabled,
       header,
+      loading,
       meta,
       onClick,
       tools,
@@ -65,7 +67,9 @@ const Item: ItemComponent = (props) => {
     {
       active,
       disabled,
-      clickable: onClick
+      centered,
+      clickable: onClick,
+      loading
     },
     'item',
     stateClasses,
@@ -94,27 +98,47 @@ const Item: ItemComponent = (props) => {
   const avatarElement = React.useMemo(
     () => !hasChildren && Avatar.create(avatar, {
       autoGenerateKey: false,
-      defaultProps   : { disabled }
+      defaultProps   : {
+        disabled,
+        success   : props.success,
+        danger    : props.danger,
+        appearance: props.appearance,
+        warning   : props.warning,
+        primary   : props.primary
+      }
     }),
-    [ avatar, hasChildren, disabled ]
+    [
+      hasChildren,
+      avatar,
+      disabled,
+      props.success,
+      props.danger,
+      props.appearance,
+      props.warning,
+      props.primary
+    ]
   );
 
   const contentElement = React.useMemo(
-    () => !hasChildren && (header || content || meta) && ItemContent.create({
+    () => !hasChildren && (loading || header || content || meta) && ItemContent.create({
       header,
       content,
-      meta
+      meta,
+      loading
     }, {
       autoGenerateKey: false
     }),
-    [ hasChildren, header, content, meta ]
+    [ hasChildren, loading, header, content, meta ]
   );
 
   const toolsElement = React.useMemo(
     () => !hasChildren && ItemTools.create(tools, {
-      autoGenerateKey: false
+      autoGenerateKey: false,
+      defaultProps   : {
+        disabled
+      }
     }),
-    [ hasChildren, tools ]
+    [ disabled, hasChildren, tools ]
   );
 
   // ----

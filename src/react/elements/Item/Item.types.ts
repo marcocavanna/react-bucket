@@ -23,6 +23,9 @@ export interface StrictItemProps extends StrictItemContentProps {
   /** Avatar Shorthand Props */
   avatar?: ShorthandItem<AvatarProps>;
 
+  /** Align centered vertically */
+  centered?: boolean;
+
   /** Show item as Disabled */
   disabled?: boolean;
 

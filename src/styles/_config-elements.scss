@@ -38,7 +38,7 @@ $popup-z-index: 1900 !default;
     Avatar
 ******/
 $avatar-icon-font-size: 1em !default;
-$avatar-base-size: pixel-to-em(36) !default;
+$avatar-base-size: pixel-to-em(40) !default;
 $avatar-square-border-radius: $border-radius !default;
 $avatar-round-border-radius: $border-radius-rounded !default;
 $avatar-flex-horizontal-padding: .75em !default;
@@ -152,7 +152,7 @@ $day-picker-week-number-color: $orange !default;
 $divider-spacer: $spacer * 1.75 !default;
 $divider-base-color: $text !default;
 $divider-size: 1px !default;
-$divider-color: rgba(0, 0, 0, 0.1) !default;
+$divider-color: $grey-lightest !default;
 $divider-font-weight: $semi-bold !default;
 
 
@@ -253,7 +253,9 @@ $item-clickable-border-radius: $border-radius-big !default;
 $item-clickable-hover-color: rgba(0, 0, 0, .05) !default;
 
 $items-group-spacer: 1.25em !default;
-$items-divider-color: $grey-lightest !default;
+$items-divider-color: $divider-color !default;
+
+$item-progress-spacer: .25em !default;
 
 
 /******
