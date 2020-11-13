@@ -14,7 +14,7 @@ export const baseTable = () => {
   }));
 
   return (
-    <AutoSpacer>
+    <AutoSpacer disableWidth>
       {({ width, height }) => (
         <VirtualizedTable
           data={data}
@@ -24,12 +24,24 @@ export const baseTable = () => {
           width={width}
           columns={[
             {
-              width,
+              width : width / 3,
               key   : 'title',
               header: 'Titolo',
               cell  : {
-                header : (item) => item.title,
-                content: (item) => item.description
+                header: (item) => `Titolo del Prodotto: ${item.title}`
+              }
+            },
+            {
+              width : width / 3,
+              key   : 'description',
+              header: 'Descrizione'
+            },
+            {
+              width : width / 3,
+              key   : 'status',
+              header: 'Status',
+              cell  : {
+                content: 'Non Ordinato'
               }
             }
           ]}

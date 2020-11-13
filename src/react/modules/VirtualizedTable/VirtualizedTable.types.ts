@@ -37,7 +37,8 @@ export type VirtualizedTableComponents = {
   HeaderWrapper: React.ElementType
 };
 
-export interface VirtualizedTableStrictProps<Data> extends Pick<VariableSizeListProps, PickerVariableSizeListProps> {
+export interface VirtualizedTableStrictProps<Data>
+  extends Partial<Pick<VariableSizeListProps, PickerVariableSizeListProps>> {
   /** Columns array */
   columns?: VirtualizedTableColumnProps<Data>[];
 
