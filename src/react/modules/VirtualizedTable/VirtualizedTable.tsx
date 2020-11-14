@@ -463,7 +463,6 @@ const VirtualizedTableRender: VirtualizedTableRenderFunction = <Data extends Any
 
 VirtualizedTableRender.displayName = 'VirtualizedTable';
 
-
 type VirtualizedTableComponent =
   React.FunctionComponent<VirtualizedTableProps>
   & { Column: typeof VirtualizedTableColumn };
@@ -473,4 +472,5 @@ const VirtualizedTable: VirtualizedTableComponent = React.forwardRef(Virtualized
 
 VirtualizedTable.Column = VirtualizedTableColumn;
 
-export default VirtualizedTable;
+// eslint-disable-next-line max-len
+export default VirtualizedTable as unknown as (<Data extends AnyObject>(props: VirtualizedTableProps<Data>) => React.ReactElement<VirtualizedTableProps<Data>>) & { Column: typeof VirtualizedTableColumn };
