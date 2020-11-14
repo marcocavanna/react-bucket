@@ -29,11 +29,20 @@ export interface VirtualizedTableContext<Data extends AnyObject = AnyObject> {
   /** Table total height */
   height: number;
 
+  /** Check if sorting is reversed */
+  isSortReversed: boolean;
+
   /** Get the row height using index */
   getRowHeight: (index: number) => number;
 
   /** Register a new Column */
   registerColumn: (props: VirtualizedTableColumnProps<Data>) => void;
+
+  /** Change Sorting */
+  sort: (fields: string[], reverse: boolean) => void;
+
+  /** Current sorting */
+  sorting: string[];
 
   /** Table total width */
   width: number;

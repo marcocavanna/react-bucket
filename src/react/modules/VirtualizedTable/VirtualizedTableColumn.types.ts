@@ -38,6 +38,9 @@ export interface StrictVirtualizedTableColumnProps<Data> {
   /** Inner content render */
   render?: (data: Data, index: number, array: Data[]) => React.ReactNode;
 
+  /** Change Column Sorting */
+  sort?: string[];
+
   /** Set text align */
   textAlign?: ContentAlign;
 

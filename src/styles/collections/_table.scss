@@ -191,6 +191,30 @@ table > .head,
 
 
 /******
+    Sortable Header Cell
+******/
+.table .row > .sortable.cell {
+  cursor: pointer;
+
+  &.sorted {
+    color: $table-sortable-header-active-color;
+  }
+
+  @include hover {
+    transition: color $transition-ease $transition-speed-fast;
+
+    &:hover {
+      color: $table-sortable-header-hover-color;
+
+      &.sorted {
+        color: color-shade($table-sortable-header-active-color, 1)
+      }
+    }
+  }
+}
+
+
+/******
     Compressed Table Has half cell / row gutter
 ******/
 .compressed.table {

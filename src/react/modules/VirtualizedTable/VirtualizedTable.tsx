@@ -1,4 +1,3 @@
-import { MutableRefObject } from 'react';
 import * as React from 'react';
 import clsx from 'clsx';
 import invariant from 'tiny-invariant';
@@ -9,12 +8,19 @@ import {
   ListChildComponentProps
 } from 'react-window';
 
+import sortBy from 'sort-by';
+
 import {
   childrenUtils
 } from '@appbuckets/react-ui-core';
+
+import { useAutoControlledValue } from '../../hooks/useAutoControlledValue';
+
+import { Icon } from '../../elements/Icon';
 import TableCellContent from '../../collections/Table/TableCellContent';
 
 import { AnyObject } from '../../generic';
+import areEqualStringArray from './lib/areEqualStringArray';
 
 import {
   useVirtualizedTable,
@@ -155,7 +161,10 @@ const VirtualizedTableHeader: React.FunctionComponent = () => {
   const {
     columns,
     Components,
-    headerHeight
+    headerHeight,
+    sorting,
+    isSortReversed,
+    sort
   } = useVirtualizedTable();
 
   return (
@@ -164,10 +173,31 @@ const VirtualizedTableHeader: React.FunctionComponent = () => {
         <Components.HeaderRow className={'virtualized row'} style={{ height: headerHeight }}>
           {columns.map((column) => {
 
+            const hasSorting = Array.isArray(column.sort) && !!column.sort.length;
+            const isActualSortingColumn = hasSorting && areEqualStringArray(sorting, column.sort!);
+
             const headerClasses = clsx(
+              {
+                reverse : isActualSortingColumn && isSortReversed,
+                sorted  : isActualSortingColumn,
+                sortable: hasSorting
+              },
               'virtualized cell',
               column.textAlign && `has-text-${column.textAlign}`
             );
+
+            const handleChangeSorting = () => {
+              if (!hasSorting) {
+                return;
+              }
+
+              if (isActualSortingColumn) {
+                sort(column.sort!, !isSortReversed);
+              }
+              else {
+                sort(column.sort!, false);
+              }
+            };
 
             return (
               <Components.HeaderCell
@@ -177,7 +207,18 @@ const VirtualizedTableHeader: React.FunctionComponent = () => {
                   width    : column.width,
                   flexBasis: column.width
                 }}
+                onClick={handleChangeSorting}
               >
+                {hasSorting && (
+                  <Icon
+                    fitted
+                    name={!isActualSortingColumn
+                      ? 'sort'
+                      : isSortReversed
+                        ? 'sort amount down'
+                        : 'sort amount down alt'}
+                  />
+                )}
                 {column.header}
               </Components.HeaderCell>
             );
@@ -263,7 +304,7 @@ type VirtualizedTableRenderFunction = React.ForwardRefRenderFunction<VariableSiz
  * -------- */
 const VirtualizedTableRender: VirtualizedTableRenderFunction = <Data extends AnyObject = AnyObject>(
   props: React.PropsWithChildren<VirtualizedTableProps<Data>>,
-  ref: ((instance: VariableSizeList | null) => void) | MutableRefObject<VariableSizeList | null> | null
+  ref: ((instance: VariableSizeList | null) => void) | React.MutableRefObject<VariableSizeList | null> | null
 ) => {
 
 
@@ -272,17 +313,22 @@ const VirtualizedTableRender: VirtualizedTableRenderFunction = <Data extends Any
     as,
     children,
     columns,
-    Components  : userDefinedComponents,
+    Components           : userDefinedComponents,
     data,
+    defaultReverseSorting: userDefinedDefaultReverseSorting,
+    defaultSort          : userDefinedDefaultSort,
     direction,
     disableHeader,
-    headerHeight: userDefinedHeaderHeight,
+    headerHeight         : userDefinedHeaderHeight,
     height,
     itemKey,
     onItemsRendered,
     onScroll,
+    onSortChange,
     overscanCount,
+    reverseSorting       : userDefinedReverseSorting,
     rowHeight,
+    sort                 : userDefinedSort,
     style,
     useIsScrolling,
     width,
@@ -353,6 +399,62 @@ const VirtualizedTableRender: VirtualizedTableRenderFunction = <Data extends Any
 
 
   /* --------
+   * Control Sorting
+   * -------- */
+  const [ sorting, trySetSorting ] = useAutoControlledValue([], {
+    defaultProp: userDefinedDefaultSort,
+    prop       : userDefinedSort
+  });
+
+  const [ isSortReversed, trySetReverseSorting ] = useAutoControlledValue(false, {
+    defaultProp: userDefinedDefaultReverseSorting,
+    prop       : userDefinedReverseSorting
+  });
+
+  const handleChangeSorting = React.useCallback(
+    (newSorting: string[], reverse: boolean) => {
+      /** Check if sorting is changed */
+      const isSortChanged = !areEqualStringArray(sorting, newSorting);
+      const isReversingChanged = reverse !== isSortReversed;
+
+      /** If no change, return */
+      if (!isSortChanged && !isReversingChanged) {
+        return;
+      }
+
+      /** Call user defined handler */
+      if (onSortChange) {
+        onSortChange(newSorting, reverse);
+      }
+
+      /** Try to set new Sorting */
+      if (isSortChanged) {
+        trySetSorting(newSorting);
+      }
+
+      if (reverse !== isSortReversed) {
+        trySetReverseSorting(reverse);
+      }
+    },
+    [ onSortChange, isSortReversed, sorting, trySetReverseSorting, trySetSorting ]
+  );
+
+  const sortedData = React.useMemo(
+    () => {
+      if (sorting.length) {
+        const sorted = data.sort(sortBy(...sorting));
+        return isSortReversed
+          ? sorted.reverse()
+          : sorted;
+      }
+
+      return data;
+    },
+    [ data, sorting, isSortReversed ]
+  );
+
+
+  /* --------
    * Build Classes
    * -------- */
   const wrapperClasses = clsx('virtualized-table');
@@ -397,10 +499,11 @@ const VirtualizedTableRender: VirtualizedTableRenderFunction = <Data extends Any
   const virtualizedTableContext: VirtualizedTableContext<Data> = {
     columns         : tableColumns,
     Components,
-    data,
+    data            : sortedData,
     effectiveWidth  : effectiveTableWidth,
     headerHeight,
     height,
+    isSortReversed,
     getRowHeight    : getItemSize,
     registerColumn  : (column) => {
       /** Check column does not exists */
@@ -411,6 +514,8 @@ const VirtualizedTableRender: VirtualizedTableRenderFunction = <Data extends Any
         });
       }
     },
+    sort            : handleChangeSorting,
+    sorting,
     width,
     unregisterColumn: (key) => {
       /** Remove the column */
@@ -436,7 +541,7 @@ const VirtualizedTableRender: VirtualizedTableRenderFunction = <Data extends Any
           <VirtualizedTableHeader />
         )}
         {/* Virtualized List Renderer */}
-        {!!data.length && (
+        {!!sortedData.length && (
           <VariableSizeList
             ref={ref}
             direction={direction}
@@ -444,7 +549,7 @@ const VirtualizedTableRender: VirtualizedTableRenderFunction = <Data extends Any
             innerElementType={VirtualizedBody}
             itemSize={getItemSize}
             height={tableBodyHeight}
-            itemCount={data.length}
+            itemCount={sortedData.length}
             itemKey={itemKey}
             outerElementType={VirtualizedBodyWrapper}
             overscanCount={overscanCount}

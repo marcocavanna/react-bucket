@@ -110,7 +110,12 @@
     // TypeScript will type check the code you
     // specifically refer to in your app’s source code.
     // https://www.typescriptlang.org/v2/tsconfig#skipLibCheck
-    "skipLibCheck": true
+    "skipLibCheck": true,
+
+    "typeRoots": [
+      "./node_modules/@types",
+      "./src/types"
+    ]
 
   },
 

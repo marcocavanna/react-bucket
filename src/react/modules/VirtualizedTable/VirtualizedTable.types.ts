@@ -48,6 +48,12 @@ export interface VirtualizedTableStrictProps<Data>
   /** Table Data */
   data: Data[];
 
+  /** Set initial reverse sorting */
+  defaultReverseSorting?: boolean;
+
+  /** Set initial sort */
+  defaultSort?: string[];
+
   /** Disable Header Render */
   disableHeader?: boolean;
 
@@ -57,8 +63,17 @@ export interface VirtualizedTableStrictProps<Data>
   /** Table Height */
   height: number;
 
+  /** Callback handler fired when sort is changing */
+  onSortChange?: (sorting: string[], reverse: boolean) => void;
+
+  /** Manual control reverse sorting */
+  reverseSorting?: boolean;
+
   /** Row height, a fixed number or a get function, received the index */
   rowHeight: number | ((index: number) => number);
+
+  /** Manual control sorting */
+  sort?: string[];
 
   /** Wrapper Style */
   style?: React.CSSProperties

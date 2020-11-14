@@ -28,6 +28,7 @@ export const baseTable = () => {
           headerHeight={40}
           rowHeight={58}
           width={width}
+          defaultSort={[ 'title' ]}
           columns={[
             {
               width : width / 3,
@@ -42,7 +43,8 @@ export const baseTable = () => {
             {
               width : width / 3,
               key   : 'description',
-              header: 'Descrizione'
+              header: 'Descrizione',
+              sort  : [ 'description' ]
             },
             {
               width : width / 3,

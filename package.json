@@ -137,6 +137,7 @@
     "@fortawesome/fontawesome-free": "5.13.0",
     "@popperjs/core": "2.4.2",
     "@semantic-ui-react/event-stack": "3.1.1",
+    "array-sort": "^1.0.0",
     "clsx": "1.1.1",
     "dayjs": "1.9.3",
     "formik": "2.2.0",
@@ -152,6 +153,7 @@
     "react-textarea-autosize": "8.2.0",
     "react-window": "^1.8.6",
     "rfdc": "1.1.4",
+    "sort-by": "^1.2.0",
     "tiny-invariant": "^1.1.0"
   }
 }
