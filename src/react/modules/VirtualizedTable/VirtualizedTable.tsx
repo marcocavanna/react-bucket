@@ -13,6 +13,7 @@ import sortBy from 'sort-by';
 import {
   childrenUtils
 } from '@appbuckets/react-ui-core';
+import { Input, InputProps } from '../../elements/Input';
 
 import { useAutoControlledValue } from '../../hooks/useAutoControlledValue';
 
@@ -184,8 +185,12 @@ const MemoizedVirtualizedTableRow = React.memo(VirtualizedTableRow, areEqual);
 const VirtualizedTableHeader: React.FunctionComponent = () => {
 
   const {
+    changeFilters,
     columns,
     Components,
+    filterRowHeight,
+    filters,
+    hasFilterRow,
     headerHeight,
     sorting,
     isSortReversed,
@@ -249,6 +254,47 @@ const VirtualizedTableHeader: React.FunctionComponent = () => {
             );
           })}
         </Components.HeaderRow>
+        {hasFilterRow && filterRowHeight > 0 && (
+          <Components.HeaderRow className={'virtualized filter row'} style={{ height: filterRowHeight }}>
+            {columns.map((column) => {
+
+              const headerClasses = clsx(
+                'virtualized cell',
+                column.textAlign && `has-text-${column.textAlign}`
+              );
+
+              let filterElement: React.ReactElement | null = null;
+
+              if (column.filter && column.filter.type === 'input') {
+                const handleFilterInputChange = (e: React.FormEvent, props: InputProps) => {
+                  changeFilters(column.key, props.value);
+                };
+
+                filterElement = (
+                  <Input
+                    icon={'filter'}
+                    {...column.filter.props}
+                    value={filters[column.key] ?? ''}
+                    onChange={handleFilterInputChange}
+                  />
+                );
+              }
+
+              return (
+                <Components.HeaderCell
+                  key={column.key}
+                  className={headerClasses}
+                  style={{
+                    width    : column.width,
+                    flexBasis: column.width
+                  }}
+                >
+                  {filterElement}
+                </Components.HeaderCell>
+              );
+            })}
+          </Components.HeaderRow>
+        )}
       </Components.Header>
     </Components.HeaderWrapper>
   );
@@ -344,6 +390,8 @@ const VirtualizedTableRender: VirtualizedTableRenderFunction = <Data extends Any
     defaultSort          : userDefinedDefaultSort,
     direction,
     disableHeader,
+    filterLogic,
+    filterRowHeight      : userDefinedFilterRowHeight,
     headerHeight         : userDefinedHeaderHeight,
     height,
     itemKey,
@@ -408,20 +456,93 @@ const VirtualizedTableRender: VirtualizedTableRenderFunction = <Data extends Any
 
 
   /* --------
-   * Compute Table Width and Height
+   * Compute Table Width and Height and Accessor
    * -------- */
+  const hasFilterRow = tableColumns.some((column) => !!column.filter);
+
   const headerHeight = typeof userDefinedHeaderHeight === 'number'
     ? userDefinedHeaderHeight
     : typeof rowHeight === 'number'
       ? rowHeight
       : 0;
 
+  const filterRowHeight = hasFilterRow
+    ? typeof userDefinedFilterRowHeight === 'number'
+      ? userDefinedFilterRowHeight
+      : headerHeight
+    : 0;
+
   const columnsWidthSum = tableColumns.reduce((tot, { width: columnWidth }) => (
     tot + columnWidth
   ), 0);
 
   const effectiveTableWidth = Math.max(columnsWidthSum, width);
-  const tableBodyHeight = height - (!disableHeader ? headerHeight : 0);
+  const tableBodyHeight = height - (!disableHeader ? headerHeight : 0) - filterRowHeight;
+
+
+  /* --------
+   * Compute Filtering
+   * -------- */
+  const [ filters, setFilteringValues ] = React.useState<{ update: number, values: Record<string, any> }>({
+    update: Date.now(),
+    values: tableColumns.reduce<Record<string, any>>((acc, column) => {
+      if (column.filter) {
+        acc[column.key] = column.filter.initialValue;
+      }
+      return acc;
+    }, {})
+  });
+
+  const handleFilterChange = (columnKey: string, value: any) => {
+    setFilteringValues({
+      update: Date.now(),
+      values: {
+        ...filters.values,
+        [columnKey]: value
+      }
+    });
+  };
+
+  const filteredData = React.useMemo(
+    () => {
+      /** If no filter, return entire data */
+      if (!hasFilterRow) {
+        return data;
+      }
+
+      /** Get only filter columns */
+      const filterColumns = tableColumns.filter((column) => {
+        if (!column.filter) {
+          return false;
+        }
+
+        if (column.filter.type === 'input') {
+          return typeof filters.values[column.key] === 'string' && !!filters.values[column.key].length;
+        }
+
+        if (column.filter.type === 'checkbox') {
+          return typeof filters.values[column.key] === 'boolean' && !!filters.values[column.key];
+        }
+
+        return false;
+      });
+
+      /** If no columns are able to filter data, return entire data set */
+      if (!filterColumns.length) {
+        return data;
+      }
+
+      /** Filter data using columns */
+      return data.filter((row, index, array) => {
+        return filterColumns.reduce<boolean>((show, next) => (
+          filterLogic === 'and'
+            ? show && next.filter!.show(filters.values[next.key] as never, row, index, array)
+            : show || next.filter!.show(filters.values[next.key] as never, row, index, array)
+        ), true);
+      });
+    },
+    [ hasFilterRow, tableColumns, data, filters.values, filterLogic ]
+  );
 
 
   /* --------
@@ -468,15 +589,15 @@ const VirtualizedTableRender: VirtualizedTableRenderFunction = <Data extends Any
   const sortedData = React.useMemo(
     () => {
       if (sorting.length) {
-        const sorted = data.sort(sortBy(...sorting));
+        const sorted = filteredData.sort(sortBy(...sorting));
         return isSortReversed
           ? sorted.reverse()
           : sorted;
       }
 
-      return data;
+      return filteredData;
     },
-    [ data, sorting, isSortReversed ]
+    [ filteredData, sorting, isSortReversed ]
   );
 
 
@@ -486,10 +607,10 @@ const VirtualizedTableRender: VirtualizedTableRenderFunction = <Data extends Any
   const handleRowClick = React.useCallback(
     (index: number) => {
       if (onRowClick) {
-        onRowClick(data[index], index, data);
+        onRowClick(sortedData[index], index, sortedData);
       }
     },
-    [ onRowClick, data ]
+    [ onRowClick, sortedData ]
   );
 
 
@@ -536,10 +657,14 @@ const VirtualizedTableRender: VirtualizedTableRenderFunction = <Data extends Any
    * Build the Context
    * -------- */
   const virtualizedTableContext: VirtualizedTableContext<Data> = {
+    changeFilters    : handleFilterChange,
     columns          : tableColumns,
     Components,
     data             : sortedData,
     effectiveWidth   : effectiveTableWidth,
+    filterRowHeight,
+    filters          : filters.values,
+    hasFilterRow,
     headerHeight,
     height,
     isRowClickEnabled: typeof onRowClick === 'function',
@@ -552,6 +677,10 @@ const VirtualizedTableRender: VirtualizedTableRenderFunction = <Data extends Any
           curr.push(column);
           return curr;
         });
+
+        if (column.filter && column.filter.initialValue) {
+          handleFilterChange(column.key, column.filter.initialValue);
+        }
       }
     },
     rowClick         : handleRowClick,
@@ -607,14 +736,18 @@ const VirtualizedTableRender: VirtualizedTableRenderFunction = <Data extends Any
   );
 };
 
-VirtualizedTableRender.displayName = 'VirtualizedTable';
-
 type VirtualizedTableComponent =
   React.FunctionComponent<VirtualizedTableProps>
   & { Column: typeof VirtualizedTableColumn };
 
 // eslint-disable-next-line max-len
 const VirtualizedTable: VirtualizedTableComponent = React.forwardRef(VirtualizedTableRender) as unknown as VirtualizedTableComponent;
+
+VirtualizedTable.displayName = 'VirtualizedTable';
+
+VirtualizedTable.defaultProps = {
+  filterLogic: 'and'
+};
 
 VirtualizedTable.Column = VirtualizedTableColumn;
 

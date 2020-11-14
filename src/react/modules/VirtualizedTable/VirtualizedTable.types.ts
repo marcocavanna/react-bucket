@@ -57,6 +57,12 @@ export interface VirtualizedTableStrictProps<Data>
   /** Disable Header Render */
   disableHeader?: boolean;
 
+  /** Set the filter logic. With and type, all filter must return true to show item, with or at least one must be valid */
+  filterLogic?: 'and' | 'or';
+
+  /** Filter row height */
+  filterRowHeight?: number;
+
   /** Table header height */
   headerHeight?: number;
 

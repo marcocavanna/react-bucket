@@ -11,6 +11,9 @@ import { VirtualizedTableColumnProps } from './VirtualizedTableColumn.types';
  * Virtualized Table Context Definition
  * -------- */
 export interface VirtualizedTableContext<Data extends AnyObject = AnyObject> {
+  /** Change filters */
+  changeFilters: (columnKey: string, value: any) => void;
+
   /** All VirtualizedTable Columns */
   columns: VirtualizedTableColumnProps<Data>[];
 
@@ -22,6 +25,15 @@ export interface VirtualizedTableContext<Data extends AnyObject = AnyObject> {
 
   /** Effective table width */
   effectiveWidth: number;
+
+  /** Height of filter row */
+  filterRowHeight: number;
+
+  /** Actual table filters */
+  filters: Record<string, any>;
+
+  /** Check if table has filters */
+  hasFilterRow: boolean;
 
   /** Header row height */
   headerHeight: number;

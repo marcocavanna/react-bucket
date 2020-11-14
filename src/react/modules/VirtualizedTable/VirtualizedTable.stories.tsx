@@ -11,7 +11,9 @@ type Data = {
   description: string;
 };
 
-export const baseTable = () => {
+export const BaseTable = () => {
+
+  const [ , setSelectedItem ] = React.useState<Data>();
 
   const data = new Array(10000).fill(1).map<Data>((value, index) => ({
     _id        : index,
@@ -19,16 +21,22 @@ export const baseTable = () => {
     description: `Some description for product number ${index}`
   }));
 
+  const handleSelectItem = (item: Data) => {
+    setSelectedItem(item);
+  };
+
   return (
     <AutoSpacer disableWidth>
       {({ width, height }) => (
         <VirtualizedTable<Data>
           data={data}
           height={height}
-          headerHeight={40}
+          headerHeight={30}
+          filterRowHeight={52}
           rowHeight={58}
           width={width}
           defaultSort={[ 'title' ]}
+          onRowClick={handleSelectItem}
           columns={[
             {
               width : width / 3,
@@ -38,7 +46,13 @@ export const baseTable = () => {
                 header : (item) => `Titolo del Prodotto: ${item.title}`,
                 content: (item: Data) => item.description
               },
-              sort  : [ 'title' ]
+              sort  : [ 'title' ],
+              filter: {
+                type: 'input',
+                show: (value, row) => {
+                  return new RegExp(value, 'ig').test(row.title);
+                }
+              }
             },
             {
               width : width / 3,
