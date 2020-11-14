@@ -29,6 +29,9 @@ export interface VirtualizedTableContext<Data extends AnyObject = AnyObject> {
   /** Table total height */
   height: number;
 
+  /** Check if must enable row click */
+  isRowClickEnabled: boolean;
+
   /** Check if sorting is reversed */
   isSortReversed: boolean;
 
@@ -37,6 +40,9 @@ export interface VirtualizedTableContext<Data extends AnyObject = AnyObject> {
 
   /** Register a new Column */
   registerColumn: (props: VirtualizedTableColumnProps<Data>) => void;
+
+  /** Row Click Handler */
+  rowClick: (index: number) => void;
 
   /** Change Sorting */
   sort: (fields: string[], reverse: boolean) => void;

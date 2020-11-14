@@ -63,6 +63,9 @@ export interface VirtualizedTableStrictProps<Data>
   /** Table Height */
   height: number;
 
+  /** On Row Click Handler */
+  onRowClick?: (row: Data, index: number, array: Data[]) => void;
+
   /** Callback handler fired when sort is changing */
   onSortChange?: (sorting: string[], reverse: boolean) => void;
 

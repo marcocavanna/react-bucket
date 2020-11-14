@@ -63,17 +63,42 @@ const VirtualizedTableRow: React.FunctionComponent<ListChildComponentProps> = (
     columns,
     Components,
     data,
-    getRowHeight
+    getRowHeight,
+    isRowClickEnabled,
+    rowClick
   } = useVirtualizedTable();
 
+  /** Get the Current row Size */
   const rowHeight = getRowHeight(index);
 
+  /** Handle click on row */
+  const handleRowClick = React.useCallback(
+    () => {
+      if (isRowClickEnabled) {
+        rowClick(index);
+      }
+    },
+    [ isRowClickEnabled, rowClick, index ]
+  );
+
+  /** Build row classes */
+  const classes = clsx(
+    'virtualized row',
+    {
+      last     : index === data.length - 1,
+      first    : index === 0,
+      clickable: isRowClickEnabled
+    }
+  );
+
+  /** Init the left cell position container */
   let nextLeft = 0;
 
   return (
     <Components.BodyRow
-      className={`virtualized row ${index === data.length - 1 ? 'last' : ''}`}
+      className={classes}
       style={{ height: rowHeight }}
+      onClick={handleRowClick}
     >
       {columns.map((column) => {
 
@@ -323,6 +348,7 @@ const VirtualizedTableRender: VirtualizedTableRenderFunction = <Data extends Any
     height,
     itemKey,
     onItemsRendered,
+    onRowClick,
     onScroll,
     onSortChange,
     overscanCount,
@@ -455,6 +481,19 @@ const VirtualizedTableRender: VirtualizedTableRenderFunction = <Data extends Any
 
 
   /* --------
+   * Side Handlers
+   * -------- */
+  const handleRowClick = React.useCallback(
+    (index: number) => {
+      if (onRowClick) {
+        onRowClick(data[index], index, data);
+      }
+    },
+    [ onRowClick, data ]
+  );
+
+
+  /* --------
    * Build Classes
    * -------- */
   const wrapperClasses = clsx('virtualized-table');
@@ -497,15 +536,16 @@ const VirtualizedTableRender: VirtualizedTableRenderFunction = <Data extends Any
    * Build the Context
    * -------- */
   const virtualizedTableContext: VirtualizedTableContext<Data> = {
-    columns         : tableColumns,
+    columns          : tableColumns,
     Components,
-    data            : sortedData,
-    effectiveWidth  : effectiveTableWidth,
+    data             : sortedData,
+    effectiveWidth   : effectiveTableWidth,
     headerHeight,
     height,
+    isRowClickEnabled: typeof onRowClick === 'function',
     isSortReversed,
-    getRowHeight    : getItemSize,
-    registerColumn  : (column) => {
+    getRowHeight     : getItemSize,
+    registerColumn   : (column) => {
       /** Check column does not exists */
       if (columnsKeys.indexOf(column.key) === -1) {
         setTableColumns((curr) => {
@@ -514,10 +554,11 @@ const VirtualizedTableRender: VirtualizedTableRenderFunction = <Data extends Any
         });
       }
     },
-    sort            : handleChangeSorting,
+    rowClick         : handleRowClick,
+    sort             : handleChangeSorting,
     sorting,
     width,
-    unregisterColumn: (key) => {
+    unregisterColumn : (key) => {
       /** Remove the column */
       setTableColumns((curr) => (
         curr.filter((column) => column.key !== key)

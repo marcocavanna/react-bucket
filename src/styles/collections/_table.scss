@@ -247,6 +247,14 @@ table > .head,
 
 
 /******
+    Clickable Row Behaviour
+******/
+.table .clickable.row {
+  cursor: pointer;
+}
+
+
+/******
     On Virtualized Table, remove and reset display declaration
 ******/
 .virtualized.table {
