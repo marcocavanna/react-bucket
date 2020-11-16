@@ -1,8 +1,8 @@
 import * as React from 'react'
 
-import { ReactBucketCOLOR } from '../../generic'
+import { ReactBucketCOLOR, ReactBucketShorthandCollection } from '../../generic'
 
-import MenuItem from './MenuItem';
+import MenuItem, { MenuItemProps } from './MenuItem';
 
 export interface MenuProps extends StrictMenuProps {
   [key: string]: any
@@ -31,7 +31,7 @@ export interface StrictMenuProps {
   defaultActiveIndex?: number | string
 
   /** Item Shorthand */
-  items?: any
+  items?: ReactBucketShorthandCollection<MenuItemProps>
 
   /** On Item Click Handler to be used without children */
   onItemClick?: Function

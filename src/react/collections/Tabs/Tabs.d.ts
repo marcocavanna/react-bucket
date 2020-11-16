@@ -1,8 +1,9 @@
 import * as React from 'react'
 
-import { ReactBucketCOLUMNWIDTH } from '../../generic';
+import { ReactBucketCOLUMNWIDTH, ReactBucketShorthandItem } from '../../generic';
 import { LayoutProps } from '../Layout';
 import { MenuProps } from '../Menu';
+import { MenuItemProps } from '../Menu/MenuItem';
 
 import TabPanel from './TabPanel';
 
@@ -41,7 +42,7 @@ export interface StrictTabsProps {
   onTabChange?: (e: React.SyntheticEvent, props: TabsProps) => void
 
   /** Panels Array */
-  panels?: Array<{ trigger: React.ReactNode, panel: React.ReactNode }>
+  panels?: Array<{ trigger: ReactBucketShorthandItem<MenuItemProps>, panel: React.ReactNode }>
 
   /** Render only the current active tab */
   renderActiveOnly?: boolean

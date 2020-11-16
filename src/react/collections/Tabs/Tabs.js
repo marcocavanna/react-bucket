@@ -46,7 +46,7 @@ class Tabs extends Component {
     /** Panels Array */
     panels: PropTypes.arrayOf(
       PropTypes.shape({
-        trigger : PropTypes.string,
+        trigger : PropTypes.any,
         panel   : PropTypes.element
       })
     ),

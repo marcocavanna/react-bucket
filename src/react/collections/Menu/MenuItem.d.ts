@@ -2,11 +2,11 @@ import * as React from 'react'
 
 import { ReactBucketCOLOR, ReactBucketICON } from '../../generic';
 
-export interface MenuHeaderProps extends StrictMenuHeaderProps {
+export interface MenuItemProps extends StrictMenuItemProps {
   [key: string]: any
 }
 
-export interface StrictMenuHeaderProps {
+export interface StrictMenuItemProps {
   /** Display as Active */
   active?: boolean | ReactBucketCOLOR
 
@@ -45,6 +45,6 @@ export interface StrictMenuHeaderProps {
 
 }
 
-declare class MenuHeader extends React.Component<MenuHeaderProps, {}> { }
+declare class MenuItem extends React.Component<MenuItemProps, {}> { }
 
-export default MenuHeader
+export default MenuItem
