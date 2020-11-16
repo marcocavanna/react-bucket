@@ -8,7 +8,7 @@ import {
   ListChildComponentProps
 } from 'react-window';
 
-import sortBy from 'sort-by';
+import arraySort from 'array-sort';
 
 import {
   childrenUtils
@@ -589,10 +589,7 @@ const VirtualizedTableRender: VirtualizedTableRenderFunction = <Data extends Any
   const sortedData = React.useMemo(
     () => {
       if (sorting.length) {
-        const sorted = filteredData.sort(sortBy(...sorting));
-        return isSortReversed
-          ? sorted.reverse()
-          : sorted;
+        return arraySort(filteredData, sorting, { reverse: isSortReversed });
       }
 
       return filteredData;

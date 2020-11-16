@@ -1,6 +1,6 @@
 {
   "name": "@appbuckets/react-bucket",
-  "version": "0.3.21",
+  "version": "0.3.31",
   "description": "React UI Framework",
   "keywords": [
     "react",
@@ -30,7 +30,7 @@
   "bugs": {
     "url": "https://github.com:marcocavanna/react-bucket/issues"
   },
-  "homepage": "https://github.com:marcocavanna/react-bucket#readme",
+  "homepage": "https://github.com/marcocavanna/react-bucket#readme",
   "license": "MIT",
   "scripts": {
     "prepublishOnly": "node build.fontawesome.js && npm run build",
@@ -69,6 +69,7 @@
     "@svgr/core": "^5.4.0",
     "@testing-library/jest-dom": "^5.9.0",
     "@testing-library/react": "^10.2.0",
+    "@types/array-sort": "^1.0.0",
     "@types/jest": "^25.2.3",
     "@types/lodash": "^4.14.155",
     "@types/mini-css-extract-plugin": "^0.9.1",
@@ -153,7 +154,6 @@
     "react-textarea-autosize": "8.2.0",
     "react-window": "^1.8.6",
     "rfdc": "1.1.4",
-    "sort-by": "^1.2.0",
     "tiny-invariant": "^1.1.0"
   }
 }
