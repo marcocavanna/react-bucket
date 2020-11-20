@@ -138,16 +138,14 @@ export default class AutoSpacer extends React.Component<AutoSpacerProps, AutoSpa
     } = container.getBoundingClientRect();
 
     /** Get new Size */
-    const nextHeight = this.computeHeight(windowHeight - containerTopPosition);
-    const nextWidth = this.computeWidth(windowWidth - containerLeftPosition);
+    const nextHeight = disableHeight ? container.clientHeight : this.computeHeight(windowHeight - containerTopPosition);
+    const nextWidth = disableWidth ? container.clientWidth : this.computeWidth(windowWidth - containerLeftPosition);
 
     /** Check if must update state */
-    if (this.isComponentMounted
-      && ((nextHeight !== currHeight && !disableHeight)
-        || (nextWidth !== currWidth && !disableWidth))) {
+    if (this.isComponentMounted && ((nextHeight !== currHeight) || (nextWidth !== currWidth))) {
       this.setState({
-        height: disableHeight ? container.clientHeight : nextHeight,
-        width : disableWidth ? container.clientWidth : nextWidth
+        height: nextHeight,
+        width : nextWidth
       }, () => {
         if (typeof onResize === 'function') {
           onResize({ height: nextHeight, width: nextWidth });
