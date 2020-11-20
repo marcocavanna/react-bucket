@@ -3,11 +3,12 @@ import * as React from 'react';
 import { Checkbox, CheckboxProps } from '../../elements/Checkbox';
 import { DayPicker, DayPickerProps, ParsableDate } from '../../elements/DayPicker';
 import { Input, InputProps } from '../../elements/Input';
+import { SelectProps, Select, SelectOption, SelectMultiProps, MultiSelect } from '../../elements/Select';
 
 import { SharedComponentStateProps } from '../../generic';
 
 import withFormikField from './lib/withFormikField';
-import { FormikFieldComponentRenderProps } from './lib/withFormikField.types';
+import { FormikFieldComponentProps, FormikFieldComponentRenderProps } from './lib/withFormikField.types';
 
 
 /* --------
@@ -162,3 +163,51 @@ export const FormikTime = withFormikField<InputProps, number | null, string>({
     return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
   })
 });
+
+
+/* --------
+ * Wrapped Select Component
+ * -------- */
+export const FormikSelect = <Option extends SelectOption>(
+  wrapperProps: React.PropsWithChildren<FormikFieldComponentProps<SelectProps<Option>>>
+) => (
+  withFormikField<SelectProps<Option>>({
+    Component: function FormikSelectComponent(props) {
+      const stateProps = useFormikFieldState(props);
+
+      return (
+        <Select
+          {...props.rest}
+          {...stateProps}
+          hint={props.state.message}
+        />
+      );
+    },
+
+    onChange: (formik, event, props) => {
+      formik.setFieldValue(props.name, props.value);
+    }
+  })(wrapperProps)
+);
+
+export const FormikMultiSelect = <Option extends SelectOption>(
+  wrapperProps: React.PropsWithChildren<FormikFieldComponentProps<SelectMultiProps<Option>>>
+) => (
+  withFormikField<SelectMultiProps<Option>>({
+    Component: function FormikSelectComponent(props) {
+      const stateProps = useFormikFieldState(props);
+
+      return (
+        <MultiSelect
+          {...props.rest}
+          {...stateProps}
+          hint={props.state.message}
+        />
+      );
+    },
+
+    onChange: (formik, event, props) => {
+      formik.setFieldValue(props.name, props.value);
+    }
+  })(wrapperProps)
+);
