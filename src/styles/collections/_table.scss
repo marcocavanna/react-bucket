@@ -272,14 +272,13 @@ table > .head,
   }
 
   > .body > .row {
-    border-bottom: none;
 
     > .cell {
       display: flex !important;
       align-items: center;
     }
 
-    &:not(.last) > .cell {
+    &:not(.last) {
       border-bottom-style: $table-body-border-style;
       border-bottom-width: $table-body-border-width;
       border-bottom-color: $table-body-border-color;

@@ -92,19 +92,13 @@ const VirtualizedTableRow: React.FunctionComponent<ListChildComponentProps> = (
     }
   );
 
-  /** Init the left cell position container */
-  let nextLeft = 0;
-
   return (
     <Components.BodyRow
       className={classes}
-      style={{ height: rowHeight }}
+      style={{ ...style, height: rowHeight }}
       onClick={handleRowClick}
     >
       {columns.map((column) => {
-
-        const columnLeft = nextLeft;
-        nextLeft += column.width;
 
         const columnClasses = clsx(
           'virtualized cell',
@@ -162,9 +156,7 @@ const VirtualizedTableRow: React.FunctionComponent<ListChildComponentProps> = (
             key={column.key}
             className={columnClasses}
             style={{
-              ...style,
               width    : column.width,
-              left     : columnLeft,
               flexBasis: column.width
             }}
           >
