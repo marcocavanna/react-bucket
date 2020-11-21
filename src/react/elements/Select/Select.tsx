@@ -56,8 +56,9 @@ const SelectRender: React.ForwardRefRenderFunction<MutableReactSelect<SelectDefa
       rest: {
         /** Strict Select Component Props */
         creatable,
+        getOptionValue: userDefinedGetOptionValue,
         loading,
-        tabIndex: userDefinedTabIndex,
+        tabIndex      : userDefinedTabIndex,
 
         /** Select Event Handler */
         onBlur: userDefinedOnBlur,
@@ -158,6 +159,28 @@ const SelectRender: React.ForwardRefRenderFunction<MutableReactSelect<SelectDefa
     // ----
     // Get the Current Select Value using its ref
     // ----
+    const getOptionValue = React.useCallback(
+      (option: Option) => {
+        /** If function has not be defined, return as is */
+        if (!userDefinedGetOptionValue) {
+          return (option?.value as string) ?? '';
+        }
+
+        const optionValue = userDefinedGetOptionValue(option);
+
+        if (optionValue === undefined || optionValue === null) {
+          return '';
+        }
+
+        if (typeof optionValue !== 'string') {
+          return optionValue.toString();
+        }
+
+        return optionValue;
+      },
+      [ userDefinedGetOptionValue ]
+    );
+
     const getSelectedValue: any = () => {
       const { value: selectedValue } = (selectRef.current?.state as any);
 
@@ -308,6 +331,7 @@ const SelectRender: React.ForwardRefRenderFunction<MutableReactSelect<SelectDefa
           ref={ref}
           className={classes}
           classNamePrefix={' '}
+          getOptionValue={getOptionValue}
           isDisabled={fieldProps.disabled}
           isLoading={loading}
           tabIndex={tabIndex}

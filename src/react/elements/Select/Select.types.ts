@@ -151,7 +151,7 @@ export interface StrictSelectProps<Option extends SelectOption, Value = Option, 
   getOptionLabel?: (option: Option) => string;
 
   /** Resolves option data to a string to compare options and specify value attributes */
-  getOptionValue?: (option: Option) => string;
+  getOptionValue?: (option: Option) => string | number;
 
   /** Hide the selected option from the menu */
   hideSelectedOptions?: boolean;
