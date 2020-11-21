@@ -182,7 +182,14 @@ const SelectRender: React.ForwardRefRenderFunction<MutableReactSelect<SelectDefa
     );
 
     const getSelectedValue: any = () => {
-      const { value: selectedValue } = (selectRef.current?.state as any);
+      /** Get the Select State */
+      const { state } = (selectRef.current ?? {});
+
+      if (!state) {
+        return props.isMulti ? [] : null;
+      }
+
+      const { value: selectedValue } = state as { value: Option | Option[] | null | undefined };
 
       if (props.isMulti) {
         return selectedValue ?? [];
