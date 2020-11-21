@@ -1,23 +1,24 @@
 import * as React from 'react';
-import { Button } from '../../elements/Button';
-import { Modal } from '../../modules/Modal';
-import { Column, Row } from '../Grid';
+
 import {
   FormFormik,
   FormikInput,
   FormFormikActionHandler,
-  FormikTime,
-  FormikDayPicker
+  FormikSelect
 } from './index';
 
 
 export default { title: 'Collections/Form', component: FormFormik };
 
+
 type Contact = {
   name: string,
-  surname: string,
-  date: number | null,
-  time: number | null
+  options: number
+};
+
+type Choices = {
+  id: number,
+  code: string
 };
 
 export const formikForm = () => {
@@ -30,61 +31,36 @@ export const formikForm = () => {
     });
   };
 
+  const options: Choices[] = [
+    { id: 1, code: 'Paperino' },
+    { id: 2, code: 'Topolino' },
+    { id: 3, code: 'Pluto' },
+    { id: 4, code: 'Minnie' },
+    { id: 5, code: 'Paperina' }
+  ];
+
   return (
-    <Modal
-      header={'Add new User'}
-      icon={{
-        name   : 'user plus',
-        primary: true
+    <FormFormik<Contact>
+      onSubmit={handleSubmit}
+      submitButton={'Save'}
+      initialValues={{
+        name   : '',
+        options: 3
       }}
-      trigger={(
-        <Button content={'Open Modal'} />
-      )}
     >
-      <FormFormik<Contact>
-        formActionWrapper={Modal.Actions}
-        formContentWrapper={Modal.Content}
-        onSubmit={handleSubmit}
-        submitButton={'Save'}
-        initialValues={{
-          name   : '',
-          surname: '',
-          date   : null,
-          time   : null
-        }}
-      >
-        <Row>
-          <Column>
-            <FormikInput
-              name={'name'}
-              label={'First Name'}
-              icon={'user'}
-            />
-          </Column>
-          <Column>
-            <FormikInput
-              name={'surname'}
-              label={'Last Name'}
-            />
-          </Column>
-        </Row>
-        <Row>
-          <Column>
-            <FormikDayPicker
-              clearable
-              name={'date'}
-              label={'Day'}
-            />
-          </Column>
-          <Column>
-            <FormikTime
-              name={'time'}
-              label={'Hour'}
-            />
-          </Column>
-        </Row>
-      </FormFormik>
-    </Modal>
+      <FormikInput
+        name={'name'}
+        label={'First Name'}
+        icon={'user'}
+      />
+      <FormikSelect
+        label={'Personaggi'}
+        name={'options'}
+        options={options}
+        getOptionLabel={option => option.code}
+        getOptionValue={option => option.id}
+      />
+    </FormFormik>
   );
 
 };

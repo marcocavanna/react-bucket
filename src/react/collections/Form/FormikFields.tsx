@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Checkbox, CheckboxProps } from '../../elements/Checkbox';
 import { DayPicker, DayPickerProps, ParsableDate } from '../../elements/DayPicker';
 import { Input, InputProps } from '../../elements/Input';
-import { SelectProps, Select, SelectOption, SelectMultiProps, MultiSelect } from '../../elements/Select';
+import { MultiSelect, Select, SelectMultiProps, SelectOption, SelectProps } from '../../elements/Select';
 
 import { SharedComponentStateProps } from '../../generic';
 
@@ -171,7 +171,7 @@ export const FormikTime = withFormikField<InputProps, number | null, string>({
 export const FormikSelect = <Option extends SelectOption>(
   wrapperProps: React.PropsWithChildren<FormikFieldComponentProps<SelectProps<Option>>>
 ) => (
-  withFormikField<SelectProps<Option>>({
+  withFormikField<SelectProps<Option>, Option | null>({
     Component: function FormikSelectComponent(props) {
       const stateProps = useFormikFieldState(props);
 
@@ -186,6 +186,22 @@ export const FormikSelect = <Option extends SelectOption>(
 
     onChange: (formik, event, props) => {
       formik.setFieldValue(props.name, props.value);
+    },
+
+    computeValue: (value, props) => {
+      if (!value) {
+        return null;
+      }
+
+      return props.options.find((option) => {
+        /** Get the Option Value */
+        const optionValue = props.getOptionValue ? props.getOptionValue(option) : option?.value ?? option;
+        /** Compare Option Value with Selected One */
+        if (typeof value === 'object' && value !== null && props.getOptionValue) {
+          return props.getOptionValue(value) === optionValue;
+        }
+        return value === optionValue;
+      }) ?? null;
     }
   })(wrapperProps)
 );
@@ -193,7 +209,7 @@ export const FormikSelect = <Option extends SelectOption>(
 export const FormikMultiSelect = <Option extends SelectOption>(
   wrapperProps: React.PropsWithChildren<FormikFieldComponentProps<SelectMultiProps<Option>>>
 ) => (
-  withFormikField<SelectMultiProps<Option>>({
+  withFormikField<SelectMultiProps<Option>, Option[] | null>({
     Component: function FormikSelectComponent(props) {
       const stateProps = useFormikFieldState(props);
 
@@ -208,6 +224,25 @@ export const FormikMultiSelect = <Option extends SelectOption>(
 
     onChange: (formik, event, props) => {
       formik.setFieldValue(props.name, props.value);
+    },
+
+    computeValue: (values, props) => {
+      /** Transform Value using getOptionValue props function if exists */
+      if (!Array.isArray(values)) {
+        return [];
+      }
+
+      return props.options.filter((option) => {
+        /** Get the Option Value */
+        const optionValue = props.getOptionValue ? props.getOptionValue(option) : option?.value ?? option;
+        /** If value is included in values then return true */
+        return !!values.find((value) => {
+          if (typeof value === 'object' && value !== null && props.getOptionValue) {
+            return props.getOptionValue(value) === optionValue;
+          }
+          return value === optionValue;
+        });
+      });
     }
   })(wrapperProps)
 );
