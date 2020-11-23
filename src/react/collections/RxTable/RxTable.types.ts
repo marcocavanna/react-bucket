@@ -1,250 +1,308 @@
 import * as React from 'react';
 
-import { TableProps as RcTableProps } from 'rc-table/lib/Table';
-import { ColumnType as RcColumnType, GetRowKey } from 'rc-table/lib/interface';
-
 import {
+  ContentAlign,
   ShorthandItem,
-  ReactBucketIcon,
-  ShorthandContent
+  ReactBucketComponentProps,
+  AnyObject
 } from '../../generic';
 
-import { TableCellProps, TableHeaderCellProps, TableProps } from '../Table';
+import { CheckboxProps } from '../../elements/Checkbox';
+import { InputProps } from '../../elements/Input';
+import { SelectProps } from '../../elements/Select';
 
-import { IconProps } from '../../elements/Icon';
-
-
-export { GetRowKey };
-
-export interface RxTableProps<Data> extends StrictRxTableProps<Data> {
-
-}
+import { TableCellContentProps, TableHeaderCellProps } from '../Table';
 
 
 /* --------
- * Main RxTable Interface
+ * RxTable Component
  * -------- */
-export interface StrictRxTableProps<Data> extends Omit<RcTableProps<Data>, OmittedRcTablePropsField>,
-  Omit<TableProps<Data>, OmittedTablePropsFiled> {
+export interface RxTableProps<Data> extends ReactBucketComponentProps<StrictRxTableProps<Data>, 'table'> {
+}
 
-  /** RxTable could not have any children */
+export interface StrictRxTableProps<Data> {
+  /** An Element used to Render the Component */
+  as?: string | React.ComponentClass | React.FunctionComponent;
+
+  /** Children ar not permitted */
   children?: never;
 
-  /** Table Columns */
-  columns: RxTableColumn<Data>[];
+  /** Table Columns definition */
+  columns: RxTableColumnProps<Data>[];
+
+  /** Components used to render the Table */
+  Components?: Partial<RxTableComponents<Data>>;
 
   /** Table Data */
-  data?: Data[] | ((timestamp: number, props: RxTableProps<Data>) => Data[]) | ((
-    timestamp: number,
-    props: RxTableProps<Data>
-  ) => Promise<Data[]>);
+  data: Data[] | ((timestamp: number) => (Data[] | Promise<Data[]>));
 
-  /** Force Data Reload will be passed to Effect Hook to reload table data */
-  forceDataReload?: any;
+  /** Set initial reverse sorting */
+  defaultReverseSorting?: boolean;
 
-  /** Set if Table will Start with Loading State to True */
+  /** Set initial sort */
+  defaultSort?: string[];
+
+  /** Disable Header Render */
+  disableHeader?: boolean;
+
+  /** Set the filter logic. With and type, all filter must return true to show item, with or at least one must be valid */
+  filterLogic?: 'and' | 'or';
+
+  /** Initial Loading State */
   initiallyLoading?: boolean;
 
-  /** Callback Handler onChange */
-  onChange?: (
-    pagination: RxTablePaginationConfig | false | null | undefined,
-    filters: Record<string, React.Key[] | null>,
-    sorter: SorterResult<Data> | SorterResult<Data>[],
-    current: RxTableCurrentData<Data>
-  ) => void;
+  /** If data is a Function, set if is async or not */
+  isAsyncLoading?: boolean;
 
-  /** Set Pagination Props */
-  pagination?: false | RxTablePaginationConfig;
+  /** On Row Click Handler */
+  onRowClick?: (row: Data, index: number, array: Data[]) => void;
 
-  /** Set Row Selection */
-  rowSelection?: RxTableRowSelection<Data>;
+  /** Callback handler fired when sort is changing */
+  onSortChange?: (sorting: string[], reverse: boolean) => void;
 
-  /** Set Scroll Options */
-  scroll?: RcTableProps<Data>['scroll'] & { scrollToFirstRowOnChange?: boolean };
+  /** Dependencies passed to data load hook. Set this to manually control data reload */
+  reloadDependency?: any;
 
-  /** Set the initial Sort Direction */
-  sortDirections?: SortOrder;
+  /** Disable Loader on data reload */
+  reloadSilently?: boolean;
 
-  /** Props passed to Table Component */
-  tableProps?: TableProps;
+  /** Manual control reverse sorting */
+  reverseSorting?: boolean;
 
-}
+  /** The row key or a function to get it */
+  rowKey: keyof Data | ((row: Data, index: number, array: Data[]) => React.Key);
 
-type OmittedTablePropsFiled = 'rows' | 'sortable' | 'tableData';
+  /** Manual control sorting */
+  sort?: string[];
 
-type OmittedRcTablePropsField =
-  'transformColumns'
-  | 'internalHooks'
-  | 'internalRefs'
-  | 'data'
-  | 'columns'
-  | 'scroll'
-  | 'emptyText';
-
-
-export type RxTableCurrentData<Data> = {
-  current: Data[];
-};
-
-export type TableAction = 'filter' | 'sort' | 'paginate';
-
-
-/* --------
- * RxTable Column Interface
- * -------- */
-export interface RxTableColumn<Data> extends Omit<RcColumnType<Data>, 'render' | 'onCell' | 'onHeaderCell'> {
-  /** Set the Default Filtered Value */
-  defaultFilteredValue?: React.Key[] | null;
-
-  /** Set the Default Sort Order */
-  defaultSortOrder?: SortOrder;
-
-  /** The Filter DropDown Menu */
-  filterDropdown?: ShorthandContent | ((props: FilterDropdownProps) => ShorthandContent);
-
-  /** Set if DropDown Filter menu is Visible */
-  filterDropdownVisible?: boolean;
-
-  /** Set if is filtered */
-  filtered?: boolean;
-
-  /** Set Filtered Value */
-  filteredValue?: React.Key[] | null;
-
-  /** Set the filter icon to show */
-  filterIcon?: ReactBucketIcon<IconProps> | ((filtered: boolean) => ReactBucketIcon<IconProps>);
-
-  /** Set Columns Available Filters */
-  filters?: ColumnFilterItem[];
-
-  /** Set Custom Props for Each Cell */
-  onCell?: (item: Data, index: number) => TableCellProps;
-
-  /** Set Custom Props for Each Header Cell */
-  onHeaderCell?: (columns: RxTableColumn<Data>) => TableHeaderCellProps;
-
-  /** Handler on Filter Change */
-  onFilter?: (value: string | number | boolean, item: Data) => boolean;
-
-  /** Handler on Filter Dropdown Menu visibility change */
-  onFilterDropdownVisibleChange?: (visible: boolean) => void;
-
-  /** Custom Render Function */
-  render?: (value: any, item: Data, index: number) => ShorthandContent | { props: ShorthandItem<TableCellProps> };
-
-  /** Define Column Sorter */
-  sorter?: boolean | CompareFn<Data>;
-
-  /** Set the Sort Direction */
-  sortDirections?: SortOrder[];
-
-  /** Set Column Sort Order */
-  sortOrder?: SortOrder;
-
-  /** Set the Column Title */
-  title?: RxTableColumnTitle<Data>;
-}
-
-export type CompareFn<Data> = (a: Data, b: Data, sortOrder?: SortOrder) => number;
-
-export type SortOrder = 'asc' | 'desc' | null;
-
-export type SorterResult<Data> = {
-  column?: RxTableColumn<Data>;
-  order?: SortOrder;
-  field?: React.Key | null;
-  columnKey?: React.Key;
-};
-
-export type ColumnFilterItem = { text: ShorthandContent; value: string | number | boolean; children?: ColumnFilterItem[] };
-
-export type FilterDropdownProps = {
-  setSelectedKeys: (selectedKes: React.Key[]) => void;
-  selectedKeys: React.Key[];
-  confirm: () => void;
-  clearFilters?: () => void;
-  filters?: ColumnFilterItem[];
-  visible: boolean;
-};
-
-export type RxTableColumnTitleProps<Data> = {
-  sorter?: { column: RxTableColumn<Data>; order: SortOrder },
-  filters?: Record<string, string[]>;
-};
-
-export type RxTableColumnTitle<Data> = ShorthandContent | ((props: RxTableColumnTitleProps<Data>) => ShorthandContent);
-
-export type RxTableColumns<Data> = RxTableColumn<Data>[];
-
-export type TransformColumns<Data> = (columns: RxTableColumns<Data>) => RxTableColumns<Data>;
-
-
-/* --------
- * Row Selection Interfaces
- * -------- */
-export interface RxTableRowSelection<Data> {
-  checkStrictly?: boolean;
-
-  /** Set the Column Width */
-  columnWidth?: string | number;
-
-  /** Set the Column Title */
-  columnTitle?: ShorthandContent;
-
-  /** Fix Column */
-  fixed?: boolean;
-
-  /** Choose if select all button should be hide */
-  hideSelectAll?: boolean;
-
-  /** On Selection Change Handler */
-  onChange?: (selectedKeys: React.Key[], selectedRows: Data[]) => void;
-
-  /** On Row Select Handler */
-  onSelect?: RowSelectCallback<Data>;
-
-  /** Keep selected key, event if item doesn't exists in data anymore */
-  preserveSelectedRowKeys?: boolean;
-
-  /** Custom render Function */
-  render?: (selected: boolean, item: Data, index: number, original: React.ReactNode) => ShorthandContent;
-
-  /** Set the Selected Row Keys */
-  selectedRowKeys?: React.Key[];
-
-  /** Se the Selection Type */
-  type?: RowSelectionType;
-}
-
-export type RowSelectionType = 'checkbox' | 'radio';
-
-export type RowSelectCallback<Data, E = HTMLElement> = (
-  item: Data,
-  selected: boolean,
-  selectedRows: Data[],
-  nativeEvent: React.MouseEvent<E>
-) => void;
-
-
-/* --------
- * Pagination Interfaces
- * -------- */
-export type RxTablePaginationPosition =
-  'top left'
-  | 'top center'
-  | 'top right'
-  | 'bottom left'
-  | 'bottom center'
-  | 'bottom right';
-
-export interface RxTablePaginationConfig {
-  position?: RxTablePaginationPosition;
+  /** Wrapper Style */
+  style?: React.CSSProperties
 }
 
 
 /* --------
- * Event Info Interfaces
+ * RxTable Columns
  * -------- */
-export interface ChangeEventInfo {
-  [key: string]: any;
+
+/** Data Filtering */
+export type RxColumnInputFilter<Data> = {
+  initialValue?: string,
+  type: 'input',
+  props?: InputProps,
+  show: (value: string, data: Data, index: number, array: Data[]) => boolean;
+};
+
+export type RxColumnCheckboxFilter<Data> = {
+  initialValue?: boolean,
+  type: 'checkbox',
+  props?: CheckboxProps,
+  show: (value: boolean, data: Data, index: number, array: Data[]) => boolean;
+};
+
+export type RxColumnSelectFilter<Data> = {
+  initialValue?: string,
+  type: 'select',
+  props?: SelectProps,
+  show: (value: string, data: Data, index: number, array: Data[]) => boolean;
+};
+
+export type RxTableDataFilter<Data> =
+  | RxColumnInputFilter<Data>
+  | RxColumnCheckboxFilter<Data>
+  | RxColumnSelectFilter<Data>;
+
+
+/** Cell content could be computed using function or shorthand */
+type ComputedCellContentField<Data> =
+  | ((data: Data, index: number, array: Data[]) => ShorthandItem<TableCellContentProps>)
+  | TableCellContentProps
+  | React.ReactNode;
+
+/** Single Column */
+export interface RxTableColumnProps<Data> {
+  /** Column Cell definition by object */
+  cell?: {
+    /** Main Content */
+    content?: ComputedCellContentField<Data>;
+    /** Cell Header */
+    header?: ComputedCellContentField<Data>;
+    /** Meta Content */
+    meta?: ComputedCellContentField<Data>;
+  };
+
+  /** Children are not allowed */
+  children?: never;
+
+  /** User defined classes */
+  className?: string;
+
+  /** Filter data */
+  filter?: RxTableDataFilter<Data>
+
+  /** Header content */
+  header?: ShorthandItem<TableHeaderCellProps>;
+
+  /** Column Key */
+  key: string;
+
+  /** Inner content render */
+  render?: (data: Data, index: number, array: Data[]) => React.ReactNode;
+
+  /** Change Column Sorting */
+  sort?: string[];
+
+  /** Set text align */
+  textAlign?: ContentAlign;
+}
+
+
+/* --------
+ * Side Components
+ * -------- */
+export interface RxTableHeaderCellProps {
+  /** Header cell className */
+  className: string;
+
+  /** Header Content */
+  content: ShorthandItem<TableHeaderCellProps>;
+
+  /** Cell has Sorting */
+  hasSorting: boolean;
+
+  /** Column is actual sorted column */
+  isActualSortingColumn: boolean;
+
+  /** Column is sorting reversed */
+  isReversedSorting: boolean;
+
+  /** On Click Handler */
+  onClick?: () => void;
+}
+
+export interface RxTableFilterCellProps {
+  /** Filter element is passed using children */
+  children: React.ReactNode;
+
+  /** Filter cell className */
+  className: string;
+}
+
+export interface RxTableErrorProps {
+  /** The error threw */
+  error: any;
+}
+
+export interface RxTableNoContentProps {
+  /** The filters Element */
+  filters: Record<string, any>;
+}
+
+export interface RxTableRowProps<Data> {
+  /** Columns Array */
+  children: React.ReactNode;
+
+  /** Row className */
+  className: string;
+
+  /** Columns Array */
+  columns: RxTableColumnProps<Data>[]
+
+  /** Row index */
+  index: Number;
+
+  /** On row click handler */
+  onClick?: () => void;
+
+  /** The Row Data */
+  row: Data;
+}
+
+export interface RxTableCellProps<Data> {
+  /** Cell className */
+  className: string;
+
+  /** Column Properties */
+  column: RxTableColumnProps<Data>;
+
+  /** All data array */
+  data: Data[];
+
+  /** The Row Index */
+  index: number;
+
+  /** Single Row Data */
+  row: Data;
+}
+
+export type RxTableHeaderCellComponent = React.ComponentType<RxTableHeaderCellProps & AnyObject>;
+
+export type RxTableFilterCellComponent = React.ComponentType<RxTableFilterCellProps & AnyObject>;
+
+export type RxTableErrorComponent = React.ComponentType<RxTableErrorProps & AnyObject>;
+
+export type RxTableRowComponent<Data> = React.ComponentType<RxTableRowProps<Data> & AnyObject>;
+
+export type RxTableCellComponent<Data> = React.ComponentType<RxTableCellProps<Data> & AnyObject>;
+
+
+/* --------
+ * Dynamic Definition of RxTable Components
+ * -------- */
+export interface RxTableComponents<Data> {
+  /** Element used to Wrap the rows collection */
+  Body: React.ElementType;
+
+  /** Element used to render the single cell */
+  BodyCell: RxTableCellComponent<Data>;
+
+  /** Element used to render the row */
+  BodyRow: RxTableRowComponent<Data>;
+
+  /** Element used to wrap the entire list */
+  BodyWrapper: React.ElementType;
+
+  /** Error Component */
+  Error: RxTableErrorComponent;
+
+  /** The Error Row Wrapper */
+  ErrorRow: React.ElementType;
+
+  /** The Error Cell */
+  ErrorCell: React.ElementType;
+
+  /** Cell Element used to wrap single Filter */
+  FilterCell: RxTableFilterCellComponent;
+
+  /** Row Used to draw Filters */
+  FilterRow: React.ElementType;
+
+  /** Element used to Wrap the header rows collection */
+  Header: React.ElementType;
+
+  /** Element used to render the single header cell */
+  HeaderCell: RxTableHeaderCellComponent;
+
+  /** Element used to render the header row */
+  HeaderRow: React.ElementType;
+
+  /** Element used to wrap the entire header elements */
+  HeaderWrapper: React.ElementType;
+
+  /** The Loader Element */
+  Loader: React.ComponentType;
+
+  /** The Loader Row Wrapper */
+  LoaderRow: React.ElementType;
+
+  /** The Loader Row Cell */
+  LoaderCell: React.ElementType;
+
+  /** The No Content Element */
+  NoContent: React.ComponentType<RxTableNoContentProps>;
+
+  /** The No Content Cell */
+  NoContentCell: React.ElementType;
+
+  /** The No Content Row */
+  NoContentRow: React.ElementType;
 }
