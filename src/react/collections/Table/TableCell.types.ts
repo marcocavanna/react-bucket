@@ -27,4 +27,7 @@ export interface StrictTableCellProps extends SharedComponentStateProps,
 
   /** Set the Cell as Selectable */
   selectable?: boolean;
+
+  /** Show all cell content removing ellipsis overflow */
+  wrapped?: boolean;
 }

@@ -149,19 +149,12 @@ table > .head,
 .table > .body,
 .table > .foot {
   > .row > .cell {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-
     .meta,
     .title,
     .content {
       color: inherit;
       display: block;
       line-height: 1.25;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
       width: 100%;
       margin: 0;
     }
@@ -172,6 +165,21 @@ table > .head,
 
     > .content {
       opacity: $table-cell-content-opacity;
+      font-size: $table-cell-content-font-size;
+    }
+
+    &:not(.wrapped) {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      .meta,
+      .title,
+      .content {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
     }
   }
 }

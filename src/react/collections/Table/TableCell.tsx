@@ -40,6 +40,7 @@ const TableCell: TableCellComponent = (props) => {
       header,
       meta,
       selectable,
+      wrapped,
       ...rawRest
     }
   } = useSharedClassName(props);
@@ -49,7 +50,7 @@ const TableCell: TableCellComponent = (props) => {
   const ElementType = useElementType(TableCell, props);
 
   const classes = clsx(
-    { active, selectable },
+    { active, selectable, wrapped },
     'cell',
     className,
     stateClassName
