@@ -169,6 +169,10 @@
   &.is-big {
     max-width: $modal-size-big;
   }
+
+  &.is-huge {
+    max-width: $modal-size-huge;
+  }
 }
 
 

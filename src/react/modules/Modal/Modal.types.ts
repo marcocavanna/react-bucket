@@ -65,5 +65,5 @@ export interface StrictModalProps extends Omit<StrictBackdropProps, 'page' | 'vi
   open?: boolean;
 
   /** Set modal Size */
-  size?: Exclude<ElementSize, 'extra small' | 'normal' | 'huge'> | 'auto';
+  size?: Exclude<ElementSize, 'extra small' | 'normal'> | 'auto';
 }
