@@ -209,6 +209,10 @@
       white-space: nowrap;
       overflow: hidden;
 
+      > .cell-header {
+        margin-bottom: 0;
+      }
+
       > .cell-content {
         margin: 0;
       }
