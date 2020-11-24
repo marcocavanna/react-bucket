@@ -764,6 +764,10 @@
   }
 
   .ReactVirtualized__Table__row.clickable {
+    .ReactVirtualized__Table__rowColumn {
+      background-color: transparent;
+    }
+
     @include without-touch-hover {
       cursor: pointer;
       background-color: $white-shade;
