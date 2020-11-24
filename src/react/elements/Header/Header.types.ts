@@ -1,8 +1,10 @@
 import {
   ReactBucketComponentProps,
   ReactBucketIcon,
+  ShorthandCollection,
   ShorthandItem
 } from '../../generic';
+import { ButtonProps } from '../Button';
 
 import { HeaderSubheaderProps } from './HeaderSubheader.types';
 import { HeaderContentProps } from './HeaderContent.types';
@@ -15,6 +17,9 @@ export interface HeaderProps extends ReactBucketComponentProps<StrictHeaderProps
 }
 
 export interface StrictHeaderProps {
+  /** Header Actions Collection, like CTA */
+  actions?: ShorthandCollection<ButtonProps>;
+
   /** Content Shorthand to create Header */
   content?: ShorthandItem<HeaderContentProps>;
 

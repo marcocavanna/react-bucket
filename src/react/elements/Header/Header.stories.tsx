@@ -34,6 +34,10 @@ export const simpleHeader = () => {
       size={size}
       disabled={boolean('Disabled', false)}
       divided={boolean('Divided', false)}
+      actions={[
+        { primary: true, content: 'Add Me', icon: 'thumbs up' },
+        { primary: true, content: 'Add Me', icon: 'thumbs up' }
+      ]}
     />
   );
 

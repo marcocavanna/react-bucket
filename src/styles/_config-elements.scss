@@ -216,6 +216,18 @@ $form-action-align: right !default;
 
 
 /******
+    Header
+******/
+$header-top-margin: 2em !default;
+$header-bottom-margin: 1em !default;
+$header-base-font-size: $h3-font-size !default;
+$header-subheader-relative-font-size: .75em !default;
+$header-subheader-opacity: .6 !default;
+$header-centered-icon-size: $h2-font-size !default;
+$header-actions-spacer: 1.5em !default;
+
+
+/******
     Icon Configuration
 ******/
 $icon-spacer: $spacer * .25 !default;

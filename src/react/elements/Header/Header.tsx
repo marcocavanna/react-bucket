@@ -10,6 +10,7 @@ import {
 import { CreatableFunctionComponent } from '../../generic';
 
 import { getSharedClassNames } from '../../lib';
+import { Button } from '../Button';
 
 import { Icon } from '../Icon';
 
@@ -36,6 +37,7 @@ const Header: HeaderComponent = (props) => {
   const {
     className,
     rest: {
+      actions,
       children,
       content,
       disabled,
@@ -52,7 +54,8 @@ const Header: HeaderComponent = (props) => {
     {
       disabled,
       divided,
-      'with-icon': icon
+      'with-icon'   : icon,
+      'with-actions': Array.isArray(actions)
     },
     'header',
     className
@@ -75,6 +78,26 @@ const Header: HeaderComponent = (props) => {
     [ icon ]
   );
 
+  const actionsElement = React.useMemo(
+    () => {
+      if (!Array.isArray(actions)) {
+        return null;
+      }
+
+      return (
+        <div className={'header-actions'}>
+          {actions.map((action) => Button.create(action, {
+            autoGenerateKey: true,
+            defaultProps   : {
+              className: 'action'
+            }
+          }))}
+        </div>
+      );
+    },
+    [ actions ]
+  );
+
   return (
     <ElementType {...rest} className={classes}>
       {iconElement && (
@@ -90,6 +113,7 @@ const Header: HeaderComponent = (props) => {
           </React.Fragment>
         )}
       </div>
+      {actionsElement}
     </ElementType>
   );
 };

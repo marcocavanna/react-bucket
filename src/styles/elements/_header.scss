@@ -21,7 +21,7 @@
 .header {
   display: block;
   position: relative;
-  margin: 2rem 0 1rem;
+  margin: $header-top-margin 0 $header-bottom-margin;
   padding: 0;
   text-align: inherit;
 
@@ -29,7 +29,8 @@
   //  Reset heading elements font size
   // ----
   .header-content {
-    font-size: $h3-font-size;
+    font-size: $header-base-font-size;
+    flex-grow: 1;
 
     .content {
       font-size: 1em;
@@ -47,8 +48,8 @@
   //  Set the Subheader font size and Colors
   // ----
   .subheader {
-    font-size: .75em;
-    opacity: .6;
+    font-size: $header-subheader-relative-font-size;
+    opacity: $header-subheader-opacity;
   }
 
   // ----
@@ -73,14 +74,15 @@
 ******/
 .header.divided {
   border-bottom: solid 1px $hr-color-dark;
-  padding-bottom: 1rem;
+  padding-bottom: $header-bottom-margin;
 }
 
 
 /******
     Header Icons
 ******/
-.header.with-icon {
+.header.with-icon,
+.header.with-actions {
   display: flex;
   width: 100%;
   flex: 1 0 100%;
@@ -90,7 +92,7 @@
   //  Set the Icon Style
   // ----
   .header-icon {
-    font-size: $h3-font-size;
+    font-size: $header-base-font-size;
   }
 
   // ----
@@ -112,12 +114,18 @@
 
     /// Increase Icon Size on Centered Header
     .header-icon {
-      font-size: $h2-font-size;
+      font-size: $header-centered-icon-size;
 
       @include icon-style() {
         margin-right: 0;
+        margin-left: 0;
         margin-bottom: $icon-spacer;
       }
+    }
+
+    /// Add spacing between Actions and Content
+    .header-actions {
+      margin-top: $header-actions-spacer;
     }
   }
 }
