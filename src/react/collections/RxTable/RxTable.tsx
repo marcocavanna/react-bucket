@@ -77,13 +77,6 @@ const RxTable = <Data extends AnyObject>(
     ...rest
   } = props;
 
-
-  /** Build the element class list */
-  const classes = clsx(
-    'rx-table',
-    className
-  );
-
   /** Get right element type */
   const ElementType = useElementType(RxTable, props as unknown as PropsWithAs<RxTableProps<AnyObject>>);
 
@@ -96,6 +89,16 @@ const RxTable = <Data extends AnyObject>(
   const hasHeaderRow = React.useMemo<boolean>(
     () => columns.some((column) => !!column.header),
     [ columns ]
+  );
+
+
+  /** Build the element class list */
+  const classes = clsx(
+    'rx-table',
+    {
+      filterable: hasFilterRow
+    },
+    className
   );
 
 

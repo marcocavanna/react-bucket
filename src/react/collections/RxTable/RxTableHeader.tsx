@@ -138,7 +138,8 @@ const RxTableHeaderRow: React.FunctionComponent = () => {
 
         /** Build header classes */
         const classes = clsx(
-          column.textAlign && `has-text-${column.textAlign}`
+          column.textAlign && `has-text-${column.textAlign}`,
+          column.headerClassName
         );
 
         /** Build the handler to change sorting */

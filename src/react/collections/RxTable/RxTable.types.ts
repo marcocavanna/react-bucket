@@ -142,6 +142,9 @@ export interface RxTableColumnProps<Data> {
   /** Header content */
   header?: ShorthandItem<TableHeaderCellProps>;
 
+  /** Class name added to header cell only */
+  headerClassName?: string;
+
   /** Column Key */
   key: string;
 
