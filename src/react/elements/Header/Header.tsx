@@ -23,7 +23,7 @@ import { HeaderProps } from './Header.types';
 /* --------
  * Component Declare
  * -------- */
-type HeaderComponent = CreatableFunctionComponent<HeaderProps> & {
+export type HeaderComponent = CreatableFunctionComponent<HeaderProps> & {
   Content: typeof HeaderContent;
   Subheader: typeof HeaderSubheader;
 };

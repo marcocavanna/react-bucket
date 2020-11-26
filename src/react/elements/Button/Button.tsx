@@ -19,7 +19,7 @@ import { ButtonProps } from './Button.types';
 import ButtonGroup from './ButtonGroup';
 
 import { Icon } from '../Icon';
-import { Popup } from '../../modules/Popup';
+import Popup from '../../modules/Popup/Popup';
 
 
 /* --------

@@ -10,6 +10,7 @@ import {
   Portal,
   PortalProps
 } from '@appbuckets/react-ui-core';
+import { HeaderComponent } from '../../elements/Header/Header';
 
 import {
   useSharedClassName,
@@ -23,7 +24,12 @@ import {
   usePortalProps
 } from './lib/internalHooks';
 
-import { Header } from '../../elements/Header';
+
+let Header: HeaderComponent | null = null;
+
+import('../../elements/Header/Header').then(({ default: importedHeader }) => {
+  Header = importedHeader;
+});
 
 
 /* --------
@@ -180,11 +186,13 @@ const Popup: PopupComponent = (props) => {
     }
   };
 
-  const handlePopupClick = (event: React.MouseEvent<HTMLElement>) => {
-    if (!basic && !inverted) {
-      event.stopPropagation();
+  const handlePopupClick = props.openOn?.includes('click')
+    ? (event: React.MouseEvent<HTMLElement>) => {
+      if (!basic && !inverted) {
+        event.stopPropagation();
+      }
     }
-  };
+    : undefined;
 
 
   // ----
@@ -234,7 +242,7 @@ const Popup: PopupComponent = (props) => {
       <div className={'content'}>
         {
           childrenUtils.isNil(children)
-            ? Header.create(content, { autoGenerateKey: false })
+            ? Header && Header.create(content, { autoGenerateKey: false })
             : children
         }
       </div>
