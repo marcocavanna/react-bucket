@@ -137,7 +137,7 @@
     "yaml": "^1.10.0"
   },
   "dependencies": {
-    "@appbuckets/react-ui-core": "^0.1.1",
+    "@appbuckets/react-ui-core": "^0.1.2",
     "@fortawesome/fontawesome-free": "5.13.0",
     "@popperjs/core": "2.5.4",
     "@semantic-ui-react/event-stack": "3.1.1",

@@ -9,10 +9,10 @@
   dependencies:
     tiny-invariant "^1.1.0"
 
-"@appbuckets/react-ui-core@^0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@appbuckets/react-ui-core/-/react-ui-core-0.1.1.tgz#186a849776725e8f60551253248ca300f01c1f57"
-  integrity sha512-w+BZy0rO7PFh0HAlZWFjM2ZveyOJDAxYi500iTxA7SQP/qeT93NGJ/cISylbw7sGtLxfiu/xN48K/Wlqjauj8Q==
+"@appbuckets/react-ui-core@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@appbuckets/react-ui-core/-/react-ui-core-0.1.2.tgz#6159a37b154f697ac709fcef36a77613b80f3e89"
+  integrity sha512-JrpR7xqgB7X9IB6Rk7eRNdGGML5hCiLA2XyESV3wcnBMpXh9FSCH6cTljD/p6oWVhad+fm7c2d/ZXkZjAVStOQ==
   dependencies:
     "@appbuckets/react-autocontrolled-component" "^0.0.3"
     "@semantic-ui-react/event-stack" "^3.1.1"
