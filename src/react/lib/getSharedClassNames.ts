@@ -23,7 +23,9 @@ export type SharedClassNamesAndProps<P> = {
   /** Computed Class Names */
   className: string;
   /** Other Component Props */
-  rest: Pick<P, Exclude<keyof P, keyof SharedProps>>
+  rest: {
+    [K in keyof P]: K extends keyof SharedProps ? never : P[K]
+  }
 };
 
 
@@ -105,5 +107,5 @@ export default function getSharedClassNames<P extends SharedProps>(props: P): Sh
     className
   );
 
-  return { className: classes, rest };
+  return { className: classes, rest } as SharedClassNamesAndProps<P>;
 }

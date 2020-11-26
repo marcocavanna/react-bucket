@@ -10,10 +10,16 @@ import {
 } from '../generic';
 
 
-export type SplitStateClassName<P> = [ string, Omit<P, keyof SharedComponentStateProps> ];
+export type SplitStateClassName<P> = [
+  string,
+  {
+    [K in keyof P]: K extends keyof SharedComponentStateProps ? never : P[K]
+  },
+  SharedComponentStateProps
+];
 
 
-export default function splitStateClassName<P>(props: P): SplitStateClassName<P> {
+export default function splitStateClassName<P extends SharedComponentStateProps>(props: P): SplitStateClassName<P> {
 
   const {
     appearance,
@@ -40,6 +46,18 @@ export default function splitStateClassName<P>(props: P): SplitStateClassName<P>
     )
   );
 
-  return [ classes, rest ];
+  return [
+    classes,
+    rest,
+    {
+      appearance,
+      danger,
+      info,
+      primary,
+      secondary,
+      success,
+      warning
+    }
+  ] as unknown as SplitStateClassName<P>;
 
 }

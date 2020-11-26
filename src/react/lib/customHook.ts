@@ -3,7 +3,8 @@ import * as React from 'react';
 import { getElementType, PropsWithAs } from '@appbuckets/react-ui-core';
 
 import getSharedClassNames, {
-  SharedClassNamesAndProps
+  SharedClassNamesAndProps,
+  SharedProps
 } from './getSharedClassNames';
 
 import splitStateClassName, { SplitStateClassName } from './splitStateClassName';
@@ -24,7 +25,13 @@ export function useElementType<P = {}>(
 ): React.ElementType | string {
   return React.useMemo(
     () => getElementType(Component, props, getDefault),
-    [ props.as, props.href, getDefault ]
+    // eslint-disable-next-line
+    [
+      Component.defaultProps?.as,
+      props.as,
+      props.href,
+      getDefault
+    ]
   );
 }
 
@@ -33,11 +40,60 @@ export function useElementType<P = {}>(
  * Export a function to use the correct
  * shared className, wrapped by a react useMemo
  */
-export function useSharedClassName<P>(props: P): SharedClassNamesAndProps<P> {
-  return React.useMemo(
-    () => getSharedClassNames(props),
-    [ props ]
+export function useSharedClassName<P>(props: P): Readonly<SharedClassNamesAndProps<P>> {
+
+  /** Extract Props used to build shared className string */
+  const {
+    as,
+    backgroundColor,
+    className,
+    columnsAlign,
+    display,
+    fontWeight,
+    width,
+    offsetBy,
+    size,
+    textAlign,
+    textColor,
+    verticalAlign,
+    withoutGap,
+    ...rest
+  } = props as P & SharedProps;
+
+  /** Use a memoized value to build classes */
+  const classes = React.useMemo(
+    (): string => getSharedClassNames({
+      backgroundColor,
+      className,
+      columnsAlign,
+      display,
+      fontWeight,
+      width,
+      offsetBy,
+      size,
+      textAlign,
+      textColor,
+      verticalAlign,
+      withoutGap
+    }).className,
+    [
+      backgroundColor,
+      className,
+      columnsAlign,
+      display,
+      fontWeight,
+      width,
+      offsetBy,
+      size,
+      textAlign,
+      textColor,
+      verticalAlign,
+      withoutGap
+    ]
   );
+
+  /** Return className and rest props */
+  return { className: classes, rest } as Readonly<SharedClassNamesAndProps<P>>;
 }
 
 
@@ -45,19 +101,42 @@ export function useSharedClassName<P>(props: P): SharedClassNamesAndProps<P> {
  * Export a function to split the state className
  * from component Props
  */
-export function useSplitStateClassName<P>(props: P): SplitStateClassName<P> {
-  return React.useMemo(
-    () => splitStateClassName(props),
+export function useSplitStateClassName<P extends SharedComponentStateProps>(props: P): Readonly<SplitStateClassName<P>> {
+
+  const {
+    appearance,
+    danger,
+    info,
+    primary,
+    secondary,
+    success,
+    warning,
+    ...rest
+  } = props;
+
+  /** Use a memoized value to build classes */
+  const [ classes, , state ] = React.useMemo(
+    () => splitStateClassName({
+      appearance,
+      danger,
+      info,
+      primary,
+      secondary,
+      success,
+      warning
+    }),
     [
-      (props as P & SharedComponentStateProps).appearance,
-      (props as P & SharedComponentStateProps).danger,
-      (props as P & SharedComponentStateProps).info,
-      (props as P & SharedComponentStateProps).primary,
-      (props as P & SharedComponentStateProps).secondary,
-      (props as P & SharedComponentStateProps).success,
-      (props as P & SharedComponentStateProps).warning
+      appearance,
+      danger,
+      info,
+      primary,
+      secondary,
+      success,
+      warning
     ]
   );
+
+  return [ classes, rest, state ] as unknown as Readonly<SplitStateClassName<P>>;
 }
 
 
