@@ -124,7 +124,7 @@ textarea.text {
     }
 
     &.icon-on-left {
-      > .icon {
+      > .icon:not(.clear) {
         padding-left: $input-horizontal-padding * 1.125;
       }
 
