@@ -208,6 +208,32 @@ table > .head,
     color: $table-sortable-header-active-color;
   }
 
+  // ----
+  //  Sortable Icon
+  // ----
+  .title {
+    &:before {
+      @include fontAwesomeFamilySolid();
+      content: fa-content($table-sortable-asc-icon);
+      margin-right: $table-sortable-icon-spacer;
+      opacity: $table-sortable-icon-opacity;
+    }
+  }
+
+  &.sorted {
+    .title {
+      &:before {
+        opacity: $table-sortable-icon-sorted-opacity;
+      }
+    }
+
+    &.desc .title {
+      &:before {
+        content: fa-content($table-sortable-desc-icon);
+      }
+    }
+  }
+
   @include hover {
     transition: color $transition-ease $transition-speed-fast;
 

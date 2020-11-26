@@ -56,6 +56,6 @@ TableHeaderCell.defaultProps = {
   as: 'th'
 };
 
-TableHeaderCell.create = createShorthandFactory(TableHeaderCell, (content) => ({ content }));
+TableHeaderCell.create = createShorthandFactory(TableHeaderCell, (content) => ({ header: content }));
 
 export default TableHeaderCell;

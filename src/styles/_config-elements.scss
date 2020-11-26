@@ -510,6 +510,11 @@ $table-clickable-row-hover-color: $white-shade-2 !default;
 
 $table-sortable-header-hover-color: $text !default;
 $table-sortable-header-active-color: $primary !default;
+$table-sortable-icon-spacer: $icon-spacer !default;
+$table-sortable-asc-icon: $fa-var-sort-amount-down-alt !default;
+$table-sortable-desc-icon: $fa-var-sort-amount-down !default;
+$table-sortable-icon-opacity: .5 !default;
+$table-sortable-icon-sorted-opacity: 1 !default;
 
 $table-body-border-style: solid !default;
 $table-body-border-color: $grey-lightest !default;

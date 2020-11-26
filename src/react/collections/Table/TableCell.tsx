@@ -111,7 +111,7 @@ TableCell.Content = TableCellContent;
 
 TableCell.create = createShorthandFactory(
   TableCell,
-  (content) => ({ content })
+  (content) => ({ header: content })
 );
 
 export default TableCell;
