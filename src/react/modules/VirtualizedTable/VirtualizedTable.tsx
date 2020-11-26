@@ -1,24 +1,29 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { RxTableComponents } from '../../collections/RxTable';
-import { RxTableError, RxTableLoader } from '../../collections/RxTable/RxTableDefaultComponents';
 
 import { AnyObject } from '../../generic';
 
 import { useRxTableFactory } from '../../collections/RxTable/RxTable.factory';
+import { RxTableComponents } from '../../collections/RxTable';
+import { RxTableError } from '../../collections/RxTable/RxTableDefaultComponents';
+
 import {
   VirtualizedTableContext,
   VirtualizedTableProvider
 } from './VirtualizedTable.context';
 
 import { VirtualizedTableProps } from './VirtualizedTable.types';
-import { VirtualizedTableBody } from './VirtualizedTableBody';
+
 import {
   VirtualizedTableBodyCell,
   VirtualizedTableBodyRow,
-  VirtualizedTableFilterCell, VirtualizedTableHeaderCell,
+  VirtualizedTableFilterCell,
+  VirtualizedTableHeaderCell,
+  VirtualizedTableLoader,
   VirtualizedTableNoContent
 } from './VirtualizedTableDefaultComponents';
+
+import { VirtualizedTableBody } from './VirtualizedTableBody';
 import { VirtualizedTableHeader } from './VirtualizedTableHeader';
 
 
@@ -45,10 +50,13 @@ const VirtualizedTable = <Data extends AnyObject>(
     defaultReverseSorting: userDefinedDefaultReverseSorting,
     defaultSort          : userDefinedDefaultSort,
     disableHeader,
+    noDataEmptyContentProps,
+    noFilteredDataEmptyContentProps,
     filterLogic,
     filterRowHeight      : userDefinedFilterRowHeight,
     headerHeight         : userDefinedHeaderHeight,
     height,
+    loaderProps,
     onRowClick,
     onSortChange,
     reloadDependency,
@@ -131,7 +139,7 @@ const VirtualizedTable = <Data extends AnyObject>(
     HeaderCell   : VirtualizedTableHeaderCell,
     HeaderRow    : 'div',
     HeaderWrapper: 'div',
-    Loader       : RxTableLoader,
+    Loader       : VirtualizedTableLoader,
     LoaderRow    : 'div',
     LoaderCell   : 'div',
     NoContent    : VirtualizedTableNoContent,
@@ -188,10 +196,13 @@ const VirtualizedTable = <Data extends AnyObject>(
     columns,
     Components,
     effectiveWidth,
+    noDataEmptyContentProps,
+    noFilteredDataEmptyContentProps,
     filterRowHeight,
     headerHeight,
     height: tableBodyHeight,
     getRowHeight,
+    loaderProps,
     width
   };
 

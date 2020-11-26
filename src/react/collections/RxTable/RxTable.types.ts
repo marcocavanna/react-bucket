@@ -7,6 +7,8 @@ import {
   AnyObject
 } from '../../generic';
 
+import { LoaderProps } from '../../elements/Loader';
+import { EmptyContentProps } from '../../elements/EmptyContent';
 import { CheckboxProps } from '../../elements/Checkbox';
 import { InputProps } from '../../elements/Input';
 import { SelectProps } from '../../elements/Select';
@@ -37,6 +39,15 @@ export interface StrictRxTableProps<Data> extends UseRxTableFactoryConfig<Data> 
 
   /** Initial Loading State */
   initiallyLoading?: boolean;
+
+  /** Set default loader props, used with default loader component */
+  loaderProps?: Partial<LoaderProps>;
+
+  /** Set default empty content props, used with default empty component */
+  noDataEmptyContentProps?: EmptyContentProps;
+
+  /** Set default empty content props, used with default empty component */
+  noFilteredDataEmptyContentProps?: EmptyContentProps;
 
   /** On Row Click Handler */
   onRowClick?: (row: Data, index: number, array: Data[]) => void;

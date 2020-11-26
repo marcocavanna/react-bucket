@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import * as React from 'react';
 
 import {
@@ -9,8 +10,10 @@ import {
 
 import TableCellContent from '../../collections/Table/TableCellContent';
 import TableHeaderCell from '../../collections/Table/TableHeaderCell';
+import { Box } from '../../elements/Box';
 
 import { EmptyContent } from '../../elements/EmptyContent';
+import { Loader } from '../../elements/Loader';
 
 import { useVirtualizedTable } from './VirtualizedTable.context';
 
@@ -195,8 +198,10 @@ const VirtualizedTableFilterCell: RxTableFilterCellComponent = (
     column
   } = props;
 
+  const classes = clsx(className, 'cell');
+
   return (
-    <div className={className} style={{ width: column.width, flexBasis: column.width }}>
+    <div className={classes} style={{ width: column.width, flexBasis: column.width }}>
       {children}
     </div>
   );
@@ -208,29 +213,61 @@ export { VirtualizedTableFilterCell };
 
 
 /* --------
+ * Loader Element
+ * -------- */
+const VirtualizedTableLoader: React.FunctionComponent = () => {
+
+  const {
+    loaderProps
+  } = useVirtualizedTable();
+
+  return (
+    <Box py={4}>
+      {Loader.create({
+        centered: true,
+        active  : true,
+        size    : 'large',
+        type    : 'dots',
+        content : 'Loading Data',
+        ...loaderProps
+      }, {
+        autoGenerateKey: false
+      })}
+    </Box>
+  );
+};
+
+VirtualizedTableLoader.displayName = 'VirtualizedTableLoader';
+
+export { VirtualizedTableLoader };
+
+
+/* --------
  * No Content Element
  * -------- */
 const VirtualizedTableNoContent: React.FunctionComponent = () => {
 
   const {
-    data
+    data,
+    noDataEmptyContentProps,
+    noFilteredDataEmptyContentProps
   } = useVirtualizedTable();
 
   if (!data.length) {
-    return (
-      <EmptyContent
-        header={'No Data'}
-        content={'No data to show'}
-      />
-    );
+    return EmptyContent.create(noDataEmptyContentProps ?? {
+      header : 'No Data',
+      content: 'No data to show'
+    }, {
+      autoGenerateKey: false
+    });
   }
 
-  return (
-    <EmptyContent
-      header={'No Data to Show'}
-      content={'No data to show for current filters'}
-    />
-  );
+  return EmptyContent.create(noFilteredDataEmptyContentProps ?? {
+    header : 'No Data to Show',
+    content: 'No data to show for current filters'
+  }, {
+    autoGenerateKey: false
+  });
 };
 
 VirtualizedTableNoContent.displayName = 'VirtualizedTableNoContent';

@@ -71,6 +71,9 @@ export const AsyncLoadData = () => {
       data={handleLoadData}
       filterLogic={'or'}
       rowKey={'email'}
+      loaderProps={{
+        content: 'Loading User'
+      }}
     />
   );
 };

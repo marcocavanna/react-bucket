@@ -1,9 +1,12 @@
+import { AnyObject } from '../../generic';
+import { contextBuilder } from '../../lib';
+
 import { RxTableComponents } from '../../collections/RxTable';
 import { RxTableFactory } from '../../collections/RxTable/RxTable.factory';
 
-import { contextBuilder } from '../../lib';
+import { EmptyContentProps } from '../../elements/EmptyContent';
+import { LoaderProps } from '../../elements/Loader';
 
-import { AnyObject } from '../../generic';
 import { VirtualizedTableColumnProps } from './VirtualizedTable.types';
 
 
@@ -23,6 +26,9 @@ export interface VirtualizedTableContext<Data extends AnyObject> extends RxTable
   /** Height of filter row */
   filterRowHeight: number;
 
+  /** Get the row height using index */
+  getRowHeight: (index: number) => number;
+
   /** Header row height */
   headerHeight: number;
 
@@ -32,8 +38,14 @@ export interface VirtualizedTableContext<Data extends AnyObject> extends RxTable
   /** Check if must enable row click */
   isRowClickEnabled: boolean;
 
-  /** Get the row height using index */
-  getRowHeight: (index: number) => number;
+  /** Set default loader props, used with default loader component */
+  loaderProps?: Partial<LoaderProps>;
+
+  /** Set default empty content props, used with default empty component */
+  noDataEmptyContentProps?: EmptyContentProps;
+
+  /** Set default empty content props, used with default empty component */
+  noFilteredDataEmptyContentProps?: EmptyContentProps;
 
   /** Table total width */
   width: number;

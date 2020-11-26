@@ -1,8 +1,11 @@
 import * as React from 'react';
 
 import { AnyObject } from '../../generic';
-
 import { contextBuilder } from '../../lib';
+
+import { EmptyContentProps } from '../../elements/EmptyContent';
+import { LoaderProps } from '../../elements/Loader';
+
 import { RxTableFactory } from './RxTable.factory';
 
 import { RxTableColumnProps, RxTableComponents } from './RxTable.types';
@@ -26,6 +29,15 @@ export interface RxTableContext<Data extends AnyObject, ColumnProps extends {} =
 
   /** Check if must enable row click */
   isRowClickEnabled: boolean;
+
+  /** Set default loader props, used with default loader component */
+  loaderProps?: Partial<LoaderProps>;
+
+  /** Set default empty content props, used with default empty component */
+  noDataEmptyContentProps?: EmptyContentProps;
+
+  /** Set default empty content props, used with default empty component */
+  noFilteredDataEmptyContentProps?: EmptyContentProps;
 }
 
 

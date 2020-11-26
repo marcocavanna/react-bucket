@@ -53,6 +53,9 @@ const RxTable = <Data extends AnyObject>(
     disableHeader,
     filterLogic,
     initiallyLoading,
+    loaderProps,
+    noFilteredDataEmptyContentProps,
+    noDataEmptyContentProps,
     onRowClick,
     onSortChange,
     reloadDependency,
@@ -142,6 +145,9 @@ const RxTable = <Data extends AnyObject>(
     ...rxTableProps,
     Components,
     columns,
+    loaderProps,
+    noFilteredDataEmptyContentProps,
+    noDataEmptyContentProps,
     getRowKey
   };
 

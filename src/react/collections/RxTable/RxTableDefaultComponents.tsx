@@ -171,17 +171,28 @@ export { RxTableFilterCell };
 /* --------
  * Loader Element
  * -------- */
-const RxTableLoader: React.FunctionComponent = () => (
-  <Box py={4}>
-    <Loader
-      centered
-      active={true}
-      size={'large'}
-      type={'dots'}
-      content={'Loading Data'}
-    />
-  </Box>
-);
+const RxTableLoader: React.FunctionComponent = () => {
+
+  const {
+    loaderProps
+  } = useRxTable();
+
+  return (
+    <Box py={4}>
+      {Loader.create({
+        centered: true,
+        active  : true,
+        size    : 'large',
+        type    : 'dots',
+        content : 'Loading Data',
+        ...loaderProps
+      }, {
+        autoGenerateKey: false
+      })}
+    </Box>
+  );
+
+};
 
 RxTableLoader.displayName = 'RxTableLoader';
 
@@ -209,24 +220,26 @@ export { RxTableError };
 const RxTableNoContent: React.FunctionComponent = () => {
 
   const {
-    data
+    data,
+    noDataEmptyContentProps,
+    noFilteredDataEmptyContentProps
   } = useRxTable();
 
   if (!data.length) {
-    return (
-      <EmptyContent
-        header={'No Data'}
-        content={'No data to show'}
-      />
-    );
+    return EmptyContent.create(noDataEmptyContentProps ?? {
+      header : 'No Data',
+      content: 'No data to show'
+    }, {
+      autoGenerateKey: false
+    });
   }
 
-  return (
-    <EmptyContent
-      header={'No Data to Show'}
-      content={'No data to show for current filters'}
-    />
-  );
+  return EmptyContent.create(noFilteredDataEmptyContentProps ?? {
+    header : 'No Data to Show',
+    content: 'No data to show for current filters'
+  }, {
+    autoGenerateKey: false
+  });
 };
 
 RxTableNoContent.displayName = 'RxTableNoContent';
