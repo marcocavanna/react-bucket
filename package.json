@@ -34,7 +34,7 @@
   "license": "MIT",
   "scripts": {
     "version": "yarn build && git add -A -f build",
-    "postversion": "git push && git push --tags",
+    "postversion": "git push && git push --tags && npm publish",
     "prepublishOnly": "node build.fontawesome.js && npm run build",
     "build": "cross-env NODE_ENV=production yarn compile:rollup",
     "build:dev": "cross-env NODE_ENV=development yarn compile:rollup",
