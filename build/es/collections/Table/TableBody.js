@@ -1,0 +1,45 @@
+'use strict';
+
+var _tslib = require('../../_virtual/_tslib.js');
+var React = require('react');
+var clsx = require('clsx');
+var reactUiCore = require('@appbuckets/react-ui-core');
+var customHook = require('../../lib/customHook.js');
+require('tiny-invariant');
+
+function _interopDefaultLegacy(e) {
+  return e && typeof e === 'object' && 'default' in e ? e : { default: e };
+}
+
+var clsx__default = /*#__PURE__*/ _interopDefaultLegacy(clsx);
+
+/* --------
+ * Component Render
+ * -------- */
+var TableBody = function (props) {
+  var _a = customHook.useSharedClassName(props),
+    className = _a.className,
+    _b = _a.rest,
+    children = _b.children,
+    content = _b.content,
+    rest = _tslib.__rest(_b, ['children', 'content']);
+  var ElementType = customHook.useElementType(TableBody, props);
+  var classes = clsx__default['default'](className, 'body');
+  return React.createElement(
+    ElementType,
+    _tslib.__assign({}, rest, { className: classes }),
+    reactUiCore.childrenUtils.isNil(children) ? content : children
+  );
+};
+TableBody.displayName = 'TableBody';
+TableBody.defaultProps = {
+  as: 'tbody',
+};
+TableBody.create = reactUiCore.createShorthandFactory(TableBody, function (
+  content
+) {
+  return { content: content };
+});
+
+module.exports = TableBody;
+//# sourceMappingURL=TableBody.js.map
