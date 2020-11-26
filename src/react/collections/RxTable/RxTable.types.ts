@@ -13,6 +13,8 @@ import { SelectProps } from '../../elements/Select';
 
 import { TableCellContentProps, TableHeaderCellProps } from '../Table';
 
+import { UseRxTableFactoryConfig } from './RxTable.factory';
+
 
 /* --------
  * RxTable Component
@@ -20,60 +22,27 @@ import { TableCellContentProps, TableHeaderCellProps } from '../Table';
 export interface RxTableProps<Data> extends ReactBucketComponentProps<StrictRxTableProps<Data>, 'table'> {
 }
 
-export interface StrictRxTableProps<Data> {
+export interface StrictRxTableProps<Data> extends UseRxTableFactoryConfig<Data> {
   /** An Element used to Render the Component */
   as?: string | React.ComponentClass | React.FunctionComponent;
 
   /** Children ar not permitted */
   children?: never;
 
-  /** Table Columns definition */
-  columns: RxTableColumnProps<Data>[];
-
   /** Components used to render the Table */
   Components?: Partial<RxTableComponents<Data>>;
-
-  /** Table Data */
-  data: Data[] | ((timestamp: number) => (Data[] | Promise<Data[]>));
-
-  /** Set initial reverse sorting */
-  defaultReverseSorting?: boolean;
-
-  /** Set initial sort */
-  defaultSort?: string[];
 
   /** Disable Header Render */
   disableHeader?: boolean;
 
-  /** Set the filter logic. With and type, all filter must return true to show item, with or at least one must be valid */
-  filterLogic?: 'and' | 'or';
-
   /** Initial Loading State */
   initiallyLoading?: boolean;
-
-  /** If data is a Function, set if is async or not */
-  isAsyncLoading?: boolean;
 
   /** On Row Click Handler */
   onRowClick?: (row: Data, index: number, array: Data[]) => void;
 
-  /** Callback handler fired when sort is changing */
-  onSortChange?: (sorting: string[], reverse: boolean) => void;
-
-  /** Dependencies passed to data load hook. Set this to manually control data reload */
-  reloadDependency?: any;
-
-  /** Disable Loader on data reload */
-  reloadSilently?: boolean;
-
-  /** Manual control reverse sorting */
-  reverseSorting?: boolean;
-
   /** The row key or a function to get it */
   rowKey: keyof Data | ((row: Data, index: number, array: Data[]) => React.Key);
-
-  /** Manual control sorting */
-  sort?: string[];
 
   /** Wrapper Style */
   style?: React.CSSProperties
@@ -119,7 +88,9 @@ type ComputedCellContentField<Data> =
   | React.ReactNode;
 
 /** Single Column */
-export interface RxTableColumnProps<Data> {
+export type RxTableColumnProps<Data, Props extends {} = {}> = Props & StrictRxTableColumnProps<Data>;
+
+export interface StrictRxTableColumnProps<Data> {
   /** Column Cell definition by object */
   cell?: {
     /** Main Content */
@@ -169,6 +140,9 @@ export interface RxTableHeaderCellProps {
   /** Header Content */
   content: ShorthandItem<TableHeaderCellProps>;
 
+  /** Rendered Column */
+  column: RxTableColumnProps<any, { width?: number }>;
+
   /** Cell has Sorting */
   hasSorting: boolean;
 
@@ -188,6 +162,9 @@ export interface RxTableFilterCellProps {
 
   /** Filter cell className */
   className: string;
+
+  /** Rendered Column */
+  column: RxTableColumnProps<any, { width?: number }>;
 }
 
 export interface RxTableErrorProps {
@@ -208,7 +185,7 @@ export interface RxTableRowProps<Data> {
   className: string;
 
   /** Columns Array */
-  columns: RxTableColumnProps<Data>[]
+  columns: RxTableColumnProps<Data, { width?: number }>[]
 
   /** Row index */
   index: Number;
@@ -218,6 +195,9 @@ export interface RxTableRowProps<Data> {
 
   /** The Row Data */
   row: Data;
+
+  /** Optional Style */
+  style?: React.CSSProperties;
 }
 
 export interface RxTableCellProps<Data> {
@@ -225,10 +205,10 @@ export interface RxTableCellProps<Data> {
   className: string;
 
   /** Column Properties */
-  column: RxTableColumnProps<Data>;
+  column: RxTableColumnProps<Data, { width?: number }>;
 
   /** All data array */
-  data: Data[];
+  tableData: Data[];
 
   /** The Row Index */
   index: number;

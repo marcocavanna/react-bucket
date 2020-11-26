@@ -1,14 +1,14 @@
 import * as React from 'react';
 import clsx from 'clsx';
 
-import areEqualStringArray from './lib/areEqualStringArray';
-
 import { Checkbox, CheckboxProps } from '../../elements/Checkbox';
 import { Input, InputProps } from '../../elements/Input';
 import { SelectProps } from '../../elements/Select';
 
 import { useRxTable } from './RxTable.context';
+import { RxTableFactory } from './RxTable.factory';
 import { RxTableDataFilter } from './RxTable.types';
+import { RxTableHeaderTitleColumn } from './RxTableColumns';
 
 
 /* --------
@@ -20,20 +20,23 @@ export interface RxTableFilterElementProps {
 
   /** Filter type */
   filter?: RxTableDataFilter<unknown>;
+
+  /** All filters */
+  filters: RxTableFactory<any>['filters'];
+
+  /** Set filter function */
+  setFilter: RxTableFactory<any>['setFilter'];
 }
 
-const RxTableFilterElement: React.FunctionComponent<RxTableFilterElementProps> = (
+export const RxTableFilterElement: React.FunctionComponent<RxTableFilterElementProps> = (
   props
 ) => {
 
   const {
-    changeFilters,
-    filters
-  } = useRxTable();
-
-  const {
     columnKey,
-    filter
+    filter,
+    filters,
+    setFilter
   } = props;
 
   /** Build Handlers */
@@ -42,15 +45,15 @@ const RxTableFilterElement: React.FunctionComponent<RxTableFilterElementProps> =
     (e: any, filterProps?: InputProps | CheckboxProps | SelectProps) => {
       if (filter) {
         if (filter.type === 'input') {
-          changeFilters(columnKey, filterProps!.value);
+          setFilter(columnKey, filterProps!.value);
         }
         else if (filter.type === 'checkbox') {
-          changeFilters(columnKey, !filterValue);
+          setFilter(columnKey, !filterValue);
         }
       }
     },
     [
-      changeFilters,
+      setFilter,
       filter,
       filterValue,
       columnKey
@@ -91,7 +94,9 @@ const RxTableFilterRow: React.FunctionComponent = () => {
 
   const {
     columns,
-    Components
+    Components,
+    filters,
+    setFilter
   } = useRxTable();
 
   return (
@@ -105,8 +110,17 @@ const RxTableFilterRow: React.FunctionComponent = () => {
 
         /** Return the Filter */
         return (
-          <Components.FilterCell key={column.key} className={classes}>
-            <RxTableFilterElement columnKey={column.key} filter={column.filter} />
+          <Components.FilterCell
+            key={column.key}
+            className={classes}
+            column={column}
+          >
+            <RxTableFilterElement
+              columnKey={column.key}
+              filter={column.filter}
+              setFilter={setFilter}
+              filters={filters}
+            />
           </Components.FilterCell>
         );
       })}
@@ -125,49 +139,22 @@ const RxTableHeaderRow: React.FunctionComponent = () => {
     columns,
     Components,
     isSortReversed,
-    sort,
+    setSorting,
     sorting
   } = useRxTable();
 
   return (
     <Components.HeaderRow>
-      {columns.map((column) => {
-        /** Compute Sorting Props */
-        const hasSorting = Array.isArray(column.sort) && !!column.sort.length;
-        const isActualSortingColumn = hasSorting && areEqualStringArray(sorting, column.sort!);
-
-        /** Build header classes */
-        const classes = clsx(
-          column.textAlign && `has-text-${column.textAlign}`,
-          column.headerClassName
-        );
-
-        /** Build the handler to change sorting */
-        const handleChangeSorting = () => {
-          if (!hasSorting) {
-            return;
-          }
-
-          if (isActualSortingColumn) {
-            sort(column.sort!, !isSortReversed);
-          }
-          else {
-            sort(column.sort!, false);
-          }
-        };
-
-        return (
-          <Components.HeaderCell
-            key={column.key}
-            className={classes}
-            content={column.header}
-            hasSorting={hasSorting}
-            isActualSortingColumn={isActualSortingColumn}
-            isReversedSorting={isActualSortingColumn && isSortReversed}
-            onClick={hasSorting ? handleChangeSorting : undefined}
-          />
-        );
-      })}
+      {columns.map((column) => (
+        <RxTableHeaderTitleColumn
+          key={column.key}
+          column={column}
+          Component={Components.HeaderCell}
+          isSortReversed={isSortReversed}
+          onSortChange={setSorting}
+          tableSorting={sorting}
+        />
+      ))}
     </Components.HeaderRow>
   );
 
@@ -203,4 +190,4 @@ const RxTableHeader: React.FunctionComponent = () => {
 
 RxTableHeader.displayName = 'RxTableHeader';
 
-export default RxTableHeader;
+export { RxTableHeader };

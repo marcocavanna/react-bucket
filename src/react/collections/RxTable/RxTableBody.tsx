@@ -10,39 +10,43 @@ import { RxTableCellComponent, RxTableColumnProps } from './RxTable.types';
  * Single Row Cell Component
  * -------- */
 interface RxTableBodyCellProps<Data> {
+  className?: string;
+
   column: RxTableColumnProps<Data>;
 
   Component: RxTableCellComponent<Data>;
 
-  data: Data[];
+  tableData: Data[];
 
   index: number;
 
   row: Data;
 }
 
-const RxTableBodyCell: React.FunctionComponent<RxTableBodyCellProps<unknown>> = (
+export const RxTableBodyCell: React.FunctionComponent<RxTableBodyCellProps<unknown>> = (
   props
 ) => {
 
   const {
+    className,
     Component,
     column,
-    data,
+    tableData,
     index,
     row
   } = props;
 
   const classes = clsx(
     column.textAlign && `has-text-${column.textAlign}`,
-    column.className
+    column.className,
+    className
   );
 
   return (
     <Component
       className={classes}
       column={column}
-      data={data}
+      tableData={tableData}
       index={index}
       row={row}
     />
@@ -64,17 +68,17 @@ const RxTableRow: React.FunctionComponent<{ index: number }> = (
   const {
     columns,
     Components,
-    data,
+    tableData,
     isRowClickEnabled,
-    rowClick
+    handleRowClick: superHandleRowClick
   } = useRxTable();
 
   /** Get Row Data */
-  const row = data[index];
+  const row = tableData[index];
 
   /** Build row classes */
   const classes = clsx({
-    last     : index === data.length - 1,
+    last     : index === tableData.length - 1,
     first    : index === 0,
     clickable: isRowClickEnabled
   });
@@ -85,9 +89,9 @@ const RxTableRow: React.FunctionComponent<{ index: number }> = (
    * -------- */
   const handleRowClick = React.useCallback(
     () => {
-      rowClick(index);
+      superHandleRowClick(index);
     },
-    [ rowClick, index ]
+    [ superHandleRowClick, index ]
   );
 
 
@@ -107,7 +111,7 @@ const RxTableRow: React.FunctionComponent<{ index: number }> = (
           key={column.key}
           Component={Components.BodyCell}
           column={column}
-          data={data}
+          tableData={tableData}
           index={index}
           row={row}
         />
@@ -129,7 +133,7 @@ const RxTableBody: React.FunctionComponent = () => {
     error,
     filters,
     isLoading,
-    data,
+    tableData,
     getRowKey
   } = useRxTable();
 
@@ -164,7 +168,7 @@ const RxTableBody: React.FunctionComponent = () => {
   }
 
   /** Render no Content */
-  if (!data.length) {
+  if (!tableData.length) {
     return (
       <Components.BodyWrapper>
         <Components.Body>
@@ -182,9 +186,9 @@ const RxTableBody: React.FunctionComponent = () => {
   return (
     <Components.BodyWrapper>
       <Components.Body>
-        {data.map((row, index) => (
+        {tableData.map((row, index) => (
           <RxTableRow
-            key={getRowKey(row, index, data)}
+            key={getRowKey(row, index, tableData)}
             index={index}
           />
         ))}
@@ -193,4 +197,4 @@ const RxTableBody: React.FunctionComponent = () => {
   );
 };
 
-export default RxTableBody;
+export { RxTableBody };

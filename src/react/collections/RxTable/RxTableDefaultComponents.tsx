@@ -15,7 +15,8 @@ import {
   RxTableCellComponent,
   RxTableErrorComponent,
   RxTableFilterCellComponent,
-  RxTableHeaderCellComponent, RxTableRowComponent
+  RxTableHeaderCellComponent,
+  RxTableRowComponent
 } from './RxTable.types';
 
 
@@ -208,10 +209,10 @@ export { RxTableError };
 const RxTableNoContent: React.FunctionComponent = () => {
 
   const {
-    allDataLength
+    data
   } = useRxTable();
 
-  if (!allDataLength) {
+  if (!data.length) {
     return (
       <EmptyContent
         header={'No Data'}

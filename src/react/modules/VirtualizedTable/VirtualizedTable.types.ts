@@ -1,12 +1,12 @@
 import * as React from 'react';
+
 import { VariableSizeListProps } from 'react-window';
 
-import { AnyObject } from '../../generic';
+import { RxTableColumnProps, RxTableComponents } from '../../collections/RxTable';
+import { UseRxTableFactoryConfig } from '../../collections/RxTable/RxTable.factory';
 
-import { VirtualizedTableColumnProps } from './VirtualizedTableColumn.types';
 
-
-export interface VirtualizedTableProps<Data extends AnyObject = AnyObject> extends VirtualizedTableStrictProps<Data> {
+export interface VirtualizedTableProps<Data> extends StrictVirtualizedTableProps<Data> {
   [key: string]: any
 }
 
@@ -18,47 +18,20 @@ type PickerVariableSizeListProps =
   | 'onScroll'
   | 'useIsScrolling';
 
-export type VirtualizedTableComponents = {
-  /** Element used to Wrap the rows collection */
-  Body: React.ElementType,
-  /** Element used to render the single cell */
-  BodyCell: React.ElementType,
-  /** Element used to render the row */
-  BodyRow: React.ElementType,
-  /** Element used to wrap the entire list */
-  BodyWrapper: React.ElementType,
-  /** Element used to Wrap the header rows collection */
-  Header: React.ElementType,
-  /** Element used to render the single header cell */
-  HeaderCell: React.ElementType,
-  /** Element used to render the header row */
-  HeaderRow: React.ElementType,
-  /** Element used to wrap the entire header elements */
-  HeaderWrapper: React.ElementType
-};
+export type PickedVariableSizeList = Pick<VariableSizeListProps, PickerVariableSizeListProps>;
 
-export interface VirtualizedTableStrictProps<Data>
-  extends Partial<Pick<VariableSizeListProps, PickerVariableSizeListProps>> {
-  /** Columns array */
-  columns?: VirtualizedTableColumnProps<Data>[];
+
+/* --------
+ * Main Virtualized Table Interface
+ * -------- */
+export interface StrictVirtualizedTableProps<Data>
+  extends UseRxTableFactoryConfig<Data, MandatoryVirtualizedColumnProps>, Partial<PickedVariableSizeList> {
 
   /** Component used to render Virtualized Table */
-  Components?: Partial<VirtualizedTableComponents>,
-
-  /** Table Data */
-  data: Data[];
-
-  /** Set initial reverse sorting */
-  defaultReverseSorting?: boolean;
-
-  /** Set initial sort */
-  defaultSort?: string[];
+  Components?: Partial<RxTableComponents<Data>>;
 
   /** Disable Header Render */
   disableHeader?: boolean;
-
-  /** Set the filter logic. With and type, all filter must return true to show item, with or at least one must be valid */
-  filterLogic?: 'and' | 'or';
 
   /** Filter row height */
   filterRowHeight?: number;
@@ -69,24 +42,24 @@ export interface VirtualizedTableStrictProps<Data>
   /** Table Height */
   height: number;
 
-  /** On Row Click Handler */
-  onRowClick?: (row: Data, index: number, array: Data[]) => void;
-
-  /** Callback handler fired when sort is changing */
-  onSortChange?: (sorting: string[], reverse: boolean) => void;
-
-  /** Manual control reverse sorting */
-  reverseSorting?: boolean;
-
   /** Row height, a fixed number or a get function, received the index */
   rowHeight: number | ((index: number) => number);
 
-  /** Manual control sorting */
-  sort?: string[];
-
   /** Wrapper Style */
-  style?: React.CSSProperties
+  style?: React.CSSProperties;
 
   /** Table Width */
   width: number;
+
 }
+
+
+/* --------
+ * Virtualized Table Columns
+ * -------- */
+type MandatoryVirtualizedColumnProps = {
+  /** The Column Width */
+  width: number
+};
+
+export type VirtualizedTableColumnProps<Data> = RxTableColumnProps<Data, MandatoryVirtualizedColumnProps>;

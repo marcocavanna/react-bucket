@@ -23,6 +23,7 @@ const columns: RxTableColumnProps<User>[] = [
   {
     key   : 'name',
     header: 'Name',
+    sort  : [ 'name' ],
     filter: {
       type: 'input',
       show: (search, row) => {
@@ -32,6 +33,7 @@ const columns: RxTableColumnProps<User>[] = [
   }, {
     key   : 'surname',
     header: 'Surname',
+    sort  : [ 'surname' ],
     filter: {
       type: 'input',
       show: (search, row) => {
