@@ -4,7 +4,7 @@
     <inspection_tool class="DuplicatedCode" enabled="true" level="INFORMATION" enabled_by_default="false">
       <scope name="Src" level="WEAK WARNING" enabled="true">
         <Languages>
-          <language minSize="48" name="TypeScript" />
+          <language minSize="58" name="TypeScript" />
         </Languages>
       </scope>
       <Languages>
