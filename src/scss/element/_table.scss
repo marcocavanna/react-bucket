@@ -490,6 +490,15 @@
       margin-top: get-em-spacer(2);
     }
   }
+
+  &.compressed > .body > .row > .cell:not(.is-action) > .cell-metadata {
+    padding-top: .5em;
+
+    + .cell-header,
+    + .cell-content {
+      margin-top: .25em;
+    }
+  }
 }
 
 
