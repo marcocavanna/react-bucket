@@ -33,7 +33,8 @@
   "homepage": "https://github.com/marcocavanna/react-bucket#readme",
   "license": "MIT",
   "scripts": {
-    "version": "yarn build",
+    "version": "yarn build && git add -A -f build",
+    "postversion": "git push && git push --tags",
     "prepublishOnly": "node build.fontawesome.js && npm run build",
     "build": "cross-env NODE_ENV=production yarn compile:rollup",
     "build:dev": "cross-env NODE_ENV=development yarn compile:rollup",
