@@ -1,6 +1,8 @@
 import * as React from 'react';
 import prettyBytes from 'pretty-bytes';
-import { useInputValue } from '../../..';
+
+import { useInputValue } from '../../../hooks/useInputValue';
+
 import Input from '../../../elements/Input/Input';
 
 import { Item, ItemGroupProps } from '../../../elements/Item';

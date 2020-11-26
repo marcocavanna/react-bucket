@@ -123,6 +123,7 @@ const Popup: PopupComponent = (props) => {
         scheduleUpdate();
       }
     },
+    // eslint-disable-next-line
     updateDependencies ? [ scheduleUpdate, ...updateDependencies ] : [ scheduleUpdate, true ]
   );
 
@@ -148,7 +149,7 @@ const Popup: PopupComponent = (props) => {
   // Avoid Component Render if Popup is Closed or Disabled
   // ----
   if (closed || disabled) {
-    return trigger;
+    return trigger ?? null;
   }
 
 

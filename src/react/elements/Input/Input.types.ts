@@ -13,6 +13,9 @@ export interface StrictInputProps extends StrictFieldProps {
   /** Set the Input as Currency Input */
   currency?: boolean;
 
+  /** Default input value */
+  defaultValue?: string;
+
   /** Define input mask */
   masked?: Pick<InputMaskProps, 'mask' | 'maskChar' | 'formatChars' | 'alwaysShowMask'>;
 

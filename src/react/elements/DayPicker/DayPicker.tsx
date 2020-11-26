@@ -9,6 +9,7 @@ import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 
 import {
+  splitFieldProps,
   useSharedClassName,
   useSplitStateClassName
 } from '../../lib';
@@ -64,27 +65,21 @@ const DayPicker: DayPickerComponent = (props) => {
       readOnly,
       required,
 
-      /** Strict Field Props */
-      actions,
-      actionsPosition,
-      contentClassName,
-      hint,
-      hintClassName,
-      icon,
-      iconPosition,
-      label,
-
       /** Strict DayPicker Props */
       fixedWeeks: userDefinedFixedWeeks,
       onTodayButtonClick,
       todayButton,
+
+      /** Strip useless props */
+      ref,
 
       /** All other DayPicker Props Props */
       ...rawRest
     }
   } = useSharedClassName(props);
 
-  const [ , rest ] = useSplitStateClassName(rawRest);
+  const [ , allRest, inputState ] = useSplitStateClassName(rawRest);
+  const [ restFieldProps, restDayPickerProps ] = splitFieldProps(allRest);
 
 
   /* --------
@@ -268,7 +263,7 @@ const DayPicker: DayPickerComponent = (props) => {
   const modalTrigger = React.useMemo(
     () => {
       if (type === 'input') {
-        return null;
+        return undefined;
       }
 
       if (trigger) {
@@ -345,7 +340,7 @@ const DayPicker: DayPickerComponent = (props) => {
     <React.Fragment>
       <ReactDayPicker
         // Component Props
-        {...rest}
+        {...restDayPickerProps}
         fixedWeeks={userDefinedFixedWeeks ?? type === 'modal'}
         // Selected Days
         month={selectedDate.object?.toDate()}
@@ -376,6 +371,8 @@ const DayPicker: DayPickerComponent = (props) => {
         openOn={[ 'focus' ]}
         trigger={(
           <Input
+            {...inputState}
+            {...restFieldProps}
             className={classes}
             clearable={clearable}
             masked={inputHint.mask ? {
@@ -386,14 +383,6 @@ const DayPicker: DayPickerComponent = (props) => {
             disabled={disabled}
             readOnly={readOnly}
             required={required}
-            actions={actions}
-            actionsPosition={actionsPosition}
-            contentClassName={contentClassName}
-            hint={hint}
-            hintClassName={hintClassName}
-            icon={icon}
-            iconPosition={iconPosition}
-            label={label}
             value={inputValue}
             onChange={handleInputChange}
           />

@@ -51,9 +51,13 @@ export function usePortalProps(portalProps: PortalProps | undefined, rest: Popup
 }
 
 
-export function usePopperPlacementMapping(position: PopupPosition): Placement {
+export function usePopperPlacementMapping(position?: PopupPosition): Placement {
   return React.useMemo(
     () => {
+      if (!position) {
+        return 'auto';
+      }
+
       return {
         auto: 'auto',
 
@@ -108,8 +112,9 @@ export function usePopperModifiers(
       return mergedPopperModifiers;
     },
     [
-      ...userDefinedModifiers,
-      ...deps
+      defaultModifiers,
+      userDefinedModifiers,
+      deps
     ]
   );
 }

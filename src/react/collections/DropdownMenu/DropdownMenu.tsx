@@ -105,7 +105,7 @@ const DropdownMenu: DropdownMenuComponent = (props) => {
         }
       }
     })
-  });
+  }) ?? undefined;
 
 
   // ----

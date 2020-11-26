@@ -29,7 +29,7 @@ export interface StrictModalProps extends Omit<StrictBackdropProps, 'page' | 'vi
   basic?: boolean;
 
   /** Children could be component, that receive close modal function */
-  children?: ShorthandContent | React.ComponentType<{ closeModal: () => void }>;
+  children?: ShorthandContent;
 
   /** Set close icon */
   closeIcon?: ReactBucketIcon<IconProps>;

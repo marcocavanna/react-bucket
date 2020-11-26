@@ -10,7 +10,7 @@ import {
 import { CreatableFunctionComponent } from '../../generic';
 
 import { getSharedClassNames } from '../../lib';
-import { Button } from '../Button';
+import Button from '../Button/Button';
 
 import { Icon } from '../Icon';
 

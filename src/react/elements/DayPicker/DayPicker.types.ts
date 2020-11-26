@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { DayPickerProps as ReactDayPickerProps } from 'react-day-picker';
+import { Dayjs } from 'dayjs';
 
 import {
   ReactBucketComponentProps, ShorthandItem
@@ -13,7 +14,8 @@ import { InputProps } from '../Input';
 
 export type ParsableDate = null | string | number | Date;
 
-export interface DayPickerProps<DateType = (Date | null)> extends ReactBucketComponentProps<StrictDayPickerProps<DateType>> {
+export interface DayPickerProps<DateType = (Date | Dayjs | null)>
+  extends ReactBucketComponentProps<StrictDayPickerProps<DateType>> {
 }
 
 export interface StrictDayPickerProps<DateType> extends ReactDayPickerProps, FieldProps {
@@ -63,7 +65,7 @@ export interface StrictDayPickerProps<DateType> extends ReactDayPickerProps, Fie
   readonly timestamp?: number | null;
 
   /** Set the trigger element for modal type DayPicker */
-  trigger?: React.ReactNode;
+  trigger?: React.ReactElement;
 
   /** Set trigger props */
   triggerProps?: ButtonProps;

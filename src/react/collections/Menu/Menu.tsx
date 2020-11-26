@@ -100,7 +100,7 @@ const Menu: MenuComponent = (props) => {
               /** Extract Index from Props */
               const { index } = itemProps;
               /** Try to set the new Active Index state */
-              trySetActiveIndex(index);
+              trySetActiveIndex(index as number);
               /** Invoke props if exists */
               if (onItemClick) {
                 onItemClick(e, itemProps);
