@@ -1839,12 +1839,7 @@
     schema-utils "^2.6.5"
     source-map "^0.7.3"
 
-"@popperjs/core@2.4.2":
-  version "2.4.2"
-  resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.4.2.tgz#7c6dc4ecef16149fd7a736710baa1b811017fdca"
-  integrity sha512-JlGTGRYHC2QK+DDbePyXdBdooxFq2+noLfWpRqJtkxcb/oYWzOF0kcbfvvbWrwevCC1l6hLUg1wHYT+ona5BWQ==
-
-"@popperjs/core@^2.4.4", "@popperjs/core@^2.5.4":
+"@popperjs/core@2.5.4", "@popperjs/core@^2.4.4", "@popperjs/core@^2.5.4":
   version "2.5.4"
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.5.4.tgz#de25b5da9f727985a3757fd59b5d028aba75841a"
   integrity sha512-ZpKr+WTb8zsajqgDkvCEWgp6d5eJT6Q63Ng2neTbzBO76Lbe91vX/iVIW9dikq+Fs3yEo+ls4cxeXABD2LtcbQ==
@@ -2926,10 +2921,10 @@
     "@types/interpret" "*"
     "@types/node" "*"
 
-"@types/lodash@^4.14.155":
-  version "4.14.155"
-  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.155.tgz#e2b4514f46a261fd11542e47519c20ebce7bc23a"
-  integrity sha512-vEcX7S7aPhsBCivxMwAANQburHBtfN9RdyXFk84IJmu2Z4Hkg1tOFgaslRiEqqvoLtbCBi6ika1EMspE+NZ9Lg==
+"@types/lodash@^4.14.165":
+  version "4.14.165"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.165.tgz#74d55d947452e2de0742bad65270433b63a8c30f"
+  integrity sha512-tjSSOTHhI5mCHTy/OOXYIhi2Wt1qcbHmuXD1Ha7q70CgI/I71afO4XtLb/cVexki1oVYchpul/TOuu3Arcdxrg==
 
 "@types/markdown-to-jsx@^6.11.0":
   version "6.11.3"
@@ -2952,10 +2947,10 @@
   dependencies:
     "@types/braces" "*"
 
-"@types/mini-css-extract-plugin@^0.9.1":
-  version "0.9.1"
-  resolved "https://registry.yarnpkg.com/@types/mini-css-extract-plugin/-/mini-css-extract-plugin-0.9.1.tgz#d4bdde5197326fca039d418f4bdda03dc74dc451"
-  integrity sha512-+mN04Oszdz9tGjUP/c1ReVwJXxSniLd7lF++sv+8dkABxVNthg6uccei+4ssKxRHGoMmPxdn7uBdJWONSJGTGQ==
+"@types/mini-css-extract-plugin@^1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@types/mini-css-extract-plugin/-/mini-css-extract-plugin-1.2.1.tgz#f43fb28a411e89fc3c258b25d66bd9345dc71395"
+  integrity sha512-4/cdB1GdB9va4v/K7ivBVqNrcELjVbkgivEtqBjp/z54pqn1AYRHvQ0v97WOZgz/ilMXzG1aGM+3C1DRxp3XZw==
   dependencies:
     "@types/webpack" "*"
 
@@ -2984,10 +2979,15 @@
   dependencies:
     "@types/node" "*"
 
-"@types/node@*", "@types/node@^14.0.1":
+"@types/node@*":
   version "14.0.10"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-14.0.10.tgz#dbfaa170bd9eafccccb6d7060743a761b0844afd"
   integrity sha512-Bz23oN/5bi0rniKT24ExLf4cK0JdvN3dH/3k0whYkdN4eI4vS2ZW/2ENNn2uxHCzWcbdHIa/GRuWQytfzCjRYw==
+
+"@types/node@^14.14.10":
+  version "14.14.10"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.10.tgz#5958a82e41863cfc71f2307b3748e3491ba03785"
+  integrity sha512-J32dgx2hw8vXrSbu4ZlVhn1Nm3GbeCFNw2FWL8S5QKucHGY0cyNwjdQdO+KMBZ4wpmC7KhLCiNsdk1RFRIYUQQ==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.0"
@@ -3078,10 +3078,10 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-select@^3.0.21":
-  version "3.0.21"
-  resolved "https://registry.yarnpkg.com/@types/react-select/-/react-select-3.0.21.tgz#089e1caa98dd653347cf4057b087957d26580d67"
-  integrity sha512-jVtukxaARMQCJC74ikGzpxrzxDFPkcGEwLsFIsc/bAn2rcBUlJ0WgP71ShUc/Q0nnk4ClZn2jBm2tbh6HtxB3A==
+"@types/react-select@^3.0.26":
+  version "3.0.26"
+  resolved "https://registry.yarnpkg.com/@types/react-select/-/react-select-3.0.26.tgz#f1b1a1e2b624ed9843eb56dda837e7a0f4a76a8f"
+  integrity sha512-rAaiD0SFkBi3PUwp1DrJV04CobPl2LuZXF+kv6MKw8kaeGo82xTOZzjM8DDi4lrdkqGbInZiE2QO9nIJm3bqgw==
   dependencies:
     "@types/react" "*"
     "@types/react-dom" "*"
@@ -6037,10 +6037,10 @@ data-urls@^2.0.0:
     whatwg-mimetype "^2.3.0"
     whatwg-url "^8.0.0"
 
-dayjs@1.9.3:
-  version "1.9.3"
-  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.9.3.tgz#b7f94b22ad2a136a4ca02a01ab68ae893fe1a268"
-  integrity sha512-V+1SyIvkS+HmNbN1G7A9+ERbFTV9KTXu6Oor98v2xHmzzpp52OIJhQuJSTywWuBY5pyAEmlwbCi1Me87n/SLOw==
+dayjs@1.9.6:
+  version "1.9.6"
+  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.9.6.tgz#6f0c77d76ac1ff63720dd1197e5cb87b67943d70"
+  integrity sha512-HngNLtPEBWRo8EFVmHFmSXAjtCX8rGNqeXQI0Gh7wCTSqwaKgPIDqu9m07wABVopNwzvOeCb+2711vQhDlcIXw==
 
 debug@2.6.9, debug@^2.2.0, debug@^2.3.3, debug@^2.6.0, debug@^2.6.9:
   version "2.6.9"
@@ -7689,17 +7689,16 @@ format@^0.2.0:
   resolved "https://registry.yarnpkg.com/format/-/format-0.2.2.tgz#d6170107e9efdc4ed30c9dc39016df942b5cb58b"
   integrity sha1-1hcBB+nv3E7TDJ3DkBbflCtctYs=
 
-formik@2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/formik/-/formik-2.2.0.tgz#04c067f6b832aa15cae055f6df6f4aa485b5be35"
-  integrity sha512-l47RfvejhfHNh8rTRVaCaPfx8nyeYDSTLaEqRvLX4qkWnrrq9ByGVCWggVR+0TVtzc5Ub1gLUuVu9UKuGwfhjA==
+formik@2.2.5:
+  version "2.2.5"
+  resolved "https://registry.yarnpkg.com/formik/-/formik-2.2.5.tgz#addf4ed7a15ebddf22c883a3d358cd27c8a91a55"
+  integrity sha512-KkOsyYmh5xsow+wlbdL9QSkqvbiHSb1RIToBKiooCFW4lyypn+ZlHGjTuuOqUWBqZaI5nCEupeI275Mo6tFBzg==
   dependencies:
     deepmerge "^2.1.1"
     hoist-non-react-statics "^3.3.0"
     lodash "^4.17.14"
     lodash-es "^4.17.14"
     react-fast-compare "^2.0.1"
-    scheduler "^0.18.0"
     tiny-warning "^1.0.2"
     tslib "^1.10.0"
 
@@ -13281,10 +13280,10 @@ react-popper-tooltip@^3.1.0:
     "@popperjs/core" "^2.5.4"
     react-popper "^2.2.4"
 
-react-popper@2.2.3:
-  version "2.2.3"
-  resolved "https://registry.yarnpkg.com/react-popper/-/react-popper-2.2.3.tgz#33d425fa6975d4bd54d9acd64897a89d904b9d97"
-  integrity sha512-mOEiMNT1249js0jJvkrOjyHsGvqcJd3aGW/agkiMoZk3bZ1fXN1wQszIQSjHIai48fE67+zwF8Cs+C4fWqlfjw==
+react-popper@2.2.4, react-popper@^2.2.4:
+  version "2.2.4"
+  resolved "https://registry.yarnpkg.com/react-popper/-/react-popper-2.2.4.tgz#d2ad3d2474ac9f1abf93df3099d408e5aa6a2e22"
+  integrity sha512-NacOu4zWupdQjVXq02XpTD3yFPSfg5a7fex0wa3uGKVkFK7UN6LvVxgcb+xYr56UCuWiNPMH20tntdVdJRwYew==
   dependencies:
     react-fast-compare "^3.0.1"
     warning "^4.0.2"
@@ -13302,20 +13301,26 @@ react-popper@^1.3.7:
     typed-styles "^0.0.7"
     warning "^4.0.2"
 
-react-popper@^2.2.4:
-  version "2.2.4"
-  resolved "https://registry.yarnpkg.com/react-popper/-/react-popper-2.2.4.tgz#d2ad3d2474ac9f1abf93df3099d408e5aa6a2e22"
-  integrity sha512-NacOu4zWupdQjVXq02XpTD3yFPSfg5a7fex0wa3uGKVkFK7UN6LvVxgcb+xYr56UCuWiNPMH20tntdVdJRwYew==
-  dependencies:
-    react-fast-compare "^3.0.1"
-    warning "^4.0.2"
-
 react-refresh@^0.8.3:
   version "0.8.3"
   resolved "https://registry.yarnpkg.com/react-refresh/-/react-refresh-0.8.3.tgz#721d4657672d400c5e3c75d063c4a85fb2d5d68f"
   integrity sha512-X8jZHc7nCMjaCqoU+V2I0cOhNW+QMBwSUkeXnTi8IPe6zaRWfn60ZzvFDZqWPfmSJfjub7dDW1SP0jaHWLu/hg==
 
-react-select@3.1.0, react-select@^3.0.8:
+react-select@3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/react-select/-/react-select-3.1.1.tgz#156a5b4a6c22b1e3d62a919cb1fd827adb4060bc"
+  integrity sha512-HjC6jT2BhUxbIbxMZWqVcDibrEpdUJCfGicN0MMV+BQyKtCaPTgFekKWiOizSCy4jdsLMGjLqcFGJMhVGWB0Dg==
+  dependencies:
+    "@babel/runtime" "^7.4.4"
+    "@emotion/cache" "^10.0.9"
+    "@emotion/core" "^10.0.9"
+    "@emotion/css" "^10.0.9"
+    memoize-one "^5.0.0"
+    prop-types "^15.6.0"
+    react-input-autosize "^2.2.2"
+    react-transition-group "^4.3.0"
+
+react-select@^3.0.8:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/react-select/-/react-select-3.1.0.tgz#ab098720b2e9fe275047c993f0d0caf5ded17c27"
   integrity sha512-wBFVblBH1iuCBprtpyGtd1dGMadsG36W5/t2Aj8OE6WbByDg5jIFyT7X5gT+l0qmT5TqWhxX+VsKJvCEl2uL9g==
@@ -13433,10 +13438,10 @@ react-syntax-highlighter@^13.5.0:
     prismjs "^1.21.0"
     refractor "^3.1.0"
 
-react-textarea-autosize@8.2.0:
-  version "8.2.0"
-  resolved "https://registry.yarnpkg.com/react-textarea-autosize/-/react-textarea-autosize-8.2.0.tgz#fae38653f5ec172a855fd5fffb39e466d56aebdb"
-  integrity sha512-grajUlVbkx6VdtSxCgzloUIphIZF5bKr21OYMceWPKkniy7H0mRAT/AXPrRtObAe+zUePnNlBwUc4ivVjUGIjw==
+react-textarea-autosize@8.3.0, react-textarea-autosize@^8.1.1:
+  version "8.3.0"
+  resolved "https://registry.yarnpkg.com/react-textarea-autosize/-/react-textarea-autosize-8.3.0.tgz#e6e2fd186d9f61bb80ac6e2dcb4c55504f93c2fa"
+  integrity sha512-3GLWFAan2pbwBeoeNDoqGmSbrShORtgWfaWX0RJDivsUrpShh01saRM5RU/i4Zmf+whpBVEY5cA90Eq8Ub1N3w==
   dependencies:
     "@babel/runtime" "^7.10.2"
     use-composed-ref "^1.0.0"
@@ -13449,15 +13454,6 @@ react-textarea-autosize@^7.1.0:
   dependencies:
     "@babel/runtime" "^7.1.2"
     prop-types "^15.6.0"
-
-react-textarea-autosize@^8.1.1:
-  version "8.3.0"
-  resolved "https://registry.yarnpkg.com/react-textarea-autosize/-/react-textarea-autosize-8.3.0.tgz#e6e2fd186d9f61bb80ac6e2dcb4c55504f93c2fa"
-  integrity sha512-3GLWFAan2pbwBeoeNDoqGmSbrShORtgWfaWX0RJDivsUrpShh01saRM5RU/i4Zmf+whpBVEY5cA90Eq8Ub1N3w==
-  dependencies:
-    "@babel/runtime" "^7.10.2"
-    use-composed-ref "^1.0.0"
-    use-latest "^1.0.0"
 
 react-transition-group@^4.3.0:
   version "4.4.1"
@@ -14273,14 +14269,6 @@ saxes@^5.0.0:
   integrity sha512-5LBh1Tls8c9xgGjw3QrMwETmTMVk0oFgvrFSvWx62llR2hcEInrKNZ2GZCCuuy2lvWrdl5jhbpeqc5hRYKFOcw==
   dependencies:
     xmlchars "^2.2.0"
-
-scheduler@^0.18.0:
-  version "0.18.0"
-  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.18.0.tgz#5901ad6659bc1d8f3fdaf36eb7a67b0d6746b1c4"
-  integrity sha512-agTSHR1Nbfi6ulI0kYNK0203joW2Y5W4po4l+v03tOoiJKpTBbxpNhWDvqc/4IcOw+KLmSiQLTasZ4cab2/UWQ==
-  dependencies:
-    loose-envify "^1.1.0"
-    object-assign "^4.1.1"
 
 scheduler@^0.19.1:
   version "0.19.1"
