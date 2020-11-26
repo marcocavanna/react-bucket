@@ -38,6 +38,9 @@ export interface StrictVirtualizedTableProps<Data>
   /** Filter row height */
   filterRowHeight?: number;
 
+  /** Set the column width grid factor, default to `24` */
+  gridFactor?: number;
+
   /** Table header height */
   headerHeight?: number;
 
@@ -70,7 +73,10 @@ export interface StrictVirtualizedTableProps<Data>
  * -------- */
 type MandatoryVirtualizedColumnProps = {
   /** The Column Width */
-  width: number
+  width: number;
+
+  /** Width calc type */
+  widthType?: 'fixed' | 'percentage' | 'grid';
 };
 
 export type VirtualizedTableColumnProps<Data> = RxTableColumnProps<Data, MandatoryVirtualizedColumnProps>;

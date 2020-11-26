@@ -35,6 +35,12 @@ const VirtualizedTableHeaderCell: RxTableHeaderCellComponent = (
     onClick
   } = props;
 
+  const {
+    getColumnWidth
+  } = useVirtualizedTable();
+
+  const width = getColumnWidth(column.key);
+
   return TableHeaderCell.create(content ?? '', {
     autoGenerateKey: false,
     defaultProps   : {
@@ -55,8 +61,8 @@ const VirtualizedTableHeaderCell: RxTableHeaderCellComponent = (
         }
       },
       style   : {
-        width    : column.width,
-        flexBasis: column.width
+        width,
+        flexBasis: width
       }
     })
   });
@@ -73,6 +79,7 @@ export { VirtualizedTableHeaderCell };
 const VirtualizedTableBodyCell: RxTableCellComponent<any> = (
   props
 ) => {
+
   const {
     className,
     column,
@@ -81,10 +88,16 @@ const VirtualizedTableBodyCell: RxTableCellComponent<any> = (
     row
   } = props;
 
+  const {
+    getColumnWidth
+  } = useVirtualizedTable();
+
+  const width = getColumnWidth(column.key);
+
   /** Build style */
   const style: React.CSSProperties = {
-    width    : column.width ?? 0,
-    flexBasis: column.width ?? 0
+    width,
+    flexBasis: width
   };
 
   /** Render the Cell with function if exists */
@@ -192,16 +205,23 @@ export { VirtualizedTableBodyRow };
 const VirtualizedTableFilterCell: RxTableFilterCellComponent = (
   props
 ) => {
+
   const {
     className,
     children,
     column
   } = props;
 
+  const {
+    getColumnWidth
+  } = useVirtualizedTable();
+
   const classes = clsx(className, 'cell');
 
+  const width = getColumnWidth(column.key);
+
   return (
-    <div className={classes} style={{ width: column.width, flexBasis: column.width }}>
+    <div className={classes} style={{ width, flexBasis: width }}>
       {children}
     </div>
   );

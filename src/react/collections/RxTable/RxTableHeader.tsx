@@ -3,7 +3,10 @@ import clsx from 'clsx';
 
 import { Checkbox, CheckboxProps } from '../../elements/Checkbox';
 import { Input, InputProps } from '../../elements/Input';
-import { SelectProps } from '../../elements/Select';
+import { SelectMultiProps, SelectProps } from '../../elements/Select';
+import Select from '../../elements/Select/Select';
+import SelectMulti from '../../elements/Select/SelectMulti';
+import { AnyObject } from '../../generic';
 
 import { useRxTable } from './RxTable.context';
 import { RxTableFactory } from './RxTable.factory';
@@ -42,7 +45,7 @@ export const RxTableFilterElement: React.FunctionComponent<RxTableFilterElementP
   /** Build Handlers */
   const filterValue = filters[columnKey];
   const handleFilterChange = React.useCallback(
-    (e: any, filterProps?: InputProps | CheckboxProps | SelectProps) => {
+    (e: any, filterProps?: InputProps | CheckboxProps) => {
       if (filter) {
         if (filter.type === 'input') {
           setFilter(columnKey, filterProps!.value);
@@ -58,6 +61,20 @@ export const RxTableFilterElement: React.FunctionComponent<RxTableFilterElementP
       filterValue,
       columnKey
     ]
+  );
+
+  const handleSelectFilterChange = React.useCallback(
+    (nothing: null, selectProps: SelectProps<AnyObject, null>) => {
+      setFilter(columnKey, selectProps.value);
+    },
+    [ setFilter, columnKey ]
+  );
+
+  const handleMultiSelectFilterChange = React.useCallback(
+    (nothing: null, selectProps: SelectMultiProps<any[], []>) => {
+      setFilter(columnKey, selectProps.value);
+    },
+    [ setFilter, columnKey ]
   );
 
   /** If no type, return no filter */
@@ -83,6 +100,25 @@ export const RxTableFilterElement: React.FunctionComponent<RxTableFilterElementP
         {...filter.props}
         checked={!!filters[columnKey]}
         onChange={handleFilterChange}
+      />
+    );
+  }
+
+  if (filter.type === 'select') {
+    return (
+      <Select
+        {...filter.props}
+        isClearable={true}
+        onChange={handleSelectFilterChange}
+      />
+    );
+  }
+
+  if (filter.type === 'multi-select') {
+    return (
+      <SelectMulti
+        {...filter.props}
+        onChange={handleMultiSelectFilterChange}
       />
     );
   }

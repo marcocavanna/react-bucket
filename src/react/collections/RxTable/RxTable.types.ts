@@ -11,7 +11,7 @@ import { LoaderProps } from '../../elements/Loader';
 import { EmptyContentProps } from '../../elements/EmptyContent';
 import { CheckboxProps } from '../../elements/Checkbox';
 import { InputProps } from '../../elements/Input';
-import { SelectProps } from '../../elements/Select';
+import { SelectMultiProps, SelectProps } from '../../elements/Select';
 
 import { TableCellContentProps, TableHeaderCellProps } from '../Table';
 
@@ -79,17 +79,25 @@ export type RxColumnCheckboxFilter<Data> = {
   show: (value: boolean, data: Data, index: number, array: Data[]) => boolean;
 };
 
-export type RxColumnSelectFilter<Data> = {
-  initialValue?: string,
+export type RxColumnSelectFilter<Data, Option, Value> = {
+  initialValue?: Value,
   type: 'select',
-  props?: SelectProps,
-  show: (value: string, data: Data, index: number, array: Data[]) => boolean;
+  props: SelectProps<Option, Value>,
+  show: (value: Value, data: Data, index: number, array: Data[]) => boolean;
 };
 
-export type RxTableDataFilter<Data> =
+export type RxColumnsMultiSelectFilter<Data, Option, Value> = {
+  initialValue?: Value[],
+  type: 'multi-select',
+  props: SelectMultiProps<Option, Value>,
+  show: (value: Value[], data: Data, index: number, array: Data[]) => boolean;
+};
+
+export type RxTableDataFilter<Data, Option = any, Value = any> =
   | RxColumnInputFilter<Data>
   | RxColumnCheckboxFilter<Data>
-  | RxColumnSelectFilter<Data>;
+  | RxColumnSelectFilter<Data, Option, Value>
+  | RxColumnsMultiSelectFilter<Data, Option, Value>;
 
 
 /** Cell content could be computed using function or shorthand */

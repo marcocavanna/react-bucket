@@ -52,6 +52,7 @@ const VirtualizedTable = <Data extends AnyObject>(
     disableHeader,
     noDataEmptyContentProps,
     noFilteredDataEmptyContentProps,
+    gridFactor = 24,
     filterLogic,
     filterRowHeight      : userDefinedFilterRowHeight,
     headerHeight         : userDefinedHeaderHeight,
@@ -120,6 +121,50 @@ const VirtualizedTable = <Data extends AnyObject>(
 
   const effectiveWidth = Math.max(columnsWidthSum, width);
   const tableBodyHeight = height - (!disableHeader ? headerHeight : 0) - filterRowHeight;
+
+
+  /* --------
+   * Compute Column Fixed Width and flexible available space
+   * -------- */
+  const columnsWidth: Record<string, number> = React.useMemo(
+    () => {
+      /** Build the Columns Container */
+      const widths: Record<string, number> = {};
+
+      /** Get the fixed used space */
+      const availableFlexibleSpace = effectiveWidth - columns
+        .filter((column) => !column.widthType || column.widthType === 'fixed')
+        .reduce<number>((total, next) => total + next.width, 0);
+
+      /** Loop each column to build width */
+      columns.forEach((column) => {
+        /** Calc percentage space */
+        if (column.widthType === 'percentage') {
+          widths[column.key] = (availableFlexibleSpace / 100) * column.width;
+          return;
+        }
+
+        /** Calc the Grid spacing */
+        if (column.widthType === 'grid') {
+          widths[column.key] = (availableFlexibleSpace / gridFactor) * column.width;
+          return;
+        }
+
+        /** Return the user defined width */
+        widths[column.key] = column.width;
+      });
+
+      return widths;
+    },
+    [ columns, gridFactor, effectiveWidth ]
+  );
+
+  const getColumnWidth = React.useCallback(
+    (key: string) => {
+      return columnsWidth[key] ?? 0;
+    },
+    [ columnsWidth ]
+  );
 
 
   /* --------
@@ -201,6 +246,7 @@ const VirtualizedTable = <Data extends AnyObject>(
     filterRowHeight,
     headerHeight,
     height: tableBodyHeight,
+    getColumnWidth,
     getRowHeight,
     loaderProps,
     width

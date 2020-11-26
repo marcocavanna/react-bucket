@@ -104,7 +104,7 @@ const VirtualizedTableHeader: React.FunctionComponent = () => {
   }
 
   return (
-    <Components.HeaderWrapper className={'virtualized table'}>
+    <Components.HeaderWrapper className={'virtualized table virtualized-head'}>
       <Components.Header className={'virtualized head'}>
         {hasHeaderRow && headerHeight > 0 && (
           <VirtualizedTableHeaderRow />

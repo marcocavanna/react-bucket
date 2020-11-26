@@ -26,6 +26,9 @@ export interface VirtualizedTableContext<Data extends AnyObject> extends RxTable
   /** Height of filter row */
   filterRowHeight: number;
 
+  /** Get a Column Width */
+  getColumnWidth: (key: string) => number;
+
   /** Get the row height using index */
   getRowHeight: (index: number) => number;
 

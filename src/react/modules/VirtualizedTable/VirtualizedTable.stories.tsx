@@ -39,15 +39,16 @@ export const BaseTable = () => {
           onRowClick={handleSelectItem}
           columns={[
             {
-              width : width / 3,
-              key   : 'title',
-              header: 'Titolo',
-              cell  : {
+              width    : 40,
+              widthType: 'percentage',
+              key      : 'title',
+              header   : 'Titolo',
+              cell     : {
                 header : (item) => `Titolo del Prodotto: ${item.title}`,
                 content: (item: Data) => item.description
               },
-              sort  : [ 'title' ],
-              filter: {
+              sort     : [ 'title' ],
+              filter   : {
                 type: 'input',
                 show: (value, row) => {
                   return new RegExp(value, 'ig').test(row.title);
@@ -55,13 +56,14 @@ export const BaseTable = () => {
               }
             },
             {
-              width : width / 3,
-              key   : 'description',
-              header: 'Descrizione',
-              sort  : [ 'description' ]
+              width    : 60,
+              widthType: 'percentage',
+              key      : 'description',
+              header   : 'Descrizione',
+              sort     : [ 'description' ]
             },
             {
-              width : width / 3,
+              width : 100,
               key   : 'status',
               header: 'Status',
               cell  : {

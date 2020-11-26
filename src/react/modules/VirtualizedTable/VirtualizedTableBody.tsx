@@ -152,7 +152,7 @@ const VirtualizedBodyWrapper = React.forwardRef<any, VirtualizedElementProps>(
     } = useVirtualizedTable();
 
     const classes = clsx(
-      'virtualized table',
+      'virtualized table virtualized-body',
       className
     );
 

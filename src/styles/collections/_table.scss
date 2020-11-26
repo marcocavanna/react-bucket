@@ -299,6 +299,15 @@ table > .head,
     display: block !important;
   }
 
+  &.virtualized-head {
+    z-index: 2;
+    position: relative;
+  }
+
+  .head > .filter.row > .filter.cell {
+    overflow: visible;
+  }
+
   & .row {
     display: flex !important;
     flex-wrap: nowrap !important;

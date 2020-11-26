@@ -294,6 +294,14 @@ export function useRxTableFactory<Data extends AnyObject = any>(
           return typeof filters[column.key] === 'boolean' && !!filters[column.key];
         }
 
+        if (column.filter.type === 'select') {
+          return filters[column.key] !== null && filters[column.key] !== undefined;
+        }
+
+        if (column.filter.type === 'multi-select') {
+          return Array.isArray(filters[column.key]) && filters[column.key].length > 0;
+        }
+
         return false;
       });
 
