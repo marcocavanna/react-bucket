@@ -52,7 +52,6 @@ const VirtualizedTable = <Data extends AnyObject>(
     disableHeader,
     noDataEmptyContentProps,
     noFilteredDataEmptyContentProps,
-    gridFactor = 24,
     filterLogic,
     filterRowHeight      : userDefinedFilterRowHeight,
     headerHeight         : userDefinedHeaderHeight,
@@ -115,11 +114,6 @@ const VirtualizedTable = <Data extends AnyObject>(
       : headerHeight
     : 0;
 
-  const columnsWidthSum = columns.reduce((tot, { width: columnWidth }) => (
-    tot + columnWidth
-  ), 0);
-
-  const effectiveWidth = Math.max(columnsWidthSum, width);
   const tableBodyHeight = height - (!disableHeader ? headerHeight : 0) - filterRowHeight;
 
 
@@ -132,38 +126,76 @@ const VirtualizedTable = <Data extends AnyObject>(
       const widths: Record<string, number> = {};
 
       /** Get the fixed used space */
-      const availableFlexibleSpace = effectiveWidth - columns
-        .filter((column) => !column.widthType || column.widthType === 'fixed')
-        .reduce<number>((total, next) => total + next.width, 0);
+      const availableFlexibleSpace = width - columns
+        .filter((column) => (
+          typeof column.width === 'number' && (!column.widthType || column.widthType === 'fixed')
+        ))
+        .reduce<number>((total, next) => total + (next.width as number), 0);
+
+      /** Get total available spacing for auto column */
+      let autoFlexibleSpace = availableFlexibleSpace;
 
       /** Loop each column to build width */
-      columns.forEach((column) => {
-        /** Calc percentage space */
-        if (column.widthType === 'percentage') {
-          widths[column.key] = (availableFlexibleSpace / 100) * column.width;
-          return;
-        }
+      columns
+        .filter((column) => typeof column.width === 'number')
+        .forEach((column) => {
+          /** Calc percentage space */
+          if (column.widthType === 'percentage') {
+            const columnWidth = (availableFlexibleSpace / 100) * (column.width as number);
+            widths[column.key] = columnWidth;
+            autoFlexibleSpace -= columnWidth;
+            return;
+          }
 
-        /** Calc the Grid spacing */
-        if (column.widthType === 'grid') {
-          widths[column.key] = (availableFlexibleSpace / gridFactor) * column.width;
-          return;
-        }
+          /** Return the user defined width */
+          widths[column.key] = column.width as number;
+        });
 
-        /** Return the user defined width */
-        widths[column.key] = column.width;
-      });
+      const autoSizingColumns = columns.filter((column) => column.width === 'auto');
+
+      /** Get the maximum grow factor */
+      const totalGrowFactor = autoSizingColumns.reduce<number>((max, { growFactor }) => (
+        max + Math.max(1, (growFactor ?? 1))
+      ), 0);
+
+      /** Compute the Auto Sizing Columns */
+      autoSizingColumns
+        .forEach((column) => {
+          /** Divide the spacing equally */
+          widths[column.key] = (autoFlexibleSpace / totalGrowFactor) * Math.max(1, (column.growFactor ?? 1));
+        });
 
       return widths;
     },
-    [ columns, gridFactor, effectiveWidth ]
+    [ columns, width ]
   );
+
+  const totalColumnsWidth = Object.keys(columnsWidth).reduce<number>((totalWidth, nextKey) => (
+    totalWidth + (columnsWidth[nextKey])
+  ), 0);
+
+  const effectiveWidth = Math.max(width, totalColumnsWidth);
 
   const getColumnWidth = React.useCallback(
     (key: string) => {
-      return columnsWidth[key] ?? 0;
+      /** Check if is last column */
+      const isLast = columns[columns.length - 1].key === key;
+
+      /** If is not last then return its declared width */
+      if (!isLast) {
+        return columnsWidth[key] ?? 0;
+      }
+
+      /** Else, return the remain width */
+      const restColumnsWidth = Object.keys(columnsWidth).reduce<number>((totalWidth, nextKey) => (
+        nextKey === key
+          ? totalWidth
+          : totalWidth + (columnsWidth[nextKey])
+      ), 0);
+
+      return effectiveWidth - restColumnsWidth;
     },
-    [ columnsWidth ]
+    [ columnsWidth, columns, effectiveWidth ]
   );
 
 

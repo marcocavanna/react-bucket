@@ -38,9 +38,6 @@ export interface StrictVirtualizedTableProps<Data>
   /** Filter row height */
   filterRowHeight?: number;
 
-  /** Set the column width grid factor, default to `24` */
-  gridFactor?: number;
-
   /** Table header height */
   headerHeight?: number;
 
@@ -72,11 +69,14 @@ export interface StrictVirtualizedTableProps<Data>
  * Virtualized Table Columns
  * -------- */
 type MandatoryVirtualizedColumnProps = {
-  /** The Column Width */
-  width: number;
+  /** The Column Grow factor, same as flex-grow properties when using auto sizing */
+  growFactor?: number;
 
-  /** Width calc type */
-  widthType?: 'fixed' | 'percentage' | 'grid';
+  /** The Column Width */
+  width: number | 'auto';
+
+  /** Width calc type, when using auto, width will not be used any more */
+  widthType?: 'fixed' | 'percentage';
 };
 
 export type VirtualizedTableColumnProps<Data> = RxTableColumnProps<Data, MandatoryVirtualizedColumnProps>;

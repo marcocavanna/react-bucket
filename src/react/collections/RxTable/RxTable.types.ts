@@ -183,7 +183,7 @@ export interface RxTableFilterCellProps {
   className: string;
 
   /** Rendered Column */
-  column: RxTableColumnProps<any, { width?: number }>;
+  column: RxTableColumnProps<any>;
 }
 
 export interface RxTableErrorProps {
@@ -204,7 +204,7 @@ export interface RxTableRowProps<Data> {
   className: string;
 
   /** Columns Array */
-  columns: RxTableColumnProps<Data, { width?: number }>[]
+  columns: RxTableColumnProps<Data>[]
 
   /** Row index */
   index: Number;
