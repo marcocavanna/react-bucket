@@ -1,6 +1,6 @@
 {
   "name": "@appbuckets/react-bucket",
-  "version": "0.3.51",
+  "version": "0.3.52",
   "description": "React UI Framework",
   "keywords": [
     "react",
@@ -33,7 +33,7 @@
   "homepage": "https://github.com/marcocavanna/react-bucket#readme",
   "license": "MIT",
   "scripts": {
-    "version": "yarn build && git add -A package.json",
+    "version": "echo \"sign-test\" | gpg --clearsign && yarn build && git add -A package.json",
     "postversion": "git push && git push --tags && npm publish",
     "prepublishOnly": "node build.fontawesome.js && npm run build",
     "build": "cross-env NODE_ENV=production yarn compile:rollup",
