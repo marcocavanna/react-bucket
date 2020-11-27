@@ -8,6 +8,7 @@ import {
 } from 'react-window';
 
 import { RxTableBodyCell } from '../../collections/RxTable/RxTableBody';
+import { Checkbox } from '../../elements/Checkbox';
 
 import { useVirtualizedTable } from './VirtualizedTable.context';
 import { PickedVariableSizeList } from './VirtualizedTable.types';
@@ -21,6 +22,37 @@ type VirtualizedElementProps = {
   className: string;
   onScroll: (...args: any[]) => void;
   style: React.CSSProperties;
+};
+
+
+/* --------
+ * Row Selects
+ * -------- */
+const VirtualizedTableRowSelector: React.FunctionComponent<{ row: any }> = (
+  props
+) => {
+  const {
+    row
+  } = props;
+
+  const {
+    isRowSelected,
+    toggleSelectRow
+  } = useVirtualizedTable();
+
+  const handleToggleRow = React.useCallback(
+    () => {
+      toggleSelectRow(row);
+    },
+    [ toggleSelectRow, row ]
+  );
+
+  return (
+    <Checkbox
+      checked={isRowSelected(row)}
+      onClick={handleToggleRow}
+    />
+  );
 };
 
 
@@ -42,7 +74,8 @@ const VirtualizedTableRow: React.FunctionComponent<ListChildComponentProps> = (
     tableData,
     getRowHeight,
     isRowClickEnabled,
-    handleRowClick: superHandleRowClick
+    handleRowClick: superHandleRowClick,
+    isSelectable
   } = useVirtualizedTable();
 
   /** Get Row Data */
@@ -85,7 +118,7 @@ const VirtualizedTableRow: React.FunctionComponent<ListChildComponentProps> = (
       style={{ ...style, height: rowHeight }}
       row={row}
     >
-      {columns.map((column) => (
+      {columns.map((column, columnIndex) => (
         <RxTableBodyCell
           className={'virtualized cell'}
           key={column.key}
@@ -94,6 +127,9 @@ const VirtualizedTableRow: React.FunctionComponent<ListChildComponentProps> = (
           tableData={tableData}
           index={index}
           row={row}
+          columnIndex={columnIndex}
+          isSelectable={isSelectable}
+          SelectorComponent={VirtualizedTableRowSelector}
         />
       ))}
     </Components.BodyRow>

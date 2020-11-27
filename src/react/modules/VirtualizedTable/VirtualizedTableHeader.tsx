@@ -3,8 +3,43 @@ import clsx from 'clsx';
 
 import { RxTableHeaderTitleColumn } from '../../collections/RxTable/RxTableColumns';
 import { RxTableFilterElement } from '../../collections/RxTable/RxTableHeader';
+import { Checkbox } from '../../elements/Checkbox';
 
 import { useVirtualizedTable } from './VirtualizedTable.context';
+
+
+/* --------
+ * Select All Rows
+ * -------- */
+const VirtualizedTableAllRowSelector: React.FunctionComponent = () => {
+
+  const {
+    selectedCount,
+    selectAllRows,
+    deselectAllRows,
+    data
+  } = useVirtualizedTable();
+
+  const handleCheckboxChange = React.useCallback(
+    () => {
+      if (selectedCount >= data.length) {
+        deselectAllRows();
+      }
+      else {
+        selectAllRows();
+      }
+    },
+    [ deselectAllRows, selectAllRows, selectedCount, data.length ]
+  );
+
+  return (
+    <Checkbox
+      checked={selectedCount >= data.length}
+      indeterminate={selectedCount > 0 && selectedCount < data.length}
+      onClick={handleCheckboxChange}
+    />
+  );
+};
 
 
 /* --------
@@ -17,6 +52,7 @@ const VirtualizedTableFilterRow: React.FunctionComponent = () => {
     Components,
     filterRowHeight,
     filters,
+    isSelectable,
     setFilter
   } = useVirtualizedTable();
 
@@ -25,7 +61,7 @@ const VirtualizedTableFilterRow: React.FunctionComponent = () => {
       className={'virtualized filter row'}
       style={{ height: filterRowHeight }}
     >
-      {columns.map((column) => {
+      {columns.map((column, index) => {
         /** Build className */
         const classes = clsx(
           'filter',
@@ -39,12 +75,18 @@ const VirtualizedTableFilterRow: React.FunctionComponent = () => {
             className={classes}
             column={column}
           >
-            <RxTableFilterElement
-              columnKey={column.key}
-              filter={column.filter}
-              filters={filters}
-              setFilter={setFilter}
-            />
+            {isSelectable && index === 0
+              ? (
+                <VirtualizedTableAllRowSelector />
+              )
+              : (
+                <RxTableFilterElement
+                  columnKey={column.key}
+                  filter={column.filter}
+                  filters={filters}
+                  setFilter={setFilter}
+                />
+              )}
           </Components.FilterCell>
         );
       })}
@@ -61,7 +103,9 @@ const VirtualizedTableHeaderRow: React.FunctionComponent = () => {
     isSortReversed,
     setSorting,
     sorting,
-    headerHeight
+    headerHeight,
+    hasFilterRow,
+    isSelectable
   } = useVirtualizedTable();
 
   return (
@@ -69,15 +113,21 @@ const VirtualizedTableHeaderRow: React.FunctionComponent = () => {
       className={'virtualized row'}
       style={{ height: headerHeight }}
     >
-      {columns.map((column) => (
-        <RxTableHeaderTitleColumn
-          key={column.key}
-          column={column}
-          Component={Components.HeaderCell}
-          isSortReversed={isSortReversed}
-          onSortChange={setSorting}
-          tableSorting={sorting}
-        />
+      {columns.map((column, index) => (
+        isSelectable && index === 0 && !hasFilterRow
+          ? (
+            <VirtualizedTableAllRowSelector />
+          )
+          : (
+            <RxTableHeaderTitleColumn
+              key={column.key}
+              column={column}
+              Component={Components.HeaderCell}
+              isSortReversed={isSortReversed}
+              onSortChange={setSorting}
+              tableSorting={sorting}
+            />
+          )
       ))}
     </Components.HeaderRow>
   );

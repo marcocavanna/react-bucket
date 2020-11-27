@@ -31,6 +31,7 @@ const Checkbox: CheckboxComponent = (props) => {
       /** Strict Checkbox Props */
       checked    : checkedProp,
       defaultChecked,
+      indeterminate,
       radio,
       tabIndex   : userDefinedTabIndex,
       type,
@@ -104,6 +105,7 @@ const Checkbox: CheckboxComponent = (props) => {
 
   const classes = clsx(
     { required, disabled, checked },
+    !checked && indeterminate && 'indeterminate',
     checkBoxType,
     stateClassName,
     className
@@ -133,6 +135,8 @@ const Checkbox: CheckboxComponent = (props) => {
     if (!canToggle) {
       return;
     }
+
+    e.stopPropagation();
 
     /** Build the Handler Params to be reused */
     const changeHandlerParams: [ React.MouseEvent<HTMLLabelElement>, CheckboxProps ] = [

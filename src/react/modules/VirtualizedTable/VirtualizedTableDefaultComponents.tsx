@@ -1,6 +1,8 @@
 import clsx from 'clsx';
 import * as React from 'react';
 
+import { childrenUtils } from '@appbuckets/react-ui-core';
+
 import {
   RxTableCellComponent,
   RxTableFilterCellComponent,
@@ -81,6 +83,7 @@ const VirtualizedTableBodyCell: RxTableCellComponent<any> = (
 ) => {
 
   const {
+    children,
     className,
     column,
     data,
@@ -99,6 +102,17 @@ const VirtualizedTableBodyCell: RxTableCellComponent<any> = (
     width,
     flexBasis: width
   };
+
+  /** If children exists, return them */
+  if (!childrenUtils.isNil(children)) {
+    return (
+      <div className={className} style={style}>
+        <div className={'virtualized cell-content'}>
+          {children}
+        </div>
+      </div>
+    );
+  }
 
   /** Render the Cell with function if exists */
   if (typeof column.render === 'function') {

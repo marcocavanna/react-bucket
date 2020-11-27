@@ -56,6 +56,9 @@ export interface StrictVirtualizedTableProps<Data>
   /** Row height, a fixed number or a get function, received the index */
   rowHeight: number | ((index: number) => number);
 
+  /** Select Column Props */
+  selectColumnProps?: Partial<Pick<RxTableColumnProps<Data>, 'className' | 'headerClassName' | 'key' | 'textAlign'>>
+
   /** Wrapper Style */
   style?: React.CSSProperties;
 
@@ -68,7 +71,7 @@ export interface StrictVirtualizedTableProps<Data>
 /* --------
  * Virtualized Table Columns
  * -------- */
-type MandatoryVirtualizedColumnProps = {
+export type MandatoryVirtualizedColumnProps = {
   /** The Column Grow factor, same as flex-grow properties when using auto sizing */
   growFactor?: number;
 

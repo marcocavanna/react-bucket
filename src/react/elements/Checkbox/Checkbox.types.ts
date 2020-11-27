@@ -14,6 +14,9 @@ export interface StrictCheckboxProps extends Omit<StrictFieldProps, 'actions' | 
   /** Set the default checked value */
   defaultChecked?: boolean;
 
+  /** Is indeterminate */
+  indeterminate?: boolean;
+
   /** On Checked Event */
   onChecked?: ClickHandler<HTMLLabelElement, CheckboxProps>;
 

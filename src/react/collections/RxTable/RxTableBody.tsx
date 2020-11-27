@@ -1,9 +1,41 @@
 import * as React from 'react';
 import clsx from 'clsx';
+import { Checkbox } from '../../elements/Checkbox';
 
 import { useRxTable } from './RxTable.context';
 
 import { RxTableCellComponent, RxTableColumnProps } from './RxTable.types';
+
+
+/* --------
+ * Row Selects
+ * -------- */
+const RxTableRowSelector: React.FunctionComponent<{ row: any }> = (
+  props
+) => {
+  const {
+    row
+  } = props;
+
+  const {
+    isRowSelected,
+    toggleSelectRow
+  } = useRxTable();
+
+  const handleToggleRow = React.useCallback(
+    () => {
+      toggleSelectRow(row);
+    },
+    [ toggleSelectRow, row ]
+  );
+
+  return (
+    <Checkbox
+      checked={isRowSelected(row)}
+      onClick={handleToggleRow}
+    />
+  );
+};
 
 
 /* --------
@@ -14,11 +46,17 @@ interface RxTableBodyCellProps<Data> {
 
   column: RxTableColumnProps<Data>;
 
+  columnIndex?: number;
+
   Component: RxTableCellComponent<Data>;
 
   tableData: Data[];
 
   index: number;
+
+  isSelectable?: boolean;
+
+  SelectorComponent?: React.FunctionComponent<{ row: Data }>;
 
   row: Data;
 }
@@ -33,7 +71,10 @@ export const RxTableBodyCell: React.FunctionComponent<RxTableBodyCellProps<unkno
     column,
     tableData,
     index,
-    row
+    row,
+    isSelectable,
+    columnIndex,
+    SelectorComponent
   } = props;
 
   const classes = clsx(
@@ -41,6 +82,20 @@ export const RxTableBodyCell: React.FunctionComponent<RxTableBodyCellProps<unkno
     column.className,
     className
   );
+
+  if (isSelectable && columnIndex === 0) {
+    return (
+      <Component
+        className={classes}
+        column={column}
+        tableData={tableData}
+        index={index}
+        row={row}
+      >
+        {SelectorComponent && <SelectorComponent row={row} />}
+      </Component>
+    );
+  }
 
   return (
     <Component
@@ -70,7 +125,8 @@ const RxTableRow: React.FunctionComponent<{ index: number }> = (
     Components,
     tableData,
     isRowClickEnabled,
-    handleRowClick: superHandleRowClick
+    handleRowClick: superHandleRowClick,
+    isSelectable
   } = useRxTable();
 
   /** Get Row Data */
@@ -106,7 +162,7 @@ const RxTableRow: React.FunctionComponent<{ index: number }> = (
       onClick={isRowClickEnabled ? handleRowClick : undefined}
       row={row}
     >
-      {columns.map((column) => (
+      {columns.map((column, columnIndex) => (
         <RxTableBodyCell
           key={column.key}
           Component={Components.BodyCell}
@@ -114,6 +170,9 @@ const RxTableRow: React.FunctionComponent<{ index: number }> = (
           tableData={tableData}
           index={index}
           row={row}
+          columnIndex={columnIndex}
+          isSelectable={isSelectable}
+          SelectorComponent={RxTableRowSelector}
         />
       ))}
     </Components.BodyRow>

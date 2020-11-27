@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { AnyObject } from '../../generic';
 
 import { useRxTableFactory } from '../../collections/RxTable/RxTable.factory';
-import { RxTableComponents } from '../../collections/RxTable';
+import { RxTableColumnProps, RxTableComponents } from '../../collections/RxTable';
 import { RxTableError } from '../../collections/RxTable/RxTableDefaultComponents';
 
 import {
@@ -12,7 +12,7 @@ import {
   VirtualizedTableProvider
 } from './VirtualizedTable.context';
 
-import { VirtualizedTableProps } from './VirtualizedTable.types';
+import { MandatoryVirtualizedColumnProps, VirtualizedTableProps } from './VirtualizedTable.types';
 
 import {
   VirtualizedTableBodyCell,
@@ -42,27 +42,32 @@ const VirtualizedTable = <Data extends AnyObject>(
 
   const {
     // Virtualized Table Props
-    columns,
+    columns              : userDefinedColumns,
     Components           : userDefinedComponents,
     data,
     defaultData,
     defaultLoading       : userDefinedDefaultLoading,
     defaultReverseSorting: userDefinedDefaultReverseSorting,
+    defaultSelectedData  : userDefinedDefaultSelectedData,
     defaultSort          : userDefinedDefaultSort,
     disableHeader,
     noDataEmptyContentProps,
     noFilteredDataEmptyContentProps,
     filterLogic,
     filterRowHeight      : userDefinedFilterRowHeight,
+    getRowKey,
     headerHeight         : userDefinedHeaderHeight,
     height,
     loaderProps,
     onRowClick,
+    onSelectedDataChange,
     onSortChange,
     reloadDependency,
     reloadSilently,
     reverseSorting       : userDefinedReverseSorting,
     rowHeight,
+    selectable,
+    selectColumnProps,
     sort                 : userDefinedSort,
     style,
     width,
@@ -81,6 +86,31 @@ const VirtualizedTable = <Data extends AnyObject>(
     ...rest
   } = props;
 
+
+  // ----
+  // Update Columns Field using Selectable
+  // ----
+  const columns: RxTableColumnProps<Data, MandatoryVirtualizedColumnProps>[] = React.useMemo(
+    () => {
+      /** If table isn't selectable, return columns */
+      if (!selectable) {
+        return userDefinedColumns;
+      }
+
+      /** Return Columns width Select Column Props and Default */
+      return [
+        {
+          key  : '%%selectable%%',
+          width: 50,
+          ...selectColumnProps
+        },
+        ...userDefinedColumns
+      ];
+    },
+    [ userDefinedColumns, selectable, selectColumnProps ]
+  );
+
+
   /** Use RxTable Factory to get Data and Props */
   const rxTableProps = useRxTableFactory<Data>({
     columns,
@@ -88,13 +118,17 @@ const VirtualizedTable = <Data extends AnyObject>(
     defaultData,
     defaultLoading       : userDefinedDefaultLoading,
     defaultReverseSorting: userDefinedDefaultReverseSorting,
+    defaultSelectedData  : userDefinedDefaultSelectedData,
     defaultSort          : userDefinedDefaultSort,
     filterLogic,
+    getRowKey,
     onRowClick,
+    onSelectedDataChange,
     onSortChange,
     reloadDependency,
     reloadSilently,
     reverseSorting       : userDefinedReverseSorting,
+    selectable,
     sort                 : userDefinedSort
   });
 

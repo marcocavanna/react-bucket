@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import { AnyObject } from '../../generic';
 import { contextBuilder } from '../../lib';
 
@@ -20,9 +18,6 @@ export interface RxTableContext<Data extends AnyObject, ColumnProps extends {} =
 
   /** Components used to render data */
   Components: RxTableComponents<Data>;
-
-  /** Row Key Getter */
-  getRowKey: (row: Data, index: number, array: Data[]) => React.Key;
 
   /** Check if data is currently loading */
   isLoading: boolean;

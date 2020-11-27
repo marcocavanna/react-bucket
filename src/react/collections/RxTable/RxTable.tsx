@@ -10,7 +10,7 @@ import { useElementType } from '../../lib';
 import { RxTableContext, RxTableProvider } from './RxTable.context';
 import { useRxTableFactory } from './RxTable.factory';
 
-import { RxTableComponents, RxTableProps } from './RxTable.types';
+import { RxTableColumnProps, RxTableComponents, RxTableProps } from './RxTable.types';
 
 import {
   RxTableBodyCell,
@@ -44,31 +44,62 @@ const RxTable = <Data extends AnyObject>(
   const {
     as,
     className,
-    columns,
+    columns              : userDefinedColumns,
     Components           : userDefinedComponents,
     data,
     defaultData,
     defaultReverseSorting: userDefinedDefaultReverseSorting,
+    defaultSelectedData  : userDefinedSelectedData,
     defaultSort          : userDefinedDefaultSort,
     disableHeader,
     filterLogic,
+    getRowKey            : userDefinedGetRowKey,
     initiallyLoading,
     loaderProps,
     noFilteredDataEmptyContentProps,
     noDataEmptyContentProps,
     onRowClick,
     onSortChange,
+    onSelectedDataChange,
     reloadDependency,
     reloadSilently,
     reverseSorting       : userDefinedReverseSorting,
-    rowKey,
+    selectable,
+    selectColumnProps,
     sort                 : userDefinedSort,
     style,
     ...rest
   } = props;
 
+
+  // ----
+  // Update Columns Field using Selectable
+  // ----
+  const columns: RxTableColumnProps<Data>[] = React.useMemo(
+    () => {
+      /** If table isn't selectable, return columns */
+      if (!selectable) {
+        return userDefinedColumns;
+      }
+
+      /** Return Columns width Select Column Props and Default */
+      return [
+        {
+          key      : '%%selectable%%',
+          width    : 36,
+          textAlign: 'center',
+          ...selectColumnProps
+        },
+        ...userDefinedColumns
+      ];
+    },
+    [ userDefinedColumns, selectable, selectColumnProps ]
+  );
+
+
   /** Get right element type */
   const ElementType = useElementType(RxTable, props as unknown as PropsWithAs<RxTableProps<AnyObject>>);
+
 
   /** Use RxTable Factory to get Data and Props */
   const rxTableProps = useRxTableFactory<Data>({
@@ -78,12 +109,15 @@ const RxTable = <Data extends AnyObject>(
     defaultLoading       : initiallyLoading,
     defaultReverseSorting: userDefinedDefaultReverseSorting,
     defaultSort          : userDefinedDefaultSort,
+    getRowKey            : userDefinedGetRowKey,
     filterLogic,
     onRowClick,
+    onSelectedDataChange,
     onSortChange,
     reloadDependency,
     reloadSilently,
     reverseSorting       : userDefinedReverseSorting,
+    selectable,
     sort                 : userDefinedSort
   });
 
@@ -124,21 +158,6 @@ const RxTable = <Data extends AnyObject>(
 
 
   /* --------
-   * Row Key Getter
-   * -------- */
-  const getRowKey = React.useCallback(
-    (row: Data, index: number) => {
-      if (typeof rowKey === 'function') {
-        return rowKey(row, index, rxTableProps.tableData);
-      }
-
-      return row[rowKey];
-    },
-    [ rowKey, rxTableProps.tableData ]
-  );
-
-
-  /* --------
    * Context Building
    * -------- */
   const rxTableContext: RxTableContext<Data> = {
@@ -147,8 +166,7 @@ const RxTable = <Data extends AnyObject>(
     columns,
     loaderProps,
     noFilteredDataEmptyContentProps,
-    noDataEmptyContentProps,
-    getRowKey
+    noDataEmptyContentProps
   };
 
 

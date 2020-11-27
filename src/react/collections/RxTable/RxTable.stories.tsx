@@ -46,10 +46,11 @@ const columns: RxTableColumnProps<User>[] = [
 export const directData = () => {
   return (
     <RxTable
+      selectable
       columns={columns}
       data={data}
       filterLogic={'or'}
-      rowKey={'email'}
+      getRowKey={'email'}
     />
   );
 };
@@ -60,7 +61,7 @@ export const AsyncLoadData = () => {
     () => new Promise<User[]>((resolve) => {
       setTimeout(() => {
         resolve(data);
-      }, 300000);
+      }, 2500);
     }),
     []
   );
@@ -70,7 +71,7 @@ export const AsyncLoadData = () => {
       columns={columns}
       data={handleLoadData}
       filterLogic={'or'}
-      rowKey={'email'}
+      getRowKey={'email'}
       loaderProps={{
         content: 'Loading User'
       }}

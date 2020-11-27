@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import { childrenUtils } from '@appbuckets/react-ui-core';
+
 import { Box } from '../../elements/Box';
 import { EmptyContent } from '../../elements/EmptyContent';
 import { Loader } from '../../elements/Loader';
@@ -33,7 +35,7 @@ const RxTableHeaderCell: RxTableHeaderCellComponent = (props) => {
     onClick
   } = props;
 
-  return TableHeaderCell.create(content, {
+  return TableHeaderCell.create(content || '', {
     autoGenerateKey: false,
     defaultProps   : {
       className
@@ -93,12 +95,22 @@ const RxTableBodyCell: RxTableCellComponent<any> = (
 ) => {
 
   const {
+    children,
     className,
     column,
     data,
     index,
     row
   } = props;
+
+  /** Use children if are declared */
+  if (!childrenUtils.isNil(children)) {
+    return (
+      <TableCell className={className}>
+        {children}
+      </TableCell>
+    );
+  }
 
   /** Render the Cell with function if exists */
   if (typeof column.render === 'function') {
@@ -153,11 +165,16 @@ export { RxTableBodyCell };
 const RxTableFilterCell: RxTableFilterCellComponent = (props) => {
   const {
     className,
-    children
+    children,
+    column
   } = props;
 
+  const style: React.CSSProperties | undefined = typeof (column as any).width === 'number'
+    ? { width: (column as any).width }
+    : undefined;
+
   return (
-    <TableHeaderCell className={className}>
+    <TableHeaderCell className={className} style={style}>
       {children}
     </TableHeaderCell>
   );

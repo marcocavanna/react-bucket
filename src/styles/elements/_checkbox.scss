@@ -161,6 +161,19 @@ input[type='radio'] {
 /******
     Checked State
 ******/
+.checkbox.field .indeterminate.checkbox + label {
+  &:before {
+    background-color: $checkbox-checked-background-color;
+    opacity: $checkbox-indeterminate-background-opacity;
+  }
+
+  &:after {
+    content: fa-content($fa-var-minus);
+    color: $checkbox-checked-checkmark-color;
+    opacity: 1;
+  }
+}
+
 .checkbox.field .checked.checkbox + label {
   &:before {
     background-color: $checkbox-checked-background-color;

@@ -1,5 +1,6 @@
-import arraySort from 'array-sort';
 import * as React from 'react';
+import arraySort from 'array-sort';
+import invariant from 'tiny-invariant';
 
 import { AnyObject } from '../../generic';
 
@@ -29,6 +30,9 @@ export interface UseRxTableFactoryConfig<Data, ColumnProps extends {} = {}> {
   /** Set initial reverse sorting */
   defaultReverseSorting?: boolean;
 
+  /** Set the default selected data */
+  defaultSelectedData?: Data[];
+
   /** Set initial sort */
   defaultSort?: string[];
 
@@ -38,8 +42,14 @@ export interface UseRxTableFactoryConfig<Data, ColumnProps extends {} = {}> {
    */
   filterLogic?: 'and' | 'or';
 
+  /** A function to retrive data key */
+  getRowKey?: keyof Data | ((row: Data, index: number, array: Data[]) => string | number);
+
   /** On Row Click Handler */
   onRowClick?: (row: Data, index: number, array: Data[]) => void;
+
+  /** On Selected Data Change */
+  onSelectedDataChange?: (selected: Data[]) => void;
 
   /** Callback handler fired when sort is changing */
   onSortChange?: (sorting: string[], reverse: boolean) => void;
@@ -53,6 +63,9 @@ export interface UseRxTableFactoryConfig<Data, ColumnProps extends {} = {}> {
   /** Manual control reverse sorting */
   reverseSorting?: boolean;
 
+  /** Set if row could be selected */
+  selectable?: boolean;
+
   /** Manual control sorting */
   sort?: string[];
 }
@@ -65,11 +78,20 @@ export interface RxTableFactory<Data> {
   /** Data */
   data: Data[];
 
+  /** Deselect all Rows */
+  deselectAllRows: () => void;
+
+  /** Deselect a Row */
+  deselectRow: (...rows: Data[]) => void;
+
   /** Data load error */
   error: any;
 
   /** Current Filters */
   filters: Record<string, any>;
+
+  /** Memoized getRowKey Function */
+  getRowKey: (row: Data, index: number, array: Data[]) => React.Key;
 
   /** Row Click Handler */
   handleRowClick: (index: number) => void;
@@ -86,8 +108,23 @@ export interface RxTableFactory<Data> {
   /** Check if row click is enabled */
   isRowClickEnabled: boolean;
 
+  /** Check if a Row is Selected */
+  isRowSelected: (row: Data) => boolean;
+
+  /** Check if row are selectable */
+  isSelectable: boolean;
+
   /** Checker for reversed sorting */
   isSortReversed: boolean;
+
+  /** Select all Rows */
+  selectAllRows: () => void;
+
+  /** Selected rows count */
+  selectedCount: number;
+
+  /** Select a Row */
+  selectRow: (...rows: Data[]) => void;
 
   /** Change column filter */
   setFilter: (column: string, value: any) => void;
@@ -100,6 +137,9 @@ export interface RxTableFactory<Data> {
 
   /** Filtered and Sorted Data */
   tableData: Data[];
+
+  /** Toggle Row Selected State */
+  toggleSelectRow: (row: Data) => void;
 }
 
 
@@ -118,6 +158,9 @@ interface RxTableFactoryState<Data> {
 
   /** The last data load timestamp */
   lastReloadTimeStamp: number;
+
+  /** Number of reload */
+  reloadCount: number;
 }
 
 
@@ -138,15 +181,50 @@ export function useRxTableFactory<Data extends AnyObject = any>(
     defaultData,
     defaultLoading,
     defaultReverseSorting: userDefinedDefaultReverseSorting,
+    defaultSelectedData  : userDefinedDefaultSelectedData,
     defaultSort          : userDefinedDefaultSort,
     filterLogic,
+    getRowKey            : userDefinedGetRowKey,
     onRowClick,
+    onSelectedDataChange,
     onSortChange,
     reloadDependency,
     reloadSilently,
     reverseSorting       : userDefinedReverseSorting,
+    selectable,
     sort                 : userDefinedSort
   } = config;
+
+
+  // ----
+  // Memoize the RowKey extractor
+  // ----
+  const getRowKey = React.useCallback(
+    (row: Data, index: number, array: Data[]): React.Key => {
+      if (typeof userDefinedGetRowKey === 'function') {
+        return userDefinedGetRowKey(row, index, array);
+      }
+
+      if (typeof userDefinedGetRowKey === 'string') {
+        return row[userDefinedGetRowKey];
+      }
+
+      return '';
+    },
+    [ userDefinedGetRowKey ]
+  );
+
+
+  // ----
+  // Invariant Check selectable and getRowKey
+  // ----
+  if (process.env.NODE_ENV === 'development' && selectable) {
+    invariant(
+      typeof getRowKey === 'function',
+      'To correctly use selectable table the getRowKey'
+      + 'function must be declared'
+    );
+  }
 
 
   // ----
@@ -172,7 +250,8 @@ export function useRxTableFactory<Data extends AnyObject = any>(
     data               : Array.isArray(data) ? data : (defaultData ?? []),
     error              : null,
     loading            : defaultLoading ?? typeof data === 'function',
-    lastReloadTimeStamp: 0
+    lastReloadTimeStamp: 0,
+    reloadCount        : 0
   });
 
   /** Build the load data function */
@@ -185,12 +264,13 @@ export function useRxTableFactory<Data extends AnyObject = any>(
        * need to wait for data load
        */
       if (Array.isArray(data)) {
-        setDataState({
+        setDataState((curr) => ({
           data,
           loading            : false,
           error              : null,
-          lastReloadTimeStamp: Date.now()
-        });
+          lastReloadTimeStamp: Date.now(),
+          reloadCount        : curr.reloadCount + 1
+        }));
         return;
       }
 
@@ -215,20 +295,22 @@ export function useRxTableFactory<Data extends AnyObject = any>(
         /** Await the function result */
         const result = await data(Date.now());
 
-        setDataState({
+        setDataState((curr) => ({
           data               : result,
           loading            : false,
           error              : null,
-          lastReloadTimeStamp: Date.now()
-        });
+          lastReloadTimeStamp: Date.now(),
+          reloadCount        : curr.reloadCount + 1
+        }));
       }
       catch (error) {
-        setDataState({
+        setDataState((curr) => ({
           data               : [],
           loading            : false,
           error,
-          lastReloadTimeStamp: Date.now()
-        });
+          lastReloadTimeStamp: Date.now(),
+          reloadCount        : curr.reloadCount + 1
+        }));
       }
     },
     [
@@ -244,6 +326,180 @@ export function useRxTableFactory<Data extends AnyObject = any>(
       loadData();
     },
     [ loadData, reloadDependency ]
+  );
+
+
+  // ----
+  // Data Key Building
+  // ----
+  const dataKeys: Map<Data, React.Key> = React.useMemo(
+    () => {
+      /** Build a new Map to save all data keys */
+      const keys = new Map<Data, React.Key>();
+
+      /** If no function exists to get row key, exit */
+      if (typeof getRowKey !== 'function' && !!userDefinedGetRowKey) {
+        return keys;
+      }
+
+      /** Loop each row and get it's own key */
+      dataState.data.forEach((row, index, array) => {
+        keys.set(row, getRowKey(row, index, array));
+      });
+
+      return keys;
+    },
+    [ dataState.data, getRowKey, userDefinedGetRowKey ]
+  );
+
+
+  // ----
+  // Data Selectors
+  // ----
+  const [ selectedKeys, setSelectedKeys ] = React.useState<React.Key[]>(
+    userDefinedDefaultSelectedData && selectable
+      ? (
+        userDefinedDefaultSelectedData
+          .filter((row) => dataKeys.has(row))
+          .map((row) => dataKeys.get(row) as React.Key)
+      )
+      : []
+  );
+
+  /** Handle selected data change */
+  const handleSelectedDataChange = React.useCallback(
+    (currentSelected: React.Key[]) => {
+      if (typeof onSelectedDataChange === 'function') {
+        onSelectedDataChange(dataState.data.filter(row => (
+          currentSelected.includes(dataKeys.get(row) as React.Key)
+        )));
+      }
+    },
+    [ dataKeys, dataState.data, onSelectedDataChange ]
+  );
+
+  // ----
+  // Data Selector
+  // ----
+
+  const selectAllRows = React.useCallback(
+    () => {
+      const newSelected: React.Key[] = [];
+
+      dataState.data.forEach((row) => {
+        newSelected.push(dataKeys.get(row) as React.Key);
+      });
+
+      setSelectedKeys(() => {
+        handleSelectedDataChange(newSelected);
+        return newSelected;
+      });
+    },
+    [ dataKeys, dataState.data, handleSelectedDataChange ]
+  );
+
+  const deselectAllRows = React.useCallback(
+    () => {
+      const newSelected: React.Key[] = [];
+      setSelectedKeys(() => {
+        handleSelectedDataChange(newSelected);
+        return newSelected;
+      });
+    },
+    [ handleSelectedDataChange ]
+  );
+
+  const checkIsRowSelected = React.useCallback(
+    (rowToCheck: Data) => {
+      const key = dataKeys.get(rowToCheck);
+
+      if (key === undefined) {
+        return false;
+      }
+
+      return selectedKeys.includes(key);
+    },
+    [ dataKeys, selectedKeys ]
+  );
+
+  const selectRow = React.useCallback(
+    (...rows: Data[]) => {
+      /** Transform rows into a React.Key array */
+      const rowsKey = rows
+        .map((row) => dataKeys.get(row))
+        .filter((key) => (
+          key !== undefined && !selectedKeys.includes(key)
+        )) as React.Key[];
+
+      if (rowsKey.length) {
+        const newSelected = [ ...selectedKeys, ...rowsKey ];
+        setSelectedKeys(() => {
+          handleSelectedDataChange(newSelected);
+          return newSelected;
+        });
+      }
+    },
+    [ dataKeys, handleSelectedDataChange, selectedKeys ]
+  );
+
+  const deselectRow = React.useCallback(
+    (...rows: Data[]) => {
+      /** Transform rows into a React.Key array */
+      const rowsKey = rows
+        .map((row) => dataKeys.get(row))
+        .filter((key) => (
+          key !== undefined && selectedKeys.includes(key)
+        )) as React.Key[];
+
+      /** Remove found keys */
+      if (rowsKey.length) {
+        const newSelected = [ ...selectedKeys ].filter((key) => (
+          !rowsKey.includes(key)
+        ));
+        setSelectedKeys(() => {
+          handleSelectedDataChange(newSelected);
+          return newSelected;
+        });
+      }
+    },
+    [ dataKeys, handleSelectedDataChange, selectedKeys ]
+  );
+
+  const toggleSelectRow = React.useCallback(
+    (rowToToggle: Data) => {
+      if (checkIsRowSelected(rowToToggle)) {
+        deselectRow(rowToToggle);
+      }
+      else {
+        selectRow(rowToToggle);
+      }
+    },
+    [ checkIsRowSelected, deselectRow, selectRow ]
+  );
+
+  /** Deselect all data on change */
+  React.useEffect(
+    () => {
+      /** Update data on second reload or higher */
+      if (dataState.reloadCount <= 1) {
+        return;
+      }
+
+      /** Remove all invalid keys */
+      const dataIDs = Array.from(dataKeys.values());
+
+      const newSelected = [ ...selectedKeys ].filter((key) => (
+        dataIDs.includes(key)
+      ));
+
+      if (newSelected.length !== selectedKeys.length) {
+        setSelectedKeys(() => {
+          handleSelectedDataChange(newSelected);
+          return newSelected;
+        });
+      }
+    },
+    [ dataKeys, dataState.reloadCount, handleSelectedDataChange, selectedKeys ]
   );
 
 
@@ -399,18 +655,27 @@ export function useRxTableFactory<Data extends AnyObject = any>(
 
 
   return {
+    deselectAllRows,
+    deselectRow,
     handleRowClick,
     hasFilterRow,
     hasHeaderRow,
     error            : dataState.error,
     filters,
+    getRowKey,
     isLoading        : dataState.loading,
     isRowClickEnabled: typeof onRowClick === 'function',
+    isRowSelected    : checkIsRowSelected,
+    isSelectable     : !!selectable,
     data             : dataState.data,
     setFilter        : handleFilterChange,
     setSorting       : handleChangeSorting,
     tableData        : sortedData,
     isSortReversed,
-    sorting
+    selectAllRows,
+    selectedCount    : selectedKeys.length,
+    selectRow,
+    sorting,
+    toggleSelectRow
   };
 }

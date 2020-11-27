@@ -1,17 +1,50 @@
 import * as React from 'react';
 import clsx from 'clsx';
 
+import { AnyObject } from '../../generic';
+
 import { Checkbox, CheckboxProps } from '../../elements/Checkbox';
 import { Input, InputProps } from '../../elements/Input';
-import { SelectMultiProps, SelectProps } from '../../elements/Select';
-import Select from '../../elements/Select/Select';
-import SelectMulti from '../../elements/Select/SelectMulti';
-import { AnyObject } from '../../generic';
+import { Select, MultiSelect, SelectMultiProps, SelectProps } from '../../elements/Select';
 
 import { useRxTable } from './RxTable.context';
 import { RxTableFactory } from './RxTable.factory';
 import { RxTableDataFilter } from './RxTable.types';
 import { RxTableHeaderTitleColumn } from './RxTableColumns';
+
+
+/* --------
+ * Select All Rows
+ * -------- */
+const RxTableAllRowSelector: React.FunctionComponent = () => {
+
+  const {
+    selectedCount,
+    selectAllRows,
+    deselectAllRows,
+    data
+  } = useRxTable();
+
+  const handleCheckboxChange = React.useCallback(
+    () => {
+      if (selectedCount >= data.length) {
+        deselectAllRows();
+      }
+      else {
+        selectAllRows();
+      }
+    },
+    [ deselectAllRows, selectAllRows, selectedCount, data.length ]
+  );
+
+  return (
+    <Checkbox
+      checked={selectedCount >= data.length}
+      indeterminate={selectedCount > 0 && selectedCount < data.length}
+      onClick={handleCheckboxChange}
+    />
+  );
+};
 
 
 /* --------
@@ -116,7 +149,7 @@ export const RxTableFilterElement: React.FunctionComponent<RxTableFilterElementP
 
   if (filter.type === 'multi-select') {
     return (
-      <SelectMulti
+      <MultiSelect
         {...filter.props}
         onChange={handleMultiSelectFilterChange}
       />
@@ -131,13 +164,14 @@ const RxTableFilterRow: React.FunctionComponent = () => {
   const {
     columns,
     Components,
+    isSelectable,
     filters,
     setFilter
   } = useRxTable();
 
   return (
     <Components.FilterRow>
-      {columns.map((column) => {
+      {columns.map((column, index) => {
         /** Build className */
         const classes = clsx(
           'filter',
@@ -151,12 +185,18 @@ const RxTableFilterRow: React.FunctionComponent = () => {
             className={classes}
             column={column}
           >
-            <RxTableFilterElement
-              columnKey={column.key}
-              filter={column.filter}
-              setFilter={setFilter}
-              filters={filters}
-            />
+            {isSelectable && index === 0
+              ? (
+                <RxTableAllRowSelector />
+              )
+              : (
+                <RxTableFilterElement
+                  columnKey={column.key}
+                  filter={column.filter}
+                  filters={filters}
+                  setFilter={setFilter}
+                />
+              )}
           </Components.FilterCell>
         );
       })}
@@ -176,20 +216,28 @@ const RxTableHeaderRow: React.FunctionComponent = () => {
     Components,
     isSortReversed,
     setSorting,
-    sorting
+    sorting,
+    hasFilterRow,
+    isSelectable
   } = useRxTable();
 
   return (
     <Components.HeaderRow>
-      {columns.map((column) => (
-        <RxTableHeaderTitleColumn
-          key={column.key}
-          column={column}
-          Component={Components.HeaderCell}
-          isSortReversed={isSortReversed}
-          onSortChange={setSorting}
-          tableSorting={sorting}
-        />
+      {columns.map((column, index) => (
+        isSelectable && index === 0 && !hasFilterRow
+          ? (
+            <RxTableAllRowSelector />
+          )
+          : (
+            <RxTableHeaderTitleColumn
+              key={column.key}
+              column={column}
+              Component={Components.HeaderCell}
+              isSortReversed={isSortReversed}
+              onSortChange={setSorting}
+              tableSorting={sorting}
+            />
+          )
       ))}
     </Components.HeaderRow>
   );

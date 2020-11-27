@@ -15,11 +15,16 @@ export const BaseTable = () => {
 
   const [ , setSelectedItem ] = React.useState<Data>();
 
-  const data = new Array(10000).fill(1).map<Data>((value, index) => ({
-    _id        : index,
-    title      : `Product ${index}`,
-    description: `Some description for product number ${index}`
-  }));
+  const data = React.useMemo(
+    () => (
+      new Array(10000).fill(1).map<Data>((value, index) => ({
+        _id        : index,
+        title      : `Product ${index}`,
+        description: `Some description for product number ${index}`
+      }))
+    ),
+    []
+  );
 
   const handleSelectItem = (item: Data) => {
     setSelectedItem(item);
@@ -35,6 +40,7 @@ export const BaseTable = () => {
           filterRowHeight={52}
           rowHeight={58}
           width={width}
+          overscanCount={150}
           defaultSort={[ 'title' ]}
           onRowClick={handleSelectItem}
           columns={[

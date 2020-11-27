@@ -37,6 +37,9 @@ export interface StrictRxTableProps<Data> extends UseRxTableFactoryConfig<Data> 
   /** Disable Header Render */
   disableHeader?: boolean;
 
+  /** The row key or a function to get it */
+  getRowKey: keyof Data | ((row: Data, index: number, array: Data[]) => React.Key);
+
   /** Initial Loading State */
   initiallyLoading?: boolean;
 
@@ -52,8 +55,8 @@ export interface StrictRxTableProps<Data> extends UseRxTableFactoryConfig<Data> 
   /** On Row Click Handler */
   onRowClick?: (row: Data, index: number, array: Data[]) => void;
 
-  /** The row key or a function to get it */
-  rowKey: keyof Data | ((row: Data, index: number, array: Data[]) => React.Key);
+  /** Select Column Props */
+  selectColumnProps?: Partial<Pick<RxTableColumnProps<Data>, 'className' | 'headerClassName' | 'key' | 'textAlign'>>
 
   /** Wrapper Style */
   style?: React.CSSProperties
