@@ -10,15 +10,26 @@ import {
   useSharedClassName
 } from '../../lib';
 
-import Label from './Label';
+import { LabelComponent } from './Label';
 
 import { LabelGroupProps } from './LabelGroup.types';
+
+
+/* --------
+ * Component Import to avoid Circular Dependencies
+ * -------- */
+let Label: LabelComponent | null = null;
+
+import('./Label').then(({ default: labelComponent }) => {
+  Label = labelComponent;
+});
 
 
 /* --------
  * Component Declare
  * -------- */
 type LabelGroupComponent = React.FunctionComponent<LabelGroupProps>;
+
 
 /* --------
  * Component Render
@@ -54,7 +65,7 @@ const LabelGroup: LabelGroupComponent = (props) => {
 
   return (
     <ElementType {...rest} className={classes}>
-      {Array.isArray(labels) && labels.map((label) => (
+      {Array.isArray(labels) && labels.map((label) => Label && (
         Label.create(label, {
           autoGenerateKey: true
         })

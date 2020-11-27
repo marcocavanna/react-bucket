@@ -25,7 +25,7 @@ import Popup from '../../modules/Popup/Popup';
 /* --------
  * Component Declaration
  * -------- */
-type ButtonComponent = CreatableFunctionComponent<ButtonProps> & {
+export type ButtonComponent = CreatableFunctionComponent<ButtonProps> & {
   Group: typeof ButtonGroup;
 };
 

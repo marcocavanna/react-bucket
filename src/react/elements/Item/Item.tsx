@@ -26,7 +26,7 @@ import ItemTools from './ItemTools';
 /* --------
  * Component Declare
  * -------- */
-type ItemComponent = CreatableFunctionComponent<ItemProps> & {
+export type ItemComponent = CreatableFunctionComponent<ItemProps> & {
   Avatar: typeof Avatar;
   Content: typeof ItemContent;
   Group: typeof ItemGroup;

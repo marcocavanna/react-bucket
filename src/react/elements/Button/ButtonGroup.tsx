@@ -15,8 +15,18 @@ import { CreatableFunctionComponent, ShorthandCollection } from '../../generic';
 
 import { ButtonGroupProps } from './ButtonGroup.types';
 
-import Button from './Button';
+import { ButtonComponent } from './Button';
 import { ButtonProps } from './Button.types';
+
+
+/* --------
+ * Import ButtonGroup async to avoid circular dependencies
+ * -------- */
+let Button: ButtonComponent | null = null;
+
+import('./Button').then(({ default: buttonComponent }) => {
+  Button = buttonComponent;
+});
 
 
 /* --------
@@ -64,7 +74,7 @@ const ButtonGroup: ButtonGroupComponent = (props) => {
 
   /** Generate Buttons */
   const buttonsElement = Array.isArray(buttons)
-    ? buttons.map((buttonProps) => Button.create(buttonProps, { autoGenerateKey: true }))
+    ? buttons.map((buttonProps) => Button && Button.create(buttonProps, { autoGenerateKey: true }))
     : [];
 
   /** Return the Group */

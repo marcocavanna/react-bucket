@@ -11,16 +11,27 @@ import {
   useSharedClassName
 } from '../../lib';
 
-import Item from './Item';
+import { ItemComponent } from './Item';
 import { ItemProps } from './Item.types';
 
 import { ItemGroupProps } from './ItemGroup.types';
 
 
 /* --------
+ * Component Import to avoid Circular Dependencies
+ * -------- */
+let Item: ItemComponent | null = null;
+
+import('./Item').then(({ default: itemComponent }) => {
+  Item = itemComponent;
+});
+
+
+/* --------
  * Component Declare
  * -------- */
 type ItemGroupComponent = React.FunctionComponent<ItemGroupProps>;
+
 
 /* --------
  * Component Render
@@ -60,7 +71,7 @@ const ItemGroup: ItemGroupComponent = (props) => {
 
   return (
     <ElementType {...rest} className={classes}>
-      {items && items.map((item: ShorthandItem<ItemProps>) => Item.create(item, {
+      {items && items.map((item: ShorthandItem<ItemProps>) => Item && Item.create(item, {
         autoGenerateKey: false
       }))}
     </ElementType>

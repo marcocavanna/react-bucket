@@ -25,7 +25,7 @@ import LabelGroup from './LabelGroup';
 /* --------
  * Component Declare
  * -------- */
-type LabelComponent = CreatableFunctionComponent<LabelProps> & {
+export type LabelComponent = CreatableFunctionComponent<LabelProps> & {
   Group: typeof LabelGroup
 };
 
