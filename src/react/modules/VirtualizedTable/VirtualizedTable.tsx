@@ -23,7 +23,7 @@ import {
   VirtualizedTableNoContent
 } from './VirtualizedTableDefaultComponents';
 
-import { VirtualizedTableBodyWrapper, VirtualizedBody, VirtualizedTableBody } from './VirtualizedTableBody';
+import { VirtualizedBody } from './VirtualizedTableBody';
 import { VirtualizedTableHeader } from './VirtualizedTableHeader';
 
 
@@ -237,10 +237,10 @@ const VirtualizedTable = <Data extends AnyObject>(
    * Build the Components
    * -------- */
   const Components: RxTableComponents<Data> = {
-    Body         : VirtualizedTableBody,
+    Body         : 'div',
     BodyCell     : VirtualizedTableBodyCell,
     BodyRow      : VirtualizedTableBodyRow,
-    BodyWrapper  : VirtualizedTableBodyWrapper,
+    BodyWrapper  : 'div',
     Error        : RxTableError,
     ErrorRow     : 'div',
     ErrorCell    : 'div',

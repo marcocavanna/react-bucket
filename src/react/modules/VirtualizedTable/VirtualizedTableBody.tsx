@@ -245,8 +245,8 @@ const VirtualizedBody: React.FunctionComponent<VirtualizedTableBodyProps> = (
   /** Show the Loader while requesting data */
   if (isLoading) {
     return (
-      <Components.BodyWrapper>
-        <Components.Body>
+      <Components.BodyWrapper className={'virtualized table virtualized-body'}>
+        <Components.Body className={'virtualized body'}>
           <Components.LoaderRow className={'row loading-row'}>
             <Components.LoaderCell colSpan={columns.length} className={'cell loading-cell'}>
               <Components.Loader />
@@ -260,8 +260,8 @@ const VirtualizedBody: React.FunctionComponent<VirtualizedTableBodyProps> = (
   /** If an error occurred, show dedicated component */
   if (error) {
     return (
-      <Components.BodyWrapper>
-        <Components.Body>
+      <Components.BodyWrapper className={'virtualized table virtualized-body'}>
+        <Components.Body className={'virtualized body'}>
           <Components.ErrorRow className={'row error-row'}>
             <Components.ErrorCell colSpan={columns.length} className={'cell error-cell'}>
               <Components.Error error={error} />
@@ -275,8 +275,8 @@ const VirtualizedBody: React.FunctionComponent<VirtualizedTableBodyProps> = (
   /** Render no Content */
   if (!tableData.length) {
     return (
-      <Components.BodyWrapper>
-        <Components.Body>
+      <Components.BodyWrapper className={'virtualized table virtualized-body'}>
+        <Components.Body className={'virtualized body'}>
           <Components.NoContentRow className={'row no-content-row'}>
             <Components.NoContentCell colSpan={columns.length} className={'cell no-content-cell'}>
               <Components.NoContent filters={filters} />
@@ -308,6 +308,6 @@ const VirtualizedBody: React.FunctionComponent<VirtualizedTableBodyProps> = (
   );
 };
 
-VirtualizedBody.displayName = 'VirtualizedTableBody';
+VirtualizedBody.displayName = 'VirtualizedBody';
 
 export { VirtualizedBody };
