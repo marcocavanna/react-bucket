@@ -33,14 +33,12 @@
   "homepage": "https://github.com/marcocavanna/react-bucket#readme",
   "license": "MIT",
   "scripts": {
-    "version": "export GPG_TTY=$(tty) && echo \"sign-test\" | gpg --clearsign && yarn build && git add -A package.json",
+    "version": "node build.fontawesome.js && export GPG_TTY=$(tty) && echo \"sign-test\" | gpg --clearsign && yarn build && git add -A package.json && git -A .",
     "postversion": "git push && git push --tags && npm publish",
-    "prepublishOnly": "node build.fontawesome.js && npm run build",
     "build": "cross-env NODE_ENV=production yarn compile:rollup",
     "build:dev": "cross-env NODE_ENV=development yarn compile:rollup",
     "build:storybook": "build-storybook",
     "build:declaration": "tsc -p tsconfig.declaration.json",
-    "copy:declaration": "cpy '**/*.d.ts' '../../build/es' --cwd=src/react --parents",
     "precompile:rollup": "rimraf build",
     "compile:rollup": "rollup -c",
     "postcompile:rollup": "node build.styles.js && yarn build:declaration && yarn prettier",
@@ -51,8 +49,7 @@
     "test:watch": "cross-env NODE_ENV=test jest --watch",
     "test:coverage": "cross-env NODE_ENV=test jest --coverage",
     "lint": "eslint .",
-    "prettier": "prettier --config .prettierrc --write \"build/**/*{.js,.ts,.css}\"",
-    "make:local": "yarn build && rimraf local && mkdir local && cp -r build local && cp package.json local/package.json && cp README.md local/README.md && cp LICENSE ./local/LICENSE"
+    "prettier": "prettier --config .prettierrc --write \"build/**/*{.js,.ts,.css}\""
   },
   "peerDependencies": {
     "react": "^16.13.1",
