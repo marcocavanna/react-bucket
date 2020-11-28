@@ -85,6 +85,7 @@ const VirtualizedTableBodyCell: RxTableCellComponent<any> = (
   const {
     children,
     className,
+    column: { Content, render, cell, key },
     column,
     data,
     index,
@@ -95,7 +96,7 @@ const VirtualizedTableBodyCell: RxTableCellComponent<any> = (
     getColumnWidth
   } = useVirtualizedTable();
 
-  const width = getColumnWidth(column.key);
+  const width = getColumnWidth(key);
 
   /** Build style */
   const style: React.CSSProperties = {
@@ -114,30 +115,46 @@ const VirtualizedTableBodyCell: RxTableCellComponent<any> = (
     );
   }
 
-  /** Render the Cell with function if exists */
-  if (typeof column.render === 'function') {
+  /** Use user defined component */
+  if (Content) {
     return (
       <div className={className} style={style}>
         <div className={'virtualized cell-content'}>
-          {column.render(row, index, data)}
+          <Content
+            column={column}
+            data={data}
+            index={index}
+            row={row}
+          />
+        </div>
+      </div>
+    );
+  }
+
+  /** Render the Cell with function if exists */
+  if (typeof render === 'function') {
+    return (
+      <div className={className} style={style}>
+        <div className={'virtualized cell-content'}>
+          {render(row, index, data)}
         </div>
       </div>
     );
   }
 
   /** Render Cell with Cell Shorthand Definition */
-  if (column.cell) {
-    const metaContent = typeof column.cell.meta === 'function'
-      ? column.cell.meta(row, index, data)
-      : column.cell.meta;
+  if (cell) {
+    const metaContent = typeof cell.meta === 'function'
+      ? cell.meta(row, index, data)
+      : cell.meta;
 
-    const headerContent = typeof column.cell.header === 'function'
-      ? column.cell.header(row, index, data)
-      : column.cell.header;
+    const headerContent = typeof cell.header === 'function'
+      ? cell.header(row, index, data)
+      : cell.header;
 
-    const contentContent = typeof column.cell.content === 'function'
-      ? column.cell.content(row, index, data)
-      : column.cell.content;
+    const contentContent = typeof cell.content === 'function'
+      ? cell.content(row, index, data)
+      : cell.content;
 
     return (
       <div className={className} style={style}>
@@ -169,7 +186,7 @@ const VirtualizedTableBodyCell: RxTableCellComponent<any> = (
   return (
     <div className={className} style={style}>
       <div className={'virtualized cell-content'}>
-        {TableCellContent.create(row[column.key], {
+        {TableCellContent.create(row[key] || '', {
           autoGenerateKey: false,
           overrideProps  : {
             type: 'title'

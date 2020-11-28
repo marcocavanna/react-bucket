@@ -1,7 +1,6 @@
 import clsx from 'clsx';
 import * as React from 'react';
 
-import { AnyObject } from '../../generic';
 import areEqualStringArray from './lib/areEqualStringArray';
 import { RxTableFactory } from './RxTable.factory';
 
@@ -13,7 +12,7 @@ import { RxTableColumnProps, RxTableHeaderCellComponent } from './RxTable.types'
  * -------- */
 export interface RxTableHeaderTitleColumnProps {
   /** The Column Object */
-  column: RxTableColumnProps<any, AnyObject>;
+  column: RxTableColumnProps<any, any>;
 
   /** Cell Component used to Render the element */
   Component: RxTableHeaderCellComponent;

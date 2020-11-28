@@ -109,10 +109,27 @@ type ComputedCellContentField<Data> =
   | TableCellContentProps
   | React.ReactNode;
 
-/** Single Column */
-export type RxTableColumnProps<Data, Props extends {} = {}> = Props & StrictRxTableColumnProps<Data>;
+/** Cell Content Component */
+export interface RxTableCellContentProps<Data, ColumnExtraProps> {
+  /** Entire Column */
+  column: RxTableColumnProps<Data, ColumnExtraProps>;
 
-export interface StrictRxTableColumnProps<Data> {
+  /** Table data array */
+  data: Data[];
+
+  /** Row index */
+  index: number;
+
+  /** Cell Row Data */
+  row: Data;
+}
+
+export type RxTableCellContent<Data, ColumnExtraProps> = React.FunctionComponent<RxTableCellContentProps<Data, ColumnExtraProps>>;
+
+/** Single Column */
+export type RxTableColumnProps<Data, Props extends {} = {}> = Props & StrictRxTableColumnProps<Data, Props>;
+
+export interface StrictRxTableColumnProps<Data, ExtraProps> {
   /** Column Cell definition by object */
   cell?: {
     /** Main Content */
@@ -122,6 +139,9 @@ export interface StrictRxTableColumnProps<Data> {
     /** Meta Content */
     meta?: ComputedCellContentField<Data>;
   };
+
+  /** Set a component to render the cell content */
+  Content?: RxTableCellContent<Data, ExtraProps>;
 
   /** Children are not allowed */
   children?: never;
@@ -186,7 +206,7 @@ export interface RxTableFilterCellProps {
   className: string;
 
   /** Rendered Column */
-  column: RxTableColumnProps<any>;
+  column: RxTableColumnProps<any, any>;
 }
 
 export interface RxTableErrorProps {
@@ -207,7 +227,7 @@ export interface RxTableRowProps<Data> {
   className: string;
 
   /** Columns Array */
-  columns: RxTableColumnProps<Data>[]
+  columns: RxTableColumnProps<Data, any>[]
 
   /** Row index */
   index: Number;

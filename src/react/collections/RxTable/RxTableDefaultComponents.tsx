@@ -97,6 +97,7 @@ const RxTableBodyCell: RxTableCellComponent<any> = (
   const {
     children,
     className,
+    column: { Content, render, cell, key },
     column,
     data,
     index,
@@ -112,28 +113,42 @@ const RxTableBodyCell: RxTableCellComponent<any> = (
     );
   }
 
-  /** Render the Cell with function if exists */
-  if (typeof column.render === 'function') {
+  /** Use user defined component */
+  if (Content) {
     return (
       <TableCell className={className}>
-        {column.render(row, index, data)}
+        <Content
+          column={column}
+          data={data}
+          index={index}
+          row={row}
+        />
+      </TableCell>
+    );
+  }
+
+  /** Render the Cell with function if exists */
+  if (typeof render === 'function') {
+    return (
+      <TableCell className={className}>
+        {render(row, index, data)}
       </TableCell>
     );
   }
 
   /** Render Cell with Cell Shorthand Definition */
-  if (column.cell) {
-    const metaContent = typeof column.cell.meta === 'function'
-      ? column.cell.meta(row, index, data)
-      : column.cell.meta;
+  if (cell) {
+    const metaContent = typeof cell.meta === 'function'
+      ? cell.meta(row, index, data)
+      : cell.meta;
 
-    const headerContent = typeof column.cell.header === 'function'
-      ? column.cell.header(row, index, data)
-      : column.cell.header;
+    const headerContent = typeof cell.header === 'function'
+      ? cell.header(row, index, data)
+      : cell.header;
 
-    const contentContent = typeof column.cell.content === 'function'
-      ? column.cell.content(row, index, data)
-      : column.cell.content;
+    const contentContent = typeof cell.content === 'function'
+      ? cell.content(row, index, data)
+      : cell.content;
 
     return (
       <TableCell
@@ -148,7 +163,7 @@ const RxTableBodyCell: RxTableCellComponent<any> = (
   /** Render using the key */
   return (
     <TableCell
-      header={row[column.key]}
+      header={row[key]}
       className={className}
     />
   );

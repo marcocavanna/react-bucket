@@ -23,7 +23,7 @@ import {
   VirtualizedTableNoContent
 } from './VirtualizedTableDefaultComponents';
 
-import { VirtualizedTableBody } from './VirtualizedTableBody';
+import { VirtualizedTableBodyWrapper, VirtualizedBody, VirtualizedTableBody } from './VirtualizedTableBody';
 import { VirtualizedTableHeader } from './VirtualizedTableHeader';
 
 
@@ -112,7 +112,7 @@ const VirtualizedTable = <Data extends AnyObject>(
 
 
   /** Use RxTable Factory to get Data and Props */
-  const rxTableProps = useRxTableFactory<Data>({
+  const rxTableProps = useRxTableFactory<Data, MandatoryVirtualizedColumnProps>({
     columns,
     data,
     defaultData,
@@ -237,10 +237,10 @@ const VirtualizedTable = <Data extends AnyObject>(
    * Build the Components
    * -------- */
   const Components: RxTableComponents<Data> = {
-    Body         : 'div',
+    Body         : VirtualizedTableBody,
     BodyCell     : VirtualizedTableBodyCell,
     BodyRow      : VirtualizedTableBodyRow,
-    BodyWrapper  : 'div',
+    BodyWrapper  : VirtualizedTableBodyWrapper,
     Error        : RxTableError,
     ErrorRow     : 'div',
     ErrorCell    : 'div',
@@ -332,7 +332,7 @@ const VirtualizedTable = <Data extends AnyObject>(
         {!disableHeader && (
           <VirtualizedTableHeader />
         )}
-        <VirtualizedTableBody
+        <VirtualizedBody
           direction={direction}
           estimatedItemSize={estimatedItemSize}
           itemKey={itemKey}

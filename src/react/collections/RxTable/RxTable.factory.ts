@@ -167,8 +167,8 @@ interface RxTableFactoryState<Data> {
 /* --------
  * Hook Definition
  * -------- */
-export function useRxTableFactory<Data extends AnyObject = any>(
-  config: UseRxTableFactoryConfig<Data>
+export function useRxTableFactory<Data extends AnyObject = any, ColumnProps = any>(
+  config: UseRxTableFactoryConfig<Data, ColumnProps>
 ): RxTableFactory<Data> {
 
 
@@ -569,7 +569,7 @@ export function useRxTableFactory<Data extends AnyObject = any>(
       /** Filter data using columns */
       return dataState.data.filter((row, index, array) => {
         return filterColumns.reduce(
-          (show: boolean, next: RxTableColumnProps<Data>) => (
+          (show: boolean, next: RxTableColumnProps<Data, ColumnProps>) => (
             filterLogic === 'and'
               ? show && next.filter!.show(filters[next.key] as (string & number), row, index, array)
               : show || next.filter!.show(filters[next.key] as (string & number), row, index, array)

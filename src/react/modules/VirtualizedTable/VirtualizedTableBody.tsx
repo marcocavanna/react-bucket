@@ -144,7 +144,7 @@ const MemoizedVirtualizedTableRow = React.memo(VirtualizedTableRow, areEqual);
  * each virtualized row
  * It is the full height scrolling element
  * -------- */
-const VirtualizedBody: React.FunctionComponent<VirtualizedElementProps> = (props) => {
+const VirtualizedTableBody: React.FunctionComponent<VirtualizedElementProps> = (props) => {
 
   const {
     children,
@@ -168,6 +168,10 @@ const VirtualizedBody: React.FunctionComponent<VirtualizedElementProps> = (props
   );
 };
 
+VirtualizedTableBody.displayName = 'VirtualizedTableBody';
+
+export { VirtualizedTableBody };
+
 
 /* --------
  * Outer Element
@@ -175,7 +179,7 @@ const VirtualizedBody: React.FunctionComponent<VirtualizedElementProps> = (props
  * of the Virtualized Table
  * It is the fixed height/width element
  * -------- */
-const VirtualizedBodyWrapper = React.forwardRef<any, VirtualizedElementProps>(
+const VirtualizedTableBodyWrapper = React.forwardRef<any, VirtualizedElementProps>(
   (props, ref) => {
     const {
       children,
@@ -200,6 +204,10 @@ const VirtualizedBodyWrapper = React.forwardRef<any, VirtualizedElementProps>(
   }
 );
 
+VirtualizedTableBodyWrapper.displayName = 'VirtualizedTableBodyWrapper';
+
+export { VirtualizedTableBodyWrapper };
+
 
 /* --------
  * Component Definition
@@ -208,7 +216,7 @@ interface VirtualizedTableBodyProps extends PickedVariableSizeList {
   estimatedItemSize?: number;
 }
 
-const VirtualizedTableBody: React.FunctionComponent<VirtualizedTableBodyProps> = (
+const VirtualizedBody: React.FunctionComponent<VirtualizedTableBodyProps> = (
   props
 ) => {
 
@@ -239,8 +247,8 @@ const VirtualizedTableBody: React.FunctionComponent<VirtualizedTableBodyProps> =
     return (
       <Components.BodyWrapper>
         <Components.Body>
-          <Components.LoaderRow className={'loading-row'}>
-            <Components.LoaderCell colSpan={columns.length} className={'loading-cell'}>
+          <Components.LoaderRow className={'row loading-row'}>
+            <Components.LoaderCell colSpan={columns.length} className={'cell loading-cell'}>
               <Components.Loader />
             </Components.LoaderCell>
           </Components.LoaderRow>
@@ -254,8 +262,8 @@ const VirtualizedTableBody: React.FunctionComponent<VirtualizedTableBodyProps> =
     return (
       <Components.BodyWrapper>
         <Components.Body>
-          <Components.ErrorRow className={'error-row'}>
-            <Components.ErrorCell colSpan={columns.length} className={'error-cell'}>
+          <Components.ErrorRow className={'row error-row'}>
+            <Components.ErrorCell colSpan={columns.length} className={'cell error-cell'}>
               <Components.Error error={error} />
             </Components.ErrorCell>
           </Components.ErrorRow>
@@ -269,8 +277,8 @@ const VirtualizedTableBody: React.FunctionComponent<VirtualizedTableBodyProps> =
     return (
       <Components.BodyWrapper>
         <Components.Body>
-          <Components.NoContentRow className={'no-content-row'}>
-            <Components.NoContentCell colSpan={columns.length} className={'no-content-cell'}>
+          <Components.NoContentRow className={'row no-content-row'}>
+            <Components.NoContentCell colSpan={columns.length} className={'cell no-content-cell'}>
               <Components.NoContent filters={filters} />
             </Components.NoContentCell>
           </Components.NoContentRow>
@@ -292,14 +300,14 @@ const VirtualizedTableBody: React.FunctionComponent<VirtualizedTableBodyProps> =
       itemSize={getRowHeight}
       estimatedItemSize={estimatedItemSize}
       itemCount={tableData.length}
-      innerElementType={VirtualizedBody}
-      outerElementType={VirtualizedBodyWrapper}
+      innerElementType={VirtualizedTableBody}
+      outerElementType={VirtualizedTableBodyWrapper}
     >
       {MemoizedVirtualizedTableRow}
     </VariableSizeList>
   );
 };
 
-VirtualizedTableBody.displayName = 'VirtualizedTableBody';
+VirtualizedBody.displayName = 'VirtualizedTableBody';
 
-export { VirtualizedTableBody };
+export { VirtualizedBody };

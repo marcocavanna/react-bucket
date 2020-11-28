@@ -44,7 +44,7 @@ const RxTableRowSelector: React.FunctionComponent<{ row: any }> = (
 interface RxTableBodyCellProps<Data> {
   className?: string;
 
-  column: RxTableColumnProps<Data>;
+  column: RxTableColumnProps<Data, any>;
 
   columnIndex?: number;
 
