@@ -81,11 +81,7 @@ function FormFormikActions<Values = any>(
         }
       }))
     }),
-    [
-      cancelButton,
-      onCancel,
-      formikBag.isSubmitting
-    ]
+    [ cancelButton, formikBag, onCancel ]
   );
 
   /** Case of no Action Wrapper, return an empty component */
@@ -177,7 +173,7 @@ export default function FormFormik<Values = any, SubmitResult = any>(
         }
       }
     },
-    []
+    [ onSubmit, onSubmitCompleted, onSubmitError ]
   );
 
   const handleFormikCancel = React.useCallback<FormFormikInternalActionHandler<Values>>(
@@ -205,7 +201,7 @@ export default function FormFormik<Values = any, SubmitResult = any>(
         });
       }
     },
-    [ onCancel ]
+    [ onCancel, resetOnCancel ]
   );
 
 
