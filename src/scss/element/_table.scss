@@ -272,6 +272,24 @@
         color: inherit;
         opacity: .75;
       }
+
+      &.has-background-success-tint {
+        background-color: color-tint($success, 2) !important;
+      }
+
+      &.no-truncated {
+        overflow: unset;
+        text-overflow: unset;
+        white-space: unset;
+
+        .cell-header,
+        .cell-content,
+        .cell-metadata {
+          overflow: unset;
+          text-overflow: unset;
+          white-space: unset;
+        }
+      }
     }
   }
 
