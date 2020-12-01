@@ -1,11 +1,12 @@
 import * as React from 'react';
 
+import { SharedComponentStateProps } from '../../generic';
+
 import { Checkbox, CheckboxProps } from '../../elements/Checkbox';
+import { ColorPicker, ColorPickerProps } from '../../elements/ColorPicker';
 import { DayPicker, DayPickerProps, ParsableDate } from '../../elements/DayPicker';
 import { Input, InputProps } from '../../elements/Input';
 import { MultiSelect, Select, SelectMultiProps, SelectOption, SelectProps } from '../../elements/Select';
-
-import { SharedComponentStateProps } from '../../generic';
 
 import withFormikField from './lib/withFormikField';
 import { FormikFieldComponentProps, FormikFieldComponentRenderProps } from './lib/withFormikField.types';
@@ -63,6 +64,28 @@ export const FormikCheckbox = withFormikField<CheckboxProps, boolean>({
   onChange : (formik, event, props) => {
     formik.setFieldValue(props.name, !!props.checked, true);
   }
+});
+
+
+/* --------
+ * Color Picker Wrapped Component
+ * -------- */
+export const FormikColorPicker = withFormikField<ColorPickerProps, string | null>({
+  Component         : function FormikColorPickerComponent(props) {
+    const stateProps = useFormikFieldState(props);
+
+    return (
+      <ColorPicker
+        {...props.rest}
+        {...stateProps}
+        hint={props.state.message}
+      />
+    );
+  },
+  onChange          : (formik, event, props) => {
+    formik.setFieldValue(props.name, props.color, true);
+  },
+  setTouchedOnChange: true
 });
 
 

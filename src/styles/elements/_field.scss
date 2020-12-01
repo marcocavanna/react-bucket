@@ -38,6 +38,19 @@
 
 
 /******
+    Append the * on Required Field Label
+******/
+.required.field > label:after {
+  position: absolute;
+  transform: $field-required-symbol-transform;
+  font-size: $field-required-symbol-font-size;
+  content: $field-required-symbol-content;
+  color: $field-required-symbol-color;
+  opacity: $field-required-symbol-opacity;
+}
+
+
+/******
     Field Container element
 ******/
 .field > .wrapper {
@@ -52,6 +65,11 @@
     display: flex;
     position: relative;
     width: 100%;
+
+    /// A Child that is an Item must be full width
+    > .item {
+      width: 100%;
+    }
   }
 
   // ----

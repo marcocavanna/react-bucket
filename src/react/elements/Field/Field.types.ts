@@ -29,7 +29,7 @@ export interface StrictFieldProps extends SharedComponentStateProps {
   contentClassName?: string;
 
   /** Set field content type */
-  contentType?: 'input' | 'select input' | 'checkbox' | 'radio' | 'switch';
+  contentType?: 'input' | 'select input' | 'checkbox' | 'radio' | 'switch' | 'color';
 
   /** Set the field as Disabled */
   disabled?: boolean;

@@ -197,6 +197,12 @@ $field-label-text-transform: uppercase !default;
 $field-label-spacer: $spacer * .5 !default;
 $field-label-color: $text-lightest !default;
 
+$field-required-symbol-content: '*' !default;
+$field-required-symbol-transform: translate(0.25em, 0) !default;
+$field-required-symbol-font-size: 1.25em !default;
+$field-required-symbol-color: $danger !default;
+$field-required-symbol-opacity: .75 !default;
+
 $field-icon-base-color: rgba(0, 0, 0, .35) !default;
 $field-clear-icon-base-color: rgba(0, 0, 0, .25) !default;
 $field-clear-icon-hover-color: rgba(0, 0, 0, .55) !default;

@@ -20,7 +20,14 @@ const fieldPropsKey: ReadonlyArray<keyof StrictFieldProps> = [
   'label',
   'onClear',
   'readOnly',
-  'required'
+  'required',
+  'appearance',
+  'danger',
+  'info',
+  'primary',
+  'secondary',
+  'success',
+  'warning'
 ];
 
 
@@ -29,7 +36,7 @@ type Rest<P> = {
   [K in keyof P]: K extends keyof StrictFieldProps ? never : P[K]
 };
 
-export default function splitFieldProps<P extends AnyObject>(
+export default function splitFieldProps<P extends StrictFieldProps & AnyObject>(
   props: P
 ) {
 
