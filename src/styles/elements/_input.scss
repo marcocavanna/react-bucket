@@ -21,6 +21,7 @@ input[type='text'],
 input[type='number'],
 input[type='time'],
 textarea {
+  box-sizing: border-box;
   appearance: none;
   font-family: inherit;
   color: inherit;
@@ -41,7 +42,7 @@ textarea.text {
 
   margin: 0;
   padding: pixel-to-em($input-vertical-padding) $input-horizontal-padding;
-  height: $computed-input-line-height * 1em;
+  height: $computed-input-height;
   line-height: $computed-input-line-height;
 
   border: none;
