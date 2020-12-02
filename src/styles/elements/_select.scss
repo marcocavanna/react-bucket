@@ -133,6 +133,14 @@
 
 
 /******
+    Set Select Disabled State
+******/
+.disabled.react-select {
+  opacity: $disabled-element-opacity;
+}
+
+
+/******
     Set Colored Style
 ******/
 .select.field {
