@@ -3,7 +3,6 @@ import clsx from 'clsx';
 
 import {
   childrenUtils,
-  doesNodeContainClick,
   classByPattern,
   Ref
 } from '@appbuckets/react-ui-core';
@@ -56,10 +55,11 @@ const BackdropInner: BackdropInnerComponent = (props) => {
     if (onClick) {
       onClick(e, props);
     }
-    /** Check if click is inside the content, if is it, return */
-    if (contentRef.current && (contentRef.current !== e.target && doesNodeContainClick(contentRef.current, e))) {
+
+    if (!contentRef.current || !containerRef.current || e.target !== contentRef.current) {
       return;
     }
+
     /** Call onClickOutside Prop */
     if (onClickOutside) {
       onClickOutside(e, props);
