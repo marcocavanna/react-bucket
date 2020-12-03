@@ -17,6 +17,8 @@ export * from './collections/RxTable';
 
 export * from './collections/Table';
 
+export * from './collections/Tabs';
+
 
 /* --------
  * Elements
