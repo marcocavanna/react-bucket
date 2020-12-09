@@ -275,14 +275,21 @@ const Input: InputComponent = (props) => {
           {...baseProps}
           {...masked}
         >
-          {(inputProps: any) => (
-            <input
-              {...inputProps}
-              {...rest}
-              ref={inputRef as React.RefObject<HTMLInputElement>}
-              {...baseProps}
-            />
-          )}
+          {(inputProps: any) => {
+            const {
+              maskPlaceholder,
+              ...restInputProps
+            } = inputProps;
+
+            return (
+              <input
+                {...restInputProps}
+                {...rest}
+                ref={inputRef as React.RefObject<HTMLInputElement>}
+                {...baseProps}
+              />
+            );
+          }}
         </ReactInputMask>
       );
     }
