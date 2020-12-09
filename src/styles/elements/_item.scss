@@ -75,6 +75,20 @@
 
 
 /******
+    Item Color Variation
+******/
+.item {
+  @each $label, $color in $react-bucket-color-map {
+    &.is-#{$label} {
+      > .content {
+        color: $color;
+      }
+    }
+  }
+}
+
+
+/******
     Item Tools Style
 ******/
 .item > .tools {
