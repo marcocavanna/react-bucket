@@ -30,6 +30,7 @@ const PanelHeader: PanelHeaderComponent = (props) => {
   const {
     className,
     rest: {
+      actions,
       children,
       content,
       subheader,
@@ -49,13 +50,14 @@ const PanelHeader: PanelHeaderComponent = (props) => {
 
   const headerElement = React.useMemo(
     () => Header.create({
+      actions,
       content,
       subheader,
       icon,
       divided,
       disabled
     }, { autoGenerateKey: false }),
-    [ content, subheader, icon, divided, disabled ]
+    [ actions, content, subheader, icon, divided, disabled ]
   );
 
   if (!childrenUtils.isNil(children)) {
