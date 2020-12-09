@@ -74,10 +74,16 @@ export const FormikColorPicker = withFormikField<ColorPickerProps, string | null
   Component         : function FormikColorPickerComponent(props) {
     const stateProps = useFormikFieldState(props);
 
+    const {
+      value,
+      ...rest
+    } = props.rest;
+
     return (
       <ColorPicker
-        {...props.rest}
+        {...rest}
         {...stateProps}
+        color={value}
         hint={props.state.message}
       />
     );

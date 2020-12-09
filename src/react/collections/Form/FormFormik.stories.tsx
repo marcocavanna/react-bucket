@@ -4,7 +4,7 @@ import {
   FormFormik,
   FormikInput,
   FormFormikActionHandler,
-  FormikSelect
+  FormikSelect, FormikColorPicker
 } from './index';
 
 
@@ -12,6 +12,7 @@ export default { title: 'Collections/Form', component: FormFormik };
 
 
 type Contact = {
+  color: string,
   name: string,
   options: number
 };
@@ -44,10 +45,12 @@ export const formikForm = () => {
       onSubmit={handleSubmit}
       submitButton={'Save'}
       initialValues={{
+        color  : '#D9E3F0',
         name   : '',
         options: 3
       }}
     >
+      <FormikColorPicker name={'color'} />
       <FormikInput
         name={'name'}
         label={'First Name'}
