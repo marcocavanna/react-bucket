@@ -34,7 +34,7 @@ export interface StrictTabsProps {
   menu?: MenuProps;
 
   /** On Tab Change handler */
-  onTabChange?: (e: React.MouseEvent<HTMLElement>, props: TabPanelProps) => void;
+  onTabChange?: (e: React.MouseEvent<HTMLElement>, props: TabsProps) => void;
 
   /** Panels shorthand */
   panels?: TabPanelsShorthand[];
