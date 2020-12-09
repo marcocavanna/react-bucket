@@ -24,10 +24,11 @@
   //  Set Header Style
   // ----
   > .head {
-    font-size: $h4-font-size;
+    font-size: 1em;
 
     /// Reset Header Font Size and Margins
     > .header {
+      font-size: $h4-font-size;
       margin: 0;
 
       > .header-content {
