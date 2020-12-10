@@ -160,10 +160,14 @@ const SelectRender: React.ForwardRefRenderFunction<MutableReactSelect<SelectDefa
 
     const getOptionValueAsString = React.useCallback(
       (option: Option): string => {
-        const optionValue = getOptionValue(option).toString();
+        const optionValue = getOptionValue(option);
 
         if (optionValue === undefined || optionValue === null) {
           return '';
+        }
+
+        if (typeof optionValue !== 'string') {
+          return optionValue.toString();
         }
 
         return optionValue;
