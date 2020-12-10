@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Item } from '../../elements/Item';
 
 import { RxTable, RxTableColumnProps } from './index';
 
@@ -29,7 +30,14 @@ const columns: RxTableColumnProps<User>[] = [
       show: (search, row) => {
         return new RegExp(search).test(row.name);
       }
-    }
+    },
+    render: user => (
+      <Item
+        avatar={{ content: 'U' }}
+        header={user.name}
+        content={user.email}
+      />
+    )
   }, {
     key   : 'surname',
     header: 'Surname',

@@ -41,7 +41,7 @@ const TableCellContent: TableCellContentComponent = (props) => {
 
   const classes = clsx(
     truncate && 'truncated',
-    type,
+    !!type && `cell-text-${type}`,
     className
   );
 

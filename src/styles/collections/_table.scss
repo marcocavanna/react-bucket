@@ -51,9 +51,9 @@ table,
   // ----
   .row,
   .cell,
-  .cell .content,
-  .cell .title,
-  .cell .meta {
+  .cell .cell-text-content,
+  .cell .cell-text-title,
+  .cell .cell-text-meta {
     background-color: transparent;
     opacity: 1;
     transition-timing-function: $transition-ease;
@@ -149,9 +149,9 @@ table > .head,
 .table > .body,
 .table > .foot {
   > .row > .cell {
-    .meta,
-    .title,
-    .content {
+    .cell-text-meta,
+    .cell-text-title,
+    .cell-text-content {
       color: inherit;
       display: block;
       line-height: 1.25;
@@ -159,11 +159,11 @@ table > .head,
       margin: 0;
     }
 
-    .title {
+    .cell-text-title {
       font-weight: $table-cell-header-font-weight;
     }
 
-    > .content {
+    > .cell-text-content {
       opacity: $table-cell-content-opacity;
       font-size: $table-cell-content-font-size;
     }
@@ -173,9 +173,9 @@ table > .head,
       text-overflow: ellipsis;
       white-space: nowrap;
 
-      .meta,
-      .title,
-      .content {
+      .cell-text-meta,
+      .cell-text-title,
+      .cell-text-content {
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -211,7 +211,7 @@ table > .head,
   // ----
   //  Sortable Icon
   // ----
-  .title {
+  .cell-text-title {
     &:before {
       @include fontAwesomeFamilySolid();
       content: fa-content($table-sortable-asc-icon);
@@ -221,13 +221,13 @@ table > .head,
   }
 
   &.sorted {
-    .title {
+    .cell-text-title {
       &:before {
         opacity: $table-sortable-icon-sorted-opacity;
       }
     }
 
-    &.desc .title {
+    &.desc .cell-text-title {
       &:before {
         content: fa-content($table-sortable-desc-icon);
       }
