@@ -4,7 +4,7 @@ import {
   FormFormik,
   FormikInput,
   FormFormikActionHandler,
-  FormikSelect, FormikColorPicker
+  FormikMultiSelect, FormikColorPicker
 } from './index';
 
 
@@ -14,7 +14,7 @@ export default { title: 'Collections/Form', component: FormFormik };
 type Contact = {
   color: string,
   name: string,
-  options: number
+  options: number[]
 };
 
 type Choices = {
@@ -47,7 +47,7 @@ export const formikForm = () => {
       initialValues={{
         color  : '#D9E3F0',
         name   : '',
-        options: 3
+        options: [ 3 ]
       }}
     >
       <FormikColorPicker name={'color'} />
@@ -56,7 +56,7 @@ export const formikForm = () => {
         label={'First Name'}
         icon={'user'}
       />
-      <FormikSelect
+      <FormikMultiSelect
         label={'Personaggi'}
         name={'options'}
         options={options}

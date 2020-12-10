@@ -5,7 +5,12 @@ import { AnyObject } from '../../generic';
 
 import { Checkbox, CheckboxProps } from '../../elements/Checkbox';
 import { Input, InputProps } from '../../elements/Input';
-import { Select, MultiSelect, SelectMultiProps, SelectProps } from '../../elements/Select';
+import {
+  Select,
+  MultiSelect,
+  SelectEventProps,
+  SelectMultiEventProps
+} from '../../elements/Select';
 
 import { useRxTable } from './RxTable.context';
 import { RxTableFactory } from './RxTable.factory';
@@ -97,14 +102,14 @@ export const RxTableFilterElement: React.FunctionComponent<RxTableFilterElementP
   );
 
   const handleSelectFilterChange = React.useCallback(
-    (nothing: null, selectProps: SelectProps<AnyObject, null>) => {
+    (nothing: null, selectProps: SelectEventProps<AnyObject>) => {
       setFilter(columnKey, selectProps.value);
     },
     [ setFilter, columnKey ]
   );
 
   const handleMultiSelectFilterChange = React.useCallback(
-    (nothing: null, selectProps: SelectMultiProps<any[], []>) => {
+    (nothing: null, selectProps: SelectMultiEventProps<any>) => {
       setFilter(columnKey, selectProps.value);
     },
     [ setFilter, columnKey ]

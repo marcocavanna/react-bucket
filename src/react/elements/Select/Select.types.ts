@@ -35,7 +35,7 @@ export type SelectDefaultOption = { label: string, value: string };
  * -------- */
 // export interface Overridden extends Omit<ReportedProps<any>, 'onChange'> {}
 
-export type SelectProps<Option extends SelectOption = SelectDefaultOption, Value = Option, FallbackValue = null> =
+export type SelectProps<Option extends SelectOption = SelectDefaultOption, Value = string | number, FallbackValue = null> =
   StrictSelectProps<Option, Value, FallbackValue>
   & StrictFieldProps;
 
@@ -43,16 +43,18 @@ export type SelectProps<Option extends SelectOption = SelectDefaultOption, Value
 /* --------
  * Define Strict Select Props
  * -------- */
-type SelectEventProps<Option extends SelectOption, Fallback = null> = SelectProps<Option> & {
+export type SelectEventProps<Option extends SelectOption,
+  Value = string | number,
+  Fallback = null> = SelectProps<Option> & {
   /** Event action */
   action: ActionMeta<Option> | null;
   /** Current Input Value */
   inputValue: string;
   /** Current Selected Value */
-  value: Option | Fallback;
+  value: Value | Fallback;
 };
 
-export interface StrictSelectProps<Option extends SelectOption, Value = Option, FallbackValue = null> {
+export interface StrictSelectProps<Option extends SelectOption, Value = string | number, FallbackValue = null> {
 
   /* Aria label (for assistive tech) */
   'aria-label'?: string;
@@ -233,10 +235,10 @@ export interface StrictSelectProps<Option extends SelectOption, Value = Option, 
   noOptionsMessage?: (obj: { inputValue: string }) => string | null;
 
   /** Handle Blur Event */
-  onBlur?: (e: React.FocusEvent<HTMLElement>, props: SelectEventProps<Value, FallbackValue>) => void;
+  onBlur?: (e: React.FocusEvent<HTMLElement>, props: SelectEventProps<Option, Value, FallbackValue>) => void;
 
   /** Handle Change Event */
-  onChange?: (nothing: null, props: SelectEventProps<Value, FallbackValue>) => void;
+  onChange?: (nothing: null, props: SelectEventProps<Option, Value, FallbackValue>) => void;
 
   /**
    * If provided, this will be called with the input value when a new option is
@@ -246,25 +248,31 @@ export interface StrictSelectProps<Option extends SelectOption, Value = Option, 
   onCreateOption?: (inputValue: string) => void;
 
   /** Handle Focus Event */
-  onFocus?: (e: React.FocusEvent<HTMLElement>, props: SelectEventProps<Value, FallbackValue>) => void;
+  onFocus?: (e: React.FocusEvent<HTMLElement>, props: SelectEventProps<Option, Value, FallbackValue>) => void;
 
   /** On Input Change Event */
-  onInputChange?: (nothing: null, props: SelectEventProps<Value, FallbackValue>) => void;
+  onInputChange?: (nothing: null, props: SelectEventProps<Option, Value, FallbackValue>) => void;
 
   /** Handle key down events on the select */
   onKeyDown?: KeyboardEventHandler;
 
   /** On Menu Close Change Event */
-  onMenuClose?: (nothing: null, props: SelectEventProps<Value, FallbackValue>) => void;
+  onMenuClose?: (nothing: null, props: SelectEventProps<Option, Value, FallbackValue>) => void;
 
   /** On Menu Open Change Event */
-  onMenuOpen?: (nothing: null, props: SelectEventProps<Value, FallbackValue>) => void;
+  onMenuOpen?: (nothing: null, props: SelectEventProps<Option, Value, FallbackValue>) => void;
 
   /** On Menu Scroll to Bottom Event */
-  onMenuScrollToBottom?: (e: React.SyntheticEvent<HTMLElement>, props: SelectEventProps<Value, FallbackValue>) => void;
+  onMenuScrollToBottom?: (
+    e: React.SyntheticEvent<HTMLElement>,
+    props: SelectEventProps<Option, Value, FallbackValue>
+  ) => void;
 
   /** On Menu Scroll to Top Event */
-  onMenuScrollToTop?: (e: React.SyntheticEvent<HTMLElement>, props: SelectEventProps<Value, FallbackValue>) => void;
+  onMenuScrollToTop?: (
+    e: React.SyntheticEvent<HTMLElement>,
+    props: SelectEventProps<Option, Value, FallbackValue>
+  ) => void;
 
   /** Allows control of whether the menu is opened when the Select is focused */
   openMenuOnFocus?: boolean;

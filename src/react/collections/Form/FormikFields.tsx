@@ -215,22 +215,6 @@ export const FormikSelect = <Option extends SelectOption>(
 
     onChange: (formik, event, props) => {
       formik.setFieldValue(props.name, props.value);
-    },
-
-    computeValue: (value, props) => {
-      if (!value) {
-        return null;
-      }
-
-      return props.options.find((option) => {
-        /** Get the Option Value */
-        const optionValue = props.getOptionValue ? props.getOptionValue(option) : option?.value ?? option;
-        /** Compare Option Value with Selected One */
-        if (typeof value === 'object' && value !== null && props.getOptionValue) {
-          return props.getOptionValue(value) === optionValue;
-        }
-        return value === optionValue;
-      }) ?? null;
     }
   })(wrapperProps)
 );
@@ -253,25 +237,6 @@ export const FormikMultiSelect = <Option extends SelectOption>(
 
     onChange: (formik, event, props) => {
       formik.setFieldValue(props.name, props.value);
-    },
-
-    computeValue: (values, props) => {
-      /** Transform Value using getOptionValue props function if exists */
-      if (!Array.isArray(values)) {
-        return [];
-      }
-
-      return props.options.filter((option) => {
-        /** Get the Option Value */
-        const optionValue = props.getOptionValue ? props.getOptionValue(option) : option?.value ?? option;
-        /** If value is included in values then return true */
-        return !!values.find((value) => {
-          if (typeof value === 'object' && value !== null && props.getOptionValue) {
-            return props.getOptionValue(value) === optionValue;
-          }
-          return value === optionValue;
-        });
-      });
     }
   })(wrapperProps)
 );

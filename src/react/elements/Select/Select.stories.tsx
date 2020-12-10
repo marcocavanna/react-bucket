@@ -1,14 +1,14 @@
 import * as React from 'react';
-import { MultiSelect } from './index';
+import { Select } from './index';
 
 
-export default { title: 'Elements/Select', component: MultiSelect };
+export default { title: 'Elements/Select', component: Select };
 
 export const baseSelect = () => {
 
   return (
     <React.Fragment>
-      <MultiSelect<{ value: string, label: string }>
+      <Select
         isSearchable={false}
         options={[
           { label: 'Option 1', value: '1' },

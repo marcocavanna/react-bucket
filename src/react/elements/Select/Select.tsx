@@ -1,34 +1,21 @@
-import { MutableRefObject } from 'react';
-import * as React from 'react';
+import { createShorthandFactory } from '@appbuckets/react-ui-core';
 import clsx from 'clsx';
+import * as React from 'react';
+import { MutableRefObject } from 'react';
 
-import ReactSelect, {
-  ActionMeta,
-  Props as ReactSelectProps,
-  ValueType
-} from 'react-select';
+import ReactSelect, { ActionMeta, Props as ReactSelectProps, ValueType } from 'react-select';
 
-import CreatableReactSelect, {
-  Props as CreatableReactSelectProps
-} from 'react-select/creatable';
-
-import {
-  createShorthandFactory
-} from '@appbuckets/react-ui-core';
+import CreatableReactSelect, { Props as CreatableReactSelectProps } from 'react-select/creatable';
 
 import { CreatableFunctionComponent } from '../../generic';
 
-import {
-  useSharedClassName,
-  useSplitStateClassName,
-  splitFieldProps
-} from '../../lib';
-
 import { useAutoControlledValue } from '../../hooks/useAutoControlledValue';
+
+import { splitFieldProps, useSharedClassName, useSplitStateClassName } from '../../lib';
 
 import { Field } from '../Field';
 
-import { SelectOption, SelectDefaultOption, SelectProps } from './Select.types';
+import { SelectDefaultOption, SelectOption, SelectProps } from './Select.types';
 
 
 /* --------
@@ -166,22 +153,48 @@ const SelectRender: React.ForwardRefRenderFunction<MutableReactSelect<SelectDefa
           return (option?.value as string) ?? '';
         }
 
-        const optionValue = userDefinedGetOptionValue(option);
+        return userDefinedGetOptionValue(option);
+      },
+      [ userDefinedGetOptionValue ]
+    );
+
+    const getOptionValueAsString = React.useCallback(
+      (option: Option): string => {
+        const optionValue = getOptionValue(option).toString();
 
         if (optionValue === undefined || optionValue === null) {
           return '';
         }
 
-        if (typeof optionValue !== 'string') {
-          return optionValue.toString();
-        }
-
         return optionValue;
       },
-      [ userDefinedGetOptionValue ]
+      [ getOptionValue ]
     );
 
-    const getSelectedValue: any = () => {
+    const selectedOption = React.useMemo(
+      (): Option | Option[] | null => {
+        /** Return default with no Options */
+        if (!rest.options || !Array.isArray(rest.options)) {
+          return rest.isMulti ? [] : null;
+        }
+
+        /** On single select, find the Option */
+        if (!rest.isMulti) {
+          return rest.options.find((option) => getOptionValue(option) === value) ?? null;
+        }
+
+        /** Return filtered options */
+        if (Array.isArray(value)) {
+          return rest.options.filter((option) => value.includes(getOptionValue(option)));
+        }
+
+        /** Fallback to Empty Array */
+        return [];
+      },
+      [ value, rest.options, getOptionValue, rest.isMulti ]
+    );
+
+    const getSelectedValueFromSelectRef = (): (string | number) | (string | number)[] | null => {
       /** Get the Select State */
       const { state } = (selectRef.current ?? {});
 
@@ -191,11 +204,11 @@ const SelectRender: React.ForwardRefRenderFunction<MutableReactSelect<SelectDefa
 
       const { value: selectedValue } = state as { value: Option | Option[] | null | undefined };
 
-      if (props.isMulti) {
-        return selectedValue ?? [];
+      if (props.isMulti || Array.isArray(selectedValue)) {
+        return Array.isArray(selectedValue) ? selectedValue.map((selected) => getOptionValue(selected)) : [];
       }
 
-      return selectedValue ?? null;
+      return selectedValue ? getOptionValue(selectedValue) : null;
     };
 
 
@@ -216,26 +229,30 @@ const SelectRender: React.ForwardRefRenderFunction<MutableReactSelect<SelectDefa
         userDefinedOnBlur(e, {
           ...props,
           inputValue,
-          value : getSelectedValue(),
+          value : getSelectedValueFromSelectRef() as any,
           action: null
-        });
+        } as any);
       }
     };
 
-    const handleSelectChange = (selectedValue: ValueType<Option>, action: ActionMeta<Option>) => {
+    const handleSelectChange = (selected: ValueType<Option>, action: ActionMeta<Option>) => {
       /** Set field as Dirty */
       fieldRef.current?.classList.add('dirty');
+
+      const selectedValue = props.isMulti
+        ? Array.isArray(selected) ? selected.map((option) => getOptionValue(option)) : []
+        : selected ? getOptionValue(selected as Option) : null;
 
       if (userDefinedOnChange) {
         userDefinedOnChange(null, {
           ...props,
           action,
           inputValue,
-          value: (selectedValue as Option) ?? (props.isMulti ? [] : null)
+          value: selectedValue as any
         });
       }
 
-      trySetValue(selectedValue as Option);
+      trySetValue(selectedValue as any);
     };
 
     const handleSelectFocus = (e: React.FocusEvent<HTMLElement>) => {
@@ -253,7 +270,7 @@ const SelectRender: React.ForwardRefRenderFunction<MutableReactSelect<SelectDefa
         userDefinedOnFocus(e, {
           ...props,
           inputValue,
-          value : getSelectedValue(),
+          value : getSelectedValueFromSelectRef() as any,
           action: null
         });
       }
@@ -264,7 +281,7 @@ const SelectRender: React.ForwardRefRenderFunction<MutableReactSelect<SelectDefa
         userDefinedOnInputChange(null, {
           ...props,
           inputValue: newInputValue,
-          value     : getSelectedValue(),
+          value     : getSelectedValueFromSelectRef() as any,
           action    : null
         });
       }
@@ -277,7 +294,7 @@ const SelectRender: React.ForwardRefRenderFunction<MutableReactSelect<SelectDefa
         userDefinedOnMenuOpen(null, {
           ...props,
           inputValue,
-          value : getSelectedValue(),
+          value : getSelectedValueFromSelectRef() as any,
           action: null
         });
       }
@@ -288,7 +305,7 @@ const SelectRender: React.ForwardRefRenderFunction<MutableReactSelect<SelectDefa
         userDefinedOnMenuClose(null, {
           ...props,
           inputValue,
-          value : getSelectedValue(),
+          value : getSelectedValueFromSelectRef() as any,
           action: null
         });
       }
@@ -299,7 +316,7 @@ const SelectRender: React.ForwardRefRenderFunction<MutableReactSelect<SelectDefa
         userDefinedOnMenuScrollToBottom(e, {
           ...props,
           inputValue,
-          value : getSelectedValue(),
+          value : getSelectedValueFromSelectRef() as any,
           action: null
         });
       }
@@ -310,7 +327,7 @@ const SelectRender: React.ForwardRefRenderFunction<MutableReactSelect<SelectDefa
         userDefinedOnMenuScrollToTop(e, {
           ...props,
           inputValue,
-          value : getSelectedValue(),
+          value : getSelectedValueFromSelectRef() as any,
           action: null
         });
       }
@@ -338,12 +355,12 @@ const SelectRender: React.ForwardRefRenderFunction<MutableReactSelect<SelectDefa
           ref={ref}
           className={classes}
           classNamePrefix={' '}
-          getOptionValue={getOptionValue}
+          getOptionValue={getOptionValueAsString}
           isDisabled={fieldProps.disabled}
           isLoading={loading}
           tabIndex={tabIndex}
           inputValue={inputValue}
-          value={value}
+          value={selectedOption}
           onBlur={handleSelectBlur}
           onChange={handleSelectChange}
           onFocus={handleSelectFocus}
