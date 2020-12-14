@@ -105,7 +105,7 @@ const DayPicker: DayPickerComponent = (props) => {
         return { object: null, formatted: '' };
       }
 
-      const casted = typeof rawDate === 'number' || rawDate instanceof Date
+      const casted = typeof rawDate === 'number' || typeof rawDate === 'string' || rawDate instanceof Date
         ? dayjs(rawDate)
         : dayjs(rawDate, dateFormat);
 
