@@ -138,7 +138,7 @@ export const FormikDayPicker = withFormikField<DayPickerProps<ParsableDate>, num
 /* --------
  * Input Wrapped Component
  * -------- */
-export const FormikInput = withFormikField<InputProps, string | number>({
+export const FormikInput = withFormikField<InputProps, string | number | null | undefined>({
   Component         : function FormikInputComponent(props) {
     const stateProps = useFormikFieldState(props);
     return (
@@ -149,7 +149,22 @@ export const FormikInput = withFormikField<InputProps, string | number>({
       />
     );
   },
-  setTouchedOnChange: false
+  setTouchedOnChange: false,
+  computeValue      : (value) => {
+    if (typeof value === 'string' || typeof value === 'number') {
+      return value;
+    }
+
+    if (value === null || value === undefined) {
+      return '';
+    }
+
+    if (typeof (value as any).toString === 'function') {
+      return (value as any).toString();
+    }
+
+    return '';
+  }
 });
 
 
