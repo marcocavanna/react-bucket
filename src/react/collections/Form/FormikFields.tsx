@@ -49,6 +49,7 @@ export const FormikCheckbox = withFormikField<CheckboxProps, boolean>({
 
     const {
       value,
+      onChange,
       ...rest
     } = props.rest;
 
@@ -58,6 +59,7 @@ export const FormikCheckbox = withFormikField<CheckboxProps, boolean>({
         {...stateProps}
         hint={props.state.message}
         checked={!!value}
+        onClick={onChange}
       />
     );
   },
