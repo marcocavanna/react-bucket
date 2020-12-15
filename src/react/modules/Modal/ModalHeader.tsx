@@ -31,8 +31,11 @@ const ModalHeader: ModalHeaderComponent = (props) => {
   const {
     className,
     rest: {
+      actions,
       children,
       content,
+      disabled,
+      divided,
       icon,
       meta,
       subheader,
@@ -52,12 +55,18 @@ const ModalHeader: ModalHeaderComponent = (props) => {
   /** Build a memoized Header */
   const headerElement = React.useMemo(
     () => Header.create({
+      actions,
       content,
+      disabled,
+      divided,
       icon,
       subheader
     }, { autoGenerateKey: false }),
     [
+      actions,
       content,
+      disabled,
+      divided,
       icon,
       subheader
     ]

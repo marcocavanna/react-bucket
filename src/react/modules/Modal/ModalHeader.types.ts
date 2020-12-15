@@ -1,31 +1,17 @@
 import {
   ReactBucketComponentProps,
-  ReactBucketIcon,
-  ShorthandContent,
-  ShorthandItem
+  ShorthandContent
 } from '../../generic';
 
 import {
-  HeaderContentProps,
-  HeaderSubheaderProps
+  StrictHeaderProps
 } from '../../elements/Header';
-
-import { IconProps } from '../../elements/Icon';
 
 
 export interface ModalHeaderProps extends ReactBucketComponentProps<StrictModalHeaderProps> {
 }
 
-export interface StrictModalHeaderProps {
-  /** Content Shorthand to create Header */
-  content?: ShorthandItem<HeaderContentProps>;
-
-  /** Display Header Icon */
-  icon?: ReactBucketIcon<IconProps>;
-
+export interface StrictModalHeaderProps extends StrictHeaderProps {
   /** Set Meta Content */
   meta?: ShorthandContent;
-
-  /** Create Subheader Shorthand */
-  subheader?: ShorthandItem<HeaderSubheaderProps>;
 }

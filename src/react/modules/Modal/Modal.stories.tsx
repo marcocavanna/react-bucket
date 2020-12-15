@@ -23,7 +23,13 @@ export const baseModal = () => {
       header={{
         content  : 'Product Designer',
         subheader: 'Cracow, Poland',
-        meta     : '3 days ago'
+        meta     : '3 days ago',
+        actions  : [
+          <Button
+            key={0}
+            content={'Some Action!'}
+          />
+        ]
       }}
       content={'Lorem ipsum dolor sit amen Lorem ipsum dolor sit amen Lorem ipsum dolor sit amen Lorem ipsum dolor sit amen Lorem ipsum dolor sit amen Lorem ipsum dolor sit amen Lorem ipsum dolor sit amen'}
       actions={[

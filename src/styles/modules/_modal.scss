@@ -183,3 +183,48 @@
   width: auto !important;
   max-width: fit-content !important;
 }
+
+
+/******
+    Text Align will change Header too
+******/
+.modal {
+  &.has-text-center {
+    > .modal-header {
+      .header.with-actions {
+        flex-direction: column;
+
+        /// Increase Icon Size on Centered Header
+        .header-icon {
+          font-size: $header-centered-icon-size;
+
+          @include icon-style() {
+            margin-right: 0;
+            margin-left: 0;
+            margin-bottom: $icon-spacer;
+          }
+        }
+
+        /// Add spacing between Actions and Content
+        .header-actions {
+          margin-top: $header-actions-spacer;
+        }
+      }
+    }
+  }
+
+  &.right {
+    > .modal-header {
+      .header.with-actions {
+        flex-direction: row-reverse;
+
+        .header-icon {
+          @include icon-style() {
+            margin-right: 0;
+            margin-left: $icon-spacer;
+          }
+        }
+      }
+    }
+  }
+}
