@@ -45,14 +45,9 @@ export type SelectProps<Option extends SelectOption = SelectDefaultOption, Value
  * -------- */
 export type SelectEventProps<Option extends SelectOption,
   Value = string | number,
-  Fallback = null> = SelectProps<Option> & {
-  /** Event action */
-  action: ActionMeta<Option> | null;
-  /** Current Input Value */
-  inputValue: string;
-  /** Current Selected Value */
-  value: Value | Fallback;
-};
+  Fallback = null> =
+  SelectProps<Option>
+  & { action: ActionMeta<Option> | null; inputValue: string; value: Value | Fallback; };
 
 export interface StrictSelectProps<Option extends SelectOption, Value = string | number, FallbackValue = null> {
 
@@ -113,7 +108,7 @@ export interface StrictSelectProps<Option extends SelectOption, Value = string |
    * instead. For a list of the components that can be passed in, and the shape
    * that will be passed to them, see [the components docs](/api#components)
    */
-  components?: SelectComponentsConfig<Option>;
+  components?: SelectComponentsConfig<Option, FallbackValue extends Array<any> ? true : false>;
 
   /** Whether the value of the select, e.g. SingleValue, should be displayed in the control. */
   controlShouldRenderValue?: boolean;
@@ -143,7 +138,10 @@ export interface StrictSelectProps<Option extends SelectOption, Value = string |
   formatGroupLabel?: (group: GroupType<Option>) => ReactNode;
 
   /** Formats option labels in the menu and control as React components */
-  formatOptionLabel?: (option: Option, labelMeta: FormatOptionLabelMeta<Option>) => React.ReactNode;
+  formatOptionLabel?: (
+    option: Option,
+    labelMeta: FormatOptionLabelMeta<Option, FallbackValue extends Array<any> ? true : false>
+  ) => React.ReactNode;
 
   /** Returns the data for the new option when it is created. Used to display the
    value, and is passed to `onChange`. */
@@ -193,7 +191,11 @@ export interface StrictSelectProps<Option extends SelectOption, Value = string |
    * option should be displayed based on
    * the current input value, select value and options array.
    */
-  isValidNewOption?: (inputValue: string, value: ValueType<Option>, options: OptionsType<Option>) => boolean;
+  isValidNewOption?: (
+    inputValue: string,
+    value: ValueType<Option, FallbackValue extends Array<any> ? true : false>,
+    options: OptionsType<Option>
+  ) => boolean;
 
   /** Set the loading state */
   loading?: boolean;
@@ -293,7 +295,7 @@ export interface StrictSelectProps<Option extends SelectOption, Value = string |
   screenReaderStatus?: (obj: { count: number }) => string;
 
   /** Style modifier methods */
-  styles?: StylesConfig;
+  styles?: StylesConfig<Option, FallbackValue extends Array<any> ? true : false>;
 
   /** Sets the tabIndex attribute on the input */
   tabIndex?: string | null;

@@ -3,9 +3,9 @@ import clsx from 'clsx';
 import * as React from 'react';
 import { MutableRefObject } from 'react';
 
-import ReactSelect, { ActionMeta, Props as ReactSelectProps, ValueType } from 'react-select';
+import ReactSelect, { ActionMeta, ValueType } from 'react-select';
 
-import CreatableReactSelect, { Props as CreatableReactSelectProps } from 'react-select/creatable';
+import CreatableReactSelect from 'react-select/creatable';
 
 import { CreatableFunctionComponent } from '../../generic';
 
@@ -25,7 +25,6 @@ export type SelectComponent<Option extends SelectOption = SelectDefaultOption> =
   CreatableFunctionComponent<SelectProps<Option>>;
 
 export type MutableReactSelect<Option> = ReactSelect<Option> | CreatableReactSelect<Option>;
-type MutableReactSelectProps<Option> = ReactSelectProps<Option> | CreatableReactSelectProps<Option>;
 
 
 /* --------
@@ -45,23 +44,23 @@ const SelectRender: React.ForwardRefRenderFunction<MutableReactSelect<SelectDefa
         creatable,
         getOptionValue: userDefinedGetOptionValue,
         loading,
-        tabIndex      : userDefinedTabIndex,
+        tabIndex: userDefinedTabIndex,
 
         /** Select Event Handler */
-        onBlur: userDefinedOnBlur,
-        onChange: userDefinedOnChange,
-        onFocus: userDefinedOnFocus,
-        onInputChange: userDefinedOnInputChange,
-        onMenuClose: userDefinedOnMenuClose,
-        onMenuOpen: userDefinedOnMenuOpen,
+        onBlur              : userDefinedOnBlur,
+        onChange            : userDefinedOnChange,
+        onFocus             : userDefinedOnFocus,
+        onInputChange       : userDefinedOnInputChange,
+        onMenuClose         : userDefinedOnMenuClose,
+        onMenuOpen          : userDefinedOnMenuOpen,
         onMenuScrollToBottom: userDefinedOnMenuScrollToBottom,
-        onMenuScrollToTop: userDefinedOnMenuScrollToTop,
+        onMenuScrollToTop   : userDefinedOnMenuScrollToTop,
 
         /** React Select Props */
-        inputValue: userDefinedInputValue,
+        inputValue       : userDefinedInputValue,
         defaultInputValue: userDefinedDefaultInputValue,
-        value: userDefinedValue,
-        defaultValue: userDefinedDefaultValue,
+        value            : userDefinedValue,
+        defaultValue     : userDefinedDefaultValue,
 
         /** All other props */
         ...rawRest
@@ -108,7 +107,7 @@ const SelectRender: React.ForwardRefRenderFunction<MutableReactSelect<SelectDefa
     // ----
     // Define the Element and its computed props
     // ----
-    const ElementType: React.ElementType<MutableReactSelectProps<Option>> = creatable
+    const ElementType: React.ElementType = creatable
       ? CreatableReactSelect
       : ReactSelect;
 
@@ -239,7 +238,7 @@ const SelectRender: React.ForwardRefRenderFunction<MutableReactSelect<SelectDefa
       }
     };
 
-    const handleSelectChange = (selected: ValueType<Option>, action: ActionMeta<Option>) => {
+    const handleSelectChange = (selected: ValueType<Option, false>, action: ActionMeta<Option>) => {
       /** Set field as Dirty */
       fieldRef.current?.classList.add('dirty');
 
