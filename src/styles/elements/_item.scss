@@ -37,7 +37,7 @@
 ******/
 .item > .content {
   color: $item-content-color;
-  min-height: $avatar-base-size;
+  min-height: $item-content-min-height;
   flex: 1 0;
   display: flex;
   flex-direction: column;

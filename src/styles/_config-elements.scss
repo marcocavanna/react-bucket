@@ -271,6 +271,7 @@ $computed-input-height: pixel-to-em($input-line-height + ($input-vertical-paddin
     Items
 ******/
 $item-content-spacer: .75em !default;
+$item-content-min-height: $avatar-base-size !default;
 $item-min-height: $avatar-base-size !default;
 $item-content-color: $text !default;
 $item-header-font-weight: $semi-bold !default;
