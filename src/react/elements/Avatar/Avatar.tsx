@@ -39,6 +39,7 @@ const Avatar: AvatarComponent = (props) => {
       content,
       children,
       disabled,
+      flat,
       icon,
       onClick,
       tooltip,
@@ -58,7 +59,8 @@ const Avatar: AvatarComponent = (props) => {
     {
       badged   : badge,
       disabled,
-      clickable: onClick
+      clickable: onClick,
+      flat
     },
     type,
     'avatar',

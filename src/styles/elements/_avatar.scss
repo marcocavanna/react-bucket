@@ -37,6 +37,19 @@
   border-radius: $avatar-square-border-radius;
 
   // ----
+  //  Flat Content Background
+  // ----
+  &.flat {
+    background-color: transparent !important;
+    box-shadow: none !important;
+
+    > .content {
+      color: $avatar-flat-content-color;
+      opacity: $avatar-flat-content-opacity;
+    }
+  }
+
+  // ----
   //  Avatar Size for different type
   // ----
   &.round,

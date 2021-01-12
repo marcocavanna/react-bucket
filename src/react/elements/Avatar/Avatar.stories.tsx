@@ -30,6 +30,33 @@ function BaseAvatar() {
   );
 }
 
+function FlatAvatar() {
+  return (
+    <StoryDescriptor
+      className={'mt-8'}
+      header={'Flat Avatar'}
+      content={(
+        <React.Fragment>
+          <Avatar
+            flat
+            className={'mr-4'}
+            icon={'briefcase'}
+          />
+          <Avatar
+            flat
+            className={'mr-4'}
+            icon={'user'}
+          />
+          <Avatar
+            flat
+            content={'MC'}
+          />
+        </React.Fragment>
+      )}
+    />
+  );
+}
+
 function AvatarIconVariation() {
   return (
     <StoryDescriptor
@@ -126,6 +153,7 @@ export const baseAvatar = () => {
   return (
     <React.Fragment>
       <BaseAvatar />
+      <FlatAvatar />
       <AvatarIconVariation />
       <AvatarStyleVariation />
       <AvatarBadge />

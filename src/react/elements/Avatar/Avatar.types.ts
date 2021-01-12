@@ -23,6 +23,9 @@ export interface StrictAvatarProps {
   /** Set disabled state */
   disabled?: boolean;
 
+  /** Remove Background Color */
+  flat?: boolean;
+
   /** Set avatar icon */
   icon?: ReactBucketIcon<IconProps>;
 
