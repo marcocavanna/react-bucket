@@ -51,6 +51,7 @@ const Item: ItemComponent = (props) => {
       loading,
       meta,
       onClick,
+      solid,
       tools,
       ...rawRest
     }
@@ -69,7 +70,8 @@ const Item: ItemComponent = (props) => {
       disabled,
       centered,
       clickable: onClick,
-      loading
+      loading,
+      solid
     },
     'item',
     stateClasses,

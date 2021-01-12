@@ -156,7 +156,7 @@ $day-picker-week-number-color: $orange !default;
 $divider-spacer: $spacer * 1.75 !default;
 $divider-base-color: $text !default;
 $divider-size: 1px !default;
-$divider-color: $grey-lightest !default;
+$divider-color: rgba(0, 0, 0, .15) !default;
 $divider-font-weight: $semi-bold !default;
 
 
@@ -282,14 +282,18 @@ $item-header-font-size: 1em !default;
 $item-text-opacity: .85 !default;
 $item-text-font-weight: $regular !default;
 $item-text-font-size: 1em !default;
-$item-meta-divider-color: $grey-lightest !default;
+$item-meta-divider-color: $divider-color !default;
 $item-meta-opacity: .7 !default;
 $item-meta-font-weight: $regular !default;
 $item-meta-font-size: .85em !default;
+
 $item-tools-opacity: .5 !default;
+$item-tool-hover-color: rgba(0, 0, 0, .075) !default;
 
 $item-clickable-border-radius: $border-radius-big !default;
 $item-clickable-hover-color: rgba(0, 0, 0, .05) !default;
+
+$item-solid-background-color: rgba(0, 0, 0, .05) !default;
 
 $items-group-spacer: 1.25em !default;
 $items-divider-color: $divider-color !default;

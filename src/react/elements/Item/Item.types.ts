@@ -32,6 +32,9 @@ export interface StrictItemProps extends StrictItemContentProps {
   /** On Click event Handler */
   onClick?: (e: React.MouseEvent<HTMLElement>, props: ItemProps) => void;
 
+  /** Put the Item into a Solid Box */
+  solid?: boolean;
+
   /** Shorthand tools */
   tools?: ShorthandCollection<ButtonProps>;
 }

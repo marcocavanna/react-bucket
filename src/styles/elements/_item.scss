@@ -99,8 +99,22 @@
   white-space: nowrap;
   flex-wrap: nowrap;
 
-  > .button.flat > .icon {
-    opacity: $item-tools-opacity;
+  > .button.flat {
+    border-radius: 500rem;
+
+    @include hover {
+      background-color: rgba(0, 0, 0, 0);
+      will-change: background-color;
+      transition: background-color $transition-speed-fast $transition-ease;
+
+      &:hover {
+        background-color: $item-tool-hover-color;
+      }
+    }
+
+    > .icon {
+      opacity: $item-tools-opacity;
+    }
   }
 }
 
@@ -110,12 +124,19 @@
 
 
 /******
-    Clickable Items
+    Clickable and Solid Items
 ******/
+.solid.item,
 .clickable.item {
-  padding: $item-clickable-border-radius * 1.5;
   border-radius: $item-clickable-border-radius;
+  padding: $item-clickable-border-radius * 1.5;
+}
 
+.solid.item {
+  background-color: $item-solid-background-color;
+}
+
+.clickable.item {
   &:not(.disabled) {
     cursor: pointer;
 
