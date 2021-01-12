@@ -6,8 +6,12 @@ import { Item } from './index';
 export default { title: 'Elements/Item', component: Item };
 
 export const baseItem = () => {
+
+  const handleClick = () => null;
+
   return (
     <Item
+      solid
       avatar={{
         icon   : 'user',
         primary: true
@@ -19,6 +23,7 @@ export const baseItem = () => {
         { icon: 'plus', key: 1 },
         { icon: 'trash', key: 2 }
       ]}
+      onClick={handleClick}
     />
   );
 };

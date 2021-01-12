@@ -126,17 +126,10 @@
 /******
     Clickable and Solid Items
 ******/
-.solid.item,
 .clickable.item {
   border-radius: $item-clickable-border-radius;
   padding: $item-clickable-border-radius * 1.5;
-}
 
-.solid.item {
-  background-color: $item-solid-background-color;
-}
-
-.clickable.item {
   &:not(.disabled) {
     cursor: pointer;
 
@@ -147,6 +140,27 @@
 
       &:hover {
         background-color: $item-clickable-hover-color;
+      }
+    }
+  }
+}
+
+.solid.item,
+.solid.clickable.item {
+  border-radius: $item-solid-border-radius;
+  padding: $item-solid-border-radius * 1.5;
+  background-color: $item-solid-background-color !important;
+
+  @if $item-solid-clickable-hover-elevation != 0 {
+    &:not(.disabled) {
+      @include dpShadow(0);
+      will-change: box-shadow;
+      transition: box-shadow $transition-speed-fast $transition-ease;
+
+      @include hover {
+        &:hover {
+          @include dpShadow($item-solid-clickable-hover-elevation);
+        }
       }
     }
   }

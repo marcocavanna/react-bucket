@@ -293,7 +293,9 @@ $item-tool-hover-color: rgba(0, 0, 0, .075) !default;
 $item-clickable-border-radius: $border-radius-big !default;
 $item-clickable-hover-color: rgba(0, 0, 0, .05) !default;
 
+$item-solid-border-radius: $item-clickable-border-radius * 1.25 !default;
 $item-solid-background-color: rgba(0, 0, 0, .05) !default;
+$item-solid-clickable-hover-elevation: 2 !default;
 
 $items-group-spacer: 1.25em !default;
 $items-divider-color: $divider-color !default;
