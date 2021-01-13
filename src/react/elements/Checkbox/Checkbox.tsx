@@ -9,6 +9,7 @@ import {
 
 import { useAutoControlledValue } from '../../hooks/useAutoControlledValue';
 import { useTabIndex } from '../../hooks/useTabIndex';
+import { Icon } from '../Icon';
 
 import { CheckboxProps } from './Checkbox.types';
 import { Field } from '../Field';
@@ -29,11 +30,11 @@ const Checkbox: CheckboxComponent = (props) => {
     className,
     rest: {
       /** Strict Checkbox Props */
-      checked    : checkedProp,
+      checked: checkedProp,
       defaultChecked,
       indeterminate,
       radio,
-      tabIndex   : userDefinedTabIndex,
+      tabIndex: userDefinedTabIndex,
       type,
       onChecked  : handleChecked,
       onClick    : handleClick,
@@ -164,11 +165,28 @@ const Checkbox: CheckboxComponent = (props) => {
   /* --------
    * Memoized Component Element
    * -------- */
+  const checkboxIcon = React.useMemo(
+    () => {
+      if (asSwitch) {
+        return null;
+      }
+
+      return (
+        <Icon
+          className={'checkbox-icon'}
+          name={radio ? 'circle' : indeterminate ? 'minus' : 'check'}
+        />
+      );
+    },
+    [ asSwitch, radio, indeterminate ]
+  );
+
   const labelElement = (
     <label
       htmlFor={rest.id}
       onClick={handleLabelClick}
     >
+      {checkboxIcon}
       {label}
     </label>
   );

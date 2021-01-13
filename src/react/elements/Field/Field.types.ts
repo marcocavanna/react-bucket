@@ -59,7 +59,7 @@ export interface StrictFieldProps extends SharedComponentStateProps {
   label?: ShorthandContent;
 
   /** On Clear Button click */
-  onClear?: (e: React.MouseEvent<HTMLElement>) => void;
+  onClear?: (e: React.MouseEvent<SVGSVGElement>) => void;
 
   /** Set field as read only */
   readOnly?: boolean;

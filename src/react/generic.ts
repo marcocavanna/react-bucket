@@ -68,8 +68,6 @@
  *     }
  *   }
  * -------- */
-
-
 import {
   ReactNode,
   ReactElement,
@@ -82,10 +80,12 @@ import {
 } from 'react';
 
 import { CreateShorthandOptions, ShorthandValue, ShorthandRenderFunctionValue } from '@appbuckets/react-ui-core';
-import { FontAwesomeIcon } from './fontawesome';
 
-/** Re export ReactBucket Icon */
-export { FontAwesomeIcon, FontAwesomeIconStyle } from './fontawesome';
+import { IconName } from '@fortawesome/fontawesome-svg-core';
+
+
+export { IconName as FontAwesomeIcon };
+
 
 /** Generic Object */
 export type AnyObject = { [key: string]: any };
@@ -106,7 +106,7 @@ export type CreateComponentFactory<P> = {
 
 export type CreatableFunctionComponent<P> = FunctionComponent<P> & CreateComponentFactory<P>;
 
-export type ReactBucketIcon<T> = FontAwesomeIcon | ShorthandItem<T>;
+export type ReactBucketIcon<T> = IconName | ShorthandItem<T>;
 
 
 /* --------

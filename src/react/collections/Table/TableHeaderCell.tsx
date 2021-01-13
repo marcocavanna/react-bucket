@@ -45,6 +45,16 @@ const TableHeaderCell: TableHeaderCellComponent = (props) => {
       {...rest}
       as={props.as}
       className={classes}
+      icon={sortable
+        ? {
+          name     : sorted === 'desc'
+            ? 'sort-up'
+            : sorted === 'asc'
+              ? 'sort-down'
+              : 'sort',
+          className: 'clickable'
+        }
+        : undefined}
     />
   );
 

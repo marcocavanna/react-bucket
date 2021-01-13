@@ -64,7 +64,7 @@ const Toast: ToastComponent = (props) => {
   };
 
   const handleDismiss = React.useCallback(
-    (e: React.MouseEvent<HTMLElement>) => {
+    (e: React.MouseEvent<SVGSVGElement>) => {
       /** Stop the Main Propagation of event */
       e.stopPropagation();
 

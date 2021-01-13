@@ -2,15 +2,17 @@ import * as React from 'react';
 import { boolean, select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+
 import { Icon } from './index';
+
 import { Box } from '../Box';
 
 import { getBackgroundColor, getElementSize } from '../../stories';
 
 import * as Grid from '../../collections/Grid';
-
-import fontAwesomeMapper from '../../lib/fontAwesomeMapper';
-import { FontAwesomeIcon } from '../../fontawesome';
 
 
 export default { title: 'Elements/Icon', component: Icon };
@@ -19,11 +21,11 @@ export default { title: 'Elements/Icon', component: Icon };
 /* --------
  * Stories
  * -------- */
-export const allIcon = () => {
+export const allSolidIcon = () => {
 
   return (
     <Grid.Row>
-      {Object.keys(fontAwesomeMapper).map(name => (
+      {Object.keys(fas).map(name => (
         <Grid.Column
           key={name}
           width={{
@@ -35,10 +37,68 @@ export const allIcon = () => {
             <Box px={4} py={6} textAlign={'center'} m={4} backgroundColor={'white shade'}>
               <Icon
                 unspaced
-                name={name as FontAwesomeIcon}
+                name={fas[name].iconName}
                 size={'big'}
               />
-              <p className={'has-font-semi-bold mt-4'}>{name}</p>
+              <p className={'has-font-semi-bold mt-4'}>{fas[name].iconName}</p>
+            </Box>
+          )}
+        />
+      ))}
+    </Grid.Row>
+  );
+};
+
+export const allRegularIcon = () => {
+
+  return (
+    <Grid.Row>
+      {Object.keys(far).map(name => (
+        <Grid.Column
+          key={name}
+          width={{
+            phoneUp  : 12,
+            tabletUp : 6,
+            desktopUp: 4
+          }}
+          content={(
+            <Box px={4} py={6} textAlign={'center'} m={4} backgroundColor={'white shade'}>
+              <Icon
+                unspaced
+                iconStyle={'far'}
+                name={far[name].iconName}
+                size={'big'}
+              />
+              <p className={'has-font-semi-bold mt-4'}>{far[name].iconName}</p>
+            </Box>
+          )}
+        />
+      ))}
+    </Grid.Row>
+  );
+};
+
+export const allBrandsIcon = () => {
+
+  return (
+    <Grid.Row>
+      {Object.keys(fab).map(name => (
+        <Grid.Column
+          key={name}
+          width={{
+            phoneUp  : 12,
+            tabletUp : 6,
+            desktopUp: 4
+          }}
+          content={(
+            <Box px={4} py={6} textAlign={'center'} m={4} backgroundColor={'white shade'}>
+              <Icon
+                unspaced
+                iconStyle={'fab'}
+                name={fab[name].iconName}
+                size={'big'}
+              />
+              <p className={'has-font-semi-bold mt-4'}>{fab[name].iconName}</p>
             </Box>
           )}
         />
@@ -63,7 +123,7 @@ export const iconVariation = () => {
     'Rotate',
     [ '0', '90', '180', '270' ],
     '0'
-  ) as '90' | '180' | '270';
+  ) as unknown as ('0' | 90 | 180 | 270);
   const flip = select(
     'Flip',
     [ 'none', 'vertical', 'horizontal', 'both' ],
@@ -86,9 +146,9 @@ export const iconVariation = () => {
             size={size}
             solid={solid}
             spin={spin}
-            rotate={rotate}
+            rotate={rotate === '0' ? undefined : +rotate as unknown as (90 | 180 | 270)}
             flip={flip}
-            name={'box open'}
+            name={'box-open'}
           />
         </Box>
       </Grid.Column>

@@ -199,6 +199,55 @@ table > .head,
 
 
 /******
+    Icon Cell Content
+******/
+.table {
+
+  // ----
+  //  Set Icon Style
+  // ----
+  .row > .cell.with-icon > svg.icon {
+    position: absolute;
+  }
+
+  // ----
+  //  Adjust Padding
+  // ----
+  .row > .cell.with-icon {
+    padding-left: calc(#{$table-columns-gutter / 2} + #{$icon-width});
+
+    > svg.icon {
+      left: $table-columns-gutter / 2;
+    }
+
+    &:first-child {
+      padding-left: calc(#{$table-columns-gutter} + #{$icon-width});
+
+      > svg.icon {
+        left: $table-columns-gutter;
+      }
+    }
+  }
+
+  &.compressed .row > .cell.with-icon {
+    padding-left: calc(#{$table-columns-gutter / 4 / 2} + #{$icon-width});
+
+    > svg.icon {
+      left: $table-columns-gutter / 4 / 2;
+    }
+
+    &:first-child {
+      padding-left: calc(#{$table-columns-gutter / 2} + #{$icon-width});
+
+      > svg.icon {
+        left: $table-columns-gutter / 2;
+      }
+    }
+  }
+}
+
+
+/******
     Sortable Header Cell
 ******/
 .table .row > .sortable.cell {
@@ -213,8 +262,6 @@ table > .head,
   // ----
   .cell-text-title {
     &:before {
-      @include fontAwesomeFamilySolid();
-      content: fa-content($table-sortable-asc-icon);
       margin-right: $table-sortable-icon-spacer;
       opacity: $table-sortable-icon-opacity;
     }
@@ -224,12 +271,6 @@ table > .head,
     .cell-text-title {
       &:before {
         opacity: $table-sortable-icon-sorted-opacity;
-      }
-    }
-
-    &.desc .cell-text-title {
-      &:before {
-        content: fa-content($table-sortable-desc-icon);
       }
     }
   }
@@ -251,23 +292,15 @@ table > .head,
 /******
     Compressed Table Has half cell / row gutter
 ******/
-.compressed.table {
-  .head,
-  .body,
-  .foot {
-    > .row {
-      > .cell {
-        padding: (($table-row-gutter / 4) / 2) (($table-columns-gutter / 4) / 2);
+.compressed.table .row > .cell {
+  padding: (($table-row-gutter / 4) / 2) (($table-columns-gutter / 4) / 2);
 
-        &:first-child {
-          padding-left: $table-columns-gutter / 2;
-        }
+  &:first-child {
+    padding-left: $table-columns-gutter / 2;
+  }
 
-        &:last-child {
-          padding-right: $table-columns-gutter / 2;
-        }
-      }
-    }
+  &:last-child {
+    padding-right: $table-columns-gutter / 2;
   }
 }
 

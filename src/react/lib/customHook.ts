@@ -9,8 +9,7 @@ import getSharedClassNames, {
 
 import splitStateClassName, { SplitStateClassName } from './splitStateClassName';
 
-import { FontAwesomeIcon, FontAwesomeIconStyle, SharedComponentStateProps } from '../generic';
-import getFontawesomeIconClassName from './getFontawesomeIconClassName';
+import { SharedComponentStateProps } from '../generic';
 
 
 /**
@@ -137,15 +136,4 @@ export function useSplitStateClassName<P extends SharedComponentStateProps>(prop
   );
 
   return [ classes, rest, state ] as unknown as Readonly<SplitStateClassName<P>>;
-}
-
-
-/**
- * Export a memoized function to get the right fontawesome class based on name and iconStyle
- */
-export function useFontawesomeIcon(name?: FontAwesomeIcon, iconStyle?: FontAwesomeIconStyle): string | null {
-  return React.useMemo(
-    () => getFontawesomeIconClassName(name, iconStyle),
-    [ name, iconStyle ]
-  );
 }

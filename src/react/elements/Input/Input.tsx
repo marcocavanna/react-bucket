@@ -32,18 +32,18 @@ const Input: InputComponent = (props) => {
       masked,
       textarea,
       type,
-      tabIndex    : userDefinedTabIndex,
+      tabIndex: userDefinedTabIndex,
       selectAllOnClick,
       value       : userDefinedValue,
       defaultValue: userDefinedDefaultValue,
       textareaProps,
 
       /** Overridden Input Handlers */
-      onClick: userDefinedOnClick,
-      onClear: userDefinedOnClear,
+      onClick : userDefinedOnClick,
+      onClear : userDefinedOnClear,
       onChange: userDefinedOnChange,
-      onBlur: userDefinedOnBlur,
-      onFocus: userDefinedOnFocus,
+      onBlur  : userDefinedOnBlur,
+      onFocus : userDefinedOnFocus,
 
       /** Shared Input/Field Props */
       disabled,
@@ -201,7 +201,7 @@ const Input: InputComponent = (props) => {
   };
 
   const handleInputClear = React.useCallback(
-    (e: React.MouseEvent<HTMLElement>) => {
+    (e: React.MouseEvent<SVGSVGElement>) => {
       /** Manually set the input value, and after trigger the change event */
       if (inputRef.current) {
         /** Get the right value setter function from element */

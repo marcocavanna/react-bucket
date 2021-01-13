@@ -57,7 +57,7 @@ const Message: MessageComponent = (props) => {
   /* --------
    * Component Handlers
    * -------- */
-  const handleDismiss = (e: React.MouseEvent<HTMLElement>) => {
+  const handleDismiss = (e: React.MouseEvent<SVGSVGElement>) => {
     if (typeof onDismiss === 'function') {
       onDismiss(e, props);
     }

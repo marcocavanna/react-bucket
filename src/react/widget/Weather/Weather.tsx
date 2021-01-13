@@ -183,7 +183,7 @@ const Weather: WeatherComponent = (props) => {
   if (state.error || !state.weather) {
     return (
       <ElementType {...rest} className={classes}>
-        <Icon name={'times circle'} danger size={'big'} iconStyle={'regular'} />
+        <Icon name={'times-circle'} danger size={'big'} iconStyle={'far'} />
       </ElementType>
     );
   }

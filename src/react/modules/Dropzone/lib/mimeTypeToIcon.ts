@@ -5,25 +5,25 @@ import { FontAwesomeIcon } from '../../../generic';
 const cache: Record<string, FontAwesomeIcon> = {};
 
 /** Set the fallback icon */
-const fallback: FontAwesomeIcon = 'file alt';
+const fallback: FontAwesomeIcon = 'file-alt';
 
 /** Build a Mapping Array */
 const mapping: [ FontAwesomeIcon, (string | RegExp)[] ][] = [
 
   /** Image Files */
-  [ 'file image', [ /^image\// ] ],
+  [ 'file-image', [ /^image\// ] ],
 
   /** Audio Files */
-  [ 'file audio', [ /^audio\// ] ],
+  [ 'file-audio', [ /^audio\// ] ],
 
   /** Video Files */
-  [ 'file video', [ /^video\// ] ],
+  [ 'file-video', [ /^video\// ] ],
 
   /** Documents Files */
-  [ 'file pdf', [ 'application/pdf' ] ],
-  [ 'file alt', [ 'text/plain' ] ],
+  [ 'file-pdf', [ 'application/pdf' ] ],
+  [ 'file-alt', [ 'text/plain' ] ],
   [
-    'file code',
+    'file-code',
     [
       'text/html',
       'text/javascript',
@@ -35,7 +35,7 @@ const mapping: [ FontAwesomeIcon, (string | RegExp)[] ][] = [
 
   /** Archive */
   [
-    'file archive',
+    'file-archive',
     [
       /^application\/x-(g?tar|xz|compress|bzip2?|g?zip)$/,
       /^application\/x-(7z|rar|zip)-compressed$/,
@@ -45,7 +45,7 @@ const mapping: [ FontAwesomeIcon, (string | RegExp)[] ][] = [
 
   /** Word */
   [
-    'file word',
+    'file-word',
     [
       /ms-?word/,
       'application/vnd.oasis.opendocument.text',
@@ -55,7 +55,7 @@ const mapping: [ FontAwesomeIcon, (string | RegExp)[] ][] = [
 
   /** PowerPoint */
   [
-    'file powerpoint',
+    'file-powerpoint',
     [
       /ms-?powerpoint/,
       'application/vnd.openxmlformats-officedocument.presentationml.presentation',
@@ -65,7 +65,7 @@ const mapping: [ FontAwesomeIcon, (string | RegExp)[] ][] = [
 
   /** Excel */
   [
-    'file excel',
+    'file-excel',
     [
       /ms-?excel/,
       'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
@@ -102,6 +102,7 @@ export default function mimeTypeToIcon(mimeType: string): FontAwesomeIcon {
   }
 
   /** Apply a for cycle */
+  // eslint-disable-next-line no-plusplus
   for (let i = 0; i < mapping.length; i++) {
     if (match(mimeType, mapping[i][1])) {
       // eslint-disable-next-line prefer-destructuring

@@ -83,15 +83,13 @@ input[type='radio'] {
   // ----
   //  Checkmark symbol
   // ----
-  &:after {
-    @include fontAwesomeFamilySolid;
-    content: fa-content($fa-var-check);
-
+  > svg.checkbox-icon {
     position: absolute;
     top: 50%;
     left: 1px;
     transform: translate(2%, -48%);
     width: $checkbox-size;
+    margin: 0;
 
     text-align: center;
     color: inherit;
@@ -167,8 +165,7 @@ input[type='radio'] {
     opacity: $checkbox-indeterminate-background-opacity;
   }
 
-  &:after {
-    content: fa-content($fa-var-minus);
+  > svg.checkbox-icon {
     color: $checkbox-checked-checkmark-color;
     opacity: 1;
   }
@@ -179,7 +176,7 @@ input[type='radio'] {
     background-color: $checkbox-checked-background-color;
   }
 
-  &:after {
+  > svg.checkbox-icon {
     color: $checkbox-checked-checkmark-color;
     opacity: 1;
   }
@@ -238,7 +235,7 @@ input[type='radio'] {
 
   &:not(.checked) + label {
     @include hover {
-      &:hover:after {
+      &:hover > svg.checkbox-icon {
         opacity: .5;
       }
     }

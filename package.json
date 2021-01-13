@@ -33,7 +33,7 @@
   "homepage": "https://github.com/marcocavanna/react-bucket#readme",
   "license": "MIT",
   "scripts": {
-    "version": "node build.fontawesome.js && export GPG_TTY=$(tty) && echo \"sign-test\" | gpg --clearsign && yarn build && git add -A package.json && git add -A .",
+    "version": "export GPG_TTY=$(tty) && echo \"sign-test\" | gpg --clearsign && yarn build && git add -A package.json && git add -A .",
     "postversion": "git push && git push --tags && npm publish",
     "build": "cross-env NODE_ENV=production yarn compile:rollup",
     "build:dev": "cross-env NODE_ENV=development yarn compile:rollup",
@@ -135,7 +135,11 @@
   },
   "dependencies": {
     "@appbuckets/react-ui-core": "0.1.3",
-    "@fortawesome/fontawesome-free": "5.13.0",
+    "@fortawesome/fontawesome-svg-core": "^1.2.32",
+    "@fortawesome/free-brands-svg-icons": "^5.15.1",
+    "@fortawesome/free-regular-svg-icons": "^5.15.1",
+    "@fortawesome/free-solid-svg-icons": "^5.15.1",
+    "@fortawesome/react-fontawesome": "^0.1.14",
     "@popperjs/core": "2.6.0",
     "@semantic-ui-react/event-stack": "3.1.1",
     "array-sort": "^1.0.0",

@@ -14,6 +14,8 @@ import {
   useSplitStateClassName
 } from '../../lib';
 
+import { Icon } from '../../elements/Icon';
+
 import { TableCellProps } from './TableCell.types';
 import TableCellContent from './TableCellContent';
 
@@ -38,6 +40,7 @@ const TableCell: TableCellComponent = (props) => {
       children,
       content,
       header,
+      icon,
       meta,
       selectable,
       wrapped,
@@ -50,7 +53,7 @@ const TableCell: TableCellComponent = (props) => {
   const ElementType = useElementType(TableCell, props);
 
   const classes = clsx(
-    { active, selectable, wrapped },
+    { active, selectable, wrapped, 'with-icon': !!icon },
     'cell',
     className,
     stateClassName
@@ -60,6 +63,11 @@ const TableCell: TableCellComponent = (props) => {
   // ----
   // Generate Memoized Shorthand Content
   // ----
+  const iconElement = React.useMemo(
+    () => Icon.create(icon, { autoGenerateKey: false }),
+    [ icon ]
+  );
+
   const metaElement = React.useMemo(
     () => TableCellContent.create(meta, { autoGenerateKey: false, overrideProps: { type: 'meta' } }),
     [ meta ]
@@ -82,6 +90,7 @@ const TableCell: TableCellComponent = (props) => {
   if (!childrenUtils.isNil(children)) {
     return (
       <ElementType {...rest} className={classes}>
+        {iconElement}
         {children}
       </ElementType>
     );
@@ -93,6 +102,7 @@ const TableCell: TableCellComponent = (props) => {
   // ----
   return (
     <ElementType {...rest} className={classes}>
+      {iconElement}
       {metaElement}
       {titleElement}
       {contentElement}

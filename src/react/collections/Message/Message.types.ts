@@ -25,5 +25,5 @@ export interface StrictMessageProps {
   icon?: ReactBucketIcon<IconProps>;
 
   /** Message could be dismissed, this callback will be fired on dismiss icon click */
-  onDismiss?: (e: React.MouseEvent<HTMLElement>, props: MessageProps) => void;
+  onDismiss?: (e: React.MouseEvent<SVGSVGElement>, props: MessageProps) => void;
 }

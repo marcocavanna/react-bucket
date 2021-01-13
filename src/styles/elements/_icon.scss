@@ -21,7 +21,6 @@
   width: $icon-width;
   text-decoration: inherit;
   text-align: center;
-  vertical-align: baseline;
   speak: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -159,4 +158,13 @@
     $shadow-strength: 4px,
     $shadow-transparency: .7
   );
+}
+
+/******
+    Fix SVG Vertical Align
+******/
+.fab.button.as-icon {
+  svg.icon.svg-inline--fa {
+    vertical-align: -0.2em;
+  }
 }

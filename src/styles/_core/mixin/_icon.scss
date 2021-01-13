@@ -18,14 +18,14 @@
   @if $parent != '' {
     @if $restrict-to-direct-child == true {
       $parent: '#{$parent} >';
-    } @else if $attach-to-selector == false {
+    } @else {
       $parent: '#{$parent} ';
     }
   }
 
   // Loop each fontawesome class
-  @each $prefix in (fa, fas, far, fab) {
-    $selectors: append($selectors, '#{$parent}.#{$prefix}', $separator: comma);
+  @each $prefix in (svg) {
+    $selectors: append($selectors, '#{$parent}#{$prefix}', $separator: comma);
   }
 
   // Set content

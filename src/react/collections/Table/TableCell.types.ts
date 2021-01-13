@@ -1,8 +1,10 @@
+import { IconProps } from '../../elements/Icon';
+
 import {
   ReactBucketComponentProps,
   ShorthandItem,
   SharedComponentStateProps,
-  SharedFlexboxContentProps
+  SharedFlexboxContentProps, ReactBucketIcon
 } from '../../generic';
 
 import { TableCellContentProps } from './TableCellContent.types';
@@ -21,6 +23,9 @@ export interface StrictTableCellProps extends SharedComponentStateProps,
 
   /** Cell Title Shorthand */
   header?: ShorthandItem<TableCellContentProps>;
+
+  /** Add a Cell Icon */
+  icon?: ReactBucketIcon<IconProps>;
 
   /** Cell Meta Shorthand */
   meta?: ShorthandItem<TableCellContentProps>;

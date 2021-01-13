@@ -109,11 +109,10 @@ textarea.text {
   .content {
     // Icon has absolute position
     > .icon {
-      width: $icon-width + ($input-horizontal-padding / 2);
       margin: 0;
       position: absolute;
       padding-top: $input-vertical-padding;
-      line-height: $computed-input-line-height;
+      height: $computed-input-line-height * 1em;
       color: $field-icon-base-color;
       transition: color $transition-speed-fast $transition-ease;
       will-change: color;

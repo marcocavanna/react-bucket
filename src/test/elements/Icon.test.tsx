@@ -35,13 +35,13 @@ describe('testing icon', () => {
 
   it('will use fontawesome class and style', () => {
     const { getComponentElement } = renderTools;
-    const component = getComponentElement({ name: 'apple', iconStyle: 'brands' });
+    const component = getComponentElement({ name: 'apple', iconStyle: 'fab' });
     expect(component).toHaveClass('fab', 'fa-apple');
   });
 
   it('will use fallback to default fontawesome class', () => {
     const { getComponentElement } = renderTools;
-    const component = getComponentElement({ name: 'plus', iconStyle: 'brands' });
+    const component = getComponentElement({ name: 'plus', iconStyle: 'fab' });
     expect(component).toHaveClass('fas', 'fa-plus');
   });
 
