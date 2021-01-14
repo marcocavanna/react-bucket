@@ -1,6 +1,8 @@
 import * as React from 'react';
 
 import { EmptyContent, EmptyContentProps } from '../../../elements/EmptyContent';
+import { IconProps } from '../../../elements/Icon';
+import { ReactBucketIcon } from '../../../generic';
 
 import { useDropzone } from '../Dropzone.context';
 
@@ -24,11 +26,16 @@ const DropzoneHint: React.FunctionComponent<DropzoneHintProps> = (props) => {
     return null;
   }
 
+  // @ts-ignore
+  const icon: ReactBucketIcon<IconProps> | undefined = dropzone.state.isDragActive
+    ? dropzone.props.iconOnDragging
+    : dropzone.props.iconOnIdle;
+
   return (
     <EmptyContent
       {...props}
       className={'dropzone-hint'}
-      icon={dropzone.state.isDragActive ? dropzone.props.iconOnDragging : dropzone.props.iconOnIdle}
+      icon={icon}
       header={dropzone.props.hintTitle}
       content={dropzone.isDisabled
         ? dropzone.props.hintWhileDisabled

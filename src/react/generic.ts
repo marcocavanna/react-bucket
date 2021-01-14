@@ -106,7 +106,7 @@ export type CreateComponentFactory<P> = {
 
 export type CreatableFunctionComponent<P> = FunctionComponent<P> & CreateComponentFactory<P>;
 
-export type ReactBucketIcon<T> = IconName | ShorthandItem<T>;
+export type ReactBucketIcon<T> = IconName | T | ShorthandRenderFunctionValue<T>;
 
 
 /* --------

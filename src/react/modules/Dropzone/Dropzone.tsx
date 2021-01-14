@@ -69,13 +69,13 @@ export default class Dropzone extends React.Component<DropzoneProps, DropzoneSta
     hintTitle        : 'File Upload',
     hintWhileDisabled: 'Upload Disabled',
     hintWhileDragging: 'Release file to Upload',
-    iconOnDragging   : 'file download',
-    iconOnIdle       : 'cloud upload alt',
+    iconOnDragging   : 'file-download',
+    iconOnIdle       : 'cloud-upload-alt',
     maxFiles         : 10,
     multiple         : true,
     on               : [ 'click', 'drop' ],
     removeItemTool   : {
-      icon  : 'times circle',
+      icon  : 'times-circle',
       danger: true,
       flat  : false
     },

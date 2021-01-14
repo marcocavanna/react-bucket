@@ -62,6 +62,7 @@ const Badge: BadgeComponent = (props) => {
     () => !hasChildren && Icon.create(icon, {
       autoGenerateKey: false
     }),
+    // @ts-ignore
     [ icon, hasChildren ]
   );
 

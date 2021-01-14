@@ -108,6 +108,7 @@ const Toast: ToastComponent = (props) => {
           onClick: handleDismiss
         }
       })),
+    // @ts-ignore
     [ dismissible, handleDismiss ]
   );
 
