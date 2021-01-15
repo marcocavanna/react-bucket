@@ -3,12 +3,11 @@ const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
 
-  stories: [ `../src/react/**/*.stories.${process.env.DOCS === '1' ? 'mdx' : 'tsx'}` ],
+  stories: [ '../src/react/**/*.stories.tsx' ],
 
   addons: [
     '@storybook/addon-knobs/register',
     '@storybook/addon-actions/register',
-    ...(process.env.DOCS === '1' ? [ '@storybook/addon-docs' ] : []),
     {
       name   : '@storybook/addon-storysource',
       options: {
@@ -20,19 +19,6 @@ module.exports = {
   ],
 
   webpackFinal: async (config) => {
-
-    /** Exclude FontAwesome from Fonts Url */
-    config.module.rules = config.module.rules.map((rule) => {
-      if (/(eot|ttf|woff|woff2|svg)/.test(rule.test)) {
-        if (!Array.isArray(rule.exclude)) {
-          rule.exclude = [];
-        }
-
-        rule.exclude.push(/@fortawesome/);
-      }
-
-      return rule;
-    });
 
     config.module.rules.push(
       {
@@ -52,19 +38,6 @@ module.exports = {
           }
         ],
         enforce: 'pre'
-      },
-
-      {
-        test   : /\.(eot|ttf|woff|woff2|svg)$/,
-        include: [ /@fortawesome/ ],
-        use    : {
-          loader : 'file-loader',
-          options: {
-            name      : '[name].[ext]',
-            outputPath: './assets/fontawesome',
-            publicPath: './assets/fontawesome'
-          }
-        }
       },
 
       // Use Extract Text Plugin to get and compile Style
