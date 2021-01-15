@@ -17,8 +17,9 @@ export const baseModal = () => {
         />
       )}
       icon={{
-        name   : 'google',
-        primary: true
+        iconStyle: 'fab',
+        name     : 'google',
+        primary  : true
       }}
       header={{
         content  : 'Product Designer',

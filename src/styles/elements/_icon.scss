@@ -30,10 +30,6 @@
   color: inherit;
   position: relative;
 
-  &:after {
-    border-color: inherit;
-  }
-
   // ----
   //  Remove the fixed icon width
   // ----
@@ -48,68 +44,19 @@
     margin-right: 0;
   }
 
-  // ----
-  //  Set Solid / Bordered Style
-  // ----
-  &.bordered,
-  &.rounded,
-  &.circle {
-    min-width: $icon-bordered-box-size;
-
-    &:before {
-      position: relative;
-      z-index: 2;
-    }
-
-    &:after {
-      content: '';
-      position: absolute;
-      height: $icon-bordered-box-size;
-      width: $icon-bordered-box-size;
-      border-width: $icon-bordered-border-width;
-      border-style: solid;
-      top: 50%;
-      left: 50%;
-      transform: translate(-51%, -50%);
-      border-radius: $border-radius;
-      z-index: 1;
-    }
-  }
-
-  &.rounded,
-  &.circle {
-    &:not(.bordered) {
-      border-color: transparent !important;
-    }
-
-    &:after {
-      background-color: rgba(0, 0, 0, .075);
-    }
-  }
-
-  &.circle {
-    &:before {
-      font-size: .85em;
-    }
-
-    &:after {
-      border-radius: 500rem;
-    }
-  }
-
   @each $label, $color in $react-bucket-color-map {
-    &.colored.is-#{$label}:after {
+    &.colored.is-#{$label}:before {
       background-color: color-tint($color, 4) !important;
     }
 
     &.inverted.is-#{$label} {
       color: choose-contrast-color($color, $white-shade, $text) !important;
 
-      &:after {
+      &:before {
         background-color: $color !important;
       }
 
-      &.bordered:after {
+      &.bordered:before {
         border-color: color-tint($color, 2) !important;
       }
     }
@@ -158,6 +105,68 @@
     $shadow-strength: 4px,
     $shadow-transparency: .7
   );
+}
+
+/******
+    Div as Icon Container to apply Solid Style
+******/
+div.icon {
+  height: 1em;
+  width: $icon-width;
+
+  > svg {
+    color: inherit;
+    position: relative;
+    z-index: 2;
+  }
+
+  &:before {
+    border-color: inherit;
+  }
+
+  // ----
+  //  Set Solid / Bordered Style
+  // ----
+  &.bordered,
+  &.rounded,
+  &.circle {
+    min-width: $icon-bordered-box-size;
+
+    &:before {
+      content: '';
+      position: absolute;
+      height: $icon-bordered-box-size;
+      width: $icon-bordered-box-size;
+      border-width: $icon-bordered-border-width;
+      border-style: solid;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -47%);
+      border-radius: $border-radius;
+      z-index: 1;
+    }
+  }
+
+  &.rounded,
+  &.circle {
+    &:not(.bordered) {
+      border-color: transparent !important;
+    }
+
+    &:before {
+      background-color: rgba(0, 0, 0, .075);
+    }
+  }
+
+  &.circle {
+    > svg {
+      font-size: .85em;
+    }
+
+    &:before {
+      border-radius: 500rem;
+    }
+  }
 }
 
 /******

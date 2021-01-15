@@ -74,9 +74,6 @@ const Icon: IconComponent = React.memo<IconProps>((props) => {
     }
   };
 
-  /** Get the FontAwesome Icon */
-  // const iconClassName = useFontawesomeIcon(name, iconStyle);
-
   /** Build icon ClassName */
   const classes = clsx(
     'icon',
@@ -85,10 +82,18 @@ const Icon: IconComponent = React.memo<IconProps>((props) => {
     solid,
     {
       disabled,
+      bordered,
       unspaced,
       clickable: onClick
     }
   );
+
+  /** Solid icon has a different container */
+  const hasFragmentContainer = !solid && !bordered;
+  const Container: React.ElementType = !hasFragmentContainer ? 'div' : React.Fragment;
+
+  /** Build container props, if React.Fragment, no className is allowed */
+  const containerProps = hasFragmentContainer ? {} : { className: classes };
 
   if (!name) {
     return null;
@@ -96,21 +101,22 @@ const Icon: IconComponent = React.memo<IconProps>((props) => {
 
   /** Draw the element */
   return (
-    <FontAwesomeIcon
-      border={bordered}
-      fixedWidth={!fitted}
-      className={classes}
-      icon={[ iconStyle || 'fas', name ]}
-      mask={mask}
-      spin={spin}
-      pulse={pulse}
-      flip={flip}
-      inverse={inverse}
-      listItem={listItem}
-      rotate={rotate}
-      transform={transform}
-      onClick={handleClick}
-    />
+    <Container {...containerProps}>
+      <FontAwesomeIcon
+        fixedWidth={!fitted}
+        className={hasFragmentContainer ? classes : undefined}
+        icon={[ iconStyle || 'fas', name ]}
+        mask={mask}
+        spin={spin}
+        pulse={pulse}
+        flip={flip}
+        inverse={inverse}
+        listItem={listItem}
+        rotation={rotate}
+        transform={transform}
+        onClick={handleClick}
+      />
+    </Container>
   );
 }) as unknown as IconComponent;
 

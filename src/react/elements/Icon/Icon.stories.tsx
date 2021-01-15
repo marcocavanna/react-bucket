@@ -114,6 +114,7 @@ export const iconVariation = () => {
   const bordered = boolean('Bordered', false);
   const disabled = boolean('Disabled', false);
   const spin = boolean('Spin', false);
+  const pulse = boolean('Pulse', false);
   const solid = select(
     'Solid',
     [ 'none', 'circle', 'rounded', 'colored circle', 'colored rounded', 'inverted circle', 'inverted rounded' ],
@@ -144,11 +145,12 @@ export const iconVariation = () => {
             bordered={bordered}
             disabled={disabled}
             size={size}
-            solid={solid}
+            solid={(solid as any) === 'none' ? undefined : solid}
             spin={spin}
             rotate={rotate === '0' ? undefined : +rotate as unknown as (90 | 180 | 270)}
             flip={flip}
             name={'box-open'}
+            pulse={pulse}
           />
         </Box>
       </Grid.Column>
