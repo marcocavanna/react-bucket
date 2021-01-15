@@ -54,7 +54,7 @@
     "react-dom": ">=16"
   },
   "devDependencies": {
-    "@appbuckets/postcss-react-bucket": "^0.1.0",
+    "@appbuckets/postcss-react-bucket": "^0.1.1",
     "@rollup/plugin-commonjs": "^17.0.0",
     "@storybook/addon-actions": "^6.1.14",
     "@storybook/addon-knobs": "^6.1.14",

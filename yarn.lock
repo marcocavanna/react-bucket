@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@appbuckets/postcss-react-bucket@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@appbuckets/postcss-react-bucket/-/postcss-react-bucket-0.1.0.tgz#99fdde2abe7bab38c866dfe3918a2ac95d306f0f"
-  integrity sha512-74A77rmdQ6jOnTCJSpN2ZQeIXdpUpXfljkopvRPjFkx86tEUuK+xE0IolNVpx+NMd6LD5v+u9swj1f0imXY0vA==
+"@appbuckets/postcss-react-bucket@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@appbuckets/postcss-react-bucket/-/postcss-react-bucket-0.1.1.tgz#079263a818b4712e5c939b7ca073ce0087cd0c76"
+  integrity sha512-Jd30pUTsA/jKN7cpKpkiXBqb4hxVkKMIh23bsnAxQaPRl4jaBbtQpeZ8CUO6NtSNJLnJ9iqC2WvnsL5HbsmAxA==
   dependencies:
     autoprefixer "^9.8.6"
     css-declaration-sorter "^5.1.2"
