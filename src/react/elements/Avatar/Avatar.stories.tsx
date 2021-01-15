@@ -131,7 +131,7 @@ function AvatarBadge() {
           />
           <Avatar
             badge={{
-              icon   : 'mail bulk',
+              icon   : 'mail-bulk',
               primary: true
             }}
             className={'mr-4'}
