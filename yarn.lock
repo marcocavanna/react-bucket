@@ -2,6 +2,24 @@
 # yarn lockfile v1
 
 
+"@appbuckets/postcss-react-bucket@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@appbuckets/postcss-react-bucket/-/postcss-react-bucket-0.1.0.tgz#99fdde2abe7bab38c866dfe3918a2ac95d306f0f"
+  integrity sha512-74A77rmdQ6jOnTCJSpN2ZQeIXdpUpXfljkopvRPjFkx86tEUuK+xE0IolNVpx+NMd6LD5v+u9swj1f0imXY0vA==
+  dependencies:
+    autoprefixer "^9.8.6"
+    css-declaration-sorter "^5.1.2"
+    cssnano "^4.1.10"
+    postcss-discard-comments "^4.0.2"
+    postcss-discard-duplicates "^4.0.2"
+    postcss-import "^12.0.1"
+    postcss-import-url "^5.1.0"
+    postcss-merge-rules "^4.0.3"
+    postcss-momentum-scrolling "^2.8.20"
+    postcss-single-charset "^2.0.0"
+    postcss-single-line "^1.0.0"
+    postcss-sort-media-queries "^1.7.26"
+
 "@appbuckets/react-autocontrolled-component@^0.0.3":
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/@appbuckets/react-autocontrolled-component/-/react-autocontrolled-component-0.0.3.tgz#a4ca69113124aa7bebd75ae2080748da70df0d9c"
@@ -3662,7 +3680,7 @@ attr-accept@^2.2.1:
   resolved "https://registry.yarnpkg.com/attr-accept/-/attr-accept-2.2.2.tgz#646613809660110749e92f2c10833b70968d929b"
   integrity sha512-7prDjvt9HmqiZ0cl5CRjtS84sEyhsHP2coDkaZKRKVfCDo9s7iw7ChVmar78Gu9pC4SoR/28wFu/G5JJhTnqEg==
 
-autoprefixer@^9.7.2, autoprefixer@^9.8.0:
+autoprefixer@^9.7.2, autoprefixer@^9.8.6:
   version "9.8.6"
   resolved "https://registry.yarnpkg.com/autoprefixer/-/autoprefixer-9.8.6.tgz#3b73594ca1bf9266320c5acf1588d74dea74210f"
   integrity sha512-XrvP4VVHdRBCdX1S3WXVD8+RyG9qeb1D5Sn1DeLiG2xfSpzellk5k54xbUERJ3M5DggQxes39UGOTP8CFrEGbg==
@@ -11235,7 +11253,7 @@ postcss-modules-values@^3.0.0:
     icss-utils "^4.0.0"
     postcss "^7.0.6"
 
-postcss-momentum-scrolling@^2.7.17:
+postcss-momentum-scrolling@^2.8.20:
   version "2.8.20"
   resolved "https://registry.yarnpkg.com/postcss-momentum-scrolling/-/postcss-momentum-scrolling-2.8.20.tgz#140096c34d390dd463375e94bb784e766efbb3d2"
   integrity sha512-LkxGdGFCLksDT5eY8NWe8SodJWFOBEsybjbsL0pXXiue6fw4NlSqL6qcEPGdSnhAobUhxiQccgs5VgF2qWMkkA==
@@ -11352,16 +11370,6 @@ postcss-reduce-transforms@^4.0.2:
     postcss "^7.0.0"
     postcss-value-parser "^3.0.0"
 
-postcss-reporter@^6.0.1:
-  version "6.0.1"
-  resolved "https://registry.yarnpkg.com/postcss-reporter/-/postcss-reporter-6.0.1.tgz#7c055120060a97c8837b4e48215661aafb74245f"
-  integrity sha512-LpmQjfRWyabc+fRygxZjpRxfhRf9u/fdlKf4VHG4TSPbV2XNsuISzYW1KL+1aQzx53CAppa1bKG4APIB/DOXXw==
-  dependencies:
-    chalk "^2.4.1"
-    lodash "^4.17.11"
-    log-symbols "^2.2.0"
-    postcss "^7.0.7"
-
 postcss-scss@^2.0.0:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/postcss-scss/-/postcss-scss-2.1.1.tgz#ec3a75fa29a55e016b90bf3269026c53c1d2b383"
@@ -11400,7 +11408,7 @@ postcss-single-line@^1.0.0:
   resolved "https://registry.yarnpkg.com/postcss-single-line/-/postcss-single-line-1.0.0.tgz#398f735583e162719a416995254c0fddfc65a6d9"
   integrity sha1-OY9zVYPhYnGaQWmVJUwP3fxlptk=
 
-postcss-sort-media-queries@^1.6.24:
+postcss-sort-media-queries@^1.7.26:
   version "1.31.21"
   resolved "https://registry.yarnpkg.com/postcss-sort-media-queries/-/postcss-sort-media-queries-1.31.21.tgz#3225ec6eb490402602284ac99963b80461783cee"
   integrity sha512-h+HbXXfOVFeLvCJOzl/Z9SqQ25MNpG/73k71756ftisaaJy75h06/Dn6KOwC4OCMN10ewT2PXMzHV03JNKwBbg==
@@ -11455,7 +11463,7 @@ postcss@^7.0.0, postcss@^7.0.14, postcss@^7.0.26, postcss@^7.0.32, postcss@^7.0.
     source-map "^0.6.1"
     supports-color "^6.1.0"
 
-postcss@^7.0.1, postcss@^7.0.27, postcss@^7.0.7:
+postcss@^7.0.1, postcss@^7.0.27:
   version "7.0.32"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-7.0.32.tgz#4310d6ee347053da3433db2be492883d62cec59d"
   integrity sha512-03eXong5NLnNCD05xscnGKGDZ98CyzoqPSMjOe6SuoQY7Z2hIj0Ld1g/O/UQRuOle2aRtiIRDg9tDcTGAkLfKw==

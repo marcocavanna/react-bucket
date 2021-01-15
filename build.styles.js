@@ -10,42 +10,9 @@ const { writeFileSync, existsSync, mkdirSync } = require('fs');
  * -------- */
 const sass = require('node-sass');
 const packageImporter = require('node-sass-package-importer');
+
 const postcss = require('postcss');
-
-
-/* --------
- * Import and Set PostCSS Plugins
- * -------- */
-const autoprefixer = require('autoprefixer');
-const sortMediaQuery = require('postcss-sort-media-queries');
-const declarationSorter = require('css-declaration-sorter');
-const discardDuplicates = require('postcss-discard-duplicates');
-const importUrl = require('postcss-import-url');
-const singleCharset = require('postcss-single-charset');
-const momentumScrolling = require('postcss-momentum-scrolling');
-const mergeRules = require('postcss-merge-rules');
-const discardComments = require('postcss-discard-comments');
-const singleLine = require('postcss-single-line');
-const cssnano = require('cssnano');
-
-const postCssPlugin = [
-  momentumScrolling,
-  mergeRules,
-  importUrl,
-  discardDuplicates,
-  declarationSorter,
-  sortMediaQuery,
-  singleCharset,
-  autoprefixer
-];
-
-if (process.env.NODE_ENV === 'production') {
-  postCssPlugin.push(
-    discardComments,
-    singleLine,
-    cssnano
-  );
-}
+const { getPostCSSPlugins } = require('@appbuckets/postcss-react-bucket');
 
 
 /* --------
@@ -83,12 +50,12 @@ function buildCSSFile(filenameSrc, filenameDest) {
     /** Render the SCSS File */
     sass.render({
       /** Set the source file */
-      file          : fileSrc,
+      file: fileSrc,
       /** Add the package importer to use ~ */
-      importer      : packageImporter(),
+      importer: packageImporter(),
       /** Set the out file to use SourceMap */
-      outFile       : fileDest,
-      outputStyle   : 'expanded',
+      outFile    : fileDest,
+      outputStyle: 'expanded',
       /** Set sourcemap options */
       sourceMapRoot : sourceDir(),
       sourceMapEmbed: true
@@ -104,7 +71,7 @@ function buildCSSFile(filenameSrc, filenameDest) {
       global.console.log(`[${filenameSrc}] : Compiled SCSS to CSS`);
 
       /** Pass the result to the PostCSS Processor */
-      return postcss(postCssPlugin)
+      return postcss(getPostCSSPlugins())
         .process(result.css, {
           from: fileSrc,
           to  : fileDest,

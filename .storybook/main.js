@@ -99,27 +99,6 @@ module.exports = {
       }
     );
 
-    // config.module.rules.push({
-    //   test   : /\.tsx?$/,
-    //   exclude: [
-    //     /Weather\/icons/
-    //   ],
-    //   use    : [
-    //     {
-    //       loader : require.resolve('react-docgen-typescript-loader'),
-    //       options: {
-    //         /** Remove Props of React Core Component */
-    //         propFilter                        : (prop) => {
-    //           return !/^(DOMAttributes|AriaAttributes|HTMLAttributes|Attributes)$/.test(prop.parent.name);
-    //
-    //         },
-    //         /** Extract Literal Value from Type */
-    //         shouldExtractLiteralValuesFromEnum: true
-    //       }
-    //     }
-    //   ]
-    // })
-
     config.resolve.extensions.push('.ts', '.tsx');
 
     config.plugins.push(new MiniCSSExtractPlugin({
