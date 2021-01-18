@@ -50,7 +50,7 @@
     transform: translate(-50%, -50%);
 
     &:after {
-      background-color: $grey-lightest;
+      background-color: $cloud-light;
       @include dpShadow($modal-elevation)
     }
   }
@@ -98,7 +98,7 @@
 
   .modal-meta {
     font-weight: $semi-bold;
-    color: $text-lightest;
+    color: $text-secondary;
   }
 }
 

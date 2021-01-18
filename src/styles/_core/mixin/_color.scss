@@ -99,7 +99,7 @@
 ) {
 
   // Choose the Contrast Color
-  $contrast-color: choose-contrast-color($color, $white-shade, $text);
+  $contrast-color: choose-contrast-color($color, $text-contrast, $text);
 
   // Set the Color
   @each $prop in $properties-list {
@@ -148,7 +148,7 @@
       @if $color != transparent {
         $active-color: color-shade($color, .75);
       } @else {
-        $active-color: $grey-lightest;
+        $active-color: $cloud-light;
       }
     }
 

@@ -14,7 +14,7 @@
 .dropdown > .menu-item {
   padding: $dropdown-menu-item-padding $dropdown-menu-item-padding * .75;
   text-transform: uppercase;
-  border-bottom: solid 1px $grey-lightest;
+  border-bottom: solid 1px $cloud-light;
   font-weight: $semi-bold;
 
   @include hover {

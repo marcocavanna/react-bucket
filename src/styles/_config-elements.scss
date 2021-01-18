@@ -80,7 +80,7 @@ $badge-font-size: .75em !default;
 /******
     Button Configuration
 ******/
-$button-base-background-color: $grey-lightest !default;
+$button-base-background-color: $cloud-light !default;
 $button-height: 2.5em !default;
 $button-min-width: 8em !default;
 $button-font-size: 1rem !default;
@@ -146,7 +146,7 @@ $day-picker-selected-font-weight: $semi-bold !default;
 $day-picker-selected-color: $white !default;
 $day-picker-selected-background-color: $primary !default;
 $day-picker-outside-day-opacity: .5 !default;
-$day-picker-day-caption-color: $text-light !default;
+$day-picker-day-caption-color: $text-secondary !default;
 $day-picker-week-number-color: $orange !default;
 
 
@@ -169,11 +169,11 @@ $dropdown-menu-item-padding: .75em !default;
 /******
     Dropzone
 ******/
-$dropzone-disabled-border-color: $grey-light !default;
-$dropzone-disabled-background-color: $grey-lightest !default;
+$dropzone-disabled-border-color: $cloud !default;
+$dropzone-disabled-background-color: $cloud-light !default;
 $dropzone-border-style: dashed !default;
 $dropzone-border-width: 2px !default;
-$dropzone-border-color: $grey-lightest !default;
+$dropzone-border-color: $cloud-light !default;
 $dropzone-border-radius: $border-radius-big !default;
 $dropzone-hover-color: $primary !default;
 $dropzone-hover-border-color: $dropzone-hover-color !default;
@@ -198,7 +198,7 @@ $field-label-font-weight: $semi-bold !default;
 $field-label-font-size: .85em !default;
 $field-label-text-transform: uppercase !default;
 $field-label-spacer: $spacer * .5 !default;
-$field-label-color: $text-lightest !default;
+$field-label-color: $text-secondary !default;
 
 $field-required-symbol-content: '*' !default;
 $field-required-symbol-transform: translate(0.25em, 0) !default;
@@ -413,10 +413,10 @@ $menu-item-icon-spacer: .75em !default;
 ******/
 $message-background-color: $white-shade-2 !default;
 $message-padding: 1em 1.5em !default;
-$message-font-color: $text-tint !default;
+$message-font-color: $text-secondary !default;
 $message-border-radius: $border-radius !default;
 $message-border-width: 1px !default;
-$message-border-color: $grey-lightest !default;
+$message-border-color: $cloud-light !default;
 $message-spacer: 1em !default;
 $message-content-opacity: .85 !default;
 $message-header-font-size: 1.25em !default;
@@ -441,7 +441,7 @@ $modal-close-button-size: 2em !default;
 $modal-header-font-size: 1.5em !default;
 $modal-header-icon-size: 2.5em !default;
 
-$modal-actions-divider-border-color: $grey-lightest !default;
+$modal-actions-divider-border-color: $cloud-light !default;
 
 $modal-size-small: 380px !default;
 $modal-size-default: 560px !default;
@@ -496,8 +496,8 @@ $popup-basic-elevation: 2 !default;
 /******
     Progress
 ******/
-$progress-bar-background: $grey-lightest !default;
-$progress-value-background: $grey-light !default;
+$progress-bar-background: $cloud-light !default;
+$progress-value-background: $cloud !default;
 
 $progress-indicator-size: .9em !default;
 $progress-indicator-font-weight: $bold !default;
@@ -505,14 +505,14 @@ $progress-indicator-font-weight: $bold !default;
 $linear-progress-indicator-color: rgba(255, 255, 255, .75) !default;
 $linear-progress-height: 1.25em !default;
 
-$linear-progress-limits-color: $text-light !default;
+$linear-progress-limits-color: $text-secondary !default;
 $linear-progress-limits-font-weight: $semi-bold !default;
 $linear-progress-limits-spacer: .25em !default;
 
 $circular-progress-linecap: round !default;
 $circular-progress-linejoin: round !default;
 
-$circular-progress-indicator-color: $text-light !default;
+$circular-progress-indicator-color: $text-secondary !default;
 
 
 /******
@@ -521,12 +521,12 @@ $circular-progress-indicator-color: $text-light !default;
 $section-spacer: 1.25em !default;
 $section-label-font-weight: $bold !default;
 $section-label-text-transform: uppercase !default;
-$section-label-color: $grey-light !default;
+$section-label-color: $cloud !default;
 $section-label-font-size: .85em !default;
 $section-label-spacer: .25em !default;
 $section-divided-border-style: solid !default;
 $section-divided-border-width: 1px !default;
-$section-divided-border-color: $grey-lightest !default;
+$section-divided-border-color: $cloud-light !default;
 
 
 /******
@@ -546,11 +546,11 @@ $table-columns-gutter: $columns-gutter * 1.5 !default;
 $table-row-gutter: $columns-gutter * 1.5 !default;
 
 $table-header-font-weight: $semi-bold !default;
-$table-header-color: $text-light !default;
+$table-header-color: $text-secondary !default;
 $table-header-text-transform: uppercase !default;
 
 $table-header-border-style: solid !default;
-$table-header-border-color: $grey-lightest !default;
+$table-header-border-color: $cloud-light !default;
 $table-header-border-width: 2px !default;
 
 $table-clickable-row-hover-color: $white-shade-2 !default;
@@ -558,18 +558,16 @@ $table-clickable-row-hover-color: $white-shade-2 !default;
 $table-sortable-header-hover-color: $text !default;
 $table-sortable-header-active-color: $primary !default;
 $table-sortable-icon-spacer: $icon-spacer !default;
-$table-sortable-asc-icon: none; // $fa-var-sort-amount-down-alt !default;
-$table-sortable-desc-icon: none; // $fa-var-sort-amount-down !default;
 $table-sortable-icon-opacity: .5 !default;
 $table-sortable-icon-sorted-opacity: 1 !default;
 
 $table-body-border-style: solid !default;
-$table-body-border-color: $grey-lightest !default;
+$table-body-border-color: $cloud-light !default;
 $table-body-border-width: 1px !default;
 $table-body-border-after-last-row: false !default;
 
 $table-footer-border-style: solid !default;
-$table-footer-border-color: $grey-lightest !default;
+$table-footer-border-color: $cloud-light !default;
 $table-footer-border-width: 2px !default;
 
 $table-cell-header-font-weight: $semi-bold !default;

@@ -13,40 +13,36 @@
 
 
 /******
-    Text and Typography Color
-******/
-$text: rgba(61, 66, 81, .95) !default;
-$text-shade: rgb(55, 62, 77) !default;
-$text-tint: rgba(61, 66, 81, .8) !default;
-
-$text-light: rgba(61, 66, 81, .67) !default;
-$text-lightest: rgba(61, 66, 81, .52) !default;
-
-
-/******
     Blacks
 ******/
 $black: hsl(0, 0%, 4%) !default;
-$black-tint: hsl(0, 0%, 8%) !default;
 
 
 /******
     Whites
 ******/
 $transparent: rgba(255, 255, 255, 0) !default;
-$white: hsl(0, 0%, 100%) !default;
+
+$white: hsl(212, 10%, 100%) !default;
 $white-shade: hsl(212, 10%, 96%) !default;
 $white-shade-2: hsl(212, 10%, 93%) !default;
 
 
 /******
+    Text and Typography Color
+******/
+$text: rgba(61, 66, 81, .95) !default;
+$text-secondary: rgba(61, 66, 81, .6) !default;
+$text-contrast: rgba(255, 255, 255, .95) !default;
+$text-secondary-contrast: rgba(255, 255, 255, .6) !default;
+
+
+/******
     Greys
 ******/
-$grey-lightest: hsl(212, 10%, 88%) !default;
-$grey-light: hsl(212, 10%, 73%) !default;
-$grey: hsl(212, 10%, 58%) !default;
-$grey-dark: hsl(212, 10%, 43%) !default;
-$grey-darkest: hsl(212, 10%, 25%) !default;
+$cloud-light: hsl(212, 10%, 88%) !default;
+$cloud: hsl(212, 10%, 73%) !default;
+$cloud-dark: hsl(212, 10%, 58%) !default;
 
 
 /******
@@ -93,9 +89,6 @@ $telegram: hsl(200, 100%, 40%) !default;
 $primary: $blue !default;
 $primary-shade: color-shade($primary) !default;
 $primary-tint: color-tint($primary) !default;
-$secondary: $grey-darkest !default;
-$secondary-shade: color-shade($secondary) !default;
-$secondary-tint: color-tint($secondary) !default;
 $warning: $orange !default;
 $warning-shade: color-shade($warning) !default;
 $warning-tint: color-tint($warning) !default;
@@ -116,12 +109,8 @@ $success-tint: color-tint($success) !default;
 $react-bucket-ui-colors-map: (
   'hidden': $transparent,
   'text' : $text,
-  'text-tint' : $text-tint,
-  'text-shade' : $text-shade,
-  'text-light' : $text-light,
-  'text-lightest' : $text-lightest,
+  'text-secondary' : $text-secondary,
   'black' : $black,
-  'black-tint' : $black-tint,
   'white' : $white,
   'white-shade' : $white-shade,
   'white-shade-2' : $white-shade-2,
@@ -133,11 +122,9 @@ $react-bucket-ui-colors-map: (
   'red' : $red,
   'pink' : $pink,
   'purple' : $purple,
-  'grey-lightest' : $grey-lightest,
-  'grey-light' : $grey-light,
-  'grey' : $grey,
-  'grey-dark' : $grey-dark,
-  'grey-darkest' : $grey-darkest
+  'cloud-light' : $cloud-light,
+  'cloud' : $cloud,
+  'cloud-dark' : $cloud-dark
 );
 
 $react-bucket-socials-color-map: (
@@ -165,7 +152,6 @@ $react-bucket-socials-color-map: (
 
 $react-bucket-brand-colors-map: (
   'primary' : $primary,
-  'secondary' : $secondary,
   'warning' : $warning,
   'info' : $info,
   'success' : $success,

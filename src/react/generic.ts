@@ -396,14 +396,12 @@ export type ResponsiveContentOffset = ResponsiveProps<FlexContentOffset>;
 /* --------
  * Colors Type
  * -------- */
-export type BrandColor = 'primary' | 'secondary' | 'danger' | 'warning' | 'success' | 'info';
+export type BrandColor = 'primary' | 'danger' | 'warning' | 'success' | 'info';
 
 export type UIColor =
-  'text'
-  | 'text tint'
-  | 'text shade'
+  | 'text'
+  | 'text secondary'
   | 'black'
-  | 'black tint'
   | 'white'
   | 'white shade'
   | 'blue'
@@ -414,12 +412,9 @@ export type UIColor =
   | 'red'
   | 'pink'
   | 'purple'
-  | 'grey lightest'
-  | 'grey light'
-  | 'grey'
-  | 'grey dark'
-  | 'grey darkest'
-  | 'hidden';
+  | 'cloud light'
+  | 'cloud'
+  | 'cloud dark';
 
 export type SocialColor =
   'facebook'

@@ -50,7 +50,7 @@
     }
 
     &.inverted.is-#{$label} {
-      color: choose-contrast-color($color, $white-shade, $text) !important;
+      color: choose-contrast-color($color, $text-contrast, $text) !important;
 
       &:before {
         background-color: $color !important;

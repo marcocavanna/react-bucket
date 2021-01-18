@@ -96,8 +96,8 @@ $link-font-weight: $semi-bold !default;
 // ----
 //  Code & Pre
 // ----
-$code-color: $text-tint !default;
-$code-background: $grey-lightest !default;
+$code-color: $text-secondary !default;
+$code-background: $cloud-light !default;
 $code-font-weight: map-get($google-fonts-weight-map, $font-monospace) !default;
 $code-font-size: 1em !default;
 $code-padding: .25em .5em !default;
@@ -107,7 +107,7 @@ $code-border-radius: $border-radius-small !default;
 // ----
 //  Dividers
 // ----
-$hr-color-dark: $grey-lightest !default;
+$hr-color-dark: $cloud-light !default;
 $hr-color-light: $white-shade-2 !default;
 $hr-height: 1px !default;
 $hr-margin: $spacer !default;
