@@ -53,9 +53,8 @@ const HeroButton: HeroButtonComponent = (props) => {
       return;
     }
 
-    e.stopPropagation();
-
     if (typeof onClick === 'function') {
+      e.stopPropagation();
       onClick(e, props);
     }
   };
