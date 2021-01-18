@@ -24,6 +24,7 @@
   margin: $header-top-margin 0 $header-bottom-margin;
   padding: 0;
   text-align: inherit;
+  font-weight: $header-font-weight;
 
   // ----
   //  Reset heading elements font size
@@ -39,10 +40,13 @@
 
   // ----
   //  Remove Margin from content
+  //  Content and Subheader will inherit font weight from parent
   // ----
   .content, .subheader {
+    font-weight: inherit;
     margin: 0;
   }
+
 
   // ----
   //  Set the Subheader font size and Colors
