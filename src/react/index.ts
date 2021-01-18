@@ -41,6 +41,8 @@ export * from './elements/EmptyContent';
 
 export * from './elements/Header';
 
+export * from './elements/HeroButton';
+
 export * from './elements/Icon';
 
 export * from './elements/Input';

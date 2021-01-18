@@ -239,6 +239,35 @@ $header-actions-spacer: 1.5em !default;
 
 
 /******
+    Hero Button
+******/
+$hero-button-border-radius: $border-radius-big * 2 !default;
+$hero-button-base-background: $white !default;
+$hero-button-base-color: $text !default;
+$hero-button-alt-color: $white-shade !default;
+
+$hero-button-content-padding: 1.25em !default;
+$hero-button-content-font-size: 1.25em !default;
+$hero-button-content-font-weight: $bold !default;
+$hero-button-content-opacity: .75 !default;
+$hero-button-hover-content-opacity: 1 !default;
+
+$hero-button-icon-size: 3.5em !default;
+$hero-button-icon-opacity: .25 !default;
+$hero-button-icon-scale: 1 !default;
+$hero-button-icon-translate: 5%, 5% !default;
+$hero-button-hover-icon-opacity: .5 !default;
+$hero-button-hover-icon-scale: 1.25 !default;
+$hero-button-hover-icon-translate: 10%, 10% !default;
+
+$hero-button-shadow-strength: 10px !default;
+$hero-button-discreet-shadow-strength: 0 !default;
+$hero-button-shadow-opacity: .6 !default;
+$hero-button-discreet-shadow-opacity: .8 !default;
+$hero-button-color-variations: ($blue, $teal, $green, $yellow, $orange, $red, $pink, $purple, $facebook, $pinterest, $google-plus, $whatsapp, $amazon, $microsoft, $dribble, $telegram) !default;
+
+
+/******
     Icon Configuration
 ******/
 $icon-spacer: $spacer * .25 !default;
