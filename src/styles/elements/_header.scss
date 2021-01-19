@@ -76,9 +76,65 @@
 /******
     Set the Divider Element
 ******/
-.header.divided {
+.header.divided:not(.solid) {
   border-bottom: solid 1px $hr-color-dark;
   padding-bottom: $header-bottom-margin;
+}
+
+
+/******
+    Solid Header
+******/
+.solid.header {
+  padding: $header-solid-padding;
+  border-radius: $header-solid-border-radius;
+
+  &:not(.inverted) {
+    background-color: $header-solid-base-background;
+  }
+
+  &.inverted {
+    background-color: $text;
+  }
+
+  // ----
+  //  Style Icon on Text Center Header
+  // ----
+  &.with-icon.has-text-center {
+    padding-top: calc(#{$header-solid-padding} + #{$header-centered-icon-size} / 2);
+
+    > .header-icon {
+      position: absolute;
+      margin: 0;
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      .icon {
+        color: $text-contrast;
+
+        &:before {
+          background-color: $text;
+        }
+      }
+    }
+  }
+}
+
+
+/******
+    Inverted Header
+******/
+.inverted.header {
+  color: $text-contrast;
+
+  &.solid.with-icon.has-text-center > .header-icon .icon {
+    color: $text;
+
+    &:before {
+      background-color: $text-contrast;
+    }
+  }
 }
 
 
@@ -129,6 +185,42 @@
     /// Add spacing between Actions and Content
     .header-actions {
       margin-top: $header-actions-spacer;
+    }
+  }
+}
+
+
+/******
+    Header Color Variation
+******/
+@each $label, $color in $react-bucket-color-map {
+  .header.is-#{$label} {
+    &:not(.inverted) {
+      color: $color;
+
+      &.solid.with-icon.has-text-center > .header-icon .icon {
+        color: choose-contrast-color($color, $text-contrast, $text);
+
+        &:before {
+          background-color: $color;
+        }
+      }
+    }
+
+    &.inverted {
+      color: choose-contrast-color($color, $text-contrast, $text);
+
+      &.solid {
+        background-color: $color;
+
+        &.with-icon.has-text-center > .header-icon .icon {
+          color: choose-contrast-color(color-shade($color, 2), $text-contrast, $text);;
+
+          &:before {
+            background-color: color-shade($color, 2);
+          }
+        }
+      }
     }
   }
 }

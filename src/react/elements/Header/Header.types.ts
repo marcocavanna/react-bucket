@@ -2,17 +2,18 @@ import {
   ReactBucketComponentProps,
   ReactBucketIcon,
   ShorthandCollection,
-  ShorthandItem
+  ShorthandItem,
+  SharedComponentStateProps
 } from '../../generic';
-import { ButtonProps } from '../Button';
 
 import { HeaderSubheaderProps } from './HeaderSubheader.types';
 import { HeaderContentProps } from './HeaderContent.types';
 
+import { ButtonProps } from '../Button';
 import { IconProps } from '../Icon';
 
 
-export interface HeaderProps extends ReactBucketComponentProps<StrictHeaderProps> {
+export interface HeaderProps extends ReactBucketComponentProps<StrictHeaderProps>, SharedComponentStateProps {
 
 }
 
@@ -31,6 +32,12 @@ export interface StrictHeaderProps {
 
   /** Display Header Icon */
   icon?: ReactBucketIcon<IconProps>;
+
+  /** Invert header color */
+  inverted?: boolean;
+
+  /** Make the Header Solid, adding a Background Color */
+  solid?: boolean;
 
   /** Create Subheader Shorthand */
   subheader?: ShorthandItem<HeaderSubheaderProps>;

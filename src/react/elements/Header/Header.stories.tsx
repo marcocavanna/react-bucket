@@ -25,7 +25,10 @@ export const simpleHeader = () => {
 
   return (
     <Header
-      icon={'500px'}
+      primary
+      solid
+      inverted
+      icon={{ iconStyle: 'fab', name: '500px' }}
       content={content}
       subheader={subheader}
       textColor={textColor}

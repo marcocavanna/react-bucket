@@ -237,11 +237,15 @@ $header-subheader-opacity: .6 !default;
 $header-centered-icon-size: $h2-font-size !default;
 $header-actions-spacer: 1.5em !default;
 
+$header-solid-padding: 1.25em !default;
+$header-solid-base-background: $cloud-light !default;
+$header-solid-border-radius: $border-radius-huge !default;
+
 
 /******
     Hero Button
 ******/
-$hero-button-border-radius: $border-radius-big * 2 !default;
+$hero-button-border-radius: $border-radius-huge !default;
 $hero-button-base-background: $white !default;
 $hero-button-base-color: $text !default;
 $hero-button-alt-color: $white-shade !default;

@@ -9,7 +9,7 @@ import {
 
 import { CreatableFunctionComponent } from '../../generic';
 
-import { getSharedClassNames } from '../../lib';
+import { getSharedClassNames, useSplitStateClassName } from '../../lib';
 import Button from '../Button/Button';
 
 import { Icon } from '../Icon';
@@ -42,22 +42,31 @@ const Header: HeaderComponent = (props) => {
       content,
       disabled,
       divided,
-      subheader,
       icon,
-      ...rest
+      inverted,
+      subheader,
+      solid,
+      ...rawRest
     }
   } = getSharedClassNames(props);
 
+  /** Get the component element type */
   const ElementType = getElementType(Header, props);
+
+  /** Split state className from rest props */
+  const [ stateClasses, rest ] = useSplitStateClassName(rawRest);
 
   const classes = clsx(
     {
+      solid,
+      inverted,
       disabled,
       divided,
       'with-icon'   : icon,
       'with-actions': Array.isArray(actions)
     },
     'header',
+    stateClasses,
     className
   );
 
@@ -74,8 +83,16 @@ const Header: HeaderComponent = (props) => {
   );
 
   const iconElement = React.useMemo(
-    () => Icon.create(icon, { autoGenerateKey: false }),
-    [ icon ]
+    () => Icon.create(icon, {
+      autoGenerateKey: false,
+      defaultProps   : {
+        solid: solid && props.textAlign === 'center'
+          ? inverted ? 'inverted circle' : 'circle'
+          : undefined
+      }
+    }),
+    // @ts-ignore
+    [ icon, solid, inverted, props.textAlign ]
   );
 
   const actionsElement = React.useMemo(
