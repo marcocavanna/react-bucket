@@ -106,7 +106,7 @@
     flex-direction: row-reverse;
 
     .header-icon {
-      @include icon-style() {
+      .icon {
         margin-right: 0;
         margin-left: $icon-spacer;
       }
@@ -119,11 +119,10 @@
     /// Increase Icon Size on Centered Header
     .header-icon {
       font-size: $header-centered-icon-size;
+      margin-bottom: $icon-spacer;
 
-      @include icon-style() {
-        margin-right: 0;
-        margin-left: 0;
-        margin-bottom: $icon-spacer;
+      .icon {
+        margin: 0
       }
     }
 
