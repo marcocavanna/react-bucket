@@ -115,6 +115,7 @@ const Icon: IconComponent = React.memo<IconProps>((props) => {
         rotation={rotate}
         transform={transform}
         onClick={handleClick}
+        style={rawRest.style}
       />
     </Container>
   );

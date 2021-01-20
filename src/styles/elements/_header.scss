@@ -152,6 +152,7 @@
   //  Set the Icon Style
   // ----
   .header-icon {
+    display: inline-flex;
     font-size: $header-base-font-size;
   }
 
@@ -162,6 +163,8 @@
     flex-direction: row-reverse;
 
     .header-icon {
+      display: block;
+
       .icon {
         margin-right: 0;
         margin-left: $icon-spacer;

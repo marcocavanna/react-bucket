@@ -32,6 +32,14 @@ $base-column-width: percentage(1 / $columns-count);
       align-self: $align;
     }
   }
+
+  // ----
+  //  Auto Column Width will decrease its size according to content
+  // ----
+  &.is-auto {
+    flex-grow: 0;
+    min-width: auto;
+  }
 }
 
 

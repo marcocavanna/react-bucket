@@ -35,6 +35,25 @@ $popup-z-index: 1900 !default;
 
 
 /******
+    Accordions
+******/
+$accordions-base-background: $white !default;
+$accordions-disabled-background: $white-shade !default;
+$accordions-padding: 1.25em !default;
+$accordions-border-radius: $border-radius !default;
+
+$accordions-closed-vertical-margins: 0 !default;
+$accordions-opened-vertical-margins: 1em !default;
+$accordions-opened-elevation: 2 !default;
+
+$accordions-trigger-font-size: $h5-font-size !default;
+$accordions-trigger-hover-background: $white-shade-2 !default;
+$accordions-trigger-divider-color: $hr-color-light !default;
+$accordions-trigger-divider-width: 1px !default;
+$accordions-trigger-divider-style: solid !default;
+
+
+/******
     Avatar
 ******/
 $avatar-icon-font-size: 1em !default;
@@ -156,7 +175,7 @@ $day-picker-week-number-color: $orange !default;
 $divider-spacer: $spacer * 1.75 !default;
 $divider-base-color: $text !default;
 $divider-size: 1px !default;
-$divider-color: rgba(0, 0, 0, .15) !default;
+$divider-color: $hr-color-light !default;
 $divider-font-weight: $semi-bold !default;
 
 

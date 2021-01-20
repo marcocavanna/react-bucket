@@ -3,6 +3,8 @@ export * from './generic';
 /* --------
  * Collections
  * -------- */
+export * from './collections/Accordions';
+
 export * from './collections/DropdownMenu';
 
 export * from './collections/Form';
@@ -74,6 +76,8 @@ export * from './hoc/AutoSpacer';
  * Modules Component
  * -------- */
 export * from './modules/Backdrop';
+
+export * from './modules/Collapsable';
 
 export * from './modules/Dropzone';
 
