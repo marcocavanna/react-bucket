@@ -10,9 +10,6 @@ export interface InputProps extends ReactBucketComponentProps<StrictInputProps, 
 }
 
 export interface StrictInputProps extends StrictFieldProps {
-  /** Set the Input as Currency Input */
-  currency?: boolean;
-
   /** Default input value */
   defaultValue?: string;
 

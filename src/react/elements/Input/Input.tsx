@@ -28,7 +28,6 @@ const Input: InputComponent = (props) => {
     rest: {
       /** Strict Input Props */
       clearable,
-      currency,
       masked,
       textarea,
       type,
@@ -264,10 +263,6 @@ const Input: InputComponent = (props) => {
       onClick     : handleInputClick,
       onFocus     : handleInputFocus
     };
-
-    if (currency) {
-      return null;
-    }
 
     if (masked) {
       return (
