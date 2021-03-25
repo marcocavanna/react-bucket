@@ -166,6 +166,13 @@
   }
 }
 
+/** Remove box shadow on non clickable item */
+@include hover {
+  .solid.item:not(.disabled):not(.clickable):hover {
+    box-shadow: none !important;
+  }
+}
+
 
 /******
     Disabled Items
