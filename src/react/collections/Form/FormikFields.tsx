@@ -127,6 +127,7 @@ export const FormikDayPicker = withFormikField<DayPickerProps<ParsableDate>, num
         {...rest}
         {...stateProps}
         date={value}
+        hint={props.state.message}
         onDayChange={handleDayChange}
       />
     );
