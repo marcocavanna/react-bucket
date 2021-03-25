@@ -284,3 +284,16 @@ input[type='radio'] {
 .disabled.switch.field .content {
   opacity: $disabled-element-opacity;
 }
+
+
+/******
+    Fix Text Align
+******/
+.has-text-center > .checkbox.field,
+.has-text-center > .switch.field {
+  text-align: center;
+
+  > .wrapper > .content {
+    justify-content: center;
+  }
+}
