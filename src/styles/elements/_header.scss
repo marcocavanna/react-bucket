@@ -77,7 +77,7 @@
     Set the Divider Element
 ******/
 .header.divided:not(.solid) {
-  border-bottom: solid 1px $hr-color-dark;
+  border-bottom: solid 1px $divider-color;
   padding-bottom: $header-bottom-margin;
 }
 
