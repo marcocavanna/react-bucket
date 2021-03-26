@@ -15,6 +15,7 @@ import {
 } from '../../lib';
 
 import { useAutoControlledValue } from '../../hooks/useAutoControlledValue';
+import { useWithDefaultProps } from '../../context/BucketContext';
 
 import { Button } from '../Button';
 import { Input, InputProps } from '../Input';
@@ -37,7 +38,10 @@ type DayPickerComponent = React.FunctionComponent<DayPickerProps<ParsableDate>>;
 /* --------
  * Component Render
  * -------- */
-const DayPicker: DayPickerComponent = (props) => {
+const DayPicker: DayPickerComponent = (receivedProps) => {
+
+  /** Get component default props */
+  const props = useWithDefaultProps('dayPicker', receivedProps);
 
   const {
     className,
@@ -370,14 +374,5 @@ const DayPicker: DayPickerComponent = (props) => {
 };
 
 DayPicker.displayName = 'DayPicker';
-
-DayPicker.defaultProps = {
-  closeOnDayPicked: true,
-  dateFormat      : 'DD/MM/YYYY',
-  showInputMask   : true,
-  showOutsideDays : true,
-  showWeekNumbers : true,
-  type            : 'input'
-};
 
 export default DayPicker;
