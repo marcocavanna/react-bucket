@@ -376,9 +376,9 @@ const DayPicker: DayPickerComponent = (props) => {
             className={classes}
             clearable={clearable}
             masked={inputHint.mask ? {
-              mask           : inputHint.mask,
-              maskPlaceholder: '-',
-              alwaysShowMask : true
+              mask          : inputHint.mask,
+              maskChar      : '-',
+              alwaysShowMask: true
             } : undefined}
             disabled={disabled}
             readOnly={readOnly}
