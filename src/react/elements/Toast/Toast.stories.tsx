@@ -14,7 +14,7 @@ export const baseToast = () => {
       success
       dismissible
       onClick={doNothing}
-      icon={'thumbs up'}
+      icon={'thumbs-up'}
       header={'Nuova Notifica'}
       content={'Elemento Salvato'}
     />

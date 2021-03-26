@@ -17,7 +17,7 @@ export default { title: 'Elements/Box' };
  * -------- */
 export const simpleBox = () => {
 
-  const backgroundColor = getBackgroundColor('grey lightest');
+  const backgroundColor = getBackgroundColor('cloud light');
 
   const padding = number(
     'Padding',

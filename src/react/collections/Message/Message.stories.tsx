@@ -13,7 +13,7 @@ export const baseMessage = () => {
     <Message
       danger
       onDismiss={doNothing}
-      icon={'raspberry pi'}
+      icon={'raspberry-pi'}
       header={'Error'}
       content={'Si è verificato un errore durante il bla bla bla'}
     />
