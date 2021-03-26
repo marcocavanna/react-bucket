@@ -9,6 +9,7 @@ export default { title: 'Elements/Input', component: Input };
 
 export const defaultInput = () => {
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const [ value, handleInputChange ] = useInputValue('');
 
   return (
@@ -66,6 +67,7 @@ export const defaultTextarea = () => {
 
 export const maskedInput = () => {
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const [ value, setValue ] = React.useState('');
 
   const handleInputChange = (e: React.FormEvent, props: InputProps) => {

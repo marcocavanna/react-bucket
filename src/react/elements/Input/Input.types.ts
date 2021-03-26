@@ -14,7 +14,7 @@ export interface StrictInputProps extends StrictFieldProps {
   defaultValue?: string;
 
   /** Define input mask */
-  masked?: Pick<InputMaskProps, 'mask' | 'maskPlaceholder' | 'alwaysShowMask'>;
+  masked?: Pick<InputMaskProps, 'mask' | 'alwaysShowMask'> & { maskChar: string };
 
   /** On Blur Event */
   onBlur?: FocusHandler<HTMLInputElement, InputProps>;
