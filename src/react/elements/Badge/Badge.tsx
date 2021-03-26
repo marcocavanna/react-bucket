@@ -14,6 +14,8 @@ import {
   useSplitStateClassName
 } from '../../lib';
 
+import { useWithDefaultProps } from '../../context/BucketContext';
+
 import { Icon } from '../Icon';
 
 import { BadgeProps } from './Badge.types';
@@ -28,7 +30,10 @@ type BadgeComponent = CreatableFunctionComponent<BadgeProps>;
 /* --------
  * Component Render
  * -------- */
-const Badge: BadgeComponent = (props) => {
+const Badge: BadgeComponent = (receivedProps) => {
+
+  /** Get component props */
+  const props = useWithDefaultProps('badge', receivedProps);
 
   const {
     className,

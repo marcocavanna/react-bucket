@@ -12,6 +12,8 @@ import {
   useSharedClassName
 } from '../../lib';
 
+import { useWithDefaultProps } from '../../context/BucketContext';
+
 import { Button, ButtonProps } from '../Button';
 
 import { ItemToolsProps } from './ItemTools.types';
@@ -25,7 +27,9 @@ type ItemToolsComponent = CreatableFunctionComponent<ItemToolsProps>;
 /* --------
  * Component Render
  * -------- */
-const ItemTools: ItemToolsComponent = (props) => {
+const ItemTools: ItemToolsComponent = (receivedProps) => {
+
+  const props = useWithDefaultProps('itemTools', receivedProps);
 
   const {
     className,

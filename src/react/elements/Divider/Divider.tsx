@@ -11,6 +11,8 @@ import {
   useSplitStateClassName
 } from '../../lib';
 
+import { useWithDefaultProps } from '../../context/BucketContext';
+
 import { DividerProps } from './Divider.types';
 
 
@@ -23,7 +25,10 @@ type DividerComponent = React.FunctionComponent<DividerProps>;
 /* --------
  * Component Render
  * -------- */
-const Divider: DividerComponent = (props) => {
+const Divider: DividerComponent = (receivedProps) => {
+
+  /** Get component props */
+  const props = useWithDefaultProps('divider', receivedProps);
 
   const {
     className,
@@ -66,9 +71,5 @@ const Divider: DividerComponent = (props) => {
 };
 
 Divider.displayName = 'Divider';
-
-Divider.defaultProps = {
-  textAlign: 'center'
-};
 
 export default Divider;

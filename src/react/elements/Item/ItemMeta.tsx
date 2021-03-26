@@ -13,6 +13,8 @@ import {
   useSharedClassName
 } from '../../lib';
 
+import { useWithDefaultProps } from '../../context/BucketContext';
+
 import { ItemMetaProps } from './ItemMeta.types';
 
 
@@ -25,7 +27,9 @@ type ItemMetaComponent = CreatableFunctionComponent<ItemMetaProps>;
 /* --------
  * Component Render
  * -------- */
-const ItemMeta: ItemMetaComponent = (props) => {
+const ItemMeta: ItemMetaComponent = (receivedProps) => {
+
+  const props = useWithDefaultProps('itemMeta', receivedProps);
 
   const {
     className,

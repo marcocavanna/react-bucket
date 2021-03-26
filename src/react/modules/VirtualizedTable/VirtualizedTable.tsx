@@ -3,6 +3,8 @@ import clsx from 'clsx';
 
 import { AnyObject } from '../../generic';
 
+import { useWithDefaultProps } from '../../context/BucketContext';
+
 import { useRxTableFactory } from '../../collections/RxTable/RxTable.factory';
 import { RxTableColumnProps, RxTableComponents } from '../../collections/RxTable';
 import { RxTableError } from '../../collections/RxTable/RxTableDefaultComponents';
@@ -37,13 +39,15 @@ type VirtualizedTableComponent<Data> = React.FunctionComponent<VirtualizedTableP
  * Component Render
  * -------- */
 const VirtualizedTable = <Data extends AnyObject>(
-  props: React.PropsWithChildren<VirtualizedTableProps<Data>>
+  receivedProps: React.PropsWithChildren<VirtualizedTableProps<Data>>
 ): React.FunctionComponentElement<VirtualizedTableProps<Data>> => {
+
+  const props = useWithDefaultProps('virtualizedTable', receivedProps);
 
   const {
     // Virtualized Table Props
-    columns              : userDefinedColumns,
-    Components           : userDefinedComponents,
+    columns   : userDefinedColumns,
+    Components: userDefinedComponents,
     data,
     defaultData,
     defaultLoading       : userDefinedDefaultLoading,
@@ -54,9 +58,9 @@ const VirtualizedTable = <Data extends AnyObject>(
     noDataEmptyContentProps,
     noFilteredDataEmptyContentProps,
     filterLogic,
-    filterRowHeight      : userDefinedFilterRowHeight,
+    filterRowHeight: userDefinedFilterRowHeight,
     getRowKey,
-    headerHeight         : userDefinedHeaderHeight,
+    headerHeight: userDefinedHeaderHeight,
     height,
     loaderProps,
     onRowClick,
@@ -64,11 +68,11 @@ const VirtualizedTable = <Data extends AnyObject>(
     onSortChange,
     reloadDependency,
     reloadSilently,
-    reverseSorting       : userDefinedReverseSorting,
+    reverseSorting: userDefinedReverseSorting,
     rowHeight,
     selectable,
     selectColumnProps,
-    sort                 : userDefinedSort,
+    sort: userDefinedSort,
     style,
     width,
 
@@ -348,10 +352,5 @@ const VirtualizedTable = <Data extends AnyObject>(
 };
 
 (VirtualizedTable as VirtualizedTableComponent<unknown>).displayName = 'VirtualizedTable';
-
-(VirtualizedTable as VirtualizedTableComponent<unknown>).defaultProps = {
-  filterLogic   : 'and',
-  reloadSilently: true
-};
 
 export default VirtualizedTable;

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import deepExtend from 'deep-extend';
+import clsx from 'clsx';
 
 import realyFastDeepClone from 'rfdc';
 
@@ -72,18 +73,50 @@ export function useComponentProps<C extends keyof ThemeOptions>(componentName: C
   );
 }
 
-export function useWithDefaultProps<C extends keyof ThemeOptions>(
+export function useWithDefaultProps<C extends keyof ThemeOptions, Props extends ThemeOptions[C]>(
   componentName: C,
-  props: React.PropsWithChildren<ThemeOptions[C]>
-): React.PropsWithChildren<ThemeOptions[C]> {
+  props: React.PropsWithChildren<Props>
+): React.PropsWithChildren<Props> {
+
   /** Get the Theme Component Props */
   const componentProps = useComponentProps(componentName);
 
-  /** Return default props for choose component */
-  return deepExtend(
-    componentProps,
-    deepClone(props)
-  );
+  /** Produce props unions */
+  const propsUnions = { ...componentProps, ...props };
+
+  /** Merge classNames */
+  if ((componentProps as any).className || (props as any).className) {
+    (propsUnions as any).className = clsx(
+      (componentProps as any).className,
+      (props as any).className
+    );
+  }
+
+  /** Merge style */
+  if ((componentProps as any).style || (props as any).style) {
+    (propsUnions as any).style = {
+      ...(componentProps as any).style,
+      ...(props as any).style
+    };
+  }
+
+  return propsUnions;
+}
+
+export function withDefaultProps<C extends keyof ThemeOptions, Props extends {}>(
+  componentName: C,
+  Component: React.ComponentType<Props>
+): React.FunctionComponent<Props> {
+  return (receivedProps) => {
+    /** Merge props with default */
+    const props = useWithDefaultProps(componentName, receivedProps);
+    /** Return the Component */
+    return (
+      <Component
+        {...props}
+      />
+    );
+  };
 }
 
 

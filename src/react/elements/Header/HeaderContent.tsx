@@ -11,6 +11,8 @@ import { CreatableFunctionComponent } from '../../generic';
 
 import { getSharedClassNames } from '../../lib';
 
+import { useWithDefaultProps } from '../../context/BucketContext';
+
 import { HeaderContentProps } from './HeaderContent.types';
 
 
@@ -22,7 +24,9 @@ type HeaderContentComponent = CreatableFunctionComponent<HeaderContentProps>;
 /* --------
  * Component Render
  * -------- */
-const HeaderContent: HeaderContentComponent = (props) => {
+const HeaderContent: HeaderContentComponent = (receivedProps) => {
+
+  const props = useWithDefaultProps('headerContent', receivedProps);
 
   const {
     className,
@@ -49,10 +53,6 @@ const HeaderContent: HeaderContentComponent = (props) => {
 };
 
 HeaderContent.displayName = 'HeaderContent';
-
-HeaderContent.defaultProps = {
-  as: 'h3' as React.ElementType
-};
 
 HeaderContent.create = createShorthandFactory(HeaderContent, content => ({ content }));
 

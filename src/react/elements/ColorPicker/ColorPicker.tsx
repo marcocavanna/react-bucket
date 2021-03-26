@@ -6,11 +6,13 @@ import { BlockPicker, CirclePicker, ColorChangeHandler, TwitterPicker } from 're
 import { useAutoControlledValue } from '../../hooks/useAutoControlledValue';
 import Popup from '../../modules/Popup/Popup';
 
-
 import {
   splitFieldProps,
   useSharedClassName
 } from '../../lib';
+
+import { useWithDefaultProps } from '../../context/BucketContext';
+
 import { StrictFieldProps } from '../Field';
 import Field from '../Field/Field';
 import Item from '../Item/Item';
@@ -27,13 +29,16 @@ type ColorPickerComponent = React.FunctionComponent<ColorPickerProps>;
 /* --------
  * Component Render
  * -------- */
-const ColorPicker: ColorPickerComponent = (props) => {
+const ColorPicker: ColorPickerComponent = (receivedProps) => {
+
+  /** Get component props */
+  const props = useWithDefaultProps('colorPicker', receivedProps);
 
   const {
     className,
     rest: {
       clearable,
-      color       : userDefinedDefaultColor,
+      color: userDefinedDefaultColor,
       colors,
       disabled,
       defaultColor: userDefinedColor,
@@ -42,7 +47,7 @@ const ColorPicker: ColorPickerComponent = (props) => {
       onChange,
       onPickerClose,
       onPickerOpen,
-      open        : userDefinedOpen,
+      open: userDefinedOpen,
       pickerType,
       placeholder,
       readOnly,
@@ -273,10 +278,5 @@ const ColorPicker: ColorPickerComponent = (props) => {
 };
 
 ColorPicker.displayName = 'ColorPicker';
-
-ColorPicker.defaultProps = {
-  pickerType    : 'block',
-  showColorValue: true
-};
 
 export default ColorPicker;

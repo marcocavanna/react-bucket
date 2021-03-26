@@ -1,5 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
+import { useWithDefaultProps } from '../../context/BucketContext';
 
 import {
   useSharedClassName
@@ -29,7 +30,9 @@ type FormComponent = React.FunctionComponent<FormProps> & {
 /* --------
  * Component Render
  * -------- */
-const Form: FormComponent = (props) => {
+const Form: FormComponent = (receivedProps) => {
+
+  const props = useWithDefaultProps('form', receivedProps);
 
   const {
     className,

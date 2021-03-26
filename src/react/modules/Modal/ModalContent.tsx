@@ -12,6 +12,8 @@ import {
   useSharedClassName
 } from '../../lib';
 
+import { useWithDefaultProps } from '../../context/BucketContext';
+
 import { ModalContentProps } from './ModalContent.types';
 
 
@@ -24,7 +26,9 @@ type ModalContentComponent = CreatableFunctionComponent<ModalContentProps>;
 /* --------
  * Component Render
  * -------- */
-const ModalContent: ModalContentComponent = (props) => {
+const ModalContent: ModalContentComponent = (receivedProps) => {
+
+  const props = useWithDefaultProps('modalContent', receivedProps);
 
   const {
     className,

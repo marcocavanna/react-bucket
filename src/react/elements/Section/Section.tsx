@@ -11,6 +11,8 @@ import {
   useSharedClassName
 } from '../../lib';
 
+import { useWithDefaultProps } from '../../context/BucketContext';
+
 import { Icon } from '../Icon';
 
 import { SectionProps } from './Section.types';
@@ -25,7 +27,9 @@ type SectionComponent = React.FunctionComponent<SectionProps>;
 /* --------
  * Component Render
  * -------- */
-const Section: SectionComponent = (props) => {
+const Section: SectionComponent = (receivedProps) => {
+
+  const props = useWithDefaultProps('section', receivedProps);
 
   const {
     className,
@@ -84,9 +88,5 @@ const Section: SectionComponent = (props) => {
 };
 
 Section.displayName = 'Section';
-
-Section.defaultProps = {
-  direction: 'vertical'
-};
 
 export default Section;

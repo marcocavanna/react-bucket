@@ -13,6 +13,8 @@ import {
   useSharedClassName
 } from '../../lib';
 
+import { useWithDefaultProps } from '../../context/BucketContext';
+
 import { PanelBodyProps } from './PanelBody.types';
 
 import { Button } from '../Button';
@@ -27,7 +29,9 @@ type PanelBodyComponent = CreatableFunctionComponent<PanelBodyProps>;
 /* --------
  * Component Render
  * -------- */
-const PanelBody: PanelBodyComponent = (props) => {
+const PanelBody: PanelBodyComponent = (receivedProps) => {
+
+  const props = useWithDefaultProps('panelBody', receivedProps);
 
   const {
     className,

@@ -11,6 +11,8 @@ import {
   useElementType
 } from '../../lib';
 
+import { useWithDefaultProps } from '../../context/BucketContext';
+
 import { BackdropInnerProps } from './BackdropInner.types';
 
 
@@ -22,7 +24,9 @@ type BackdropInnerComponent = React.FunctionComponent<BackdropInnerProps>;
 /* --------
  * Component Render
  * -------- */
-const BackdropInner: BackdropInnerComponent = (props) => {
+const BackdropInner: BackdropInnerComponent = (receivedProps) => {
+
+  const props = useWithDefaultProps('backdropInner', receivedProps);
 
   const {
     animated,

@@ -4,13 +4,15 @@ import clsx from 'clsx';
 import {
   childrenUtils
 } from '@appbuckets/react-ui-core';
-import { Button } from '../../elements/Button';
 
 import {
   useElementType
 } from '../../lib';
 
 import { useAutoControlledValue } from '../../hooks/useAutoControlledValue';
+import { useWithDefaultProps } from '../../context/BucketContext';
+
+import { Button } from '../../elements/Button';
 
 import { Popup } from '../../modules/Popup';
 
@@ -29,7 +31,9 @@ type DropdownMenuComponent = React.FunctionComponent<DropdownMenuProps>;
 /* --------
  * Component Render
  * -------- */
-const DropdownMenu: DropdownMenuComponent = (props) => {
+const DropdownMenu: DropdownMenuComponent = (receivedProps) => {
+
+  const props = useWithDefaultProps('dropdownMenu', receivedProps);
 
   const {
     as,
@@ -45,7 +49,7 @@ const DropdownMenu: DropdownMenuComponent = (props) => {
     onItemClick,
     onOpen,
     openOn,
-    open       : userDefinedOpen,
+    open: userDefinedOpen,
     position,
     trigger,
     ...rest
@@ -163,13 +167,5 @@ const DropdownMenu: DropdownMenuComponent = (props) => {
 };
 
 DropdownMenu.displayName = 'DropdownMenu';
-
-DropdownMenu.defaultProps = {
-  basic             : false,
-  closeOnItemClicked: true,
-  inverted          : false,
-  openOn            : [ 'click' ],
-  position          : 'bottom right'
-};
 
 export default DropdownMenu;

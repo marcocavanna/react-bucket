@@ -12,6 +12,7 @@ import {
 import {
   useElementType
 } from '../../lib';
+import { useWithDefaultProps } from '../../context/BucketContext';
 
 import { TableProps } from './Table.types';
 import { TableCellProps } from './TableCell.types';
@@ -40,7 +41,11 @@ type TableComponent = React.FunctionComponent<TableProps> & {
 /* --------
  * Component Render
  * -------- */
-const Table: TableComponent = <Data extends any = any>(props: React.PropsWithChildren<TableProps<Data>>) => {
+const Table: TableComponent = <Data extends any = any>(
+  receivedProps: React.PropsWithChildren<TableProps<Data>>
+) => {
+
+  const props = useWithDefaultProps('table', receivedProps);
 
   const {
     as,
@@ -141,9 +146,5 @@ Table.Footer = TableFooter;
 Table.Header = TableHeader;
 Table.HeaderCell = TableHeaderCell;
 Table.Row = TableRow;
-
-Table.defaultProps = {
-  as: 'table'
-};
 
 export default Table;

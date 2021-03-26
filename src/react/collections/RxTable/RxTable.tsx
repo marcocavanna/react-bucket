@@ -6,6 +6,7 @@ import { PropsWithAs } from '@appbuckets/react-ui-core';
 import { AnyObject } from '../../generic';
 
 import { useElementType } from '../../lib';
+import { useWithDefaultProps } from '../../context/BucketContext';
 
 import { RxTableContext, RxTableProvider } from './RxTable.context';
 import { useRxTableFactory } from './RxTable.factory';
@@ -38,14 +39,16 @@ type RxTableComponent<Data> = React.FunctionComponent<RxTableProps<Data>>;
  * Component Render
  * -------- */
 const RxTable = <Data extends AnyObject>(
-  props: React.PropsWithChildren<RxTableProps<Data>>
+  receivedProps: React.PropsWithChildren<RxTableProps<Data>>
 ): React.FunctionComponentElement<RxTableProps<Data>> => {
+
+  const props = useWithDefaultProps('rxTable', receivedProps);
 
   const {
     as,
     className,
-    columns              : userDefinedColumns,
-    Components           : userDefinedComponents,
+    columns   : userDefinedColumns,
+    Components: userDefinedComponents,
     data,
     defaultData,
     defaultReverseSorting: userDefinedDefaultReverseSorting,
@@ -53,7 +56,7 @@ const RxTable = <Data extends AnyObject>(
     defaultSort          : userDefinedDefaultSort,
     disableHeader,
     filterLogic,
-    getRowKey            : userDefinedGetRowKey,
+    getRowKey: userDefinedGetRowKey,
     initiallyLoading,
     loaderProps,
     noFilteredDataEmptyContentProps,
@@ -63,10 +66,10 @@ const RxTable = <Data extends AnyObject>(
     onSelectedDataChange,
     reloadDependency,
     reloadSilently,
-    reverseSorting       : userDefinedReverseSorting,
+    reverseSorting: userDefinedReverseSorting,
     selectable,
     selectColumnProps,
-    sort                 : userDefinedSort,
+    sort: userDefinedSort,
     style,
     ...rest
   } = props;
@@ -184,12 +187,5 @@ const RxTable = <Data extends AnyObject>(
 };
 
 (RxTable as RxTableComponent<any>).displayName = 'RxTable';
-
-(RxTable as RxTableComponent<any>).defaultProps = {
-  as              : Table,
-  filterLogic     : 'and',
-  initiallyLoading: true,
-  reloadSilently  : true
-};
 
 export default RxTable;

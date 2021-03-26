@@ -19,6 +19,8 @@ import {
   useSplitStateClassName
 } from '../../lib';
 
+import { useWithDefaultProps } from '../../context/BucketContext';
+
 import { IconProps } from './Icon.types';
 
 
@@ -33,7 +35,9 @@ type IconComponent = CreatableFunctionComponent<IconProps>;
 /* --------
  * Component Render
  * -------- */
-const Icon: IconComponent = React.memo<IconProps>((props) => {
+const Icon: IconComponent = React.memo<IconProps>((receivedProps) => {
+
+  const props = useWithDefaultProps('icon', receivedProps);
 
   const {
     className,

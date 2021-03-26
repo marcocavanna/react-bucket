@@ -12,6 +12,7 @@ import {
 } from '../../lib';
 
 import { useAutoControlledValue } from '../../hooks/useAutoControlledValue';
+import { useWithDefaultProps } from '../../context/BucketContext';
 
 import { Backdrop } from '../Backdrop';
 
@@ -40,7 +41,9 @@ type ModalComponent = React.FunctionComponent<ModalProps> & {
 /* --------
  * Component Render
  * -------- */
-const Modal: ModalComponent = (props) => {
+const Modal: ModalComponent = (receivedProps) => {
+
+  const props = useWithDefaultProps('modal', receivedProps);
 
   // ----
   // Get Modal Props
@@ -275,12 +278,6 @@ const Modal: ModalComponent = (props) => {
 };
 
 Modal.displayName = 'Modal';
-
-Modal.defaultProps = {
-  closeIcon           : 'times',
-  closeOnDocumentClick: false,
-  closeOnBackdropClick: true
-};
 
 Modal.Actions = ModalActions;
 Modal.Content = ModalContent;

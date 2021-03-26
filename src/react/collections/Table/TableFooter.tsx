@@ -13,6 +13,8 @@ import {
   useSharedClassName
 } from '../../lib';
 
+import { useWithDefaultProps } from '../../context/BucketContext';
+
 import { TableFooterProps } from './TableFooter.types';
 
 
@@ -25,7 +27,9 @@ type TableFooterComponent = CreatableFunctionComponent<TableFooterProps>;
 /* --------
  * Component Render
  * -------- */
-const TableFooter: TableFooterComponent = (props) => {
+const TableFooter: TableFooterComponent = (receivedProps) => {
+
+  const props = useWithDefaultProps('tableFooter', receivedProps);
 
   const {
     className,
@@ -52,10 +56,6 @@ const TableFooter: TableFooterComponent = (props) => {
 };
 
 TableFooter.displayName = 'TableFooter';
-
-TableFooter.defaultProps = {
-  as: 'tfoot'
-};
 
 TableFooter.create = createShorthandFactory(TableFooter, (content) => ({ content }));
 

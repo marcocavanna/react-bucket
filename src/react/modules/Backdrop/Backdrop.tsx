@@ -8,6 +8,8 @@ import {
   Portal
 } from '@appbuckets/react-ui-core';
 
+import { useWithDefaultProps } from '../../context/BucketContext';
+
 import { Loader } from '../../elements/Loader';
 import { CreatableFunctionComponent } from '../../generic';
 
@@ -27,7 +29,9 @@ type BackdropComponent = CreatableFunctionComponent<BackdropProps> & {
 /* --------
  * Component Render
  * -------- */
-const Backdrop: BackdropComponent = (props) => {
+const Backdrop: BackdropComponent = (receivedProps) => {
+
+  const props = useWithDefaultProps('backdrop', receivedProps);
 
   // ----
   // Get Backdrop Props

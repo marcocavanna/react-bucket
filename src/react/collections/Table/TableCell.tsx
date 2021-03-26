@@ -14,6 +14,8 @@ import {
   useSplitStateClassName
 } from '../../lib';
 
+import { useWithDefaultProps } from '../../context/BucketContext';
+
 import { Icon } from '../../elements/Icon';
 
 import { TableCellProps } from './TableCell.types';
@@ -31,7 +33,9 @@ type TableCellComponent = CreatableFunctionComponent<TableCellProps> & {
 /* --------
  * Component Render
  * -------- */
-const TableCell: TableCellComponent = (props) => {
+const TableCell: TableCellComponent = (receivedProps) => {
+
+  const props = useWithDefaultProps('tableCell', receivedProps);
 
   const {
     className,
@@ -112,10 +116,6 @@ const TableCell: TableCellComponent = (props) => {
 };
 
 TableCell.displayName = 'TableCell';
-
-TableCell.defaultProps = {
-  as: 'td'
-} as Partial<TableCellProps>;
 
 TableCell.Content = TableCellContent;
 

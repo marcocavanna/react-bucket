@@ -5,12 +5,15 @@ import {
   childrenUtils,
   createShorthandFactory
 } from '@appbuckets/react-ui-core';
+
 import { CreatableFunctionComponent } from '../../generic';
 
 import {
   useElementType,
   useSharedClassName
 } from '../../lib';
+
+import { useWithDefaultProps } from '../../context/BucketContext';
 
 import { ModalHeaderProps } from './ModalHeader.types';
 
@@ -26,7 +29,9 @@ type ModalHeaderComponent = CreatableFunctionComponent<ModalHeaderProps>;
 /* --------
  * Component Render
  * -------- */
-const ModalHeader: ModalHeaderComponent = (props) => {
+const ModalHeader: ModalHeaderComponent = (receivedProps) => {
+
+  const props = useWithDefaultProps('modalHeader', receivedProps);
 
   const {
     className,

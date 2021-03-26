@@ -9,6 +9,8 @@ import { useElementType, useSharedClassName, useSplitStateClassName } from '../.
 import { useAutoControlledValue } from '../../hooks/useAutoControlledValue';
 import { useTabIndex } from '../../hooks/useTabIndex';
 
+import { useWithDefaultProps } from '../../context/BucketContext';
+
 import { Field } from '../Field';
 
 import { InputProps } from './Input.types';
@@ -21,7 +23,9 @@ type InputComponent = React.FunctionComponent<InputProps>;
 /* --------
  * Component Render
  * -------- */
-const Input: InputComponent = (props) => {
+const Input: InputComponent = (receivedProps) => {
+
+  const props = useWithDefaultProps('input', receivedProps);
 
   const {
     className,
@@ -345,13 +349,5 @@ const Input: InputComponent = (props) => {
 };
 
 Input.displayName = 'Input';
-
-Input.defaultProps = {
-  textareaProps: {
-    minRows: 2,
-    maxRows: 8
-  },
-  type         : 'text'
-};
 
 export default Input;

@@ -10,6 +10,8 @@ import {
   useSharedClassName
 } from '../../lib';
 
+import { useWithDefaultProps } from '../../context/BucketContext';
+
 import { BoxProps } from './Box.types';
 
 
@@ -30,7 +32,10 @@ type BoxComponent = React.FunctionComponent<BoxProps>;
 /* --------
  * Component Render
  * -------- */
-const Box: BoxComponent = (props) => {
+const Box: BoxComponent = (receivedProps) => {
+
+  /** Get component props */
+  const props = useWithDefaultProps('box', receivedProps);
 
   const {
     className,

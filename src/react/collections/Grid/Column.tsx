@@ -13,6 +13,8 @@ import {
   useElementType
 } from '../../lib';
 
+import { useWithDefaultProps } from '../../context/BucketContext';
+
 import { ColumnProps } from './Column.types';
 
 
@@ -25,7 +27,9 @@ type ColumnComponent = CreatableFunctionComponent<ColumnProps>;
 /* --------
  * Component Render
  * -------- */
-const Column: ColumnComponent = (props) => {
+const Column: ColumnComponent = (receivedProps) => {
+
+  const props = useWithDefaultProps('column', receivedProps);
 
   const {
     className,

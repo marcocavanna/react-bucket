@@ -13,6 +13,8 @@ import {
   useSharedClassName
 } from '../../lib';
 
+import { useWithDefaultProps } from '../../context/BucketContext';
+
 import { Button } from '../Button';
 import { Header } from '../Header';
 
@@ -28,7 +30,10 @@ type EmptyContentComponent = CreatableFunctionComponent<EmptyContentProps>;
 /* --------
  * Component Render
  * -------- */
-const EmptyContent: EmptyContentComponent = (props) => {
+const EmptyContent: EmptyContentComponent = (receivedProps) => {
+
+  /** Get component props */
+  const props = useWithDefaultProps('emptyContent', receivedProps);
 
   const {
     className,

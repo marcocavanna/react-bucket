@@ -12,6 +12,8 @@ import {
   useElementType
 } from '../../lib';
 
+import { useWithDefaultProps } from '../../context/BucketContext';
+
 import { LinearProgressProps } from './LinearProgress.types';
 
 import useProgressProps from './lib/useProgressProps';
@@ -27,7 +29,9 @@ type LinearProgressComponent = CreatableFunctionComponent<LinearProgressProps>;
 /* --------
  * Component Render
  * -------- */
-const LinearProgress: LinearProgressComponent = (props) => {
+const LinearProgress: LinearProgressComponent = (receivedProps) => {
+
+  const props = useWithDefaultProps('linearProgress', receivedProps);
 
   const {
     className,
@@ -122,11 +126,6 @@ const LinearProgress: LinearProgressComponent = (props) => {
 };
 
 LinearProgress.displayName = 'LinearProgress';
-
-LinearProgress.defaultProps = {
-  max: 100,
-  min: 0
-};
 
 LinearProgress.create = createShorthandFactory(LinearProgress, (value) => ({ value: value as number }));
 

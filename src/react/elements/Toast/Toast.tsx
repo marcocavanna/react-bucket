@@ -11,6 +11,8 @@ import {
   useSplitStateClassName
 } from '../../lib';
 
+import { useWithDefaultProps } from '../../context/BucketContext';
+
 import { Header } from '../Header';
 import { Icon } from '../Icon';
 
@@ -26,7 +28,9 @@ type ToastComponent = React.FunctionComponent<ToastProps>;
 /* --------
  * Component Render
  * -------- */
-const Toast: ToastComponent = (props) => {
+const Toast: ToastComponent = (receivedProps) => {
+
+  const props = useWithDefaultProps('toast', receivedProps);
 
   const {
     className,

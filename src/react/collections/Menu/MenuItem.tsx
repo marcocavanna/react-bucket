@@ -13,6 +13,8 @@ import {
   useSharedClassName
 } from '../../lib';
 
+import { useWithDefaultProps } from '../../context/BucketContext';
+
 import { Icon } from '../../elements/Icon';
 
 import { MenuItemProps } from './MenuItem.types';
@@ -27,7 +29,9 @@ type MenuItemComponent = CreatableFunctionComponent<MenuItemProps>;
 /* --------
  * Component Render
  * -------- */
-const MenuItem: MenuItemComponent = (props) => {
+const MenuItem: MenuItemComponent = (receivedProps) => {
+
+  const props = useWithDefaultProps('menuItem', receivedProps);
 
   const {
     className,

@@ -13,6 +13,8 @@ import {
   useElementType
 } from '../../lib';
 
+import { useWithDefaultProps } from '../../context/BucketContext';
+
 import { PanelFooterProps } from './PanelFooter.types';
 
 
@@ -25,7 +27,9 @@ type PanelFooterComponent = CreatableFunctionComponent<PanelFooterProps>;
 /* --------
  * Component Render
  * -------- */
-const PanelFooter: PanelFooterComponent = (props) => {
+const PanelFooter: PanelFooterComponent = (receivedProps) => {
+
+  const props = useWithDefaultProps('panelFooter', receivedProps);
 
   const {
     className,

@@ -9,6 +9,8 @@ import {
   useSharedClassName
 } from '../../lib';
 
+import { useWithDefaultProps } from '../../context/BucketContext';
+
 import { TableHeaderCellProps } from './TableHeaderCell.types';
 import TableCell from './TableCell';
 
@@ -22,7 +24,9 @@ type TableHeaderCellComponent = CreatableFunctionComponent<TableHeaderCellProps>
 /* --------
  * Component Render
  * -------- */
-const TableHeaderCell: TableHeaderCellComponent = (props) => {
+const TableHeaderCell: TableHeaderCellComponent = (receivedProps) => {
+
+  const props = useWithDefaultProps('tableHeaderCell', receivedProps);
 
   const {
     className,
@@ -61,10 +65,6 @@ const TableHeaderCell: TableHeaderCellComponent = (props) => {
 };
 
 TableHeaderCell.displayName = 'TableHeaderCell';
-
-TableHeaderCell.defaultProps = {
-  as: 'th'
-};
 
 TableHeaderCell.create = createShorthandFactory(TableHeaderCell, (content) => ({ header: content }));
 

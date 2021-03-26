@@ -14,6 +14,8 @@ import {
   useSplitStateClassName
 } from '../../lib';
 
+import { useWithDefaultProps } from '../../context/BucketContext';
+
 import { LoaderProps } from './Loader.types';
 
 
@@ -26,7 +28,9 @@ type LoaderComponent = CreatableFunctionComponent<LoaderProps>;
 /* --------
  * Component Render
  * -------- */
-const Loader: LoaderComponent = (props) => {
+const Loader: LoaderComponent = (receivedProps) => {
+
+  const props = useWithDefaultProps('loader', receivedProps);
 
   const {
     className,
@@ -110,12 +114,6 @@ const Loader: LoaderComponent = (props) => {
     </ElementType>
   );
 
-};
-
-/** Set the default props */
-Loader.defaultProps = {
-  active: true,
-  type  : 'circular'
 };
 
 /** Set component displayName */

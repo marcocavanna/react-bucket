@@ -17,6 +17,8 @@ import {
   useSplitStateClassName
 } from '../../lib';
 
+import { useWithDefaultProps } from '../../context/BucketContext';
+
 import { TableRowProps } from './TableRow.types';
 
 import TableCell from './TableCell';
@@ -32,7 +34,9 @@ type TableRowComponent = CreatableFunctionComponent<TableRowProps>;
 /* --------
  * Component Declare
  * -------- */
-const TableRow: TableRowComponent = (props) => {
+const TableRow: TableRowComponent = (receivedProps) => {
+
+  const props = useWithDefaultProps('tableRow', receivedProps);
 
   const {
     className,
@@ -83,10 +87,6 @@ const TableRow: TableRowComponent = (props) => {
 
 
 TableRow.displayName = 'TableRow';
-
-TableRow.defaultProps = {
-  as: 'tr'
-};
 
 TableRow.create = createShorthandFactory(TableRow, cells => ({ cells: cells as ShorthandCollection<TableCellProps> }));
 

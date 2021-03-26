@@ -13,6 +13,8 @@ import {
   useSharedClassName
 } from '../../lib';
 
+import { useWithDefaultProps } from '../../context/BucketContext';
+
 import { TableHeaderProps } from './TableHeader.types';
 
 
@@ -25,7 +27,9 @@ type TableHeaderComponent = CreatableFunctionComponent<TableHeaderProps>;
 /* --------
  * Component Render
  * -------- */
-const TableHeader: TableHeaderComponent = (props) => {
+const TableHeader: TableHeaderComponent = (receivedProps) => {
+
+  const props = useWithDefaultProps('tableHeader', receivedProps);
 
   const {
     className,
@@ -52,10 +56,6 @@ const TableHeader: TableHeaderComponent = (props) => {
 };
 
 TableHeader.displayName = 'TableHeader';
-
-TableHeader.defaultProps = {
-  as: 'thead'
-};
 
 TableHeader.create = createShorthandFactory(TableHeader, (content) => ({ content }));
 

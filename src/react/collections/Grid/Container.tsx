@@ -10,6 +10,8 @@ import {
   useSharedClassName
 } from '../../lib';
 
+import { useWithDefaultProps } from '../../context/BucketContext';
+
 import { ContainerProps } from './Container.types';
 
 
@@ -22,7 +24,9 @@ type ContainerComponent = React.FunctionComponent<ContainerProps>;
 /* --------
  * Component Render
  * -------- */
-const Container: ContainerComponent = (props) => {
+const Container: ContainerComponent = (receivedProps) => {
+
+  const props = useWithDefaultProps('container', receivedProps);
 
   const {
     className,

@@ -10,12 +10,15 @@ import {
   Portal,
   PortalProps
 } from '@appbuckets/react-ui-core';
-import { HeaderComponent } from '../../elements/Header/Header';
 
 import {
   useSharedClassName,
   useElementType
 } from '../../lib';
+
+import { useWithDefaultProps } from '../../context/BucketContext';
+
+import { HeaderComponent } from '../../elements/Header/Header';
 
 import { PopupProps } from './Popup.types';
 import {
@@ -41,7 +44,9 @@ type PopupComponent = React.FunctionComponent<PopupProps>;
 /* --------
  * Component Render
  * -------- */
-const Popup: PopupComponent = (props) => {
+const Popup: PopupComponent = (receivedProps) => {
+
+  const props = useWithDefaultProps('popup', receivedProps);
 
   // ----
   // Destructuring Props
@@ -69,7 +74,7 @@ const Popup: PopupComponent = (props) => {
       portalProps    : userDefinedPortalProps,
       updateDependencies,
       trigger,
-      style          : userDefinedStyle,
+      style: userDefinedStyle,
       ...rest
     }
   } = useSharedClassName(props);
@@ -277,14 +282,5 @@ const Popup: PopupComponent = (props) => {
 };
 
 Popup.displayName = 'Popup';
-
-Popup.defaultProps = {
-  basic            : true,
-  inverted         : true,
-  hideOnScrollDelay: 50,
-  offset           : [ 0, 5 ],
-  openOn           : [ 'hover' ],
-  position         : 'top center'
-};
 
 export default Popup;

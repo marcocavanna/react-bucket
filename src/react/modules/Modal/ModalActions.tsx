@@ -10,6 +10,8 @@ import {
   useSharedClassName
 } from '../../lib';
 
+import { useWithDefaultProps } from '../../context/BucketContext';
+
 import { ModalActionsProps } from './ModalActions.types';
 
 import { Button, ButtonProps } from '../../elements/Button';
@@ -25,7 +27,9 @@ type ModalActionsComponent = CreatableFunctionComponent<ModalActionsProps>;
 /* --------
  * Component Render
  * -------- */
-const ModalActions: ModalActionsComponent = (props) => {
+const ModalActions: ModalActionsComponent = (receivedProps) => {
+
+  const props = useWithDefaultProps('modalActions', receivedProps);
 
   const {
     className,

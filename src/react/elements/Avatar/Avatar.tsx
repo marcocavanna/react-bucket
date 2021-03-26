@@ -14,6 +14,8 @@ import {
   useSplitStateClassName
 } from '../../lib';
 
+import { useWithDefaultProps } from '../../context/BucketContext';
+
 import { Badge } from '../Badge';
 import { Icon } from '../Icon';
 
@@ -30,7 +32,10 @@ type AvatarComponent = CreatableFunctionComponent<AvatarProps>;
 /* --------
  * Component Render
  * -------- */
-const Avatar: AvatarComponent = (props) => {
+const Avatar: AvatarComponent = (receivedProps) => {
+
+  /** Get component props */
+  const props = useWithDefaultProps('avatar', receivedProps);
 
   const {
     className,
@@ -133,10 +138,6 @@ const Avatar: AvatarComponent = (props) => {
 };
 
 Avatar.displayName = 'Avatar';
-
-Avatar.defaultProps = {
-  type: 'round'
-} as Partial<AvatarProps>;
 
 Avatar.create = createShorthandFactory(Avatar, (content) => ({ content }));
 

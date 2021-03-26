@@ -7,6 +7,8 @@ import {
   useSplitStateClassName
 } from '../../lib';
 
+import { useWithDefaultProps } from '../../context/BucketContext';
+
 import { Header } from '../Header';
 import { Icon } from '../Icon';
 
@@ -22,7 +24,9 @@ type HeroButtonComponent = React.FunctionComponent<HeroButtonProps>;
 /* --------
  * Component Render
  * -------- */
-const HeroButton: HeroButtonComponent = (props) => {
+const HeroButton: HeroButtonComponent = (receivedProps) => {
+
+  const props = useWithDefaultProps('heroButton', receivedProps);
 
   const {
     className,

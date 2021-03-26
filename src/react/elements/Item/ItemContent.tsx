@@ -13,6 +13,8 @@ import {
   useSharedClassName
 } from '../../lib';
 
+import { useWithDefaultProps } from '../../context/BucketContext';
+
 import { Loader } from '../Loader';
 
 import { ItemContentProps } from './ItemContent.types';
@@ -34,7 +36,9 @@ type ItemContentComponent = CreatableFunctionComponent<ItemContentProps> & {
 /* --------
  * Component Render
  * -------- */
-const ItemContent: ItemContentComponent = (props) => {
+const ItemContent: ItemContentComponent = (receivedProps) => {
+
+  const props = useWithDefaultProps('itemContent', receivedProps);
 
   const {
     className,

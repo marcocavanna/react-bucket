@@ -13,6 +13,8 @@ import {
   useSharedClassName
 } from '../../lib';
 
+import { useWithDefaultProps } from '../../context/BucketContext';
+
 import { TableCellContentProps } from './TableCellContent.types';
 
 
@@ -25,7 +27,9 @@ type TableCellContentComponent = CreatableFunctionComponent<TableCellContentProp
 /* --------
  * Component Render
  * -------- */
-const TableCellContent: TableCellContentComponent = (props) => {
+const TableCellContent: TableCellContentComponent = (receivedProps) => {
+
+  const props = useWithDefaultProps('tableCellContent', receivedProps);
   const {
     className,
     rest: {
@@ -53,11 +57,6 @@ const TableCellContent: TableCellContentComponent = (props) => {
 };
 
 TableCellContent.displayName = 'CellContent';
-
-TableCellContent.defaultProps = {
-  as  : 'p',
-  type: 'content'
-};
 
 TableCellContent.create = createShorthandFactory(TableCellContent, (content) => ({ content }));
 

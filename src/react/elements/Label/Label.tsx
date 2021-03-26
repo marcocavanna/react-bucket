@@ -14,6 +14,8 @@ import {
   useSplitStateClassName
 } from '../../lib';
 
+import { useWithDefaultProps } from '../../context/BucketContext';
+
 import { Button } from '../Button';
 import { Icon } from '../Icon';
 
@@ -32,7 +34,9 @@ export type LabelComponent = CreatableFunctionComponent<LabelProps> & {
 /* --------
  * Component Render
  * -------- */
-const Label: LabelComponent = (props) => {
+const Label: LabelComponent = (receivedProps) => {
+
+  const props = useWithDefaultProps('label', receivedProps);
 
   const {
     className,

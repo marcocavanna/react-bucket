@@ -14,6 +14,8 @@ import {
   useSplitStateClassName
 } from '../../lib';
 
+import { useWithDefaultProps } from '../../context/BucketContext';
+
 import { PanelProps } from './Panel.types';
 
 import PanelHeader from './PanelHeader';
@@ -35,7 +37,9 @@ type PanelComponent = CreatableFunctionComponent<PanelProps> & {
 /* --------
  * Component Render
  * -------- */
-const Panel: PanelComponent = (props) => {
+const Panel: PanelComponent = (receivedProps) => {
+
+  const props = useWithDefaultProps('panel', receivedProps);
 
   const {
     className,

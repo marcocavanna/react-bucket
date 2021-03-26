@@ -12,6 +12,8 @@ import {
   useSharedClassName
 } from '../../lib';
 
+import { useWithDefaultProps } from '../../context/BucketContext';
+
 import { Header } from '../Header';
 
 import { PanelHeaderProps } from './PanelHeader.types';
@@ -25,7 +27,9 @@ type PanelHeaderComponent = CreatableFunctionComponent<PanelHeaderProps>;
 /* --------
  * Component Render
  * -------- */
-const PanelHeader: PanelHeaderComponent = (props) => {
+const PanelHeader: PanelHeaderComponent = (receivedProps) => {
+
+  const props = useWithDefaultProps('panelHeader', receivedProps);
 
   const {
     className,

@@ -8,6 +8,8 @@ import { CreatableFunctionComponent } from '../../generic';
 
 import { useElementType } from '../../lib';
 
+import { useWithDefaultProps } from '../../context/BucketContext';
+
 import { CircularProgressProps } from './CircularProgress.types';
 
 import useProgressProps from './lib/useProgressProps';
@@ -22,7 +24,9 @@ type CircularProgressComponent = CreatableFunctionComponent<CircularProgressProp
 /* --------
  * Component Render
  * -------- */
-const CircularProgress: CircularProgressComponent = (props) => {
+const CircularProgress: CircularProgressComponent = (receivedProps) => {
+
+  const props = useWithDefaultProps('circularProgress', receivedProps);
 
   const {
     className,
@@ -130,13 +134,6 @@ const CircularProgress: CircularProgressComponent = (props) => {
 };
 
 CircularProgress.displayName = 'CircularProgress';
-
-CircularProgress.defaultProps = {
-  max        : 100,
-  min        : 0,
-  radius     : 16,
-  strokeWidth: 10
-};
 
 CircularProgress.create = createShorthandFactory(CircularProgress, (value) => ({ value: value as number }));
 

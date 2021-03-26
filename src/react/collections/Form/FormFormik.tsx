@@ -1,5 +1,8 @@
 import * as React from 'react';
 import { Formik, FormikProps } from 'formik';
+
+import { useWithDefaultProps } from '../../context/BucketContext';
+
 import { Button, ButtonProps } from '../../elements/Button';
 
 import Form from './Form';
@@ -126,8 +129,10 @@ function FormFormikContent<Values = any>(
  * Render the Form Formik Outer Wrapper
  * -------- */
 export default function FormFormik<Values = any, SubmitResult = any>(
-  props: FormFormikProps<Values, SubmitResult>
+  receivedProps: FormFormikProps<Values, SubmitResult>
 ): React.ReactElement<FormFormikProps<Values, SubmitResult>> {
+
+  const props = useWithDefaultProps('formFormik', receivedProps);
 
   const {
     /** Strict FormFormik Props */
@@ -232,7 +237,4 @@ export default function FormFormik<Values = any, SubmitResult = any>(
   );
 }
 
-FormFormik.defaultProps = {
-  formActionWrapper : 'div',
-  formContentWrapper: 'div'
-} as Partial<FormFormikProps<any>>;
+(FormFormik as React.FunctionComponent<FormFormikProps<any>>).displayName = 'FormFormik';

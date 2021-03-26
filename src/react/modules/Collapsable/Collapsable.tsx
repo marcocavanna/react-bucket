@@ -11,11 +11,13 @@ import {
 
 import { CreatableFunctionComponent } from '../../generic';
 
-import { useAutoControlledValue } from '../../hooks/useAutoControlledValue';
-
 import {
   useSharedClassName
 } from '../../lib';
+
+import { useAutoControlledValue } from '../../hooks/useAutoControlledValue';
+
+import { useWithDefaultProps } from '../../context/BucketContext';
 
 import { CollapsableProps, CollapsableState } from './Collapsable.types';
 
@@ -39,7 +41,9 @@ type CollapsableComponent = CreatableFunctionComponent<CollapsableProps>;
 /* --------
  * Component Render
  * -------- */
-const Collapsable: CollapsableComponent = (props) => {
+const Collapsable: CollapsableComponent = (receivedProps) => {
+
+  const props = useWithDefaultProps('collapsable', receivedProps);
 
   const {
     className,
@@ -444,10 +448,6 @@ const Collapsable: CollapsableComponent = (props) => {
 };
 
 Collapsable.displayName = 'Collapsable';
-
-Collapsable.defaultProps = {
-  collapsedHeight: 0
-};
 
 Collapsable.create = createShorthandFactory(Collapsable, (content) => ({
   content

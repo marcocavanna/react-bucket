@@ -5,6 +5,7 @@ import { formatNumber as defaultFormatNumber } from '@appbuckets/formatters';
 import { ChangeHandler, FocusHandler } from '../../generic';
 
 import { useAutoControlledValue } from '../../hooks/useAutoControlledValue';
+import { useWithDefaultProps } from '../../context/BucketContext';
 
 import { Input, InputProps } from '../Input';
 import { removeNumberFormatting } from './lib/removeNumberFormatting';
@@ -21,7 +22,9 @@ type NumericInputComponent = React.FunctionComponent<NumericInputProps>;
 /* --------
  * Component Render
  * -------- */
-const NumericInput: NumericInputComponent = (props) => {
+const NumericInput: NumericInputComponent = (receivedProps) => {
+
+  const props = useWithDefaultProps('numericInput', receivedProps);
 
   const {
     /** Functional Props */
@@ -263,12 +266,5 @@ const NumericInput: NumericInputComponent = (props) => {
 };
 
 NumericInput.displayName = 'NumericInput';
-
-NumericInput.defaultProps = {
-  allowNegative    : true,
-  thousandSeparator: '.',
-  decimalSeparator : ',',
-  selectAllOnClick : true
-};
 
 export default NumericInput;

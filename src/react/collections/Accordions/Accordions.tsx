@@ -1,7 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { Header, HeaderProps } from '../../elements/Header';
-import { Icon } from '../../elements/Icon';
+
 import { ShorthandItem } from '../../generic';
 
 import { useAutoControlledValue } from '../../hooks/useAutoControlledValue';
@@ -10,6 +9,12 @@ import {
   useElementType,
   useSharedClassName
 } from '../../lib';
+
+import { useWithDefaultProps } from '../../context/BucketContext';
+
+import { Header, HeaderProps } from '../../elements/Header';
+import { Icon } from '../../elements/Icon';
+
 import { Collapsable } from '../../modules/Collapsable';
 import { Column, Row } from '../Grid';
 
@@ -25,7 +30,9 @@ type AccordionsComponent = React.FunctionComponent<AccordionsProps>;
 /* --------
  * Component Render
  * -------- */
-const Accordions: AccordionsComponent = (props) => {
+const Accordions: AccordionsComponent = (receivedProps) => {
+
+  const props = useWithDefaultProps('accordions', receivedProps);
 
   const {
     className,
@@ -187,10 +194,5 @@ const Accordions: AccordionsComponent = (props) => {
 };
 
 Accordions.displayName = 'Accordions';
-
-Accordions.defaultProps = {
-  icon        : 'angle-right',
-  iconRotation: 90
-};
 
 export default Accordions;

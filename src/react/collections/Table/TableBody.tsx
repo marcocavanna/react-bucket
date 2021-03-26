@@ -13,6 +13,8 @@ import {
   useSharedClassName
 } from '../../lib';
 
+import { useWithDefaultProps } from '../../context/BucketContext';
+
 import { TableBodyProps } from './TableBody.types';
 
 
@@ -25,7 +27,9 @@ type TableBodyComponent = CreatableFunctionComponent<TableBodyProps>;
 /* --------
  * Component Render
  * -------- */
-const TableBody: TableBodyComponent = (props) => {
+const TableBody: TableBodyComponent = (receivedProps) => {
+
+  const props = useWithDefaultProps('tableBody', receivedProps);
 
   const {
     className,
@@ -52,10 +56,6 @@ const TableBody: TableBodyComponent = (props) => {
 };
 
 TableBody.displayName = 'TableBody';
-
-TableBody.defaultProps = {
-  as: 'tbody'
-};
 
 TableBody.create = createShorthandFactory(
   TableBody,

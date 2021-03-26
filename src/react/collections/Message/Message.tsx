@@ -11,6 +11,8 @@ import {
   useSharedClassName
 } from '../../lib';
 
+import { useWithDefaultProps } from '../../context/BucketContext';
+
 import { MessageProps } from './Message.types';
 import { Icon } from '../../elements/Icon';
 import { Header } from '../../elements/Header';
@@ -25,7 +27,9 @@ type MessageComponent = React.FunctionComponent<MessageProps>;
 /* --------
  * Component Render
  * -------- */
-const Message: MessageComponent = (props) => {
+const Message: MessageComponent = (receivedProps) => {
+
+  const props = useWithDefaultProps('message', receivedProps);
 
   const {
     className,

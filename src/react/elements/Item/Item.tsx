@@ -14,6 +14,8 @@ import {
   useSplitStateClassName
 } from '../../lib';
 
+import { useWithDefaultProps } from '../../context/BucketContext';
+
 import { Avatar } from '../Avatar';
 
 import { ItemProps } from './Item.types';
@@ -36,7 +38,9 @@ export type ItemComponent = CreatableFunctionComponent<ItemProps> & {
 /* --------
  * Component Render
  * -------- */
-const Item: ItemComponent = (props) => {
+const Item: ItemComponent = (receivedProps) => {
+
+  const props = useWithDefaultProps('item', receivedProps);
 
   const {
     className,

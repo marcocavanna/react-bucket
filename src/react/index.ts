@@ -1,5 +1,12 @@
 export * from './generic';
 
+
+/* --------
+ * Theme Provider
+ * -------- */
+export * from './context';
+
+
 /* --------
  * Collections
  * -------- */

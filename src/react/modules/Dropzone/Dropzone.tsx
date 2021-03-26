@@ -6,6 +6,8 @@ import ReactDropzone, {
   FileRejection
 } from 'react-dropzone';
 
+import { withDefaultProps } from '../../context/BucketContext';
+
 import processFileUpload from './lib/processFileUpload';
 import readFile from './lib/readFile';
 
@@ -42,47 +44,22 @@ interface DropzoneState {
 
 
 /* --------
+ * Component Declare
+ * -------- */
+type DropzoneComponent = React.FunctionComponent<DropzoneProps> & {
+  processFileUpload: typeof processFileUpload
+};
+
+
+/* --------
  * Component Render
  * -------- */
-export default class Dropzone extends React.Component<DropzoneProps, DropzoneState> {
-
-  static processFileUpload = processFileUpload;
+class Dropzone extends React.Component<DropzoneProps, DropzoneState> {
 
   // ----
   // Set the Display Name
   // ----
   static displayName: string = 'Dropzone';
-
-
-  // ----
-  // Assign Default Props
-  // ----
-  static defaultProps: Partial<DropzoneProps> = {
-    clearButton      : {
-      content: 'Clear'
-    },
-    editItemTool     : {
-      icon: 'edit',
-      flat: false
-    },
-    hintOnIdle       : 'Choose or Drag Files',
-    hintTitle        : 'File Upload',
-    hintWhileDisabled: 'Upload Disabled',
-    hintWhileDragging: 'Release file to Upload',
-    iconOnDragging   : 'file-download',
-    iconOnIdle       : 'cloud-upload-alt',
-    maxFiles         : 10,
-    multiple         : true,
-    on               : [ 'click', 'drop' ],
-    removeItemTool   : {
-      icon  : 'times-circle',
-      danger: true,
-      flat  : false
-    },
-    uploadButton     : {
-      content: 'Upload'
-    }
-  };
 
 
   // ----
@@ -419,3 +396,9 @@ export default class Dropzone extends React.Component<DropzoneProps, DropzoneSta
   }
 
 }
+
+const DropzoneWrapped: DropzoneComponent = withDefaultProps('dropzone', Dropzone) as DropzoneComponent;
+
+DropzoneWrapped.processFileUpload = processFileUpload;
+
+export default DropzoneWrapped;

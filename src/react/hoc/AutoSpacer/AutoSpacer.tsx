@@ -1,7 +1,15 @@
 import * as React from 'react';
 import clsx from 'clsx';
 
+import { withDefaultProps } from '../../context/BucketContext';
+
 import { AutoSpacerProps, AutoSpacerRenderProps } from './AutoSpacer.types';
+
+
+/* --------
+ * Component Declaration
+ * -------- */
+type AutoSpacerComponent = React.FunctionComponent<AutoSpacerProps>;
 
 
 interface AutoSpacerState {
@@ -12,7 +20,7 @@ interface AutoSpacerState {
   width: number;
 }
 
-export default class AutoSpacer extends React.Component<AutoSpacerProps, AutoSpacerState> {
+class AutoSpacer extends React.Component<AutoSpacerProps, AutoSpacerState> {
 
 
   /* --------
@@ -215,3 +223,9 @@ export default class AutoSpacer extends React.Component<AutoSpacerProps, AutoSpa
     );
   }
 }
+
+const AutoSpacerWrapped: AutoSpacerComponent = withDefaultProps('autoSpacer', AutoSpacer);
+
+AutoSpacerWrapped.displayName = 'AutoSpacer';
+
+export default AutoSpacerWrapped;

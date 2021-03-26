@@ -10,6 +10,8 @@ import {
   useSharedClassName
 } from '../../lib';
 
+import { useWithDefaultProps } from '../../context/BucketContext';
+
 import { LabelComponent } from './Label';
 
 import { LabelGroupProps } from './LabelGroup.types';
@@ -34,7 +36,9 @@ type LabelGroupComponent = React.FunctionComponent<LabelGroupProps>;
 /* --------
  * Component Render
  * -------- */
-const LabelGroup: LabelGroupComponent = (props) => {
+const LabelGroup: LabelGroupComponent = (receivedProps) => {
+
+  const props = useWithDefaultProps('labelGroup', receivedProps);
 
   const {
     className,

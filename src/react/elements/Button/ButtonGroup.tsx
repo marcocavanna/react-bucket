@@ -11,6 +11,8 @@ import {
   useElementType
 } from '../../lib';
 
+import { useWithDefaultProps } from '../../context/BucketContext';
+
 import { CreatableFunctionComponent, ShorthandCollection } from '../../generic';
 
 import { ButtonGroupProps } from './ButtonGroup.types';
@@ -38,7 +40,10 @@ type ButtonGroupComponent = CreatableFunctionComponent<ButtonGroupProps>;
 /* --------
  * Component Render
  * -------- */
-const ButtonGroup: ButtonGroupComponent = (props) => {
+const ButtonGroup: ButtonGroupComponent = (receivedProps) => {
+
+  /** Get component props */
+  const props = useWithDefaultProps('buttonGroup', receivedProps);
 
   const {
     className,

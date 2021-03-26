@@ -10,6 +10,8 @@ import {
   useSharedClassName
 } from '../../lib';
 
+import { useWithDefaultProps } from '../../context/BucketContext';
+
 import { RowProps } from './Row.types';
 
 import Column from './Column';
@@ -23,7 +25,9 @@ type RowComponent = React.FunctionComponent<RowProps>;
 /* --------
  * Component Render
  * -------- */
-const Row: RowComponent = (props) => {
+const Row: RowComponent = (receivedProps) => {
+
+  const props = useWithDefaultProps('row', receivedProps);
 
   const {
     className,

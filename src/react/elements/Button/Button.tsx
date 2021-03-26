@@ -15,6 +15,8 @@ import {
   useSplitStateClassName
 } from '../../lib';
 
+import { useWithDefaultProps } from '../../context/BucketContext';
+
 import { ButtonProps } from './Button.types';
 import ButtonGroup from './ButtonGroup';
 
@@ -33,7 +35,10 @@ export type ButtonComponent = CreatableFunctionComponent<ButtonProps> & {
 /* --------
  * Component Render
  * -------- */
-const Button: ButtonComponent = (props) => {
+const Button: ButtonComponent = (receivedProps) => {
+
+  /** Get component props */
+  const props = useWithDefaultProps('button', receivedProps);
 
   const {
     className,
@@ -197,13 +202,6 @@ const Button: ButtonComponent = (props) => {
 
 /** Add the Group */
 Button.Group = ButtonGroup;
-
-/** Set button Default Props */
-Button.defaultProps = {
-  as          : 'button',
-  iconPosition: 'left',
-  type        : 'button'
-};
 
 /** Properly set Display Name */
 Button.displayName = 'Button';

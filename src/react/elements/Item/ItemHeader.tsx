@@ -13,6 +13,8 @@ import {
   useSharedClassName
 } from '../../lib';
 
+import { useWithDefaultProps } from '../../context/BucketContext';
+
 import { ItemHeaderProps } from './ItemHeader.types';
 
 
@@ -24,7 +26,9 @@ type ItemHeaderComponent = CreatableFunctionComponent<ItemHeaderProps>;
 /* --------
  * Component Render
  * -------- */
-const ItemHeader: ItemHeaderComponent = (props) => {
+const ItemHeader: ItemHeaderComponent = (receivedProps) => {
+
+  const props = useWithDefaultProps('itemHeader', receivedProps);
 
   const {
     className,

@@ -13,6 +13,8 @@ import {
   useSharedClassName
 } from '../../lib';
 
+import { useWithDefaultProps } from '../../context/BucketContext';
+
 import { TabPanelProps } from './TabPanel.types';
 
 
@@ -25,7 +27,9 @@ type TabPanelComponent = CreatableFunctionComponent<TabPanelProps>;
 /* --------
  * Component Render
  * -------- */
-const TabPanel: TabPanelComponent = (props) => {
+const TabPanel: TabPanelComponent = (receivedProps) => {
+
+  const props = useWithDefaultProps('tabPanel', receivedProps);
 
   const {
     className,

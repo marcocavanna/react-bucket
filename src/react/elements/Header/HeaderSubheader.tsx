@@ -11,7 +11,10 @@ import { CreatableFunctionComponent } from '../../generic';
 
 import { getSharedClassNames } from '../../lib';
 
+import { useWithDefaultProps } from '../../context/BucketContext';
+
 import { HeaderSubheaderProps } from './HeaderSubheader.types';
+
 
 /* --------
  * Component Declare
@@ -21,7 +24,9 @@ type HeaderSubheaderComponent = CreatableFunctionComponent<HeaderSubheaderProps>
 /* --------
  * Component Render
  * -------- */
-const HeaderSubheader: HeaderSubheaderComponent = (props) => {
+const HeaderSubheader: HeaderSubheaderComponent = (receivedProps) => {
+
+  const props = useWithDefaultProps('headerSubheader', receivedProps);
 
   const {
     className,
@@ -48,10 +53,6 @@ const HeaderSubheader: HeaderSubheaderComponent = (props) => {
 };
 
 HeaderSubheader.displayName = 'HeaderSubheader';
-
-HeaderSubheader.defaultProps = {
-  as: 'h4' as React.ElementType
-};
 
 HeaderSubheader.create = createShorthandFactory(HeaderSubheader, content => ({ content }));
 

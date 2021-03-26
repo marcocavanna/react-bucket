@@ -13,6 +13,8 @@ import {
   useSharedClassName
 } from '../../lib';
 
+import { useWithDefaultProps } from '../../context/BucketContext';
+
 import { ItemTextProps } from './ItemText.types';
 
 
@@ -24,7 +26,9 @@ type ItemTextComponent = CreatableFunctionComponent<ItemTextProps>;
 /* --------
  * Component Render
  * -------- */
-const ItemText: ItemTextComponent = (props) => {
+const ItemText: ItemTextComponent = (receivedProps) => {
+
+  const props = useWithDefaultProps('itemText', receivedProps);
 
   const {
     className,

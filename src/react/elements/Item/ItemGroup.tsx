@@ -11,6 +11,8 @@ import {
   useSharedClassName
 } from '../../lib';
 
+import { useWithDefaultProps } from '../../context/BucketContext';
+
 import { ItemComponent } from './Item';
 import { ItemProps } from './Item.types';
 
@@ -36,7 +38,9 @@ type ItemGroupComponent = React.FunctionComponent<ItemGroupProps>;
 /* --------
  * Component Render
  * -------- */
-const ItemGroup: ItemGroupComponent = (props) => {
+const ItemGroup: ItemGroupComponent = (receivedProps) => {
+
+  const props = useWithDefaultProps('itemGroup', receivedProps);
 
   const {
     className,

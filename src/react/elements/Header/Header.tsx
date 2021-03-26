@@ -10,6 +10,9 @@ import {
 import { CreatableFunctionComponent } from '../../generic';
 
 import { getSharedClassNames, useSplitStateClassName } from '../../lib';
+
+import { useWithDefaultProps } from '../../context/BucketContext';
+
 import Button from '../Button/Button';
 
 import { Icon } from '../Icon';
@@ -32,7 +35,9 @@ export type HeaderComponent = CreatableFunctionComponent<HeaderProps> & {
 /* --------
  * Component Render
  * -------- */
-const Header: HeaderComponent = (props) => {
+const Header: HeaderComponent = (receivedProps) => {
+
+  const props = useWithDefaultProps('header', receivedProps);
 
   const {
     className,

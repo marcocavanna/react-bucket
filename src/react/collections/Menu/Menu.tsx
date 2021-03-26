@@ -19,6 +19,7 @@ import {
 import {
   useAutoControlledValue
 } from '../../hooks/useAutoControlledValue';
+import { useWithDefaultProps } from '../../context/BucketContext';
 
 import { MenuProps } from './Menu.types';
 
@@ -37,7 +38,9 @@ type MenuComponent = CreatableFunctionComponent<MenuProps> & {
 /* --------
  * Component Declare
  * -------- */
-const Menu: MenuComponent = (props) => {
+const Menu: MenuComponent = (receivedProps) => {
+
+  const props = useWithDefaultProps('menu', receivedProps);
 
   const {
     className,

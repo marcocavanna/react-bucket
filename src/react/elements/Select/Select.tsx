@@ -10,6 +10,7 @@ import CreatableReactSelect from 'react-select/creatable';
 import { CreatableFunctionComponent } from '../../generic';
 
 import { useAutoControlledValue } from '../../hooks/useAutoControlledValue';
+import { useWithDefaultProps } from '../../context/BucketContext';
 
 import { splitFieldProps, useSharedClassName, useSplitStateClassName } from '../../lib';
 
@@ -32,9 +33,11 @@ export type MutableReactSelect<Option> = ReactSelect<Option> | CreatableReactSel
  * -------- */
 const SelectRender: React.ForwardRefRenderFunction<MutableReactSelect<SelectDefaultOption>, SelectProps> = (
   <Option extends SelectOption = SelectDefaultOption>(
-    props: React.PropsWithChildren<SelectProps<Option>>,
+    receivedProps: React.PropsWithChildren<SelectProps<Option>>,
     ref: ((instance: MutableReactSelect<Option> | null) => void) | MutableRefObject<MutableReactSelect<Option> | null> | null
   ) => {
+
+    const props = useWithDefaultProps('select', receivedProps);
 
     /** Split props from className */
     const {
@@ -385,8 +388,6 @@ const Select: <Option extends SelectOption = SelectDefaultOption>(
 );
 
 (Select as SelectComponent).displayName = 'Select';
-
-(Select as SelectComponent).defaultProps = {};
 
 (Select as SelectComponent).create = createShorthandFactory<SelectProps>(Select, (options) => ({
   options: options as SelectDefaultOption[]

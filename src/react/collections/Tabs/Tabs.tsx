@@ -8,13 +8,15 @@ import {
 import { CreatableFunctionComponent, ShorthandCollection, ShorthandItem } from '../../generic';
 
 import {
-  useAutoControlledValue
-} from '../../hooks/useAutoControlledValue';
-
-import {
   useElementType,
   useSharedClassName
 } from '../../lib';
+
+import {
+  useAutoControlledValue
+} from '../../hooks/useAutoControlledValue';
+
+import { useWithDefaultProps } from '../../context/BucketContext';
 
 import { Row, Column } from '../Grid';
 import { Menu } from '../Menu';
@@ -37,7 +39,9 @@ type TabsComponent = CreatableFunctionComponent<TabsProps> & {
 /* --------
  * Component Render
  * -------- */
-const Tabs: TabsComponent = (props) => {
+const Tabs: TabsComponent = (receivedProps) => {
+
+  const props = useWithDefaultProps('tabs', receivedProps);
 
   const {
     className,
@@ -177,12 +181,6 @@ Tabs.displayName = 'Tabs';
 Tabs.create = createShorthandFactory(Tabs, (panels) => ({
   panels: panels as TabPanelsShorthand[]
 }));
-
-Tabs.defaultProps = {
-  layout          : { menuWidth: 4, panelWidth: 20, menuOn: 'left' },
-  menu            : { tab: true },
-  renderActiveOnly: true
-};
 
 Tabs.Panel = TabPanel;
 

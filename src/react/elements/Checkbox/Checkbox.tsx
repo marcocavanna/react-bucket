@@ -7,6 +7,8 @@ import {
   useSplitStateClassName
 } from '../../lib';
 
+import { useWithDefaultProps } from '../../context/BucketContext';
+
 import { useAutoControlledValue } from '../../hooks/useAutoControlledValue';
 import { useTabIndex } from '../../hooks/useTabIndex';
 import { Icon } from '../Icon';
@@ -24,7 +26,10 @@ type CheckboxComponent = React.FunctionComponent<CheckboxProps>;
 /* --------
  * Component Render
  * -------- */
-const Checkbox: CheckboxComponent = (props) => {
+const Checkbox: CheckboxComponent = (receivedProps) => {
+
+  /** Get component props */
+  const props = useWithDefaultProps('checkbox', receivedProps);
 
   const {
     className,
@@ -229,5 +234,7 @@ const Checkbox: CheckboxComponent = (props) => {
     </Field>
   );
 };
+
+Checkbox.displayName = 'Checkbox';
 
 export default Checkbox;
