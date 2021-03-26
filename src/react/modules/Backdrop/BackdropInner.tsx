@@ -60,12 +60,13 @@ const BackdropInner: BackdropInnerComponent = (receivedProps) => {
       onClick(e, props);
     }
 
-    if (!contentRef.current || !containerRef.current || e.target !== contentRef.current) {
+    /** If no ref are been currently loaded, or if no handler has been defined, abort */
+    if (!contentRef.current || !containerRef.current || !onClickOutside) {
       return;
     }
 
-    /** Call onClickOutside Prop */
-    if (onClickOutside) {
+    /** If click target is the content background or the container, invoke the handler */
+    if (e.target === containerRef.current || e.target === contentRef.current) {
       onClickOutside(e, props);
     }
   };
