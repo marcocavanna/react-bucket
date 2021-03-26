@@ -20,6 +20,8 @@ export type PopupOpenEvent = 'hover' | 'click' | 'focus';
 
 export type PopupPosition =
   | 'auto'
+  | 'auto start'
+  | 'auto end'
   | 'top left'
   | 'top right'
   | 'bottom left'

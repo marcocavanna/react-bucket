@@ -59,7 +59,9 @@ export function usePopperPlacementMapping(position?: PopupPosition): Placement {
       }
 
       return {
-        auto: 'auto',
+        auto        : 'auto',
+        'auto start': 'auto-start',
+        'auto end'  : 'auto-end',
 
         'top center': 'top',
         'top left'  : 'top-start',
