@@ -297,7 +297,7 @@ const Input: InputComponent = (receivedProps) => {
       return (
         <TextareaAutosize
           {...rest}
-          inputRef={inputRef as React.RefObject<HTMLTextAreaElement>}
+          ref={inputRef as React.RefObject<HTMLTextAreaElement>}
           {...textareaProps}
           {...baseProps}
         />
