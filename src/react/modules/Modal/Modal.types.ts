@@ -21,7 +21,7 @@ import { ModalContentProps } from './ModalContent.types';
 export interface ModalProps extends ReactBucketComponentProps<StrictModalProps> {
 }
 
-export interface StrictModalProps extends Omit<StrictBackdropProps, 'page' | 'visible'> {
+export interface StrictModalProps extends Omit<StrictBackdropProps, 'closeOnDocumentClick' | 'page' | 'visible'> {
   /** Modal Actions Shorthand */
   actions?: ShorthandCollection<ButtonProps>;
 

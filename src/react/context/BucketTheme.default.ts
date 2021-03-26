@@ -255,7 +255,6 @@ export const defaultBucketThemeConfig: ThemeOptions = {
   // ----
   modal       : {
     closeIcon           : 'times',
-    closeOnDocumentClick: false,
     closeOnBackdropClick: true
   },
   modalActions: {},

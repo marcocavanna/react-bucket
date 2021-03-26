@@ -77,7 +77,6 @@ const Modal: ModalComponent = (receivedProps) => {
       loaderProps,
 
       /** Handled Portal Props */
-      closeOnDocumentClick,
       closeOnEscape,
       openOnTriggerClick,
       openOnTriggerFocus,
@@ -259,7 +258,7 @@ const Modal: ModalComponent = (receivedProps) => {
       className={'modals'}
       visible={open}
       closeOnBackdropClick={closeOnBackdropClick}
-      closeOnDocumentClick={closeOnDocumentClick}
+      closeOnDocumentClick={false}
       closeOnEscape={closeOnEscape}
       openOnTriggerClick={openOnTriggerClick}
       openOnTriggerMouseEnter={openOnTriggerMouseEnter}
