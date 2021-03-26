@@ -6,6 +6,7 @@ import { Checkbox, CheckboxProps } from '../../elements/Checkbox';
 import { ColorPicker, ColorPickerProps } from '../../elements/ColorPicker';
 import { DayPicker, DayPickerProps, ParsableDate } from '../../elements/DayPicker';
 import { Input, InputProps } from '../../elements/Input';
+import { NumericInput, NumericInputProps } from '../../elements/NumericInput';
 import { MultiSelect, Select, SelectMultiProps, SelectOption, SelectProps } from '../../elements/Select';
 
 import withFormikField from './lib/withFormikField';
@@ -167,6 +168,34 @@ export const FormikInput = withFormikField<InputProps, string | number | null | 
     }
 
     return '';
+  }
+});
+
+
+/* --------
+ * Formik Numeric Input
+ * -------- */
+export const FormikNumericInput = withFormikField<NumericInputProps, number | null>({
+  Component         : function FormikNumericInputComponent(props) {
+    const stateProps = useFormikFieldState(props);
+    return (
+      <NumericInput
+        {...props.rest}
+        {...stateProps}
+        hint={props.state.message}
+      />
+    );
+  },
+  setTouchedOnChange: false,
+  onChange          : (formik, nothing, props) => {
+    formik.setFieldValue(props.name, props.value);
+  },
+  computeValue      : (value) => {
+    if (typeof value === 'number' && !Number.isNaN(value)) {
+      return value;
+    }
+
+    return null;
   }
 });
 

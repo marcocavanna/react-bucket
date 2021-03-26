@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"@appbuckets/formatters@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@appbuckets/formatters/-/formatters-0.2.0.tgz#5cd48800c41de987408feacf0d29c32a4382b452"
+  integrity sha512-VjB/FoIBx5Oyr5DXtKhdrjGw9ncVudGQvFyVqV0osdFqt1uXwfkWZ7kSW4qr5+GC0VVK4Ph3c9DSGGNoIRrj+A==
+
 "@appbuckets/postcss-react-bucket@^0.1.1":
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/@appbuckets/postcss-react-bucket/-/postcss-react-bucket-0.1.1.tgz#079263a818b4712e5c939b7ca073ce0087cd0c76"

@@ -55,6 +55,8 @@ export * from './elements/Label';
 
 export * from './elements/Loader';
 
+export * from './elements/NumericInput';
+
 export * from './elements/Panel';
 
 export * from './elements/Progress';
