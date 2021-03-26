@@ -32,7 +32,7 @@ export interface StrictModalProps extends Omit<StrictBackdropProps, 'page' | 'vi
   children?: ShorthandContent;
 
   /** Set close icon */
-  closeIcon?: ReactBucketIcon<IconProps>;
+  closeIcon?: ReactBucketIcon<IconProps> | null | false;
 
   /** Close modal on Backdrop Click */
   closeOnBackdropClick?: boolean;
