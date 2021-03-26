@@ -105,7 +105,7 @@ const DayPicker: DayPickerComponent = (props) => {
         return { object: null, formatted: '' };
       }
 
-      const casted = typeof rawDate === 'number' || typeof rawDate === 'string' || rawDate instanceof Date
+      const casted = typeof rawDate === 'number' || typeof rawDate === 'string' || (rawDate as Date | null) instanceof Date
         ? dayjs(rawDate)
         : dayjs(rawDate, dateFormat);
 
@@ -150,104 +150,75 @@ const DayPicker: DayPickerComponent = (props) => {
   /* --------
    * Component Handlers
    * -------- */
-  const handleCalendarOpen = React.useCallback(
-    () => {
-      if (onCalendarOpen) {
-        onCalendarOpen(null, propsForEvent);
-      }
-      trySetOpen(true);
-    },
-    [ onCalendarOpen, propsForEvent, trySetOpen ]
-  );
+  const handleCalendarOpen = () => {
+    if (onCalendarOpen) {
+      onCalendarOpen(null, propsForEvent);
+    }
+    trySetOpen(true);
+  };
 
-  const handleCalendarClose = React.useCallback(
-    () => {
-      if (onCalendarClose) {
-        onCalendarClose(null, propsForEvent);
-      }
-      trySetOpen(false);
-    },
-    [ onCalendarClose, propsForEvent, trySetOpen ]
-  );
+  const handleCalendarClose = () => {
+    if (onCalendarClose) {
+      onCalendarClose(null, propsForEvent);
+    }
+    trySetOpen(false);
+  };
 
-  const evalDayChange = React.useCallback(
-    (value: string | Date, triggeredByInput: boolean) => {
-      /** Build new Date Object */
-      const newDate = triggeredByInput ? dayjs(value, dateFormat) : dayjs(value);
-      const currTimestamp = selectedDate.object?.valueOf() ?? null;
+  const evalDayChange = (value: string | Date, triggeredByInput: boolean) => {
+    /** Build new Date Object */
+    const newDate = triggeredByInput ? dayjs(value, dateFormat) : dayjs(value);
+    const currTimestamp = selectedDate.object?.valueOf() ?? null;
 
-      const newDateObject = newDate.isValid() ? newDate.toDate() : null;
-      const newTimestamp = newDate.isValid() ? newDate.valueOf() : null;
+    const newDateObject = newDate.isValid() ? newDate.toDate() : null;
+    const newTimestamp = newDate.isValid() ? newDate.valueOf() : null;
 
-      /** Check if date is changed */
-      if (currTimestamp !== newTimestamp && onDayChange) {
-        onDayChange(null, {
-          ...propsForEvent,
-          date     : newDate,
-          timestamp: newTimestamp
-        });
-      }
+    /** Check if date is changed */
+    if (currTimestamp !== newTimestamp && onDayChange) {
+      onDayChange(null, {
+        ...propsForEvent,
+        date     : newDate,
+        timestamp: newTimestamp
+      });
+    }
 
-      if (closeOnDayPicked) {
-        handleCalendarClose();
-      }
+    if (closeOnDayPicked) {
+      handleCalendarClose();
+    }
 
-      if (!triggeredByInput) {
-        setInputValue(newDate.isValid() ? newDate.format(dateFormat) : '');
-      }
+    if (!triggeredByInput) {
+      setInputValue(newDate.isValid() ? newDate.format(dateFormat) : '');
+    }
 
-      trySetRawDate(newDateObject);
-    },
-    [
-      dateFormat,
-      selectedDate.object,
-      onDayChange,
-      closeOnDayPicked,
-      trySetRawDate,
-      propsForEvent,
-      handleCalendarClose
-    ]
-  );
+    trySetRawDate(newDateObject);
+  };
 
-  const handleDayClick = React.useCallback(
-    (day: Date, modifiers: DayModifiers) => {
-      /** If calendar is disabled, or day is disabled, return */
-      if (disabled || modifiers.disabled) {
-        return;
-      }
-      /** Eval Day Change */
-      evalDayChange(day, false);
-    },
-    [ disabled, evalDayChange ]
-  );
+  const handleDayClick = (day: Date, modifiers: DayModifiers) => {
+    /** If calendar is disabled, or day is disabled, return */
+    if (disabled || modifiers.disabled) {
+      return;
+    }
+    /** Eval Day Change */
+    evalDayChange(day, false);
+  };
 
-  const handleInputChange = React.useCallback(
-    (e: React.FormEvent<HTMLInputElement>, inputProps: InputProps) => {
-      /** Change Input Value */
-      setInputValue(inputProps.value!);
-      /** Trigger Handler */
-      if (onInputChange) {
-        onInputChange(e, inputProps);
-      }
-      /** Eval day Change */
-      evalDayChange(inputProps.value!, true);
-    },
-    [ evalDayChange, onInputChange ]
-  );
+  const handleInputChange = (e: React.FormEvent<HTMLInputElement>, inputProps: InputProps) => {
+    /** Change Input Value */
+    setInputValue(inputProps.value!);
+    /** Trigger Handler */
+    if (onInputChange) {
+      onInputChange(e, inputProps);
+    }
+    /** Eval day Change */
+    evalDayChange(inputProps.value!, true);
+  };
 
-  const handleTodayButtonClick = React.useCallback(
-    () => {
-      evalDayChange(dayjs().toDate(), false);
-    },
-    [ evalDayChange ]
-  );
+  const handleTodayButtonClick = () => {
+    evalDayChange(dayjs().toDate(), false);
+  };
 
-  const handleClearDate = React.useCallback(
-    () => {
-      evalDayChange('', false);
-    },
-    [ evalDayChange ]
-  );
+  const handleClearDate = () => {
+    evalDayChange('', false);
+  };
 
 
   /** Build the element class list */
@@ -260,77 +231,71 @@ const DayPicker: DayPickerComponent = (props) => {
   /* --------
    * Build the Modal Trigger Memoized Element
    * -------- */
-  const modalTrigger = React.useMemo(
-    () => {
-      if (type === 'input') {
-        return undefined;
+  const modalTrigger = (() => {
+    if (type === 'input') {
+      return undefined;
+    }
+
+    if (trigger) {
+      return trigger;
+    }
+
+    return (
+      <Button
+        icon={'calendar'}
+        content={selectedDate.formatted || inputHint.placeholder}
+        {...triggerProps}
+        disabled={disabled}
+        onClick={handleCalendarOpen}
+      />
+    );
+  })();
+
+  const calendarAddon = (() => {
+    /** In Portal no addons could be defined */
+    if (type === 'input') {
+      return null;
+    }
+
+    /** Build clear Button */
+    const clearButtonElement = clearable && !!rawDate && Button.create(clearButton || 'Clear', {
+      autoGenerateKey: false,
+      defaultProps   : {
+        size: 'small'
+      },
+      overrideProps  : {
+        className: 'clear',
+        disabled,
+        onClick  : handleClearDate
       }
+    });
 
-      if (trigger) {
-        return trigger;
+    /** Build today button */
+    const todayButtonElement = Button.create(todayButton, {
+      autoGenerateKey: false,
+      defaultProps   : {
+        primary: true,
+        size   : 'small'
+      },
+      overrideProps  : {
+        className: 'today',
+        disabled,
+        onClick  : handleTodayButtonClick
       }
+    });
 
-      return (
-        <Button
-          icon={'calendar'}
-          content={selectedDate.formatted || inputHint.placeholder}
-          {...triggerProps}
-          disabled={disabled}
-          onClick={handleCalendarOpen}
-        />
-      );
-    },
-    [ type, trigger, selectedDate.formatted, inputHint.placeholder, triggerProps, disabled, handleCalendarOpen ]
-  );
+    /** If no content, return */
+    if (!clearButtonElement && !todayButtonElement) {
+      return null;
+    }
 
-  const calendarAddon = React.useMemo(
-    () => {
-      /** In Portal no addons could be defined */
-      if (type === 'input') {
-        return null;
-      }
-
-      /** Build clear Button */
-      const clearButtonElement = clearable && Button.create(clearButton || 'Clear', {
-        autoGenerateKey: false,
-        defaultProps   : {
-          size: 'small'
-        },
-        overrideProps  : {
-          className: 'clear',
-          disabled,
-          onClick  : handleClearDate
-        }
-      });
-
-      /** Build today button */
-      const todayButtonElement = Button.create(todayButton, {
-        autoGenerateKey: false,
-        defaultProps   : {
-          primary: true,
-          size   : 'small'
-        },
-        overrideProps  : {
-          className: 'today',
-          disabled,
-          onClick  : handleTodayButtonClick
-        }
-      });
-
-      /** If no content, return */
-      if (!clearButtonElement && !todayButtonElement) {
-        return null;
-      }
-
-      return (
-        <div className={'addons'}>
-          {todayButtonElement}
-          {clearButtonElement}
-        </div>
-      );
-    },
-    [ todayButton, clearButton, handleTodayButtonClick, handleClearDate, disabled, type, clearable ]
-  );
+    return (
+      <div className={'addons'}>
+        {todayButtonElement}
+        {clearButtonElement}
+      </div>
+    );
+  })();
 
 
   /* --------
@@ -374,7 +339,7 @@ const DayPicker: DayPickerComponent = (props) => {
             {...inputState}
             {...restFieldProps}
             className={classes}
-            clearable={clearable}
+            clearable={clearable && !!rawDate}
             masked={inputHint.mask ? {
               mask          : inputHint.mask,
               maskChar      : '-',
