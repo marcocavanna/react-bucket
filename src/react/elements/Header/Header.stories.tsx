@@ -38,8 +38,8 @@ export const simpleHeader = () => {
       disabled={boolean('Disabled', false)}
       divided={boolean('Divided', false)}
       actions={[
-        { primary: true, content: 'Add Me', icon: 'thumbs up' },
-        { primary: true, content: 'Add Me', icon: 'thumbs up' }
+        { key: 0, primary: true, content: 'Add Me', icon: 'thumbs-up' },
+        { key: 1, primary: true, content: 'Add Me', icon: 'thumbs-up' }
       ]}
     />
   );

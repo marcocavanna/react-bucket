@@ -28,6 +28,7 @@ export const defaultInput = () => {
       onChange={handleChangeValue}
       actions={[
         {
+          key    : 0,
           icon   : 'retweet',
           onClick: setNewValue
         }

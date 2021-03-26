@@ -18,7 +18,7 @@ export const panel = () => {
       header={{
         content  : 'Panel Header',
         subheader: 'Panel Subheader',
-        icon     : 'truck loading'
+        icon     : 'truck-loading'
       }}
       content={<LoremIpsum />}
       footer={{

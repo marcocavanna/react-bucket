@@ -169,9 +169,9 @@ export const horizontalDisposition = () => {
 export const usingColumnsShorthand = () => (
   <Row
     columns={[
-      { width: 4, content: <Box /> },
-      { width: 16, content: <Box /> },
-      { width: 4, content: <Box /> }
+      { key: 0, width: 4, content: <Box /> },
+      { key: 1, width: 16, content: <Box /> },
+      { key: 2, width: 4, content: <Box /> }
     ]}
   />
 );

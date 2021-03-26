@@ -10,8 +10,8 @@ export const baseMenu = () => {
   return (
     <Menu
       items={[
-        { content: 'Pagina 1', icon: 'plus' },
-        { content: 'Pagina 2', icon: 'user' }
+        { key: 0, content: 'Pagina 1', icon: 'plus' },
+        { key: 1, content: 'Pagina 2', icon: 'user' }
       ]}
     />
   );
