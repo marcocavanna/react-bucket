@@ -1,7 +1,6 @@
 const fs = require('fs');
 const { resolve } = require('path');
 
-const _ = require('lodash');
 const SVGO = require('svgo');
 const prettier = require('prettier');
 const { default: svgr } = require('@svgr/core');
@@ -60,7 +59,11 @@ function buildSVGIcons(path, dest) {
     /** Build Component Name */
     .map(filename => ({
       filename,
-      componentName: _.upperFirst(_.camelCase(filename.replace(/\.svg$/, '')))
+      componentName: filename
+        .replace(/\.svg$/, '')
+        .replace(/-/g, ' ')
+        .replace(/(?:^\w|[A-Z]|\b\w)/g, (word) => word.toUpperCase())
+        .replace(/\s+/g, '')
     }));
 
   /** Loop each File to build the TSX */
