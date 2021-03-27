@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 import { DayPickerProps as ReactDayPickerProps } from 'react-day-picker';
-import { Dayjs } from 'dayjs';
 
 import {
   ReactBucketComponentProps, ShorthandItem
@@ -14,7 +13,7 @@ import { InputProps } from '../Input';
 
 export type ParsableDate = null | string | number | Date;
 
-export interface DayPickerProps<DateType = (Date | Dayjs | null)>
+export interface DayPickerProps<DateType extends ParsableDate = ParsableDate>
   extends ReactBucketComponentProps<StrictDayPickerProps<DateType>> {
 }
 
@@ -31,9 +30,6 @@ export interface StrictDayPickerProps<DateType> extends ReactDayPickerProps, Fie
   /** Set the date */
   date?: DateType;
 
-  /** Set a proper date format */
-  dateFormat?: string;
-
   /** Set the default date */
   defaultDate?: ParsableDate;
 
@@ -42,6 +38,9 @@ export interface StrictDayPickerProps<DateType> extends ReactDayPickerProps, Fie
 
   /** Disable the Day Picker */
   disabled?: boolean;
+
+  /** Custom format function to show date */
+  format?: (date: Date) => string;
 
   /** On calendar close event handler */
   onCalendarClose?: (nothing: null, props: DayPickerProps) => void;
@@ -57,6 +56,9 @@ export interface StrictDayPickerProps<DateType> extends ReactDayPickerProps, Fie
 
   /** Control the open props */
   open?: boolean;
+
+  /** Custom parse function to transform any value into a date */
+  parse?: (date: Exclude<ParsableDate, null>) => Date | null;
 
   /** Show input mask */
   showInputMask?: boolean;

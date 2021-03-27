@@ -6,6 +6,7 @@ import {
   FormFormikActionHandler,
   FormikMultiSelect,
   FormikColorPicker,
+  FormikDayPicker,
   FormikNumericInput
 } from './index';
 
@@ -17,7 +18,8 @@ type Contact = {
   color: string,
   name: string,
   options: number[],
-  balance: number
+  balance: number,
+  date: number | null
 };
 
 type Choices = {
@@ -51,7 +53,8 @@ export const formikForm = () => {
         color  : '#D9E3F0',
         name   : '',
         options: [ 3 ],
-        balance: 256
+        balance: 256,
+        date   : null
       }}
     >
       <FormikColorPicker name={'color'} />
@@ -72,6 +75,7 @@ export const formikForm = () => {
         name={'balance'}
         icon={'wallet'}
       />
+      <FormikDayPicker name={'date'} />
     </FormFormik>
   );
 

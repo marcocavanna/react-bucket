@@ -5,9 +5,6 @@ import 'react-day-picker/src/style.css';
 import { DayModifiers } from 'react-day-picker';
 import ReactDayPicker from 'react-day-picker/DayPicker';
 
-import dayjs from 'dayjs';
-import customParseFormat from 'dayjs/plugin/customParseFormat';
-
 import {
   splitFieldProps,
   useSharedClassName,
@@ -26,13 +23,10 @@ import { Popup } from '../../modules/Popup';
 import { DayPickerProps, ParsableDate } from './DayPicker.types';
 
 
-dayjs.extend(customParseFormat);
-
-
 /* --------
  * Component Declare
  * -------- */
-type DayPickerComponent = React.FunctionComponent<DayPickerProps<ParsableDate>>;
+type DayPickerComponent = React.FunctionComponent<DayPickerProps>;
 
 
 /* --------
@@ -51,14 +45,15 @@ const DayPicker: DayPickerComponent = (receivedProps) => {
       clearButton,
       closeOnDayPicked,
       date: userDefinedDate,
-      dateFormat,
       defaultDate,
       defaultOpen,
+      format,
       onCalendarClose,
       onCalendarOpen,
       onDayChange,
       onInputChange,
       open: userDefinedOpen,
+      parse,
       showInputMask,
       trigger,
       triggerProps,
@@ -101,25 +96,95 @@ const DayPicker: DayPickerComponent = (receivedProps) => {
 
 
   /* --------
+   * Internal Function
+   * -------- */
+  const getToday = React.useCallback(
+    (): Date => {
+      const newDate = new Date();
+      newDate.setHours(0, 0, 0, 0);
+      return newDate;
+    },
+    []
+  );
+
+
+  /* --------
    * Date Parsing and Formatting
    * -------- */
-  const selectedDate = React.useMemo<{ object: dayjs.Dayjs | null, formatted: string }>(
+  const castToDate = React.useCallback(
+    (date: ParsableDate): Date | null => {
+      /** If no date, return null */
+      if (!date) {
+        return null;
+      }
+
+      /** Initialize the Casted Date variable */
+      let castedDate: Date | null;
+
+      /** If a custom parse function exists, use to cast the date */
+      if (typeof parse === 'function') {
+        castedDate = parse(date);
+      }
+      /** Else, if is a valid date, use as is */
+      else if (date instanceof Date) {
+        castedDate = date;
+      }
+      /** Use the date constructor if rawDate is a primitive type */
+      else {
+        castedDate = new Date(date);
+      }
+
+      /** If casted date is invalid, return null */
+      if (castedDate === null || !((castedDate as Date | null) instanceof Date) || castedDate?.toString() === 'Invalid Date') {
+        return null;
+      }
+
+      /** Set Hours */
+      castedDate.setHours(0, 0, 0, 0);
+
+      return castedDate;
+    },
+    [ parse ]
+  );
+
+  const formatDate = React.useCallback(
+    (date: Date | null): string => {
+      /** If no date, return an empty string */
+      if (!date || date.toString() === 'Invalid Date') {
+        return '';
+      }
+
+      /** If a custom format function exists, use it */
+      if (typeof format === 'function') {
+        return format(date);
+      }
+
+      return date.toLocaleDateString();
+    },
+    [ format ]
+  );
+
+  const selectedDate = React.useMemo<{ object: Date | null, formatted: string }>(
     () => {
+      /** If no raw date exists, set as null */
       if (rawDate === null || rawDate === undefined) {
         return { object: null, formatted: '' };
       }
 
-      const casted = typeof rawDate === 'number' || typeof rawDate === 'string' || (rawDate as Date | null) instanceof Date
-        ? dayjs(rawDate)
-        : dayjs(rawDate, dateFormat);
+      /** Initialize the casted date variable, and formatted one */
+      const castedDate = castToDate(rawDate);
 
-      if (!casted.isValid()) {
-        return { object: null, formatted: '' };
-      }
-
-      return { object: casted, formatted: casted.format(dateFormat) };
+      /** Return data */
+      return {
+        object   : castedDate,
+        formatted: formatDate(castedDate)
+      };
     },
-    [ rawDate, dateFormat ]
+    [
+      castToDate,
+      formatDate,
+      rawDate
+    ]
   );
 
   const [ inputValue, setInputValue ] = React.useState(selectedDate.formatted ?? '');
@@ -130,25 +195,9 @@ const DayPicker: DayPickerComponent = (receivedProps) => {
    * -------- */
   const propsForEvent: DayPickerProps = {
     ...props,
-    date     : selectedDate.object?.toDate() ?? null,
+    date     : selectedDate.object ?? null,
     timestamp: selectedDate.object?.valueOf() ?? null
   };
-
-
-  /* --------
-   * Build the Input Hint object
-   * -------- */
-  const inputHint = React.useMemo<{ mask: string | undefined, placeholder: string }>(
-    () => ({
-      mask       : showInputMask && dateFormat
-        ? dateFormat.replace(/([^/\s])/g, '9')
-        : undefined,
-      placeholder: dateFormat
-        ? dateFormat.replace(/([^/\s])/g, '-')
-        : ''
-    }),
-    [ showInputMask, dateFormat ]
-  );
 
 
   /* --------
@@ -170,11 +219,13 @@ const DayPicker: DayPickerComponent = (receivedProps) => {
 
   const evalDayChange = (value: string | Date, triggeredByInput: boolean) => {
     /** Build new Date Object */
-    const newDate = triggeredByInput ? dayjs(value, dateFormat) : dayjs(value);
+    const newDate = castToDate(value);
     const currTimestamp = selectedDate.object?.valueOf() ?? null;
 
-    const newDateObject = newDate.isValid() ? newDate.toDate() : null;
-    const newTimestamp = newDate.isValid() ? newDate.valueOf() : null;
+    const isValidNewDate = newDate && newDate.toString() !== 'Invalid Date';
+
+    const newDateObject = isValidNewDate ? newDate as Date : null;
+    const newTimestamp = isValidNewDate ? (newDate as Date).valueOf() : null;
 
     /** Check if date is changed */
     if (currTimestamp !== newTimestamp && onDayChange) {
@@ -190,7 +241,7 @@ const DayPicker: DayPickerComponent = (receivedProps) => {
     }
 
     if (!triggeredByInput) {
-      setInputValue(newDate.isValid() ? newDate.format(dateFormat) : '');
+      setInputValue(formatDate(newDate));
     }
 
     trySetRawDate(newDateObject);
@@ -217,7 +268,7 @@ const DayPicker: DayPickerComponent = (receivedProps) => {
   };
 
   const handleTodayButtonClick = () => {
-    evalDayChange(dayjs().toDate(), false);
+    evalDayChange(getToday(), false);
   };
 
   const handleClearDate = () => {
@@ -247,7 +298,7 @@ const DayPicker: DayPickerComponent = (receivedProps) => {
     return (
       <Button
         icon={'calendar'}
-        content={selectedDate.formatted || inputHint.placeholder}
+        content={selectedDate.formatted}
         {...triggerProps}
         disabled={disabled}
         onClick={handleCalendarOpen}
@@ -312,8 +363,8 @@ const DayPicker: DayPickerComponent = (receivedProps) => {
         {...restDayPickerProps}
         fixedWeeks={userDefinedFixedWeeks ?? type === 'modal'}
         // Selected Days
-        month={selectedDate.object?.toDate()}
-        selectedDays={selectedDate.object?.toDate()}
+        month={selectedDate.object || undefined}
+        selectedDays={selectedDate.object || undefined}
         // Handlers
         onDayClick={handleDayClick}
         onTodayButtonClick={handleDayClick}
@@ -344,11 +395,6 @@ const DayPicker: DayPickerComponent = (receivedProps) => {
             {...restFieldProps}
             className={classes}
             clearable={clearable && !!rawDate}
-            masked={inputHint.mask ? {
-              mask          : inputHint.mask,
-              maskChar      : '-',
-              alwaysShowMask: true
-            } : undefined}
             disabled={disabled}
             readOnly={readOnly}
             required={required}
