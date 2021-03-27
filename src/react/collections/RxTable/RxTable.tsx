@@ -188,4 +188,8 @@ const RxTable = <Data extends AnyObject>(
 
 (RxTable as RxTableComponent<any>).displayName = 'RxTable';
 
+(RxTable as RxTableComponent<any>).defaultProps = {
+  as: Table
+};
+
 export default RxTable;

@@ -1,7 +1,5 @@
 import { ThemeOptions } from './BucketContext.types';
 
-import Table from '../collections/Table/Table';
-
 
 export const defaultBucketThemeConfig: ThemeOptions = {
 
@@ -320,7 +318,6 @@ export const defaultBucketThemeConfig: ThemeOptions = {
   // Rx Table Component
   // ----
   rxTable: {
-    as              : Table,
     filterLogic     : 'and',
     initiallyLoading: true,
     reloadSilently  : true
