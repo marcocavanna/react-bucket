@@ -11,7 +11,7 @@ import { FormatOptionLabelMeta } from 'react-select/src/Select';
 import { StylesConfig } from 'react-select/src/styles';
 import { ThemeConfig } from 'react-select/src/theme';
 import {
-  GroupType,
+  GroupTypeBase,
   KeyboardEventHandler,
   MenuPlacement,
   MenuPosition,
@@ -108,7 +108,7 @@ export interface StrictSelectProps<Option extends SelectOption, Value = string |
    * instead. For a list of the components that can be passed in, and the shape
    * that will be passed to them, see [the components docs](/api#components)
    */
-  components?: SelectComponentsConfig<Option, FallbackValue extends Array<any> ? true : false>;
+  components?: SelectComponentsConfig<Option, FallbackValue extends Array<any> ? true : false, GroupTypeBase<Option>>;
 
   /** Whether the value of the select, e.g. SingleValue, should be displayed in the control. */
   controlShouldRenderValue?: boolean;
@@ -135,7 +135,7 @@ export interface StrictSelectProps<Option extends SelectOption, Value = string |
   formatCreateLabel?: (inputValue: string) => React.ReactNode;
 
   /** Formats group labels in the menu as React components */
-  formatGroupLabel?: (group: GroupType<Option>) => ReactNode;
+  formatGroupLabel?: (group: GroupTypeBase<Option>) => ReactNode;
 
   /** Formats option labels in the menu and control as React components */
   formatOptionLabel?: (

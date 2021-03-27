@@ -37,7 +37,10 @@ const SelectRender: React.ForwardRefRenderFunction<MutableReactSelect<SelectDefa
     ref: ((instance: MutableReactSelect<Option> | null) => void) | MutableRefObject<MutableReactSelect<Option> | null> | null
   ) => {
 
-    const props = useWithDefaultProps('select', receivedProps);
+    const props: React.PropsWithChildren<SelectProps<Option>> = useWithDefaultProps(
+      'select',
+      receivedProps as any
+    );
 
     /** Split props from className */
     const {
