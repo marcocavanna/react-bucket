@@ -4,8 +4,6 @@ import clsx from 'clsx';
 
 import realyFastDeepClone from 'rfdc';
 
-import { contextBuilder } from '../lib';
-
 import {
   BucketThemeContext,
   ThemeOptions,
@@ -24,10 +22,22 @@ const deepClone = realyFastDeepClone();
 /* --------
  * Prebuild the Context
  * -------- */
-const {
-  Provider: BucketThemeProvider,
-  hook    : useBucketTheme
-} = contextBuilder<BucketThemeContext>();
+const ThemeContext = React.createContext<BucketThemeContext | undefined>(undefined);
+
+function useBucketTheme(): BucketThemeContext {
+  /** Get the current context value */
+  const currentContext = React.useContext(ThemeContext);
+
+  /** Allow hook call outside content, returning the default object */
+  if (!currentContext) {
+    return {
+      theme: defaultBucketThemeConfig
+    };
+  }
+
+  /** Return the Context if exists */
+  return currentContext;
+}
 
 
 /* --------
@@ -48,9 +58,9 @@ const BucketTheme: React.FunctionComponent<{ theme?: PartialThemeOptions }> = (
 
   /** Create the Context Provider element and render with children */
   return (
-    <BucketThemeProvider value={{ theme }}>
+    <ThemeContext.Provider value={{ theme }}>
       {children}
-    </BucketThemeProvider>
+    </ThemeContext.Provider>
   );
 
 };
