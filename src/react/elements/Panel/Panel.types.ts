@@ -24,4 +24,7 @@ export interface StrictPanelProps extends Pick<PanelBodyProps, 'fab'> {
 
   /** Make the Panel completely solid */
   solid?: boolean;
+
+  /** Set the Panel as table Container */
+  table?: boolean;
 }

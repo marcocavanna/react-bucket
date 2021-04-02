@@ -33,9 +33,9 @@
     tiny-invariant "^1.1.0"
 
 "@appbuckets/react-ui-core@^0.1.4":
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/@appbuckets/react-ui-core/-/react-ui-core-0.1.4.tgz#aff0d68cb5962adc289da4997a842a88697ef83d"
-  integrity sha512-NqlEMNq8TtfaCtJZc8Pib/QjdtvlpVK29YonFNa5EX7woXDHi/HmRDMRqGc/9rfJ0Cz4pAYlT8LP9/Mu3JnzcA==
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/@appbuckets/react-ui-core/-/react-ui-core-0.1.5.tgz#c24349ebe706d409427556b10232111ffc722773"
+  integrity sha512-spt9D+JfXTS6XbNgX7muSn4/SC3ulvtIZRQhIi7o32b+e4NDZORbKbar5EIIR+DcwstruTkkQAxTAR8MwS4dvg==
   dependencies:
     "@appbuckets/react-autocontrolled-component" "^0.0.3"
     "@semantic-ui-react/event-stack" "^3.1.1"
@@ -2604,9 +2604,9 @@
     "@types/braces" "*"
 
 "@types/mini-css-extract-plugin@^1.2.3":
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/@types/mini-css-extract-plugin/-/mini-css-extract-plugin-1.2.3.tgz#199037f2f3e11fa0fa3e7606d762a6cd56a22785"
-  integrity sha512-kWuO6PeoOqlxaP+6NCSfM7x+NowqXwLnS03w/G6gYYhOviIx5bC3jeOhp5zloqe75pNJuBxfuJPKN+ABc4Xklw==
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@types/mini-css-extract-plugin/-/mini-css-extract-plugin-1.4.0.tgz#2f2b60075074f9b100db095c964dbf6a76f8aad0"
+  integrity sha512-q0gh4t2SmoPXwdeOtDi/chpUGCkQ3K+r/3FUDllV2lCkw/boxdzabLfkkxqihwcbzfe/ggWZUYf/2kA7OvgQeA==
   dependencies:
     "@types/webpack" "^4"
 
@@ -2630,12 +2630,7 @@
   dependencies:
     "@types/node" "*"
 
-"@types/node@*":
-  version "14.14.20"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.20.tgz#f7974863edd21d1f8a494a73e8e2b3658615c340"
-  integrity sha512-Y93R97Ouif9JEOWPIUyU+eyIdyRqQR0I8Ez1dzku4hDx34NWh4HbtIc3WNzwB1Y9ULvNGeu5B8h8bVL5cAk4/A==
-
-"@types/node@^14.14.37":
+"@types/node@*", "@types/node@^14.14.37":
   version "14.14.37"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.37.tgz#a3dd8da4eb84a996c36e331df98d82abd76b516e"
   integrity sha512-XYmBiy+ohOR4Lh5jE379fV2IU+6Jn4g5qASinhitfyO71b/sCo6MKsMLF5tc7Zf2CE8hViVQyYSobJNke8OvUw==
@@ -2837,9 +2832,9 @@
     typescript "*"
 
 "@types/uglify-js@*":
-  version "3.11.1"
-  resolved "https://registry.yarnpkg.com/@types/uglify-js/-/uglify-js-3.11.1.tgz#97ff30e61a0aa6876c270b5f538737e2d6ab8ceb"
-  integrity sha512-7npvPKV+jINLu1SpSYVWG8KvyJBhBa8tmzMMdDoVc2pWUYHN8KIXlPJhjJ4LT97c4dXJA2SHL/q6ADbDriZN+Q==
+  version "3.13.0"
+  resolved "https://registry.yarnpkg.com/@types/uglify-js/-/uglify-js-3.13.0.tgz#1cad8df1fb0b143c5aba08de5712ea9d1ff71124"
+  integrity sha512-EGkrJD5Uy+Pg0NUR8uA4bJ5WMfljyad0G+784vLCNUkD+QwOJXUbBYExXfVGf7YtyzdQp3L/XMYcliB987kL5Q==
   dependencies:
     source-map "^0.6.1"
 
@@ -9073,7 +9068,7 @@ lodash.uniq@^4.5.0:
   resolved "https://registry.yarnpkg.com/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
   integrity sha1-0CJTc662Uq3BvILklFM5qEJ1R3M=
 
-lodash@4.x, lodash@^4.17.21:
+lodash@4.x, lodash@^4.17.15, lodash@^4.17.21:
   version "4.17.21"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
   integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
@@ -9083,7 +9078,7 @@ lodash@^4.0.0, lodash@~4.17.12:
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
   integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
 
-lodash@^4.0.1, lodash@^4.17.11, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.19, lodash@^4.17.20:
+lodash@^4.0.1, lodash@^4.17.11, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.19, lodash@^4.17.20:
   version "4.17.20"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.20.tgz#b44a9b6297bcb698f1c51a3545a2b3b368d59c52"
   integrity sha512-PlhdFcillOINfeV7Ni6oF1TAEayyZBoZ8bcshTHqOYJYlrqzRK5hagpagky5o4HfCzzd1TRkXPMFq6cKk9rGmA==

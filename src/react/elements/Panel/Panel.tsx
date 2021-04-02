@@ -52,6 +52,7 @@ const Panel: PanelComponent = (receivedProps) => {
       loading,
       header,
       solid,
+      table,
       ...rawRest
     }
   } = useSharedClassName(props);
@@ -63,8 +64,9 @@ const Panel: PanelComponent = (receivedProps) => {
   const classes = clsx(
     {
       solid,
-      disabled: disabled || loading,
-      loading
+      disabled         : disabled || loading,
+      loading,
+      'table-container': table
     },
     'panel',
     className,

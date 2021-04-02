@@ -102,6 +102,16 @@
 
 
 /******
+    Table Container Panel
+******/
+.table-container.panel {
+  > .body {
+    padding: 0;
+  }
+}
+
+
+/******
     Loading Panel will append a Loader in front of Panel
 ******/
 .panel.loading {
