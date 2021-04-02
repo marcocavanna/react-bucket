@@ -571,6 +571,12 @@ $table-row-gutter: $columns-gutter * 1.5 !default;
 $table-header-font-weight: $semi-bold !default;
 $table-header-color: $text-secondary !default;
 $table-header-text-transform: uppercase !default;
+$table-header-content-text-transform: none !default;
+$table-header-content-font-size: .85em !default;
+$table-header-content-opacity: 1 !default;
+$table-header-meta-text-transform: $table-header-text-transform !default;
+$table-header-meta-opacity: .75 !default;
+$table-header-meta-font-size: .85em !default;
 
 $table-header-border-style: solid !default;
 $table-header-border-color: $cloud-light !default;

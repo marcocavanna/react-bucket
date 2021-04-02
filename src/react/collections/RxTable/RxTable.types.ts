@@ -9,11 +9,10 @@ import {
 
 import { LoaderProps } from '../../elements/Loader';
 import { EmptyContentProps } from '../../elements/EmptyContent';
-import { CheckboxProps } from '../../elements/Checkbox';
-import { InputProps } from '../../elements/Input';
-import { SelectMultiProps, SelectProps } from '../../elements/Select';
 
 import { TableCellContentProps, TableHeaderCellProps } from '../Table';
+
+import { RxTableDataFilter } from './atoms/DataFilterElement';
 
 import { UseRxTableFactoryConfig } from './RxTable.factory';
 
@@ -24,7 +23,7 @@ import { UseRxTableFactoryConfig } from './RxTable.factory';
 export interface RxTableProps<Data> extends ReactBucketComponentProps<StrictRxTableProps<Data>, 'table'> {
 }
 
-export interface StrictRxTableProps<Data> extends UseRxTableFactoryConfig<Data> {
+export interface StrictRxTableProps<Data> extends Omit<UseRxTableFactoryConfig<Data>, 'width'> {
   /** An Element used to Render the Component */
   as?: string | React.ComponentClass | React.FunctionComponent;
 
@@ -59,7 +58,10 @@ export interface StrictRxTableProps<Data> extends UseRxTableFactoryConfig<Data> 
   selectColumnProps?: Partial<Pick<RxTableColumnProps<Data>, 'className' | 'headerClassName' | 'key' | 'textAlign'>>
 
   /** Wrapper Style */
-  style?: React.CSSProperties
+  style?: React.CSSProperties;
+
+  /** Table Width */
+  width?: number;
 }
 
 
@@ -67,69 +69,31 @@ export interface StrictRxTableProps<Data> extends UseRxTableFactoryConfig<Data> 
  * RxTable Columns
  * -------- */
 
-/** Data Filtering */
-export type RxColumnInputFilter<Data> = {
-  initialValue?: string,
-  type: 'input',
-  props?: InputProps,
-  show: (value: string, data: Data, index: number, array: Data[]) => boolean;
-};
-
-export type RxColumnCheckboxFilter<Data> = {
-  initialValue?: boolean,
-  type: 'checkbox',
-  props?: CheckboxProps,
-  show: (value: boolean, data: Data, index: number, array: Data[]) => boolean;
-};
-
-export type RxColumnSelectFilter<Data, Option, Value> = {
-  initialValue?: Value,
-  type: 'select',
-  props: SelectProps<Option, Value>,
-  show: (value: Value, data: Data, index: number, array: Data[]) => boolean;
-};
-
-export type RxColumnsMultiSelectFilter<Data, Option, Value> = {
-  initialValue?: Value[],
-  type: 'multi-select',
-  props: SelectMultiProps<Option, Value>,
-  show: (value: Value[], data: Data, index: number, array: Data[]) => boolean;
-};
-
-export type RxTableDataFilter<Data, Option = any, Value = any> =
-  | RxColumnInputFilter<Data>
-  | RxColumnCheckboxFilter<Data>
-  | RxColumnSelectFilter<Data, Option, Value>
-  | RxColumnsMultiSelectFilter<Data, Option, Value>;
-
-
-/** Cell content could be computed using function or shorthand */
-type ComputedCellContentField<Data> =
-  | ((data: Data, index: number, array: Data[]) => ShorthandItem<TableCellContentProps>)
-  | TableCellContentProps
-  | React.ReactNode;
-
 /** Cell Content Component */
-export interface RxTableCellContentProps<Data, ColumnExtraProps> {
+export interface RxTableCellContentProps<Data> {
   /** Entire Column */
-  column: RxTableColumnProps<Data, ColumnExtraProps>;
+  column: RxTableColumnProps<Data>;
 
   /** Table data array */
   data: Data[];
 
   /** Row index */
-  index: number;
+  rowIndex: number;
 
   /** Cell Row Data */
   row: Data;
 }
 
-export type RxTableCellContent<Data, ColumnExtraProps> = React.FunctionComponent<RxTableCellContentProps<Data, ColumnExtraProps>>;
+export type RxTableCellContent<Data> = React.FunctionComponent<RxTableCellContentProps<Data>>;
+
+/** Cell content could be computed using function or shorthand */
+export type ComputedCellContentField<Data> =
+  | ((data: Data, index: number, array: Data[]) => ShorthandItem<TableCellContentProps>)
+  | TableCellContentProps
+  | React.ReactNode;
 
 /** Single Column */
-export type RxTableColumnProps<Data, Props extends {} = {}> = Props & StrictRxTableColumnProps<Data, Props>;
-
-export interface StrictRxTableColumnProps<Data, ExtraProps> {
+export interface RxTableColumnProps<Data> {
   /** Column Cell definition by object */
   cell?: {
     /** Main Content */
@@ -141,7 +105,7 @@ export interface StrictRxTableColumnProps<Data, ExtraProps> {
   };
 
   /** Set a component to render the cell content */
-  Content?: RxTableCellContent<Data, ExtraProps>;
+  Content?: RxTableCellContent<Data>;
 
   /** Children are not allowed */
   children?: never;
@@ -151,6 +115,9 @@ export interface StrictRxTableColumnProps<Data, ExtraProps> {
 
   /** Filter data */
   filter?: RxTableDataFilter<Data>
+
+  /** The Column Grow factor, same as flex-grow properties when using auto sizing */
+  growFactor?: number;
 
   /** Header content */
   header?: ShorthandItem<TableHeaderCellProps>;
@@ -169,12 +136,25 @@ export interface StrictRxTableColumnProps<Data, ExtraProps> {
 
   /** Set text align */
   textAlign?: ContentAlign;
+
+  /** The Column Width */
+  width?: number | 'auto';
+
+  /** Width calc type, when using auto, width will not be used any more */
+  widthType?: 'fixed' | 'percentage';
 }
 
 
 /* --------
  * Side Components
  * -------- */
+
+/**
+ * HeaderCell
+ * ---
+ * This component is demanded to render
+ * the column header cell.
+ */
 export interface RxTableHeaderCellProps {
   /** Header cell className */
   className: string;
@@ -183,7 +163,7 @@ export interface RxTableHeaderCellProps {
   content: ShorthandItem<TableHeaderCellProps>;
 
   /** Rendered Column */
-  column: RxTableColumnProps<any, { width?: number }>;
+  column: RxTableColumnProps<any>;
 
   /** Cell has Sorting */
   hasSorting: boolean;
@@ -194,31 +174,50 @@ export interface RxTableHeaderCellProps {
   /** Column is sorting reversed */
   isReversedSorting: boolean;
 
+  /** Column header is part of a virtualized table */
+  isVirtualized: boolean;
+
   /** On Click Handler */
   onClick?: () => void;
+
+  /** Mandatory Style to be Applied to set column width */
+  style: React.CSSProperties;
 }
 
-export interface RxTableFilterCellProps {
-  /** Filter element is passed using children */
-  children: React.ReactNode;
+export type RxTableHeaderCellComponent = React.ComponentType<RxTableHeaderCellProps & AnyObject>;
 
-  /** Filter cell className */
-  className: string;
 
-  /** Rendered Column */
-  column: RxTableColumnProps<any, any>;
+/**
+ * Empty Content
+ * ---
+ * Render the Empty Content Text.
+ * Filtered Data length, and All Data length
+ * are passed to check if table has no data
+ * or filtered data is empty
+ */
+export interface RxTableEmptyContentProps {
+  /** User defined className */
+  className: string | undefined;
+
+  /** Table has data */
+  hasData: boolean;
+
+  /** Table has filtered data */
+  hasFilteredData: boolean;
+
+  /** User defined style */
+  style: React.CSSProperties | undefined;
 }
 
-export interface RxTableErrorProps {
-  /** The error threw */
-  error: any;
-}
+export type RxTableEmptyContentComponent = React.ComponentType<RxTableEmptyContentProps>;
 
-export interface RxTableNoContentProps {
-  /** The filters Element */
-  filters: Record<string, any>;
-}
 
+/**
+ * Row
+ * ---
+ * This component is demanded to render the
+ * row that will contain each data cell
+ */
 export interface RxTableRowProps<Data> {
   /** Columns Array */
   children: React.ReactNode;
@@ -227,10 +226,10 @@ export interface RxTableRowProps<Data> {
   className: string;
 
   /** Columns Array */
-  columns: RxTableColumnProps<Data, any>[]
+  columns: RxTableColumnProps<Data>[]
 
-  /** Row index */
-  index: Number;
+  /** Check if row is part of a virtualized table */
+  isVirtualized: boolean;
 
   /** On row click handler */
   onClick?: () => void;
@@ -238,34 +237,44 @@ export interface RxTableRowProps<Data> {
   /** The Row Data */
   row: Data;
 
+  /** Row index */
+  rowIndex: Number;
+
   /** Optional Style */
   style?: React.CSSProperties;
 }
 
+export type RxTableRowComponent<Data> = React.ComponentType<RxTableRowProps<Data> & AnyObject>;
+
+
+/**
+ * Cell
+ * ---
+ * This component is demanded to render the
+ * single data cell
+ */
 export interface RxTableCellProps<Data> {
   /** Cell className */
   className: string;
 
   /** Column Properties */
-  column: RxTableColumnProps<Data, { width?: number }>;
+  column: RxTableColumnProps<Data>;
 
-  /** All data array */
-  tableData: Data[];
-
-  /** The Row Index */
-  index: number;
+  /** Check if cell is part of a virtualized table */
+  isVirtualized: boolean;
 
   /** Single Row Data */
   row: Data;
+
+  /** The Row Index */
+  rowIndex: number;
+
+  /** Mandatory Style to be Applied to set column width */
+  style: React.CSSProperties;
+
+  /** All data array */
+  tableData: Data[];
 }
-
-export type RxTableHeaderCellComponent = React.ComponentType<RxTableHeaderCellProps & AnyObject>;
-
-export type RxTableFilterCellComponent = React.ComponentType<RxTableFilterCellProps & AnyObject>;
-
-export type RxTableErrorComponent = React.ComponentType<RxTableErrorProps & AnyObject>;
-
-export type RxTableRowComponent<Data> = React.ComponentType<RxTableRowProps<Data> & AnyObject>;
 
 export type RxTableCellComponent<Data> = React.ComponentType<RxTableCellProps<Data> & AnyObject>;
 
@@ -287,19 +296,13 @@ export interface RxTableComponents<Data> {
   BodyWrapper: React.ElementType;
 
   /** Error Component */
-  Error: RxTableErrorComponent;
+  Error: React.ElementType;
 
   /** The Error Row Wrapper */
   ErrorRow: React.ElementType;
 
   /** The Error Cell */
   ErrorCell: React.ElementType;
-
-  /** Cell Element used to wrap single Filter */
-  FilterCell: RxTableFilterCellComponent;
-
-  /** Row Used to draw Filters */
-  FilterRow: React.ElementType;
 
   /** Element used to Wrap the header rows collection */
   Header: React.ElementType;
@@ -314,7 +317,7 @@ export interface RxTableComponents<Data> {
   HeaderWrapper: React.ElementType;
 
   /** The Loader Element */
-  Loader: React.ComponentType;
+  Loader: React.ElementType;
 
   /** The Loader Row Wrapper */
   LoaderRow: React.ElementType;
@@ -323,7 +326,7 @@ export interface RxTableComponents<Data> {
   LoaderCell: React.ElementType;
 
   /** The No Content Element */
-  NoContent: React.ComponentType<RxTableNoContentProps>;
+  NoContent: RxTableEmptyContentComponent;
 
   /** The No Content Cell */
   NoContentCell: React.ElementType;

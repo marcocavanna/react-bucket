@@ -27,7 +27,8 @@ export type BuiltContext<Context> = {
  * Context Builder
  * -------- */
 export default function contextBuilder<Context>(
-  initialContext?: Context
+  initialContext?: Context,
+  name?: string
 ): BuiltContext<Context> {
   /** Create the base Context */
   const BaseContext = React.createContext<Context | undefined>(initialContext);
@@ -39,7 +40,7 @@ export default function contextBuilder<Context>(
     /** Assert value exists */
     invariant(
       ctxValue !== undefined,
-      'useContext() hook must be invoked inside its right Context'
+      `use${name || 'Context'}() hook must be invoked inside its right Context`
     );
     /** Return the Context */
     return ctxValue;

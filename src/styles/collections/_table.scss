@@ -77,7 +77,7 @@ table > .head,
   > .row {
     display: table-row;
 
-    &:last-child {
+    &:last-child > .cell {
       border-bottom-style: $table-header-border-style;
       border-bottom-width: $table-header-border-width;
       border-bottom-color: $table-header-border-color;
@@ -95,6 +95,18 @@ table > .head,
     -webkit-touch-callout: none;
     white-space: nowrap;
     overflow: hidden;
+
+    > .cell-text-meta {
+      font-size: $table-header-meta-font-size;
+      text-transform: $table-header-meta-text-transform;
+      opacity: $table-header-meta-opacity;
+    }
+
+    > .cell-text-content {
+      font-size: $table-header-content-font-size;
+      text-transform: $table-header-content-text-transform;
+      opacity: $table-header-content-opacity;
+    }
   }
 }
 
@@ -149,6 +161,10 @@ table > .head,
 .table > .body,
 .table > .foot {
   > .row > .cell {
+
+    // ----
+    //  Set base Cell Text Style
+    // ----
     .cell-text-meta,
     .cell-text-title,
     .cell-text-content {
@@ -168,6 +184,10 @@ table > .head,
       font-size: $table-cell-content-font-size;
     }
 
+
+    // ----
+    //  Set Text Style for not Wrapped Cell
+    // ----
     &:not(.wrapped) {
       overflow: hidden;
       text-overflow: ellipsis;
@@ -181,6 +201,18 @@ table > .head,
         white-space: nowrap;
       }
     }
+  }
+}
+
+
+/******
+    Set the Checkbox Selector Base Style
+******/
+.table .row .selector.cell {
+  text-align: center;
+
+  .checkbox.field {
+    display: inline-block;
   }
 }
 
@@ -208,6 +240,8 @@ table > .head,
   // ----
   .row > .cell.with-icon > svg.icon {
     position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
   }
 
   // ----
@@ -326,9 +360,8 @@ table > .head,
 ******/
 .virtualized.table {
   &,
-  & .head,
   & .body,
-  & .cell {
+  & .body .cell {
     display: block !important;
   }
 
@@ -341,13 +374,10 @@ table > .head,
     overflow: visible;
   }
 
-  & .row {
+  > .body > .row {
     display: flex !important;
     flex-wrap: nowrap !important;
     align-items: center;
-  }
-
-  > .body > .row {
 
     > .cell {
       display: flex !important;
@@ -367,6 +397,16 @@ table > .head,
     text-overflow: ellipsis;
     overflow: hidden;
   }
+
+
+  // ----
+  //  Fix Selector on Header Cell
+  // ----
+  //.head > .row > .selector.cell {
+  //  display: flex !important;
+  //  justify-content: center;
+  //  align-items: center;
+  //}
 
 
   // ----

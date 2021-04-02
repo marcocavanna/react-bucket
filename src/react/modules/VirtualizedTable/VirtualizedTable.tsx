@@ -1,42 +1,39 @@
 import * as React from 'react';
 import clsx from 'clsx';
 
+import { VariableSizeList, ListItemKeySelector, areEqual } from 'react-window';
+
 import { AnyObject } from '../../generic';
+import { useElementSize } from '../../hooks/useElementSize';
 
 import { useWithDefaultProps } from '../../context/BucketContext';
 
-import { useRxTableFactory } from '../../collections/RxTable/RxTable.factory';
-import { RxTableColumnProps, RxTableComponents } from '../../collections/RxTable';
-import { RxTableError } from '../../collections/RxTable/RxTableDefaultComponents';
+import { RxTableComponents, RxTableContext, useRxTableFactory } from '../../collections/RxTable';
+import { RxTableProvider } from '../../collections/RxTable/RxTable.context';
 
-import {
-  VirtualizedTableContext,
-  VirtualizedTableProvider
-} from './VirtualizedTable.context';
+import BodyRow from '../../collections/RxTable/components/BodyRow';
+import FiltersRow from '../../collections/RxTable/components/FiltersRow';
+import HeaderRow from '../../collections/RxTable/components/HeaderRow';
+import StateDependentBodyRow from '../../collections/RxTable/components/StateDependentBodyRow';
 
-import { MandatoryVirtualizedColumnProps, VirtualizedTableProps } from './VirtualizedTable.types';
+import RxTableBodyCell from '../../collections/RxTable/defaults/RxTableBodyCell';
+import RxTableBodyRow from '../../collections/RxTable/defaults/RxTableBodyRow';
+import RxTableHeaderCell from '../../collections/RxTable/defaults/RxTableHeaderCell';
+import RxTableEmptyContent from '../../collections/RxTable/defaults/RxTableEmptyContent';
+import RxTableError from '../../collections/RxTable/defaults/RxTableError';
+import RxTableLoader from '../../collections/RxTable/defaults/RxTableLoader';
 
-import {
-  VirtualizedTableBodyCell,
-  VirtualizedTableBodyRow,
-  VirtualizedTableFilterCell,
-  VirtualizedTableHeaderCell,
-  VirtualizedTableLoader,
-  VirtualizedTableNoContent
-} from './VirtualizedTableDefaultComponents';
-
-import { VirtualizedBody } from './VirtualizedTableBody';
-import { VirtualizedTableHeader } from './VirtualizedTableHeader';
+import { VirtualizedTableProps } from './VirtualizedTable.types';
 
 
 /* --------
- * Component Declare
+ * Memoize the BodyRow Component to be used with VariableSizeList
  * -------- */
-type VirtualizedTableComponent<Data> = React.FunctionComponent<VirtualizedTableProps<Data>>;
+const MemoizedBodyRow = React.memo(BodyRow, areEqual);
 
 
 /* --------
- * Component Render
+ * Component Definition
  * -------- */
 const VirtualizedTable = <Data extends AnyObject>(
   receivedProps: React.PropsWithChildren<VirtualizedTableProps<Data>>
@@ -45,38 +42,43 @@ const VirtualizedTable = <Data extends AnyObject>(
   const props = useWithDefaultProps('virtualizedTable', receivedProps);
 
   const {
-    // Virtualized Table Props
-    columns   : userDefinedColumns,
+    /** RxTable Shared Props */
+    classes: userDefinedClasses,
+    className,
+    columns,
     Components: userDefinedComponents,
     data,
     defaultData,
-    defaultLoading       : userDefinedDefaultLoading,
     defaultReverseSorting: userDefinedDefaultReverseSorting,
-    defaultSelectedData  : userDefinedDefaultSelectedData,
+    defaultSelectedData  : userDefinedSelectedData,
     defaultSort          : userDefinedDefaultSort,
     disableHeader,
-    noDataEmptyContentProps,
-    noFilteredDataEmptyContentProps,
     filterLogic,
-    filterRowHeight: userDefinedFilterRowHeight,
-    getRowKey,
-    headerHeight: userDefinedHeaderHeight,
-    height,
+    getRowKey: userDefinedGetRowKey,
+    initiallyLoading,
     loaderProps,
+    noFilteredDataEmptyContentProps,
+    noDataEmptyContentProps,
     onRowClick,
-    onSelectedDataChange,
     onSortChange,
+    onSelectedDataChange,
     reloadDependency,
     reloadSilently,
     reverseSorting: userDefinedReverseSorting,
-    rowHeight,
     selectable,
     selectColumnProps,
     sort: userDefinedSort,
     style,
-    width,
+    styles: userDefinedStyles,
+    width : userDefinedWidth,
 
-    // Extracted Variable Size List Props
+    /** Dedicated VirtualizedTable Props */
+    filterRowHeight: userDefinedFilterRowHeight,
+    headerHeight   : userDefinedHeaderHeight,
+    height         : userDefinedHeight,
+    rowHeight,
+
+    /** Extracted Variable Size List Props */
     direction,
     itemKey,
     overscanCount,
@@ -84,48 +86,143 @@ const VirtualizedTable = <Data extends AnyObject>(
     onScroll,
     useIsScrolling,
 
-    // Remove Children
-    children,
-
     ...rest
   } = props;
 
 
   // ----
-  // Update Columns Field using Selectable
+  // Checker Builder
   // ----
-  const columns: RxTableColumnProps<Data, MandatoryVirtualizedColumnProps>[] = React.useMemo(
-    () => {
-      /** If table isn't selectable, return columns */
-      if (!selectable) {
-        return userDefinedColumns;
-      }
+  const hasFilterRow = React.useMemo<boolean>(
+    () => columns.some((column) => !!column.filter),
+    [ columns ]
+  );
 
-      /** Return Columns width Select Column Props and Default */
-      return [
-        {
-          key  : '%%selectable%%',
-          width: 50,
-          ...selectColumnProps
-        },
-        ...userDefinedColumns
-      ];
-    },
-    [ userDefinedColumns, selectable, selectColumnProps ]
+  const hasHeaderRow = React.useMemo<boolean>(
+    () => columns.some((column) => !!column.header),
+    [ columns ]
   );
 
 
-  /** Use RxTable Factory to get Data and Props */
-  const rxTableProps = useRxTableFactory<Data, MandatoryVirtualizedColumnProps>({
+  // ----
+  // Initialize the Width Detector
+  // ----
+  const [ widthDetector, { width: detectedWidth } ] = useElementSize({
+    disabled: typeof userDefinedWidth === 'number'
+  });
+
+  const width = userDefinedWidth ?? detectedWidth ?? 0;
+
+  const headerHeight = React.useMemo(
+    () => {
+      /** If table has not header row, return 0 */
+      if (!hasHeaderRow) {
+        return 0;
+      }
+
+      const baseHeaderHeight = typeof userDefinedHeaderHeight === 'number'
+        ? userDefinedHeaderHeight
+        : typeof rowHeight === 'number'
+          ? rowHeight
+          : 0;
+
+      /** If table is not selectable, return the base height */
+      if (!selectable || hasFilterRow) {
+        return baseHeaderHeight;
+      }
+
+      return Math.max(40, baseHeaderHeight);
+    },
+    [ hasFilterRow, hasHeaderRow, rowHeight, selectable, userDefinedHeaderHeight ]
+  );
+
+  const filterRowHeight = hasFilterRow
+    ? typeof userDefinedFilterRowHeight === 'number'
+      ? userDefinedFilterRowHeight
+      : headerHeight
+    : 0;
+
+
+  // ----
+  // Load RxTableProps
+  // ----
+  const rxTableProps = useRxTableFactory<Data>({
+    classes              : {
+      Body         : clsx(
+        'virtualized body',
+        userDefinedClasses?.Body
+      ),
+      BodyCell     : clsx(
+        'virtualized cell',
+        userDefinedClasses?.BodyCell
+      ),
+      BodyRow      : clsx(
+        'virtualized row',
+        userDefinedClasses?.BodyRow
+      ),
+      BodyWrapper  : clsx(
+        'virtualized table virtualized-body',
+        userDefinedClasses?.BodyWrapper
+      ),
+      ErrorCell    : clsx(
+        'cell error-cell',
+        userDefinedClasses?.ErrorCell
+      ),
+      ErrorRow     : clsx(
+        'row error-row',
+        userDefinedClasses?.ErrorRow
+      ),
+      Header       : clsx(
+        'virtualized head',
+        userDefinedClasses?.Header
+      ),
+      HeaderRow    : clsx(
+        'virtualized row',
+        userDefinedClasses?.HeaderRow
+      ),
+      HeaderWrapper: clsx(
+        'virtualized table virtualized-head',
+        userDefinedClasses?.HeaderWrapper
+      ),
+      LoaderCell   : clsx(
+        'cell loading-cell',
+        userDefinedClasses?.LoaderCell
+      ),
+      LoaderRow    : clsx(
+        'row loading-row',
+        userDefinedClasses?.LoaderRow
+      ),
+      NoContentCell: clsx(
+        'cell no-content-cell',
+        userDefinedClasses?.NoContentCell
+      ),
+      NoContentRow : clsx(
+        'row no-content-row',
+        userDefinedClasses?.NoContentRow
+      ),
+      ...userDefinedClasses
+    },
+    styles               : {
+      HeaderCell: {
+        height: headerHeight,
+        ...userDefinedStyles?.HeaderCell
+      },
+      FilterCell: {
+        height: filterRowHeight,
+        ...userDefinedStyles?.FilterCell
+      },
+      ...userDefinedStyles
+    },
     columns,
     data,
     defaultData,
-    defaultLoading       : userDefinedDefaultLoading,
+    defaultLoading       : initiallyLoading,
     defaultReverseSorting: userDefinedDefaultReverseSorting,
-    defaultSelectedData  : userDefinedDefaultSelectedData,
+    defaultSelectedData  : userDefinedSelectedData,
     defaultSort          : userDefinedDefaultSort,
     filterLogic,
-    getRowKey,
+    getRowKey            : userDefinedGetRowKey,
+    isVirtualized        : true,
     onRowClick,
     onSelectedDataChange,
     onSortChange,
@@ -133,162 +230,27 @@ const VirtualizedTable = <Data extends AnyObject>(
     reloadSilently,
     reverseSorting       : userDefinedReverseSorting,
     selectable,
-    sort                 : userDefinedSort
+    selectColumnProps,
+    sort                 : userDefinedSort,
+    width
   });
 
 
-  /* --------
-   * Compute Table Width and Height and Accessor
-   * -------- */
-  const headerHeight = typeof userDefinedHeaderHeight === 'number'
-    ? userDefinedHeaderHeight
-    : typeof rowHeight === 'number'
-      ? rowHeight
-      : 0;
+  // ----
+  // Compute Table Width and Height and Accessor
+  // ----
+  const tableBodyHeight = userDefinedHeight - (!disableHeader ? headerHeight : 0) - filterRowHeight;
+  const tableDataHeight = typeof rowHeight === 'number'
+    ? rxTableProps.tableData.length * rowHeight
+    : Number.MAX_SAFE_INTEGER;
 
-  const filterRowHeight = rxTableProps.hasFilterRow
-    ? typeof userDefinedFilterRowHeight === 'number'
-      ? userDefinedFilterRowHeight
-      : headerHeight
-    : 0;
-
-  const tableBodyHeight = height - (!disableHeader ? headerHeight : 0) - filterRowHeight;
+  const effectiveBodyHeight = Math.min(tableBodyHeight, tableDataHeight);
+  const effectiveTableHeight = effectiveBodyHeight + (!disableHeader ? headerHeight : 0) + filterRowHeight;
 
 
-  /* --------
-   * Compute Column Fixed Width and flexible available space
-   * -------- */
-  const columnsWidth: Record<string, number> = React.useMemo(
-    () => {
-      /** Build the Columns Container */
-      const widths: Record<string, number> = {};
-
-      /** Get the fixed used space */
-      const availableFlexibleSpace = width - columns
-        .filter((column) => (
-          typeof column.width === 'number' && (!column.widthType || column.widthType === 'fixed')
-        ))
-        .reduce<number>((total, next) => total + (next.width as number), 0);
-
-      /** Get total available spacing for auto column */
-      let autoFlexibleSpace = availableFlexibleSpace;
-
-      /** Loop each column to build width */
-      columns
-        .filter((column) => typeof column.width === 'number')
-        .forEach((column) => {
-          /** Calc percentage space */
-          if (column.widthType === 'percentage') {
-            const columnWidth = (availableFlexibleSpace / 100) * (column.width as number);
-            widths[column.key] = columnWidth;
-            autoFlexibleSpace -= columnWidth;
-            return;
-          }
-
-          /** Return the user defined width */
-          widths[column.key] = column.width as number;
-        });
-
-      const autoSizingColumns = columns.filter((column) => column.width === 'auto');
-
-      /** Get the maximum grow factor */
-      const totalGrowFactor = autoSizingColumns.reduce<number>((max, { growFactor }) => (
-        max + Math.max(1, (growFactor ?? 1))
-      ), 0);
-
-      /** Compute the Auto Sizing Columns */
-      autoSizingColumns
-        .forEach((column) => {
-          /** Divide the spacing equally */
-          widths[column.key] = (autoFlexibleSpace / totalGrowFactor) * Math.max(1, (column.growFactor ?? 1));
-        });
-
-      return widths;
-    },
-    [ columns, width ]
-  );
-
-  const totalColumnsWidth = Object.keys(columnsWidth).reduce<number>((totalWidth, nextKey) => (
-    totalWidth + (columnsWidth[nextKey])
-  ), 0);
-
-  const effectiveWidth = Math.max(width, totalColumnsWidth);
-
-  const getColumnWidth = React.useCallback(
-    (key: string) => {
-      /** Check if is last column */
-      const isLast = columns[columns.length - 1].key === key;
-
-      /** If is not last then return its declared width */
-      if (!isLast) {
-        return columnsWidth[key] ?? 0;
-      }
-
-      /** Else, return the remain width */
-      const restColumnsWidth = Object.keys(columnsWidth).reduce<number>((totalWidth, nextKey) => (
-        nextKey === key
-          ? totalWidth
-          : totalWidth + (columnsWidth[nextKey])
-      ), 0);
-
-      return effectiveWidth - restColumnsWidth;
-    },
-    [ columnsWidth, columns, effectiveWidth ]
-  );
-
-
-  /* --------
-   * Build the Components
-   * -------- */
-  const Components: RxTableComponents<Data> = {
-    Body         : 'div',
-    BodyCell     : VirtualizedTableBodyCell,
-    BodyRow      : VirtualizedTableBodyRow,
-    BodyWrapper  : 'div',
-    Error        : RxTableError,
-    ErrorRow     : 'div',
-    ErrorCell    : 'div',
-    FilterCell   : VirtualizedTableFilterCell,
-    FilterRow    : 'div',
-    Header       : 'div',
-    HeaderCell   : VirtualizedTableHeaderCell,
-    HeaderRow    : 'div',
-    HeaderWrapper: 'div',
-    Loader       : VirtualizedTableLoader,
-    LoaderRow    : 'div',
-    LoaderCell   : 'div',
-    NoContent    : VirtualizedTableNoContent,
-    NoContentCell: 'div',
-    NoContentRow : 'div',
-    ...userDefinedComponents
-  };
-
-
-  /* --------
-   * Build Classes
-   * -------- */
-  const wrapperClasses = clsx('virtualized-table');
-
-
-  /* --------
-   * Memoized Properties
-   * -------- */
-  const wrapperStyle = React.useMemo<React.CSSProperties>(
-    () => ({
-      height   : `${height}px`,
-      width    : `${width}px`,
-      overflow : 'auto',
-      maxHeight: '100vh',
-      minHeight: '200px',
-      ...style
-    }),
-    [ height, width, style ]
-  );
-
-
-  /* --------
-   * VirtualList Methods
-   * -------- */
+  // ----
+  // Row Height Calculator
+  // ----
   const estimatedItemSize = typeof rowHeight === 'number' ? rowHeight : undefined;
 
   const getRowHeight = React.useCallback(
@@ -303,54 +265,260 @@ const VirtualizedTable = <Data extends AnyObject>(
   );
 
 
-  /* --------
-   * Build the Context
-   * -------- */
-  const virtualizedTableContext: VirtualizedTableContext<Data> = {
+  // ----
+  // Row Key Getter
+  // ----
+  const getRowKey = React.useCallback<ListItemKeySelector>(
+    (index) => {
+      /** If an itemKey function exists, use it */
+      if (typeof itemKey === 'function') {
+        return itemKey(index, rxTableProps.tableData);
+      }
+
+      /** Use the data selector function */
+      const extractedKey = rxTableProps.selection.getRowKey(
+        rxTableProps.tableData[index],
+        index,
+        rxTableProps.tableData
+      );
+
+      return extractedKey === '' ? index : extractedKey;
+    },
+    [ itemKey, rxTableProps.selection, rxTableProps.tableData ]
+  );
+
+
+  // ----
+  // Define Components
+  // ----
+  const Components: RxTableComponents<Data> = React.useMemo(
+    () => ({
+      Body         : 'div',
+      BodyCell     : RxTableBodyCell,
+      BodyRow      : RxTableBodyRow,
+      BodyWrapper  : 'div',
+      Error        : RxTableError,
+      ErrorRow     : 'div',
+      ErrorCell    : 'div',
+      Header       : 'div',
+      HeaderCell   : RxTableHeaderCell,
+      HeaderRow    : 'div',
+      HeaderWrapper: 'div',
+      Loader       : RxTableLoader,
+      LoaderRow    : 'div',
+      LoaderCell   : 'div',
+      NoContent    : RxTableEmptyContent,
+      NoContentCell: 'div',
+      NoContentRow : 'div',
+      ...userDefinedComponents
+    }),
+    [ userDefinedComponents ]
+  );
+
+
+  // ----
+  // Context Building
+  // ----
+  const rxTableContext: RxTableContext<Data> = {
     ...rxTableProps,
-    columns,
     Components,
-    effectiveWidth,
-    noDataEmptyContentProps,
-    noFilteredDataEmptyContentProps,
-    filterRowHeight,
-    headerHeight,
-    height: tableBodyHeight,
-    getColumnWidth,
-    getRowHeight,
     loaderProps,
-    width
+    noFilteredDataEmptyContentProps,
+    noDataEmptyContentProps
   };
 
 
-  /* --------
-   * Component Render
-   * -------- */
-  return (
-    <div
-      className={wrapperClasses}
-      style={wrapperStyle}
-      {...rest}
-    >
-      <VirtualizedTableProvider value={virtualizedTableContext}>
-        {!disableHeader && (
-          <VirtualizedTableHeader />
-        )}
-        <VirtualizedBody
-          direction={direction}
-          estimatedItemSize={estimatedItemSize}
-          itemKey={itemKey}
-          overscanCount={overscanCount}
-          onItemsRendered={onItemsRendered}
-          onScroll={onScroll}
-          useIsScrolling={useIsScrolling}
+  // ----
+  // Fragments could not have properties extra from key
+  // ----
+  const headerWrapperProps = Components.HeaderWrapper !== React.Fragment
+    ? { className: rxTableProps.classes.HeaderWrapper, style: rxTableProps.styles.HeaderWrapper }
+    : {};
+
+
+  // ----
+  // Build the Component that will render the VariableSizeList
+  // ----
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const VariableSizeListOuterElement = React.useCallback<React.FunctionComponent<AnyObject>>(
+    React.forwardRef((outerElementProps, ref) => {
+
+      /** Remove the Ref */
+      const {
+        ...restElementProps
+      } = outerElementProps;
+
+      return (
+        <Components.BodyWrapper
+          {...restElementProps}
+          ref={ref}
+          className={rxTableProps.classes.BodyWrapper}
+          style={{
+            ...rxTableProps.styles.BodyWrapper,
+            ...restElementProps.style
+          }}
         />
-      </VirtualizedTableProvider>
-    </div>
+      );
+    }),
+    [ rxTableProps.classes.BodyWrapper, rxTableProps.styles.BodyWrapper, Components ]
   );
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const VariableSizeListInnerElement = React.useCallback<React.FunctionComponent<AnyObject>>(
+    React.forwardRef((innerElementProps, ref) => {
+
+      /** Remove the Ref */
+      const {
+        ...restElementProps
+      } = innerElementProps;
+
+      return (
+        <Components.Body
+          {...restElementProps}
+          ref={ref}
+          className={rxTableProps.classes.Body}
+          style={{
+            ...rxTableProps.styles.Body,
+            ...restElementProps.style
+          }}
+        />
+      );
+    }),
+    [ rxTableProps.classes.Body, rxTableProps.styles.Body, Components ]
+  );
+
+  const BodyRows = React.useCallback<React.FunctionComponent>(
+    () => (
+      <VariableSizeList
+        direction={direction}
+        itemKey={getRowKey}
+        overscanCount={overscanCount}
+        onItemsRendered={onItemsRendered}
+        onScroll={onScroll}
+        useIsScrolling={useIsScrolling}
+        width={rxTableProps.layout.effectiveTableWidth}
+        height={effectiveBodyHeight}
+        itemSize={getRowHeight}
+        estimatedItemSize={estimatedItemSize}
+        itemCount={rxTableProps.tableData.length}
+        outerElementType={VariableSizeListOuterElement}
+        innerElementType={VariableSizeListInnerElement}
+      >
+        {MemoizedBodyRow}
+      </VariableSizeList>
+    ),
+    [
+      VariableSizeListOuterElement,
+      VariableSizeListInnerElement,
+      direction,
+      effectiveBodyHeight,
+      estimatedItemSize,
+      getRowHeight,
+      getRowKey,
+      onItemsRendered,
+      onScroll,
+      overscanCount,
+      rxTableProps.layout.effectiveTableWidth,
+      rxTableProps.tableData.length,
+      useIsScrolling
+    ]
+  );
+
+
+  // ----
+  // Wrap the StateDependentRow to avoid multiple Body and BodyWrapper component nest
+  // ----
+  const isShowingData = !(rxTableProps.dataState.isLoading || rxTableProps.dataState.error || !rxTableProps.tableData.length);
+
+  const tableBodyContent = React.useMemo(
+    () => {
+      if (!isShowingData) {
+        const bodyWrapperProps = Components.BodyWrapper !== React.Fragment
+          ? { className: rxTableProps.classes.BodyWrapper, style: rxTableProps.styles.BodyWrapper }
+          : {};
+
+        return (
+          <Components.BodyWrapper {...bodyWrapperProps}>
+            <Components.Body style={rxTableProps.styles.Body} className={rxTableProps.classes.Body}>
+              <StateDependentBodyRow />
+            </Components.Body>
+          </Components.BodyWrapper>
+        );
+      }
+
+      return <BodyRows />;
+    },
+    [
+      isShowingData,
+      BodyRows,
+      Components,
+      rxTableProps.classes.BodyWrapper,
+      rxTableProps.styles.BodyWrapper,
+      rxTableProps.classes.Body,
+      rxTableProps.styles.Body
+    ]
+  );
+
+
+  // ----
+  // Build Table ClassList
+  // ----
+  const wrapperClasses = clsx('virtualized-table');
+
+
+  // ----
+  // Build Wrapper Style
+  // ----
+  const wrapperStyle = React.useMemo<React.CSSProperties>(
+    () => (isShowingData ? {
+      height   : `${effectiveTableHeight}px`,
+      width    : `${width}px`,
+      overflow : 'auto',
+      maxHeight: '100vh',
+      minHeight: '200px',
+      ...style
+    } : { ...style }),
+    [ effectiveTableHeight, width, style, isShowingData ]
+  );
+
+
+  // ----
+  // Component Render
+  // ----
+  return (
+    <React.Fragment>
+      {/* Width Detector Element */}
+      {widthDetector}
+
+      <div
+        {...rest}
+        className={wrapperClasses}
+        style={wrapperStyle}
+      >
+
+        <RxTableProvider value={rxTableContext}>
+
+          {/* Table Header */}
+          {(rxTableProps.layout.hasHeaderRow || rxTableProps.layout.hasFilterRow) && (
+            <Components.HeaderWrapper {...headerWrapperProps}>
+              <Components.Header className={rxTableProps.classes.Header} style={rxTableProps.styles.Header}>
+                {/* Header Row Render */}
+                {rxTableProps.layout.hasHeaderRow && <HeaderRow />}
+                {/* Filter Row Render */}
+                {rxTableProps.layout.hasFilterRow && <FiltersRow />}
+              </Components.Header>
+            </Components.HeaderWrapper>
+          )}
+
+          {/* Table Body */}
+          {tableBodyContent}
+
+        </RxTableProvider>
+      </div>
+    </React.Fragment>
+  );
 };
 
-(VirtualizedTable as VirtualizedTableComponent<unknown>).displayName = 'VirtualizedTable';
+VirtualizedTable.displayName = 'VirtualizedTable';
 
 export default VirtualizedTable;

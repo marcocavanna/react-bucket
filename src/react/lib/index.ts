@@ -1,3 +1,5 @@
+export { default as areEqualStringArray } from './areEqualStringArray';
+
 export * from './customHook';
 
 export { default as contextBuilder } from './contextBuilder';

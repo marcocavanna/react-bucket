@@ -4,29 +4,29 @@ import clsx from 'clsx';
 import { PropsWithAs } from '@appbuckets/react-ui-core';
 
 import { AnyObject } from '../../generic';
+import { useElementSize } from '../../hooks/useElementSize';
 
 import { useElementType } from '../../lib';
 import { useWithDefaultProps } from '../../context/BucketContext';
+import BodyRow from './components/BodyRow';
 
 import { RxTableContext, RxTableProvider } from './RxTable.context';
 import { useRxTableFactory } from './RxTable.factory';
 
-import { RxTableColumnProps, RxTableComponents, RxTableProps } from './RxTable.types';
-
-import {
-  RxTableBodyCell,
-  RxTableBodyRow,
-  RxTableError,
-  RxTableFilterCell,
-  RxTableHeaderCell,
-  RxTableLoader,
-  RxTableNoContent
-} from './RxTableDefaultComponents';
+import { RxTableComponents, RxTableProps } from './RxTable.types';
 
 import { Table } from '../Table';
 
-import { RxTableBody } from './RxTableBody';
-import { RxTableHeader } from './RxTableHeader';
+import FiltersRow from './components/FiltersRow';
+import HeaderRow from './components/HeaderRow';
+import StateDependentBodyRow from './components/StateDependentBodyRow';
+
+import RxTableBodyCell from './defaults/RxTableBodyCell';
+import RxTableBodyRow from './defaults/RxTableBodyRow';
+import RxTableEmptyContent from './defaults/RxTableEmptyContent';
+import RxTableError from './defaults/RxTableError';
+import RxTableHeaderCell from './defaults/RxTableHeaderCell';
+import RxTableLoader from './defaults/RxTableLoader';
 
 
 /* --------
@@ -46,8 +46,9 @@ const RxTable = <Data extends AnyObject>(
 
   const {
     as,
+    classes: userDefinedClasses,
     className,
-    columns   : userDefinedColumns,
+    columns,
     Components: userDefinedComponents,
     data,
     defaultData,
@@ -71,49 +72,41 @@ const RxTable = <Data extends AnyObject>(
     selectColumnProps,
     sort: userDefinedSort,
     style,
+    styles: userDefinedStyles,
+    width : userDefinedWidth,
     ...rest
   } = props;
 
 
   // ----
-  // Update Columns Field using Selectable
+  // Get the Right Element Type
   // ----
-  const columns: RxTableColumnProps<Data>[] = React.useMemo(
-    () => {
-      /** If table isn't selectable, return columns */
-      if (!selectable) {
-        return userDefinedColumns;
-      }
-
-      /** Return Columns width Select Column Props and Default */
-      return [
-        {
-          key      : '%%selectable%%',
-          width    : 36,
-          textAlign: 'center',
-          ...selectColumnProps
-        },
-        ...userDefinedColumns
-      ];
-    },
-    [ userDefinedColumns, selectable, selectColumnProps ]
-  );
-
-
-  /** Get right element type */
   const ElementType = useElementType(RxTable, props as unknown as PropsWithAs<RxTableProps<AnyObject>>);
 
 
-  /** Use RxTable Factory to get Data and Props */
+  // ----
+  // Initialize the Width Detector
+  // ----
+  const [ widthDetector, { width: detectedWidth } ] = useElementSize({
+    disabled     : typeof userDefinedWidth === 'number',
+    disableHeight: true
+  });
+
+
+  // ----
+  // Load RxTableProps
+  // ----
   const rxTableProps = useRxTableFactory<Data>({
+    classes              : userDefinedClasses,
     columns,
     data,
     defaultData,
     defaultLoading       : initiallyLoading,
     defaultReverseSorting: userDefinedDefaultReverseSorting,
+    defaultSelectedData  : userDefinedSelectedData,
     defaultSort          : userDefinedDefaultSort,
-    getRowKey            : userDefinedGetRowKey,
     filterLogic,
+    getRowKey            : userDefinedGetRowKey,
     onRowClick,
     onSelectedDataChange,
     onSortChange,
@@ -121,21 +114,26 @@ const RxTable = <Data extends AnyObject>(
     reloadSilently,
     reverseSorting       : userDefinedReverseSorting,
     selectable,
-    sort                 : userDefinedSort
+    selectColumnProps,
+    sort                 : userDefinedSort,
+    styles               : userDefinedStyles,
+    width                : userDefinedWidth ?? detectedWidth ?? 0
   });
 
 
-  /** Build the element class list */
+  // ----
+  // Build Table ClassList
+  // ----
   const classes = clsx(
-    rxTableProps.hasFilterRow && 'filterable',
+    rxTableProps.layout.hasFilterRow && 'filterable',
     'rx-table',
     className
   );
 
 
-  /* --------
-   * Define RxTable Components
-   * -------- */
+  // ----
+  // Define RxTable Components
+  // ----
   const Components: RxTableComponents<Data> = {
     Body         : Table.Body,
     BodyCell     : RxTableBodyCell,
@@ -144,8 +142,6 @@ const RxTable = <Data extends AnyObject>(
     Error        : RxTableError,
     ErrorRow     : Table.Row,
     ErrorCell    : Table.Cell,
-    FilterCell   : RxTableFilterCell,
-    FilterRow    : Table.Row,
     Header       : Table.Header,
     HeaderCell   : RxTableHeaderCell,
     HeaderRow    : Table.Row,
@@ -153,34 +149,85 @@ const RxTable = <Data extends AnyObject>(
     Loader       : RxTableLoader,
     LoaderRow    : Table.Row,
     LoaderCell   : Table.Cell,
-    NoContent    : RxTableNoContent,
+    NoContent    : RxTableEmptyContent,
     NoContentCell: Table.Cell,
     NoContentRow : Table.Row,
     ...userDefinedComponents
   };
 
 
-  /* --------
-   * Context Building
-   * -------- */
+  // ----
+  // Context Building
+  // ----
   const rxTableContext: RxTableContext<Data> = {
     ...rxTableProps,
     Components,
-    columns,
     loaderProps,
     noFilteredDataEmptyContentProps,
     noDataEmptyContentProps
   };
 
 
-  /* --------
-   * Component Render
-   * -------- */
+  // ----
+  // Fragments could not have properties extra from key
+  // ----
+  const headerWrapperProps = Components.HeaderWrapper !== React.Fragment
+    ? { className: rxTableProps.classes.HeaderWrapper, style: rxTableProps.styles.HeaderWrapper }
+    : {};
+
+  const bodyWrapperProps = Components.BodyWrapper !== React.Fragment
+    ? { className: rxTableProps.classes.BodyWrapper, style: rxTableProps.styles.BodyWrapper }
+    : {};
+
+
+  // ----
+  // Build the Component that will render Body Rows
+  // ----
+  const BodyRows = React.useCallback<React.FunctionComponent>(
+    () => (
+      <React.Fragment>
+        {rxTableProps.tableData.map((row, index) => (
+          <BodyRow
+            key={rxTableProps.selection.getRowKey(row, index, rxTableProps.tableData)}
+            index={index}
+          />
+        ))}
+      </React.Fragment>
+    ),
+    [ rxTableProps.selection, rxTableProps.tableData ]
+  );
+
+
+  // ----
+  // Component Render
+  // ----
   return (
     <RxTableProvider value={rxTableContext}>
+      {/* Width Detector Element */}
+      {widthDetector}
+
+      {/* Table Component */}
       <ElementType className={classes} {...rest}>
-        <RxTableHeader />
-        <RxTableBody />
+
+        {/* Table Header */}
+        {(rxTableProps.layout.hasHeaderRow || rxTableProps.layout.hasFilterRow) && (
+          <Components.HeaderWrapper {...headerWrapperProps}>
+            <Components.Header style={rxTableProps.styles.Header} className={rxTableProps.classes.Header}>
+              {/* Header Row Render */}
+              {rxTableProps.layout.hasHeaderRow && !disableHeader && <HeaderRow />}
+              {/* Filter Row Render */}
+              {rxTableProps.layout.hasFilterRow && <FiltersRow />}
+            </Components.Header>
+          </Components.HeaderWrapper>
+        )}
+
+        {/* Table Body */}
+        <Components.BodyWrapper {...bodyWrapperProps}>
+          <Components.Body style={rxTableProps.styles.Body} className={rxTableProps.classes.Body}>
+            <StateDependentBodyRow Content={BodyRows} />
+          </Components.Body>
+        </Components.BodyWrapper>
+
       </ElementType>
     </RxTableProvider>
   );

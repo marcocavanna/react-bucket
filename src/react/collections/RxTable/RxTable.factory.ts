@@ -1,174 +1,122 @@
 import * as React from 'react';
-import arraySort from 'array-sort';
-import invariant from 'tiny-invariant';
 
 import { AnyObject } from '../../generic';
 
-import { useAutoControlledValue } from '../../hooks/useAutoControlledValue';
+import useColumns, { UseColumnsConfig } from './lib/useColumns';
+import useDataFiltering, { UseDataFiltering } from './lib/useDataFiltering';
+import useDataLoad, { UseDataLoadConfig } from './lib/useDataLoad';
+import useDataSelector, { DataSelector, UseDataSelectorConfig } from './lib/useDataSelector';
+import useDataSorting, { UseDataSortingConfig } from './lib/useDataSorting';
 
-import areEqualStringArray from './lib/areEqualStringArray';
+import { RxTableColumnProps, RxTableComponents } from './RxTable.types';
 
-import { RxTableColumnProps } from './RxTable.types';
+
+/* --------
+ * Internal Types
+ * -------- */
+type RxTableComponentClasses = Partial<Record<keyof RxTableComponents<any> | 'FilterCell' | 'FilterRow', string>>;
+type RxTableComponentStyles = Partial<Record<keyof RxTableComponents<any> | 'FilterCell' | 'FilterRow', React.CSSProperties>>;
 
 
 /* --------
  * Table Factory Configuration
  * -------- */
-export interface UseRxTableFactoryConfig<Data, ColumnProps extends {} = {}> {
-  /** Table Columns definition */
-  columns: RxTableColumnProps<Data, ColumnProps>[];
-
-  /** Table Data */
-  data: Data[] | ((timestamp: number) => (Data[] | Promise<Data[]>));
-
-  /** Set default data to show while factory is loading */
-  defaultData?: Data[];
-
-  /** Set the default loading state */
-  defaultLoading?: boolean;
-
-  /** Set initial reverse sorting */
-  defaultReverseSorting?: boolean;
-
-  /** Set the default selected data */
-  defaultSelectedData?: Data[];
-
-  /** Set initial sort */
-  defaultSort?: string[];
-
-  /**
-   * Set the filter logic. With and type, all filter must return
-   * true to show item, with or at least one must be valid
-   */
-  filterLogic?: 'and' | 'or';
-
-  /** A function to retrive data key */
-  getRowKey?: keyof Data | ((row: Data, index: number, array: Data[]) => string | number);
-
-  /** On Row Click Handler */
-  onRowClick?: (row: Data, index: number, array: Data[]) => void;
-
-  /** On Selected Data Change */
-  onSelectedDataChange?: (selected: Data[]) => void;
-
-  /** Callback handler fired when sort is changing */
-  onSortChange?: (sorting: string[], reverse: boolean) => void;
-
-  /** Dependencies passed to data load hook. Set this to manually control data reload */
-  reloadDependency?: any;
-
-  /** Disable Loader on data reload */
-  reloadSilently?: boolean;
-
-  /** Manual control reverse sorting */
-  reverseSorting?: boolean;
-
-  /** Set if row could be selected */
-  selectable?: boolean;
-
-  /** Manual control sorting */
-  sort?: string[];
-}
+export type UseRxTableFactoryConfig<Data> =
+  & UseColumnsConfig<Data>
+  & Omit<UseDataFiltering<Data>, 'data'>
+  & UseDataLoadConfig<Data>
+  & Omit<UseDataSelectorConfig<Data>, 'data'>
+  & Omit<UseDataSortingConfig<Data>, 'data'>
+  & { onRowClick?: (row: Data, index: number, array: Data[]) => void; }
+  & { isVirtualized?: boolean }
+  & { classes?: RxTableComponentClasses }
+  & { styles?: RxTableComponentStyles };
 
 
 /* --------
  * Table Factory Tools
  * -------- */
 export interface RxTableFactory<Data> {
-  /** Data */
+  /** User defined classes */
+  classes: RxTableComponentClasses;
+
+  /** All loaded data */
   data: Data[];
 
-  /** Deselect all Rows */
-  deselectAllRows: () => void;
-
-  /** Deselect a Row */
-  deselectRow: (...rows: Data[]) => void;
-
-  /** Data load error */
-  error: any;
-
-  /** Current Filters */
-  filters: Record<string, any>;
-
-  /** Memoized getRowKey Function */
-  getRowKey: (row: Data, index: number, array: Data[]) => React.Key;
-
-  /** Row Click Handler */
-  handleRowClick: (index: number) => void;
-
-  /** Return if Table could show filter row */
-  hasFilterRow: boolean;
-
-  /** Return if Table could show header row */
-  hasHeaderRow: boolean;
-
-  /** Data is Currently Loading */
-  isLoading: boolean;
-
-  /** Check if row click is enabled */
-  isRowClickEnabled: boolean;
-
-  /** Check if a Row is Selected */
-  isRowSelected: (row: Data) => boolean;
-
-  /** Check if row are selectable */
-  isSelectable: boolean;
-
-  /** Checker for reversed sorting */
-  isSortReversed: boolean;
-
-  /** Select all Rows */
-  selectAllRows: () => void;
-
-  /** Selected rows count */
-  selectedCount: number;
-
-  /** Select a Row */
-  selectRow: (...rows: Data[]) => void;
-
-  /** Change column filter */
-  setFilter: (column: string, value: any) => void;
-
-  /** Change data sorting */
-  setSorting: (fields: string[], reverse: boolean) => void;
-
-  /** Current Sorting */
-  sorting: string[];
-
-  /** Filtered and Sorted Data */
+  /** Only filtered and sorted data */
   tableData: Data[];
 
-  /** Toggle Row Selected State */
-  toggleSelectRow: (row: Data) => void;
-}
+  /** Current data state */
+  dataState: {
+    /** Data load error */
+    error: any;
+    /** Data is currently loading */
+    isLoading: boolean;
+  },
 
+  /** Columns Descriptor */
+  columns: {
+    /** Current table columns */
+    current: RxTableColumnProps<Data>[];
+    /** Get column width by key */
+    getWidth: (key: string) => number;
+    /** The width of the columns indexed by key */
+    width: Record<string, number>;
+  };
 
-/* --------
- * RxTable Factory Internal Data State
- * -------- */
-interface RxTableFactoryState<Data> {
-  /** Current Data */
-  data: Data[];
+  /** Data filters */
+  filter: {
+    /** Current filters */
+    current: Record<string, any>;
+    /** Set column filter by key */
+    set: (column: string, value: any) => void;
+  };
 
-  /** Data load error */
-  error: any;
+  /** Interaction handler */
+  interaction: {
+    /** Check if row click is enabled */
+    isRowClickEnabled: boolean;
+    /** Row Click Handler */
+    handleRowClick: (index: number) => void;
+  },
 
-  /** Loading State */
-  loading: boolean;
+  /** Table Layout Props */
+  layout: {
+    /** The effective table width */
+    effectiveTableWidth: number;
+    /** Table has filter row */
+    hasFilterRow: boolean;
+    /** Table has header row */
+    hasHeaderRow: boolean;
+    /** Check if table is virtualized */
+    isVirtualized: boolean;
+    /** The total columns width */
+    totalColumnsWidth: number;
+  };
 
-  /** The last data load timestamp */
-  lastReloadTimeStamp: number;
+  /** Data selection */
+  selection: DataSelector<Data> & { enabled: boolean };
 
-  /** Number of reload */
-  reloadCount: number;
+  /** Sort controller */
+  sorting: {
+    /** Current sorting */
+    current: string[];
+    /** Check if is reversed */
+    isReversed: boolean;
+    /** Set new sorting */
+    set: (fields: string[], reverse: boolean) => void;
+  };
+
+  /** User defined styles */
+  styles: RxTableComponentStyles;
 }
 
 
 /* --------
  * Hook Definition
  * -------- */
-export function useRxTableFactory<Data extends AnyObject = any, ColumnProps = any>(
-  config: UseRxTableFactoryConfig<Data, ColumnProps>
+export function useRxTableFactory<Data extends AnyObject = any>(
+  config: UseRxTableFactoryConfig<Data>
 ): RxTableFactory<Data> {
 
 
@@ -176,7 +124,8 @@ export function useRxTableFactory<Data extends AnyObject = any, ColumnProps = an
   // Code Destructuring
   // ----
   const {
-    columns,
+    classes,
+    columns: userDefinedColumns,
     data,
     defaultData,
     defaultLoading,
@@ -184,461 +133,107 @@ export function useRxTableFactory<Data extends AnyObject = any, ColumnProps = an
     defaultSelectedData  : userDefinedDefaultSelectedData,
     defaultSort          : userDefinedDefaultSort,
     filterLogic,
-    getRowKey            : userDefinedGetRowKey,
+    getRowKey: userDefinedGetRowKey,
+    isVirtualized,
     onRowClick,
     onSelectedDataChange,
     onSortChange,
     reloadDependency,
     reloadSilently,
-    reverseSorting       : userDefinedReverseSorting,
+    reverseSorting: userDefinedReverseSorting,
     selectable,
-    sort                 : userDefinedSort
+    selectColumnProps,
+    sort: userDefinedSort,
+    styles,
+    width
   } = config;
-
-
-  // ----
-  // Memoize the RowKey extractor
-  // ----
-  const getRowKey = React.useCallback(
-    (row: Data, index: number, array: Data[]): React.Key => {
-      if (typeof userDefinedGetRowKey === 'function') {
-        return userDefinedGetRowKey(row, index, array);
-      }
-
-      if (typeof userDefinedGetRowKey === 'string') {
-        return row[userDefinedGetRowKey];
-      }
-
-      return '';
-    },
-    [ userDefinedGetRowKey ]
-  );
-
-
-  // ----
-  // Invariant Check selectable and getRowKey
-  // ----
-  if (process.env.NODE_ENV === 'development' && selectable) {
-    invariant(
-      typeof getRowKey === 'function',
-      'To correctly use selectable table the getRowKey'
-      + 'function must be declared'
-    );
-  }
 
 
   // ----
   // Checker Builder
   // ----
   const hasFilterRow = React.useMemo<boolean>(
-    () => columns.some((column) => !!column.filter),
-    [ columns ]
+    () => userDefinedColumns.some((column) => !!column.filter),
+    [ userDefinedColumns ]
   );
 
   const hasHeaderRow = React.useMemo<boolean>(
-    () => columns.some((column) => !!column.header),
-    [ columns ]
+    () => userDefinedColumns.some((column) => !!column.header),
+    [ userDefinedColumns ]
   );
+
+
+  // ----
+  // Compute effective column and table widths
+  // ----
+  const {
+    columns,
+    columnsWidth,
+    effectiveTableWidth,
+    getWidth,
+    totalColumnsWidth
+  } = useColumns({
+    columns: userDefinedColumns,
+    selectable,
+    selectColumnProps,
+    width
+  });
 
 
   // ----
   // Data Management and Load
   // ----
-
-  /** Build the data state */
-  const [ dataState, setDataState ] = React.useState<RxTableFactoryState<Data>>({
-    data               : Array.isArray(data) ? data : (defaultData ?? []),
-    error              : null,
-    loading            : defaultLoading ?? typeof data === 'function',
-    lastReloadTimeStamp: 0,
-    reloadCount        : 0
+  const dataState = useDataLoad({
+    data,
+    defaultData,
+    defaultLoading,
+    reloadDependency,
+    reloadSilently
   });
 
-  /** Build the load data function */
-  const loadData = React.useCallback(
-    async () => {
 
-      /**
-       * If data is a plain a plain
-       * array object then there is no
-       * need to wait for data load
-       */
-      if (Array.isArray(data)) {
-        setDataState((curr) => ({
-          data,
-          loading            : false,
-          error              : null,
-          lastReloadTimeStamp: Date.now(),
-          reloadCount        : curr.reloadCount + 1
-        }));
-        return;
-      }
-
-      /**
-       * If data loading is a function then
-       * must set the loading state and wait
-       * for data load.
-       * Data load is typical async than must
-       * set the loading state if the reload
-       * is not silent. A silent reload will
-       * reload table data without changing loading state
-       */
-      if (!dataState.loading && !reloadSilently) {
-        setDataState((curr) => ({
-          ...curr,
-          loading: true
-        }));
-      }
-
-      /** Try to load data */
-      try {
-        /** Await the function result */
-        const result = await data(Date.now());
-
-        setDataState((curr) => ({
-          data               : result,
-          loading            : false,
-          error              : null,
-          lastReloadTimeStamp: Date.now(),
-          reloadCount        : curr.reloadCount + 1
-        }));
-      }
-      catch (error) {
-        setDataState((curr) => ({
-          data               : [],
-          loading            : false,
-          error,
-          lastReloadTimeStamp: Date.now(),
-          reloadCount        : curr.reloadCount + 1
-        }));
-      }
-    },
-    [
-      data,
-      dataState.loading,
-      reloadSilently
-    ]
-  );
-
-  /** Build the effect used to load/reload data */
-  React.useEffect(
-    () => {
-      loadData();
-    },
-    [ loadData, reloadDependency ]
-  );
+  // ----
+  // Enable Data Selector Hook
+  // ----
+  const dataSelector = useDataSelector({
+    data               : dataState.data,
+    defaultSelectedData: userDefinedDefaultSelectedData,
+    selectable         : !!selectable && dataState.reloadCount > 0,
+    getRowKey          : userDefinedGetRowKey,
+    onSelectedDataChange
+  });
 
 
   // ----
-  // Data Key Building
+  // Data Filtering
   // ----
-  const dataKeys: Map<Data, React.Key> = React.useMemo(
-    () => {
-      /** Build a new Map to save all data keys */
-      const keys = new Map<Data, React.Key>();
-
-      /** If no function exists to get row key, exit */
-      if (typeof getRowKey !== 'function' && !!userDefinedGetRowKey) {
-        return keys;
-      }
-
-      /** Loop each row and get it's own key */
-      dataState.data.forEach((row, index, array) => {
-        keys.set(row, getRowKey(row, index, array));
-      });
-
-      return keys;
-    },
-    [ dataState.data, getRowKey, userDefinedGetRowKey ]
-  );
-
-
-  // ----
-  // Data Selectors
-  // ----
-  const [ selectedKeys, setSelectedKeys ] = React.useState<React.Key[]>(
-    userDefinedDefaultSelectedData && selectable
-      ? (
-        userDefinedDefaultSelectedData
-          .filter((row) => dataKeys.has(row))
-          .map((row) => dataKeys.get(row) as React.Key)
-      )
-      : []
-  );
-
-  /** Handle selected data change */
-  const handleSelectedDataChange = React.useCallback(
-    (currentSelected: React.Key[]) => {
-      if (typeof onSelectedDataChange === 'function') {
-        onSelectedDataChange(dataState.data.filter(row => (
-          currentSelected.includes(dataKeys.get(row) as React.Key)
-        )));
-      }
-    },
-    [ dataKeys, dataState.data, onSelectedDataChange ]
-  );
-
-  // ----
-  // Data Selector
-  // ----
-
-  const selectAllRows = React.useCallback(
-    () => {
-      const newSelected: React.Key[] = [];
-
-      dataState.data.forEach((row) => {
-        newSelected.push(dataKeys.get(row) as React.Key);
-      });
-
-      setSelectedKeys(() => {
-        handleSelectedDataChange(newSelected);
-        return newSelected;
-      });
-    },
-    [ dataKeys, dataState.data, handleSelectedDataChange ]
-  );
-
-  const deselectAllRows = React.useCallback(
-    () => {
-      const newSelected: React.Key[] = [];
-      setSelectedKeys(() => {
-        handleSelectedDataChange(newSelected);
-        return newSelected;
-      });
-    },
-    [ handleSelectedDataChange ]
-  );
-
-  const checkIsRowSelected = React.useCallback(
-    (rowToCheck: Data) => {
-      const key = dataKeys.get(rowToCheck);
-
-      if (key === undefined) {
-        return false;
-      }
-
-      return selectedKeys.includes(key);
-    },
-    [ dataKeys, selectedKeys ]
-  );
-
-  const selectRow = React.useCallback(
-    (...rows: Data[]) => {
-      /** Transform rows into a React.Key array */
-      const rowsKey = rows
-        .map((row) => dataKeys.get(row))
-        .filter((key) => (
-          key !== undefined && !selectedKeys.includes(key)
-        )) as React.Key[];
-
-      if (rowsKey.length) {
-        const newSelected = [ ...selectedKeys, ...rowsKey ];
-        setSelectedKeys(() => {
-          handleSelectedDataChange(newSelected);
-          return newSelected;
-        });
-      }
-    },
-    [ dataKeys, handleSelectedDataChange, selectedKeys ]
-  );
-
-  const deselectRow = React.useCallback(
-    (...rows: Data[]) => {
-      /** Transform rows into a React.Key array */
-      const rowsKey = rows
-        .map((row) => dataKeys.get(row))
-        .filter((key) => (
-          key !== undefined && selectedKeys.includes(key)
-        )) as React.Key[];
-
-      /** Remove found keys */
-      if (rowsKey.length) {
-        const newSelected = [ ...selectedKeys ].filter((key) => (
-          !rowsKey.includes(key)
-        ));
-        setSelectedKeys(() => {
-          handleSelectedDataChange(newSelected);
-          return newSelected;
-        });
-      }
-    },
-    [ dataKeys, handleSelectedDataChange, selectedKeys ]
-  );
-
-  const toggleSelectRow = React.useCallback(
-    (rowToToggle: Data) => {
-      if (checkIsRowSelected(rowToToggle)) {
-        deselectRow(rowToToggle);
-      }
-      else {
-        selectRow(rowToToggle);
-      }
-    },
-    [ checkIsRowSelected, deselectRow, selectRow ]
-  );
-
-  /** Deselect all data on change */
-  React.useEffect(
-    () => {
-      /** Update data on second reload or higher */
-      if (dataState.reloadCount <= 1) {
-        return;
-      }
-
-      /** Remove all invalid keys */
-      const dataIDs = Array.from(dataKeys.values());
-
-      const newSelected = [ ...selectedKeys ].filter((key) => (
-        dataIDs.includes(key)
-      ));
-
-      if (newSelected.length !== selectedKeys.length) {
-        setSelectedKeys(() => {
-          handleSelectedDataChange(newSelected);
-          return newSelected;
-        });
-      }
-    },
-    [ dataKeys, dataState.reloadCount, handleSelectedDataChange, selectedKeys ]
-  );
-
-
-  // ----
-  // Filtering Data
-  // ----
-  const [ filters, setFilteringValues ] = React.useState<Record<string, any>>(
-    columns.reduce<Record<string, any>>(
-      (acc, column) => {
-        if (column.filter) {
-          acc[column.key] = column.filter.initialValue;
-        }
-
-        return acc;
-      },
-      {}
-    )
-  );
-
-  const handleFilterChange = React.useCallback(
-    (columnKey: string, value: any) => {
-      setFilteringValues((curr) => ({
-        ...curr,
-        [columnKey]: value
-      }));
-    },
-    [ setFilteringValues ]
-  );
-
-  const filteredData = React.useMemo<Data[]>(
-    () => {
-      /** If no filter, return entire data */
-      if (!hasFilterRow) {
-        return dataState.data;
-      }
-
-      /** Get only filter columns */
-      const filterColumns = columns.filter((column) => {
-        if (!column.filter) {
-          return false;
-        }
-
-        if (column.filter.type === 'input') {
-          return typeof filters[column.key] === 'string' && !!filters[column.key].length;
-        }
-
-        if (column.filter.type === 'checkbox') {
-          return typeof filters[column.key] === 'boolean' && !!filters[column.key];
-        }
-
-        if (column.filter.type === 'select') {
-          return filters[column.key] !== null && filters[column.key] !== undefined;
-        }
-
-        if (column.filter.type === 'multi-select') {
-          return Array.isArray(filters[column.key]) && filters[column.key].length > 0;
-        }
-
-        return false;
-      });
-
-      /** If no columns are able to filter data, return entire data set */
-      if (!filterColumns.length) {
-        return dataState.data;
-      }
-
-      /** Filter data using columns */
-      return dataState.data.filter((row, index, array) => {
-        return filterColumns.reduce(
-          (show: boolean, next: RxTableColumnProps<Data, ColumnProps>) => (
-            filterLogic === 'and'
-              ? show && next.filter!.show(filters[next.key] as (string & number), row, index, array)
-              : show || next.filter!.show(filters[next.key] as (string & number), row, index, array)
-          ),
-          filterLogic === 'and'
-        );
-      });
-    },
-    [
-      columns,
-      dataState.data,
-      filterLogic,
-      filters,
-      hasFilterRow
-    ]
-  );
+  const {
+    filteredData,
+    filters,
+    setFilter
+  } = useDataFiltering(hasFilterRow, {
+    columns,
+    data: dataState.data,
+    filterLogic
+  });
 
 
   // ----
   // Sorting Controller
   // ----
-  const [ sorting, trySetSorting ] = useAutoControlledValue([], {
-    defaultProp: userDefinedDefaultSort,
-    prop       : userDefinedSort
+  const {
+    isSortReversed,
+    setSorting,
+    sorting,
+    sortedData
+  } = useDataSorting({
+    data                 : filteredData,
+    defaultReverseSorting: userDefinedDefaultReverseSorting,
+    defaultSort          : userDefinedDefaultSort,
+    onSortChange,
+    reverseSorting       : userDefinedReverseSorting,
+    sort                 : userDefinedSort
   });
-
-  const [ isSortReversed, trySetReverseSorting ] = useAutoControlledValue(false, {
-    defaultProp: userDefinedDefaultReverseSorting,
-    prop       : userDefinedReverseSorting
-  });
-
-  const handleChangeSorting = React.useCallback(
-    (newSorting: string[], reverse: boolean) => {
-      /** Check if sorting is changed */
-      const isSortChanged = !areEqualStringArray(sorting, newSorting);
-      const isReversingChanged = reverse !== isSortReversed;
-
-      /** If no change, return */
-      if (!isSortChanged && !isReversingChanged) {
-        return;
-      }
-
-      /** Call user defined handler */
-      if (onSortChange) {
-        onSortChange(newSorting, reverse);
-      }
-
-      /** Try to set new Sorting */
-      if (isSortChanged) {
-        trySetSorting(newSorting);
-      }
-
-      if (reverse !== isSortReversed) {
-        trySetReverseSorting(reverse);
-      }
-    },
-    [ onSortChange, isSortReversed, sorting, trySetReverseSorting, trySetSorting ]
-  );
-
-  const sortedData = React.useMemo<Data[]>(
-    () => {
-      if (sorting.length) {
-        return arraySort(filteredData, sorting, { reverse: isSortReversed });
-      }
-
-      return filteredData;
-    },
-    [ filteredData, isSortReversed, sorting ]
-  );
 
 
   // ----
@@ -655,27 +250,54 @@ export function useRxTableFactory<Data extends AnyObject = any, ColumnProps = an
 
 
   return {
-    deselectAllRows,
-    deselectRow,
-    handleRowClick,
-    hasFilterRow,
-    hasHeaderRow,
-    error            : dataState.error,
-    filters,
-    getRowKey,
-    isLoading        : dataState.loading,
-    isRowClickEnabled: typeof onRowClick === 'function',
-    isRowSelected    : checkIsRowSelected,
-    isSelectable     : !!selectable,
-    data             : dataState.data,
-    setFilter        : handleFilterChange,
-    setSorting       : handleChangeSorting,
-    tableData        : sortedData,
-    isSortReversed,
-    selectAllRows,
-    selectedCount    : selectedKeys.length,
-    selectRow,
-    sorting,
-    toggleSelectRow
+
+    data: dataState.data,
+
+    tableData: sortedData,
+
+    dataState: {
+      error    : dataState.error,
+      isLoading: dataState.loading
+    },
+
+    classes: classes ?? {},
+
+    columns: {
+      current: columns,
+      getWidth,
+      width  : columnsWidth
+    },
+
+    filter: {
+      current: filters,
+      set    : setFilter
+    },
+
+    interaction: {
+      isRowClickEnabled: typeof onRowClick === 'function',
+      handleRowClick
+    },
+
+    layout: {
+      effectiveTableWidth,
+      hasFilterRow,
+      hasHeaderRow,
+      isVirtualized: !!isVirtualized,
+      totalColumnsWidth
+    },
+
+    selection: {
+      ...dataSelector,
+      enabled: !!selectable && dataState.reloadCount > 0
+    },
+
+    sorting: {
+      current   : sorting,
+      isReversed: isSortReversed,
+      set       : setSorting
+    },
+
+    styles: styles ?? {}
+
   };
 }

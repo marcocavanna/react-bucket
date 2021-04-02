@@ -28,10 +28,10 @@ const columns: RxTableColumnProps<User>[] = [
     filter: {
       type: 'input',
       show: (search, row) => {
-        return new RegExp(search).test(row.name);
+        return new RegExp(search, 'ig').test(row.name);
       }
     },
-    render: user => (
+    render: (user) => (
       <Item
         avatar={{ content: 'U' }}
         header={user.name}
@@ -55,6 +55,7 @@ export const directData = () => {
   return (
     <RxTable
       selectable
+      defaultSort={[ 'name' ]}
       columns={columns}
       data={data}
       filterLogic={'or'}

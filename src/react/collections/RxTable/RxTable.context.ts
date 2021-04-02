@@ -6,33 +6,24 @@ import { LoaderProps } from '../../elements/Loader';
 
 import { RxTableFactory } from './RxTable.factory';
 
-import { RxTableColumnProps, RxTableComponents } from './RxTable.types';
+import { RxTableComponents } from './RxTable.types';
 
 
 /* --------
  * RxTable Context Definition
  * -------- */
-export interface RxTableContext<Data extends AnyObject, ColumnProps extends {} = {}> extends RxTableFactory<Data> {
-  /** All VirtualizedTable Columns */
-  columns: RxTableColumnProps<Data, ColumnProps>[];
-
+export interface RxTableContext<Data extends AnyObject> extends RxTableFactory<Data> {
   /** Components used to render data */
   Components: RxTableComponents<Data>;
-
-  /** Check if data is currently loading */
-  isLoading: boolean;
-
-  /** Check if must enable row click */
-  isRowClickEnabled: boolean;
 
   /** Set default loader props, used with default loader component */
   loaderProps?: Partial<LoaderProps>;
 
   /** Set default empty content props, used with default empty component */
-  noDataEmptyContentProps?: EmptyContentProps;
+  noDataEmptyContentProps?: Partial<EmptyContentProps>;
 
   /** Set default empty content props, used with default empty component */
-  noFilteredDataEmptyContentProps?: EmptyContentProps;
+  noFilteredDataEmptyContentProps?: Partial<EmptyContentProps>;
 }
 
 
@@ -43,7 +34,7 @@ const {
   hook    : defaultUseRxTable,
   Provider: RxTableProvider,
   Consumer: RxTableConsumer
-} = contextBuilder<RxTableContext<any>>();
+} = contextBuilder<RxTableContext<any>>(undefined, 'RxTable');
 
 function useRxTable<Data>(): RxTableContext<Data> {
   return defaultUseRxTable();
