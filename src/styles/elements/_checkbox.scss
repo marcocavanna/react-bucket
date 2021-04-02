@@ -21,6 +21,15 @@ input[type='radio'] {
 
 
 /******
+    Set the Minimum Field Height
+******/
+.checkbox.field,
+.checkbox.field > .wrapper {
+  min-height: $checkbox-size;
+}
+
+
+/******
     Set the Padding to the content
     to let the checkbox be visible
 ******/
@@ -99,6 +108,14 @@ input[type='radio'] {
     transition: opacity $transition-speed-fast $transition-ease,
     color $transition-speed-fast $transition-ease;
   }
+}
+
+
+/******
+    Fix the Padding for Unlabeled Checkbox
+******/
+.checkbox .content > input.unlabeled + label {
+  padding-left: $checkbox-size;
 }
 
 

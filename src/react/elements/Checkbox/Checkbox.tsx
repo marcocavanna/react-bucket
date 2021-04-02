@@ -111,6 +111,7 @@ const Checkbox: CheckboxComponent = (receivedProps) => {
 
   const classes = clsx(
     { required, disabled, checked },
+    !label && 'unlabeled',
     !checked && indeterminate && 'indeterminate',
     checkBoxType,
     stateClassName,
