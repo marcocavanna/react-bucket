@@ -1,3 +1,6 @@
 export { default as VirtualizedTable } from './VirtualizedTable';
 
-export * from './VirtualizedTable.types';
+export {
+  VirtualizedTableProps,
+  StrictVirtualizedTableProps
+} from './VirtualizedTable.types';

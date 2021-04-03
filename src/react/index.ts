@@ -110,4 +110,8 @@ export * from './hooks/useAutoControlledValue';
 
 export * from './hooks/useCheckboxValue';
 
+export * from './hooks/useElementSize';
+
 export * from './hooks/useInputValue';
+
+export * from './hooks/useWindowResize';

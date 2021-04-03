@@ -4,9 +4,12 @@ export {
   useRxTable
 } from './RxTable.context';
 
-export type {
-  RxTableContext,
+export {
   RxTableConsumer
+} from './RxTable.context';
+
+export type {
+  RxTableContext
 } from './RxTable.context';
 
 export {
@@ -18,4 +21,14 @@ export type {
   UseRxTableFactoryConfig
 } from './RxTable.factory';
 
-export * from './RxTable.types';
+export type {
+  RxTableProps,
+  StrictRxTableProps,
+  RxTableCellComponent,
+  RxTableHeaderCellComponent,
+  RxTableEmptyContentComponent,
+  RxTableRowComponent,
+  RxTableCellContent,
+  RxTableColumnProps,
+  RxTableComponents
+} from './RxTable.types';
