@@ -8,7 +8,6 @@ import { useElementSize } from '../../hooks/useElementSize';
 
 import { useElementType } from '../../lib';
 import { useWithDefaultProps } from '../../context/BucketContext';
-import BodyRow from './components/BodyRow';
 
 import { RxTableContext, RxTableProvider } from './RxTable.context';
 import { useRxTableFactory } from './RxTable.factory';
@@ -17,13 +16,16 @@ import { RxTableComponents, RxTableProps } from './RxTable.types';
 
 import { Table } from '../Table';
 
+import BodyRow from './components/BodyRow';
 import FiltersRow from './components/FiltersRow';
+import FooterRow from './components/FooterRow';
 import HeaderRow from './components/HeaderRow';
 import StateDependentBodyRow from './components/StateDependentBodyRow';
 
 import RxTableBodyCell from './defaults/RxTableBodyCell';
 import RxTableBodyRow from './defaults/RxTableBodyRow';
 import RxTableEmptyContent from './defaults/RxTableEmptyContent';
+import RxTableFooterCell from './defaults/RxTableFooterCell';
 import RxTableError from './defaults/RxTableError';
 import RxTableHeaderCell from './defaults/RxTableHeaderCell';
 import RxTableLoader from './defaults/RxTableLoader';
@@ -149,6 +151,10 @@ const RxTable = <Data extends AnyObject>(
     Error        : RxTableError,
     ErrorRow     : Table.Row,
     ErrorCell    : Table.Cell,
+    Footer       : Table.Footer,
+    FooterCell   : RxTableFooterCell,
+    FooterRow    : Table.Row,
+    FooterWrapper: React.Fragment,
     Header       : Table.Header,
     HeaderCell   : RxTableHeaderCell,
     HeaderRow    : Table.Row,
@@ -184,6 +190,10 @@ const RxTable = <Data extends AnyObject>(
 
   const bodyWrapperProps = Components.BodyWrapper !== React.Fragment
     ? { className: rxTableProps.classes.BodyWrapper, style: rxTableProps.styles.BodyWrapper }
+    : {};
+
+  const footerWrapperProps = Components.FooterWrapper !== React.Fragment
+    ? { className: rxTableProps.classes.FooterWrapper, style: rxTableProps.styles.FooterWrapper }
     : {};
 
 
@@ -234,6 +244,15 @@ const RxTable = <Data extends AnyObject>(
             <StateDependentBodyRow Content={BodyRows} />
           </Components.Body>
         </Components.BodyWrapper>
+
+        {/* Table Footer */}
+        {rxTableProps.layout.hasFooterRow && (
+          <Components.FooterWrapper {...footerWrapperProps}>
+            <Components.Footer style={rxTableProps.styles.Footer} className={rxTableProps.classes.Footer}>
+              <FooterRow />
+            </Components.Footer>
+          </Components.FooterWrapper>
+        )}
 
       </ElementType>
     </RxTableProvider>

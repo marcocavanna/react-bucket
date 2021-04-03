@@ -145,7 +145,7 @@ table > .head,
   > .row {
     display: table-row;
 
-    &:first-child {
+    &:first-child > .cell {
       border-top-style: $table-footer-border-style;
       border-top-color: $table-footer-border-color;
       border-top-width: $table-footer-border-width;

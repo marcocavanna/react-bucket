@@ -30,6 +30,9 @@ export interface StrictVirtualizedTableProps<Data> extends StrictRxTableProps<Da
   /** Filter row height */
   filterRowHeight?: number;
 
+  /** Footer row height */
+  footerRowHeight?: number;
+
   /** Table header height */
   headerHeight?: number;
 

@@ -10,7 +10,7 @@ import {
 import { LoaderProps } from '../../elements/Loader';
 import { EmptyContentProps } from '../../elements/EmptyContent';
 
-import { TableCellContentProps, TableHeaderCellProps } from '../Table';
+import { TableCellContentProps, TableCellProps, TableHeaderCellProps } from '../Table';
 
 import { RxTableDataFilter } from './atoms/DataFilterElement';
 
@@ -123,7 +123,17 @@ export interface RxTableColumnProps<Data> {
   className?: string;
 
   /** Filter data */
-  filter?: RxTableDataFilter<Data>
+  filter?: RxTableDataFilter<Data>;
+
+  /** Column Footer */
+  footer?: TableCellProps | ((
+    filteredData: Data[],
+    selectedData: Data[],
+    allData: Data[]
+  ) => ShorthandItem<TableCellProps>) | React.ReactNode;
+
+  /** Class name added to footer cell only */
+  footerClassName?: string;
 
   /** The Column Grow factor, same as flex-grow properties when using auto sizing */
   growFactor?: number;
@@ -194,6 +204,29 @@ export interface RxTableHeaderCellProps {
 }
 
 export type RxTableHeaderCellComponent = React.ComponentType<RxTableHeaderCellProps & AnyObject>;
+
+
+/**
+ * FooterCell
+ * ---
+ * This component is demanded to render
+ * the column header cell.
+ */
+export interface RxTableFooterCellProps {
+  /** Header cell className */
+  className: string;
+
+  /** Rendered Column */
+  column: RxTableColumnProps<any>;
+
+  /** Column header is part of a virtualized table */
+  isVirtualized: boolean;
+
+  /** Mandatory Style to be Applied to set column width */
+  style: React.CSSProperties;
+}
+
+export type RxTableFooterCellComponent = React.ComponentType<RxTableFooterCellProps & AnyObject>;
 
 
 /**
@@ -303,6 +336,18 @@ export interface RxTableComponents<Data> {
 
   /** Element used to wrap the entire list */
   BodyWrapper: React.ElementType;
+
+  /** Element used to Wrap the header rows collection */
+  Footer: React.ElementType;
+
+  /** Element used to render the single header cell */
+  FooterCell: RxTableFooterCellComponent;
+
+  /** Element used to render the header row */
+  FooterRow: React.ElementType;
+
+  /** Element used to wrap the entire header elements */
+  FooterWrapper: React.ElementType;
 
   /** Error Component */
   Error: React.ElementType;

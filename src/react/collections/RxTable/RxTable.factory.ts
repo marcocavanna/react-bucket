@@ -86,6 +86,8 @@ export interface RxTableFactory<Data> {
     effectiveTableWidth: number;
     /** Table has filter row */
     hasFilterRow: boolean;
+    /** Table has the Footer Row */
+    hasFooterRow: boolean;
     /** Table has header row */
     hasHeaderRow: boolean;
     /** Check if table is virtualized */
@@ -154,6 +156,11 @@ export function useRxTableFactory<Data extends AnyObject = any>(
   // ----
   const hasFilterRow = React.useMemo<boolean>(
     () => userDefinedColumns.some((column) => !!column.filter),
+    [ userDefinedColumns ]
+  );
+
+  const hasFooterRow = React.useMemo<boolean>(
+    () => userDefinedColumns.some((column) => !!column.footer),
     [ userDefinedColumns ]
   );
 
@@ -282,6 +289,7 @@ export function useRxTableFactory<Data extends AnyObject = any>(
     layout: {
       effectiveTableWidth,
       hasFilterRow,
+      hasFooterRow,
       hasHeaderRow,
       isVirtualized: !!isVirtualized,
       totalColumnsWidth

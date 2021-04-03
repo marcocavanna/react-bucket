@@ -47,6 +47,9 @@ export const BaseTable = () => {
           content: (item: Data) => item.description
         },
         sort     : [ 'title' ],
+        footer   : (filteredData, selectedData, allData) => (
+          `Data Count : ${filteredData.length} / ${allData.length} • ${selectedData.length} Selected`
+        ),
         filter   : {
           type: 'input',
           show: (value, row) => {

@@ -12,12 +12,14 @@ import { RxTableComponents, RxTableContext, useRxTable, useRxTableFactory } from
 import { RxTableProvider } from '../../collections/RxTable/RxTable.context';
 
 import BodyRow from '../../collections/RxTable/components/BodyRow';
+import FooterRow from '../../collections/RxTable/components/FooterRow';
 import FiltersRow from '../../collections/RxTable/components/FiltersRow';
 import HeaderRow from '../../collections/RxTable/components/HeaderRow';
 import StateDependentBodyRow from '../../collections/RxTable/components/StateDependentBodyRow';
 
 import RxTableBodyCell from '../../collections/RxTable/defaults/RxTableBodyCell';
 import RxTableBodyRow from '../../collections/RxTable/defaults/RxTableBodyRow';
+import RxTableFooterCell from '../../collections/RxTable/defaults/RxTableFooterCell';
 import RxTableHeaderCell from '../../collections/RxTable/defaults/RxTableHeaderCell';
 import RxTableEmptyContent from '../../collections/RxTable/defaults/RxTableEmptyContent';
 import RxTableError from '../../collections/RxTable/defaults/RxTableError';
@@ -164,6 +166,7 @@ const VirtualizedTable = <Data extends AnyObject>(
 
     /** Dedicated VirtualizedTable Props */
     filterRowHeight: userDefinedFilterRowHeight,
+    footerRowHeight: userDefinedFooterRowHeight,
     headerHeight   : userDefinedHeaderHeight,
     rowHeight,
 
@@ -207,6 +210,11 @@ const VirtualizedTable = <Data extends AnyObject>(
     [ columns ]
   );
 
+  const hasFooterRow = React.useMemo<boolean>(
+    () => columns.some((column) => !!column.footer),
+    [ columns ]
+  );
+
   const hasHeaderRow = React.useMemo<boolean>(
     () => columns.some((column) => !!column.header),
     [ columns ]
@@ -228,7 +236,7 @@ const VirtualizedTable = <Data extends AnyObject>(
     subtractToHeight
   });
 
-  const headerHeight = React.useMemo(
+  const headerHeight = React.useMemo<number>(
     () => {
       /** If table has not header row, return 0 */
       if (!hasHeaderRow) {
@@ -251,9 +259,15 @@ const VirtualizedTable = <Data extends AnyObject>(
     [ hasFilterRow, hasHeaderRow, rowHeight, selectable, userDefinedHeaderHeight ]
   );
 
-  const filterRowHeight = hasFilterRow
+  const filterRowHeight: number = hasFilterRow
     ? typeof userDefinedFilterRowHeight === 'number'
       ? userDefinedFilterRowHeight
+      : headerHeight
+    : 0;
+
+  const footerRowHeight: number = hasFooterRow
+    ? typeof userDefinedFooterRowHeight === 'number'
+      ? userDefinedFooterRowHeight
       : headerHeight
     : 0;
 
@@ -286,6 +300,18 @@ const VirtualizedTable = <Data extends AnyObject>(
       ErrorRow     : clsx(
         'row error-row',
         userDefinedClasses?.ErrorRow
+      ),
+      Footer       : clsx(
+        'virtualized foot',
+        userDefinedClasses?.Footer
+      ),
+      FooterRow    : clsx(
+        'virtualized row',
+        userDefinedClasses?.FooterRow
+      ),
+      FooterWrapper: clsx(
+        'virtualized table virtualized-foot',
+        userDefinedClasses?.FooterWrapper
       ),
       Header       : clsx(
         'virtualized head',
@@ -325,6 +351,10 @@ const VirtualizedTable = <Data extends AnyObject>(
       FilterCell: {
         height: filterRowHeight,
         ...userDefinedStyles?.FilterCell
+      },
+      FooterCell: {
+        height: footerRowHeight,
+        ...userDefinedStyles?.FooterCell
       },
       ...userDefinedStyles
     },
@@ -371,7 +401,7 @@ const VirtualizedTable = <Data extends AnyObject>(
   // ----
   // Compute Table Width and Height and Accessor
   // ----
-  const tableBodyHeight = height - (!disableHeader ? headerHeight : 0) - filterRowHeight;
+  const tableBodyHeight = height - (!disableHeader ? headerHeight : 0) - filterRowHeight - footerRowHeight;
   const tableDataHeight = typeof rowHeight === 'number'
     ? rxTableProps.tableData.length * rowHeight
     : typeof estimatedItemSize === 'number'
@@ -379,7 +409,9 @@ const VirtualizedTable = <Data extends AnyObject>(
       : Number.MAX_SAFE_INTEGER;
 
   const effectiveBodyHeight = Math.max(0, Math.min(tableBodyHeight, tableDataHeight));
-  const effectiveTableHeight = effectiveBodyHeight + (!disableHeader ? headerHeight : 0) + filterRowHeight;
+  const effectiveTableHeight = effectiveBodyHeight + (!disableHeader
+    ? headerHeight
+    : 0) + filterRowHeight + footerRowHeight;
 
 
   // ----
@@ -417,6 +449,10 @@ const VirtualizedTable = <Data extends AnyObject>(
       Error        : RxTableError,
       ErrorRow     : 'div',
       ErrorCell    : 'div',
+      Footer       : 'div',
+      FooterCell   : RxTableFooterCell,
+      FooterRow    : 'div',
+      FooterWrapper: 'div',
       Header       : 'div',
       HeaderCell   : RxTableHeaderCell,
       HeaderRow    : 'div',
@@ -450,6 +486,10 @@ const VirtualizedTable = <Data extends AnyObject>(
   // ----
   const headerWrapperProps = Components.HeaderWrapper !== React.Fragment
     ? { className: rxTableProps.classes.HeaderWrapper, style: rxTableProps.styles.HeaderWrapper }
+    : {};
+
+  const footerWrapperProps = Components.FooterWrapper !== React.Fragment
+    ? { className: rxTableProps.classes.FooterWrapper, style: rxTableProps.styles.FooterWrapper }
     : {};
 
 
@@ -618,6 +658,15 @@ const VirtualizedTable = <Data extends AnyObject>(
 
           {/* Table Body */}
           {tableBodyContent}
+
+          {/* Table Footer */}
+          {rxTableProps.layout.hasFooterRow && (
+            <Components.FooterWrapper {...footerWrapperProps}>
+              <Components.Footer style={rxTableProps.styles.Footer} className={rxTableProps.classes.Footer}>
+                <FooterRow />
+              </Components.Footer>
+            </Components.FooterWrapper>
+          )}
 
           {/* ScrollOnTop Component */}
           {useScrollOnTop && (

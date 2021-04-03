@@ -97,14 +97,17 @@ export default function useColumns<Data>(config: UseColumnsConfig<Data>): Column
         .forEach((column) => {
           /** Calc percentage space */
           if (column.widthType === 'percentage') {
-            const columnWidth = (availableFlexibleSpace / 100) * (column.width as number);
+            const columnWidth = Math.max(
+              0,
+              Math.round((availableFlexibleSpace / 100) * (column.width as number))
+            );
             widths[column.key] = columnWidth;
             autoFlexibleSpace -= columnWidth;
             return;
           }
 
           /** Return the user defined width */
-          widths[column.key] = column.width as number;
+          widths[column.key] = Math.round(column.width as number);
         });
 
       const autoSizingColumns = columns.filter((column) => (
@@ -120,7 +123,10 @@ export default function useColumns<Data>(config: UseColumnsConfig<Data>): Column
       autoSizingColumns
         .forEach((column) => {
           /** Divide the spacing equally */
-          widths[column.key] = (autoFlexibleSpace / totalGrowFactor) * Math.max(1, (column.growFactor ?? 1));
+          widths[column.key] = Math.round((autoFlexibleSpace / totalGrowFactor) * Math.max(
+            1,
+            (column.growFactor ?? 1)
+          ));
         });
 
       return widths;

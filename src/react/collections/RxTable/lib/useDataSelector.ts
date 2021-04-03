@@ -55,6 +55,9 @@ export interface DataSelector<Data> {
   /** Count of selected rows */
   selectedCount: number;
 
+  /** Selected Data Array */
+  selectedData: Data[];
+
   /** Select one or more rows */
   selectRow: (...rows: Data[]) => void;
 
@@ -333,6 +336,7 @@ export default function useDataSelector<Data>(
     getRowKey,
     isRowSelected,
     selectAllRows,
+    selectedData      : getSelectedData(),
     selectedCount     : selectedKeys.length,
     selectRow,
     toggleSelectRow

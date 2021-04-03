@@ -31,6 +31,7 @@ const columns: RxTableColumnProps<User>[] = [
         return new RegExp(search, 'ig').test(row.name);
       }
     },
+    footer: 'Test',
     render: (user) => (
       <Item
         avatar={{ content: 'U' }}

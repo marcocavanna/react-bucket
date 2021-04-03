@@ -39,7 +39,7 @@ const HeaderRow: React.FunctionComponent<HeaderRowProps> = () => {
 
 
   // ----
-  // Cell Render
+  // Row Render
   // ----
   return (
     <HeaderRowComponent className={classes.HeaderRow} style={styles.HeaderRow}>
