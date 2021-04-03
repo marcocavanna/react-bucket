@@ -8,7 +8,7 @@ import { useElementSize } from '../../hooks/useElementSize';
 
 import { useWithDefaultProps } from '../../context/BucketContext';
 
-import { RxTableComponents, RxTableContext, useRxTableFactory } from '../../collections/RxTable';
+import { RxTableComponents, RxTableContext, useRxTable, useRxTableFactory } from '../../collections/RxTable';
 import { RxTableProvider } from '../../collections/RxTable/RxTable.context';
 
 import BodyRow from '../../collections/RxTable/components/BodyRow';
@@ -30,6 +30,90 @@ import { VirtualizedTableProps } from './VirtualizedTable.types';
  * Memoize the BodyRow Component to be used with VariableSizeList
  * -------- */
 const MemoizedBodyRow = React.memo(BodyRow, areEqual);
+
+
+/* --------
+ * Variable Size List Inner Element
+ * ---
+ * Is extracted from original code to avoid
+ * list rerender
+ * -------- */
+const VariableSizeListInnerElement = React.forwardRef<HTMLElement, AnyObject>((
+  props, ref
+) => {
+
+  /** Get Body Component */
+  const {
+    Components: { Body },
+    classes,
+    styles
+  } = useRxTable();
+
+  /** Extract style and classes from props */
+  const {
+    style,
+    className,
+    ...rest
+  } = props;
+
+  /** Merge Body Classes */
+  const bodyClasses = clsx(className, classes.Body);
+
+  /** Render the Component */
+  return (
+    <Body
+      {...rest}
+      ref={ref}
+      className={bodyClasses}
+      style={{
+        ...styles.Body,
+        ...style
+      }}
+    />
+  );
+});
+
+
+/* --------
+ * Variable Size List Outer Element
+ * ---
+ * Is extracted from original code to avoid
+ * list rerender
+ * -------- */
+const VariableSizeListOuterElement = React.forwardRef<HTMLElement, AnyObject>((
+  props, ref
+) => {
+
+  /** Get Body Component */
+  const {
+    Components: { BodyWrapper },
+    classes,
+    styles
+  } = useRxTable();
+
+  /** Extract style and classes from props */
+  const {
+    style,
+    className,
+    ...rest
+  } = props;
+
+  /** Merge Body Classes */
+  const bodyWrapperClasses = clsx(className, classes.BodyWrapper);
+
+  /** Render the Component */
+  return (
+    <BodyWrapper
+      {...rest}
+      ref={ref}
+      className={bodyWrapperClasses}
+      style={{
+        ...styles.BodyWrapper,
+        ...style
+      }}
+    />
+  );
+});
 
 
 /* --------
@@ -353,90 +437,6 @@ const VirtualizedTable = <Data extends AnyObject>(
   // ----
   // Build the Component that will render the VariableSizeList
   // ----
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const VariableSizeListOuterElement = React.useCallback<React.FunctionComponent<AnyObject>>(
-    React.forwardRef((outerElementProps, ref) => {
-
-      /** Remove the Ref */
-      const {
-        ...restElementProps
-      } = outerElementProps;
-
-      return (
-        <Components.BodyWrapper
-          {...restElementProps}
-          ref={ref}
-          className={rxTableProps.classes.BodyWrapper}
-          style={{
-            ...rxTableProps.styles.BodyWrapper,
-            ...restElementProps.style
-          }}
-        />
-      );
-    }),
-    [ rxTableProps.classes.BodyWrapper, rxTableProps.styles.BodyWrapper, Components ]
-  );
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const VariableSizeListInnerElement = React.useCallback<React.FunctionComponent<AnyObject>>(
-    React.forwardRef((innerElementProps, ref) => {
-
-      /** Remove the Ref */
-      const {
-        ...restElementProps
-      } = innerElementProps;
-
-      return (
-        <Components.Body
-          {...restElementProps}
-          ref={ref}
-          className={rxTableProps.classes.Body}
-          style={{
-            ...rxTableProps.styles.Body,
-            ...restElementProps.style
-          }}
-        />
-      );
-    }),
-    [ rxTableProps.classes.Body, rxTableProps.styles.Body, Components ]
-  );
-
-  const BodyRows = React.useCallback<React.FunctionComponent>(
-    () => (
-      <VariableSizeList
-        direction={direction}
-        itemKey={getRowKey}
-        overscanCount={overscanCount}
-        onItemsRendered={onItemsRendered}
-        onScroll={onScroll}
-        useIsScrolling={useIsScrolling}
-        width={rxTableProps.layout.effectiveTableWidth}
-        height={effectiveBodyHeight}
-        itemSize={getRowHeight}
-        estimatedItemSize={estimatedItemSize}
-        itemCount={rxTableProps.tableData.length}
-        outerElementType={VariableSizeListOuterElement}
-        innerElementType={VariableSizeListInnerElement}
-      >
-        {MemoizedBodyRow}
-      </VariableSizeList>
-    ),
-    [
-      VariableSizeListOuterElement,
-      VariableSizeListInnerElement,
-      direction,
-      effectiveBodyHeight,
-      estimatedItemSize,
-      getRowHeight,
-      getRowKey,
-      onItemsRendered,
-      onScroll,
-      overscanCount,
-      rxTableProps.layout.effectiveTableWidth,
-      rxTableProps.tableData.length,
-      useIsScrolling
-    ]
-  );
 
 
   // ----
@@ -460,16 +460,44 @@ const VirtualizedTable = <Data extends AnyObject>(
         );
       }
 
-      return <BodyRows />;
+      return (
+        <VariableSizeList
+          direction={direction}
+          itemKey={getRowKey}
+          overscanCount={overscanCount}
+          onItemsRendered={onItemsRendered}
+          onScroll={onScroll}
+          useIsScrolling={useIsScrolling}
+          width={rxTableProps.layout.effectiveTableWidth}
+          height={effectiveBodyHeight}
+          itemSize={getRowHeight}
+          estimatedItemSize={estimatedItemSize}
+          itemCount={rxTableProps.tableData.length}
+          outerElementType={VariableSizeListOuterElement}
+          innerElementType={VariableSizeListInnerElement}
+        >
+          {MemoizedBodyRow}
+        </VariableSizeList>
+      );
     },
     [
       isShowingData,
-      BodyRows,
-      Components,
+      direction,
+      getRowKey,
+      overscanCount,
+      onItemsRendered,
+      onScroll,
+      useIsScrolling,
+      rxTableProps.layout.effectiveTableWidth,
+      rxTableProps.tableData.length,
       rxTableProps.classes.BodyWrapper,
-      rxTableProps.styles.BodyWrapper,
       rxTableProps.classes.Body,
-      rxTableProps.styles.Body
+      rxTableProps.styles.BodyWrapper,
+      rxTableProps.styles.Body,
+      effectiveBodyHeight,
+      getRowHeight,
+      estimatedItemSize,
+      Components
     ]
   );
 

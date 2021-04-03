@@ -33,8 +33,17 @@ export interface StrictVirtualizedTableProps<Data> extends StrictRxTableProps<Da
   headerHeight?: number;
 
   /** Table Height */
-  height: number;
+  height?: number;
+
+  /** Set the maximum height */
+  maximumHeight?: number;
+
+  /** Set the minimum height */
+  minimumHeight?: number;
 
   /** Row height, a fixed number or a get function, received the index */
   rowHeight: number | ((index: number) => number);
+
+  /** Set if must subtract some pixel from height */
+  subtractToHeight?: number;
 }
