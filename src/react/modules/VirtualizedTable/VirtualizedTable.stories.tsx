@@ -79,6 +79,7 @@ export const BaseTable = () => {
       <Panel.Body>
         <VirtualizedTable<Data>
           selectable
+          useScrollOnTop
           data={data}
           getRowKey={'_id'}
           headerHeight={45}

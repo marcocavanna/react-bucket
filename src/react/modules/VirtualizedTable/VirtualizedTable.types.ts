@@ -1,6 +1,7 @@
 import { VariableSizeListProps } from 'react-window';
 
 import { StrictRxTableProps } from '../../collections/RxTable';
+import { ButtonProps } from '../../elements/Button';
 
 
 /* --------
@@ -44,6 +45,15 @@ export interface StrictVirtualizedTableProps<Data> extends StrictRxTableProps<Da
   /** Row height, a fixed number or a get function, received the index */
   rowHeight: number | ((index: number) => number);
 
+  /** Extra props used for ScrollOnTob Button */
+  scrollOnTopButtonProps?: Partial<ButtonProps>;
+
+  /** Set the scroll offset after that ScrollOnTop component will be visible, default is 2 x TableBodyHeight */
+  scrollOnTopOffsetVisibility?: number;
+
   /** Set if must subtract some pixel from height */
   subtractToHeight?: number;
+
+  /** Use the ScrollOnTop Button */
+  useScrollOnTop?: boolean;
 }

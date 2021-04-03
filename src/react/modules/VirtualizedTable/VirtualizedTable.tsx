@@ -1,7 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 
-import { VariableSizeList, ListItemKeySelector, areEqual } from 'react-window';
+import { VariableSizeList, ListItemKeySelector, areEqual, ListOnScrollProps } from 'react-window';
 
 import { AnyObject } from '../../generic';
 import { useElementSize } from '../../hooks/useElementSize';
@@ -22,6 +22,8 @@ import RxTableHeaderCell from '../../collections/RxTable/defaults/RxTableHeaderC
 import RxTableEmptyContent from '../../collections/RxTable/defaults/RxTableEmptyContent';
 import RxTableError from '../../collections/RxTable/defaults/RxTableError';
 import RxTableLoader from '../../collections/RxTable/defaults/RxTableLoader';
+
+import ScrollOnTop from './atoms/ScrollOnTop';
 
 import { VirtualizedTableProps } from './VirtualizedTable.types';
 
@@ -150,12 +152,15 @@ const VirtualizedTable = <Data extends AnyObject>(
     reloadDependency,
     reloadSilently,
     reverseSorting: userDefinedReverseSorting,
+    scrollOnTopButtonProps,
+    scrollOnTopOffsetVisibility,
     selectable,
     selectColumnProps,
     sort: userDefinedSort,
     style,
     styles: userDefinedStyles,
     width : userDefinedWidth,
+    useScrollOnTop,
 
     /** Dedicated VirtualizedTable Props */
     filterRowHeight: userDefinedFilterRowHeight,
@@ -175,11 +180,23 @@ const VirtualizedTable = <Data extends AnyObject>(
     itemKey,
     overscanCount,
     onItemsRendered,
-    onScroll,
+    onScroll: userDefinedOnScroll,
     useIsScrolling,
 
     ...rest
   } = props;
+
+
+  // ----
+  // Initialize the VariableSizeList ref to use ScrollOnTop
+  // ----
+  const variableSizeListRef = React.useRef<VariableSizeList>(null);
+
+
+  // ----
+  // Use an internal State to Show/Hide ScrollOnTop Component
+  // ----
+  const [ scrollOnTopVisible, setScrollOnTopVisible ] = React.useState<boolean>(false);
 
 
   // ----
@@ -335,18 +352,6 @@ const VirtualizedTable = <Data extends AnyObject>(
 
 
   // ----
-  // Compute Table Width and Height and Accessor
-  // ----
-  const tableBodyHeight = height - (!disableHeader ? headerHeight : 0) - filterRowHeight;
-  const tableDataHeight = typeof rowHeight === 'number'
-    ? rxTableProps.tableData.length * rowHeight
-    : Number.MAX_SAFE_INTEGER;
-
-  const effectiveBodyHeight = Math.min(tableBodyHeight, tableDataHeight);
-  const effectiveTableHeight = effectiveBodyHeight + (!disableHeader ? headerHeight : 0) + filterRowHeight;
-
-
-  // ----
   // Row Height Calculator
   // ----
   const estimatedItemSize = typeof rowHeight === 'number' ? rowHeight : undefined;
@@ -361,6 +366,20 @@ const VirtualizedTable = <Data extends AnyObject>(
     },
     [ rowHeight ]
   );
+
+
+  // ----
+  // Compute Table Width and Height and Accessor
+  // ----
+  const tableBodyHeight = height - (!disableHeader ? headerHeight : 0) - filterRowHeight;
+  const tableDataHeight = typeof rowHeight === 'number'
+    ? rxTableProps.tableData.length * rowHeight
+    : typeof estimatedItemSize === 'number'
+      ? rxTableProps.tableData.length * estimatedItemSize
+      : Number.MAX_SAFE_INTEGER;
+
+  const effectiveBodyHeight = Math.max(0, Math.min(tableBodyHeight, tableDataHeight));
+  const effectiveTableHeight = effectiveBodyHeight + (!disableHeader ? headerHeight : 0) + filterRowHeight;
 
 
   // ----
@@ -435,8 +454,44 @@ const VirtualizedTable = <Data extends AnyObject>(
 
 
   // ----
-  // Build the Component that will render the VariableSizeList
+  // Build a custom onScroll handler to show/hide ScrollOnTop component
   // ----
+  const handleTableScroll = React.useCallback(
+    (scrollProps: ListOnScrollProps) => {
+      /** If must use the OnScroll Component, check if this must be visible or invisible */
+      if (useScrollOnTop && effectiveBodyHeight > 0) {
+        /** Get the offset */
+        const offset = scrollOnTopOffsetVisibility || effectiveBodyHeight * 2;
+
+        /** Update only if is necessary */
+        if (scrollOnTopVisible !== scrollProps.scrollOffset > offset) {
+          setScrollOnTopVisible(scrollProps.scrollOffset > offset);
+        }
+      }
+
+      /** If a userDefinedOnScroll function exists, use it */
+      if (typeof userDefinedOnScroll === 'function') {
+        userDefinedOnScroll(scrollProps);
+      }
+    },
+    [
+      userDefinedOnScroll,
+      useScrollOnTop,
+      scrollOnTopOffsetVisibility,
+      effectiveBodyHeight,
+      scrollOnTopVisible
+    ]
+  );
+
+  const handleScrollOnTopClick = React.useCallback(
+    () => {
+      /** Scroll the list on top */
+      if (variableSizeListRef.current) {
+        variableSizeListRef.current.scrollTo(0);
+      }
+    },
+    []
+  );
 
 
   // ----
@@ -444,29 +499,35 @@ const VirtualizedTable = <Data extends AnyObject>(
   // ----
   const isShowingData = !(rxTableProps.dataState.isLoading || rxTableProps.dataState.error || !rxTableProps.tableData.length);
 
+  const {
+    BodyWrapper,
+    Body
+  } = Components;
+
   const tableBodyContent = React.useMemo(
     () => {
       if (!isShowingData) {
-        const bodyWrapperProps = Components.BodyWrapper !== React.Fragment
+        const bodyWrapperProps = BodyWrapper !== React.Fragment
           ? { className: rxTableProps.classes.BodyWrapper, style: rxTableProps.styles.BodyWrapper }
           : {};
 
         return (
-          <Components.BodyWrapper {...bodyWrapperProps}>
-            <Components.Body style={rxTableProps.styles.Body} className={rxTableProps.classes.Body}>
+          <BodyWrapper {...bodyWrapperProps}>
+            <Body style={rxTableProps.styles.Body} className={rxTableProps.classes.Body}>
               <StateDependentBodyRow />
-            </Components.Body>
-          </Components.BodyWrapper>
+            </Body>
+          </BodyWrapper>
         );
       }
 
       return (
         <VariableSizeList
+          ref={variableSizeListRef}
           direction={direction}
           itemKey={getRowKey}
           overscanCount={overscanCount}
           onItemsRendered={onItemsRendered}
-          onScroll={onScroll}
+          onScroll={(useScrollOnTop || typeof userDefinedOnScroll === 'function') ? handleTableScroll : undefined}
           useIsScrolling={useIsScrolling}
           width={rxTableProps.layout.effectiveTableWidth}
           height={effectiveBodyHeight}
@@ -486,7 +547,9 @@ const VirtualizedTable = <Data extends AnyObject>(
       getRowKey,
       overscanCount,
       onItemsRendered,
-      onScroll,
+      useScrollOnTop,
+      userDefinedOnScroll,
+      handleTableScroll,
       useIsScrolling,
       rxTableProps.layout.effectiveTableWidth,
       rxTableProps.tableData.length,
@@ -497,7 +560,8 @@ const VirtualizedTable = <Data extends AnyObject>(
       effectiveBodyHeight,
       getRowHeight,
       estimatedItemSize,
-      Components
+      Body,
+      BodyWrapper
     ]
   );
 
@@ -554,6 +618,15 @@ const VirtualizedTable = <Data extends AnyObject>(
 
           {/* Table Body */}
           {tableBodyContent}
+
+          {/* ScrollOnTop Component */}
+          {useScrollOnTop && (
+            <ScrollOnTop
+              {...scrollOnTopButtonProps}
+              visible={scrollOnTopVisible}
+              onClick={handleScrollOnTopClick}
+            />
+          )}
 
         </RxTableProvider>
       </div>

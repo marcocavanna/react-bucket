@@ -400,16 +400,6 @@ table > .head,
 
 
   // ----
-  //  Fix Selector on Header Cell
-  // ----
-  //.head > .row > .selector.cell {
-  //  display: flex !important;
-  //  justify-content: center;
-  //  align-items: center;
-  //}
-
-
-  // ----
   //  Set Extra Row position and Margins
   // ----
   > .body {
@@ -426,6 +416,29 @@ table > .head,
       > .cell > .message {
         margin: 0;
       }
+    }
+  }
+}
+
+
+/******
+    Position the Scroll On Top
+******/
+.virtualized-table {
+  position: relative;
+
+  > .scroll-on-top {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    transform: scale(0);
+    transform-origin: center center;
+    transition-duration: $transition-duration !important;
+    transition-property: all !important;
+    transition-timing-function: $transition-ease !important;
+
+    &.visible {
+      transform: scale(1);
     }
   }
 }
