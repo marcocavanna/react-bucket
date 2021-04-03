@@ -566,8 +566,11 @@ $select-multi-value-label-padding: .75em !default;
 /******
     Table Layout
 ******/
-$table-columns-gutter: $columns-gutter * 1.5 !default;
-$table-row-gutter: $columns-gutter * 1.5 !default;
+$table-columns-gutter: $columns-gutter * 2 !default;
+$table-rows-gutter: $columns-gutter * 2 !default;
+
+$table-compressed-columns-gutter: $table-columns-gutter * .75 !default;
+$table-compressed-rows-gutter: $table-rows-gutter * .75 !default;
 
 $table-header-font-weight: $semi-bold !default;
 $table-header-color: $text-secondary !default;

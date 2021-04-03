@@ -165,6 +165,7 @@ const VirtualizedTable = <Data extends AnyObject>(
     useScrollOnTop,
 
     /** Dedicated VirtualizedTable Props */
+    compressed,
     filterRowHeight: userDefinedFilterRowHeight,
     footerRowHeight: userDefinedFooterRowHeight,
     headerHeight   : userDefinedHeaderHeight,
@@ -609,7 +610,10 @@ const VirtualizedTable = <Data extends AnyObject>(
   // ----
   // Build Table ClassList
   // ----
-  const wrapperClasses = clsx('virtualized-table');
+  const wrapperClasses = clsx(
+    'virtualized-table',
+    compressed && 'compressed'
+  );
 
 
   // ----

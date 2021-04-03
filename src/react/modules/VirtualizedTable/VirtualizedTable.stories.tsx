@@ -87,6 +87,7 @@ export const BaseTable = () => {
           getRowKey={'_id'}
           headerHeight={45}
           filterRowHeight={52}
+          footerRowHeight={52}
           rowHeight={58}
           subtractToHeight={28}
           onRowClick={handleSelectItem}

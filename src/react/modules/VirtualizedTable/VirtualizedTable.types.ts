@@ -27,6 +27,9 @@ export interface VirtualizedTableProps<Data> extends StrictVirtualizedTableProps
 
 export interface StrictVirtualizedTableProps<Data> extends StrictRxTableProps<Data>,
   Partial<PickedVariableSizeListProps> {
+  /** Compress Spacing between cells and rows */
+  compressed?: boolean;
+
   /** Filter row height */
   filterRowHeight?: number;
 

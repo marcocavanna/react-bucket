@@ -52,6 +52,7 @@ const RxTable = <Data extends AnyObject>(
     className,
     columns,
     Components: userDefinedComponents,
+    compressed,
     data,
     defaultData,
     defaultReverseSorting: userDefinedDefaultReverseSorting,
@@ -136,6 +137,7 @@ const RxTable = <Data extends AnyObject>(
   const classes = clsx(
     rxTableProps.layout.hasFilterRow && 'filterable',
     'rx-table',
+    compressed && 'compressed',
     className
   );
 

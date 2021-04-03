@@ -33,6 +33,9 @@ export interface StrictRxTableProps<Data> extends Omit<UseRxTableFactoryConfig<D
   /** Components used to render the Table */
   Components?: Partial<RxTableComponents<Data>>;
 
+  /** Compress Spacing between cells and rows */
+  compressed?: boolean;
+
   /** Disable Header Render */
   disableHeader?: boolean;
 
