@@ -182,7 +182,7 @@
   // ----
   &.fab {
     @extend .rounded;
-    @extend .is-large;
+    font-size: $button-fab-base-size;
     margin: $button-fab-spacer;
   }
 
