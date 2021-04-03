@@ -179,7 +179,7 @@ table > .head,
       font-weight: $table-cell-header-font-weight;
     }
 
-    > .cell-text-content {
+    .cell-text-content {
       opacity: $table-cell-content-opacity;
       font-size: $table-cell-content-font-size;
     }
