@@ -23,10 +23,10 @@ type RxTableComponentStyles = Partial<Record<keyof RxTableComponents<any> | 'Fil
  * -------- */
 export type UseRxTableFactoryConfig<Data> =
   & UseColumnsConfig<Data>
-  & Omit<UseDataFiltering<Data>, 'data'>
+  & UseDataFiltering<Data>
   & UseDataLoadConfig<Data>
-  & Omit<UseDataSelectorConfig<Data>, 'data'>
-  & Omit<UseDataSortingConfig<Data>, 'data'>
+  & UseDataSelectorConfig<Data>
+  & UseDataSortingConfig
   & { onRowClick?: (row: Data, index: number, array: Data[]) => void; }
   & { isVirtualized?: boolean }
   & { classes?: RxTableComponentClasses }
@@ -193,18 +193,6 @@ export function useRxTableFactory<Data extends AnyObject = any>(
 
 
   // ----
-  // Enable Data Selector Hook
-  // ----
-  const dataSelector = useDataSelector({
-    data               : dataState.data,
-    defaultSelectedData: userDefinedDefaultSelectedData,
-    selectable         : !!selectable && dataState.reloadCount > 0,
-    getRowKey          : userDefinedGetRowKey,
-    onSelectedDataChange
-  });
-
-
-  // ----
   // Data Filtering
   // ----
   const {
@@ -215,6 +203,19 @@ export function useRxTableFactory<Data extends AnyObject = any>(
     columns,
     data: dataState.data,
     filterLogic
+  });
+
+
+  // ----
+  // Enable Data Selector Hook
+  // ----
+  const dataSelector = useDataSelector({
+    allData            : dataState.data,
+    filteredData,
+    defaultSelectedData: userDefinedDefaultSelectedData,
+    selectable         : !!selectable && dataState.reloadCount > 0,
+    getRowKey          : userDefinedGetRowKey,
+    onSelectedDataChange
   });
 
 

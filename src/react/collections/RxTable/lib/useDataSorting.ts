@@ -8,10 +8,7 @@ import { areEqualStringArray } from '../../../lib';
 /* --------
  * Internal Types
  * -------- */
-export interface UseDataSortingConfig<Data> {
-  /** Data to sort */
-  data: Data[];
-
+export interface UseDataSortingConfig {
   /** Set initial reverse sorting */
   defaultReverseSorting?: boolean;
 
@@ -27,6 +24,11 @@ export interface UseDataSortingConfig<Data> {
   /** Manual control sorting */
   sort?: string[];
 }
+
+type UseDataSortingConfigAndData<Data> = UseDataSortingConfig & {
+  /** Data to sort */
+  data: Data[];
+};
 
 
 export interface DataSorted<Data> {
@@ -47,7 +49,7 @@ export interface DataSorted<Data> {
 /* --------
  * Hook definition
  * -------- */
-export default function useDataSorting<Data>(config: UseDataSortingConfig<Data>): DataSorted<Data> {
+export default function useDataSorting<Data>(config: UseDataSortingConfigAndData<Data>): DataSorted<Data> {
 
   const {
     data,

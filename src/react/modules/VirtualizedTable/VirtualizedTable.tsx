@@ -581,10 +581,10 @@ const VirtualizedTable = <Data extends AnyObject>(
       width    : `${width}px`,
       overflow : 'auto',
       maxHeight: '100vh',
-      minHeight: '200px',
+      minHeight: `${(!disableHeader ? headerHeight : 0) + filterRowHeight}px`,
       ...style
     } : { ...style }),
-    [ effectiveTableHeight, width, style, isShowingData ]
+    [ effectiveTableHeight, width, style, isShowingData, disableHeader, headerHeight, filterRowHeight ]
   );
 
 

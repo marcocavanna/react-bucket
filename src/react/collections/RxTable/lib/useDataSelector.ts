@@ -8,9 +8,6 @@ import { areEqualStringArray } from '../../../lib';
  * Internal Interface
  * -------- */
 export interface UseDataSelectorConfig<Data> {
-  /** Data array */
-  data: Data[];
-
   /** A default selected data */
   defaultSelectedData?: Data[];
 
@@ -23,6 +20,14 @@ export interface UseDataSelectorConfig<Data> {
   /** Set if selector is disabled */
   selectable?: boolean;
 }
+
+type UserDataSelectorConfigAndData<Data> = UseDataSelectorConfig<Data> & {
+  /** All Data List */
+  allData: Data[];
+
+  /** Filtered Data Slice */
+  filteredData: Data[];
+};
 
 
 /* --------
@@ -62,11 +67,12 @@ export interface DataSelector<Data> {
  * Main Hook Definition
  * -------- */
 export default function useDataSelector<Data>(
-  config: UseDataSelectorConfig<Data>
+  config: UserDataSelectorConfigAndData<Data>
 ): DataSelector<Data> {
 
   const {
-    data,
+    allData,
+    filteredData,
     selectable,
     defaultSelectedData,
     getRowKey: userDefinedGetRowKey,
@@ -114,13 +120,33 @@ export default function useDataSelector<Data>(
       const keys = new Map<Data, React.Key>();
 
       /** Loop each row and get it's own key */
-      data.forEach((row, index, array) => {
+      allData.forEach((row, index, array) => {
         keys.set(row, getRowKey(row, index, array));
       });
 
       return keys;
     },
-    [ data, getRowKey ]
+    [ allData, getRowKey ]
+  );
+
+  const filteredDataKeys: Map<Data, React.Key> = React.useMemo(
+    () => {
+      /** Build a new Map to save all data keys */
+      const keys = new Map<Data, React.Key>();
+
+      /** Loop filtered data only and save key */
+      filteredData.forEach((row) => {
+        /** Get key from dataKeys */
+        const key = dataKeys.get(row);
+        /** If exists, push into keys */
+        if (key !== undefined) {
+          keys.set(row, key);
+        }
+      });
+
+      return keys;
+    },
+    [ dataKeys, filteredData ]
   );
 
 
@@ -143,14 +169,14 @@ export default function useDataSelector<Data>(
   // ----
   const getSelectedData = React.useCallback(
     (currentSelected: React.Key[] = selectedKeys) => (
-      data.filter((row) => {
+      allData.filter((row) => {
         /** Get the row key */
         const key = dataKeys.get(row);
         /** Return key exists and is included into selectedKeys */
         return key !== undefined && currentSelected.includes(key);
       })
     ),
-    [ data, dataKeys, selectedKeys ]
+    [ allData, dataKeys, selectedKeys ]
   );
 
 
@@ -183,14 +209,19 @@ export default function useDataSelector<Data>(
   const selectAllRows = React.useCallback(
     () => {
       /** Build an array of new Selected item using all keys */
-      const newSelected: React.Key[] = Array.from(dataKeys.values());
+      const newSelected: React.Key[] = [
+        ...new Set<React.Key>([
+          ...selectedKeys,
+          ...Array.from(filteredDataKeys.values())
+        ])
+      ];
       /** Update the state */
       setSelectedKeys(() => {
         handleSelectedDataChange(newSelected);
         return newSelected;
       });
     },
-    [ dataKeys, handleSelectedDataChange ]
+    [ filteredDataKeys, selectedKeys, handleSelectedDataChange ]
   );
 
   const deselectAllRows = React.useCallback(
@@ -296,7 +327,7 @@ export default function useDataSelector<Data>(
   // Return Controller
   // ----
   return {
-    areAllRowsSelected: selectedKeys.length === data.length,
+    areAllRowsSelected: selectedKeys.length === allData.length,
     deselectAllRows,
     deselectRow,
     getRowKey,

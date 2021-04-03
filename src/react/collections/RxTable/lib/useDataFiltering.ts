@@ -10,12 +10,14 @@ export interface UseDataFiltering<Data> {
   /** Columns Array */
   columns: RxTableColumnProps<Data>[];
 
-  /** Data to filter */
-  data: Data[];
-
   /** The filter logic to apply */
   filterLogic?: 'and' | 'or'
 }
+
+type UseDataFilteringAndData<Data> = UseDataFiltering<Data> & {
+  /** Data to filter */
+  data: Data[];
+};
 
 export interface DataFiltered<Data> {
   /** Filtered Data */
@@ -32,7 +34,10 @@ export interface DataFiltered<Data> {
 /* --------
  * Hook Definition
  * -------- */
-export default function useDataFiltering<Data>(enabled: boolean, config: UseDataFiltering<Data>): DataFiltered<Data> {
+export default function useDataFiltering<Data>(
+  enabled: boolean,
+  config: UseDataFilteringAndData<Data>
+): DataFiltered<Data> {
 
   const {
     columns,

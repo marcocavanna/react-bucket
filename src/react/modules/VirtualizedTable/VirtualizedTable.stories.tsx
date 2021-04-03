@@ -74,7 +74,7 @@ export const BaseTable = () => {
   );
 
   return (
-    <Panel table>
+    <Panel table className={'mb-0'}>
       <Panel.Header content={'Virtualized Table'} />
       <Panel.Body>
         <VirtualizedTable<Data>
