@@ -45,7 +45,8 @@ const BodyRow: React.FunctionComponent<BodyRowProps> = (props) => {
       handleRowClick: superHandleRowClick
     },
     selection  : {
-      enabled: isDataSelectable
+      enabled: isDataSelectable,
+      isRowSelected
     },
     styles
   } = useRxTable();
@@ -63,7 +64,8 @@ const BodyRow: React.FunctionComponent<BodyRowProps> = (props) => {
   const bodyRowClasses = clsx({
     last     : index === tableData.length - 1,
     first    : index === 0,
-    clickable: isRowClickEnabled
+    clickable: isRowClickEnabled,
+    selected : isRowSelected(row)
   }, classes.BodyRow);
 
 
