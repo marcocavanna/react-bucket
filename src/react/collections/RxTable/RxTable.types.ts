@@ -45,6 +45,12 @@ export interface StrictRxTableProps<Data> extends Omit<UseRxTableFactoryConfig<D
   /** Set default loader props, used with default loader component */
   loaderProps?: Partial<LoaderProps>;
 
+  /** Set the maximum width */
+  maximumWidth?: number;
+
+  /** Set the minimum width */
+  minimumWidth?: number;
+
   /** Set default empty content props, used with default empty component */
   noDataEmptyContentProps?: EmptyContentProps;
 
@@ -59,6 +65,9 @@ export interface StrictRxTableProps<Data> extends Omit<UseRxTableFactoryConfig<D
 
   /** Wrapper Style */
   style?: React.CSSProperties;
+
+  /** Set if must subtract some pixel from width */
+  subtractToWidth?: number;
 
   /** Table Width */
   width?: number;

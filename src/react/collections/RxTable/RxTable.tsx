@@ -60,6 +60,8 @@ const RxTable = <Data extends AnyObject>(
     getRowKey: userDefinedGetRowKey,
     initiallyLoading,
     loaderProps,
+    maximumWidth,
+    minimumWidth,
     noFilteredDataEmptyContentProps,
     noDataEmptyContentProps,
     onRowClick,
@@ -72,6 +74,7 @@ const RxTable = <Data extends AnyObject>(
     selectColumnProps,
     sort: userDefinedSort,
     style,
+    subtractToWidth,
     styles: userDefinedStyles,
     width : userDefinedWidth,
     ...rest
@@ -87,9 +90,13 @@ const RxTable = <Data extends AnyObject>(
   // ----
   // Initialize the Width Detector
   // ----
-  const [ widthDetector, { width: detectedWidth } ] = useElementSize({
-    disabled     : typeof userDefinedWidth === 'number',
-    disableHeight: true
+  const [ widthDetector, { width } ] = useElementSize({
+    useDetectorWidthOnly : true,
+    useDetectorHeightOnly: true,
+    fixedWidth           : userDefinedWidth,
+    maximumWidth,
+    minimumWidth,
+    subtractToWidth
   });
 
 
@@ -117,7 +124,7 @@ const RxTable = <Data extends AnyObject>(
     selectColumnProps,
     sort                 : userDefinedSort,
     styles               : userDefinedStyles,
-    width                : userDefinedWidth ?? detectedWidth ?? 0
+    width
   });
 
 

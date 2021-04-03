@@ -55,6 +55,7 @@ const VirtualizedTable = <Data extends AnyObject>(
     disableHeader,
     filterLogic,
     getRowKey: userDefinedGetRowKey,
+    height   : userDefinedHeight,
     initiallyLoading,
     loaderProps,
     noFilteredDataEmptyContentProps,
@@ -75,8 +76,15 @@ const VirtualizedTable = <Data extends AnyObject>(
     /** Dedicated VirtualizedTable Props */
     filterRowHeight: userDefinedFilterRowHeight,
     headerHeight   : userDefinedHeaderHeight,
-    height         : userDefinedHeight,
     rowHeight,
+
+    /** Size Detector Props */
+    maximumWidth,
+    maximumHeight,
+    minimumWidth,
+    minimumHeight,
+    subtractToWidth,
+    subtractToHeight,
 
     /** Extracted Variable Size List Props */
     direction,
@@ -107,11 +115,17 @@ const VirtualizedTable = <Data extends AnyObject>(
   // ----
   // Initialize the Width Detector
   // ----
-  const [ widthDetector, { width: detectedWidth } ] = useElementSize({
-    disabled: typeof userDefinedWidth === 'number'
+  const [ widthDetector, { width, height } ] = useElementSize({
+    useDetectorWidthOnly: true,
+    fixedHeight         : userDefinedHeight,
+    fixedWidth          : userDefinedWidth,
+    maximumWidth,
+    maximumHeight,
+    minimumWidth,
+    minimumHeight,
+    subtractToWidth,
+    subtractToHeight
   });
-
-  const width = userDefinedWidth ?? detectedWidth ?? 0;
 
   const headerHeight = React.useMemo(
     () => {
@@ -239,7 +253,7 @@ const VirtualizedTable = <Data extends AnyObject>(
   // ----
   // Compute Table Width and Height and Accessor
   // ----
-  const tableBodyHeight = userDefinedHeight - (!disableHeader ? headerHeight : 0) - filterRowHeight;
+  const tableBodyHeight = height - (!disableHeader ? headerHeight : 0) - filterRowHeight;
   const tableDataHeight = typeof rowHeight === 'number'
     ? rxTableProps.tableData.length * rowHeight
     : Number.MAX_SAFE_INTEGER;
