@@ -407,7 +407,7 @@ table > .head,
     > .error-row,
     > .no-content-row {
       justify-content: center;
-      border-bottom: none;
+      border-bottom: none !important;
     }
 
     > .error-row {
