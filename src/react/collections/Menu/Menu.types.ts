@@ -2,7 +2,8 @@ import * as React from 'react';
 
 import {
   ReactBucketComponentProps,
-  ShorthandCollection
+  ShorthandCollection,
+  ShorthandItem
 } from '../../generic';
 
 import { MenuItemProps } from './MenuItem.types';
@@ -15,6 +16,9 @@ export interface StrictMenuProps {
   /** Index of the current active menu item */
   activeIndex?: number;
 
+  /** Draw all border */
+  bordered?: boolean;
+
   /** Initial ActiveIndex, used to auto control active index prop */
   defaultActiveIndex?: number;
 
@@ -24,8 +28,8 @@ export interface StrictMenuProps {
   /** On item Click callback */
   onItemClick?: (e: React.MouseEvent<HTMLElement>, props: MenuItemProps) => void;
 
-  /** Set the menu as secondary */
-  secondary?: boolean;
+  /** Display an Header over the Menu */
+  section?: ShorthandItem<MenuItemProps>;
 
   /** Use tab style to render the menu */
   tab?: boolean;

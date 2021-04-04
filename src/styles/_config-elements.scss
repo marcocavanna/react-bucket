@@ -416,20 +416,45 @@ $loader-font-size: (
 /******
     Menu
 ******/
-$menu-font-weight: $semi-bold !default;
 $menu-vertical-max-width: 15em !default;
+
+$menu-header-item-text-transform: uppercase !default;
+$menu-header-item-font-weight: $semi-bold !default;
+$menu-header-item-color: $text !default;
+$menu-header-item-font-size: 1em !default;
+
+$menu-base-border-color: $cloud-light !default;
+$menu-base-border-width: 2px !default;
+$menu-base-border-style: solid !default;
+
+$menu-bordered-border-radius: $border-radius !default;
+$menu-bordered-border-color: $menu-base-border-color !default;
+$menu-bordered-border-width: 1px !default;
+$menu-bordered-border-style: solid !default;
+
 $menu-item-padding-horizontal: 1em !default;
 $menu-item-padding-vertical: .75em !default;
-$menu-item-border-radius: $border-radius !default;
 $menu-item-text-transform: none !default;
-$menu-item-base-background: $button-base-background-color !default;
-$menu-item-base-color: $text !default;
-$menu-item-spacer: .5em !default;
-$menu-item-active-background: $primary !default;
-$menu-item-active-color: $white !default;
-$menu-item-active-shadow: inset 0 0 3px 0 rgba(0, 0, 0, .2);
-$menu-item-active-text-shadow: 0 0 3px rgba(0, 0, 0, .2);
 $menu-item-icon-spacer: .75em !default;
+
+$menu-base-item-font-weight: $regular !default;
+$menu-base-item-color: $cloud-dark !default;
+$menu-base-item-active-color: $text !default;
+$menu-base-item-hover-border-color: $cloud !default;
+$menu-base-item-active-border-color: $menu-base-item-active-color !default;
+
+$menu-text-item-hover-color: $text-secondary !default;
+
+$menu-tab-item-spacer: .5em !default;
+$menu-tab-item-font-weight: $semi-bold !default;
+$menu-tab-item-border-radius: $border-radius !default;
+$menu-tab-item-base-background: $button-base-background-color !default;
+$menu-tab-item-base-color: $text !default;
+$menu-tab-item-active-background: $primary !default;
+$menu-tab-item-active-color: $white !default;
+$menu-tab-item-active-contrast-color: $text !default;
+$menu-tab-item-active-shadow: inset 0 0 3px 0 rgba(0, 0, 0, .2);
+$menu-tab-item-active-text-shadow: 0 0 3px rgba(0, 0, 0, .2);
 
 
 /******

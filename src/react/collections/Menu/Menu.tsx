@@ -30,7 +30,7 @@ import { MenuItemProps } from './MenuItem.types';
 /* --------
  * Component Declare
  * -------- */
-type MenuComponent = CreatableFunctionComponent<MenuProps> & {
+export type MenuComponent = CreatableFunctionComponent<MenuProps> & {
   Item: typeof MenuItem
 };
 
@@ -46,12 +46,13 @@ const Menu: MenuComponent = (receivedProps) => {
     className,
     rest: {
       activeIndex: userDefinedActiveIndex,
+      bordered,
       children,
       content,
       defaultActiveIndex,
       items,
       onItemClick,
-      secondary,
+      section,
       tab,
       text,
       vertical,
@@ -71,19 +72,57 @@ const Menu: MenuComponent = (receivedProps) => {
   /** Build the element class list */
   const classes = clsx(
     {
-      secondary,
-      tab,
+      bordered,
+      vertical,
+      horizontal: !vertical,
+      base      : !text && !tab,
       text,
-      vertical
+      tab
     },
     'menu',
     className
+  );
+
+  /** Build the Section element */
+  const sectionElement = React.useMemo(
+    () => (
+      MenuItem.create(section, {
+        autoGenerateKey: false,
+        overrideProps  : {
+          header: true
+        }
+      })
+    ),
+    [ section ]
+  );
+
+  /** Memoize the onClick item */
+  const getMenuItemOverridenProps = React.useCallback(
+    (predefinedProps: MenuItemProps): MenuItemProps => ({
+      onClick: (e, itemProps) => {
+        /** Extract Index from Props */
+        const { index } = itemProps;
+        /** Try to set the new Active Index state, if item is not a sub menu trigger */
+        if (!itemProps.menu) {
+          trySetActiveIndex(index as number);
+        }
+        /** Invoke props if exists */
+        if (onItemClick) {
+          onItemClick(e, itemProps);
+        }
+        if (predefinedProps.onClick) {
+          predefinedProps.onClick(e, itemProps);
+        }
+      }
+    }),
+    [ onItemClick, trySetActiveIndex ]
   );
 
   /** If children are declared, render them */
   if (!childrenUtils.isNil(children)) {
     return (
       <ElementType {...rest} className={classes}>
+        {sectionElement}
         {children}
       </ElementType>
     );
@@ -91,6 +130,7 @@ const Menu: MenuComponent = (receivedProps) => {
 
   return (
     <ElementType {...rest} className={classes}>
+      {sectionElement}
       {Array.isArray(items) ? items.map((item, ix) => (
         MenuItem.create(item, {
           autoGenerateKey: true,
@@ -98,21 +138,7 @@ const Menu: MenuComponent = (receivedProps) => {
             active: activeIndex === ix,
             index : ix
           },
-          overrideProps  : (predefinedProps) => ({
-            onClick: (e, itemProps) => {
-              /** Extract Index from Props */
-              const { index } = itemProps;
-              /** Try to set the new Active Index state */
-              trySetActiveIndex(index as number);
-              /** Invoke props if exists */
-              if (onItemClick) {
-                onItemClick(e, itemProps);
-              }
-              if (predefinedProps.onClick) {
-                predefinedProps.onClick(e, itemProps);
-              }
-            }
-          })
+          overrideProps  : getMenuItemOverridenProps
         })
       )) : content}
     </ElementType>
