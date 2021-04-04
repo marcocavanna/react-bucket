@@ -543,11 +543,11 @@ $circular-progress-indicator-color: $text-secondary !default;
     Section
 ******/
 $section-spacer: 1.25em !default;
-$section-label-font-weight: $bold !default;
-$section-label-text-transform: uppercase !default;
-$section-label-color: $cloud !default;
-$section-label-font-size: .85em !default;
-$section-label-spacer: .25em !default;
+$section-label-font-weight: $field-label-font-weight !default;
+$section-label-text-transform: $field-label-text-transform !default;
+$section-label-color: $field-label-color !default;
+$section-label-font-size: $field-label-font-size !default;
+$section-label-spacer: $field-label-spacer !default;
 $section-divided-border-style: solid !default;
 $section-divided-border-width: 1px !default;
 $section-divided-border-color: $divider-color !default;

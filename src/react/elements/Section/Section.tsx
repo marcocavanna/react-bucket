@@ -3,8 +3,10 @@ import clsx from 'clsx';
 
 import {
   childrenUtils,
-  classByKey
+  createShorthandFactory
 } from '@appbuckets/react-ui-core';
+
+import { CreatableFunctionComponent } from '../../generic';
 
 import {
   useElementType,
@@ -21,7 +23,7 @@ import { SectionProps } from './Section.types';
 /* --------
  * Component Declare
  * -------- */
-type SectionComponent = React.FunctionComponent<SectionProps>;
+type SectionComponent = CreatableFunctionComponent<SectionProps>;
 
 
 /* --------
@@ -45,24 +47,30 @@ const Section: SectionComponent = (receivedProps) => {
     }
   } = useSharedClassName(props);
 
+  const ElementType = useElementType(Section, props);
+
+  const contentNode = childrenUtils.isNil(children) ? content : children;
+
   const classes = clsx(
     direction,
-    { divided, reverse },
+    {
+      divided,
+      reverse,
+      'without-content': !contentNode
+    },
     'section',
     className
   );
 
   const labelClasses = clsx(
     'label',
-    classByKey(direction === 'horizontal' && reverse, 'has-text-right')
+    { 'has-text-right': direction === 'horizontal' && reverse }
   );
 
   const contentClasses = clsx(
     'content',
-    classByKey(direction === 'horizontal' && !reverse, 'has-text-right')
+    { 'has-text-right': direction === 'horizontal' && !reverse }
   );
-
-  const ElementType = useElementType(Section, props);
 
   const labelElement = React.useMemo(
     () => label && (
@@ -80,13 +88,17 @@ const Section: SectionComponent = (receivedProps) => {
   return (
     <ElementType {...rest} className={classes}>
       {labelElement}
-      <div className={contentClasses}>
-        {childrenUtils.isNil(children) ? content : children}
-      </div>
+      {contentNode && (
+        <div className={contentClasses}>
+          {contentNode}
+        </div>
+      )}
     </ElementType>
   );
 };
 
 Section.displayName = 'Section';
+
+Section.create = createShorthandFactory(Section, (content) => ({ content }));
 
 export default Section;
