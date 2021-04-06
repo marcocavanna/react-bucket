@@ -8,6 +8,7 @@ import {
 } from '@appbuckets/react-ui-core';
 
 import { CreatableFunctionComponent } from '../../generic';
+import { useRipples } from '../../hooks/useRipples';
 
 import {
   useElementType,
@@ -47,6 +48,7 @@ const Button: ButtonComponent = (receivedProps) => {
       content,
       active,
       disabled,
+      disableRipple,
       fab,
       fitted,
       flat,
@@ -71,6 +73,9 @@ const Button: ButtonComponent = (receivedProps) => {
 
   /** Split state className from rest props */
   const [ stateClasses, rest ] = useSplitStateClassName(rawRest);
+
+  /** Using ripple */
+  const [ showRipple, buttonRipples ] = useRipples();
 
 
   /**
@@ -120,6 +125,10 @@ const Button: ButtonComponent = (receivedProps) => {
     if (disabled) {
       e.preventDefault();
       return;
+    }
+    /** Show the Ripple if is not disable */
+    if (!disableRipple) {
+      showRipple(e);
     }
     /** If the onClick function exists, invoke it */
     if (typeof onClick === 'function') {
@@ -192,6 +201,7 @@ const Button: ButtonComponent = (receivedProps) => {
       {iconPosition === 'left' && iconElement}
       {content}
       {iconPosition === 'right' && iconElement}
+      {!disableRipple && buttonRipples}
     </ElementType>
   );
 

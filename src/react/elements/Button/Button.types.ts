@@ -20,6 +20,9 @@ export interface StrictButtonProps {
   /** Disable the Button */
   disabled?: boolean;
 
+  /** Disable Ripple Effect */
+  disableRipple?: boolean;
+
   /** Draw button as a FAB, it work only without content */
   fab?: boolean;
 

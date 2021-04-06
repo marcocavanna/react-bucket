@@ -565,6 +565,14 @@ $circular-progress-indicator-color: $text-secondary !default;
 
 
 /******
+    Ripples
+******/
+$ripple-base-opacity: .25 !default;
+$ripple-base-color: $white !default;
+$ripple-animation-duration: 1s !default;
+
+
+/******
     Section
 ******/
 $section-spacer: 1.25em !default;
