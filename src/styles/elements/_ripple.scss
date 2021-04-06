@@ -36,5 +36,6 @@
     pointer-events: none;
     animation-name: useRippleAnimation;
     animation-duration: $ripple-animation-duration;
+    transform: scale(0);
   }
 }

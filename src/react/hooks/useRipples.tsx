@@ -41,7 +41,7 @@ export function useRipples(): readonly [ GenerateRipple, React.ReactNode ] {
 
       const x = event.clientX - left;
       const y = event.clientY - top;
-      const size = Math.min(event.currentTarget.clientHeight, event.currentTarget.clientWidth, 50);
+      const size = Math.min(event.currentTarget.clientHeight, event.currentTarget.clientWidth);
 
       const classes = clsx(
         'ripple',
