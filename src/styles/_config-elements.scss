@@ -177,13 +177,25 @@ $divider-spacer: $spacer * 1.75 !default;
 $divider-base-color: $text !default;
 $divider-size: 1px !default;
 $divider-color: $hr-color-light !default;
+$divider-inverted-color: rgba(255, 255, 255, .5) !default;
 $divider-font-weight: $semi-bold !default;
 
 
 /******
     DropDown Menu
 ******/
-$dropdown-menu-item-padding: .75em !default;
+$dropdown-menu-item-vertical-padding: 1em !default;
+$dropdown-menu-item-horizontal-padding: 1em !default;
+
+$dropdown-inverted-menu-item-color: $text-contrast !default;
+
+$dropdown-menu-item-font-weight: $semi-bold !default;
+
+$dropdown-menu-item-base-opacity: .8 !default;
+$dropdown-menu-item-hover-opacity: 1 !default;
+$dropdown-menu-item-border-width: 0 !default;
+$dropdown-menu-item-border-style: solid !default;
+$dropdown-menu-item-border-color: transparent !default;
 
 
 /******
@@ -417,6 +429,9 @@ $loader-font-size: (
     Menu
 ******/
 $menu-vertical-max-width: 15em !default;
+
+$menu-divider-spacer: 0 !default;
+$menu-divider-with-content-spacer: .25em !default;
 
 $menu-header-item-text-transform: uppercase !default;
 $menu-header-item-font-weight: $semi-bold !default;

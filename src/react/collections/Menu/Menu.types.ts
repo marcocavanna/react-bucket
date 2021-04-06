@@ -16,6 +16,9 @@ export interface StrictMenuProps {
   /** Index of the current active menu item */
   activeIndex?: number;
 
+  /** Avoid active indexing style */
+  avoidActive?: boolean;
+
   /** Draw all border */
   bordered?: boolean;
 

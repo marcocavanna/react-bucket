@@ -7,6 +7,8 @@ import { useCheckboxValue } from '../../hooks/useCheckboxValue';
 import { Column, Row } from '../Grid';
 
 import { Checkbox } from '../../elements/Checkbox';
+import { Divider } from '../../elements/Divider';
+
 import DropdownMenu from './DropdownMenu';
 
 import { DropdownMenuProps } from './DropdownMenu.types';
@@ -21,6 +23,7 @@ function RenderMenu(props?: Partial<DropdownMenuProps>) {
       items={[
         { key: 0, content: 'Vox 1', icon: 'plus' },
         { key: 1, content: 'Vox 2', icon: 'edit' },
+        <Divider key={'divider'} />,
         { key: 2, content: 'Vox 3', icon: 'trash' }
       ]}
       {...props}

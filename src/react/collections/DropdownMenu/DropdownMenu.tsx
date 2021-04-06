@@ -2,10 +2,6 @@ import * as React from 'react';
 import clsx from 'clsx';
 
 import {
-  childrenUtils
-} from '@appbuckets/react-ui-core';
-
-import {
   useElementType
 } from '../../lib';
 
@@ -16,7 +12,7 @@ import { Button } from '../../elements/Button';
 
 import { Popup } from '../../modules/Popup';
 
-import MenuItem from '../Menu/MenuItem';
+import Menu from '../Menu/Menu';
 import { MenuItemProps } from '../Menu/MenuItem.types';
 
 import { DropdownMenuProps } from './DropdownMenu.types';
@@ -63,6 +59,7 @@ const DropdownMenu: DropdownMenuComponent = (receivedProps) => {
   });
 
   const classes = clsx(
+    open && 'open',
     'dropdown',
     className
   );
@@ -113,6 +110,22 @@ const DropdownMenu: DropdownMenuComponent = (receivedProps) => {
 
 
   // ----
+  // On Item Click Handlers
+  // ----
+  const handleMenuItemClick = (event: React.MouseEvent<HTMLElement>, itemProps: MenuItemProps) => {
+    /** If a user defined handler for click on menu item exists, call it */
+    if (typeof onItemClick === 'function') {
+      onItemClick(event, itemProps);
+    }
+
+    /** If the menu must be close on item click, call the handleCloseMenu */
+    if (closeOnItemClicked) {
+      handleMenuClose(event);
+    }
+  };
+
+
+  // ----
   // Component Render
   // ----
   return (
@@ -130,36 +143,48 @@ const DropdownMenu: DropdownMenuComponent = (receivedProps) => {
       onOpen={handleMenuOpen}
       onClose={handleMenuClose}
       content={(
-        <ElementType {...rest} className={classes}>
-          {
-            Array.isArray(items)
-              ? items.map((item) => (
-                MenuItem.create(item, {
-                  autoGenerateKey: true,
-                  overrideProps  : ({ onClick, ...itemRest }) => ({
-                    onClick: (e: React.MouseEvent<HTMLElement>, itemProps: MenuItemProps) => {
-                      /** Call defined itemClick handler */
-                      if (typeof onItemClick === 'function') {
-                        onItemClick(e, itemProps);
-                      }
-
-                      /** Call menu item click handler */
-                      if (onClick) {
-                        onClick(e, itemProps);
-                      }
-
-                      /** Check if must close the menu */
-                      if (closeOnItemClicked) {
-                        handleMenuClose(e);
-                      }
-                    },
-                    ...itemRest
-                  })
-                })
-              ))
-              : childrenUtils.isNil(children) ? content : children
-          }
-        </ElementType>
+        <Menu
+          avoidActive
+          text
+          vertical
+          {...rest}
+          as={ElementType}
+          className={classes}
+          items={items}
+          onItemClick={handleMenuItemClick}
+        >
+          {children}
+        </Menu>
+        // <ElementType {...rest} className={classes}>
+        //   {
+        //     Array.isArray(items)
+        //       ? items.map((item) => (
+        //         MenuItem.create(item, {
+        //           autoGenerateKey: true,
+        //           overrideProps  : ({ onClick, ...itemRest }) => ({
+        //             onClick: (e: React.MouseEvent<HTMLElement>, itemProps: MenuItemProps) => {
+        //               /** Call defined itemClick handler */
+        //               if (typeof onItemClick === 'function') {
+        //                 onItemClick(e, itemProps);
+        //               }
+        //
+        //               /** Call menu item click handler */
+        //               if (onClick) {
+        //                 onClick(e, itemProps);
+        //               }
+        //
+        //               /** Check if must close the menu */
+        //               if (closeOnItemClicked) {
+        //                 handleMenuClose(e);
+        //               }
+        //             },
+        //             ...itemRest
+        //           })
+        //         })
+        //       ))
+        //       : childrenUtils.isNil(children) ? content : children
+        //   }
+        // </ElementType>
       )}
     />
   );

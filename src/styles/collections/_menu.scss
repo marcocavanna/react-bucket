@@ -75,22 +75,53 @@
 
 
 /******
+    Divider Style inside menu
+******/
+.menu > .horizontal.divider {
+  margin-top: $menu-divider-spacer;
+  margin-bottom: $menu-divider-spacer;
+
+  &.text {
+    color: $menu-base-item-color;
+    margin-top: $menu-divider-with-content-spacer;
+    margin-bottom: $menu-divider-with-content-spacer;
+  }
+}
+
+.inverted.popup .menu > .horizontal.divider {
+  border-top-color: $divider-inverted-color;
+
+  &.text {
+    &:after,
+    &:before {
+      border-top-color: $divider-inverted-color;
+    }
+  }
+}
+
+
+/******
     Base Menu Styling
 ******/
 .base.menu,
 .text.menu {
   > .menu-item {
     color: $menu-base-item-color;
-    will-change: border-bottom, border-left, border-right, color;
-    transition-property: border-bottom, border-left, border-right, color;
+    will-change: border-bottom, border-left, border-right, color, opacity;
+    transition-property: border-bottom, border-left, border-right, color, opacity;
+  }
 
-    &.active {
-      color: $menu-base-item-active-color;
 
-      @each $label, $color in $react-bucket-color-map {
-        &.is-#{$label} {
-          color: $color;
-        }
+  // ----
+  //  Avoiding Active Menu has same color for all item
+  // ----
+  &.avoiding-active > .menu-item,
+  > .menu-item.active {
+    color: $menu-base-item-active-color;
+
+    @each $label, $color in $react-bucket-color-map {
+      &.is-#{$label} {
+        color: $color;
       }
     }
   }
@@ -99,7 +130,7 @@
   // ----
   //  Style dedicated to text menu only
   // ----
-  &:not(.base) {
+  &:not(.base):not(.avoiding-active) {
     > .menu-item:not(.disabled):not(.header-item) {
       @include hover {
         &:hover:not(.active) {

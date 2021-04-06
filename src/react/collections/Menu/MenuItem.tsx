@@ -58,6 +58,7 @@ const MenuItem: MenuItemComponent = (receivedProps) => {
       disableRipple,
       header,
       icon,
+      index,
       menu,
       menuIsOpen: userDefinedMenuIsOpen,
       onClick,

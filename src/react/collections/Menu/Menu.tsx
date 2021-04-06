@@ -46,6 +46,7 @@ const Menu: MenuComponent = (receivedProps) => {
     className,
     rest: {
       activeIndex: userDefinedActiveIndex,
+      avoidActive,
       bordered,
       children,
       content,
@@ -74,10 +75,11 @@ const Menu: MenuComponent = (receivedProps) => {
     {
       bordered,
       vertical,
-      horizontal: !vertical,
-      base      : !text && !tab,
+      horizontal       : !vertical,
+      base             : !text && !tab,
       text,
-      tab
+      tab,
+      'avoiding-active': avoidActive
     },
     'menu',
     className
@@ -103,7 +105,7 @@ const Menu: MenuComponent = (receivedProps) => {
         /** Extract Index from Props */
         const { index } = itemProps;
         /** Try to set the new Active Index state, if item is not a sub menu trigger */
-        if (!itemProps.menu) {
+        if (!itemProps.menu && !avoidActive) {
           trySetActiveIndex(index as number);
         }
         /** Invoke props if exists */
@@ -115,7 +117,11 @@ const Menu: MenuComponent = (receivedProps) => {
         }
       }
     }),
-    [ onItemClick, trySetActiveIndex ]
+    [
+      avoidActive,
+      onItemClick,
+      trySetActiveIndex
+    ]
   );
 
   /** If children are declared, render them */
@@ -135,7 +141,7 @@ const Menu: MenuComponent = (receivedProps) => {
         MenuItem.create(item, {
           autoGenerateKey: true,
           defaultProps   : {
-            active: activeIndex === ix,
+            active: !avoidActive ? activeIndex === ix : undefined,
             index : ix
           },
           overrideProps  : getMenuItemOverridenProps
