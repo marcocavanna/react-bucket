@@ -262,3 +262,14 @@
     border-left: $menu-bordered-border-style $menu-bordered-border-color $menu-bordered-border-width;
   }
 }
+
+
+/******
+    Invert Ripple Color on Base and Text menu
+******/
+.text.menu,
+.base.menu {
+  > .menu-item > .ripple-container > .ripple {
+    background-color: currentColor;
+  }
+}

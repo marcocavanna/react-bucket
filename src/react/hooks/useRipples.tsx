@@ -1,4 +1,5 @@
 import * as React from 'react';
+import clsx from 'clsx';
 
 
 interface RippleProps {
@@ -9,8 +10,15 @@ interface RippleProps {
   style?: React.CSSProperties;
 }
 
+interface RippleGenerationProps {
+  /** Invert ripple color */
+  inverted?: boolean;
+}
 
-export function useRipples(): readonly [ (event?: React.MouseEvent<HTMLElement>) => void, React.ReactNode ] {
+type GenerateRipple = (event?: React.MouseEvent<HTMLElement>, props?: RippleGenerationProps) => void;
+
+
+export function useRipples(): readonly [ GenerateRipple, React.ReactNode ] {
 
   // ----
   // Initialize Ripples
@@ -22,7 +30,7 @@ export function useRipples(): readonly [ (event?: React.MouseEvent<HTMLElement>)
   // Show the ripple using click event
   // ----
   const showRipple = React.useCallback(
-    (event?: React.MouseEvent<HTMLElement>) => {
+    (event?: React.MouseEvent<HTMLElement>, props?: RippleGenerationProps) => {
       /** If no event, return */
       if (!event || typeof event?.currentTarget?.getBoundingClientRect !== 'function') {
         return;
@@ -33,14 +41,21 @@ export function useRipples(): readonly [ (event?: React.MouseEvent<HTMLElement>)
 
       const x = event.clientX - left;
       const y = event.clientY - top;
-      const size = Math.min(event.currentTarget.clientHeight, event.currentTarget.clientWidth);
+      const size = Math.min(event.currentTarget.clientHeight, event.currentTarget.clientWidth, 50);
+
+      const classes = clsx(
+        'ripple',
+        {
+          inverted: props?.inverted
+        }
+      );
 
       /** Add the new Ripple */
       setRipples((curr) => ([
         ...curr,
         {
           key      : event.timeStamp,
-          className: 'ripple',
+          className: classes,
           style    : {
             width : size,
             height: size,

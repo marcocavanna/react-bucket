@@ -8,6 +8,7 @@ import {
 
 import { CreatableFunctionComponent } from '../../generic';
 import { useAutoControlledValue } from '../../hooks/useAutoControlledValue';
+import { useRipples } from '../../hooks/useRipples';
 
 import {
   useElementType,
@@ -54,6 +55,7 @@ const MenuItem: MenuItemComponent = (receivedProps) => {
       content,
       defaultMenuIsOpen: userDefinedDefaultMenuIsOpen,
       disabled,
+      disableRipple,
       header,
       icon,
       menu,
@@ -62,6 +64,9 @@ const MenuItem: MenuItemComponent = (receivedProps) => {
       ...rawRest
     }
   } = useSharedClassName(props);
+
+  /** Ripple Generator */
+  const [ showRipple, itemRipples ] = useRipples();
 
   /** Get the component element type */
   const ElementType = useElementType(MenuItem, props);
@@ -82,6 +87,10 @@ const MenuItem: MenuItemComponent = (receivedProps) => {
     }
 
     e.stopPropagation();
+
+    if (!header && !disableRipple) {
+      showRipple(e);
+    }
 
     if (typeof onClick === 'function') {
       onClick(e, props);
@@ -144,6 +153,7 @@ const MenuItem: MenuItemComponent = (receivedProps) => {
       <ElementType {...rest} className={classes} onClick={handleClick}>
         {iconElement}
         {contentElement}
+        {itemRipples}
       </ElementType>
       {menuItemContent}
     </React.Fragment>

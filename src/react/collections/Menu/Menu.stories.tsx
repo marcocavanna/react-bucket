@@ -12,8 +12,7 @@ export const baseMenu = () => {
     <Panel>
       <Panel.Body>
         <Menu
-          text
-          bordered
+          vertical
           section={'Tools'}
           items={[
             { key: 0, content: 'Pagina 1' },
@@ -35,11 +34,10 @@ export const baseMenu = () => {
               content: 'Test',
               header : true,
               menu   : {
-                text    : true,
                 vertical: true,
                 items   : [
                   { key: 0, content: 'Pagina 1' },
-                  { key: 1, content: 'Pagina 2' }
+                  { key: 1, content: 'Pagina 2', primary: true }
                 ]
               }
             }

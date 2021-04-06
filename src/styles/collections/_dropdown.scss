@@ -16,6 +16,11 @@
   text-transform: uppercase;
   border-bottom: solid 1px $cloud-light;
   font-weight: $semi-bold;
+  position: relative;
+
+  > .ripple-container > .ripple {
+    background-color: currentColor;
+  }
 
   @include hover {
     cursor: pointer;

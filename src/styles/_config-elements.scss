@@ -569,7 +569,8 @@ $circular-progress-indicator-color: $text-secondary !default;
 ******/
 $ripple-base-opacity: .25 !default;
 $ripple-base-color: $white !default;
-$ripple-animation-duration: 1s !default;
+$ripple-inverted-color: $text-secondary !default;
+$ripple-animation-duration: 700ms !default;
 
 
 /******

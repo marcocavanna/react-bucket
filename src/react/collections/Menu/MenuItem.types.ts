@@ -26,6 +26,9 @@ export interface StrictMenuItemProps {
   /** Disable the Menu Item */
   disabled?: boolean;
 
+  /** Disable the Ripple Effect */
+  disableRipple?: boolean;
+
   /** Set as Header Item */
   header?: boolean;
 
