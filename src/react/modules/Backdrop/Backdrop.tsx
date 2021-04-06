@@ -75,10 +75,19 @@ const Backdrop: BackdropComponent = (receivedProps) => {
 
 
   // ----
+  // Check if this is a nested backdrop.
+  // Nested backdrop must not change body classList
+  // Change is demanded to primary backdrop
+  // ----
+  const [ isNestedBackdrop ] = React.useState(document.body.classList.contains('dimmed'));
+
+
+  // ----
   // Define Backdrop Handlers
   // ----
   const handlePortalMount = () => {
-    if (isBrowser) {
+    /** Set document class only if this is the first backdrop */
+    if (isBrowser && !isNestedBackdrop) {
       document.body.classList.add('dimmable');
       document.body.classList.add('dimmed');
     }
@@ -89,7 +98,8 @@ const Backdrop: BackdropComponent = (receivedProps) => {
   };
 
   const handlePortalUnmount = () => {
-    if (isBrowser) {
+    /** Remove Document class only if this is the last backdrop */
+    if (isBrowser && !isNestedBackdrop) {
       document.body.classList.remove('dimmable');
       document.body.classList.remove('dimmed');
     }
