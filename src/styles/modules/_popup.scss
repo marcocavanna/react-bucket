@@ -31,7 +31,7 @@
     max-width: $popup-max-width;
     border: $popup-border;
     padding: $popup-content-padding;
-    @include dpShadow($popup-elevation);
+    @include smoothShadow($popup-elevation);
 
     > .content {
       background-color: $popup-content-background;
@@ -79,7 +79,7 @@
   line-height: $popup-basic-line-height;
   padding: $popup-basic-content-padding $popup-basic-content-padding * 1.5;
   border: $popup-basic-border;
-  @include dpShadow($popup-basic-elevation);
+  @include smoothShadow($popup-basic-elevation);
   font-style: normal;
 
   // ----

@@ -44,7 +44,7 @@ $accordions-border-radius: $border-radius !default;
 
 $accordions-closed-vertical-margins: 0 !default;
 $accordions-opened-vertical-margins: 1em !default;
-$accordions-opened-elevation: 2 !default;
+$accordions-opened-elevation: 3 !default;
 
 $accordions-trigger-font-size: $h5-font-size !default;
 $accordions-trigger-hover-background: $white-shade-2 !default;
@@ -349,7 +349,7 @@ $item-clickable-hover-color: rgba(0, 0, 0, .05) !default;
 
 $item-solid-border-radius: $item-clickable-border-radius * 1.25 !default;
 $item-solid-background-color: rgba(0, 0, 0, .05) !default;
-$item-solid-clickable-hover-elevation: 2 !default;
+$item-solid-clickable-hover-elevation: 0 !default;
 
 $items-group-spacer: 1.25em !default;
 $items-divider-color: $divider-color !default;
@@ -481,7 +481,7 @@ $modal-border-radius: $border-radius-big * 2 !default;
 $modal-top-offset: 75px !default;
 $modal-vertical-padding: 2em !default;
 $modal-horizontal-padding: 2em !default;
-$modal-elevation: 2 !default;
+$modal-elevation: 5 !default;
 
 $modal-icon-size: 3em !default;
 
@@ -529,7 +529,7 @@ $popup-max-width: 25rem !default;
 $popup-border: none !default;
 $popup-content-padding: 0.4em !default;
 
-$popup-elevation: 2 !default;
+$popup-elevation: 4 !default;
 
 $popup-basic-font-size: .85em !default;
 $popup-basic-min-width: min-content !default;
@@ -652,7 +652,7 @@ $toast-content-padding: get-em-spacer(3) !default;
 $toast-background-color: rgba(0, 0, 0, .8) !default;
 $toast-font-color: $white !default;
 $toast-font-weight: $semi-bold !default;
-$toast-shadow-elevation: 6 !default;
+$toast-shadow-elevation: 4 !default;
 $toast-icon-size: 1.25em !default;
 $toast-content-opacity: .75 !default;
 $toast-width-on-tablet-up: 480px !default;

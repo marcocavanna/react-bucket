@@ -18,7 +18,7 @@
 .accordions > .collapsable {
   background-color: $accordions-base-background;
   margin: $accordions-closed-vertical-margins 0;
-  @include dpShadow(0);
+  @include smoothShadow(0);
 
   transition: margin $transition-ease $transition-duration,
   box-shadow $transition-ease $transition-duration;
@@ -44,7 +44,7 @@
 
   &.opened {
     margin: $accordions-opened-vertical-margins 0;
-    @include dpShadow($accordions-opened-elevation);
+    @include smoothShadow($accordions-opened-elevation);
   }
 }
 

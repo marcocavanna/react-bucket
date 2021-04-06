@@ -25,7 +25,7 @@
   border-radius: $modal-border-radius;
   padding: $modal-vertical-padding $modal-horizontal-padding;
 
-  @include dpShadow($modal-elevation);
+  @include smoothShadow($modal-elevation);
 
   // ----
   //  Modal could have multiple size
@@ -51,7 +51,7 @@
 
     &:after {
       background-color: $cloud-light;
-      @include dpShadow($modal-elevation)
+      @include smoothShadow($modal-elevation)
     }
   }
 }

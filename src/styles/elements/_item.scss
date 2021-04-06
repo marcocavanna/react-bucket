@@ -153,13 +153,13 @@
 
   @if $item-solid-clickable-hover-elevation != 0 {
     &:not(.disabled) {
-      @include dpShadow(0);
+      @include smoothShadow(0);
       will-change: box-shadow;
       transition: box-shadow $transition-speed-fast $transition-ease;
 
       @include hover {
         &:hover {
-          @include dpShadow($item-solid-clickable-hover-elevation);
+          @include smoothShadow($item-solid-clickable-hover-elevation);
         }
       }
     }
