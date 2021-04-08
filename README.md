@@ -5,12 +5,16 @@
 <h1 align="center">ReactBucket</h1>
 
 <div align="center">
-An Old School [React](https://reactjs.org/) UI Framework based on TypeScript and SCSS, fully customizable, with a dedicated [CreateReactApp](https://create-react-app.dev) template. Check it out [here](https://github.com/marcocavanna/cra-template-react-bucket)
+
+An Old School [React](https://reactjs.org/) UI Framework based on TypeScript and SCSS, fully customizable, with a
+dedicated [CreateReactApp](https://create-react-app.dev) template. Check it
+out [here](https://github.com/marcocavanna/cra-template-react-bucket)
 
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/marcocavanna/react-bucket/blob/master/LICENSE)
 [![npm latest package](https://img.shields.io/npm/v/@appbuckets/react-bucket/latest.svg)](https://www.npmjs.com/package/@appbuckets/react-bucket)
 [![npm downloads](https://img.shields.io/npm/dm/@appbuckets/react-bucket.svg)](https://www.npmjs.com/package/@appbuckets/react-bucket)
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=marcocavanna/react-bucket)](https://dependabot.com)
+
 </div>
 
 ## Installation
