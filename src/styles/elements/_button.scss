@@ -20,7 +20,9 @@
   // ----
   appearance: none !important;
   cursor: pointer;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   outline: 0;
   border: none;
   vertical-align: baseline;
@@ -28,14 +30,15 @@
   background-image: none;
   position: relative;
 
+
   // ----
   //  Set Button Sizing
   //  And Box Modeling
   // ----
   height: $button-height;
+  padding: 0 $button-horizontal-padding;
   min-width: $button-min-width;
   border-radius: $button-border-radius;
-  padding: 0 $button-horizontal-padding;
   margin: 0 $button-spacer 0 0;
 
   &:last-child {
@@ -54,6 +57,18 @@
   text-decoration: none;
   text-transform: $button-text-transform;
   white-space: nowrap;
+
+
+  // ----
+  //  Set internal content style
+  // ----
+  > span {
+    width: 100%;
+    display: inherit;
+    align-items: inherit;
+    justify-content: inherit;
+  }
+
 
   // ----
   //  Fitted Buttons has no min width
@@ -128,7 +143,7 @@
       }
     }
 
-    > .icon {
+    .icon {
       opacity: 1 !important;
     }
   }
@@ -148,8 +163,9 @@
     padding: 0;
     min-width: auto;
     width: $button-height;
+    height: $button-height;
 
-    > .icon {
+    .icon {
       margin: 0 !important;
       opacity: 1;
     }
@@ -159,7 +175,7 @@
   //  Button with Icon on Right must invert icon spacer
   // ----
   &.with-icon.icon-on-right {
-    > .icon {
+    .icon {
       margin-right: 0;
       margin-left: $icon-spacer;
     }
@@ -197,26 +213,6 @@
     margin: $button-fab-spacer;
   }
 
-}
-
-
-/******
-    Fixing Style of Anchor Button
-******/
-a.button {
-  // ----
-  //  Change as-icon style
-  // ----
-  &.as-icon {
-    position: relative;
-
-    .icon {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-    }
-  }
 }
 
 

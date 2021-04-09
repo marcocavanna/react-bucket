@@ -49,6 +49,7 @@ const Button: ButtonComponent = (receivedProps) => {
       active,
       disabled,
       disableRipple,
+      href,
       fab,
       fitted,
       flat,
@@ -69,7 +70,7 @@ const Button: ButtonComponent = (receivedProps) => {
   } = useSharedClassName(props);
 
   /** Get the component element type */
-  const ElementType = useElementType(Button, props);
+  const ElementType = useElementType<ButtonProps>(Button, props);
 
   /** Split state className from rest props */
   const [ stateClasses, rest ] = useSplitStateClassName(rawRest);
@@ -136,10 +137,6 @@ const Button: ButtonComponent = (receivedProps) => {
       e.stopPropagation();
       onClick(e, props);
     }
-    /** If the button still exists, remove focus */
-    if (e.currentTarget && typeof e.currentTarget.blur === 'function') {
-      e.currentTarget.blur();
-    }
   };
 
   /** Build the element class list */
@@ -202,9 +199,11 @@ const Button: ButtonComponent = (receivedProps) => {
       tabIndex={tabIndex}
       onClick={handleClick}
     >
-      {iconPosition === 'left' && iconElement}
-      {content}
-      {iconPosition === 'right' && iconElement}
+      <span>
+        {iconPosition === 'left' && iconElement}
+        {content}
+        {iconPosition === 'right' && iconElement}
+      </span>
       {!disableRipple && buttonRipples}
     </ElementType>
   );
