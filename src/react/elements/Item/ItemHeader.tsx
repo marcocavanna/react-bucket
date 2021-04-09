@@ -40,7 +40,7 @@ const ItemHeader: ItemHeaderComponent = (receivedProps) => {
   } = useSharedClassName(props);
 
   /** Get the component element type */
-  const ElementType = useElementType(ItemHeader, props);
+  const ElementType = useElementType(ItemHeader, receivedProps, props);
 
   /** Build the element class list */
   const classes = clsx(

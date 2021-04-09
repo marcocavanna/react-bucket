@@ -40,7 +40,7 @@ const TableHeader: TableHeaderComponent = (receivedProps) => {
     }
   } = useSharedClassName(props);
 
-  const ElementType = useElementType(TableHeader, props);
+  const ElementType = useElementType(TableHeader, receivedProps, props);
 
   const classes = clsx(
     className,

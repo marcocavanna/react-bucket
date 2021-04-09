@@ -40,7 +40,7 @@ const ModalContent: ModalContentComponent = (receivedProps) => {
   } = useSharedClassName(props);
 
   /** Get the component element type */
-  const ElementType = useElementType(ModalContent, props);
+  const ElementType = useElementType(ModalContent, receivedProps, props);
 
   /** Build the element class list */
   const classes = clsx(

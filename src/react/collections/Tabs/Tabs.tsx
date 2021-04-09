@@ -67,7 +67,7 @@ const Tabs: TabsComponent = (receivedProps) => {
   });
 
   /** Get the component element type */
-  const ElementType = useElementType(Tabs, props);
+  const ElementType = useElementType(Tabs, receivedProps, props);
 
   /** Build the element class list */
   const classes = clsx(

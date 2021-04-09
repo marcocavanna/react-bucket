@@ -50,7 +50,7 @@ const LabelGroup: LabelGroupComponent = (receivedProps) => {
   } = useSharedClassName(props);
 
   /** Get the component element type */
-  const ElementType = useElementType(LabelGroup, props);
+  const ElementType = useElementType(LabelGroup, receivedProps, props);
 
   /** Build the element class list */
   const classes = clsx(

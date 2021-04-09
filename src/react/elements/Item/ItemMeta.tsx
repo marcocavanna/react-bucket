@@ -41,7 +41,7 @@ const ItemMeta: ItemMetaComponent = (receivedProps) => {
   } = useSharedClassName(props);
 
   /** Get the component element type */
-  const ElementType = useElementType(ItemMeta, props);
+  const ElementType = useElementType(ItemMeta, receivedProps, props);
 
   /** Build the element class list */
   const classes = clsx(

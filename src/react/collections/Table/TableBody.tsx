@@ -40,7 +40,7 @@ const TableBody: TableBodyComponent = (receivedProps) => {
     }
   } = useSharedClassName(props);
 
-  const ElementType = useElementType(TableBody, props);
+  const ElementType = useElementType(TableBody, receivedProps, props);
 
   const classes = clsx(
     className,

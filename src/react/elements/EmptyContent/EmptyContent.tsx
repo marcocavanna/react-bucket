@@ -52,7 +52,7 @@ const EmptyContent: EmptyContentComponent = (receivedProps) => {
     className
   );
 
-  const ElementType = useElementType(EmptyContent, props);
+  const ElementType = useElementType(EmptyContent, receivedProps, props);
 
   const buttonElement = React.useMemo(
     () => Button.create(button, { autoGenerateKey: false }),

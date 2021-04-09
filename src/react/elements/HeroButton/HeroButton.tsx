@@ -44,7 +44,7 @@ const HeroButton: HeroButtonComponent = (receivedProps) => {
   } = useSharedClassName(props);
 
   /** Get the component element type */
-  const ElementType = useElementType(HeroButton, props);
+  const ElementType = useElementType(HeroButton, receivedProps, props);
 
   /** Split state className from rest props */
   const [ stateClasses, rest ] = useSplitStateClassName(rawRest);

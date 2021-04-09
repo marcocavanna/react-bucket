@@ -54,7 +54,7 @@ const Avatar: AvatarComponent = (receivedProps) => {
   } = useSharedClassName(props);
 
   /** Get the component element type */
-  const ElementType = useElementType(Avatar, props);
+  const ElementType = useElementType(Avatar, receivedProps, props);
 
   /** Split state className from rest props */
   const [ stateClasses, rest ] = useSplitStateClassName(rawRest);

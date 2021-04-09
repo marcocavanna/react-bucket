@@ -47,7 +47,7 @@ const Section: SectionComponent = (receivedProps) => {
     }
   } = useSharedClassName(props);
 
-  const ElementType = useElementType(Section, props);
+  const ElementType = useElementType(Section, receivedProps, props);
 
   const contentNode = childrenUtils.isNil(children) ? content : children;
 

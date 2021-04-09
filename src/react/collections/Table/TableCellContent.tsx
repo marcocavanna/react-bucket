@@ -41,7 +41,7 @@ const TableCellContent: TableCellContentComponent = (receivedProps) => {
     }
   } = useSharedClassName(props);
 
-  const ElementType = useElementType(TableCellContent, props);
+  const ElementType = useElementType(TableCellContent, receivedProps, props);
 
   const classes = clsx(
     truncate && 'truncated',

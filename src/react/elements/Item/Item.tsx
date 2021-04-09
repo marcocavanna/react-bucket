@@ -62,7 +62,7 @@ const Item: ItemComponent = (receivedProps) => {
   } = useSharedClassName(props);
 
   /** Get the component element type */
-  const ElementType = useElementType(Item, props);
+  const ElementType = useElementType(Item, receivedProps, props);
 
   /** Split state className from rest props */
   const [ stateClasses, rest ] = useSplitStateClassName(rawRest);

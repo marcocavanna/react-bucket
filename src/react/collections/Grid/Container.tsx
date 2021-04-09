@@ -39,7 +39,7 @@ const Container: ContainerComponent = (receivedProps) => {
     }
   } = useSharedClassName(props);
 
-  const ElementType = useElementType(Container, props);
+  const ElementType = useElementType(Container, receivedProps, props);
 
   const classes = clsx(
     { fluid },

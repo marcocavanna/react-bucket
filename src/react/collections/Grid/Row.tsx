@@ -39,7 +39,7 @@ const Row: RowComponent = (receivedProps) => {
     }
   } = useSharedClassName(props);
 
-  const ElementType = useElementType(Row, props);
+  const ElementType = useElementType(Row, receivedProps, props);
 
   const classes = clsx(
     'with-columns',

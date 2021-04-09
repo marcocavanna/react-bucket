@@ -40,7 +40,7 @@ const TableFooter: TableFooterComponent = (receivedProps) => {
     }
   } = useSharedClassName(props);
 
-  const ElementType = useElementType(TableFooter, props);
+  const ElementType = useElementType(TableFooter, receivedProps, props);
 
   const classes = clsx(
     className,

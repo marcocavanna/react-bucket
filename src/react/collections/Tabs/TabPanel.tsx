@@ -42,7 +42,7 @@ const TabPanel: TabPanelComponent = (receivedProps) => {
   } = useSharedClassName(props);
 
   /** Get the component element type */
-  const ElementType = useElementType(TabPanel, props);
+  const ElementType = useElementType(TabPanel, receivedProps, props);
 
   /** Build the element class list */
   const classes = clsx(

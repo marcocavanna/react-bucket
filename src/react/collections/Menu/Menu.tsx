@@ -68,7 +68,7 @@ const Menu: MenuComponent = (receivedProps) => {
   });
 
   /** Get the component element type */
-  const ElementType = useElementType(Menu, props);
+  const ElementType = useElementType(Menu, receivedProps, props);
 
   /** Build the element class list */
   const classes = clsx(

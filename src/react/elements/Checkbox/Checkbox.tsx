@@ -67,7 +67,7 @@ const Checkbox: CheckboxComponent = (receivedProps) => {
   } = useSharedClassName(props);
 
   const [ stateClassName, rest ] = useSplitStateClassName(rawRest);
-  const ElementType = useElementType(Checkbox, props);
+  const ElementType = useElementType(Checkbox, receivedProps, props);
 
 
   /* --------

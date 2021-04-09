@@ -48,7 +48,7 @@ const BackdropInner: BackdropInnerComponent = (receivedProps) => {
   const contentRef = React.useRef<HTMLDivElement>(null);
 
   /** Get the render element type */
-  const ElementType = useElementType(BackdropInner, props);
+  const ElementType = useElementType(BackdropInner, receivedProps, props);
 
 
   // ----

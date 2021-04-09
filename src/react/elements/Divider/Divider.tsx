@@ -40,7 +40,7 @@ const Divider: DividerComponent = (receivedProps) => {
   } = useSharedClassName(props);
 
   /** Get the component element type */
-  const ElementType = useElementType(Divider, props);
+  const ElementType = useElementType(Divider, receivedProps, props);
 
   /** Split state className from rest props */
   const [ stateClasses, rest ] = useSplitStateClassName(rawRest);

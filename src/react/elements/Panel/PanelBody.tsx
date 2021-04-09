@@ -43,7 +43,7 @@ const PanelBody: PanelBodyComponent = (receivedProps) => {
     }
   } = useSharedClassName(props);
 
-  const ElementType = useElementType(PanelBody, props);
+  const ElementType = useElementType(PanelBody, receivedProps, props);
 
   const classes = clsx(
     'body',

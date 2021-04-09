@@ -53,7 +53,7 @@ const Label: LabelComponent = (receivedProps) => {
   } = useSharedClassName(props);
 
   /** Get the component element type */
-  const ElementType = useElementType(Label, props);
+  const ElementType = useElementType(Label, receivedProps, props);
 
   /** Split state className from rest props */
   const [ stateClasses, rest ] = useSplitStateClassName(rawRest);

@@ -152,7 +152,7 @@ const Popup: PopupComponent = (receivedProps) => {
   // ----
   // Component Internal Hooks
   // ----
-  const ElementType = useElementType(Popup, props);
+  const ElementType = useElementType(Popup, receivedProps, props);
   const portalProps: PortalProps = usePortalProps(userDefinedPortalProps, props);
 
 

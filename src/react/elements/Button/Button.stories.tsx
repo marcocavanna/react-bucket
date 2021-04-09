@@ -60,7 +60,6 @@ export const buttonGroup = () => (
 
 export const anchorButton = () => (
   <Button
-    as={'a'}
     href={'https://github.com/marcocavanna/react-bucket'}
     target={'_blank'}
     icon={{

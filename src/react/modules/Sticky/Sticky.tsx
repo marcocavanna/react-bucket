@@ -51,7 +51,7 @@ const Sticky: StickyComponent = (receivedProps) => {
   // ----
   // Get the Right element Type
   // ----
-  const ElementType = useElementType(Sticky, props);
+  const ElementType = useElementType(Sticky, receivedProps, props);
 
 
   // ----

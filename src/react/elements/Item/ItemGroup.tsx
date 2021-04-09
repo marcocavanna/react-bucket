@@ -55,7 +55,7 @@ const ItemGroup: ItemGroupComponent = (receivedProps) => {
   } = useSharedClassName(props);
 
   /** Get the component element type */
-  const ElementType = useElementType(ItemGroup, props);
+  const ElementType = useElementType(ItemGroup, receivedProps, props);
 
   /** Build the element class list */
   const classes = clsx(

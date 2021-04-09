@@ -57,7 +57,7 @@ const Panel: PanelComponent = (receivedProps) => {
     }
   } = useSharedClassName(props);
 
-  const ElementType = useElementType(Panel, props);
+  const ElementType = useElementType(Panel, receivedProps, props);
 
   const [ stateClasses, rest ] = useSplitStateClassName(rawRest);
 

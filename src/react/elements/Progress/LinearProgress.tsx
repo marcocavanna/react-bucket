@@ -47,7 +47,7 @@ const LinearProgress: LinearProgressComponent = (receivedProps) => {
     }
   } = useProgressProps(props);
 
-  const ElementType = useElementType(LinearProgress, props);
+  const ElementType = useElementType(LinearProgress, receivedProps, props);
 
 
   // ----

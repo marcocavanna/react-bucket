@@ -54,7 +54,7 @@ const TableCell: TableCellComponent = (receivedProps) => {
 
   const [ stateClassName, rest ] = useSplitStateClassName(rawRest);
 
-  const ElementType = useElementType(TableCell, props);
+  const ElementType = useElementType(TableCell, receivedProps, props);
 
   const classes = clsx(
     { active, selectable, wrapped, 'with-icon': !!icon },

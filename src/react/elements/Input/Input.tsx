@@ -69,7 +69,7 @@ const Input: InputComponent = (receivedProps) => {
   } = useSharedClassName(props);
 
   const [ stateClassName, rest ] = useSplitStateClassName(rawRest);
-  const ElementType = useElementType(Input, props);
+  const ElementType = useElementType(Input, receivedProps, props);
 
 
   /* --------

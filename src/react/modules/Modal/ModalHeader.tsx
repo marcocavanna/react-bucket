@@ -49,7 +49,7 @@ const ModalHeader: ModalHeaderComponent = (receivedProps) => {
   } = useSharedClassName(props);
 
   /** Get the component element type */
-  const ElementType = useElementType(ModalHeader, props);
+  const ElementType = useElementType(ModalHeader, receivedProps, props);
 
   /** Build the element class list */
   const classes = clsx(

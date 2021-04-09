@@ -61,7 +61,7 @@ const Table: TableComponent = <Data extends any = any>(
   } = props;
 
   // @ts-ignore
-  const ElementType = useElementType<TableProps<Data>>(Table, props);
+  const ElementType = useElementType<TableProps<Data>>(Table, receivedProps, props);
 
   const classes = clsx(
     {

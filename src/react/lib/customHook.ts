@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { getElementType, PropsWithAs } from '@appbuckets/react-ui-core';
+import { PropsWithAs } from '@appbuckets/react-ui-core';
 
 import getSharedClassNames, {
   SharedClassNamesAndProps,
@@ -17,18 +17,60 @@ import { SharedComponentStateProps } from '../generic';
  * element type, wrapped by a react useMemo
  * hook function
  */
-export function useElementType<P = {}>(
+function getElementType<P = {}>(
   Component: React.ComponentType<PropsWithAs<P>>,
-  props: PropsWithAs<P>,
+  userDefinedProps: PropsWithAs<P>,
+  themedProps: PropsWithAs<P> | undefined,
   getDefault?: ((props: PropsWithAs<P>) => React.ElementType | undefined)
 ): React.ElementType | string {
+
+  // Get Component defaultProps
+  const { defaultProps } = Component;
+
+  // Return user defined ElementType
+  if (userDefinedProps.as && userDefinedProps.as !== defaultProps?.as) {
+    return userDefinedProps.as;
+  }
+
+  // Use the getDefault function to calculate the element
+  if (typeof getDefault === 'function') {
+    const elementType = getDefault(themedProps ?? userDefinedProps);
+
+    if (elementType) {
+      return elementType;
+    }
+  }
+
+  // If props include href property, return an anchor element
+  if (userDefinedProps.href) {
+    return 'a';
+  }
+
+  // Return the defaultProps, or fallback to div element
+  return defaultProps?.as || themedProps?.as || 'div';
+
+}
+
+export function useElementType<P = {}>(
+  Component: React.ComponentType<PropsWithAs<P>>,
+  userDefinedProps: PropsWithAs<P>,
+  themedProps: PropsWithAs<P> | undefined,
+  getDefault?: ((props: PropsWithAs<P>) => React.ElementType | undefined)
+): React.ElementType | string {
+  /** Deconstruct data */
+  const { as: userDefinedAs, href: userDefinedHref } = userDefinedProps;
+  const { as: defaultDefinedAs, href: defaultDefinedHref } = themedProps || { href: undefined };
+  const { as: defaultAsFromComponent } = Component.defaultProps || { as: undefined };
+
   return React.useMemo(
-    () => getElementType(Component, props, getDefault),
+    () => getElementType(Component, userDefinedProps, themedProps, getDefault),
     // eslint-disable-next-line
     [
-      Component.defaultProps?.as,
-      props.as,
-      props.href,
+      defaultAsFromComponent,
+      userDefinedAs,
+      userDefinedHref,
+      defaultDefinedAs,
+      defaultDefinedHref,
       getDefault
     ]
   );

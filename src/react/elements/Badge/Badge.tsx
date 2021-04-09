@@ -46,7 +46,7 @@ const Badge: BadgeComponent = (receivedProps) => {
   } = useSharedClassName(props);
 
   /** Get the component element type */
-  const ElementType = useElementType(Badge, props);
+  const ElementType = useElementType(Badge, receivedProps, props);
 
   /** Check if component has declared children */
   const hasChildren = !childrenUtils.isNil(children);

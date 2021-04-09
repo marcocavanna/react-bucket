@@ -48,7 +48,7 @@ const Loader: LoaderComponent = (receivedProps) => {
   } = useSharedClassName(props);
 
   /** Get Render Element Type */
-  const ElementType = useElementType(Loader, props);
+  const ElementType = useElementType(Loader, receivedProps, props);
 
   /** Get the State Class */
   const [ stateClassName, rest ] = useSplitStateClassName(rawRest);

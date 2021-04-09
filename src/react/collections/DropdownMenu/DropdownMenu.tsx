@@ -51,7 +51,7 @@ const DropdownMenu: DropdownMenuComponent = (receivedProps) => {
     ...rest
   } = props;
 
-  const ElementType = useElementType(DropdownMenu, props);
+  const ElementType = useElementType(DropdownMenu, receivedProps, props);
 
   const [ open, trySetOpen ] = useAutoControlledValue(false, {
     defaultProp: userDefinedDefaultOpen,

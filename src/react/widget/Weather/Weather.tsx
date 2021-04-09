@@ -86,7 +86,7 @@ const Weather: WeatherComponent = (props) => {
   } = useSharedClassName(props);
 
   /** Get render element type */
-  const ElementType = useElementType(Weather, props);
+  const ElementType = useElementType(Weather, props, undefined);
 
   /** Build a State Container for fetch request */
   const [ state, setState ] = React.useState<WeatherState>({

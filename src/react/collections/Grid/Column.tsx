@@ -40,7 +40,7 @@ const Column: ColumnComponent = (receivedProps) => {
     }
   } = useSharedClassName(props);
 
-  const ElementType = useElementType(Column, props);
+  const ElementType = useElementType(Column, receivedProps, props);
 
   const classes = clsx(
     'column',

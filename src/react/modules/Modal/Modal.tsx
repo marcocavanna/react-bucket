@@ -99,7 +99,7 @@ const Modal: ModalComponent = (receivedProps) => {
     { prop: openProp, defaultProp: defaultOpen }
   );
   /** Get the component element type */
-  const ElementType = useElementType(Modal, props);
+  const ElementType = useElementType(Modal, receivedProps, props);
   /** Check if in this render modal has children */
   const hasChildren = !childrenUtils.isNil(children);
 

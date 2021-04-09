@@ -70,7 +70,7 @@ const MenuItem: MenuItemComponent = (receivedProps) => {
   const [ showRipple, itemRipples ] = useRipples();
 
   /** Get the component element type */
-  const ElementType = useElementType(MenuItem, props);
+  const ElementType = useElementType(MenuItem, receivedProps, props);
 
   /** Split state className from rest props */
   const [ stateClasses, rest ] = useSplitStateClassName(rawRest);

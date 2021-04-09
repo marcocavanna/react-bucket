@@ -44,7 +44,7 @@ const Message: MessageComponent = (receivedProps) => {
   } = useSharedClassName(props);
 
   /** Get Proper Element type */
-  const ElementType = useElementType(Message, props);
+  const ElementType = useElementType(Message, receivedProps, props);
 
   /** Split state classNames */
   const [ stateClassNames, rest ] = useSplitStateClassName(rawRest);

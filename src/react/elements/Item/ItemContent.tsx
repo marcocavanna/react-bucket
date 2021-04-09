@@ -53,7 +53,7 @@ const ItemContent: ItemContentComponent = (receivedProps) => {
   } = useSharedClassName(props);
 
   /** Get the component element type */
-  const ElementType = useElementType(ItemContent, props);
+  const ElementType = useElementType(ItemContent, receivedProps, props);
 
   /** Build the element class list */
   const classes = clsx(

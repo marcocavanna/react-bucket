@@ -41,7 +41,7 @@ const CircularProgress: CircularProgressComponent = (receivedProps) => {
     }
   } = useProgressProps(props);
 
-  const ElementType = useElementType(CircularProgress, props);
+  const ElementType = useElementType(CircularProgress, receivedProps, props);
 
   const classes = clsx(
     className,

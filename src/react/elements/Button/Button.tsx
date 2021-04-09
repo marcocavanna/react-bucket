@@ -49,7 +49,6 @@ const Button: ButtonComponent = (receivedProps) => {
       active,
       disabled,
       disableRipple,
-      href,
       fab,
       fitted,
       flat,
@@ -70,7 +69,7 @@ const Button: ButtonComponent = (receivedProps) => {
   } = useSharedClassName(props);
 
   /** Get the component element type */
-  const ElementType = useElementType<ButtonProps>(Button, props);
+  const ElementType = useElementType(Button, receivedProps, props);
 
   /** Split state className from rest props */
   const [ stateClasses, rest ] = useSplitStateClassName(rawRest);

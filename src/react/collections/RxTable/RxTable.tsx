@@ -1,8 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
 
-import { PropsWithAs } from '@appbuckets/react-ui-core';
-
 import { AnyObject } from '../../generic';
 import { useElementSize } from '../../hooks/useElementSize';
 
@@ -87,7 +85,7 @@ const RxTable = <Data extends AnyObject>(
   // ----
   // Get the Right Element Type
   // ----
-  const ElementType = useElementType(RxTable, props as unknown as PropsWithAs<RxTableProps<AnyObject>>);
+  const ElementType = useElementType<RxTableProps<Data>>(RxTable, receivedProps, props);
 
 
   // ----

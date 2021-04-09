@@ -58,7 +58,7 @@ const ButtonGroup: ButtonGroupComponent = (receivedProps) => {
   } = useSharedClassName(props);
 
   /** Get the Element Type */
-  const ElementType = useElementType(ButtonGroup, props);
+  const ElementType = useElementType(ButtonGroup, receivedProps, props);
 
   /** Build Component Classes */
   const classes = clsx(

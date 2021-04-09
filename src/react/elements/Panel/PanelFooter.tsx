@@ -40,7 +40,7 @@ const PanelFooter: PanelFooterComponent = (receivedProps) => {
     }
   } = useSharedClassName(props);
 
-  const ElementType = useElementType(PanelFooter, props);
+  const ElementType = useElementType(PanelFooter, receivedProps, props);
 
   const classes = clsx(
     'foot',

@@ -54,7 +54,7 @@ const TableRow: TableRowComponent = (receivedProps) => {
 
   const [ stateClassName, rest ] = useSplitStateClassName(rawRest);
 
-  const ElementType = useElementType(TableRow, props);
+  const ElementType = useElementType(TableRow, receivedProps, props);
 
   const classes = clsx(
     { active, disabled, selectable },

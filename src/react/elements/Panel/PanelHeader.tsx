@@ -45,7 +45,7 @@ const PanelHeader: PanelHeaderComponent = (receivedProps) => {
     }
   } = useSharedClassName(props);
 
-  const ElementType = useElementType(PanelHeader, props);
+  const ElementType = useElementType(PanelHeader, receivedProps, props);
 
   const classes = clsx(
     'head',

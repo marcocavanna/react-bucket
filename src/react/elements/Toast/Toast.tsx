@@ -47,7 +47,7 @@ const Toast: ToastComponent = (receivedProps) => {
   } = useSharedClassName(props);
 
   /** get the Element Type */
-  const ElementType = useElementType(Toast, props);
+  const ElementType = useElementType(Toast, receivedProps, props);
 
   /** Split state className from rest props */
   const [ stateClassName, rest ] = useSplitStateClassName(rawRest);

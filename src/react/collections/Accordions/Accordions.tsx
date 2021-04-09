@@ -57,7 +57,7 @@ const Accordions: AccordionsComponent = (receivedProps) => {
   });
 
   /** Get the component element type */
-  const ElementType = useElementType(Accordions, props);
+  const ElementType = useElementType(Accordions, receivedProps, props);
 
   /** Build the element class list */
   const classes = clsx(
