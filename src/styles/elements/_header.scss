@@ -153,7 +153,11 @@
   // ----
   .header-icon {
     display: inline-flex;
-    font-size: $header-base-font-size;
+    font-size: $header-icon-size;
+
+    .icon {
+      margin-right: $header-icon-spacer;
+    }
   }
 
   // ----
@@ -167,7 +171,7 @@
 
       .icon {
         margin-right: 0;
-        margin-left: $icon-spacer;
+        margin-left: $header-icon-spacer;
       }
     }
   }
@@ -178,7 +182,7 @@
     /// Increase Icon Size on Centered Header
     .header-icon {
       font-size: $header-centered-icon-size;
-      margin-bottom: $icon-spacer;
+      margin-bottom: $header-icon-spacer;
 
       .icon {
         margin: 0

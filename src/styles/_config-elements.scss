@@ -15,6 +15,10 @@
 /******
     Shared Variables
 ******/
+
+// ----
+//  Form Variables
+// ----
 $form-control-color: $text !default;
 $form-control-font-weight: $semi-bold !default;
 $form-control-background-color: rgba(0, 0, 0, 0.05) !default;
@@ -24,6 +28,17 @@ $form-control-active-main-color: $primary !default;
 $form-control-active-inverse-color: $white !default;
 $form-control-focus-background-color: transparent !default;
 $form-control-focus-border-color: $primary !default;
+
+
+// ----
+//  Icon Variables
+// ----
+$icon-size: inherit !default;
+$icon-spacer: $spacer * .25 !default;
+$icon-width: 1.5em !default;
+$icon-opacity: 1 !default;
+$icon-bordered-box-size: 1.65em !default;
+$icon-bordered-border-width: pixel-to-em(1px) !default;
 
 
 /******
@@ -266,8 +281,11 @@ $header-base-font-size: $h3-font-size !default;
 $header-font-weight: $headers-font-weight !default;
 $header-subheader-relative-font-size: .75em !default;
 $header-subheader-opacity: .6 !default;
-$header-centered-icon-size: $h2-font-size !default;
 $header-actions-spacer: 1.5em !default;
+
+$header-icon-size: $header-base-font-size !default;
+$header-icon-spacer: $icon-spacer * 2 !default;
+$header-centered-icon-size: $h2-font-size !default;
 
 $header-solid-padding: 1.25em !default;
 $header-solid-base-background: $cloud-light !default;
@@ -301,16 +319,6 @@ $hero-button-discreet-shadow-strength: 0 !default;
 $hero-button-shadow-opacity: .6 !default;
 $hero-button-discreet-shadow-opacity: .8 !default;
 $hero-button-color-variations: ($blue, $teal, $green, $yellow, $orange, $red, $pink, $purple, $facebook, $pinterest, $google-plus, $whatsapp, $amazon, $microsoft, $dribble, $telegram) !default;
-
-
-/******
-    Icon Configuration
-******/
-$icon-spacer: $spacer * .25 !default;
-$icon-width: 1.5em !default;
-$icon-opacity: 1 !default;
-$icon-bordered-box-size: 1.65em !default;
-$icon-bordered-border-width: pixel-to-em(1px) !default;
 
 
 /******
