@@ -1,4 +1,3 @@
-import { TransitionEventHandler } from 'react';
 import * as React from 'react';
 import clsx from 'clsx';
 
@@ -11,9 +10,7 @@ import {
 
 import { CreatableFunctionComponent } from '../../generic';
 
-import {
-  useSharedClassName
-} from '../../lib';
+import { useSharedClassName } from '../../lib';
 
 import { useAutoControlledValue } from '../../hooks/useAutoControlledValue';
 
@@ -260,7 +257,7 @@ const Collapsable: CollapsableComponent = (receivedProps) => {
     ]
   );
 
-  const handleTransitionEnd = React.useCallback<TransitionEventHandler<HTMLDivElement>>(
+  const handleTransitionEnd = React.useCallback<React.TransitionEventHandler<HTMLDivElement>>(
     ({ target, propertyName }) => {
       /** Skip other transition */
       if (target !== contentRef.current || propertyName !== 'height') {
