@@ -50,6 +50,7 @@ import { CollapsableProps } from '../modules/Collapsable';
 import { DropzoneProps } from '../modules/Dropzone';
 import { ModalActionsProps, ModalContentProps, ModalHeaderProps, ModalProps } from '../modules/Modal';
 import { PopupProps } from '../modules/Popup';
+import { StickyProps } from '../modules/Sticky';
 import { VirtualizedTableProps } from '../modules/VirtualizedTable';
 
 
@@ -180,6 +181,8 @@ export interface ThemeOptions {
   select: ThemeComponentProps<SelectProps<any, any, any>>;
 
   selectMulti: ThemeComponentProps<SelectMultiProps<any, any>>;
+
+  sticky: ThemeComponentProps<StickyProps>;
 
   table: ThemeComponentProps<TableProps>;
 

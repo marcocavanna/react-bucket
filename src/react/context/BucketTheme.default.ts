@@ -340,6 +340,12 @@ export const defaultBucketThemeConfig: ThemeOptions = {
 
 
   // ----
+  // Sticky Component
+  // ----
+  sticky: {},
+
+
+  // ----
   // Table Component
   // ----
   table           : { as: 'table' },

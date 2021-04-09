@@ -94,6 +94,8 @@ export * from './modules/Modal';
 
 export * from './modules/Popup';
 
+export * from './modules/Sticky';
+
 export * from './modules/VirtualizedTable';
 
 
