@@ -1,7 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
 
-import 'react-day-picker/src/style.css';
 import { DayModifiers } from 'react-day-picker';
 import ReactDayPicker from 'react-day-picker/DayPicker';
 
